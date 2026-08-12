@@ -1,51 +1,35 @@
-# Free Inference
+# free-inference
 
-A living catalog of every provider that gives developers **free API access to LLM inference** — usable from a harness, agent, or CLI. Web-chat-only free tiers (ChatGPT, Claude.ai, Gemini app, deepseek.com, Grok, Copilot) are excluded on purpose.
+Source repo for [freeinference.dev](https://freeinference.dev) — a catalog of providers that give developers free API access to LLM inference. The website is the product; this repo is where it's maintained.
 
-Live site: **https://freeinference.dev** (interactive, two-pane UI with filtering and sorting per model column).
-
-## What's inside
-
-| File | What it is |
-| --- | --- |
-| `data/providers.json` | **Single source of truth** — one JSON file, all providers and models |
-| `dist/index.html` | Generated site (two-pane catalog, no-JS fallback) |
-| `dist/llms.txt` | Agent-readable summary (llmstxt.org) — point LLMs here |
-| `dist/data/schema.json` | JSON Schema — validate `providers.json` before trusting it |
-| `probe.py` | Nightly verifier: Google + OpenRouter rows are synced from their live APIs |
-| `build.py` | Regenerates everything in `dist/` from `providers.json` |
-
-## How to use the data
-
-The machine-readable endpoint of the site is `https://freeinference.dev/data/providers.json` (validate against `.../data/schema.json`). There is no API key, no CORS restriction — fetch it from any agent or CLI.
-
-Example (any language):
+## Repository layout
 
 ```
-curl -s https://freeinference.dev/data/providers.json | jq '.providers[] | {name, free_type}'
+data/providers.json   # the catalog — single source of truth (edit this)
+probe.py              # nightly verifier: re-checks live endpoints, syncs Google/OpenRouter rows
+build.py              # generates dist/ (the website) from providers.json
+dist/                 # build output — deployed to Cloudflare Pages, never committed
+.github/workflows/    # nightly probe schedule
 ```
 
-## How it stays correct
+## How it works
 
-- **Nightly probe** (GitHub Actions, 03:37 UTC): `probe.py` calls the Google and OpenRouter APIs and syncs those rows to what the endpoints actually report. No live endpoint → the 45-day staleness flag kicks in and the row is marked for human verification.
-- **Every row cites a primary source** — the provider name links to official docs/limits pages.
-- **PRs welcome.** Corrections and additions require a primary-source link + verification date; unverifiable rows get rejected (see [CONTRIBUTING.md](CONTRIBUTING.md)).
+1. All catalog data lives in `data/providers.json` — one file, everything else derives from it.
+2. `build.py` turns it into the static site (`dist/`).
+3. `probe.py` runs nightly (GitHub Actions): it calls the Google and OpenRouter APIs and rewrites those rows to match what the endpoints actually report, so the catalog can't go stale on its own.
+4. Pushes to `main` publish a new build of the site.
 
-## Running it locally
+## Local development
 
 ```bash
-# regenerate dist/ from data/providers.json
-python3 build.py
-
-# verify Google + OpenRouter rows against their live APIs
-# (GEMINI_API_KEY from env or macOS Keychain; OpenRouter needs no key)
-python3 probe.py
+python3 build.py          # regenerate dist/ from data/providers.json
+python3 probe.py          # verify live rows (Google needs GEMINI_API_KEY: env or macOS Keychain; OpenRouter is keyless)
 ```
 
 ## Contributing
 
-Edit `data/providers.json`, run `python3 build.py` to confirm the build passes, open a PR. Details in [CONTRIBUTING.md](CONTRIBUTING.md). MIT license — see [LICENSE](LICENSE).
+Edit `data/providers.json`, run `python3 build.py` to confirm the build passes, open a PR. Every change must cite a primary source (official docs or dashboard) and a verification date — unverifiable rows are rejected. Details in [CONTRIBUTING.md](CONTRIBUTING.md).
 
-## Caveats
+## License
 
-Limits change without notice and vary per model, account age, region, and peak hours. Treat this table as a map, not a contract — verify before you architect on it.
+MIT — see [LICENSE](LICENSE).

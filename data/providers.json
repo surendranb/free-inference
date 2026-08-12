@@ -111,7 +111,7 @@
       "name": "OpenRouter",
       "url": "https://openrouter.ai/models?max_price=0",
       "free_type": "Rate-limited free",
-      "notes": "Gateway, not a model owner. Shared best-effort capacity, no SLA. BYOK program: 1M free routing requests/month with your own provider keys.",
+      "notes": "Updated via GitHub Connect test (2026-08-12)",
       "timeout": "Not published",
       "verified": "2026-08-12",
       "models": [

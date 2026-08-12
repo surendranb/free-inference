@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """Build Free Inference site artifacts from data/providers.json (single source of truth).
 
-Outputs:
-  index.html           — two-pane catalog (sidebar providers | models panel), no-JS fallback
-  README.md            — provider table (repo mirror)
-  llms.txt             — agent-readable summary (llmstxt.org)
-  data/schema.json     — JSON Schema for providers.json (agents validate before trusting)
-  robots.txt           — allow all crawlers
+Outputs into dist/ (gitignored; deployed by Cloudflare Pages on push):
+  dist/index.html           — two-pane catalog (sidebar providers | models panel), no-JS fallback
+  dist/llms.txt             — agent-readable summary (llmstxt.org)
+  dist/data/providers.json  — machine data
+  dist/data/schema.json     — JSON Schema for providers.json (agents validate before trusting)
+  dist/robots.txt           — allow all crawlers
 """
 import html
 import json
@@ -52,83 +52,6 @@ def definitions():
         "Timeout": "Max request duration before the provider kills the connection.",
         "Context": "Maximum context window available on the free tier.",
     }
-
-
-def build_md():
-    rows = "\n".join(row_md(p) for p in ROWS)
-    total = sum(len(p["models"]) for p in ROWS)
-    return f"""# {TITLE}
-
-{TAGLINE}
-
-**Last verified: {VERIFIED}** · {len(ROWS)} providers · {total} free models tracked ·
-Maintained in [data/providers.json](data/providers.json) — edit that one file, run `python3 build.py`,
-and this README plus [index.html](index.html), [llms.txt](llms.txt) and [data/schema.json](data/schema.json)
-regenerate in sync. Live website: [{WEBSITE.replace('https://', '')}]({WEBSITE}).
-Agent entrypoint: [llms.txt](llms.txt) · machine data: [data/providers.json](data/providers.json)
-(validate against [data/schema.json](data/schema.json)).
-
-## The table
-
-| {" | ".join(COLS)} |
-| {" | ".join(["---"] * len(COLS))} |
-{rows}
-
-## Models (per-provider detail)
-
-| Provider | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-{chr(10).join("| " + " | ".join([
-    html.escape(p["name"]), html.escape(m["name"]), html.escape(m["cost"]),
-    html.escape(m["context"]), html.escape(m["rpm"]), html.escape(m["tpm"]),
-    html.escape(m["rpd"]), html.escape(m["tpd"]), html.escape(m["verified"]),
-]) + " |" for p in ROWS for m in p["models"])}
-
-## Definitions
-
-| Term | Meaning |
-| --- | --- |
-{chr(10).join(f"| {k} | {v} |" for k, v in definitions().items())}
-
-## What counts as free here
-
-- **API-accessible** — an endpoint you can call from a harness, agent, or CLI with a key (or no key). Web-chat-only free tiers (ChatGPT, Claude.ai, Gemini app, deepseek.com, Grok, Copilot) are excluded on purpose.
-- **Strictly $0** — no credit card required for the free tier. Trial credits that expire are included but flagged as such.
-- Four shapes: **rate-limited free** (forever free, throttled), **promo free** (free for a limited time), **free gateways** (OpenRouter, OpenCode Zen), **trial credits** (one-time, expires).
-
-## Caveats
-
-Limits change without notice and vary per model, account age, region, and peak hours. Every row links to official docs from the provider name. Treat this table as a map, not a contract — verify before you architect on it.
-
-## Retired
-
-| Provider | Note |
-| --- | --- |
-| GitHub Models | Fully retired 2026-07-30 (playground, catalog, API, BYOK). |
-
-## Watchlist — candidate providers not yet verified
-
-| Provider | Why it's on the list |
-| --- | --- |
-| Pollinations | No-key free text/image API, but limits are unpublished and unverified. |
-| SiliconFlow | China-hosted free model endpoints with daily token caps, numbers not verified. |
-| Moonshot / Kimi | Free-tier API access is rumoured, not confirmed. |
-| Azure AI Foundry | Free monthly quota for select models, numbers not verified. |
-
-## Contributing — providers, add yourself
-
-One file to edit: `data/providers.json`. Add your row with a link to your official limits page, then:
-
-```bash
-python3 build.py   # regenerates README.md + index.html + llms.txt + data/schema.json in sync
-```
-
-Open a PR. Every change must name a *primary source* (official docs or dashboard) and the date it was verified — an unverifiable row gets rejected. Corrections are welcome the same way.
-
-## Sources
-
-Each provider name in the table links to its official docs. Aggregate numbers were cross-checked against provider docs and third-party trackers as of {VERIFIED}.
-"""
 
 
 def build_llms():
@@ -448,13 +371,16 @@ def main():
         for m in p["models"]:
             missing_m = model_required - set(m)
             assert not missing_m, f"{p['name']}/{m.get('name', '?')}: missing {missing_m}"
+    dist = ROOT / "dist"
+    dist.mkdir(exist_ok=True)
+    (dist / "data").mkdir(exist_ok=True)
+    (dist / "index.html").write_text(build_html())
+    (dist / "llms.txt").write_text(build_llms())
+    (dist / "data" / "providers.json").write_text(json.dumps(DATA, indent=2) + "\n")
+    (dist / "data" / "schema.json").write_text(json.dumps(build_schema(), indent=2) + "\n")
+    (dist / "robots.txt").write_text("User-agent: *\nAllow: /\n")
     total = sum(len(p["models"]) for p in ROWS)
-    (ROOT / "README.md").write_text(build_md())
-    (ROOT / "index.html").write_text(build_html())
-    (ROOT / "llms.txt").write_text(build_llms())
-    (ROOT / "data" / "schema.json").write_text(json.dumps(build_schema(), indent=2) + "\n")
-    (ROOT / "robots.txt").write_text("User-agent: *\nAllow: /\n")
-    print(f"ok: {len(ROWS)} providers, {total} models -> README.md + index.html + llms.txt + data/schema.json (verified {VERIFIED})")
+    print(f"ok: {len(ROWS)} providers, {total} models -> dist/ (verified {VERIFIED})")
 
 
 if __name__ == "__main__":

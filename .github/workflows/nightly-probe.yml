@@ -1,0 +1,40 @@
+name: nightly-probe
+
+on:
+  schedule:
+    - cron: "37 3 * * *"   # 09:07 IST
+  workflow_dispatch: {}
+
+jobs:
+  probe-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run probe
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python3 probe.py
+      - name: Commit changes if any
+        run: |
+          git config user.name "free-inference-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if ! git diff --quiet data/providers.json; then
+            git add data/providers.json
+            git commit -m "probe: nightly verification update ($(date -u +%Y-%m-%d))"
+            git push
+          fi
+      - name: Build site
+        run: python3 build.py
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy . --project-name free-inference

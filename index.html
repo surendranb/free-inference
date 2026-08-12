@@ -1,0 +1,1049 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Every provider that gives developers free API access to LLM inference — usable from a harness, agent, or CLI. Web-chat-only free tiers (ChatGPT, Claude.ai, Gemini app, deepseek.com, Grok, Copilot) are excluded on purpose.">
+<link rel="canonical" href="https://freeinference.dev">
+<link rel="icon" href="data:,">
+<title>Free Inference — free LLM API access for agents &amp; harnesses</title>
+<style>
+  :root { --bg:#fff; --ink:#1a1a1a; --mut:#6b6b6b; --line:#e3e3e3; --sel:#111; --selink:#fff; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink);
+         font:16px/1.5 -apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; }
+  a { color:var(--ink); }
+  .wrap { max-width:1500px; margin:0 auto; padding:32px 24px 64px; }
+  header { display:flex; align-items:baseline; gap:16px; border-bottom:1px solid var(--line);
+           padding-bottom:16px; margin-bottom:20px; }
+  h1 { font-size:24px; margin:0; letter-spacing:-.01em; }
+  .tagline { color:var(--mut); margin:0; max-width:800px; font-size:15px; }
+  .meta { color:var(--mut); font-size:13px; margin-left:auto; white-space:nowrap; }
+  .layout { display:grid; grid-template-columns:280px 1fr; gap:20px; align-items:start; }
+  @media (max-width:860px) { .layout { grid-template-columns:1fr; } .meta { display:none; } }
+  .sidebar { border:1px solid var(--line); border-radius:8px; overflow:hidden;
+              position:sticky; top:16px; background:var(--bg); }
+  @media (max-width:860px) { .sidebar { position:static; } }
+  #filter { width:100%; border:none; border-bottom:1px solid var(--line); padding:10px 14px;
+            font:inherit; font-size:14px; outline:none; background:var(--bg); }
+  #providers { max-height:74vh; overflow-y:auto; }
+  .prow { display:block; width:100%; text-align:left; border:none; background:none; cursor:pointer;
+           padding:10px 14px; border-bottom:1px solid var(--line); font:inherit; }
+  .prow:hover { background:#f4f4f4; }
+  .prow.active { background:var(--sel); color:var(--selink); }
+  .prow .pname { font-weight:600; font-size:14px; display:block; }
+  .prow .pmeta { font-size:12px; color:var(--mut); }
+  .prow.active .pmeta { color:#bbb; }
+  .dead { color:#b3261e; font-weight:700; }
+  .prow.active .dead { color:#ff8a80; }
+  .panel { border:1px solid var(--line); border-radius:8px; overflow:hidden; background:var(--bg); }
+  .panel-head { padding:14px 18px; border-bottom:1px solid var(--line); }
+  .panel-head h2 { margin:0 0 2px; font-size:19px; }
+  .panel-head .ftype { font-size:12px; color:var(--mut); margin-left:8px; font-weight:400; }
+  .panel-head .purl { font-size:13px; color:var(--mut); }
+  .panel-head .pnotes { font-size:13.5px; color:var(--ink); margin-top:6px; max-width:900px; }
+  .table-wrap { overflow-x:auto; }
+  table { border-collapse:collapse; width:100%; min-width:720px; font-size:13.5px; }
+  th { text-align:left; padding:9px 12px; cursor:pointer; white-space:nowrap; user-select:none;
+       border-bottom:1px solid var(--line); font-size:12px; text-transform:uppercase;
+       letter-spacing:.03em; color:var(--mut); }
+  th:hover { color:var(--ink); }
+  td { border-bottom:1px solid var(--line); padding:8px 12px; vertical-align:top; }
+  tr:last-child td { border-bottom:none; }
+  tr:hover td { background:#f7f7f7; }
+  td:first-child { font-weight:600; }
+  .empty { padding:40px 20px; text-align:center; color:var(--mut); }
+  .ftchips { border-top:1px solid var(--line); padding:12px 18px; font-size:13px; color:var(--mut); }
+  #about { position:fixed; inset:0; background:rgba(0,0,0,.35); display:none; align-items:center;
+            justify-content:center; z-index:10; }
+  #about.open { display:flex; }
+  .modal { background:var(--bg); max-width:640px; width:92%; max-height:82vh; overflow-y:auto;
+            padding:26px 28px; border-radius:10px; }
+  .modal h2 { margin:0 0 10px; font-size:18px; }
+  .modal p, .modal li { font-size:14px; color:var(--ink); }
+  .modal .x { position:absolute; };
+  .close { float:right; border:1px solid var(--line); background:none; font:inherit; font-size:14px;
+            cursor:pointer; padding:2px 10px; border-radius:6px; }
+  footer { margin-top:32px; color:var(--mut); font-size:13px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Free Inference</h1>
+    <p class="tagline">Every provider that gives developers free API access to LLM inference — usable from a harness, agent, or CLI. Web-chat-only free tiers (ChatGPT, Claude.ai, Gemini app, deepseek.com, Grok, Copilot) are excluded on purpose.</p>
+    <span class="meta">verified 2026-08-12 · <a href="#about" id="aboutlink">about / contribute</a></span>
+  </header>
+
+  <noscript>
+    <div class="table-wrap">
+      <table><thead><tr><th><span>Provider</span></th><th><span>Free tier</span></th><th><span>Free models</span></th><th><span>RPM</span></th><th><span>TPM</span></th><th><span>RPD</span></th><th><span>Day tokens</span></th><th><span>Context</span></th><th><span>Timeout</span></th><th><span>Notes</span></th></tr></thead><tbody><tr><td><a href="https://opencode.ai/docs/zen" target="_blank" rel="noopener">OpenCode Zen</a></td><td>Promo free (limited time)</td><td>Big Pickle, DeepSeek V4 Flash, MiMo-V2.5, Laguna S 2.1, Ling-3.0-tiny, LongCat-2.0, North Mini Code, Nemotron 3 Ultra</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Not published</td><td>Free models are limited-time promos; some may use data for training. No credit card. OpenAI-compatible base URL opencode.ai/zen/v1. List free models: opencode models | grep -i free</td></tr><tr><td><a href="https://openrouter.ai/models?max_price=0" target="_blank" rel="noopener">OpenRouter</a></td><td>Rate-limited free</td><td>cohere/north-mini-code:free, google/gemma-4-26b-a4b-it:free, google/gemma-4-31b-it:free, inclusionai/ling-3.0-tiny:free, liquid/lfm-2.5-2.6b:free, nvidia/nemotron-3-nano-30b-a3b:free, nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free, nvidia/nemotron-3-super-120b-a12b:free, nvidia/nemotron-3-ultra-550b-a55b:free, nvidia/nemotron-3.5-content-safety:free, nvidia/nemotron-3.5-lightning:free, nvidia/nemotron-nano-12b-v2-vl:free, nvidia/nemotron-nano-9b-v2:free, openai/gpt-oss-20b:free, poolside/laguna-s-2.1:free, poolside/laguna-xs-2.1:free</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Not published</td><td>Gateway, not a model owner. Shared best-effort capacity, no SLA. BYOK program: 1M free routing requests/month with your own provider keys.</td></tr><tr><td><a href="https://ai.google.dev/gemini-api/docs/rate-limits" target="_blank" rel="noopener">Google AI Studio (Gemini API)</a></td><td>Rate-limited free</td><td>gemini-2.5-flash, gemini-2.5-flash-lite, gemini-2.5-pro, gemini-3-flash-preview, gemini-3.1-flash-lite, gemini-3.1-flash-lite-preview, gemini-3.1-pro-preview, gemini-3.1-pro-preview-customtools, gemini-3.5-flash, gemini-3.5-flash-lite, gemini-3.6-flash, gemini-flash-latest, gemini-flash-lite-latest, gemini-omni-flash-preview, gemini-pro-latest, gemma-4-26b-a4b-it, gemma-4-31b-it</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Not published</td><td>Free forever, no card, most generous major-provider tier. Live-verified against the v1beta API with an API key (2026-08-12) — model list and context windows are real; per-account quota varies by account age (see AI Studio rate-limit dashboard). Free-tier data may be used for training.</td></tr><tr><td><a href="https://console.groq.com/docs/rate-limits" target="_blank" rel="noopener">Groq</a></td><td>Rate-limited free</td><td>Llama 3.1 / 3.3, Llama 4 Scout, Qwen 3, Kimi K2, GPT-OSS 120B, Gemma 2 9B</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Not published</td><td>LPU hardware, fastest time-to-first-token. Limits per API key per model; some models get half allowance. No credit card. Limits visible in x-ratelimit-* response headers.</td></tr><tr><td><a href="https://inference-docs.cerebras.ai/support/rate-limits" target="_blank" rel="noopener">Cerebras</a></td><td>Rate-limited free (Free Trial)</td><td>gpt-oss-120b, zai-glm-4.7, gemma-4-31b</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Not published</td><td>Wafer-scale hardware, 2,000+ tok/s. Free tier caps context at 8K (temporary). Per-model limits on a rotating shortlist. No credit card.</td></tr><tr><td><a href="https://developers.cloudflare.com/workers-ai/platform/limits" target="_blank" rel="noopener">Cloudflare Workers AI</a></td><td>Rate-limited free</td><td>~80 free models (Llama 3.x/4, Qwen, Gemma, DeepSeek-R1 distills, FLUX, Whisper, BGE embeddings)</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Not published</td><td>Neurons are normalized GPU-compute units, shared pool across all models. Resets 00:00 UTC. Hard stop when pool exhausted, errors not overage. No credit card.</td></tr><tr><td><a href="https://huggingface.co/docs/inference-providers" target="_blank" rel="noopener">Hugging Face</a></td><td>Rate-limited free</td><td>Llama 3.2 8B (Serverless), Qwen 2.5 7B (Serverless), Mistral 7B (Serverless), Inference Providers gateway (15+ partners)</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Not published</td><td>Two products: Serverless API (free, rate-limited) and Inference Providers gateway. Cold starts 10-30s on unpopular models. Limits not published as fixed numbers.</td></tr><tr><td><a href="https://docs.mistral.ai" target="_blank" rel="noopener">Mistral La Plateforme</a></td><td>Rate-limited free (Experiment)</td><td>Mistral Large, Codestral, All API models (Experiment tier)</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Not published</td><td>Phone (SMS) verification required, no card. Exact limits no longer published - see Admin Console Limits per workspace. Evaluation tier, not production.</td></tr><tr><td><a href="https://cloud.sambanova.ai/apis" target="_blank" rel="noopener">SambaNova Cloud</a></td><td>Rate-limited free</td><td>DeepSeek-V3.1, MiniMax-M2.7, Gemma 4 31B preview</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Not published</td><td>OpenAI-compatible base URL api.sambanova.ai/v1. Preview models can be pulled at any time. No credit card, no phone verification.</td></tr><tr><td><a href="https://build.nvidia.com" target="_blank" rel="noopener">NVIDIA NIM (build.nvidia.com)</a></td><td>Trial credits</td><td>GLM-5, Kimi-2.5, NIM-packaged open models</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Not published</td><td>Credit-based, not a rate-limited-free tier. Larger grants need corporate email, tie to ~90-day evaluation windows.</td></tr><tr><td><a href="https://z.ai" target="_blank" rel="noopener">Z.AI (Zhipu)</a></td><td>Rate-limited free</td><td>GLM-5.1, GLM-4.5-Flash, GLM-4.7-Flash, GLM-4.6V-Flash (vision)</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Not published</td><td>Free-tier limits revised twice in the past year - verify. Peak-hour throttling. Flash models are free regardless of tier. OpenAI-compatible.</td></tr><tr><td><a href="https://www.together.ai/pricing" target="_blank" rel="noopener">Together AI</a></td><td>Trial credits</td><td>200+ open models (Llama, Qwen, DeepSeek)</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Not published</td><td>One-time credit, not forever-free. Card required once credits run out. Startup programs can grant far more.</td></tr><tr><td><a href="https://docs.deepinfra.com/account/rate-limits" target="_blank" rel="noopener">DeepInfra</a></td><td>Trial credits</td><td>40+ open models (Llama, Qwen, DeepSeek, Mistral)</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Not published</td><td>200 concurrent requests per model - high ceiling. Credit-based, no daily cap while credits last. OpenAI-compatible.</td></tr></tbody></table>
+    </div>
+  </noscript>
+
+  <div id="app" class="layout"></div>
+
+  <footer>Numbers cross-checked against official docs and third-party trackers as of 2026-08-12. Limits
+  change without notice — this is a map, not a contract.</footer>
+</div>
+
+<div id="about" role="dialog" aria-modal="true">
+  <div class="modal">
+    <button class="close">close</button>
+    <h2>About Free Inference</h2>
+    <p><strong>What is here:</strong> every provider that gives developers free API access to LLM
+    inference — callable from a harness, agent, or CLI. Web-chat-only free tiers (ChatGPT, Claude.ai,
+    Gemini app, deepseek.com, Grok, Copilot) are excluded on purpose.</p>
+    <p><strong>What counts as free:</strong> API-accessible, strictly $0, no credit card required.
+    Four shapes: rate-limited free (forever, throttled), promo free (limited time), free gateways
+    (OpenRouter, OpenCode Zen), trial credits (one-time, expires — flagged in the model cost column).</p>
+    <h2>Definitions</h2>
+    <p><strong>RPM</strong> — Requests per minute — API calls in any 60-second window.</p>
+<p><strong>TPM</strong> — Tokens per minute — input + output tokens across all calls in a minute.</p>
+<p><strong>RPD</strong> — Requests per day — hard daily cap, resets on the provider&#x27;s clock.</p>
+<p><strong>Day tokens</strong> — Daily or periodic token/compute quota (some providers meter a token pool per day, month, or one-time credits instead).</p>
+<p><strong>Timeout</strong> — Max request duration before the provider kills the connection.</p>
+<p><strong>Context</strong> — Maximum context window available on the free tier.</p>
+    <h2>Agent access</h2>
+    <ul>
+      <li>Machine data: <a href="data/providers.json" rel="noopener">data/providers.json</a> — validate
+      against <a href="data/schema.json" rel="noopener">data/schema.json</a></li>
+      <li>Agent summary: <a href="llms.txt" rel="noopener">llms.txt</a></li>
+      <li>This page and the repo README are generated from that one file — edit the JSON, run
+      <code>python3 build.py</code>, done.</li>
+    </ul>
+    <h2>Contribute</h2>
+    <p>Add or correct a row in <code>data/providers.json</code> with a link to your official limits
+    page and the date it was verified, then open a PR. Unverifiable rows get rejected.</p>
+  </div>
+</div>
+
+<script>
+const DATA = {
+ "title": "Free Inference",
+ "tagline": "Every provider that gives developers free API access to LLM inference — usable from a harness, agent, or CLI. Web-chat-only free tiers (ChatGPT, Claude.ai, Gemini app, deepseek.com, Grok, Copilot) are excluded on purpose.",
+ "verified": "2026-08-12",
+ "website": "https://freeinference.dev",
+ "repo": "",
+ "columns": [
+  "Provider",
+  "Free tier",
+  "Free models",
+  "RPM",
+  "TPM",
+  "RPD",
+  "Day tokens",
+  "Context",
+  "Timeout",
+  "Notes"
+ ],
+ "providers": [
+  {
+   "name": "OpenCode Zen",
+   "url": "https://opencode.ai/docs/zen",
+   "free_type": "Promo free (limited time)",
+   "notes": "Free models are limited-time promos; some may use data for training. No credit card. OpenAI-compatible base URL opencode.ai/zen/v1. List free models: opencode models | grep -i free",
+   "timeout": "Not published",
+   "verified": "2026-08-12",
+   "models": [
+    {
+     "name": "Big Pickle",
+     "cost": "$0 (promo)",
+     "context": "256K - 1M",
+     "rpm": "Not published",
+     "tpm": "Not published",
+     "rpd": "Not published",
+     "tpd": "Not published",
+     "verified": "2026-08-12"
+    },
+    {
+     "name": "DeepSeek V4 Flash",
+     "cost": "$0 (promo)",
+     "context": "256K - 1M",
+     "rpm": "Not published",
+     "tpm": "Not published",
+     "rpd": "Not published",
+     "tpd": "Not published",
+     "verified": "2026-08-12"
+    },
+    {
+     "name": "MiMo-V2.5",
+     "cost": "$0 (promo)",
+     "context": "256K - 1M",
+     "rpm": "Not published",
+     "tpm": "Not published",
+     "rpd": "Not published",
+     "tpd": "Not published",
+     "verified": "2026-08-12"
+    },
+    {
+     "name": "Laguna S 2.1",
+     "cost": "$0 (promo)",
+     "context": "256K - 1M",
+     "rpm": "Not published",
+     "tpm": "Not published",
+     "rpd": "Not published",
+     "tpd": "Not published",
+     "verified": "2026-08-12"
+    },
+    {
+     "name": "Ling-3.0-tiny",
+     "cost": "$0 (promo)",
+     "context": "256K - 1M",
+     "rpm": "Not published",
+     "tpm": "Not published",
+     "rpd": "Not published",
+     "tpd": "Not published",
+     "verified": "2026-08-12"
+    },
+    {
+     "name": "LongCat-2.0",
+     "cost": "$0 (promo)",
+     "context": "256K - 1M",
+     "rpm": "Not published",
+     "tpm": "Not published",
+     "rpd": "Not published",
+     "tpd": "Not published",
+     "verified": "2026-08-12"
+    },
+    {
+     "name": "North Mini Code",
+     "cost": "$0 (promo)",
+     "context": "256K - 1M",
+     "rpm": "Not published",
+     "tpm": "Not published",
+     "rpd": "Not published",
+     "tpd": "Not published",
+     "verified": "2026-08-12"
+    },
+    {
+     "name": "Nemotron 3 Ultra",
+     "cost": "$0 (promo)",
+     "context": "256K - 1M",
+     "rpm": "Not published",
+     "tpm": "Not published",
+     "rpd": "Not published",
+     "tpd": "Not published",
+     "verified": "2026-08-12"
+    }
+   ]
+  },
+  {
+   "name": "OpenRouter",
+   "url": "https://openrouter.ai/models?max_price=0",
+   "free_type": "Rate-limited free",
+   "notes": "Gateway, not a model owner. Shared best-effort capacity, no SLA. BYOK program: 1M free routing requests/month with your own provider keys.",
+   "timeout": "Not published",
+   "verified": "2026-08-12",
+   "models": [
+    {
+     "name": "cohere/north-mini-code:free",
+     "cost": "$0",
+     "context": "250K",
+     "rpm": "20",
+     "tpm": "Provider-dependent",
+     "rpd": "50 (below $10 credits) / 1,000 ($10+ credits)",
+     "tpd": "Not published",
+     "verified": "2026-08-12"
+    },
+    {
+     "name": "google/gemma-4-26b-a4b-it:free",
+     "cost": "$0",
+     "context": "256K",
+     "rpm": "20",
+     "tpm": "Provider-dependent",
+     "rpd": "50 (below $10 credits) / 1,000 ($10+ credits)",
+     "tpd": "Not published",
+     "verified": "2026-08-12"
+    },
+    {
+     "name": "google/gemma-4-31b-it:free",
+     "cost": "$0",
+     "context": "256K",
+     "rpm": "20",
+     "tpm": "Provider-dependent",
+     "rpd": "50 (below $10 credits) / 1,000 ($10+ credits)",
+     "tpd": "Not published",
+     "verified": "2026-08-12"
+    },
+    {
+     "name": "inclusionai/ling-3.0-tiny:free",
+     "cost": "$0",
+     "context": "256K",
+     "rpm": "20",
+     "tpm": "Provider-dependent",
+     "rpd": "50 (below $10 credits) / 1,000 ($10+ credits)",
+     "tpd": "Not published",
+     "verified": "2026-08-12"
+    },
+    {
+     "name": "liquid/lfm-2.5-2.6b:free",
+     "cost": "$0",
+     "context": "125K",
+     "rpm": "20",
+     "tpm": "Provider-dependent",
+     "rpd": "50 (below $10 credits) / 1,000 ($10+ credits)",
+     "tpd": "Not published",
+     "verified": "2026-08-12"
+    },
+    {
+     "name": "nvidia/nemotron-3-nano-30b-a3b:free",
+     "cost": "$0",
+     "context": "250K",
+     "rpm": "20",
+     "tpm": "Provider-dependent",
+     "rpd": "50 (below $10 credits) / 1,000 ($10+ credits)",
+     "tpd": "Not published",
+     "verified": "2026-08-12"
+    },
+    {
+     "name": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
+     "cost": "$0",
+     "context": "250K",
+     "rpm": "20",
+     "tpm": "Provider-dependent",
+     "rpd": "50 (below $10 credits) / 1,000 ($10+ credits)",
+     "tpd": "Not published",
+     "verified": "2026-08-12"
+    },
+    {
+     "name": "nvidia/nemotron-3-super-120b-a12b:free",
+     "cost": "$0",
+     "context": "256K",
+     "rpm": "20",
+     "tpm": "Provider-dependent",
+     "rpd": "50 (below $10 credits) / 1,000 ($10+ credits)",
+     "tpd": "Not published",
+     "verified": "2026-08-12"
+    },
+    {
+     "name": "nvidia/nemotron-3-ultra-550b-a55b:free",
+     "cost": "$0",
+     "context": "1000000",
+     "rpm": "20",
+     "tpm": "Provider-dependent",
+     "rpd": "50 (below $10 credits) / 1,000 ($10+ credits)",
+     "tpd": "Not published",
+     "verified": "2026-08-12"
+    },
+    {
+     "name": "nvidia/nemotron-3.5-content-safety:free",
+     "cost": "$0",
+     "context": "125K",
+     "rpm": "20",
+     "tpm": "Provider-dependent",
+     "rpd": "50 (below $10 credits) / 1,000 ($10+ credits)",
+     "tpd": "Not published",
+     "verified": "2026-08-12"
+    },
+    {
+     "name": "nvidia/nemotron-3.5-lightning:free",
+     "cost": "$0",
+     "context": "1000000",
+     "rpm": "20",
+     "tpm": "Provider-dependent",
+     "rpd": "50 (below $10 credits) / 1,000 ($10+ credits)",
+     "tpd": "Not published",
+     "verified": "2026-08-12"
+    },
+    {
+     "name": "nvidia/nemotron-nano-12b-v2-vl:free",
+     "cost": "$0",
+     "context": "125K",
+     "rpm": "20",
+     "tpm": "Provider-dependent",
+     "rpd": "50 (below $10 credits) / 1,000 ($10+ credits)",
+     "tpd": "Not published",
+     "verified": "2026-08-12"
+    },
+    {
+     "name": "nvidia/nemotron-nano-9b-v2:free",
+     "cost": "$0",
+     "context": "125K",
+     "rpm": "20",
+     "tpm": "Provider-dependent",
+     "rpd": "50 (below $10 credits) / 1,000 ($10+ credits)",
+     "tpd": "Not published",
+     "verified": "2026-08-12"
+    },
+    {
+     "name": "openai/gpt-oss-20b:free",
+     "cost": "$0",
+     "context": "128K",
+     "rpm": "20",
+     "tpm": "Provider-dependent",
+     "rpd": "50 (below $10 credits) / 1,000 ($10+ credits)",
+     "tpd": "Not published",
+     "verified": "2026-08-12"
+    },
+    {
+     "name": "poolside/laguna-s-2.1:free",
+     "cost": "$0",
+     "context": "256K",
+     "rpm": "20",
+     "tpm": "Provider-dependent",
+     "rpd": "50 (below $10 credits) / 1,000 ($10+ credits)",
+     "tpd": "Not published",
+     "verified": "2026-08-12"
+    },
+    {
+     "name": "poolside/laguna-xs-2.1:free",
+     "cost": "$0",
+     "context": "256K",
+     "rpm": "20",
+     "tpm": "Provider-dependent",
+     "rpd": "50 (below $10 credits) / 1,000 ($10+ credits)",
+     "tpd": "Not published",
+     "verified": "2026-08-12"
+    }
+   ]
+  },
+  {
+   "name": "Google AI Studio (Gemini API)",
+   "url": "https://ai.google.dev/gemini-api/docs/rate-limits",
+   "free_type": "Rate-limited free",
+   "notes": "Free forever, no card, most generous major-provider tier. Live-verified against the v1beta API with an API key (2026-08-12) — model list and context windows are real; per-account quota varies by account age (see AI Studio rate-limit dashboard). Free-tier data may be used for training.",
+   "timeout": "Not published",
+   "verified": "2026-08-12",
+   "models": [
+    {
+     "name": "gemini-2.5-flash",
+     "cost": "$0",
+     "context": "1024K",
+     "rpm": "Varies by account",
+     "tpm": "Varies by account",
+     "rpd": "Varies by account",
+     "tpd": "Not published",
+     "verified": "2026-08-12"
+    },
+    {
+     "name": "gemini-2.5-flash-lite",
+     "cost": "$0",
+     "context": "1024K",
+     "rpm": "Varies by account",
+     "tpm": "Varies by account",
+     "rpd": "Varies by account",
+     "tpd": "Not published",
+     "verified": "2026-08-12"
+    },
+    {
+     "name": "gemini-2.5-pro",
+     "cost": "$0",
+     "context": "1024K",
+     "rpm": "Varies by account",
+     "tpm": "Varies by account",
+     "rpd": "Varies by account",
+     "tpd": "Not published",
+     "verified": "2026-08-12"
+    },
+    {
+     "name": "gemini-3-flash-preview",
+     "cost": "$0",
+     "context": "1024K",
+     "rpm": "Varies by account",
+     "tpm": "Varies by account",
+     "rpd": "Varies by account",
+     "tpd": "Not published",
+     "verified": "2026-08-12"
+    },
+    {
+     "name": "gemini-3.1-flash-lite",
+     "cost": "$0",
+     "context": "1024K",
+     "rpm": "Varies by account",
+     "tpm": "Varies by account",
+     "rpd": "Varies by account",
+     "tpd": "Not published",
+     "verified": "2026-08-12"
+    },
+    {
+     "name": "gemini-3.1-flash-lite-preview",
+     "cost": "$0",
+     "context": "1024K",
+     "rpm": "Varies by account",
+     "tpm": "Varies by account",
+     "rpd": "Varies by account",
+     "tpd": "Not published",
+     "verified": "2026-08-12"
+    },
+    {
+     "name": "gemini-3.1-pro-preview",
+     "cost": "$0",
+     "context": "1024K",
+     "rpm": "Varies by account",
+     "tpm": "Varies by account",
+     "rpd": "Varies by account",
+     "tpd": "Not published",
+     "verified": "2026-08-12"
+    },
+    {
+     "name": "gemini-3.1-pro-preview-customtools",
+     "cost": "$0",
+     "context": "1024K",
+     "rpm": "Varies by account",
+     "tpm": "Varies by account",
+     "rpd": "Varies by account",
+     "tpd": "Not published",
+     "verified": "2026-08-12"
+    },
+    {
+     "name": "gemini-3.5-flash",
+     "cost": "$0",
+     "context": "1024K",
+     "rpm": "Varies by account",
+     "tpm": "Varies by account",
+     "rpd": "Varies by account",
+     "tpd": "Not published",
+     "verified": "2026-08-12"
+    },
+    {
+     "name": "gemini-3.5-flash-lite",
+     "cost": "$0",
+     "context": "1024K",
+     "rpm": "Varies by account",
+     "tpm": "Varies by account",
+     "rpd": "Varies by account",
+     "tpd": "Not published",
+     "verified": "2026-08-12"
+    },
+    {
+     "name": "gemini-3.6-flash",
+     "cost": "$0",
+     "context": "1024K",
+     "rpm": "Varies by account",
+     "tpm": "Varies by account",
+     "rpd": "Varies by account",
+     "tpd": "Not published",
+     "verified": "2026-08-12"
+    },
+    {
+     "name": "gemini-flash-latest",
+     "cost": "$0",
+     "context": "1024K",
+     "rpm": "Varies by account",
+     "tpm": "Varies by account",
+     "rpd": "Varies by account",
+     "tpd": "Not published",
+     "verified": "2026-08-12"
+    },
+    {
+     "name": "gemini-flash-lite-latest",
+     "cost": "$0",
+     "context": "1024K",
+     "rpm": "Varies by account",
+     "tpm": "Varies by account",
+     "rpd": "Varies by account",
+     "tpd": "Not published",
+     "verified": "2026-08-12"
+    },
+    {
+     "name": "gemini-omni-flash-preview",
+     "cost": "$0",
+     "context": "128K",
+     "rpm": "Varies by account",
+     "tpm": "Varies by account",
+     "rpd": "Varies by account",
+     "tpd": "Not published",
+     "verified": "2026-08-12"
+    },
+    {
+     "name": "gemini-pro-latest",
+     "cost": "$0",
+     "context": "1024K",
+     "rpm": "Varies by account",
+     "tpm": "Varies by account",
+     "rpd": "Varies by account",
+     "tpd": "Not published",
+     "verified": "2026-08-12"
+    },
+    {
+     "name": "gemma-4-26b-a4b-it",
+     "cost": "$0",
+     "context": "256K",
+     "rpm": "Varies by account",
+     "tpm": "Varies by account",
+     "rpd": "Varies by account",
+     "tpd": "Not published",
+     "verified": "2026-08-12"
+    },
+    {
+     "name": "gemma-4-31b-it",
+     "cost": "$0",
+     "context": "256K",
+     "rpm": "Varies by account",
+     "tpm": "Varies by account",
+     "rpd": "Varies by account",
+     "tpd": "Not published",
+     "verified": "2026-08-12"
+    }
+   ]
+  },
+  {
+   "name": "Groq",
+   "url": "https://console.groq.com/docs/rate-limits",
+   "free_type": "Rate-limited free",
+   "notes": "LPU hardware, fastest time-to-first-token. Limits per API key per model; some models get half allowance. No credit card. Limits visible in x-ratelimit-* response headers.",
+   "timeout": "Not published",
+   "verified": "2026-08-12",
+   "models": [
+    {
+     "name": "Llama 3.1 / 3.3",
+     "cost": "$0",
+     "context": "128K",
+     "rpm": "30 (15 for some)",
+     "tpm": "6K",
+     "rpd": "14,400 (org-wide)",
+     "tpd": "Not published",
+     "verified": "2026-08-12"
+    },
+    {
+     "name": "Llama 4 Scout",
+     "cost": "$0",
+     "context": "128K",
+     "rpm": "30 (15 for some)",
+     "tpm": "6K",
+     "rpd": "14,400 (org-wide)",
+     "tpd": "Not published",
+     "verified": "2026-08-12"
+    },
+    {
+     "name": "Qwen 3",
+     "cost": "$0",
+     "context": "128K",
+     "rpm": "30 (15 for some)",
+     "tpm": "6K",
+     "rpd": "14,400 (org-wide)",
+     "tpd": "Not published",
+     "verified": "2026-08-12"
+    },
+    {
+     "name": "Kimi K2",
+     "cost": "$0",
+     "context": "128K",
+     "rpm": "30 (15 for some)",
+     "tpm": "6K",
+     "rpd": "14,400 (org-wide)",
+     "tpd": "Not published",
+     "verified": "2026-08-12"
+    },
+    {
+     "name": "GPT-OSS 120B",
+     "cost": "$0",
+     "context": "128K",
+     "rpm": "30 (15 for some)",
+     "tpm": "6K",
+     "rpd": "14,400 (org-wide)",
+     "tpd": "Not published",
+     "verified": "2026-08-12"
+    },
+    {
+     "name": "Gemma 2 9B",
+     "cost": "$0",
+     "context": "128K",
+     "rpm": "30 (15 for some)",
+     "tpm": "15K",
+     "rpd": "14,400 (org-wide)",
+     "tpd": "Not published",
+     "verified": "2026-08-12"
+    }
+   ]
+  },
+  {
+   "name": "Cerebras",
+   "url": "https://inference-docs.cerebras.ai/support/rate-limits",
+   "free_type": "Rate-limited free (Free Trial)",
+   "notes": "Wafer-scale hardware, 2,000+ tok/s. Free tier caps context at 8K (temporary). Per-model limits on a rotating shortlist. No credit card.",
+   "timeout": "Not published",
+   "verified": "2026-08-12",
+   "models": [
+    {
+     "name": "gpt-oss-120b",
+     "cost": "$0",
+     "context": "8K cap on free tier",
+     "rpm": "5",
+     "tpm": "30K",
+     "rpd": "Not published",
+     "tpd": "1M tokens/day (per model)",
+     "verified": "2026-08-12"
+    },
+    {
+     "name": "zai-glm-4.7",
+     "cost": "$0",
+     "context": "8K cap on free tier",
+     "rpm": "5",
+     "tpm": "30K",
+     "rpd": "Not published",
+     "tpd": "1M tokens/day (per model)",
+     "verified": "2026-08-12"
+    },
+    {
+     "name": "gemma-4-31b",
+     "cost": "$0",
+     "context": "8K cap on free tier",
+     "rpm": "5",
+     "tpm": "30K",
+     "rpd": "Not published",
+     "tpd": "1M tokens/day (per model)",
+     "verified": "2026-08-12"
+    }
+   ]
+  },
+  {
+   "name": "Cloudflare Workers AI",
+   "url": "https://developers.cloudflare.com/workers-ai/platform/limits",
+   "free_type": "Rate-limited free",
+   "notes": "Neurons are normalized GPU-compute units, shared pool across all models. Resets 00:00 UTC. Hard stop when pool exhausted, errors not overage. No credit card.",
+   "timeout": "Not published",
+   "verified": "2026-08-12",
+   "models": [
+    {
+     "name": "~80 free models (Llama 3.x/4, Qwen, Gemma, DeepSeek-R1 distills, FLUX, Whisper, BGE embeddings)",
+     "cost": "$0",
+     "context": "8K-128K+ (model-dependent)",
+     "rpm": "300 text gen (720-1,500 other tasks)",
+     "tpm": "Model-dependent",
+     "rpd": "Not published",
+     "tpd": "10,000 neurons/day",
+     "verified": "2026-08-12"
+    }
+   ]
+  },
+  {
+   "name": "Hugging Face",
+   "url": "https://huggingface.co/docs/inference-providers",
+   "free_type": "Rate-limited free",
+   "notes": "Two products: Serverless API (free, rate-limited) and Inference Providers gateway. Cold starts 10-30s on unpopular models. Limits not published as fixed numbers.",
+   "timeout": "Not published",
+   "verified": "2026-08-12",
+   "models": [
+    {
+     "name": "Llama 3.2 8B (Serverless)",
+     "cost": "$0",
+     "context": "Model-dependent",
+     "rpm": "~300 req/hour (Serverless)",
+     "tpm": "Model max context",
+     "rpd": "Not published",
+     "tpd": "Small monthly credit pool (PRO: 2M credits/mo)",
+     "verified": "2026-08-12"
+    },
+    {
+     "name": "Qwen 2.5 7B (Serverless)",
+     "cost": "$0",
+     "context": "Model-dependent",
+     "rpm": "~300 req/hour (Serverless)",
+     "tpm": "Model max context",
+     "rpd": "Not published",
+     "tpd": "Small monthly credit pool (PRO: 2M credits/mo)",
+     "verified": "2026-08-12"
+    },
+    {
+     "name": "Mistral 7B (Serverless)",
+     "cost": "$0",
+     "context": "Model-dependent",
+     "rpm": "~300 req/hour (Serverless)",
+     "tpm": "Model max context",
+     "rpd": "Not published",
+     "tpd": "Small monthly credit pool (PRO: 2M credits/mo)",
+     "verified": "2026-08-12"
+    },
+    {
+     "name": "Inference Providers gateway (15+ partners)",
+     "cost": "$0",
+     "context": "Model-dependent",
+     "rpm": "~300 req/hour (Serverless)",
+     "tpm": "Model max context",
+     "rpd": "Not published",
+     "tpd": "Small monthly credit pool (PRO: 2M credits/mo)",
+     "verified": "2026-08-12"
+    }
+   ]
+  },
+  {
+   "name": "Mistral La Plateforme",
+   "url": "https://docs.mistral.ai",
+   "free_type": "Rate-limited free (Experiment)",
+   "notes": "Phone (SMS) verification required, no card. Exact limits no longer published - see Admin Console Limits per workspace. Evaluation tier, not production.",
+   "timeout": "Not published",
+   "verified": "2026-08-12",
+   "models": [
+    {
+     "name": "Mistral Large",
+     "cost": "$0 (Experiment)",
+     "context": "Model-dependent",
+     "rpm": "~1 req/sec",
+     "tpm": "Not published",
+     "rpd": "Not published",
+     "tpd": "~1B tokens/month",
+     "verified": "2026-08-12"
+    },
+    {
+     "name": "Codestral",
+     "cost": "$0 (Experiment)",
+     "context": "Model-dependent",
+     "rpm": "~1 req/sec",
+     "tpm": "Not published",
+     "rpd": "Not published",
+     "tpd": "~1B tokens/month",
+     "verified": "2026-08-12"
+    },
+    {
+     "name": "All API models (Experiment tier)",
+     "cost": "$0 (Experiment)",
+     "context": "Model-dependent",
+     "rpm": "~1 req/sec",
+     "tpm": "Not published",
+     "rpd": "Not published",
+     "tpd": "~1B tokens/month",
+     "verified": "2026-08-12"
+    }
+   ]
+  },
+  {
+   "name": "SambaNova Cloud",
+   "url": "https://cloud.sambanova.ai/apis",
+   "free_type": "Rate-limited free",
+   "notes": "OpenAI-compatible base URL api.sambanova.ai/v1. Preview models can be pulled at any time. No credit card, no phone verification.",
+   "timeout": "Not published",
+   "verified": "2026-08-12",
+   "models": [
+    {
+     "name": "DeepSeek-V3.1",
+     "cost": "$0",
+     "context": "128K",
+     "rpm": "20",
+     "tpm": "Not published",
+     "rpd": "20",
+     "tpd": "200K tokens/day",
+     "verified": "2026-08-12"
+    },
+    {
+     "name": "MiniMax-M2.7",
+     "cost": "$0",
+     "context": "128K",
+     "rpm": "20",
+     "tpm": "Not published",
+     "rpd": "20",
+     "tpd": "200K tokens/day",
+     "verified": "2026-08-12"
+    },
+    {
+     "name": "Gemma 4 31B preview",
+     "cost": "$0",
+     "context": "128K",
+     "rpm": "20",
+     "tpm": "Not published",
+     "rpd": "20",
+     "tpd": "200K tokens/day",
+     "verified": "2026-08-12"
+    }
+   ]
+  },
+  {
+   "name": "NVIDIA NIM (build.nvidia.com)",
+   "url": "https://build.nvidia.com",
+   "free_type": "Trial credits",
+   "notes": "Credit-based, not a rate-limited-free tier. Larger grants need corporate email, tie to ~90-day evaluation windows.",
+   "timeout": "Not published",
+   "verified": "2026-08-12",
+   "models": [
+    {
+     "name": "GLM-5",
+     "cost": "$0 (trial credits)",
+     "context": "Model-dependent",
+     "rpm": "~40",
+     "tpm": "Not published",
+     "rpd": "Not published",
+     "tpd": "~1,000 credits at signup (up to ~5,000)",
+     "verified": "2026-08-12"
+    },
+    {
+     "name": "Kimi-2.5",
+     "cost": "$0 (trial credits)",
+     "context": "Model-dependent",
+     "rpm": "~40",
+     "tpm": "Not published",
+     "rpd": "Not published",
+     "tpd": "~1,000 credits at signup (up to ~5,000)",
+     "verified": "2026-08-12"
+    },
+    {
+     "name": "NIM-packaged open models",
+     "cost": "$0 (trial credits)",
+     "context": "Model-dependent",
+     "rpm": "~40",
+     "tpm": "Not published",
+     "rpd": "Not published",
+     "tpd": "~1,000 credits at signup (up to ~5,000)",
+     "verified": "2026-08-12"
+    }
+   ]
+  },
+  {
+   "name": "Z.AI (Zhipu)",
+   "url": "https://z.ai",
+   "free_type": "Rate-limited free",
+   "notes": "Free-tier limits revised twice in the past year - verify. Peak-hour throttling. Flash models are free regardless of tier. OpenAI-compatible.",
+   "timeout": "Not published",
+   "verified": "2026-08-12",
+   "models": [
+    {
+     "name": "GLM-5.1",
+     "cost": "$0",
+     "context": "Up to 203K",
+     "rpm": "3 (burst)",
+     "tpm": "Not published",
+     "rpd": "1,000 (1K RPD tier)",
+     "tpd": "Not published",
+     "verified": "2026-08-12"
+    },
+    {
+     "name": "GLM-4.5-Flash",
+     "cost": "$0",
+     "context": "Up to 203K",
+     "rpm": "3 (burst)",
+     "tpm": "Not published",
+     "rpd": "1,000",
+     "tpd": "Not published",
+     "verified": "2026-08-12"
+    },
+    {
+     "name": "GLM-4.7-Flash",
+     "cost": "$0",
+     "context": "Up to 203K",
+     "rpm": "3 (burst)",
+     "tpm": "Not published",
+     "rpd": "1,000",
+     "tpd": "Not published",
+     "verified": "2026-08-12"
+    },
+    {
+     "name": "GLM-4.6V-Flash (vision)",
+     "cost": "$0",
+     "context": "Up to 203K",
+     "rpm": "3 (burst)",
+     "tpm": "Not published",
+     "rpd": "1,000",
+     "tpd": "Not published",
+     "verified": "2026-08-12"
+    }
+   ]
+  },
+  {
+   "name": "Together AI",
+   "url": "https://www.together.ai/pricing",
+   "free_type": "Trial credits",
+   "notes": "One-time credit, not forever-free. Card required once credits run out. Startup programs can grant far more.",
+   "timeout": "Not published",
+   "verified": "2026-08-12",
+   "models": [
+    {
+     "name": "200+ open models (Llama, Qwen, DeepSeek)",
+     "cost": "$0 (trial credits)",
+     "context": "Model-dependent",
+     "rpm": "~60 (Build tier)",
+     "tpm": "~100K (Build tier)",
+     "rpd": "Not published",
+     "tpd": "$25 one-time credit",
+     "verified": "2026-08-12"
+    }
+   ]
+  },
+  {
+   "name": "DeepInfra",
+   "url": "https://docs.deepinfra.com/account/rate-limits",
+   "free_type": "Trial credits",
+   "notes": "200 concurrent requests per model - high ceiling. Credit-based, no daily cap while credits last. OpenAI-compatible.",
+   "timeout": "Not published",
+   "verified": "2026-08-12",
+   "models": [
+    {
+     "name": "40+ open models (Llama, Qwen, DeepSeek, Mistral)",
+     "cost": "$0 (trial credits)",
+     "context": "Model-dependent",
+     "rpm": "~60 (varies by model)",
+     "tpm": "Not published",
+     "rpd": "Not published",
+     "tpd": "$5 signup credits",
+     "verified": "2026-08-12"
+    }
+   ]
+  }
+ ]
+};
+const DEFS = {"RPM": "Requests per minute — API calls in any 60-second window.", "TPM": "Tokens per minute — input + output tokens across all calls in a minute.", "RPD": "Requests per day — hard daily cap, resets on the provider's clock.", "Day tokens": "Daily or periodic token/compute quota (some providers meter a token pool per day, month, or one-time credits instead).", "Timeout": "Max request duration before the provider kills the connection.", "Context": "Maximum context window available on the free tier."};
+
+function modelRow(m) {
+  return `<tr><td>${m.name}</td><td>${m.cost}</td><td>${m.context}</td>
+    <td>${m.rpm}</td><td>${m.tpm}</td><td>${m.rpd}</td>
+    <td>${m.tpd}</td><td>${m.verified}</td></tr>`;
+}
+
+function render(app) {
+  const list = DATA.providers;
+  let activeIdx = 0, filter = "", rows = [...list];
+  const sidebar = document.createElement("div");
+  sidebar.className = "sidebar";
+  const panel = document.createElement("div");
+  panel.className = "panel";
+  app.append(sidebar, panel);
+
+  sidebar.innerHTML = `<input id="filter" type="text" placeholder="Filter provider or model…" autocomplete="off">
+    <div id="providers"></div>`;
+  const providersEl = sidebar.querySelector("#providers");
+  const filterEl = sidebar.querySelector("#filter");
+
+  function drawSidebar() {
+    rows = list.filter(p => !filter ||
+      (p.name + " " + p.models.map(m => m.name).join(" ")).toLowerCase().includes(filter.toLowerCase()));
+    providersEl.innerHTML = rows.map((p, i) => {
+      const active = list.indexOf(p) === activeIdx ? " active" : "";
+      const dead = p.dead ? ` <span class="dead">• dead</span>` : "";
+      return `<button class="prow${active}" data-i="${i}">
+        <span class="pname">${p.name}${dead}</span>
+        <span class="pmeta">${p.free_type} · ${p.models.length} free models</span></button>`;
+    }).join("");
+    providersEl.querySelectorAll(".prow").forEach(b =>
+      b.addEventListener("click", () => { activeIdx = list.indexOf(rows[+b.dataset.i]); drawPanel(); drawSidebar(); }));
+    if (!rows.length) providersEl.innerHTML = `<div class="empty">No match.</div>`;
+  }
+
+  function drawPanel() {
+    const p = list[activeIdx];
+    const dead = p.dead ? `<div class="pnotes"><strong class="dead">Probe flags this provider unreachable — verify before relying on it.</strong></div>` : "";
+    panel.innerHTML = `<div class="panel-head">
+      <h2>${p.name}<span class="ftype">${p.free_type}</span></h2>
+      <a class="purl" href="${p.url}" target="_blank" rel="noopener">${p.url}</a>
+      <div class="pnotes">${p.notes}</div>${dead}
+    </div>
+    <div class="table-wrap"><table>
+      <thead><tr><th data-k="name">Model</th><th data-k="cost">Cost</th><th data-k="context">Context</th>
+      <th data-k="rpm">RPM</th><th data-k="tpm">TPM</th><th data-k="rpd">RPD</th>
+      <th data-k="tpd">Day tokens</th><th data-k="verified">Verified</th></tr></thead>
+      <tbody id="mtbody">${p.models.map(modelRow).join("")}</tbody>
+    </table></div>`;
+
+    let asc = true, lastKey = "";
+    panel.querySelectorAll("th").forEach(th => th.addEventListener("click", () => {
+      const k = th.dataset.k;
+      if (lastKey === k) asc = !asc; else { lastKey = k; asc = true; }
+      const ms = [...p.models].sort((a, b) =>
+        String(a[k]).localeCompare(String(b[k]), undefined, { numeric: true }));
+      if (!asc) ms.reverse();
+      panel.querySelector("#mtbody").innerHTML = ms.map(modelRow).join("");
+    }));
+  }
+
+  filterEl.addEventListener("input", () => { filter = filterEl.value.trim(); drawSidebar(); });
+  drawSidebar(); drawPanel();
+}
+
+document.addEventListener("DOMContentLoaded", () => render(document.getElementById("app")));
+
+const m = document.getElementById("about");
+document.getElementById("aboutlink").addEventListener("click", e => { e.preventDefault(); m.classList.add("open"); });
+m.querySelector(".close").addEventListener("click", () => m.classList.remove("open"));
+m.addEventListener("click", e => { if (e.target === m) m.classList.remove("open"); });
+document.addEventListener("keydown", e => { if (e.key === "Escape") m.classList.remove("open"); });
+</script>
+</body>
+</html>

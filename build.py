@@ -54,6 +54,64 @@ def definitions():
     }
 
 
+def build_readme():
+    total = sum(len(p["models"]) for p in ROWS)
+    head = f"""# {TITLE}
+
+{TAGLINE}
+
+> **{VERIFIED}** · {len(ROWS)} providers · {total} free models
+> Interactive site: {WEBSITE} · Agent summary: {WEBSITE}/llms.txt · Machine data: {WEBSITE}/data/providers.json (validate against {WEBSITE}/data/schema.json)
+
+## Providers
+
+| Provider | Free tier | Notable models | Notes |
+| --- | --- | --- | --- |
+"""
+    prov_rows = []
+    for p in ROWS:
+        name = f"[{p['name']}]({p['url']})"
+        models = ", ".join(m["name"] for m in p["models"][:6])
+        if len(p["models"]) > 6:
+            models += f", +{len(p['models']) - 6} more"
+        prov_rows.append(f"| {name} | {p['free_type']} | {models} | {p.get('notes', '—')} |")
+    head += "\n".join(prov_rows) + "\n\n"
+
+    sections = ["## Models (per provider)\n"]
+    for p in ROWS:
+        sections.append(f"### {p['name']}")
+        sections.append("")
+        sections.append("| Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |")
+        sections.append("| --- | --- | --- | --- | --- | --- | --- | --- |")
+        for m in p["models"]:
+            sections.append("| " + " | ".join(
+                html.escape(str(m[k])) for k in ("name", "cost", "context", "rpm", "tpm", "rpd", "tpd", "verified")
+            ) + " |")
+        sections.append("")
+
+    tail = f"""## Definitions
+
+| Term | Meaning |
+| --- | --- |
+"""
+    tail += "\n".join(f"| {k} | {v} |" for k, v in definitions().items()) + "\n\n"
+    tail += f"""## What counts as free
+
+- **API-accessible** — an endpoint callable from a harness, agent, or CLI (key or keyless). Web-chat-only free tiers (ChatGPT, Claude.ai, Gemini app, deepseek.com, Grok, Copilot) are excluded on purpose.
+- **Strictly $0** — no credit card for the free tier; expiring trial credits are flagged as such.
+- Shapes: rate-limited free (forever, throttled), promo free (limited time), free gateways (OpenRouter, OpenCode Zen), trial credits (one-time).
+
+## Caveats
+
+Limits change without notice and vary per model, account age, region, peak hours. Treat this as a map, not a contract — verify before you architect on it.
+
+## Maintain this catalog
+
+Edit [`data/providers.json`](data/providers.json) (single source of truth), run `python3 build.py` to regenerate this README plus the site, open a PR with a primary-source link and verification date. Unverifiable rows are rejected. See [CONTRIBUTING.md](CONTRIBUTING.md).
+"""
+    return head + "\n".join(sections) + tail
+
+
 def build_llms():
     lines = [
         f"# {TITLE}",
@@ -374,6 +432,7 @@ def main():
     dist = ROOT / "dist"
     dist.mkdir(exist_ok=True)
     (dist / "data").mkdir(exist_ok=True)
+    (ROOT / "README.md").write_text(build_readme())
     (dist / "index.html").write_text(build_html())
     (dist / "llms.txt").write_text(build_llms())
     (dist / "data" / "providers.json").write_text(json.dumps(DATA, indent=2) + "\n")

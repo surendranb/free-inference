@@ -21,14 +21,14 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python3 probe.py
+      - name: Build site (regenerates README.md + dist/)
+        run: python3 build.py
       - name: Commit changes if any
         run: |
           git config user.name "free-inference-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if ! git diff --quiet data/providers.json; then
-            git add data/providers.json
+          if ! git diff --quiet data/providers.json README.md; then
+            git add data/providers.json README.md
             git commit -m "probe: nightly verification update ($(date -u +%Y-%m-%d))"
             git push
           fi
-      - name: Build site
-        run: python3 build.py

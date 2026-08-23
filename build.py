@@ -216,6 +216,12 @@ def build_html():
     thead = "".join(f"<th><span>{html.escape(c)}</span></th>" for c in COLS)
     body = "".join(row_html(p) for p in ROWS)
 
+    # ponytail: inline gtag when ga_measurement_id set in providers.json; no consent banner (no cookies set by default config)
+    ga_id = DATA.get("ga_measurement_id", "")
+    ga = (f'<script async src="https://www.googletagmanager.com/gtag/js?id={ga_id}"></script>\n'
+          f'<script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments)}};'
+          f"gtag('js',new Date());gtag('config','{ga_id}');</script>") if ga_id else ""
+
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -225,6 +231,7 @@ def build_html():
 <link rel="canonical" href="{website}">
 <link rel="icon" href="data:,">
 <title>{head}</title>
+{ga}
 <style>
   :root {{ --bg:#fff; --ink:#1a1a1a; --mut:#6b6b6b; --line:#e3e3e3; --sel:#111; --selink:#fff; }}
   * {{ box-sizing:border-box; }}

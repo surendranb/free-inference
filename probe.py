@@ -139,6 +139,9 @@ def main():
         if (date.today() - v).days > STALE_AFTER_DAYS:
             stale.append(f"{prov['name']}: stale since {prov['verified']}")
 
+    # ponytail: catalog date = freshest provider; per-provider staleness flags handle the rest
+    data["verified"] = max((p.get("verified", "") for p in data["providers"]), default=data["verified"])
+
     canonical = json.dumps(data, indent=2)
     changed = DATA.read_text().rstrip("\n") != canonical
     DATA.write_text(canonical + "\n")

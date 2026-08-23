@@ -1,7 +1,7 @@
 {
   "title": "Free Inference",
   "tagline": "Every provider that gives developers free API access to LLM inference \u2014 usable from a harness, agent, or CLI. Web-chat-only free tiers (ChatGPT, Claude.ai, Gemini app, deepseek.com, Grok, Copilot) are excluded on purpose.",
-  "verified": "2026-08-12",
+  "verified": "2026-08-23",
   "website": "https://freeinference.dev",
   "repo": "",
   "columns": [
@@ -877,5 +877,6 @@
         }
       ]
     }
-  ]
+  ],
+  "ga_measurement_id": "G-CFXWNKBD7G"
 }

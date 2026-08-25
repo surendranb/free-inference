@@ -2,7 +2,7 @@
 
 Every provider that gives developers free API access to LLM inference — usable from a harness, agent, or CLI. Web-chat-only free tiers (ChatGPT, Claude.ai, Gemini app, deepseek.com, Grok, Copilot) are excluded on purpose.
 
-> **2026-08-25** · 13 providers · 72 free models
+> **2026-08-25** · 13 providers · 79 free models
 > Interactive site: https://freeinference.dev · Agent summary: https://freeinference.dev/llms.txt · Machine data: https://freeinference.dev/data/providers.json (validate against https://freeinference.dev/data/schema.json)
 
 ## Providers
@@ -17,11 +17,11 @@ Every provider that gives developers free API access to LLM inference — usable
 | [Cloudflare Workers AI](https://developers.cloudflare.com/workers-ai/platform/limits) | Rate-limited free | ~80 free models (Llama 3.x/4, Qwen, Gemma, DeepSeek-R1 distills, FLUX, Whisper, BGE embeddings) | Neurons are normalized GPU-compute units, shared pool across all models. Resets 00:00 UTC. Hard stop when pool exhausted, errors not overage. No credit card. |
 | [Hugging Face](https://huggingface.co/docs/inference-providers) | Rate-limited free | Llama 3.2 8B (Serverless), Qwen 2.5 7B (Serverless), Mistral 7B (Serverless), Inference Providers gateway (15+ partners) | Two products: Serverless API (free, rate-limited) and Inference Providers gateway. Cold starts 10-30s on unpopular models. Limits not published as fixed numbers. |
 | [Mistral La Plateforme](https://docs.mistral.ai) | Rate-limited free (Experiment) | Mistral Large, Codestral, All API models (Experiment tier) | Phone (SMS) verification required, no card. Exact limits no longer published - see Admin Console Limits per workspace. Evaluation tier, not production. |
-| [SambaNova Cloud](https://cloud.sambanova.ai/apis) | Rate-limited free | DeepSeek-V3.1, MiniMax-M2.7, Gemma 4 31B preview | OpenAI-compatible base URL api.sambanova.ai/v1. Preview models can be pulled at any time. No credit card, no phone verification. |
+| [SambaNova Cloud](https://cloud.sambanova.ai/apis) | Rate-limited free | DeepSeek-V3.1, DeepSeek-V3.2, Meta-Llama-3.3-70B-Instruct, MiniMax-M2.7, MiniMax-M3, gemma-4-31B-it, +1 more | OpenAI-compatible base URL api.sambanova.ai/v1. Preview models can be pulled at any time. No credit card, no phone verification. |
 | [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com) | Trial credits | GLM-5, Kimi-2.5, NIM-packaged open models | Credit-based, not a rate-limited-free tier. Larger grants need corporate email, tie to ~90-day evaluation windows. |
 | [Z.AI (Zhipu)](https://z.ai) | Rate-limited free | GLM-5.1, GLM-4.5-Flash, GLM-4.7-Flash, GLM-4.6V-Flash (vision) | Free-tier limits revised twice in the past year - verify. Peak-hour throttling. Flash models are free regardless of tier. OpenAI-compatible. |
 | [Together AI](https://www.together.ai/pricing) | Trial credits | 200+ open models (Llama, Qwen, DeepSeek) | One-time credit, not forever-free. Card required once credits run out. Startup programs can grant far more. |
-| [DeepInfra](https://docs.deepinfra.com/account/rate-limits) | Trial credits | 40+ open models (Llama, Qwen, DeepSeek, Mistral) | 200 concurrent requests per model - high ceiling. Credit-based, no daily cap while credits last. OpenAI-compatible. |
+| [DeepInfra](https://docs.deepinfra.com/account/rate-limits) | Trial credits | deepseek-ai/DeepSeek-V3.1, Qwen/Qwen3-32B, Qwen/Qwen2.5-72B-Instruct, zai-org/GLM-4.7 | 200 concurrent requests per model - high ceiling. Credit-based, no daily cap while credits last. Notable models below; 185+ total in catalog-wide trial credits. |
 
 ## Models (per provider)
 
@@ -130,8 +130,12 @@ Every provider that gives developers free API access to LLM inference — usable
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | DeepSeek-V3.1 | $0 | 128K | 20 | Not published | 20 | 200K tokens/day | 2026-08-25 |
+| DeepSeek-V3.2 | $0 | 128K | 20 | Not published | 20 | 200K tokens/day | 2026-08-25 |
+| Meta-Llama-3.3-70B-Instruct | $0 | 128K | 20 | Not published | 20 | 200K tokens/day | 2026-08-25 |
 | MiniMax-M2.7 | $0 | 128K | 20 | Not published | 20 | 200K tokens/day | 2026-08-25 |
-| Gemma 4 31B preview | $0 | 128K | 20 | Not published | 20 | 200K tokens/day | 2026-08-12 |
+| MiniMax-M3 | $0 | 128K | 20 | Not published | 20 | 200K tokens/day | 2026-08-25 |
+| gemma-4-31B-it | $0 | 128K | 20 | Not published | 20 | 200K tokens/day | 2026-08-25 |
+| gpt-oss-120b | $0 | 128K | 20 | Not published | 20 | 200K tokens/day | 2026-08-25 |
 
 ### NVIDIA NIM (build.nvidia.com)
 
@@ -160,7 +164,10 @@ Every provider that gives developers free API access to LLM inference — usable
 
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| 40+ open models (Llama, Qwen, DeepSeek, Mistral) | $0 (trial credits) | Model-dependent | ~60 (varies by model) | Not published | Not published | $5 signup credits | 2026-08-12 |
+| deepseek-ai/DeepSeek-V3.1 | $0 (trial credits) | Model-dependent | ~60 (varies by model) | Not published | Not published | $5 signup credits | 2026-08-25 |
+| Qwen/Qwen3-32B | $0 (trial credits) | Model-dependent | ~60 (varies by model) | Not published | Not published | $5 signup credits | 2026-08-25 |
+| Qwen/Qwen2.5-72B-Instruct | $0 (trial credits) | Model-dependent | ~60 (varies by model) | Not published | Not published | $5 signup credits | 2026-08-25 |
+| zai-org/GLM-4.7 | $0 (trial credits) | Model-dependent | ~60 (varies by model) | Not published | Not published | $5 signup credits | 2026-08-25 |
 ## Definitions
 
 | Term | Meaning |

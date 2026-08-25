@@ -113,22 +113,34 @@ Edit [`data/providers.json`](data/providers.json) (single source of truth), run 
 
 
 def build_llms():
+    site = WEBSITE.rstrip("/")
+    total_models = sum(len(p["models"]) for p in ROWS)
     lines = [
         f"# {TITLE}",
         "",
         f"> {TAGLINE}",
         "",
-        f"> Last verified: {VERIFIED} · {len(ROWS)} providers · {sum(len(p['models']) for p in ROWS)} free models.",
-        f"> Machine data: {WEBSITE}/data/providers.json (validate against {WEBSITE}/data/schema.json).",
-        f"> Markdown mirror: {WEBSITE}/index.md — or request / with Accept: text/markdown.",
-        f"> Per-provider JSON: {WEBSITE}/data/<slug>.json (e.g. {WEBSITE}/data/{slug(ROWS[0]['name'])}.json).",
+        f"Last verified: {VERIFIED} · {len(ROWS)} providers · {total_models} free models.",
+        "Verification methods: `live-probe` = checked against the provider's API nightly; `docs` = human-verified against official docs, stale-flagged after 45 days.",
+        "",
+        "## Catalog in every format",
+        "",
+        f"- [HTML]({site}/) — interactive two-pane catalog (send `Accept: text/markdown` on this URL to get markdown)",
+        f"- [Markdown]({site}/index.md) — this entire catalog as one markdown document",
+        f"- [JSON — full catalog]({site}/data/providers.json) — single source of truth",
+        f"- [JSON Schema]({site}/data/schema.json) — validate before trusting",
+        f"- [Per-provider JSON]({site}/data/<slug>.json) — one small file per provider:",
+        "",
+    ]
+    lines += [f"  - [{p['name']}]({site}/data/{slug(p['name'])}.json)" for p in ROWS]
+    lines += [
         "",
         "## Providers",
         "",
     ]
     for p in ROWS:
         models = ", ".join(m["name"] for m in p["models"])
-        lines.append(f"- [{p['name']}]({p['url']}): {p['free_type']} · models: {models}")
+        lines.append(f"- [{p['name']}]({p['url']}): {p['free_type']} · {p['verified_method']} · verified {p['verified']} · models: {models}")
         for m in p["models"]:
             lines.append(
                 f"  - {m['name']}: cost {m['cost']} · context {m['context']} · "
@@ -225,6 +237,13 @@ def build_html():
           f'<script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments)}};'
           f"gtag('js',new Date());gtag('config','{ga_id}');</script>") if ga_id else ""
 
+    ld = json.dumps({
+        "@context": "https://schema.org", "@type": "Dataset", "name": TITLE,
+        "description": TAGLINE, "url": WEBSITE, "dateModified": VERIFIED,
+        "license": "https://opensource.org/licenses/MIT", **({"sameAs": REPO} if REPO else {}),
+        "keywords": ["free LLM API", "inference providers", "rate limits", "AI agents"],
+    }, ensure_ascii=False)
+
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -240,6 +259,7 @@ def build_html():
 <link rel="icon" href="data:,">
 <title>{head}</title>
 {ga}
+<script type="application/ld+json">{ld}</script>
 <style>
   :root {{ --bg:#fff; --ink:#1a1a1a; --mut:#6b6b6b; --line:#e3e3e3; --sel:#111; --selink:#fff; }}
   * {{ box-sizing:border-box; }}
@@ -485,7 +505,13 @@ def main():
     # ponytail: per-provider JSON split; whole file is ~40KB so single-file fetch stays the default path
     for p in ROWS:
         (dist / "data" / f"{slug(p['name'])}.json").write_text(json.dumps(p, indent=2) + "\n")
-    (dist / "robots.txt").write_text(f"User-agent: *\nAllow: /\nSitemap: {WEBSITE}/sitemap.xml\n")
+    ai_bots = ("GPTBot", "OAI-SearchBot", "ChatGPT-User", "ClaudeBot", "Claude-SearchBot",
+               "PerplexityBot", "Google-Extended", "Applebot-Extended", "CCBot", "Amazonbot")
+    (dist / "robots.txt").write_text(
+        "User-agent: *\nAllow: /\n"
+        + "".join(f"User-agent: {b}\nAllow: /\n" for b in ai_bots)
+        + f"Sitemap: {WEBSITE}/sitemap.xml\n"
+    )
     total = sum(len(p["models"]) for p in ROWS)
     print(f"ok: {len(ROWS)} providers, {total} models -> dist/ (verified {VERIFIED})")
 

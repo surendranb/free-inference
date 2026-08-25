@@ -106,7 +106,8 @@
           "verified": "2026-08-12"
         }
       ],
-      "verified_method": "docs"
+      "verified_method": "docs",
+      "docs_url": "https://opencode.ai/docs/zen"
     },
     {
       "name": "OpenRouter",
@@ -549,7 +550,8 @@
           "verified": "2026-08-12"
         }
       ],
-      "verified_method": "docs"
+      "verified_method": "docs",
+      "docs_url": "https://console.groq.com/docs/rate-limits"
     },
     {
       "name": "Cerebras",
@@ -590,7 +592,8 @@
           "verified": "2026-08-12"
         }
       ],
-      "verified_method": "docs"
+      "verified_method": "docs",
+      "docs_url": "https://inference-docs.cerebras.ai/support/rate-limits"
     },
     {
       "name": "Cloudflare Workers AI",
@@ -611,7 +614,8 @@
           "verified": "2026-08-12"
         }
       ],
-      "verified_method": "docs"
+      "verified_method": "docs",
+      "docs_url": "https://developers.cloudflare.com/workers-ai/platform/limits/"
     },
     {
       "name": "Hugging Face",
@@ -662,7 +666,8 @@
           "verified": "2026-08-12"
         }
       ],
-      "verified_method": "docs"
+      "verified_method": "docs",
+      "docs_url": "https://huggingface.co/docs/inference-providers/index"
     },
     {
       "name": "Mistral La Plateforme",
@@ -703,7 +708,8 @@
           "verified": "2026-08-12"
         }
       ],
-      "verified_method": "docs"
+      "verified_method": "docs",
+      "docs_url": "https://docs.mistral.ai/"
     },
     {
       "name": "SambaNova Cloud",
@@ -724,6 +730,26 @@
           "verified": "2026-08-25"
         },
         {
+          "name": "DeepSeek-V3.2",
+          "cost": "$0",
+          "context": "128K",
+          "rpm": "20",
+          "tpm": "Not published",
+          "rpd": "20",
+          "tpd": "200K tokens/day",
+          "verified": "2026-08-25"
+        },
+        {
+          "name": "Meta-Llama-3.3-70B-Instruct",
+          "cost": "$0",
+          "context": "128K",
+          "rpm": "20",
+          "tpm": "Not published",
+          "rpd": "20",
+          "tpd": "200K tokens/day",
+          "verified": "2026-08-25"
+        },
+        {
           "name": "MiniMax-M2.7",
           "cost": "$0",
           "context": "128K",
@@ -734,14 +760,34 @@
           "verified": "2026-08-25"
         },
         {
-          "name": "Gemma 4 31B preview",
+          "name": "MiniMax-M3",
           "cost": "$0",
           "context": "128K",
           "rpm": "20",
           "tpm": "Not published",
           "rpd": "20",
           "tpd": "200K tokens/day",
-          "verified": "2026-08-12"
+          "verified": "2026-08-25"
+        },
+        {
+          "name": "gemma-4-31B-it",
+          "cost": "$0",
+          "context": "128K",
+          "rpm": "20",
+          "tpm": "Not published",
+          "rpd": "20",
+          "tpd": "200K tokens/day",
+          "verified": "2026-08-25"
+        },
+        {
+          "name": "gpt-oss-120b",
+          "cost": "$0",
+          "context": "128K",
+          "rpm": "20",
+          "tpm": "Not published",
+          "rpd": "20",
+          "tpd": "200K tokens/day",
+          "verified": "2026-08-25"
         }
       ],
       "verified_method": "live-probe"
@@ -785,7 +831,8 @@
           "verified": "2026-08-12"
         }
       ],
-      "verified_method": "docs"
+      "verified_method": "docs",
+      "docs_url": "https://build.nvidia.com/explore/reasoning"
     },
     {
       "name": "Z.AI (Zhipu)",
@@ -857,28 +904,60 @@
           "verified": "2026-08-12"
         }
       ],
-      "verified_method": "docs"
+      "verified_method": "docs",
+      "docs_url": "https://docs.together.ai/docs/rate-limits"
     },
     {
       "name": "DeepInfra",
       "url": "https://docs.deepinfra.com/account/rate-limits",
       "free_type": "Trial credits",
-      "notes": "200 concurrent requests per model - high ceiling. Credit-based, no daily cap while credits last. OpenAI-compatible.",
+      "notes": "200 concurrent requests per model - high ceiling. Credit-based, no daily cap while credits last. Notable models below; 185+ total in catalog-wide trial credits.",
       "timeout": "Not published",
       "verified": "2026-08-25",
       "models": [
         {
-          "name": "40+ open models (Llama, Qwen, DeepSeek, Mistral)",
+          "name": "deepseek-ai/DeepSeek-V3.1",
           "cost": "$0 (trial credits)",
           "context": "Model-dependent",
           "rpm": "~60 (varies by model)",
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "$5 signup credits",
-          "verified": "2026-08-12"
+          "verified": "2026-08-25"
+        },
+        {
+          "name": "Qwen/Qwen3-32B",
+          "cost": "$0 (trial credits)",
+          "context": "Model-dependent",
+          "rpm": "~60 (varies by model)",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "$5 signup credits",
+          "verified": "2026-08-25"
+        },
+        {
+          "name": "Qwen/Qwen2.5-72B-Instruct",
+          "cost": "$0 (trial credits)",
+          "context": "Model-dependent",
+          "rpm": "~60 (varies by model)",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "$5 signup credits",
+          "verified": "2026-08-25"
+        },
+        {
+          "name": "zai-org/GLM-4.7",
+          "cost": "$0 (trial credits)",
+          "context": "Model-dependent",
+          "rpm": "~60 (varies by model)",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "$5 signup credits",
+          "verified": "2026-08-25"
         }
       ],
-      "verified_method": "live-probe"
+      "verified_method": "live-probe",
+      "docs_url": "https://deepinfra.com/docs"
     }
   ],
   "ga_measurement_id": "G-CFXWNKBD7G"

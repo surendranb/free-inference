@@ -105,7 +105,8 @@
           "tpd": "Not published",
           "verified": "2026-08-12"
         }
-      ]
+      ],
+      "verified_method": "docs"
     },
     {
       "name": "OpenRouter",
@@ -285,7 +286,8 @@
           "tpd": "Not published",
           "verified": "2026-08-25"
         }
-      ]
+      ],
+      "verified_method": "live-probe"
     },
     {
       "name": "Google AI Studio (Gemini API)",
@@ -475,7 +477,8 @@
           "tpd": "Not published",
           "verified": "2026-08-25"
         }
-      ]
+      ],
+      "verified_method": "live-probe"
     },
     {
       "name": "Groq",
@@ -545,7 +548,8 @@
           "tpd": "Not published",
           "verified": "2026-08-12"
         }
-      ]
+      ],
+      "verified_method": "docs"
     },
     {
       "name": "Cerebras",
@@ -585,7 +589,8 @@
           "tpd": "1M tokens/day (per model)",
           "verified": "2026-08-12"
         }
-      ]
+      ],
+      "verified_method": "docs"
     },
     {
       "name": "Cloudflare Workers AI",
@@ -605,7 +610,8 @@
           "tpd": "10,000 neurons/day",
           "verified": "2026-08-12"
         }
-      ]
+      ],
+      "verified_method": "docs"
     },
     {
       "name": "Hugging Face",
@@ -655,7 +661,8 @@
           "tpd": "Small monthly credit pool (PRO: 2M credits/mo)",
           "verified": "2026-08-12"
         }
-      ]
+      ],
+      "verified_method": "docs"
     },
     {
       "name": "Mistral La Plateforme",
@@ -695,7 +702,8 @@
           "tpd": "~1B tokens/month",
           "verified": "2026-08-12"
         }
-      ]
+      ],
+      "verified_method": "docs"
     },
     {
       "name": "SambaNova Cloud",
@@ -703,7 +711,7 @@
       "free_type": "Rate-limited free",
       "notes": "OpenAI-compatible base URL api.sambanova.ai/v1. Preview models can be pulled at any time. No credit card, no phone verification.",
       "timeout": "Not published",
-      "verified": "2026-08-12",
+      "verified": "2026-08-25",
       "models": [
         {
           "name": "DeepSeek-V3.1",
@@ -713,7 +721,7 @@
           "tpm": "Not published",
           "rpd": "20",
           "tpd": "200K tokens/day",
-          "verified": "2026-08-12"
+          "verified": "2026-08-25"
         },
         {
           "name": "MiniMax-M2.7",
@@ -723,7 +731,7 @@
           "tpm": "Not published",
           "rpd": "20",
           "tpd": "200K tokens/day",
-          "verified": "2026-08-12"
+          "verified": "2026-08-25"
         },
         {
           "name": "Gemma 4 31B preview",
@@ -735,7 +743,8 @@
           "tpd": "200K tokens/day",
           "verified": "2026-08-12"
         }
-      ]
+      ],
+      "verified_method": "live-probe"
     },
     {
       "name": "NVIDIA NIM (build.nvidia.com)",
@@ -775,7 +784,8 @@
           "tpd": "~1,000 credits at signup (up to ~5,000)",
           "verified": "2026-08-12"
         }
-      ]
+      ],
+      "verified_method": "docs"
     },
     {
       "name": "Z.AI (Zhipu)",
@@ -825,7 +835,8 @@
           "tpd": "Not published",
           "verified": "2026-08-12"
         }
-      ]
+      ],
+      "verified_method": "docs"
     },
     {
       "name": "Together AI",
@@ -845,7 +856,8 @@
           "tpd": "$25 one-time credit",
           "verified": "2026-08-12"
         }
-      ]
+      ],
+      "verified_method": "docs"
     },
     {
       "name": "DeepInfra",
@@ -853,7 +865,7 @@
       "free_type": "Trial credits",
       "notes": "200 concurrent requests per model - high ceiling. Credit-based, no daily cap while credits last. OpenAI-compatible.",
       "timeout": "Not published",
-      "verified": "2026-08-12",
+      "verified": "2026-08-25",
       "models": [
         {
           "name": "40+ open models (Llama, Qwen, DeepSeek, Mistral)",
@@ -865,7 +877,8 @@
           "tpd": "$5 signup credits",
           "verified": "2026-08-12"
         }
-      ]
+      ],
+      "verified_method": "live-probe"
     }
   ],
   "ga_measurement_id": "G-CFXWNKBD7G"

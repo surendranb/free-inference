@@ -84,6 +84,7 @@ def sync_google(prov, key, today):
             })
     prov["models"] = rows
     prov["verified"] = today
+    prov["verified_method"] = "live-probe"
     return f"ok: {len(rows)} text-gen models"
 
 
@@ -112,7 +113,46 @@ def sync_openrouter(prov, today):
             })
     prov["models"] = rows
     prov["verified"] = today
+    prov["verified_method"] = "live-probe"
     return f"ok: {len(rows)} :free models"
+
+
+KEYLESS_MODEL_ENDPOINTS = {
+    "DeepInfra": "https://api.deepinfra.com/v1/openai/models",
+    "SambaNova Cloud": "https://api.sambanova.ai/v1/models",
+}
+
+
+def sync_keyless_models(prov, endpoint, today):
+    """Existence check: curated model names must still appear in the keyless /models list."""
+    d = get_json(endpoint)
+    live = {m.get("id", "") for m in d.get("data", [])}
+    if not live:
+        raise RuntimeError("empty model list")
+    missing, found = [], 0
+    for m in prov["models"]:
+        if any(m["name"].lower() in mid.lower() or mid.lower() in m["name"].lower() for mid in live):
+            m["verified"] = today
+            found += 1
+        else:
+            missing.append(m["name"])
+    prov["verified"] = today
+    prov["verified_method"] = "live-probe"
+    return f"ok: {found}/{len(prov['models'])} models confirmed" + (f"; MISSING: {missing}" if missing else "")
+
+
+def check_doc_links(data):
+    """Dead-link detection only — never extracts limits from docs (layouts change silently)."""
+    out = []
+    for prov in data["providers"]:
+        try:
+            req = urllib.request.Request(prov["url"], headers=UA, method="HEAD")
+            with urllib.request.urlopen(req, timeout=15) as r:
+                if r.status >= 400:
+                    out.append(f"{prov['name']}: docs URL returned {r.status}")
+        except Exception as e:
+            out.append(f"{prov['name']}: docs URL unreachable ({e})")
+    return out
 
 
 def main():
@@ -126,8 +166,13 @@ def main():
                 results.append(("Google AI Studio", sync_google(prov, key, today) if key else "skipped (no GEMINI_API_KEY)"))
             elif prov["name"] == "OpenRouter":
                 results.append(("OpenRouter", sync_openrouter(prov, today)))
+            elif prov["name"] in KEYLESS_MODEL_ENDPOINTS:
+                results.append((prov["name"], sync_keyless_models(prov, KEYLESS_MODEL_ENDPOINTS[prov["name"]], today)))
         except Exception as e:
             results.append((prov["name"], f"FAILED: {e}"))
+
+    for warn in check_doc_links(data):
+        results.append(("doc-link", f"WARN: {warn}"))
 
     stale = []
     for prov in data["providers"]:

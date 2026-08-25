@@ -120,6 +120,8 @@ def build_llms():
         "",
         f"> Last verified: {VERIFIED} · {len(ROWS)} providers · {sum(len(p['models']) for p in ROWS)} free models.",
         f"> Machine data: {WEBSITE}/data/providers.json (validate against {WEBSITE}/data/schema.json).",
+        f"> Markdown mirror: {WEBSITE}/index.md — or request / with Accept: text/markdown.",
+        f"> Per-provider JSON: {WEBSITE}/data/<slug>.json (e.g. {WEBSITE}/data/{slug(ROWS[0]['name'])}.json).",
         "",
         "## Providers",
         "",
@@ -180,6 +182,7 @@ def build_schema():
                         "notes": {"type": "string"},
                         "timeout": {"type": "string"},
                         "verified": {"type": "string"},
+                        "verified_method": {"type": "string", "enum": ["live-probe", "docs"]},
                         "models": {
                             "type": "array",
                             "items": {
@@ -229,6 +232,11 @@ def build_html():
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="{html.escape(TAGLINE)}">
 <link rel="canonical" href="{website}">
+<link rel="alternate" type="text/markdown" href="{website}/index.md">
+<meta property="og:title" content="{head}">
+<meta property="og:description" content="{html.escape(TAGLINE)}">
+<meta property="og:url" content="{website}">
+<meta property="og:type" content="website">
 <link rel="icon" href="data:,">
 <title>{head}</title>
 {ga}
@@ -383,7 +391,8 @@ function render(app) {{
     panel.innerHTML = `<div class="panel-head">
       <h2>${{p.name}}<span class="ftype">${{p.free_type}}</span></h2>
       <a class="purl" href="${{p.url}}" target="_blank" rel="noopener">${{p.url}}</a>
-      <div class="pnotes">${{p.notes}}</div>${{dead}}
+      <div class="pnotes">${{p.notes}}</div>
+      <div class="pnotes"><strong>${{p.verified_method === "live-probe" ? "Live-probed" : "Docs-verified"}} ${{p.verified}}</strong>${{p.verified_method === "docs" ? " · no public API to probe; dates refresh on human verification pass" : " · re-verified nightly"}}</div>${{dead}}
     </div>
     <div class="table-wrap"><table>
       <thead><tr><th data-k="name">Model</th><th data-k="cost">Cost</th><th data-k="context">Context</th>
@@ -426,9 +435,30 @@ def row_html(p):
     return f'<tr><td><a href="{html.escape(p["url"])}" target="_blank" rel="noopener">{name}</a></td>{tds}</tr>'
 
 
+def slug(name):
+    return "".join(c if c.isalnum() else "-" for c in name.lower()).strip("-")
+
+
+def build_index_md():
+    site = WEBSITE.rstrip("/")
+    md = build_readme()
+    for rel in ("data/providers.json", "CONTRIBUTING.md"):
+        md = md.replace(f"]({rel})", f"]({site}/{rel})")
+    return md
+
+
+def build_404():
+    return f"""<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>404 — {html.escape(TITLE)}</title>
+<meta name="robots" content="noindex">
+<style>body{{font:16px/1.5 -apple-system,sans-serif;margin:0;display:grid;place-items:center;min-height:100vh;color:#1a1a1a}}a{{color:inherit}}</style></head>
+<body><div><h1>404</h1><p>No such page. <a href="/">Back to the catalog.</a></p></div></body></html>
+"""
+
+
 def main():
     assert DATA["columns"] and ROWS, "empty columns or rows"
-    required = {"name", "url", "free_type", "verified", "models"}
+    required = {"name", "url", "free_type", "verified", "verified_method", "models"}
     model_required = {"name", "cost", "context", "rpm", "tpm", "rpd", "tpd", "verified"}
     for p in ROWS:
         missing = required - set(p)
@@ -442,9 +472,20 @@ def main():
     (ROOT / "README.md").write_text(build_readme())
     (dist / "index.html").write_text(build_html())
     (dist / "llms.txt").write_text(build_llms())
+    (dist / "index.md").write_text(build_index_md())
+    (dist / "404.html").write_text(build_404())
+    (dist / "sitemap.xml").write_text(
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        f"  <url><loc>{WEBSITE}/</loc><lastmod>{VERIFIED}</lastmod></url>\n"
+        "</urlset>\n"
+    )
     (dist / "data" / "providers.json").write_text(json.dumps(DATA, indent=2) + "\n")
     (dist / "data" / "schema.json").write_text(json.dumps(build_schema(), indent=2) + "\n")
-    (dist / "robots.txt").write_text("User-agent: *\nAllow: /\n")
+    # ponytail: per-provider JSON split; whole file is ~40KB so single-file fetch stays the default path
+    for p in ROWS:
+        (dist / "data" / f"{slug(p['name'])}.json").write_text(json.dumps(p, indent=2) + "\n")
+    (dist / "robots.txt").write_text(f"User-agent: *\nAllow: /\nSitemap: {WEBSITE}/sitemap.xml\n")
     total = sum(len(p["models"]) for p in ROWS)
     print(f"ok: {len(ROWS)} providers, {total} models -> dist/ (verified {VERIFIED})")
 

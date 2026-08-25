@@ -129,8 +129,8 @@ Every provider that gives developers free API access to LLM inference — usable
 
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| DeepSeek-V3.1 | $0 | 128K | 20 | Not published | 20 | 200K tokens/day | 2026-08-12 |
-| MiniMax-M2.7 | $0 | 128K | 20 | Not published | 20 | 200K tokens/day | 2026-08-12 |
+| DeepSeek-V3.1 | $0 | 128K | 20 | Not published | 20 | 200K tokens/day | 2026-08-25 |
+| MiniMax-M2.7 | $0 | 128K | 20 | Not published | 20 | 200K tokens/day | 2026-08-25 |
 | Gemma 4 31B preview | $0 | 128K | 20 | Not published | 20 | 200K tokens/day | 2026-08-12 |
 
 ### NVIDIA NIM (build.nvidia.com)

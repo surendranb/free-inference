@@ -12,7 +12,7 @@ import re
 import urllib.request
 from pathlib import Path
 
-ROOT = Path(__file__).parent
+ROOT = Path(__file__).parent.parent
 DATA = json.loads((ROOT / "data" / "providers.json").read_text())
 UA = {"User-Agent": "free-inference-doccheck/0.1"}
 MODEL = "gemini-2.5-flash"

@@ -51,7 +51,15 @@ def ask_gemini(png_bytes, name, url, key):
 
 
 def nums(s):
-    return {int(x) for x in re.findall(r"\d[\d,]*", str(s)) if int(x.replace(",", "") or 0) > 0}
+    out = set()
+    for x in re.findall(r"\d[\d,]*", str(s)):
+        try:
+            n = int(x.replace(",", ""))
+        except ValueError:
+            continue
+        if n > 0:
+            out.add(n)
+    return out
 
 
 def catalog_numbers(prov):

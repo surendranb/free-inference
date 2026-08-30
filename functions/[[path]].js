@@ -1,11 +1,30 @@
 // Content negotiation & server-side GA4 telemetry for agents, CLI hits, and raw data requests.
 const GA_ID = "G-CFXWNKBD7G";
 
+function detectAgentFamily(ua) {
+  const u = (ua || "").toLowerCase();
+  if (u.includes("claude") || u.includes("anthropic")) return "Claude / Anthropic";
+  if (u.includes("chatgpt") || u.includes("gptbot") || u.includes("openai") || u.includes("oai-searchbot")) return "ChatGPT / OpenAI";
+  if (u.includes("perplexity")) return "Perplexity";
+  if (u.includes("cursor")) return "Cursor";
+  if (u.includes("google-extended") || u.includes("gemini")) return "Google Gemini / Vertex";
+  if (u.includes("langchain")) return "LangChain";
+  if (u.includes("llamaindex")) return "LlamaIndex";
+  if (u.includes("python") || u.includes("requests") || u.includes("httpx") || u.includes("urllib") || u.includes("aiohttp")) return "Python Script";
+  if (u.includes("curl")) return "cURL";
+  if (u.includes("httpie")) return "HTTPie";
+  if (u.includes("wget")) return "Wget";
+  if (u.includes("node-fetch") || u.includes("axios") || u.includes("undici") || u.includes("go-http-client")) return "Backend HTTP Client";
+  if (u.includes("googlebot") || u.includes("bingbot") || u.includes("duckduckbot") || u.includes("yandex") || u.includes("slurp")) return "Search Crawler";
+  if (u.includes("mozilla") || u.includes("chrome") || u.includes("safari") || u.includes("edge")) return "Browser";
+  return "Custom / Unnamed Client";
+}
+
 function classifyClient(ua) {
   ua = (ua || "").toLowerCase();
   if (ua.includes("curl") || ua.includes("httpie") || ua.includes("wget")) return "cli";
-  if (ua.includes("python") || ua.includes("requests") || ua.includes("urllib") || ua.includes("aiohttp") || ua.includes("node-fetch") || ua.includes("axios") || ua.includes("go-http-client")) return "script";
-  if (ua.includes("claude") || ua.includes("gpt") || ua.includes("agent") || ua.includes("llm") || ua.includes("langchain") || ua.includes("llama") || ua.includes("anthropic") || ua.includes("openai")) return "agent";
+  if (ua.includes("python") || ua.includes("requests") || ua.includes("urllib") || ua.includes("aiohttp") || ua.includes("httpx") || ua.includes("node-fetch") || ua.includes("axios") || ua.includes("go-http-client")) return "script";
+  if (ua.includes("claude") || ua.includes("gpt") || ua.includes("agent") || ua.includes("llm") || ua.includes("langchain") || ua.includes("llama") || ua.includes("anthropic") || ua.includes("openai") || ua.includes("perplexity") || ua.includes("cursor")) return "agent";
   if (ua.includes("bot") || ua.includes("crawl") || ua.includes("spider")) return "crawler";
   if (ua.includes("mozilla") || ua.includes("chrome") || ua.includes("safari")) return "browser";
   return "other";
@@ -15,7 +34,12 @@ async function sendGaHit(req, pathname, fileType) {
   try {
     const ua = req.headers.get("user-agent") || "unknown";
     const referer = req.headers.get("referer") || "";
+    const accept = req.headers.get("accept") || "*/*";
+    const country = req.headers.get("cf-ipcountry") || "unknown";
+    const asnOrg = (req.cf && req.cf.asOrganization) ? req.cf.asOrganization : "unknown";
+    
     const clientType = classifyClient(ua);
+    const agentFamily = detectAgentFamily(ua);
 
     const ip = req.headers.get("cf-connecting-ip") || "anonymous";
     let hash = 0;
@@ -33,8 +57,12 @@ async function sendGaHit(req, pathname, fileType) {
       en: "agent_asset_hit",
       "ep.path": pathname,
       "ep.file_type": fileType,
+      "ep.agent_name": agentFamily,
       "ep.client_type": clientType,
       "ep.user_agent": ua.slice(0, 100),
+      "ep.asn_org": asnOrg.slice(0, 100),
+      "ep.country_code": country,
+      "ep.accept_type": accept.slice(0, 100),
       dl: req.url,
       dr: referer
     });

@@ -125,7 +125,7 @@ def build_llms():
         "",
         "## Catalog in every format",
         "",
-        f"- [HTML]({site}/) — interactive two-pane catalog (send `Accept: text/markdown` on this URL to get markdown)",
+        f"- [HTML + WebMCP]({site}/) — interactive catalog with browser-native WebMCP tools (`navigator.modelContext` / `search_models`, `get_provider`, `list_providers`, `compare_models`)",
         f"- [Markdown]({site}/index.md) — this entire catalog as one markdown document",
         f"- [JSON — full catalog]({site}/data/providers.json) — single source of truth",
         f"- [JSON Schema]({site}/data/schema.json) — validate before trusting",
@@ -357,6 +357,7 @@ def build_html():
       <li>Machine data: <a href="data/providers.json" rel="noopener">data/providers.json</a> — validate
       against <a href="data/schema.json" rel="noopener">data/schema.json</a></li>
       <li>Agent summary: <a href="llms.txt" rel="noopener">llms.txt</a></li>
+      <li>WebMCP: Browser-native tools registered via <code>navigator.modelContext</code> (<code>search_models</code>, <code>get_provider</code>, <code>list_providers</code>, <code>compare_models</code>)</li>
       <li>This page and the repo README are generated from that one file — edit the JSON, run
       <code>python3 build.py</code>, done.</li>
     </ul>
@@ -375,6 +376,170 @@ function modelRow(m) {{
     <td>${{m.rpm}}</td><td>${{m.tpm}}</td><td>${{m.rpd}}</td>
     <td>${{m.tpd}}</td><td>${{m.verified}}</td></tr>`;
 }}
+
+function trackMcpCall(toolName, params) {{
+  if (typeof window.gtag === "function") {{
+    window.gtag("event", "webmcp_tool_call", {{
+      tool_name: toolName,
+      search_query: params.query || "",
+      provider_param: params.provider_name || params.provider || "",
+      model_count: Array.isArray(params.model_names) ? params.model_names.length : undefined
+    }});
+  }}
+}}
+
+const tools = {{
+  search_models: {{
+    name: "search_models",
+    description: "Search free LLM models by keyword, minimum context length, provider name, or free tier type.",
+    inputSchema: {{
+      type: "object",
+      properties: {{
+        query: {{ type: "string", description: "Search query across model name or provider" }},
+        min_context_k: {{ type: "number", description: "Minimum context window in thousands (e.g. 128 for 128K+)" }},
+        provider: {{ type: "string", description: "Filter by provider name (partial or exact)" }},
+        free_type: {{ type: "string", description: "Filter by free tier type (e.g. 'Rate-limited free', 'Promo free (limited time)', 'Trial credits')" }}
+      }}
+    }},
+    execute: async (params = {{}}) => {{
+      trackMcpCall("search_models", params);
+      const q = (params.query || "").toLowerCase();
+      const pFilter = (params.provider || "").toLowerCase();
+      const ftFilter = (params.free_type || "").toLowerCase();
+      const minCtx = params.min_context_k || 0;
+      const results = [];
+      for (const prov of DATA.providers) {{
+        if (pFilter && !prov.name.toLowerCase().includes(pFilter)) continue;
+        if (ftFilter && !prov.free_type.toLowerCase().includes(ftFilter)) continue;
+        for (const m of prov.models) {{
+          const nameMatch = !q || m.name.toLowerCase().includes(q) || prov.name.toLowerCase().includes(q);
+          let ctxNum = 0;
+          const ctxMatch = String(m.context).match(/(\\d+)K?/i);
+          if (ctxMatch) {{
+            ctxNum = parseInt(ctxMatch[1], 10);
+            if (!String(m.context).toUpperCase().includes("K") && ctxNum > 1000) ctxNum = Math.floor(ctxNum / 1024);
+          }}
+          const passCtx = minCtx === 0 || ctxNum >= minCtx;
+          if (nameMatch && passCtx) {{
+            results.push({{
+              provider: prov.name,
+              free_type: prov.free_type,
+              model: m.name,
+              cost: m.cost,
+              context: m.context,
+              rpm: m.rpm,
+              tpm: m.tpm,
+              rpd: m.rpd,
+              tpd: m.tpd,
+              verified: m.verified
+            }});
+          }}
+        }}
+      }}
+      return results;
+    }}
+  }},
+  get_provider: {{
+    name: "get_provider",
+    description: "Get comprehensive details and model inventory for a specific free inference provider.",
+    inputSchema: {{
+      type: "object",
+      properties: {{
+        provider_name: {{ type: "string", description: "Exact or partial provider name (e.g. 'Google', 'Groq', 'OpenRouter', 'OpenCode Zen')" }}
+      }},
+      required: ["provider_name"]
+    }},
+    execute: async (params = {{}}) => {{
+      trackMcpCall("get_provider", params);
+      const target = (params.provider_name || "").toLowerCase();
+      const found = DATA.providers.find(p => p.name.toLowerCase().includes(target));
+      if (!found) return {{ error: `Provider '${{params.provider_name}}' not found in catalog.` }};
+      return found;
+    }}
+  }},
+  list_providers: {{
+    name: "list_providers",
+    description: "List all free LLM inference providers with summary metadata, free tier type, and model counts.",
+    inputSchema: {{
+      type: "object",
+      properties: {{
+        free_type: {{ type: "string", description: "Optional filter by free tier type" }}
+      }}
+    }},
+    execute: async (params = {{}}) => {{
+      trackMcpCall("list_providers", params);
+      const ft = (params.free_type || "").toLowerCase();
+      return DATA.providers
+        .filter(p => !ft || p.free_type.toLowerCase().includes(ft))
+        .map(p => ({{
+          name: p.name,
+          url: p.url,
+          free_type: p.free_type,
+          model_count: p.models.length,
+          verified: p.verified,
+          verified_method: p.verified_method,
+          notes: p.notes
+        }}));
+    }}
+  }},
+  compare_models: {{
+    name: "compare_models",
+    description: "Compare rate limits and specs of specific models across providers.",
+    inputSchema: {{
+      type: "object",
+      properties: {{
+        model_names: {{ type: "array", items: {{ type: "string" }}, description: "Array of model names to compare" }}
+      }},
+      required: ["model_names"]
+    }},
+    execute: async (params = {{}}) => {{
+      trackMcpCall("compare_models", params);
+      const names = (params.model_names || []).map(n => n.toLowerCase());
+      const matches = [];
+      for (const p of DATA.providers) {{
+        for (const m of p.models) {{
+          if (names.some(n => m.name.toLowerCase().includes(n) || n.includes(m.name.toLowerCase()))) {{
+            matches.push({{
+              provider: p.name,
+              model: m.name,
+              cost: m.cost,
+              context: m.context,
+              rpm: m.rpm,
+              tpm: m.tpm,
+              rpd: m.rpd,
+              tpd: m.tpd,
+              verified: m.verified
+            }});
+          }}
+        }}
+      }}
+      return matches;
+    }}
+  }}
+}};
+
+function registerWebMcp() {{
+  const mc = navigator.modelContext || window.modelContext || (typeof document !== "undefined" && document.modelContext);
+  if (mc && typeof mc.registerTool === "function") {{
+    for (const tool of Object.values(tools)) {{
+      try {{
+        mc.registerTool({{
+          name: tool.name,
+          description: tool.description,
+          inputSchema: tool.inputSchema,
+          execute: tool.execute,
+          annotations: {{ readOnlyHint: true }}
+        }});
+      }} catch (e) {{
+        console.warn("WebMCP registration failed:", tool.name, e);
+      }}
+    }}
+  }}
+}}
+
+window.freeInferenceTools = tools;
+window.webmcp = tools;
+registerWebMcp();
 
 function render(app) {{
   const list = DATA.providers;

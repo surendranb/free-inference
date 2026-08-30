@@ -2,18 +2,18 @@
 
 Every provider that gives developers free API access to LLM inference — usable from a harness, agent, or CLI. Web-chat-only free tiers (ChatGPT, Claude.ai, Gemini app, deepseek.com, Grok, Copilot) are excluded on purpose.
 
-> **2026-08-29** · 13 providers · 82 free models
+> **2026-08-30** · 13 providers · 79 free models
 > Interactive site: https://freeinference.dev · Agent summary: https://freeinference.dev/llms.txt · Machine data: https://freeinference.dev/data/providers.json (validate against https://freeinference.dev/data/schema.json)
 
 ## Providers
 
 | Provider | Free tier | Notable models | Notes |
 | --- | --- | --- | --- |
-| [OpenCode Zen](https://opencode.ai/docs/zen) | Promo free (limited time) | Big Pickle, DeepSeek V4 Flash, MiMo-V2.5, Laguna S 2.1, Ling-3.0-tiny, LongCat-2.0, +2 more | Free models are limited-time promos; some may use data for training. No credit card. OpenAI-compatible base URL opencode.ai/zen/v1. List free models: opencode models | grep -i free |
+| [OpenCode Zen](https://opencode.ai/docs/zen) | Promo free (limited time) | Big Pickle, MiMo-V2.5 Free, Ling 3.0 Flash Fin Free, Nemotron 3 Ultra Free, Nemotron 3.5 Lightning Free, Muse Spark 1.2 Contributor Free | Free models are limited-time promos; some may use data for training. No credit card. OpenAI-compatible base URL opencode.ai/zen/v1. List free models: opencode models | grep -i free |
 | [OpenRouter](https://openrouter.ai/models?max_price=0) | Rate-limited free | cohere/north-mini-code:free, dots-studio/dots-3-note-preview:free, google/gemma-4-26b-a4b-it:free, google/gemma-4-31b-it:free, inclusionai/ling-3.0-flash-fin:free, liquid/lfm-2.5-2.6b:free, +12 more | Updated via GitHub Connect test (2026-08-12) |
 | [Google AI Studio (Gemini API)](https://ai.google.dev/gemini-api/docs/rate-limits) | Rate-limited free | gemini-2.5-flash, gemini-2.5-flash-lite, gemini-2.5-pro, gemini-3-flash-preview, gemini-3.1-flash-lite, gemini-3.1-flash-lite-preview, +14 more | Free forever, no card, most generous major-provider tier. Live-verified against the v1beta API with an API key (2026-08-12) — model list and context windows are real; per-account quota varies by account age (see AI Studio rate-limit dashboard). Free-tier data may be used for training. |
-| [Groq](https://console.groq.com/docs/rate-limits) | Rate-limited free | Llama 3.1 / 3.3, Llama 4 Scout, Qwen 3, Kimi K2, GPT-OSS 120B, Gemma 2 9B | LPU hardware, fastest time-to-first-token. Limits per API key per model; some models get half allowance. No credit card. Limits visible in x-ratelimit-* response headers. |
-| [Cerebras](https://inference-docs.cerebras.ai/support/rate-limits) | Rate-limited free (Free Trial) | gpt-oss-120b, zai-glm-4.7, gemma-4-31b | Wafer-scale hardware, 2,000+ tok/s. Free tier caps context at 8K (temporary). Per-model limits on a rotating shortlist. No credit card. |
+| [Groq](https://console.groq.com/docs/rate-limits) | Rate-limited free | openai/gpt-oss-120b, openai/gpt-oss-20b, qwen/qwen3.6-27b, qwen/qwen3.8-27b, meta-llama/llama-prompt-guard-2-22m, groq/compound | LPU hardware, fastest time-to-first-token. Limits per API key per model; some models get half allowance. No credit card. Limits visible in x-ratelimit-* response headers. |
+| [Cerebras](https://inference-docs.cerebras.ai/support/rate-limits) | Rate-limited free (Free Trial) | gpt-oss-120b, gemma-4-31b | Wafer-scale hardware, 2,000+ tok/s. Free tier caps context at 8K (temporary). Per-model limits on a rotating shortlist. No credit card. |
 | [Cloudflare Workers AI](https://developers.cloudflare.com/workers-ai/platform/limits) | Rate-limited free | ~80 free models (Llama 3.x/4, Qwen, Gemma, DeepSeek-R1 distills, FLUX, Whisper, BGE embeddings) | Neurons are normalized GPU-compute units, shared pool across all models. Resets 00:00 UTC. Hard stop when pool exhausted, errors not overage. No credit card. |
 | [Hugging Face](https://huggingface.co/docs/inference-providers) | Rate-limited free | Llama 3.2 8B (Serverless), Qwen 2.5 7B (Serverless), Mistral 7B (Serverless), Inference Providers gateway (15+ partners) | Two products: Serverless API (free, rate-limited) and Inference Providers gateway. Cold starts 10-30s on unpopular models. Limits not published as fixed numbers. |
 | [Mistral La Plateforme](https://docs.mistral.ai) | Rate-limited free (Experiment) | Mistral Large, Codestral, All API models (Experiment tier) | Phone (SMS) verification required, no card. Exact limits no longer published - see Admin Console Limits per workspace. Evaluation tier, not production. |
@@ -29,148 +29,145 @@ Every provider that gives developers free API access to LLM inference — usable
 
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Big Pickle | $0 (promo) | 256K - 1M | Not published | Not published | Not published | Not published | 2026-08-12 |
-| DeepSeek V4 Flash | $0 (promo) | 256K - 1M | Not published | Not published | Not published | Not published | 2026-08-12 |
-| MiMo-V2.5 | $0 (promo) | 256K - 1M | Not published | Not published | Not published | Not published | 2026-08-12 |
-| Laguna S 2.1 | $0 (promo) | 256K - 1M | Not published | Not published | Not published | Not published | 2026-08-12 |
-| Ling-3.0-tiny | $0 (promo) | 256K - 1M | Not published | Not published | Not published | Not published | 2026-08-12 |
-| LongCat-2.0 | $0 (promo) | 256K - 1M | Not published | Not published | Not published | Not published | 2026-08-12 |
-| North Mini Code | $0 (promo) | 256K - 1M | Not published | Not published | Not published | Not published | 2026-08-12 |
-| Nemotron 3 Ultra | $0 (promo) | 256K - 1M | Not published | Not published | Not published | Not published | 2026-08-12 |
+| Big Pickle | zsh (promo) | 256K - 1M | Not published | Not published | Not published | Not published | 2026-08-30 |
+| MiMo-V2.5 Free | zsh (promo) | 256K - 1M | Not published | Not published | Not published | Not published | 2026-08-30 |
+| Ling 3.0 Flash Fin Free | zsh (promo) | 256K - 1M | Not published | Not published | Not published | Not published | 2026-08-30 |
+| Nemotron 3 Ultra Free | zsh (promo) | 256K - 1M | Not published | Not published | Not published | Not published | 2026-08-30 |
+| Nemotron 3.5 Lightning Free | zsh (promo) | 256K - 1M | Not published | Not published | Not published | Not published | 2026-08-30 |
+| Muse Spark 1.2 Contributor Free | zsh (promo) | 256K - 1M | Not published | Not published | Not published | Not published | 2026-08-30 |
 
 ### OpenRouter
 
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| cohere/north-mini-code:free | $0 | 250K | 20 | Provider-dependent | 50 (below $10 credits) / 1,000 ($10+ credits) | Not published | 2026-08-29 |
-| dots-studio/dots-3-note-preview:free | $0 | 500K | 20 | Provider-dependent | 50 (below $10 credits) / 1,000 ($10+ credits) | Not published | 2026-08-29 |
-| google/gemma-4-26b-a4b-it:free | $0 | 256K | 20 | Provider-dependent | 50 (below $10 credits) / 1,000 ($10+ credits) | Not published | 2026-08-29 |
-| google/gemma-4-31b-it:free | $0 | 256K | 20 | Provider-dependent | 50 (below $10 credits) / 1,000 ($10+ credits) | Not published | 2026-08-29 |
-| inclusionai/ling-3.0-flash-fin:free | $0 | 256K | 20 | Provider-dependent | 50 (below $10 credits) / 1,000 ($10+ credits) | Not published | 2026-08-29 |
-| liquid/lfm-2.5-2.6b:free | $0 | 64K | 20 | Provider-dependent | 50 (below $10 credits) / 1,000 ($10+ credits) | Not published | 2026-08-29 |
-| minimax/minimax-m2.7:free | $0 | 192K | 20 | Provider-dependent | 50 (below $10 credits) / 1,000 ($10+ credits) | Not published | 2026-08-29 |
-| minimax/minimax-m3:free | $0 | 1024K | 20 | Provider-dependent | 50 (below $10 credits) / 1,000 ($10+ credits) | Not published | 2026-08-29 |
-| nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free | $0 | 250K | 20 | Provider-dependent | 50 (below $10 credits) / 1,000 ($10+ credits) | Not published | 2026-08-29 |
-| nvidia/nemotron-3-super-120b-a12b:free | $0 | 256K | 20 | Provider-dependent | 50 (below $10 credits) / 1,000 ($10+ credits) | Not published | 2026-08-29 |
-| nvidia/nemotron-3-ultra-550b-a55b:free | $0 | 1000000 | 20 | Provider-dependent | 50 (below $10 credits) / 1,000 ($10+ credits) | Not published | 2026-08-29 |
-| nvidia/nemotron-3.5-content-safety:free | $0 | 125K | 20 | Provider-dependent | 50 (below $10 credits) / 1,000 ($10+ credits) | Not published | 2026-08-29 |
-| nvidia/nemotron-3.5-lightning:free | $0 | 1000000 | 20 | Provider-dependent | 50 (below $10 credits) / 1,000 ($10+ credits) | Not published | 2026-08-29 |
-| poolside/laguna-s-2.1:free | $0 | 256K | 20 | Provider-dependent | 50 (below $10 credits) / 1,000 ($10+ credits) | Not published | 2026-08-29 |
-| poolside/laguna-xs-2.1:free | $0 | 256K | 20 | Provider-dependent | 50 (below $10 credits) / 1,000 ($10+ credits) | Not published | 2026-08-29 |
-| thinkingmachines/inkling-small:free | $0 | 1024K | 20 | Provider-dependent | 50 (below $10 credits) / 1,000 ($10+ credits) | Not published | 2026-08-29 |
-| thinkingmachines/inkling:free | $0 | 1024K | 20 | Provider-dependent | 50 (below $10 credits) / 1,000 ($10+ credits) | Not published | 2026-08-29 |
-| z-ai/glm-5.2:free | $0 | 250K | 20 | Provider-dependent | 50 (below $10 credits) / 1,000 ($10+ credits) | Not published | 2026-08-29 |
+| cohere/north-mini-code:free | $0 | 250K | 20 | Provider-dependent | 50 (below $10 credits) / 1,000 ($10+ credits) | Not published | 2026-08-30 |
+| dots-studio/dots-3-note-preview:free | $0 | 500K | 20 | Provider-dependent | 50 (below $10 credits) / 1,000 ($10+ credits) | Not published | 2026-08-30 |
+| google/gemma-4-26b-a4b-it:free | $0 | 256K | 20 | Provider-dependent | 50 (below $10 credits) / 1,000 ($10+ credits) | Not published | 2026-08-30 |
+| google/gemma-4-31b-it:free | $0 | 256K | 20 | Provider-dependent | 50 (below $10 credits) / 1,000 ($10+ credits) | Not published | 2026-08-30 |
+| inclusionai/ling-3.0-flash-fin:free | $0 | 256K | 20 | Provider-dependent | 50 (below $10 credits) / 1,000 ($10+ credits) | Not published | 2026-08-30 |
+| liquid/lfm-2.5-2.6b:free | $0 | 64K | 20 | Provider-dependent | 50 (below $10 credits) / 1,000 ($10+ credits) | Not published | 2026-08-30 |
+| minimax/minimax-m2.7:free | $0 | 192K | 20 | Provider-dependent | 50 (below $10 credits) / 1,000 ($10+ credits) | Not published | 2026-08-30 |
+| minimax/minimax-m3:free | $0 | 1024K | 20 | Provider-dependent | 50 (below $10 credits) / 1,000 ($10+ credits) | Not published | 2026-08-30 |
+| nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free | $0 | 250K | 20 | Provider-dependent | 50 (below $10 credits) / 1,000 ($10+ credits) | Not published | 2026-08-30 |
+| nvidia/nemotron-3-super-120b-a12b:free | $0 | 256K | 20 | Provider-dependent | 50 (below $10 credits) / 1,000 ($10+ credits) | Not published | 2026-08-30 |
+| nvidia/nemotron-3-ultra-550b-a55b:free | $0 | 1000000 | 20 | Provider-dependent | 50 (below $10 credits) / 1,000 ($10+ credits) | Not published | 2026-08-30 |
+| nvidia/nemotron-3.5-content-safety:free | $0 | 125K | 20 | Provider-dependent | 50 (below $10 credits) / 1,000 ($10+ credits) | Not published | 2026-08-30 |
+| nvidia/nemotron-3.5-lightning:free | $0 | 1000000 | 20 | Provider-dependent | 50 (below $10 credits) / 1,000 ($10+ credits) | Not published | 2026-08-30 |
+| poolside/laguna-s-2.1:free | $0 | 256K | 20 | Provider-dependent | 50 (below $10 credits) / 1,000 ($10+ credits) | Not published | 2026-08-30 |
+| poolside/laguna-xs-2.1:free | $0 | 256K | 20 | Provider-dependent | 50 (below $10 credits) / 1,000 ($10+ credits) | Not published | 2026-08-30 |
+| thinkingmachines/inkling-small:free | $0 | 1024K | 20 | Provider-dependent | 50 (below $10 credits) / 1,000 ($10+ credits) | Not published | 2026-08-30 |
+| thinkingmachines/inkling:free | $0 | 1024K | 20 | Provider-dependent | 50 (below $10 credits) / 1,000 ($10+ credits) | Not published | 2026-08-30 |
+| z-ai/glm-5.2:free | $0 | 250K | 20 | Provider-dependent | 50 (below $10 credits) / 1,000 ($10+ credits) | Not published | 2026-08-30 |
 
 ### Google AI Studio (Gemini API)
 
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| gemini-2.5-flash | $0 | 1024K | Varies by account | Varies by account | Varies by account | Not published | 2026-08-29 |
-| gemini-2.5-flash-lite | $0 | 1024K | Varies by account | Varies by account | Varies by account | Not published | 2026-08-29 |
-| gemini-2.5-pro | $0 | 1024K | Varies by account | Varies by account | Varies by account | Not published | 2026-08-29 |
-| gemini-3-flash-preview | $0 | 1024K | Varies by account | Varies by account | Varies by account | Not published | 2026-08-29 |
-| gemini-3.1-flash-lite | $0 | 1024K | Varies by account | Varies by account | Varies by account | Not published | 2026-08-29 |
-| gemini-3.1-flash-lite-preview | $0 | 1024K | Varies by account | Varies by account | Varies by account | Not published | 2026-08-29 |
-| gemini-3.1-pro-preview | $0 | 1024K | Varies by account | Varies by account | Varies by account | Not published | 2026-08-29 |
-| gemini-3.1-pro-preview-customtools | $0 | 1024K | Varies by account | Varies by account | Varies by account | Not published | 2026-08-29 |
-| gemini-3.5-flash | $0 | 1024K | Varies by account | Varies by account | Varies by account | Not published | 2026-08-29 |
-| gemini-3.5-flash-lite | $0 | 1024K | Varies by account | Varies by account | Varies by account | Not published | 2026-08-29 |
-| gemini-3.5-transcribe | $0 | 96K | Varies by account | Varies by account | Varies by account | Not published | 2026-08-29 |
-| gemini-3.6-flash | $0 | 1024K | Varies by account | Varies by account | Varies by account | Not published | 2026-08-29 |
-| gemini-3.7-flash | $0 | 1024K | Varies by account | Varies by account | Varies by account | Not published | 2026-08-29 |
-| gemini-flash-latest | $0 | 1024K | Varies by account | Varies by account | Varies by account | Not published | 2026-08-29 |
-| gemini-flash-lite-latest | $0 | 1024K | Varies by account | Varies by account | Varies by account | Not published | 2026-08-29 |
-| gemini-omni-1.1-flash | $0 | 128K | Varies by account | Varies by account | Varies by account | Not published | 2026-08-29 |
-| gemini-omni-flash-preview | $0 | 128K | Varies by account | Varies by account | Varies by account | Not published | 2026-08-29 |
-| gemini-pro-latest | $0 | 1024K | Varies by account | Varies by account | Varies by account | Not published | 2026-08-29 |
-| gemma-4-26b-a4b-it | $0 | 256K | Varies by account | Varies by account | Varies by account | Not published | 2026-08-29 |
-| gemma-4-31b-it | $0 | 256K | Varies by account | Varies by account | Varies by account | Not published | 2026-08-29 |
+| gemini-2.5-flash | $0 | 1024K | Varies by account | Varies by account | Varies by account | Not published | 2026-08-30 |
+| gemini-2.5-flash-lite | $0 | 1024K | Varies by account | Varies by account | Varies by account | Not published | 2026-08-30 |
+| gemini-2.5-pro | $0 | 1024K | Varies by account | Varies by account | Varies by account | Not published | 2026-08-30 |
+| gemini-3-flash-preview | $0 | 1024K | Varies by account | Varies by account | Varies by account | Not published | 2026-08-30 |
+| gemini-3.1-flash-lite | $0 | 1024K | Varies by account | Varies by account | Varies by account | Not published | 2026-08-30 |
+| gemini-3.1-flash-lite-preview | $0 | 1024K | Varies by account | Varies by account | Varies by account | Not published | 2026-08-30 |
+| gemini-3.1-pro-preview | $0 | 1024K | Varies by account | Varies by account | Varies by account | Not published | 2026-08-30 |
+| gemini-3.1-pro-preview-customtools | $0 | 1024K | Varies by account | Varies by account | Varies by account | Not published | 2026-08-30 |
+| gemini-3.5-flash | $0 | 1024K | Varies by account | Varies by account | Varies by account | Not published | 2026-08-30 |
+| gemini-3.5-flash-lite | $0 | 1024K | Varies by account | Varies by account | Varies by account | Not published | 2026-08-30 |
+| gemini-3.5-transcribe | $0 | 96K | Varies by account | Varies by account | Varies by account | Not published | 2026-08-30 |
+| gemini-3.6-flash | $0 | 1024K | Varies by account | Varies by account | Varies by account | Not published | 2026-08-30 |
+| gemini-3.7-flash | $0 | 1024K | Varies by account | Varies by account | Varies by account | Not published | 2026-08-30 |
+| gemini-flash-latest | $0 | 1024K | Varies by account | Varies by account | Varies by account | Not published | 2026-08-30 |
+| gemini-flash-lite-latest | $0 | 1024K | Varies by account | Varies by account | Varies by account | Not published | 2026-08-30 |
+| gemini-omni-1.1-flash | $0 | 128K | Varies by account | Varies by account | Varies by account | Not published | 2026-08-30 |
+| gemini-omni-flash-preview | $0 | 128K | Varies by account | Varies by account | Varies by account | Not published | 2026-08-30 |
+| gemini-pro-latest | $0 | 1024K | Varies by account | Varies by account | Varies by account | Not published | 2026-08-30 |
+| gemma-4-26b-a4b-it | $0 | 256K | Varies by account | Varies by account | Varies by account | Not published | 2026-08-30 |
+| gemma-4-31b-it | $0 | 256K | Varies by account | Varies by account | Varies by account | Not published | 2026-08-30 |
 
 ### Groq
 
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Llama 3.1 / 3.3 | $0 | 128K | 30 (15 for some) | 6K | 14,400 (org-wide) | Not published | 2026-08-12 |
-| Llama 4 Scout | $0 | 128K | 30 (15 for some) | 6K | 14,400 (org-wide) | Not published | 2026-08-12 |
-| Qwen 3 | $0 | 128K | 30 (15 for some) | 6K | 14,400 (org-wide) | Not published | 2026-08-12 |
-| Kimi K2 | $0 | 128K | 30 (15 for some) | 6K | 14,400 (org-wide) | Not published | 2026-08-12 |
-| GPT-OSS 120B | $0 | 128K | 30 (15 for some) | 6K | 14,400 (org-wide) | Not published | 2026-08-12 |
-| Gemma 2 9B | $0 | 128K | 30 (15 for some) | 15K | 14,400 (org-wide) | Not published | 2026-08-12 |
+| openai/gpt-oss-120b | zsh | 128K | 30 | 8K | 1,000 | 200K tokens/day | 2026-08-30 |
+| openai/gpt-oss-20b | zsh | 128K | 30 | 8K | 1,000 | 200K tokens/day | 2026-08-30 |
+| qwen/qwen3.6-27b | zsh | 128K | 30 | 8K | 1,000 | 200K tokens/day | 2026-08-30 |
+| qwen/qwen3.8-27b | zsh | 128K | 30 | 8K | 1,000 | 2M tokens/day | 2026-08-30 |
+| meta-llama/llama-prompt-guard-2-22m | zsh | 128K | 30 | 15K | 14,400 | 500K tokens/day | 2026-08-30 |
+| groq/compound | zsh | 128K | 30 | 70K | 250 | Not published | 2026-08-30 |
 
 ### Cerebras
 
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| gpt-oss-120b | $0 | 8K cap on free tier | 5 | 30K | Not published | 1M tokens/day (per model) | 2026-08-12 |
-| zai-glm-4.7 | $0 | 8K cap on free tier | 5 | 30K | Not published | 1M tokens/day (per model) | 2026-08-12 |
-| gemma-4-31b | $0 | 8K cap on free tier | 5 | 30K | Not published | 1M tokens/day (per model) | 2026-08-12 |
+| gpt-oss-120b | zsh | 8K cap on free tier | 5 | 30K | Not published | 1M tokens/day (per model) | 2026-08-30 |
+| gemma-4-31b | zsh | 8K cap on free tier | 5 | 30K | Not published | 1M tokens/day (per model) | 2026-08-30 |
 
 ### Cloudflare Workers AI
 
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ~80 free models (Llama 3.x/4, Qwen, Gemma, DeepSeek-R1 distills, FLUX, Whisper, BGE embeddings) | $0 | 8K-128K+ (model-dependent) | 300 text gen (720-1,500 other tasks) | Model-dependent | Not published | 10,000 neurons/day | 2026-08-12 |
+| ~80 free models (Llama 3.x/4, Qwen, Gemma, DeepSeek-R1 distills, FLUX, Whisper, BGE embeddings) | $0 | 8K-128K+ (model-dependent) | 300 text gen (720-1,500 other tasks) | Model-dependent | Not published | 10,000 neurons/day | 2026-08-30 |
 
 ### Hugging Face
 
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Llama 3.2 8B (Serverless) | $0 | Model-dependent | ~300 req/hour (Serverless) | Model max context | Not published | Small monthly credit pool (PRO: 2M credits/mo) | 2026-08-12 |
-| Qwen 2.5 7B (Serverless) | $0 | Model-dependent | ~300 req/hour (Serverless) | Model max context | Not published | Small monthly credit pool (PRO: 2M credits/mo) | 2026-08-12 |
-| Mistral 7B (Serverless) | $0 | Model-dependent | ~300 req/hour (Serverless) | Model max context | Not published | Small monthly credit pool (PRO: 2M credits/mo) | 2026-08-12 |
-| Inference Providers gateway (15+ partners) | $0 | Model-dependent | ~300 req/hour (Serverless) | Model max context | Not published | Small monthly credit pool (PRO: 2M credits/mo) | 2026-08-12 |
+| Llama 3.2 8B (Serverless) | $0 | Model-dependent | ~300 req/hour (Serverless) | Model max context | Not published | Small monthly credit pool (PRO: 2M credits/mo) | 2026-08-30 |
+| Qwen 2.5 7B (Serverless) | $0 | Model-dependent | ~300 req/hour (Serverless) | Model max context | Not published | Small monthly credit pool (PRO: 2M credits/mo) | 2026-08-30 |
+| Mistral 7B (Serverless) | $0 | Model-dependent | ~300 req/hour (Serverless) | Model max context | Not published | Small monthly credit pool (PRO: 2M credits/mo) | 2026-08-30 |
+| Inference Providers gateway (15+ partners) | $0 | Model-dependent | ~300 req/hour (Serverless) | Model max context | Not published | Small monthly credit pool (PRO: 2M credits/mo) | 2026-08-30 |
 
 ### Mistral La Plateforme
 
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Mistral Large | $0 (Experiment) | Model-dependent | ~1 req/sec | Not published | Not published | ~1B tokens/month | 2026-08-12 |
-| Codestral | $0 (Experiment) | Model-dependent | ~1 req/sec | Not published | Not published | ~1B tokens/month | 2026-08-12 |
-| All API models (Experiment tier) | $0 (Experiment) | Model-dependent | ~1 req/sec | Not published | Not published | ~1B tokens/month | 2026-08-12 |
+| Mistral Large | $0 (Experiment) | Model-dependent | ~1 req/sec | Not published | Not published | ~1B tokens/month | 2026-08-30 |
+| Codestral | $0 (Experiment) | Model-dependent | ~1 req/sec | Not published | Not published | ~1B tokens/month | 2026-08-30 |
+| All API models (Experiment tier) | $0 (Experiment) | Model-dependent | ~1 req/sec | Not published | Not published | ~1B tokens/month | 2026-08-30 |
 
 ### SambaNova Cloud
 
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| DeepSeek-V3.1 | $0 | 128K | 20 | Not published | 20 | 200K tokens/day | 2026-08-29 |
-| DeepSeek-V3.2 | $0 | 128K | 20 | Not published | 20 | 200K tokens/day | 2026-08-29 |
-| Meta-Llama-3.3-70B-Instruct | $0 | 128K | 20 | Not published | 20 | 200K tokens/day | 2026-08-29 |
-| MiniMax-M2.7 | $0 | 128K | 20 | Not published | 20 | 200K tokens/day | 2026-08-29 |
-| MiniMax-M3 | $0 | 128K | 20 | Not published | 20 | 200K tokens/day | 2026-08-29 |
-| gemma-4-31B-it | $0 | 128K | 20 | Not published | 20 | 200K tokens/day | 2026-08-29 |
-| gpt-oss-120b | $0 | 128K | 20 | Not published | 20 | 200K tokens/day | 2026-08-29 |
+| DeepSeek-V3.1 | $0 | 128K | 20 | Not published | 20 | 200K tokens/day | 2026-08-30 |
+| DeepSeek-V3.2 | $0 | 128K | 20 | Not published | 20 | 200K tokens/day | 2026-08-30 |
+| Meta-Llama-3.3-70B-Instruct | $0 | 128K | 20 | Not published | 20 | 200K tokens/day | 2026-08-30 |
+| MiniMax-M2.7 | $0 | 128K | 20 | Not published | 20 | 200K tokens/day | 2026-08-30 |
+| MiniMax-M3 | $0 | 128K | 20 | Not published | 20 | 200K tokens/day | 2026-08-30 |
+| gemma-4-31B-it | $0 | 128K | 20 | Not published | 20 | 200K tokens/day | 2026-08-30 |
+| gpt-oss-120b | $0 | 128K | 20 | Not published | 20 | 200K tokens/day | 2026-08-30 |
 
 ### NVIDIA NIM (build.nvidia.com)
 
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| GLM-5 | $0 (trial credits) | Model-dependent | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-08-12 |
-| Kimi-2.5 | $0 (trial credits) | Model-dependent | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-08-12 |
-| NIM-packaged open models | $0 (trial credits) | Model-dependent | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-08-12 |
+| GLM-5 | $0 (trial credits) | Model-dependent | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-08-30 |
+| Kimi-2.5 | $0 (trial credits) | Model-dependent | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-08-30 |
+| NIM-packaged open models | $0 (trial credits) | Model-dependent | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-08-30 |
 
 ### Z.AI (Zhipu)
 
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| GLM-5.1 | $0 | Up to 203K | 3 (burst) | Not published | 1,000 (1K RPD tier) | Not published | 2026-08-12 |
-| GLM-4.5-Flash | $0 | Up to 203K | 3 (burst) | Not published | 1,000 | Not published | 2026-08-12 |
-| GLM-4.7-Flash | $0 | Up to 203K | 3 (burst) | Not published | 1,000 | Not published | 2026-08-12 |
-| GLM-4.6V-Flash (vision) | $0 | Up to 203K | 3 (burst) | Not published | 1,000 | Not published | 2026-08-12 |
+| GLM-5.1 | $0 | Up to 203K | 3 (burst) | Not published | 1,000 (1K RPD tier) | Not published | 2026-08-30 |
+| GLM-4.5-Flash | $0 | Up to 203K | 3 (burst) | Not published | 1,000 | Not published | 2026-08-30 |
+| GLM-4.7-Flash | $0 | Up to 203K | 3 (burst) | Not published | 1,000 | Not published | 2026-08-30 |
+| GLM-4.6V-Flash (vision) | $0 | Up to 203K | 3 (burst) | Not published | 1,000 | Not published | 2026-08-30 |
 
 ### Together AI
 
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| 200+ open models (Llama, Qwen, DeepSeek) | $0 (trial credits) | Model-dependent | ~60 (Build tier) | ~100K (Build tier) | Not published | $25 one-time credit | 2026-08-12 |
+| 200+ open models (Llama, Qwen, DeepSeek) | $0 (trial credits) | Model-dependent | ~60 (Build tier) | ~100K (Build tier) | Not published | $25 one-time credit | 2026-08-30 |
 
 ### DeepInfra
 
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| deepseek-ai/DeepSeek-V3.1 | $0 (trial credits) | Model-dependent | ~60 (varies by model) | Not published | Not published | $5 signup credits | 2026-08-29 |
-| Qwen/Qwen3-32B | $0 (trial credits) | Model-dependent | ~60 (varies by model) | Not published | Not published | $5 signup credits | 2026-08-29 |
-| Qwen/Qwen2.5-72B-Instruct | $0 (trial credits) | Model-dependent | ~60 (varies by model) | Not published | Not published | $5 signup credits | 2026-08-29 |
-| zai-org/GLM-4.7 | $0 (trial credits) | Model-dependent | ~60 (varies by model) | Not published | Not published | $5 signup credits | 2026-08-29 |
+| deepseek-ai/DeepSeek-V3.1 | $0 (trial credits) | Model-dependent | ~60 (varies by model) | Not published | Not published | $5 signup credits | 2026-08-30 |
+| Qwen/Qwen3-32B | $0 (trial credits) | Model-dependent | ~60 (varies by model) | Not published | Not published | $5 signup credits | 2026-08-30 |
+| Qwen/Qwen2.5-72B-Instruct | $0 (trial credits) | Model-dependent | ~60 (varies by model) | Not published | Not published | $5 signup credits | 2026-08-30 |
+| zai-org/GLM-4.7 | $0 (trial credits) | Model-dependent | ~60 (varies by model) | Not published | Not published | $5 signup credits | 2026-08-30 |
 ## Definitions
 
 | Term | Meaning |

@@ -55,6 +55,8 @@ async function sendGaHit(req, pathname, fileType) {
       tid: GA_ID,
       cid: cid,
       en: "agent_asset_hit",
+      uip: ip,
+      ua: ua,
       "ep.path": pathname,
       "ep.file_type": fileType,
       "ep.agent_name": agentFamily,
@@ -69,7 +71,10 @@ async function sendGaHit(req, pathname, fileType) {
 
     await fetch("https://www.google-analytics.com/g/collect?" + params.toString(), {
       method: "POST",
-      headers: { "user-agent": ua }
+      headers: {
+        "user-agent": ua,
+        "x-forwarded-for": ip
+      }
     });
   } catch (e) {
     // Non-blocking: telemetry failures must never degrade asset delivery

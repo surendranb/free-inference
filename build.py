@@ -220,7 +220,17 @@ def build_schema():
 
 
 def build_html():
-    head = html.escape(f"{TITLE} — free LLM API access for agents & harnesses")
+    total_models = sum(len(p["models"]) for p in ROWS)
+    provider_count = len(ROWS)
+    sample_providers = ", ".join(p["name"] for p in ROWS[:5])
+
+    page_title = f"{TITLE} — {total_models} Free LLM Models Across {provider_count} Providers (Updated {VERIFIED})"
+    meta_desc = (f"Updated {VERIFIED} · {provider_count} providers & {total_models} verified free models "
+                 f"({sample_providers}, etc.). Verified rate limits (RPM, TPM, RPD), "
+                 f"context windows, and browser WebMCP tools for AI agents and harnesses.")
+
+    head_title = html.escape(page_title)
+    head_desc = html.escape(meta_desc)
     data_json = json.dumps(DATA, ensure_ascii=False, indent=1)
     verified = html.escape(VERIFIED)
     website = html.escape(WEBSITE)
@@ -238,10 +248,21 @@ def build_html():
           f"gtag('js',new Date());gtag('config','{ga_id}');</script>") if ga_id else ""
 
     ld = json.dumps({
-        "@context": "https://schema.org", "@type": "Dataset", "name": TITLE,
-        "description": TAGLINE, "url": WEBSITE, "dateModified": VERIFIED,
-        "license": "https://opensource.org/licenses/MIT", **({"sameAs": REPO} if REPO else {}),
-        "keywords": ["free LLM API", "inference providers", "rate limits", "AI agents"],
+        "@context": "https://schema.org",
+        "@type": "Dataset",
+        "name": TITLE,
+        "description": meta_desc,
+        "url": WEBSITE,
+        "dateModified": VERIFIED,
+        "license": "https://opensource.org/licenses/MIT",
+        **({"sameAs": REPO} if REPO else {}),
+        "keywords": ["free LLM API", "inference providers", "rate limits", "AI agents", "WebMCP", "llms.txt"],
+        "variableMeasured": ["RPM", "TPM", "RPD", "Context Window", "Daily Token Limits", "Model Pricing"],
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
     }, ensure_ascii=False)
 
     return f"""<!doctype html>
@@ -249,15 +270,25 @@ def build_html():
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="{html.escape(TAGLINE)}">
+<title>{head_title}</title>
+<meta name="description" content="{head_desc}">
 <link rel="canonical" href="{website}">
 <link rel="alternate" type="text/markdown" href="{website}/index.md">
-<meta property="og:title" content="{head}">
-<meta property="og:description" content="{html.escape(TAGLINE)}">
-<meta property="og:url" content="{website}">
+
+<!-- OpenGraph / Social Metadata -->
+<meta property="og:site_name" content="{html.escape(TITLE)}">
 <meta property="og:type" content="website">
+<meta property="og:url" content="{website}">
+<meta property="og:title" content="{head_title}">
+<meta property="og:description" content="{head_desc}">
+<meta property="og:updated_time" content="{verified}T00:00:00Z">
+
+<!-- Twitter / X Metadata -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="{head_title}">
+<meta name="twitter:description" content="{head_desc}">
+
 <link rel="icon" href="data:,">
-<title>{head}</title>
 {ga}
 <script type="application/ld+json">{ld}</script>
 <style>

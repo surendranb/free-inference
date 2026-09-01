@@ -10,6 +10,7 @@ Outputs into dist/ (gitignored; deployed by Cloudflare Pages on push):
 """
 import html
 import json
+from datetime import date
 from pathlib import Path
 
 ROOT = Path(__file__).parent
@@ -222,12 +223,13 @@ def build_schema():
 def build_html():
     total_models = sum(len(p["models"]) for p in ROWS)
     provider_count = len(ROWS)
-    sample_providers = ", ".join(p["name"] for p in ROWS[:5])
+    # ponytail: freshness derived from per-provider/model max — nightly probe keeps those fresh; top-level "verified" is manual and goes stale
+    verified_max = max((v for p in ROWS for v in [p.get("verified", ""), *(m.get("verified", "") for m in p["models"])] if v), default=VERIFIED)
+    verified_human = date.fromisoformat(verified_max).strftime("%d %b %Y")
 
-    page_title = f"{TITLE} — {total_models} Free LLM Models Across {provider_count} Providers (Updated {VERIFIED})"
-    meta_desc = (f"Updated {VERIFIED} · {provider_count} providers & {total_models} verified free models "
-                 f"({sample_providers}, etc.). Verified rate limits (RPM, TPM, RPD), "
-                 f"context windows, and browser WebMCP tools for AI agents and harnesses.")
+    page_title = f"Free LLM API Directory: {total_models} Models | {provider_count} Providers, Updated {verified_human}"
+    meta_desc = (f"Browse {total_models} free LLM models across {provider_count} providers — "
+                 f"OpenRouter, Groq, Cerebras, Gemini. Verified rate limits, context windows, and WebMCP tools for agents.")
 
     head_title = html.escape(page_title)
     head_desc = html.escape(meta_desc)

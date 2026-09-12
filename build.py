@@ -313,8 +313,7 @@ def build_html():
 
     page_title = f"Free LLM API Directory: {count_noun(total_models, 'Model')} | {count_noun(provider_count, 'Provider')}, Updated {VERIFIED_HUMAN}"
     meta_desc = (f"{count_noun(total_models, 'free LLM model')}, {count_noun(provider_count, 'provider')} — an API key, a CLI login, "
-                 f"or inference bundled in an IDE. Rate limits, context windows, and free tiers, "
-                 f"updated {VERIFIED_HUMAN}.")
+                 f"or inference bundled in an IDE. No credit card required. Updated {VERIFIED_HUMAN}.")
 
     head_title = html.escape(page_title)
     head_desc = html.escape(meta_desc)

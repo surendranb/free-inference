@@ -1,6 +1,6 @@
 {
   "title": "Free Inference",
-  "tagline": "Every provider that gives developers free API access to LLM inference \u2014 usable from a harness, agent, or CLI. Web-chat-only free tiers (ChatGPT, Claude.ai, Gemini app, deepseek.com, Grok, Copilot) are excluded on purpose.",
+  "tagline": "Free LLM inference you can build with: an API key, a CLI login, or inference bundled inside a coding tool or builder. The test is whether you can ship an artifact you keep — code, an app, a site, a design, an agent, a skill. Chat-only free tiers are excluded on purpose.",
   "verified": "2026-09-12",
   "website": "https://freeinference.dev",
   "repo": "",
@@ -87,7 +87,9 @@
         }
       ],
       "verified_method": "docs",
-      "docs_url": "https://opencode.ai/docs/zen"
+      "docs_url": "https://opencode.ai/docs/zen",
+      "access_method": "api_key",
+      "artifact": "code"
     },
     {
       "name": "OpenRouter",
@@ -288,13 +290,15 @@
           "verified": "2026-09-12"
         }
       ],
-      "verified_method": "live-probe"
+      "verified_method": "live-probe",
+      "access_method": "api_key",
+      "artifact": "code"
     },
     {
       "name": "Google AI Studio (Gemini API)",
       "url": "https://ai.google.dev/gemini-api/docs/rate-limits",
       "free_type": "Rate-limited free",
-      "notes": "Free forever, no card, most generous major-provider tier. Live-verified against the v1beta API with an API key (2026-08-12) \u2014 model list and context windows are real; per-account quota varies by account age (see AI Studio rate-limit dashboard). Free-tier data may be used for training.",
+      "notes": "Free forever, no card, most generous major-provider tier. Live-verified against the v1beta API with an API key (2026-08-12) — model list and context windows are real; per-account quota varies by account age (see AI Studio rate-limit dashboard). Free-tier data may be used for training.",
       "timeout": "Not published",
       "verified": "2026-09-12",
       "models": [
@@ -509,7 +513,9 @@
           "verified": "2026-09-12"
         }
       ],
-      "verified_method": "live-probe"
+      "verified_method": "live-probe",
+      "access_method": "api_key",
+      "artifact": "code"
     },
     {
       "name": "Groq",
@@ -581,7 +587,9 @@
         }
       ],
       "verified_method": "docs",
-      "docs_url": "https://console.groq.com/docs/rate-limits"
+      "docs_url": "https://console.groq.com/docs/rate-limits",
+      "access_method": "api_key",
+      "artifact": "code"
     },
     {
       "name": "Cerebras",
@@ -613,7 +621,9 @@
         }
       ],
       "verified_method": "docs",
-      "docs_url": "https://inference-docs.cerebras.ai/support/rate-limits"
+      "docs_url": "https://inference-docs.cerebras.ai/support/rate-limits",
+      "access_method": "api_key",
+      "artifact": "code"
     },
     {
       "name": "Cloudflare Workers AI",
@@ -635,7 +645,9 @@
         }
       ],
       "verified_method": "docs",
-      "docs_url": "https://developers.cloudflare.com/workers-ai/platform/limits/"
+      "docs_url": "https://developers.cloudflare.com/workers-ai/platform/limits/",
+      "access_method": "api_key",
+      "artifact": "code"
     },
     {
       "name": "Hugging Face",
@@ -687,7 +699,9 @@
         }
       ],
       "verified_method": "docs",
-      "docs_url": "https://huggingface.co/docs/inference-providers/index"
+      "docs_url": "https://huggingface.co/docs/inference-providers/index",
+      "access_method": "api_key",
+      "artifact": "code"
     },
     {
       "name": "Mistral La Plateforme",
@@ -729,7 +743,9 @@
         }
       ],
       "verified_method": "docs",
-      "docs_url": "https://docs.mistral.ai/"
+      "docs_url": "https://docs.mistral.ai/",
+      "access_method": "api_key",
+      "artifact": "code"
     },
     {
       "name": "SambaNova Cloud",
@@ -810,7 +826,9 @@
           "verified": "2026-09-12"
         }
       ],
-      "verified_method": "live-probe"
+      "verified_method": "live-probe",
+      "access_method": "api_key",
+      "artifact": "code"
     },
     {
       "name": "NVIDIA NIM (build.nvidia.com)",
@@ -852,7 +870,9 @@
         }
       ],
       "verified_method": "docs",
-      "docs_url": "https://build.nvidia.com/explore/reasoning"
+      "docs_url": "https://build.nvidia.com/explore/reasoning",
+      "access_method": "api_key",
+      "artifact": "code"
     },
     {
       "name": "Z.AI (Zhipu)",
@@ -903,7 +923,9 @@
           "verified": "2026-08-30"
         }
       ],
-      "verified_method": "docs"
+      "verified_method": "docs",
+      "access_method": "api_key",
+      "artifact": "code"
     },
     {
       "name": "Together AI",
@@ -925,7 +947,9 @@
         }
       ],
       "verified_method": "docs",
-      "docs_url": "https://docs.together.ai/docs/rate-limits"
+      "docs_url": "https://docs.together.ai/docs/rate-limits",
+      "access_method": "api_key",
+      "artifact": "code"
     },
     {
       "name": "DeepInfra",
@@ -977,7 +1001,539 @@
         }
       ],
       "verified_method": "live-probe",
-      "docs_url": "https://deepinfra.com/docs"
+      "docs_url": "https://deepinfra.com/docs",
+      "access_method": "api_key",
+      "artifact": "code"
+    },
+    {
+      "name": "GitHub Copilot (Free)",
+      "url": "https://github.com/features/copilot",
+      "free_type": "Rate-limited free",
+      "notes": "Free plan: 2,000 completions/mo plus an unpublished allowance of GitHub AI Credits; models auto-selected. Login with GitHub OAuth, no card.",
+      "timeout": "Not published",
+      "verified": "2026-09-12",
+      "models": [
+        {
+          "name": "Auto-selected (GPT-5 mini, Claude Haiku/Sonnet, Gemini Flash line)",
+          "cost": "$0",
+          "context": "Not published",
+          "rpm": "Not published",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-09-12"
+        }
+      ],
+      "verified_method": "docs",
+      "docs_url": "https://docs.github.com/en/copilot/get-started/plans",
+      "access_method": "login",
+      "artifact": "code"
+    },
+    {
+      "name": "Kiro (AWS)",
+      "url": "https://kiro.dev/pricing",
+      "free_type": "Rate-limited free",
+      "notes": "Free plan: 50 credits/mo, resets monthly, unused credits do not roll over. Login via social or AWS Builder ID; no card for the free tier.",
+      "timeout": "Not published",
+      "verified": "2026-09-12",
+      "models": [
+        {
+          "name": "Qwen3 Coder Next",
+          "cost": "$0",
+          "context": "Not published",
+          "rpm": "Not published",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-09-12"
+        },
+        {
+          "name": "DeepSeek 3.2",
+          "cost": "$0",
+          "context": "Not published",
+          "rpm": "Not published",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-09-12"
+        },
+        {
+          "name": "MiniMax M2.1",
+          "cost": "$0",
+          "context": "Not published",
+          "rpm": "Not published",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-09-12"
+        },
+        {
+          "name": "Claude Sonnet 4.5",
+          "cost": "$0",
+          "context": "Not published",
+          "rpm": "Not published",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-09-12"
+        }
+      ],
+      "verified_method": "docs",
+      "docs_url": "https://kiro.dev/pricing",
+      "access_method": "login",
+      "artifact": "code"
+    },
+    {
+      "name": "Trae (ByteDance)",
+      "url": "https://www.trae.ai/pricing",
+      "free_type": "Rate-limited free",
+      "notes": "Free plan: 5,000 autocompletions/mo plus limited standard-queue usage and SOLO mode. Frontier models bundled in the vendor UI; no card.",
+      "timeout": "Not published",
+      "verified": "2026-09-12",
+      "models": [
+        {
+          "name": "Frontier models (bundled, auto-selected)",
+          "cost": "$0",
+          "context": "Not published",
+          "rpm": "Not published",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-09-12"
+        }
+      ],
+      "verified_method": "docs",
+      "docs_url": "https://www.trae.ai/pricing",
+      "access_method": "bundled",
+      "artifact": "code"
+    },
+    {
+      "name": "Bolt.new",
+      "url": "https://support.bolt.new/account-and-subscription/tokens",
+      "free_type": "Rate-limited free",
+      "notes": "Free plan: 1M tokens/mo with a 300K/day cap, resets monthly. Frontier models bundled; no card.",
+      "timeout": "Not published",
+      "verified": "2026-09-12",
+      "models": [
+        {
+          "name": "Frontier models (bundled, auto-selected)",
+          "cost": "$0",
+          "context": "Not published",
+          "rpm": "Not published",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-09-12"
+        }
+      ],
+      "verified_method": "docs",
+      "docs_url": "https://support.bolt.new/account-and-subscription/tokens",
+      "access_method": "bundled",
+      "artifact": "app/website"
+    },
+    {
+      "name": "Lovable",
+      "url": "https://docs.lovable.dev/introduction/credits-and-usage",
+      "free_type": "Rate-limited free",
+      "notes": "Free plan: 5 build credits/day (max 30/mo) plus 20 cloud and 4 AI credits/mo. Frontier models bundled (Fable 5.1); no card.",
+      "timeout": "Not published",
+      "verified": "2026-09-12",
+      "models": [
+        {
+          "name": "Frontier models (bundled, Fable 5.1)",
+          "cost": "$0",
+          "context": "Not published",
+          "rpm": "Not published",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-09-12"
+        }
+      ],
+      "verified_method": "docs",
+      "docs_url": "https://docs.lovable.dev/introduction/credits-and-usage",
+      "access_method": "bundled",
+      "artifact": "app/website"
+    },
+    {
+      "name": "v0 (Vercel)",
+      "url": "https://v0.app/docs/pricing",
+      "free_type": "Rate-limited free",
+      "notes": "Free plan: $5/mo credits plus 7 messages/day. Frontier models bundled; no card.",
+      "timeout": "Not published",
+      "verified": "2026-09-12",
+      "models": [
+        {
+          "name": "Frontier models (bundled, auto-selected)",
+          "cost": "$0",
+          "context": "Not published",
+          "rpm": "Not published",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-09-12"
+        }
+      ],
+      "verified_method": "docs",
+      "docs_url": "https://v0.app/docs/pricing",
+      "access_method": "bundled",
+      "artifact": "app/website"
+    },
+    {
+      "name": "Kaggle Notebooks",
+      "url": "https://www.kaggle.com/docs/efficient-gpu-usage",
+      "free_type": "Rate-limited free",
+      "notes": "Free ~30 GPU-h/week (resets weekly), P100 or 2xT4, 12h sessions. Open-weight models you load yourself; phone verification may apply.",
+      "timeout": "Not published",
+      "verified": "2026-09-12",
+      "models": [
+        {
+          "name": "Open-weight models you load (GPU runtime)",
+          "cost": "$0",
+          "context": "Not published",
+          "rpm": "Not published",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-09-12"
+        }
+      ],
+      "verified_method": "docs",
+      "docs_url": "https://www.kaggle.com/docs/efficient-gpu-usage",
+      "access_method": "login",
+      "artifact": "notebook"
+    },
+    {
+      "name": "Hugging Face Spaces",
+      "url": "https://huggingface.co/docs/hub/spaces-overview",
+      "free_type": "Rate-limited free",
+      "notes": "Static Spaces free for everyone; free personal accounts host up to 2 ZeroGPU Gradio Spaces. Any HF model you load; no card.",
+      "timeout": "Not published",
+      "verified": "2026-09-12",
+      "models": [
+        {
+          "name": "Any Hugging Face model you load (ZeroGPU)",
+          "cost": "$0",
+          "context": "Not published",
+          "rpm": "Not published",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-09-12"
+        }
+      ],
+      "verified_method": "docs",
+      "docs_url": "https://huggingface.co/docs/hub/spaces-overview",
+      "access_method": "login",
+      "artifact": "app/agent"
+    },
+    {
+      "name": "Cursor (Hobby)",
+      "url": "https://cursor.com/pricing",
+      "free_type": "Rate-limited free",
+      "notes": "Hobby plan: limited Agent requests and Tab completions; quota unpublished by the vendor. Own + limited frontier models bundled; no card.",
+      "timeout": "Not published",
+      "verified": "2026-09-12",
+      "models": [
+        {
+          "name": "Composer 2 (own)",
+          "cost": "$0",
+          "context": "Not published",
+          "rpm": "Not published",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-09-12"
+        },
+        {
+          "name": "Auto (auto-selected, limited frontier)",
+          "cost": "$0",
+          "context": "Not published",
+          "rpm": "Not published",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-09-12"
+        }
+      ],
+      "verified_method": "docs",
+      "docs_url": "https://cursor.com/docs/models-and-pricing",
+      "access_method": "bundled",
+      "artifact": "code"
+    },
+    {
+      "name": "Devin (Free)",
+      "url": "https://devin.ai/pricing",
+      "free_type": "Rate-limited free",
+      "notes": "Free plan: light quota, unpublished. SWE-1.7/SWE-2 plus open models bundled; no card.",
+      "timeout": "Not published",
+      "verified": "2026-09-12",
+      "models": [
+        {
+          "name": "SWE-1.7 / SWE-2 (own)",
+          "cost": "$0",
+          "context": "Not published",
+          "rpm": "Not published",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-09-12"
+        },
+        {
+          "name": "Open models (auto-selected)",
+          "cost": "$0",
+          "context": "Not published",
+          "rpm": "Not published",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-09-12"
+        }
+      ],
+      "verified_method": "docs",
+      "docs_url": "https://docs.devin.ai/admin/billing/self-serve",
+      "access_method": "bundled",
+      "artifact": "code"
+    },
+    {
+      "name": "Windsurf",
+      "url": "https://devin.ai/blog/windsurf-pricing-plans",
+      "free_type": "Rate-limited free",
+      "notes": "Free plan: light quota plus unlimited Tab/inline edits; numeric limits unpublished. Frontier models via Auto; no card.",
+      "timeout": "Not published",
+      "verified": "2026-09-12",
+      "models": [
+        {
+          "name": "Frontier models (via Auto)",
+          "cost": "$0",
+          "context": "Not published",
+          "rpm": "Not published",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-09-12"
+        }
+      ],
+      "verified_method": "docs",
+      "docs_url": "https://devin.ai/blog/windsurf-pricing-plans",
+      "access_method": "bundled",
+      "artifact": "code"
+    },
+    {
+      "name": "Qoder",
+      "url": "https://docs.qoder.com/account/pricing",
+      "free_type": "Rate-limited free",
+      "notes": "Free plan: limited completions/NES and basic models, plus BYOK; quota unpublished. No card.",
+      "timeout": "Not published",
+      "verified": "2026-09-12",
+      "models": [
+        {
+          "name": "Frontier models + BYO key",
+          "cost": "$0",
+          "context": "Not published",
+          "rpm": "Not published",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-09-12"
+        }
+      ],
+      "verified_method": "docs",
+      "docs_url": "https://docs.qoder.com/account/pricing",
+      "access_method": "bundled",
+      "artifact": "code"
+    },
+    {
+      "name": "Antigravity CLI (Google)",
+      "url": "https://antigravity.google/pricing",
+      "free_type": "Rate-limited free",
+      "notes": "Individual plan: unlimited Tab and command requests with unpublished basic weekly rate limits. Google login; no card.",
+      "timeout": "Not published",
+      "verified": "2026-09-12",
+      "models": [
+        {
+          "name": "Gemini 3.8/3.7/3.6 Flash, Gemini 3.1 Pro, Claude Sonnet/Opus 4.6, gpt-oss-120b",
+          "cost": "$0",
+          "context": "Not published",
+          "rpm": "Not published",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-09-12"
+        }
+      ],
+      "verified_method": "docs",
+      "docs_url": "https://antigravity.google/pricing",
+      "access_method": "login",
+      "artifact": "code/agent"
+    },
+    {
+      "name": "Google Colab",
+      "url": "https://research.google.com/colaboratory/faq.html",
+      "free_type": "Rate-limited free",
+      "notes": "Free GPU/TPU with 12h max sessions; Colab does not publish these limits. Google login; no card.",
+      "timeout": "Not published",
+      "verified": "2026-09-12",
+      "models": [
+        {
+          "name": "Gemini (AI features) + GPU for your code",
+          "cost": "$0",
+          "context": "Not published",
+          "rpm": "Not published",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-09-12"
+        }
+      ],
+      "verified_method": "docs",
+      "docs_url": "https://research.google.com/colaboratory/faq.html",
+      "access_method": "login",
+      "artifact": "notebook"
+    },
+    {
+      "name": "Figma (Starter)",
+      "url": "https://www.figma.com/pricing/",
+      "free_type": "Rate-limited free",
+      "notes": "Starter plan: 150 AI credits/day, up to 500/mo. Figma AI, Make, and agent bundled; no card.",
+      "timeout": "Not published",
+      "verified": "2026-09-12",
+      "models": [
+        {
+          "name": "Figma AI, Make, agent",
+          "cost": "$0",
+          "context": "Not published",
+          "rpm": "Not published",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-09-12"
+        }
+      ],
+      "verified_method": "docs",
+      "docs_url": "https://www.figma.com/pricing/",
+      "access_method": "bundled",
+      "artifact": "design/prototype/site"
+    },
+    {
+      "name": "Canva (Free)",
+      "url": "https://www.canva.com/en/pricing/",
+      "free_type": "Rate-limited free",
+      "notes": "Free plan: up to 200 Standard AI uses or 20 Premium per month (resets monthly); Magic Media text-to-image is 50 lifetime. No card.",
+      "timeout": "Not published",
+      "verified": "2026-09-12",
+      "models": [
+        {
+          "name": "Canva AI, Magic Media",
+          "cost": "$0",
+          "context": "Not published",
+          "rpm": "Not published",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-09-12"
+        }
+      ],
+      "verified_method": "docs",
+      "docs_url": "https://www.canva.com/help/ai-access/",
+      "access_method": "bundled",
+      "artifact": "design"
+    },
+    {
+      "name": "Framer (Free)",
+      "url": "https://www.framer.com/pricing",
+      "free_type": "Trial credits",
+      "notes": "Free plan: 500 AI credits to try (one-off), free Framer domain, non-commercial. No card.",
+      "timeout": "Not published",
+      "verified": "2026-09-12",
+      "models": [
+        {
+          "name": "Framer Agents",
+          "cost": "$0 (trial credits)",
+          "context": "Not published",
+          "rpm": "Not published",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-09-12"
+        }
+      ],
+      "verified_method": "docs",
+      "docs_url": "https://www.framer.com/pricing",
+      "access_method": "bundled",
+      "artifact": "website"
+    },
+    {
+      "name": "Poe",
+      "url": "https://help.poe.com/hc/en-us/articles/19944206309524-Poe-FAQs",
+      "free_type": "Rate-limited free",
+      "notes": "Free daily points reset every 24h with no rollover; the number is unpublished. Frontier models resold; login required, no card.",
+      "timeout": "Not published",
+      "verified": "2026-09-12",
+      "models": [
+        {
+          "name": "Frontier models (resale, auto-selected)",
+          "cost": "$0",
+          "context": "Not published",
+          "rpm": "Not published",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-09-12"
+        }
+      ],
+      "verified_method": "docs",
+      "docs_url": "https://creator.poe.com/docs/prompt-bots/how-to-create-a-prompt-bot",
+      "access_method": "login",
+      "artifact": "agent/bot"
+    },
+    {
+      "name": "Dify Cloud (Sandbox)",
+      "url": "https://dify.ai/pricing",
+      "free_type": "Trial credits",
+      "notes": "Sandbox: 200 message credits (one-off), 5 apps, 1 member. Provider models via Dify credits, then BYO key; no card.",
+      "timeout": "Not published",
+      "verified": "2026-09-12",
+      "models": [
+        {
+          "name": "OpenAI, Anthropic, Gemini, xAI, Tongyi (via Dify credits)",
+          "cost": "$0 (trial credits)",
+          "context": "Not published",
+          "rpm": "Not published",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-09-12"
+        }
+      ],
+      "verified_method": "docs",
+      "docs_url": "https://dify.ai/pricing",
+      "access_method": "login",
+      "artifact": "agent/app"
+    },
+    {
+      "name": "Replit (Starter)",
+      "url": "https://docs.replit.com/help/pricing-and-plans",
+      "free_type": "Rate-limited free",
+      "notes": "Starter: daily Agent allowance plus limited monthly cloud credits and 1 published app; numbers unpublished. Frontier models bundled; no card.",
+      "timeout": "Not published",
+      "verified": "2026-09-12",
+      "models": [
+        {
+          "name": "Frontier models (bundled, auto-selected)",
+          "cost": "$0",
+          "context": "Not published",
+          "rpm": "Not published",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-09-12"
+        }
+      ],
+      "verified_method": "docs",
+      "docs_url": "https://docs.replit.com/help/pricing-and-plans",
+      "access_method": "bundled",
+      "artifact": "app/website"
     }
   ],
   "ga_measurement_id": "G-CFXWNKBD7G"

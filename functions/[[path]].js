@@ -48,7 +48,7 @@ async function sendGaHit(req, pathname, fileType) {
       hash = ((hash << 5) - hash) + str.charCodeAt(i);
       hash |= 0;
     }
-    const cid = Math.abs(hash) + "." + Math.floor(Date.now() / 1000);
+    const cid = String(Math.abs(hash));
 
     const params = new URLSearchParams({
       v: "2",

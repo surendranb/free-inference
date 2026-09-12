@@ -19,8 +19,21 @@ DATA = json.loads((ROOT / "data" / "providers.json").read_text())
 COLS = DATA["columns"]
 ROWS = DATA["providers"]
 VERIFIED = DATA["verified"]
+
+
+def max_verified(rows=None):
+    # ponytail: freshness derived from the per-provider/model max — nightly probe keeps rows fresh; top-level "verified" is manual and goes stale
+    vals = [v for p in (rows if rows is not None else ROWS)
+            for v in [p.get("verified", ""), *(m.get("verified", "") for m in p["models"])] if v]
+    return max(vals, default=VERIFIED)
+
+
+VERIFIED_MAX = max_verified()
+VERIFIED_HUMAN = date.fromisoformat(VERIFIED_MAX).strftime("%d %b %Y")
 TITLE = DATA["title"]
 TAGLINE = DATA["tagline"]
+AGENT_WARNING = ("Access varies per entry (`api_key`, `login`, or `bundled`) — a key does not work "
+                 "for every provider; read the access field before assuming one.")
 WEBSITE = DATA.get("website", "")
 REPO = DATA.get("repo", "")
 
@@ -61,13 +74,13 @@ def build_readme():
 
 {TAGLINE}
 
-> **{VERIFIED}** · {len(ROWS)} providers · {total} free models
+> **{VERIFIED_MAX}** · {len(ROWS)} providers · {total} free models
 > Interactive site: {WEBSITE} · Agent summary: {WEBSITE}/llms.txt · Machine data: {WEBSITE}/data/providers.json (validate against {WEBSITE}/data/schema.json)
 
 ## Providers
 
-| Provider | Free tier | Notable models | Notes |
-| --- | --- | --- | --- |
+| Provider | Access | Free tier | Notable models | Notes |
+| --- | --- | --- | --- | --- |
 """
     prov_rows = []
     for p in ROWS:
@@ -75,7 +88,7 @@ def build_readme():
         models = ", ".join(m["name"] for m in p["models"][:6])
         if len(p["models"]) > 6:
             models += f", +{len(p['models']) - 6} more"
-        prov_rows.append(f"| {name} | {p['free_type']} | {models} | {p.get('notes', '—')} |")
+        prov_rows.append(f"| {name} | {p.get('access_method', '—')} | {p['free_type']} | {models} | {p.get('notes', '—')} |")
     head += "\n".join(prov_rows) + "\n\n"
 
     sections = ["## Models (per provider)\n"]
@@ -121,7 +134,9 @@ def build_llms():
         "",
         f"> {TAGLINE}",
         "",
-        f"Last verified: {VERIFIED} · {len(ROWS)} providers · {total_models} free models.",
+        AGENT_WARNING,
+        "",
+        f"Last verified: {VERIFIED_MAX} · {len(ROWS)} providers · {total_models} free models.",
         "Verification methods: `live-probe` = checked against the provider's API nightly; `docs` = human-verified against official docs, stale-flagged after 45 days.",
         "",
         "## Catalog in every format",
@@ -141,12 +156,18 @@ def build_llms():
     ]
     for p in ROWS:
         models = ", ".join(m["name"] for m in p["models"])
-        lines.append(f"- [{p['name']}]({p['url']}): {p['free_type']} · {p['verified_method']} · verified {p['verified']} · models: {models}")
+        lines.append(f"- [{p['name']}]({p['url']}): access {p.get('access_method', '—')} · {p['free_type']} · {p['verified_method']} · verified {p['verified']} · models: {models}")
         for m in p["models"]:
             lines.append(
                 f"  - {m['name']}: cost {m['cost']} · context {m['context']} · "
                 f"RPM {m['rpm']} · TPM {m['tpm']} · RPD {m['rpd']} · day tokens {m['tpd']} · verified {m['verified']}"
             )
+    lines += [
+        "",
+        "## Provider pages",
+        "",
+    ]
+    lines += [f"- [{p['name']}]({site}/providers/{slug(p['name'])}/) · [markdown]({site}/providers/{slug(p['name'])}/index.md)" for p in ROWS]
     lines += [
         "",
         "## Definitions",
@@ -194,6 +215,8 @@ def build_schema():
                         },
                         "notes": {"type": "string"},
                         "timeout": {"type": "string"},
+                        "access_method": {"type": "string", "enum": ["api_key", "login", "bundled"]},
+                        "artifact": {"type": "string"},
                         "verified": {"type": "string"},
                         "verified_method": {"type": "string", "enum": ["live-probe", "docs"]},
                         "models": {
@@ -220,21 +243,79 @@ def build_schema():
     }
 
 
+CSS = '''  :root { --bg:#fff; --ink:#1a1a1a; --mut:#6b6b6b; --line:#e3e3e3; --sel:#111; --selink:#fff; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink);
+         font:16px/1.5 -apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; }
+  a { color:var(--ink); }
+  .wrap { max-width:1500px; margin:0 auto; padding:32px 24px 64px; }
+  header { display:flex; align-items:baseline; gap:16px; border-bottom:1px solid var(--line);
+           padding-bottom:16px; margin-bottom:20px; }
+  h1 { font-size:24px; margin:0; letter-spacing:-.01em; }
+  .tagline { color:var(--mut); margin:0; max-width:800px; font-size:15px; }
+  .meta { color:var(--mut); font-size:13px; margin-left:auto; white-space:nowrap; }
+  .layout { display:grid; grid-template-columns:280px 1fr; gap:20px; align-items:start; }
+  @media (max-width:860px) { .layout { grid-template-columns:1fr; } .meta { display:none; } }
+  .sidebar { border:1px solid var(--line); border-radius:8px; overflow:hidden;
+              position:sticky; top:16px; background:var(--bg); }
+  @media (max-width:860px) { .sidebar { position:static; } }
+  #filter { width:100%; border:none; border-bottom:1px solid var(--line); padding:10px 14px;
+            font:inherit; font-size:14px; outline:none; background:var(--bg); }
+  #providers { max-height:74vh; overflow-y:auto; }
+  .prow { display:block; width:100%; text-align:left; border:none; background:none; cursor:pointer;
+           padding:10px 14px; border-bottom:1px solid var(--line); font:inherit; }
+  .prow:hover { background:#f4f4f4; }
+  .prow.active { background:var(--sel); color:var(--selink); }
+  .prow .pname { font-weight:600; font-size:14px; display:block; }
+  .prow .pmeta { font-size:12px; color:var(--mut); }
+  .prow.active .pmeta { color:#bbb; }
+  .dead { color:#b3261e; font-weight:700; }
+  .prow.active .dead { color:#ff8a80; }
+  .panel { border:1px solid var(--line); border-radius:8px; overflow:hidden; background:var(--bg); }
+  .panel-head { padding:14px 18px; border-bottom:1px solid var(--line); }
+  .panel-head h2 { margin:0 0 2px; font-size:19px; }
+  .panel-head .ftype { font-size:12px; color:var(--mut); margin-left:8px; font-weight:400; }
+  .amchip { font-size:11px; color:var(--mut); border:1px solid var(--line); border-radius:4px; padding:1px 6px; margin-left:8px; font-weight:400; vertical-align:middle; }
+  .panel-head .purl { font-size:13px; color:var(--mut); }
+  .panel-head .pnotes { font-size:13.5px; color:var(--ink); margin-top:6px; max-width:900px; }
+  .table-wrap { overflow-x:auto; }
+  table { border-collapse:collapse; width:100%; min-width:720px; font-size:13.5px; }
+  th { text-align:left; padding:9px 12px; cursor:pointer; white-space:nowrap; user-select:none;
+       border-bottom:1px solid var(--line); font-size:12px; text-transform:uppercase;
+       letter-spacing:.03em; color:var(--mut); }
+  th:hover { color:var(--ink); }
+  td { border-bottom:1px solid var(--line); padding:8px 12px; vertical-align:top; }
+  tr:last-child td { border-bottom:none; }
+  tr:hover td { background:#f7f7f7; }
+  td:first-child { font-weight:600; }
+  .empty { padding:40px 20px; text-align:center; color:var(--mut); }
+  .ftchips { border-top:1px solid var(--line); padding:12px 18px; font-size:13px; color:var(--mut); }
+  #about { position:fixed; inset:0; background:rgba(0,0,0,.35); display:none; align-items:center;
+            justify-content:center; z-index:10; }
+  #about.open { display:flex; }
+  .modal { background:var(--bg); max-width:640px; width:92%; max-height:82vh; overflow-y:auto;
+            padding:26px 28px; border-radius:10px; }
+  .modal h2 { margin:0 0 10px; font-size:18px; }
+  .modal p, .modal li { font-size:14px; color:var(--ink); }
+  .modal .x { position:absolute; };
+  .close { float:right; border:1px solid var(--line); background:none; font:inherit; font-size:14px;
+            cursor:pointer; padding:2px 10px; border-radius:6px; }
+  footer { margin-top:32px; color:var(--mut); font-size:13px; }'''
+
+
 def build_html():
     total_models = sum(len(p["models"]) for p in ROWS)
     provider_count = len(ROWS)
-    # ponytail: freshness derived from per-provider/model max — nightly probe keeps those fresh; top-level "verified" is manual and goes stale
-    verified_max = max((v for p in ROWS for v in [p.get("verified", ""), *(m.get("verified", "") for m in p["models"])] if v), default=VERIFIED)
-    verified_human = date.fromisoformat(verified_max).strftime("%d %b %Y")
 
-    page_title = f"Free LLM API Directory: {total_models} Models | {provider_count} Providers, Updated {verified_human}"
-    meta_desc = (f"Browse {total_models} free LLM models across {provider_count} providers — "
-                 f"OpenRouter, Groq, Cerebras, Gemini. Verified rate limits, context windows, and WebMCP tools for agents.")
+    page_title = f"Free LLM API Directory: {total_models} Models | {provider_count} Providers, Updated {VERIFIED_HUMAN}"
+    meta_desc = (f"{total_models} free LLM models, {provider_count} providers — an API key, a CLI login, "
+                 f"or inference bundled in an IDE. Rate limits, context windows, and free tiers, "
+                 f"updated {VERIFIED_HUMAN}.")
 
     head_title = html.escape(page_title)
     head_desc = html.escape(meta_desc)
     data_json = json.dumps(DATA, ensure_ascii=False, indent=1)
-    verified = html.escape(VERIFIED)
+    verified = html.escape(VERIFIED_MAX)
     website = html.escape(WEBSITE)
     tagline = html.escape(TAGLINE)
     defs = "\n".join(f"<p><strong>{html.escape(k)}</strong> — {html.escape(v)}</p>" for k, v in definitions().items())
@@ -255,7 +336,7 @@ def build_html():
         "name": TITLE,
         "description": meta_desc,
         "url": WEBSITE,
-        "dateModified": VERIFIED,
+        "dateModified": VERIFIED_MAX,
         "license": "https://opensource.org/licenses/MIT",
         **({"sameAs": REPO} if REPO else {}),
         "keywords": ["free LLM API", "inference providers", "rate limits", "AI agents", "WebMCP", "llms.txt"],
@@ -294,69 +375,13 @@ def build_html():
 {ga}
 <script type="application/ld+json">{ld}</script>
 <style>
-  :root {{ --bg:#fff; --ink:#1a1a1a; --mut:#6b6b6b; --line:#e3e3e3; --sel:#111; --selink:#fff; }}
-  * {{ box-sizing:border-box; }}
-  body {{ margin:0; background:var(--bg); color:var(--ink);
-         font:16px/1.5 -apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; }}
-  a {{ color:var(--ink); }}
-  .wrap {{ max-width:1500px; margin:0 auto; padding:32px 24px 64px; }}
-  header {{ display:flex; align-items:baseline; gap:16px; border-bottom:1px solid var(--line);
-           padding-bottom:16px; margin-bottom:20px; }}
-  h1 {{ font-size:24px; margin:0; letter-spacing:-.01em; }}
-  .tagline {{ color:var(--mut); margin:0; max-width:800px; font-size:15px; }}
-  .meta {{ color:var(--mut); font-size:13px; margin-left:auto; white-space:nowrap; }}
-  .layout {{ display:grid; grid-template-columns:280px 1fr; gap:20px; align-items:start; }}
-  @media (max-width:860px) {{ .layout {{ grid-template-columns:1fr; }} .meta {{ display:none; }} }}
-  .sidebar {{ border:1px solid var(--line); border-radius:8px; overflow:hidden;
-              position:sticky; top:16px; background:var(--bg); }}
-  @media (max-width:860px) {{ .sidebar {{ position:static; }} }}
-  #filter {{ width:100%; border:none; border-bottom:1px solid var(--line); padding:10px 14px;
-            font:inherit; font-size:14px; outline:none; background:var(--bg); }}
-  #providers {{ max-height:74vh; overflow-y:auto; }}
-  .prow {{ display:block; width:100%; text-align:left; border:none; background:none; cursor:pointer;
-           padding:10px 14px; border-bottom:1px solid var(--line); font:inherit; }}
-  .prow:hover {{ background:#f4f4f4; }}
-  .prow.active {{ background:var(--sel); color:var(--selink); }}
-  .prow .pname {{ font-weight:600; font-size:14px; display:block; }}
-  .prow .pmeta {{ font-size:12px; color:var(--mut); }}
-  .prow.active .pmeta {{ color:#bbb; }}
-  .dead {{ color:#b3261e; font-weight:700; }}
-  .prow.active .dead {{ color:#ff8a80; }}
-  .panel {{ border:1px solid var(--line); border-radius:8px; overflow:hidden; background:var(--bg); }}
-  .panel-head {{ padding:14px 18px; border-bottom:1px solid var(--line); }}
-  .panel-head h2 {{ margin:0 0 2px; font-size:19px; }}
-  .panel-head .ftype {{ font-size:12px; color:var(--mut); margin-left:8px; font-weight:400; }}
-  .panel-head .purl {{ font-size:13px; color:var(--mut); }}
-  .panel-head .pnotes {{ font-size:13.5px; color:var(--ink); margin-top:6px; max-width:900px; }}
-  .table-wrap {{ overflow-x:auto; }}
-  table {{ border-collapse:collapse; width:100%; min-width:720px; font-size:13.5px; }}
-  th {{ text-align:left; padding:9px 12px; cursor:pointer; white-space:nowrap; user-select:none;
-       border-bottom:1px solid var(--line); font-size:12px; text-transform:uppercase;
-       letter-spacing:.03em; color:var(--mut); }}
-  th:hover {{ color:var(--ink); }}
-  td {{ border-bottom:1px solid var(--line); padding:8px 12px; vertical-align:top; }}
-  tr:last-child td {{ border-bottom:none; }}
-  tr:hover td {{ background:#f7f7f7; }}
-  td:first-child {{ font-weight:600; }}
-  .empty {{ padding:40px 20px; text-align:center; color:var(--mut); }}
-  .ftchips {{ border-top:1px solid var(--line); padding:12px 18px; font-size:13px; color:var(--mut); }}
-  #about {{ position:fixed; inset:0; background:rgba(0,0,0,.35); display:none; align-items:center;
-            justify-content:center; z-index:10; }}
-  #about.open {{ display:flex; }}
-  .modal {{ background:var(--bg); max-width:640px; width:92%; max-height:82vh; overflow-y:auto;
-            padding:26px 28px; border-radius:10px; }}
-  .modal h2 {{ margin:0 0 10px; font-size:18px; }}
-  .modal p, .modal li {{ font-size:14px; color:var(--ink); }}
-  .modal .x {{ position:absolute; }};
-  .close {{ float:right; border:1px solid var(--line); background:none; font:inherit; font-size:14px;
-            cursor:pointer; padding:2px 10px; border-radius:6px; }}
-  footer {{ margin-top:32px; color:var(--mut); font-size:13px; }}
+{CSS}
 </style>
 </head>
 <body>
 <div class="wrap">
   <header>
-    <h1>{html.escape(TITLE)}</h1>
+    <h1>Free Inference You Can Build With</h1>
     <p class="tagline">{tagline}</p>
     <span class="meta">verified {verified} · <a href="#about" id="aboutlink">about / contribute</a></span>
   </header>
@@ -377,12 +402,21 @@ def build_html():
   <div class="modal">
     <button class="close">close</button>
     <h2>About {html.escape(TITLE)}</h2>
-    <p><strong>What is here:</strong> every provider that gives developers free API access to LLM
-    inference — callable from a harness, agent, or CLI. Web-chat-only free tiers (ChatGPT, Claude.ai,
-    Gemini app, deepseek.com, Grok, Copilot) are excluded on purpose.</p>
-    <p><strong>What counts as free:</strong> API-accessible, strictly $0, no credit card required.
-    Four shapes: rate-limited free (forever, throttled), promo free (limited time), free gateways
-    (OpenRouter, OpenCode Zen), trial credits (one-time, expires — flagged in the model cost column).</p>
+    <p><strong>What is here:</strong> every entry gives you free access to LLM inference you can build
+    with. That access comes one of three ways: an <strong>API key</strong> you call directly, a
+    <strong>login</strong> to a CLI or tool that carries the model, or inference <strong>bundled</strong>
+    inside a coding tool or builder. Each entry states which, because a key isn't always the way in.</p>
+    <p>The test for inclusion is whether you can produce an artifact you keep: code, an app, a website,
+    a design, an agent, a skill. Converse-only free tiers (ChatGPT, Claude.ai, Gemini app, deepseek.com,
+    Grok, Copilot) are excluded on purpose — they don't give you something to build with.</p>
+    <p><strong>What counts as free:</strong> strictly $0. No entry requires a credit card, ever.
+    Expiring trial credits are flagged as such in the cost column rather than presented as a standing
+    free tier.</p>
+    <p>Free takes four shapes here: rate-limited free (forever, throttled), promo free (limited time),
+    free gateways (OpenRouter, OpenCode Zen), and trial credits (one-time, expires). Verification is
+    mixed and honest about it: rows are checked by a nightly live probe where the provider exposes an
+    API, and by hand against official docs where it doesn't. The date on a row is when we last checked
+    it, not a guarantee it holds tomorrow. Limits move without notice. This is a map, not a contract.</p>
     <h2>Definitions</h2>
     {defs}
     <h2>Agent access</h2>
@@ -574,6 +608,8 @@ window.freeInferenceTools = tools;
 window.webmcp = tools;
 registerWebMcp();
 
+const AM = {{api_key:"API key", login:"Login", bundled:"Bundled"}};
+
 function render(app) {{
   const list = DATA.providers;
   let activeIdx = 0, filter = "", rows = [...list];
@@ -596,7 +632,7 @@ function render(app) {{
       const dead = p.dead ? ` <span class="dead">• dead</span>` : "";
       return `<button class="prow${{active}}" data-i="${{i}}">
         <span class="pname">${{p.name}}${{dead}}</span>
-        <span class="pmeta">${{p.free_type}} · ${{p.models.length}} free models</span></button>`;
+        <span class="pmeta">${{p.free_type}} · ${{p.models.length}} free models · ${{AM[p.access_method] || p.access_method}}</span></button>`;
     }}).join("");
     providersEl.querySelectorAll(".prow").forEach(b =>
       b.addEventListener("click", () => {{ activeIdx = list.indexOf(rows[+b.dataset.i]); drawPanel(); drawSidebar(); }}));
@@ -607,7 +643,7 @@ function render(app) {{
     const p = list[activeIdx];
     const dead = p.dead ? `<div class="pnotes"><strong class="dead">Probe flags this provider unreachable — verify before relying on it.</strong></div>` : "";
     panel.innerHTML = `<div class="panel-head">
-      <h2>${{p.name}}<span class="ftype">${{p.free_type}}</span></h2>
+      <h2>${{p.name}}<span class="ftype">${{p.free_type}}</span><span class="amchip">${{AM[p.access_method] || p.access_method}}</span></h2>
       <a class="purl" href="${{p.url}}" target="_blank" rel="noopener">${{p.url}}</a>
       <div class="pnotes">${{p.notes}}</div>
       <div class="pnotes"><strong>${{p.verified_method === "live-probe" ? "Live-probed" : "Docs-verified"}} ${{p.verified}}</strong>${{p.verified_method === "docs" ? " · no public API to probe; dates refresh on human verification pass" : " · re-verified nightly"}}</div>${{dead}}
@@ -657,9 +693,142 @@ def slug(name):
     return "".join(c if c.isalnum() else "-" for c in name.lower()).strip("-")
 
 
+ACCESS_LABEL = {"api_key": "API key", "login": "Login", "bundled": "Bundled"}
+
+HOW_TO_GET_IN = {
+    "api_key": "Create a key at {url} and call it from your harness.",
+    "login": "Sign in to {url} — no API key; the free allowance is tied to your account.",
+    "bundled": "Inference is included inside {url}; there is no key to use elsewhere.",
+}
+
+
+def model_row_html(m):
+    e = html.escape
+    cells = "".join(f"<td>{e(str(m[k]))}</td>" for k in
+                    ("name", "cost", "context", "rpm", "tpm", "rpd", "tpd", "verified"))
+    return f"<tr>{cells}</tr>"
+
+
+def build_provider_page(p):
+    name = html.escape(p["name"])
+    s = slug(p["name"])
+    access = p.get("access_method", "api_key")
+    access_label = ACCESS_LABEL.get(access, access)
+    artifact = html.escape(str(p.get("artifact", "—")))
+    free_type = html.escape(p["free_type"])
+    p_max = max_verified([p])
+    verified = html.escape(p_max)
+    verified_human = date.fromisoformat(p_max).strftime("%d %b %Y")
+    page_url = f"{WEBSITE.rstrip('/')}/providers/{s}/"
+    count = len(p["models"])
+    title = f"{p['name']} Free Tier: {count} Models, Rate Limits, and How to Get In"
+    desc = (f"{p['name']}: {p['free_type']}, {access_label} access, {count} free models. "
+            f"Rate limits, context windows, and terms from official docs, last checked {verified_human}.")
+    how = HOW_TO_GET_IN.get(access, HOW_TO_GET_IN["api_key"]).format(url=html.escape(p["url"]))
+    docs = html.escape(p.get("docs_url", p["url"]))
+    notes = html.escape(p.get("notes", ""))
+    rows = "\n".join(model_row_html(m) for m in p["models"])
+    ld = json.dumps({
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": title,
+        "dateModified": p["verified"],
+        "about": {"@type": "Thing", "name": p["name"], "url": p["url"]},
+    }, ensure_ascii=False)
+    return f"""<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{html.escape(title)}</title>
+<meta name="description" content="{html.escape(desc)}">
+<link rel="canonical" href="{page_url}">
+
+<meta property="og:site_name" content="{html.escape(TITLE)}">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{page_url}">
+<meta property="og:title" content="{html.escape(title)}">
+<meta property="og:description" content="{html.escape(desc)}">
+<meta property="og:updated_time" content="{verified}T00:00:00Z">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="{html.escape(title)}">
+<meta name="twitter:description" content="{html.escape(desc)}">
+
+<link rel="icon" href="data:,">
+<script type="application/ld+json">{ld}</script>
+<style>
+{CSS}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>{name}</h1>
+    <p class="tagline">{free_type} · {access_label} · {artifact} · last checked {verified_human}</p>
+    <span class="meta"><a href="/">← back to the directory</a></span>
+  </header>
+
+  <p>{how}</p>
+  <p>{notes}</p>
+  <p>Source: <a href="{docs}" target="_blank" rel="noopener">{docs}</a></p>
+
+  <div class="table-wrap"><table>
+    <thead><tr><th>Model</th><th>Cost</th><th>Context</th><th>RPM</th><th>TPM</th><th>RPD</th><th>Day tokens</th><th>Verified</th></tr></thead>
+    <tbody>
+{rows}
+    </tbody>
+  </table></div>
+
+  <p>Machine-readable: <a href="/data/{s}.json">/data/{s}.json</a> · <a href="/providers/{s}/index.md">Markdown</a></p>
+  <p><a href="/">← back to the directory</a></p>
+
+  <footer>Numbers cross-checked against official docs and third-party trackers as of {verified}. Limits
+  change without notice — this is a map, not a contract.</footer>
+</div>
+</body>
+</html>
+"""
+
+
+def build_provider_md(p):
+    s = slug(p["name"])
+    access = p.get("access_method", "api_key")
+    access_label = ACCESS_LABEL.get(access, access)
+    p_max = max_verified([p])
+    verified_human = date.fromisoformat(p_max).strftime("%d %b %Y")
+    how = HOW_TO_GET_IN.get(access, HOW_TO_GET_IN["api_key"]).format(url=p["url"])
+    lines = [
+        f"# {p['name']}",
+        "",
+        f"{p['free_type']} · {access_label} · {p.get('artifact', '—')} · last checked {verified_human}",
+        "",
+        how,
+        "",
+        p.get("notes", ""),
+        "",
+        f"Source: {p.get('docs_url', p['url'])}",
+        "",
+        "| Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |",
+        "| --- | --- | --- | --- | --- | --- | --- | --- |",
+    ]
+    for m in p["models"]:
+        cells = " | ".join(str(m[k]).replace("|", "\\|") for k in
+                           ("name", "cost", "context", "rpm", "tpm", "rpd", "tpd", "verified"))
+        lines.append(f"| {cells} |")
+    lines += [
+        "",
+        f"Machine-readable: /data/{s}.json",
+        "",
+        f"Numbers cross-checked against official docs and third-party trackers as of {p_max}. Limits change without notice — this is a map, not a contract.",
+    ]
+    return "\n".join(lines) + "\n"
+
+
 def build_index_md():
     site = WEBSITE.rstrip("/")
     md = build_readme()
+    md = md.replace(f"{TAGLINE}\n", f"{TAGLINE}\n\n{AGENT_WARNING}\n", 1)
     for rel in ("data/providers.json", "CONTRIBUTING.md"):
         md = md.replace(f"]({rel})", f"]({site}/{rel})")
     return md
@@ -692,10 +861,17 @@ def main():
     (dist / "llms.txt").write_text(build_llms())
     (dist / "index.md").write_text(build_index_md())
     (dist / "404.html").write_text(build_404())
+    for p in ROWS:
+        pdir = dist / "providers" / slug(p["name"])
+        pdir.mkdir(parents=True, exist_ok=True)
+        (pdir / "index.html").write_text(build_provider_page(p))
+        (pdir / "index.md").write_text(build_provider_md(p))
+    sitemap_urls = [f"  <url><loc>{WEBSITE}/</loc><lastmod>{VERIFIED_MAX}</lastmod></url>"]
+    sitemap_urls += [f"  <url><loc>{WEBSITE}/providers/{slug(p['name'])}/</loc><lastmod>{p['verified']}</lastmod></url>" for p in ROWS]
     (dist / "sitemap.xml").write_text(
         '<?xml version="1.0" encoding="UTF-8"?>\n'
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-        f"  <url><loc>{WEBSITE}/</loc><lastmod>{VERIFIED}</lastmod></url>\n"
+        + "\n".join(sitemap_urls) + "\n"
         "</urlset>\n"
     )
     (dist / "data" / "providers.json").write_text(json.dumps(DATA, indent=2) + "\n")
@@ -711,7 +887,7 @@ def main():
         + f"Sitemap: {WEBSITE}/sitemap.xml\n"
     )
     total = sum(len(p["models"]) for p in ROWS)
-    print(f"ok: {len(ROWS)} providers, {total} models -> dist/ (verified {VERIFIED})")
+    print(f"ok: {len(ROWS)} providers, {total} models -> dist/ (verified {VERIFIED_MAX})")
 
 
 if __name__ == "__main__":

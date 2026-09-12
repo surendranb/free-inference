@@ -101,11 +101,27 @@ export async function onRequest(context) {
     }
   }
 
-  // 2. Track hits to llms.txt, index.md, and all data JSON files
+  // 1b. Content negotiation for markdown on provider pages (/providers/<slug>/ or /providers/<slug>)
+  const providerMatch = pathname.match(/^\/providers\/([^/]+)\/?$/);
+  if (providerMatch && accept.includes("text/markdown")) {
+    const mdPath = `/providers/${providerMatch[1]}/index.md`;
+    if (context.waitUntil) {
+      context.waitUntil(sendGaHit(req, mdPath, "markdown"));
+    }
+    const res = await context.env.ASSETS.fetch(new URL(mdPath, req.url));
+    if (res.ok) {
+      return new Response(res.body, {
+        status: 200,
+        headers: { "content-type": "text/markdown; charset=utf-8", vary: "Accept" },
+      });
+    }
+  }
+
+  // 2. Track hits to llms.txt, index.md, provider markdown, and all data JSON files
   let fileType = null;
   if (pathname === "/llms.txt") {
     fileType = "llms.txt";
-  } else if (pathname === "/index.md") {
+  } else if (pathname === "/index.md" || /^\/providers\/[^/]+\/index\.md$/.test(pathname)) {
     fileType = "markdown";
   } else if (pathname.startsWith("/data/") && pathname.endsWith(".json")) {
     fileType = "json";

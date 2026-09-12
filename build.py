@@ -748,6 +748,7 @@ def build_provider_page(p):
 <title>{html.escape(title)}</title>
 <meta name="description" content="{html.escape(desc)}">
 <link rel="canonical" href="{page_url}">
+<link rel="alternate" type="text/markdown" href="{page_url}index.md">
 
 <meta property="og:site_name" content="{html.escape(TITLE)}">
 <meta property="og:type" content="website">
@@ -889,6 +890,7 @@ def main():
     (dist / "robots.txt").write_text(
         "User-agent: *\nAllow: /\n"
         + "".join(f"User-agent: {b}\nAllow: /\n" for b in ai_bots)
+        + f"# LLMs: {WEBSITE}/llms.txt\n"
         + f"Sitemap: {WEBSITE}/sitemap.xml\n"
     )
     total = sum(len(p["models"]) for p in ROWS)

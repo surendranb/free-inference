@@ -30,6 +30,10 @@ def max_verified(rows=None):
 
 VERIFIED_MAX = max_verified()
 VERIFIED_HUMAN = date.fromisoformat(VERIFIED_MAX).strftime("%d %b %Y")
+
+
+def count_noun(n, noun):
+    return f"{n} {noun if n == 1 else noun + 's'}"
 TITLE = DATA["title"]
 TAGLINE = DATA["tagline"]
 AGENT_WARNING = ("Access varies per entry (`api_key`, `login`, or `bundled`) — a key does not work "
@@ -74,7 +78,7 @@ def build_readme():
 
 {TAGLINE}
 
-> **{VERIFIED_MAX}** · {len(ROWS)} providers · {total} free models
+> **{VERIFIED_MAX}** · {count_noun(len(ROWS), 'provider')} · {count_noun(total, 'free model')}
 > Interactive site: {WEBSITE} · Agent summary: {WEBSITE}/llms.txt · Machine data: {WEBSITE}/data/providers.json (validate against {WEBSITE}/data/schema.json)
 
 ## Providers
@@ -136,7 +140,7 @@ def build_llms():
         "",
         AGENT_WARNING,
         "",
-        f"Last verified: {VERIFIED_MAX} · {len(ROWS)} providers · {total_models} free models.",
+        f"Last verified: {VERIFIED_MAX} · {count_noun(len(ROWS), 'provider')} · {count_noun(total_models, 'free model')}.",
         "Verification methods: `live-probe` = checked against the provider's API nightly; `docs` = human-verified against official docs, stale-flagged after 45 days.",
         "",
         "## Catalog in every format",
@@ -307,8 +311,8 @@ def build_html():
     total_models = sum(len(p["models"]) for p in ROWS)
     provider_count = len(ROWS)
 
-    page_title = f"Free LLM API Directory: {total_models} Models | {provider_count} Providers, Updated {VERIFIED_HUMAN}"
-    meta_desc = (f"{total_models} free LLM models, {provider_count} providers — an API key, a CLI login, "
+    page_title = f"Free LLM API Directory: {count_noun(total_models, 'Model')} | {count_noun(provider_count, 'Provider')}, Updated {VERIFIED_HUMAN}"
+    meta_desc = (f"{count_noun(total_models, 'free LLM model')}, {count_noun(provider_count, 'provider')} — an API key, a CLI login, "
                  f"or inference bundled in an IDE. Rate limits, context windows, and free tiers, "
                  f"updated {VERIFIED_HUMAN}.")
 
@@ -609,6 +613,7 @@ window.webmcp = tools;
 registerWebMcp();
 
 const AM = {{api_key:"API key", login:"Login", bundled:"Bundled"}};
+const plural = (n, one) => n + " " + one + (n === 1 ? "" : "s");
 
 function render(app) {{
   const list = DATA.providers;
@@ -632,7 +637,7 @@ function render(app) {{
       const dead = p.dead ? ` <span class="dead">• dead</span>` : "";
       return `<button class="prow${{active}}" data-i="${{i}}">
         <span class="pname">${{p.name}}${{dead}}</span>
-        <span class="pmeta">${{p.free_type}} · ${{p.models.length}} free models · ${{AM[p.access_method] || p.access_method}}</span></button>`;
+        <span class="pmeta">${{p.free_type}} · ${{plural(p.models.length, "free model")}} · ${{AM[p.access_method] || p.access_method}}</span></button>`;
     }}).join("");
     providersEl.querySelectorAll(".prow").forEach(b =>
       b.addEventListener("click", () => {{ activeIdx = list.indexOf(rows[+b.dataset.i]); drawPanel(); drawSidebar(); }}));
@@ -694,6 +699,7 @@ def slug(name):
 
 
 ACCESS_LABEL = {"api_key": "API key", "login": "Login", "bundled": "Bundled"}
+ACCESS_PROSE = {"api_key": "API key", "login": "login", "bundled": "bundled"}
 
 HOW_TO_GET_IN = {
     "api_key": "Create a key at {url} and call it from your harness.",
@@ -721,8 +727,8 @@ def build_provider_page(p):
     verified_human = date.fromisoformat(p_max).strftime("%d %b %Y")
     page_url = f"{WEBSITE.rstrip('/')}/providers/{s}/"
     count = len(p["models"])
-    title = f"{p['name']} Free Tier: {count} Models, Rate Limits, and How to Get In"
-    desc = (f"{p['name']}: {p['free_type']}, {access_label} access, {count} free models. "
+    title = f"{p['name']} Free Tier: {count_noun(count, 'Model')}, Rate Limits, and How to Get In"
+    desc = (f"{p['name']}: {p['free_type']}, {ACCESS_PROSE.get(access, access)} access, {count_noun(count, 'free model')}. "
             f"Rate limits, context windows, and terms from official docs, last checked {verified_human}.")
     how = HOW_TO_GET_IN.get(access, HOW_TO_GET_IN["api_key"]).format(url=html.escape(p["url"]))
     docs = html.escape(p.get("docs_url", p["url"]))
@@ -887,7 +893,7 @@ def main():
         + f"Sitemap: {WEBSITE}/sitemap.xml\n"
     )
     total = sum(len(p["models"]) for p in ROWS)
-    print(f"ok: {len(ROWS)} providers, {total} models -> dist/ (verified {VERIFIED_MAX})")
+    print(f"ok: {count_noun(len(ROWS), 'provider')}, {count_noun(total, 'model')} -> dist/ (verified {VERIFIED_MAX})")
 
 
 if __name__ == "__main__":

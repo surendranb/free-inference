@@ -131,6 +131,14 @@ export async function onRequest(context) {
     context.waitUntil(sendGaHit(req, pathname, fileType));
   }
 
+  // 3. Data-gap coverage: agents don't run gtag, so their HTML page reads
+  // would otherwise exist nowhere. Browsers skipped — gtag covers them.
+  if (!fileType && context.waitUntil
+      && (pathname === "/" || /^\/providers\/[^/]+\/?$/.test(pathname))
+      && classifyClient(req.headers.get("user-agent")) !== "browser") {
+    context.waitUntil(sendGaHit(req, pathname, "html"));
+  }
+
   const res = await context.next();
   res.headers.set("Vary", "Accept");
   return res;

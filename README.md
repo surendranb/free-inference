@@ -2,7 +2,7 @@
 
 Free LLM inference you can build with: an API key, a CLI login, or inference bundled inside a coding tool or builder. The test is whether you can ship an artifact you keep — code, an app, a site, a design, an agent, a skill. Chat-only free tiers are excluded on purpose.
 
-> **2026-10-01** · 32 providers · 101 free models
+> **2026-10-01** · 36 providers · 110 free models
 > Interactive site: https://freeinference.dev · Agent summary: https://freeinference.dev/llms.txt · Machine data: https://freeinference.dev/data/providers.json (validate against https://freeinference.dev/data/schema.json)
 
 ## Providers
@@ -41,6 +41,10 @@ Free LLM inference you can build with: an API key, a CLI login, or inference bun
 | [Framer (Free)](https://www.framer.com/pricing) | bundled | Trial credits | Framer Agents | Free plan: 500 AI credits to try (one-off), free Framer domain, non-commercial. No card. |
 | [Replit (Starter)](https://docs.replit.com/help/pricing-and-plans) | bundled | Rate-limited free | Frontier models (bundled, auto-selected) | Starter: daily Agent allowance plus limited monthly cloud credits and 1 published app; numbers unpublished. Frontier models bundled; no card. |
 | [Kilo Gateway](https://kilo.ai/gateway) | api_key | Rate-limited free | minimax/minimax-m2.1:free, z-ai/glm-5:free | Universal gateway, $0 forever for default free models. Anonymous keyless at 200 req/hour per IP; :free-tagged models. OpenAI-compatible. No credit card. |
+| [Nous Portal](https://portal.nousresearch.com/api-docs) | api_key | Rate-limited free | Hermes-4-70B, Hermes-4-405B, Hermes-4.3-36B | Nous Research Hermes models, $0 monthly plan. Free 50 RPM / 500k TPM. OpenAI-compatible. No card on free plan. |
+| [Cohere](https://docs.cohere.com/docs/rate-limits) | api_key | Rate-limited free | Command A, Command R+, Command R7B | Evaluation key, 1,000 calls/month. Chat 20 req/min per model. Embed 2k inputs/min. No card for trial key. Non-production limits. |
+| [Requesty](https://www.requesty.ai/pricing) | api_key | Rate-limited free | nvidia/nemotron-3-super-120b:free (via Requesty), google/gemma-4-31b-it:free (via Requesty) | Gateway, $0 free models at 200 req/day. Routing, caching, EU residency. No credit card required. |
+| [OVHcloud AI Endpoints](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/) | api_key | Rate-limited free | 10 free models (anonymous keyless) | EU-sovereign. Anonymous keyless 2 req/min per IP per model. Authed 400 req/min. No usage cap apart from rate. No card for anonymous. |
 
 ## Models (per provider)
 
@@ -304,6 +308,35 @@ Free LLM inference you can build with: an API key, a CLI login, or inference bun
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | minimax/minimax-m2.1:free | $0 | Not published | 200/hour per IP (anonymous) | Not published | Not published | Not published | 2026-10-01 |
 | z-ai/glm-5:free | $0 | Not published | 200/hour per IP (anonymous) | Not published | Not published | Not published | 2026-10-01 |
+
+### Nous Portal
+
+| Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Hermes-4-70B | $0 | 128K | 50 | 500K | Not published | Not published | 2026-10-01 |
+| Hermes-4-405B | $0 | 128K | 50 | 500K | Not published | Not published | 2026-10-01 |
+| Hermes-4.3-36B | $0 | 128K | 50 | 500K | Not published | Not published | 2026-10-01 |
+
+### Cohere
+
+| Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Command A | $0 | 256K | 20 | Not published | Not published | Not published | 2026-10-01 |
+| Command R+ | $0 | 128K | 20 | Not published | Not published | Not published | 2026-10-01 |
+| Command R7B | $0 | 128K | 20 | Not published | Not published | Not published | 2026-10-01 |
+
+### Requesty
+
+| Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| nvidia/nemotron-3-super-120b:free (via Requesty) | $0 | Not published | 20/min shared | Not published | 200/day shared | Not published | 2026-10-01 |
+| google/gemma-4-31b-it:free (via Requesty) | $0 | Not published | 20/min shared | Not published | 200/day shared | Not published | 2026-10-01 |
+
+### OVHcloud AI Endpoints
+
+| Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| 10 free models (anonymous keyless) | $0 | Model-dependent | 2/min per IP | Not published | Not published | Not published | 2026-10-01 |
 ## Definitions
 
 | Term | Meaning |

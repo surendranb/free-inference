@@ -1469,6 +1469,148 @@
           "verified": "2026-10-01"
         }
       ]
+    },
+    {
+      "name": "Nous Portal",
+      "url": "https://portal.nousresearch.com/api-docs",
+      "free_type": "Rate-limited free",
+      "notes": "Nous Research Hermes models, $0 monthly plan. Free 50 RPM / 500k TPM. OpenAI-compatible. No card on free plan.",
+      "timeout": "Not published",
+      "verified": "2026-10-01",
+      "verified_method": "docs",
+      "access_method": "api_key",
+      "artifact": "code",
+      "models": [
+        {
+          "name": "Hermes-4-70B",
+          "cost": "$0",
+          "context": "128K",
+          "rpm": "50",
+          "tpm": "500K",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-10-01"
+        },
+        {
+          "name": "Hermes-4-405B",
+          "cost": "$0",
+          "context": "128K",
+          "rpm": "50",
+          "tpm": "500K",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-10-01"
+        },
+        {
+          "name": "Hermes-4.3-36B",
+          "cost": "$0",
+          "context": "128K",
+          "rpm": "50",
+          "tpm": "500K",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-10-01"
+        }
+      ]
+    },
+    {
+      "name": "Cohere",
+      "url": "https://docs.cohere.com/docs/rate-limits",
+      "free_type": "Rate-limited free",
+      "notes": "Evaluation key, 1,000 calls/month. Chat 20 req/min per model. Embed 2k inputs/min. No card for trial key. Non-production limits.",
+      "timeout": "Not published",
+      "verified": "2026-10-01",
+      "verified_method": "docs",
+      "access_method": "api_key",
+      "artifact": "code",
+      "models": [
+        {
+          "name": "Command A",
+          "cost": "$0",
+          "context": "256K",
+          "rpm": "20",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-10-01"
+        },
+        {
+          "name": "Command R+",
+          "cost": "$0",
+          "context": "128K",
+          "rpm": "20",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-10-01"
+        },
+        {
+          "name": "Command R7B",
+          "cost": "$0",
+          "context": "128K",
+          "rpm": "20",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-10-01"
+        }
+      ]
+    },
+    {
+      "name": "Requesty",
+      "url": "https://www.requesty.ai/pricing",
+      "free_type": "Rate-limited free",
+      "notes": "Gateway, $0 free models at 200 req/day. Routing, caching, EU residency. No credit card required.",
+      "timeout": "Not published",
+      "verified": "2026-10-01",
+      "verified_method": "docs",
+      "access_method": "api_key",
+      "artifact": "code",
+      "models": [
+        {
+          "name": "nvidia/nemotron-3-super-120b:free (via Requesty)",
+          "cost": "$0",
+          "context": "Not published",
+          "rpm": "20/min shared",
+          "tpm": "Not published",
+          "rpd": "200/day shared",
+          "tpd": "Not published",
+          "verified": "2026-10-01"
+        },
+        {
+          "name": "google/gemma-4-31b-it:free (via Requesty)",
+          "cost": "$0",
+          "context": "Not published",
+          "rpm": "20/min shared",
+          "tpm": "Not published",
+          "rpd": "200/day shared",
+          "tpd": "Not published",
+          "verified": "2026-10-01"
+        }
+      ]
+    },
+    {
+      "name": "OVHcloud AI Endpoints",
+      "url": "https://www.ovhcloud.com/en/public-cloud/ai-endpoints/",
+      "free_type": "Rate-limited free",
+      "notes": "EU-sovereign. Anonymous keyless 2 req/min per IP per model. Authed 400 req/min. No usage cap apart from rate. No card for anonymous.",
+      "timeout": "Not published",
+      "verified": "2026-10-01",
+      "verified_method": "docs",
+      "access_method": "api_key",
+      "artifact": "code",
+      "models": [
+        {
+          "name": "10 free models (anonymous keyless)",
+          "cost": "$0",
+          "context": "Model-dependent",
+          "rpm": "2/min per IP",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-10-01"
+        }
+      ]
     }
   ],
   "ga_measurement_id": "G-CFXWNKBD7G",

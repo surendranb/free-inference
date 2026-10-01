@@ -24,6 +24,7 @@ jobs:
       - name: Build site (regenerates README.md + dist/)
         run: python3 build.py
       - name: Commit changes if any
+        # push to main auto-triggers the Cloudflare Pages build (build.py -> dist/)
         run: |
           git config user.name "free-inference-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -32,3 +33,11 @@ jobs:
             git commit -m "probe: nightly verification update ($(date -u +%Y-%m-%d))"
             git push
           fi
+      - name: Trigger Cloudflare Pages rebuild
+        # Guarantees the live site rebuilds nightly even when the probe finds
+        # no data diff. No-op until SUR sets the CLOUDFLARE_DEPLOY_HOOK secret;
+        # until then the git push above is the deploy trigger.
+        if: ${{ secrets.CLOUDFLARE_DEPLOY_HOOK != '' }}
+        env:
+          CLOUDFLARE_DEPLOY_HOOK: ${{ secrets.CLOUDFLARE_DEPLOY_HOOK }}
+        run: curl -sf -X POST "$CLOUDFLARE_DEPLOY_HOOK"

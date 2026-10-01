@@ -360,6 +360,7 @@ def build_html():
 <meta name="description" content="{head_desc}">
 <link rel="canonical" href="{website}">
 <link rel="alternate" type="text/markdown" href="{website}/index.md">
+<link rel="alternate" type="text/plain" title="LLM summary" href="{website}/llms.txt">
 
 <!-- OpenGraph / Social Metadata -->
 <meta property="og:site_name" content="{html.escape(TITLE)}">
@@ -398,7 +399,8 @@ def build_html():
   <div id="app" class="layout"></div>
 
   <footer>Numbers cross-checked against official docs and third-party trackers as of {verified}. Limits
-  change without notice — this is a map, not a contract.</footer>
+  change without notice — this is a map, not a contract.<br>
+  Machine access: <a href="{website}/llms.txt">llms.txt</a> (agent summary) · <a href="{website}/index.md">index.md</a> (full catalog as markdown) · <a href="{website}/data/providers.json">providers.json</a> (full data) · <a href="{website}/data/schema.json">schema.json</a> (validate the JSON) · <a href="{website}/sitemap.xml">sitemap.xml</a> (all page URLs)</footer>
 </div>
 
 <div id="about" role="dialog" aria-modal="true">

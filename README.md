@@ -2,25 +2,25 @@
 
 Free LLM inference you can build with: an API key, a CLI login, or inference bundled inside a coding tool or builder. The test is whether you can ship an artifact you keep — code, an app, a site, a design, an agent, a skill. Chat-only free tiers are excluded on purpose.
 
-> **2026-10-01** · 33 providers · 103 free models
+> **2026-10-01** · 32 providers · 101 free models
 > Interactive site: https://freeinference.dev · Agent summary: https://freeinference.dev/llms.txt · Machine data: https://freeinference.dev/data/providers.json (validate against https://freeinference.dev/data/schema.json)
 
 ## Providers
 
 | Provider | Access | Free tier | Notable models | Notes |
 | --- | --- | --- | --- | --- |
-| [OpenCode Zen](https://opencode.ai/docs/zen) | api_key | Promo free (limited time) | Big Pickle, MiMo-V2.5 Free, Ling 3.0 Flash Fin Free, Nemotron 3 Ultra Free, Nemotron 3.5 Lightning Free, Muse Spark 1.2 Contributor Free | Free models are limited-time promos; some may use data for training. No credit card. OpenAI-compatible base URL opencode.ai/zen/v1. List free models: opencode models | grep -i free |
+| [OpenCode Zen](https://opencode.ai/docs/zen) | api_key | Promo free (limited time) | Big Pickle, Space Bunny Free, LongCat 2.5 Preview Free, MiMo-V2.6-Flash Free, MiMo-V2.5 Free, Ling 3.0 Flash Fin Free, +4 more | Free models are limited-time promos; some may use data for training. No credit card. OpenAI-compatible base URL opencode.ai/zen/v1. List free models: opencode models | grep -i free |
 | [OpenRouter](https://openrouter.ai/models?max_price=0) | api_key | Rate-limited free | cohere/north-mini-code:free, dots-studio/dots-3-note-preview:free, google/gemma-4-26b-a4b-it:free, google/gemma-4-31b-it:free, inclusionai/ling-3.0-flash-sante:free, liquid/lfm-2.5-2.6b:free, +10 more | Updated via GitHub Connect test (2026-08-12) |
-| [Google AI Studio (Gemini API)](https://ai.google.dev/gemini-api/docs/rate-limits) | api_key | Rate-limited free | gemini-2.5-flash, gemini-2.5-flash-lite, gemini-2.5-pro, gemini-3-flash-preview, gemini-3.1-flash-lite, gemini-3.1-flash-lite-preview, +15 more | Free forever, no card, most generous major-provider tier. Live-verified against the v1beta API with an API key (2026-08-12) — model list and context windows are real; per-account quota varies by account age (see AI Studio rate-limit dashboard). Free-tier data may be used for training. |
+| [Google AI Studio (Gemini API)](https://ai.google.dev/gemini-api/docs/rate-limits) | api_key | Rate-limited free | gemini-2.5-flash, gemini-2.5-flash-lite, gemini-3-flash-preview, gemini-3.1-flash-lite, gemini-3.1-flash-lite-preview, gemini-3.5-flash, +11 more | Free forever, no card, most generous major-provider tier. Live-verified against the v1beta API with an API key (2026-08-12) — model list and context windows are real; per-account quota varies by account age (see AI Studio rate-limit dashboard). Free-tier data may be used for training. |
 | [Groq](https://console.groq.com/docs/rate-limits) | api_key | Rate-limited free | openai/gpt-oss-120b, openai/gpt-oss-20b, qwen/qwen3.6-27b, qwen/qwen3.8-27b, meta-llama/llama-prompt-guard-2-22m, groq/compound | LPU hardware, fastest time-to-first-token. Limits per API key per model; some models get half allowance. No credit card. Limits visible in x-ratelimit-* response headers. |
-| [Cerebras](https://inference-docs.cerebras.ai/support/rate-limits) | api_key | Rate-limited free (Free Trial) | gpt-oss-120b, gemma-4-31b | Wafer-scale hardware, 2,000+ tok/s. Free tier caps context at 8K (temporary). Per-model limits on a rotating shortlist. No credit card. |
+| [Cerebras](https://inference-docs.cerebras.ai/support/rate-limits) | api_key | Trial credits | gpt-oss-120b, qwen-3.8-27b | Wafer-scale hardware, 2,000+ tok/s. No permanent free tier — $5 trial credits, 30-day expiry, card required. Per-model limits on a rotating shortlist. |
 | [Cloudflare Workers AI](https://developers.cloudflare.com/workers-ai/platform/limits) | api_key | Rate-limited free | ~80 free models (Llama 3.x/4, Qwen, Gemma, DeepSeek-R1 distills, FLUX, Whisper, BGE embeddings) | Neurons are normalized GPU-compute units, shared pool across all models. Resets 00:00 UTC. Hard stop when pool exhausted, errors not overage. No credit card. |
 | [Hugging Face](https://huggingface.co/docs/inference-providers) | api_key | Rate-limited free | Llama 3.2 8B (Serverless), Qwen 2.5 7B (Serverless), Mistral 7B (Serverless), Inference Providers gateway (15+ partners) | Two products: Serverless API (free, rate-limited) and Inference Providers gateway. Cold starts 10-30s on unpopular models. Limits not published as fixed numbers. |
 | [Mistral La Plateforme](https://docs.mistral.ai) | api_key | Rate-limited free (Experiment) | Mistral Large, Codestral, All API models (Experiment tier) | Phone (SMS) verification required, no card. Exact limits no longer published - see Admin Console Limits per workspace. Evaluation tier, not production. |
-| [SambaNova Cloud](https://cloud.sambanova.ai/apis) | api_key | Rate-limited free | DeepSeek-V3.1, DeepSeek-V3.2, Meta-Llama-3.3-70B-Instruct, MiniMax-M2.7, MiniMax-M3, gemma-4-31B-it, +1 more | OpenAI-compatible base URL api.sambanova.ai/v1. Preview models can be pulled at any time. No credit card, no phone verification. |
+| [SambaNova Cloud](https://cloud.sambanova.ai/apis) | api_key | Rate-limited free | DeepSeek-V3.1, DeepSeek-V3.2, Meta-Llama-3.3-70B-Instruct, gemma-4-31B-it, gpt-oss-120b | OpenAI-compatible base URL api.sambanova.ai/v1. Preview models can be pulled at any time. No credit card, no phone verification. |
 | [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com) | api_key | Trial credits | GLM-5, Kimi-2.5, NIM-packaged open models | Credit-based, not a rate-limited-free tier. Larger grants need corporate email, tie to ~90-day evaluation windows. |
 | [Z.AI (Zhipu)](https://z.ai) | api_key | Rate-limited free | GLM-5.1, GLM-4.5-Flash, GLM-4.7-Flash, GLM-4.6V-Flash (vision) | Free-tier limits revised twice in the past year - verify. Peak-hour throttling. Flash models are free regardless of tier. OpenAI-compatible. |
-| [Together AI](https://www.together.ai/pricing) | api_key | Trial credits | 200+ open models (Llama, Qwen, DeepSeek) | One-time credit, not forever-free. Card required once credits run out. Startup programs can grant far more. |
+| [Together AI](https://www.together.ai/pricing) | api_key | Trial credits | 200+ open models (Llama, Qwen, DeepSeek) | No trial — paid entry, $5 minimum credit purchase, card required. Prepaid balance, no expiry. Startup programs can grant more. |
 | [DeepInfra](https://docs.deepinfra.com/account/rate-limits) | api_key | Trial credits | deepseek-ai/DeepSeek-V3.1, Qwen/Qwen3-32B, Qwen/Qwen2.5-72B-Instruct, zai-org/GLM-4.7 | 200 concurrent requests per model - high ceiling. Credit-based, no daily cap while credits last. Notable models below; 185+ total in catalog-wide trial credits. |
 | [GitHub Copilot (Free)](https://github.com/features/copilot) | login | Rate-limited free | Auto-selected (GPT-5 mini, Claude Haiku/Sonnet, Gemini Flash line) | Free plan: 2,000 completions/mo plus an unpublished allowance of GitHub AI Credits; models auto-selected. Login with GitHub OAuth, no card. |
 | [Kiro (AWS)](https://kiro.dev/pricing) | login | Rate-limited free | Qwen3 Coder Next, DeepSeek 3.2, MiniMax M2.1, Claude Sonnet 4.5 | Free plan: 50 credits/mo, resets monthly, unused credits do not roll over. Login via social or AWS Builder ID; no card for the free tier. |
@@ -29,19 +29,18 @@ Free LLM inference you can build with: an API key, a CLI login, or inference bun
 | [Lovable](https://docs.lovable.dev/introduction/credits-and-usage) | bundled | Rate-limited free | Frontier models (bundled, Fable 5.1) | Free plan: 5 build credits/day (max 30/mo) plus 20 cloud and 4 AI credits/mo. Frontier models bundled (Fable 5.1); no card. |
 | [v0 (Vercel)](https://v0.app/docs/pricing) | bundled | Rate-limited free | Frontier models (bundled, auto-selected) | Free plan: $5/mo credits plus 7 messages/day. Frontier models bundled; no card. |
 | [Kaggle Notebooks](https://www.kaggle.com/docs/efficient-gpu-usage) | login | Rate-limited free | Open-weight models you load (GPU runtime) | Free ~30 GPU-h/week (resets weekly), P100 or 2xT4, 12h sessions. Open-weight models you load yourself; phone verification may apply. |
-| [Hugging Face Spaces](https://huggingface.co/docs/hub/spaces-overview) | login | Rate-limited free | Any Hugging Face model you load (ZeroGPU) | Static Spaces free for everyone; free personal accounts host up to 2 ZeroGPU Gradio Spaces. Any HF model you load; no card. |
+| [Hugging Face Spaces](https://huggingface.co/docs/hub/spaces-overview) | login | Rate-limited free | Any Hugging Face model you load (ZeroGPU) | Static Spaces free for everyone; free personal accounts host up to 2 ZeroGPU Gradio Spaces. Any HF model you load; no card. Persistent or upgraded Spaces require a Pro subscription. |
 | [Cursor (Hobby)](https://cursor.com/pricing) | bundled | Rate-limited free | Composer 2 (own), Auto (auto-selected, limited frontier) | Hobby plan: limited Agent requests and Tab completions; quota unpublished by the vendor. Own + limited frontier models bundled; no card. |
 | [Devin (Free)](https://devin.ai/pricing) | bundled | Rate-limited free | SWE-1.7 / SWE-2 (own), Open models (auto-selected) | Free plan: light quota, unpublished. SWE-1.7/SWE-2 plus open models bundled; no card. |
-| [Windsurf](https://devin.ai/blog/windsurf-pricing-plans) | bundled | Rate-limited free | Frontier models (via Auto) | Free plan: light quota plus unlimited Tab/inline edits; numeric limits unpublished. Frontier models via Auto; no card. |
+| [Windsurf](https://docs.windsurf.com/windsurf/accounts/usage) | bundled | Rate-limited free | Frontier models (via Auto) | Free plan: light quota plus unlimited Tab/inline edits; numeric limits unpublished. Frontier models via Auto; no card. |
 | [Qoder](https://docs.qoder.com/account/pricing) | bundled | Rate-limited free | Frontier models + BYO key | Free plan: limited completions/NES and basic models, plus BYOK; quota unpublished. No card. |
 | [Antigravity CLI (Google)](https://antigravity.google/pricing) | login | Rate-limited free | Gemini 3.8/3.7/3.6 Flash, Gemini 3.1 Pro, Claude Sonnet/Opus 4.6, gpt-oss-120b | Individual plan: unlimited Tab and command requests with unpublished basic weekly rate limits. Google login; no card. |
 | [Google Colab](https://research.google.com/colaboratory/faq.html) | login | Rate-limited free | Gemini (AI features) + GPU for your code | Free GPU/TPU with 12h max sessions; Colab does not publish these limits. Google login; no card. |
 | [Figma (Starter)](https://www.figma.com/pricing/) | bundled | Rate-limited free | Figma AI, Make, agent | Starter plan: 150 AI credits/day, up to 500/mo. Figma AI, Make, and agent bundled; no card. |
-| [Canva (Free)](https://www.canva.com/en/pricing/) | bundled | Rate-limited free | Canva AI, Magic Media | Free plan: up to 200 Standard AI uses or 20 Premium per month (resets monthly); Magic Media text-to-image is 50 lifetime. No card. |
+| [Canva (Free)](https://www.canva.com/en/pricing/) | bundled | Rate-limited free | Canva AI, Magic Media | Free plan: up to 20 Standard AI uses or 20 Premium per month (resets monthly); Magic Media text-to-image is 50 lifetime. No card. |
 | [Framer (Free)](https://www.framer.com/pricing) | bundled | Trial credits | Framer Agents | Free plan: 500 AI credits to try (one-off), free Framer domain, non-commercial. No card. |
-| [Poe](https://help.poe.com/hc/en-us/articles/19944206309524-Poe-FAQs) | login | Rate-limited free | Frontier models (resale, auto-selected) | Free daily points reset every 24h with no rollover; the number is unpublished. Frontier models resold; login required, no card. |
-| [Dify Cloud (Sandbox)](https://dify.ai/pricing) | login | Trial credits | OpenAI, Anthropic, Gemini, xAI, Tongyi (via Dify credits) | Sandbox: 200 message credits (one-off), 5 apps, 1 member. Provider models via Dify credits, then BYO key; no card. |
 | [Replit (Starter)](https://docs.replit.com/help/pricing-and-plans) | bundled | Rate-limited free | Frontier models (bundled, auto-selected) | Starter: daily Agent allowance plus limited monthly cloud credits and 1 published app; numbers unpublished. Frontier models bundled; no card. |
+| [Kilo Gateway](https://kilo.ai/gateway) | api_key | Rate-limited free | minimax/minimax-m2.1:free, z-ai/glm-5:free | Universal gateway, $0 forever for default free models. Anonymous keyless at 200 req/hour per IP; :free-tagged models. OpenAI-compatible. No credit card. |
 
 ## Models (per provider)
 
@@ -49,12 +48,16 @@ Free LLM inference you can build with: an API key, a CLI login, or inference bun
 
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Big Pickle | zsh (promo) | 256K - 1M | Not published | Not published | Not published | Not published | 2026-08-30 |
-| MiMo-V2.5 Free | zsh (promo) | 256K - 1M | Not published | Not published | Not published | Not published | 2026-08-30 |
-| Ling 3.0 Flash Fin Free | zsh (promo) | 256K - 1M | Not published | Not published | Not published | Not published | 2026-08-30 |
-| Nemotron 3 Ultra Free | zsh (promo) | 256K - 1M | Not published | Not published | Not published | Not published | 2026-08-30 |
-| Nemotron 3.5 Lightning Free | zsh (promo) | 256K - 1M | Not published | Not published | Not published | Not published | 2026-08-30 |
-| Muse Spark 1.2 Contributor Free | zsh (promo) | 256K - 1M | Not published | Not published | Not published | Not published | 2026-08-30 |
+| Big Pickle | $0 (promo) | 256K - 1M | Not published | Not published | Not published | Not published | 2026-10-01 |
+| Space Bunny Free | $0 (promo) | 256K - 1M | Not published | Not published | Not published | Not published | 2026-10-01 |
+| LongCat 2.5 Preview Free | $0 (promo) | 256K - 1M | Not published | Not published | Not published | Not published | 2026-10-01 |
+| MiMo-V2.6-Flash Free | $0 (promo) | 256K - 1M | Not published | Not published | Not published | Not published | 2026-10-01 |
+| MiMo-V2.5 Free | $0 (promo) | 256K - 1M | Not published | Not published | Not published | Not published | 2026-10-01 |
+| Ling 3.0 Flash Fin Free | $0 (promo) | 256K - 1M | Not published | Not published | Not published | Not published | 2026-10-01 |
+| Nemotron 3 Ultra Free | $0 (promo) | 256K - 1M | Not published | Not published | Not published | Not published | 2026-10-01 |
+| Nemotron 3.5 Lightning Free | $0 (promo) | 256K - 1M | Not published | Not published | Not published | Not published | 2026-10-01 |
+| Muse Spark 1.3 Contributor Free | $0 (promo) | 256K - 1M | Not published | Not published | Not published | Not published | 2026-10-01 |
+| Jev 1.13 Free | $0 (promo) | 256K - 1M | Not published | Not published | Not published | Not published | 2026-10-01 |
 
 ### OpenRouter
 
@@ -83,12 +86,9 @@ Free LLM inference you can build with: an API key, a CLI login, or inference bun
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | gemini-2.5-flash | $0 | 1024K | Varies by account | Varies by account | Varies by account | Not published | 2026-10-01 |
 | gemini-2.5-flash-lite | $0 | 1024K | Varies by account | Varies by account | Varies by account | Not published | 2026-10-01 |
-| gemini-2.5-pro | $0 | 1024K | Varies by account | Varies by account | Varies by account | Not published | 2026-10-01 |
 | gemini-3-flash-preview | $0 | 1024K | Varies by account | Varies by account | Varies by account | Not published | 2026-10-01 |
 | gemini-3.1-flash-lite | $0 | 1024K | Varies by account | Varies by account | Varies by account | Not published | 2026-10-01 |
 | gemini-3.1-flash-lite-preview | $0 | 1024K | Varies by account | Varies by account | Varies by account | Not published | 2026-10-01 |
-| gemini-3.1-pro-preview | $0 | 1024K | Varies by account | Varies by account | Varies by account | Not published | 2026-10-01 |
-| gemini-3.1-pro-preview-customtools | $0 | 1024K | Varies by account | Varies by account | Varies by account | Not published | 2026-10-01 |
 | gemini-3.5-flash | $0 | 1024K | Varies by account | Varies by account | Varies by account | Not published | 2026-10-01 |
 | gemini-3.5-flash-lite | $0 | 1024K | Varies by account | Varies by account | Varies by account | Not published | 2026-10-01 |
 | gemini-3.5-transcribe | $0 | 96K | Varies by account | Varies by account | Varies by account | Not published | 2026-10-01 |
@@ -99,7 +99,6 @@ Free LLM inference you can build with: an API key, a CLI login, or inference bun
 | gemini-flash-lite-latest | $0 | 1024K | Varies by account | Varies by account | Varies by account | Not published | 2026-10-01 |
 | gemini-omni-1.1-flash | $0 | 128K | Varies by account | Varies by account | Varies by account | Not published | 2026-10-01 |
 | gemini-omni-flash-preview | $0 | 128K | Varies by account | Varies by account | Varies by account | Not published | 2026-10-01 |
-| gemini-pro-latest | $0 | 1024K | Varies by account | Varies by account | Varies by account | Not published | 2026-10-01 |
 | gemma-4-26b-a4b-it | $0 | 256K | Varies by account | Varies by account | Varies by account | Not published | 2026-10-01 |
 | gemma-4-31b-it | $0 | 256K | Varies by account | Varies by account | Varies by account | Not published | 2026-10-01 |
 
@@ -118,8 +117,8 @@ Free LLM inference you can build with: an API key, a CLI login, or inference bun
 
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| gpt-oss-120b | zsh | 8K cap on free tier | 5 | 30K | Not published | 1M tokens/day (per model) | 2026-08-30 |
-| gemma-4-31b | zsh | 8K cap on free tier | 5 | 30K | Not published | 1M tokens/day (per model) | 2026-08-30 |
+| gpt-oss-120b | $5 trial credits (30-day, card required) | 8K cap on free tier | 5 | 30K | Not published | 1M tokens/day (per model) | 2026-10-01 |
+| qwen-3.8-27b | $5 trial credits (30-day, card required) | 8K cap on free tier | 5 | 30K | Not published | 1M tokens/day (per model) | 2026-10-01 |
 
 ### Cloudflare Workers AI
 
@@ -148,13 +147,11 @@ Free LLM inference you can build with: an API key, a CLI login, or inference bun
 
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| DeepSeek-V3.1 | $0 | 128K | 20 | Not published | 20 | 200K tokens/day | 2026-10-01 |
-| DeepSeek-V3.2 | $0 | 128K | 20 | Not published | 20 | 200K tokens/day | 2026-10-01 |
-| Meta-Llama-3.3-70B-Instruct | $0 | 128K | 20 | Not published | 20 | 200K tokens/day | 2026-10-01 |
-| MiniMax-M2.7 | $0 | 128K | 20 | Not published | 20 | 200K tokens/day | 2026-10-01 |
-| MiniMax-M3 | $0 | 128K | 20 | Not published | 20 | 200K tokens/day | 2026-10-01 |
-| gemma-4-31B-it | $0 | 128K | 20 | Not published | 20 | 200K tokens/day | 2026-10-01 |
-| gpt-oss-120b | $0 | 128K | 20 | Not published | 20 | 200K tokens/day | 2026-10-01 |
+| DeepSeek-V3.1 | $0 | 128K | 20 | Not published | 20 | 200K tokens/day | 2026-09-13 |
+| DeepSeek-V3.2 | $0 | 128K | 20 | Not published | 20 | 200K tokens/day | 2026-09-13 |
+| Meta-Llama-3.3-70B-Instruct | $0 | 128K | 20 | Not published | 20 | 200K tokens/day | 2026-09-13 |
+| gemma-4-31B-it | $0 | 128K | 20 | Not published | 20 | 200K tokens/day | 2026-09-13 |
+| gpt-oss-120b | $0 | 128K | 20 | Not published | 20 | 200K tokens/day | 2026-09-13 |
 
 ### NVIDIA NIM (build.nvidia.com)
 
@@ -177,7 +174,7 @@ Free LLM inference you can build with: an API key, a CLI login, or inference bun
 
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| 200+ open models (Llama, Qwen, DeepSeek) | $0 (trial credits) | Model-dependent | ~60 (Build tier) | ~100K (Build tier) | Not published | $25 one-time credit | 2026-08-30 |
+| 200+ open models (Llama, Qwen, DeepSeek) | $5 minimum (no trial) | Model-dependent | ~60 (Build tier) | ~100K (Build tier) | Not published | $5 minimum purchase, prepaid, no expiry | 2026-10-01 |
 
 ### DeepInfra
 
@@ -295,23 +292,18 @@ Free LLM inference you can build with: an API key, a CLI login, or inference bun
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | Framer Agents | $0 (trial credits) | Not published | Not published | Not published | Not published | Not published | 2026-09-12 |
 
-### Poe
-
-| Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| Frontier models (resale, auto-selected) | $0 | Not published | Not published | Not published | Not published | Not published | 2026-09-12 |
-
-### Dify Cloud (Sandbox)
-
-| Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| OpenAI, Anthropic, Gemini, xAI, Tongyi (via Dify credits) | $0 (trial credits) | Not published | Not published | Not published | Not published | Not published | 2026-09-12 |
-
 ### Replit (Starter)
 
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | Frontier models (bundled, auto-selected) | $0 | Not published | Not published | Not published | Not published | Not published | 2026-09-12 |
+
+### Kilo Gateway
+
+| Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| minimax/minimax-m2.1:free | $0 | Not published | 200/hour per IP (anonymous) | Not published | Not published | Not published | 2026-10-01 |
+| z-ai/glm-5:free | $0 | Not published | 200/hour per IP (anonymous) | Not published | Not published | Not published | 2026-10-01 |
 ## Definitions
 
 | Term | Meaning |

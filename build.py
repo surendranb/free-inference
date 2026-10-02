@@ -368,12 +368,18 @@ def build_html():
 <meta property="og:url" content="{website}">
 <meta property="og:title" content="{head_title}">
 <meta property="og:description" content="{head_desc}">
+<meta property="og:image" content="{website}/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{head_title} — free LLM models and providers">
 <meta property="og:updated_time" content="{verified}T00:00:00Z">
 
 <!-- Twitter / X Metadata -->
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{head_title}">
 <meta name="twitter:description" content="{head_desc}">
+<meta name="twitter:image" content="{website}/og.png">
+<meta name="twitter:image:alt" content="{head_title} — free LLM models and providers">
 
 <link rel="icon" href="data:,">
 {ga}
@@ -757,11 +763,17 @@ def build_provider_page(p):
 <meta property="og:url" content="{page_url}">
 <meta property="og:title" content="{html.escape(title)}">
 <meta property="og:description" content="{html.escape(desc)}">
+<meta property="og:image" content="https://freeinference.dev/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{html.escape(title)} — free models and rate limits">
 <meta property="og:updated_time" content="{verified}T00:00:00Z">
 
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{html.escape(title)}">
 <meta name="twitter:description" content="{html.escape(desc)}">
+<meta name="twitter:image" content="https://freeinference.dev/og.png">
+<meta name="twitter:image:alt" content="{html.escape(title)} — free models and rate limits">
 
 <link rel="icon" href="data:,">
 <script type="application/ld+json">{ld}</script>
@@ -864,6 +876,9 @@ def main():
     dist = ROOT / "dist"
     dist.mkdir(exist_ok=True)
     (dist / "data").mkdir(exist_ok=True)
+    og_src = ROOT / "assets" / "og.png"
+    if og_src.exists():
+        (dist / "og.png").write_bytes(og_src.read_bytes())
     (ROOT / "README.md").write_text(build_readme())
     (dist / "index.html").write_text(build_html())
     (dist / "llms.txt").write_text(build_llms())

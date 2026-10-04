@@ -35,9 +35,15 @@ jobs:
           fi
       - name: Trigger Cloudflare Pages rebuild
         # Guarantees the live site rebuilds nightly even when the probe finds
-        # no data diff. No-op until SUR sets the CLOUDFLARE_DEPLOY_HOOK secret;
+        # no data diff. No-op until the CLOUDFLARE_DEPLOY_HOOK secret is set;
         # until then the git push above is the deploy trigger.
-        if: ${{ secrets.CLOUDFLARE_DEPLOY_HOOK != '' }}
+        # NOTE: `secrets` can't appear in `if:` (GitHub rejects the whole file
+        # and silently skips all later schedules) — so the empty-check lives in shell.
         env:
           CLOUDFLARE_DEPLOY_HOOK: ${{ secrets.CLOUDFLARE_DEPLOY_HOOK }}
-        run: curl -sf -X POST "$CLOUDFLARE_DEPLOY_HOOK"
+        run: |
+          if [ -n "$CLOUDFLARE_DEPLOY_HOOK" ]; then
+            curl -sf -X POST "$CLOUDFLARE_DEPLOY_HOOK"
+          else
+            echo "no deploy hook configured; git push above is the deploy trigger"
+          fi

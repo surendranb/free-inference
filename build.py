@@ -906,6 +906,7 @@ def main():
         + f"# LLMs: {WEBSITE}/llms.txt\n"
         + f"Sitemap: {WEBSITE}/sitemap.xml\n"
     )
+    (dist / "b4d83ac2bcee40a798bc63319e92d730.txt").write_text("b4d83ac2bcee40a798bc63319e92d730")
     total = sum(len(p["models"]) for p in ROWS)
     print(f"ok: {count_noun(len(ROWS), 'provider')}, {count_noun(total, 'model')} -> dist/ (verified {VERIFIED_MAX})")
 

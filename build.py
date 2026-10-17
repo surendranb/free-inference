@@ -41,6 +41,9 @@ AGENT_WARNING = ("Access varies per entry (`api_key`, `login`, or `bundled`) —
 WEBSITE = DATA.get("website", "")
 REPO = DATA.get("repo", "")
 
+PLAUSIBLE = """<!-- Plausible Analytics -->
+<script defer data-domain=\"freeinference.dev\" src=\"https://plausible.io/js/script.js\"></script>"""
+
 CLARITY = """<!-- Microsoft Clarity -->
 <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
@@ -386,7 +389,7 @@ def build_html():
 
 <link rel="icon" href="data:,">
 {ga}
-{CLARITY}
+{PLAUSIBLE}\n{CLARITY}
 <script type="application/ld+json">{ld}</script>
 <style>
 {CSS}
@@ -774,7 +777,7 @@ def build_provider_page(p):
 <meta name="twitter:description" content="{html.escape(desc)}">
 
 <link rel="icon" href="data:,">
-{CLARITY}
+{PLAUSIBLE}\n{CLARITY}
 <script type="application/ld+json">{ld}</script>
 <style>
 {CSS}

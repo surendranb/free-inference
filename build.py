@@ -316,14 +316,67 @@ CSS = '''  :root { --bg:#fff; --ink:#1a1a1a; --mut:#6b6b6b; --line:#e3e3e3; --se
   .modal .x { position:absolute; };
   .close { float:right; border:1px solid var(--line); background:none; font:inherit; font-size:14px;
             cursor:pointer; padding:2px 10px; border-radius:6px; }
-  footer { margin-top:32px; color:var(--mut); font-size:13px; }'''
+  footer { margin-top:32px; color:var(--mut); font-size:13px; }
+  .fcols { display:grid; grid-template-columns:repeat(5,1fr); gap:20px 24px; text-align:left;
+           margin:32px 0 14px; padding-top:22px; border-top:1px solid var(--line); }
+  .fcol h3 { margin:0 0 8px; font-size:12px; text-transform:uppercase; letter-spacing:.04em;
+             color:var(--ink); font-weight:600; }
+  .fcol ul { list-style:none; margin:0; padding:0; }
+  .fcol li { margin:4px 0; font-size:13px; }
+  .fcol a { color:var(--mut); text-decoration:none; }
+  .fcol a:hover { color:var(--ink); text-decoration:underline; }
+  .fnote { font-size:12px; color:var(--mut); margin:0 0 8px; }
+  @media (max-width:860px) { .fcols { grid-template-columns:repeat(2,1fr); } }'''
+
+
+FOOTER_GROUPS = [
+    ("Coding tools", ["github-copilot--free", "cursor--hobby", "windsurf", "kiro--aws",
+                      "trae--bytedance", "bolt-new", "lovable", "v0--vercel", "replit--starter"]),
+    ("Labs & clouds", ["google-ai-studio--gemini-api", "mistral-la-plateforme",
+                       "nvidia-nim--build-nvidia-com", "cohere", "together-ai",
+                       "sambanova-cloud", "deepinfra", "cloudflare-workers-ai", "hugging-face"]),
+    ("Gateways & keys", ["openrouter", "groq", "cerebras", "z-ai--zhipu", "requesty",
+                         "ovhcloud-ai-endpoints", "nous-portal", "kilo-gateway", "opencode-zen"]),
+    ("Builders & notebooks", ["kaggle-notebooks", "hugging-face-spaces", "google-colab",
+                              "figma--starter", "canva--free", "framer--free", "devin--free",
+                              "qoder", "antigravity-cli--google"]),
+]
+
+
+def footer_nav(verified):
+    by_slug = {slug(p["name"]): p for p in ROWS}
+    grouped, cols = set(), []
+    for label, slugs in FOOTER_GROUPS:
+        items = []
+        for s in slugs:
+            p = by_slug.get(s)
+            if p:
+                grouped.add(s)
+                items.append(f'<li><a href="/providers/{s}/">{html.escape(p["name"])}</a></li>')
+        if items:
+            cols.append(f'<div class="fcol"><h3>{label}</h3><ul>{"".join(items)}</ul></div>')
+    leftovers = [s for s in by_slug if s not in grouped]
+    if leftovers:
+        items = "".join(f'<li><a href="/providers/{s}/">{html.escape(by_slug[s]["name"])}</a></li>'
+                        for s in leftovers)
+        cols.append(f'<div class="fcol"><h3>More providers</h3><ul>{items}</ul></div>')
+    cols.append('<div class="fcol"><h3>Machine access</h3><ul>'
+                '<li><a href="/llms.txt">llms.txt</a></li>'
+                '<li><a href="/index.md">index.md</a></li>'
+                '<li><a href="/data/providers.json">providers.json</a></li>'
+                '<li><a href="/data/schema.json">schema.json</a></li>'
+                '<li><a href="/sitemap.xml">sitemap.xml</a></li></ul></div>')
+    total_models = sum(len(p["models"]) for p in ROWS)
+    return ('<nav class="fcols" aria-label="All providers">' + "".join(cols) + '</nav>'
+            f'<p class="fnote">{count_noun(len(ROWS), "provider")} · {count_noun(total_models, "model")} · '
+            f'verified {html.escape(verified)}. Limits change without notice — this is a map, not a contract.</p>')
 
 
 def build_html():
     total_models = sum(len(p["models"]) for p in ROWS)
     provider_count = len(ROWS)
 
-    page_title = f"Free LLM API Directory: {count_noun(total_models, 'Model')} | {count_noun(provider_count, 'Provider')}, Updated {VERIFIED_HUMAN}"
+    page_title = f"FreeInference.dev — Free LLM API Directory: {count_noun(total_models, 'Model')}, {count_noun(provider_count, 'Provider')}, Updated {VERIFIED_HUMAN}"
     meta_desc = (f"{count_noun(total_models, 'free LLM model')}, {count_noun(provider_count, 'provider')} — an API key, a CLI login, "
                  f"or inference bundled in an IDE. No credit card required. Updated {VERIFIED_HUMAN}.")
 
@@ -332,6 +385,7 @@ def build_html():
     data_json = json.dumps(DATA, ensure_ascii=False, indent=1)
     verified = html.escape(VERIFIED_MAX)
     website = html.escape(WEBSITE)
+    footer = footer_nav(verified)
     tagline = html.escape(TAGLINE)
     defs = "\n".join(f"<p><strong>{html.escape(k)}</strong> — {html.escape(v)}</p>" for k, v in definitions().items())
     t = TITLE.lower()
@@ -411,9 +465,9 @@ def build_html():
 
   <div id="app" class="layout"></div>
 
-  <footer>Numbers cross-checked against official docs and third-party trackers as of {verified}. Limits
-  change without notice — this is a map, not a contract.<br>
-  Machine access: <a href="{website}/llms.txt">llms.txt</a> (agent summary) · <a href="{website}/index.md">index.md</a> (full catalog as markdown) · <a href="{website}/data/providers.json">providers.json</a> (full data) · <a href="{website}/data/schema.json">schema.json</a> (validate the JSON) · <a href="{website}/sitemap.xml">sitemap.xml</a> (all page URLs)</footer>
+  <footer>
+  {footer}
+  </footer>
 </div>
 
 <div id="about" role="dialog" aria-modal="true">
@@ -738,6 +792,7 @@ def build_provider_page(p):
     free_type = html.escape(p["free_type"])
     p_max = max_verified([p])
     verified = html.escape(p_max)
+    footer = footer_nav(verified)
     verified_human = date.fromisoformat(p_max).strftime("%d %b %Y")
     page_url = f"{WEBSITE.rstrip('/')}/providers/{s}/"
     count = len(p["models"])
@@ -805,8 +860,9 @@ def build_provider_page(p):
   <p>Machine-readable: <a href="/data/{s}.json">/data/{s}.json</a> · <a href="/providers/{s}/index.md">Markdown</a></p>
   <p><a href="/">← back to the directory</a></p>
 
-  <footer>Numbers cross-checked against official docs and third-party trackers as of {verified}. Limits
-  change without notice — this is a map, not a contract.</footer>
+  <footer>
+  {footer}
+  </footer>
 </div>
 </body>
 </html>

@@ -8,8 +8,10 @@ Outputs into dist/ (gitignored; deployed by Cloudflare Pages on push):
   dist/data/schema.json     — JSON Schema for providers.json (agents validate before trusting)
   dist/robots.txt           — allow all crawlers
 """
+import hashlib
 import html
 import json
+import re
 from datetime import date
 from pathlib import Path
 
@@ -30,6 +32,9 @@ def max_verified(rows=None):
 
 VERIFIED_MAX = max_verified()
 VERIFIED_HUMAN = date.fromisoformat(VERIFIED_MAX).strftime("%d %b %Y")
+DATA_VERSION = hashlib.sha256(
+    json.dumps(ROWS, sort_keys=True, ensure_ascii=False).encode()
+).hexdigest()[:12]
 
 
 def count_noun(n, noun):
@@ -153,6 +158,7 @@ def build_llms():
         AGENT_WARNING,
         "",
         f"Last verified: {VERIFIED_MAX} · {count_noun(len(ROWS), 'provider')} · {count_noun(total_models, 'free model')}.",
+        f"Data version: {DATA_VERSION} (changes only when catalog content changes).",
         "Verification methods: `live-probe` = checked against the provider's API nightly; `docs` = human-verified against official docs, stale-flagged after 45 days.",
         "",
         "## Catalog in every format",
@@ -208,6 +214,7 @@ def build_schema():
             "title": {"type": "string"},
             "tagline": {"type": "string"},
             "verified": {"type": "string", "description": "ISO date of last verification"},
+            "data_version": {"type": "string", "description": "Content fingerprint; changes only when catalog content changes"},
             "website": {"type": "string", "format": "uri"},
             "repo": {"type": "string"},
             "columns": {"type": "array", "items": {"type": "string"}},
@@ -326,6 +333,12 @@ CSS = '''  :root { --bg:#fff; --ink:#1a1a1a; --mut:#6b6b6b; --line:#e3e3e3; --se
   .fcol a { color:var(--mut); text-decoration:none; }
   .fcol a:hover { color:var(--ink); text-decoration:underline; }
   .fnote { font-size:12px; color:var(--mut); margin:0 0 8px; }
+  .answer { border:1px solid var(--line); border-radius:10px; padding:16px 18px; margin:20px 0 4px; }
+  .answer h2 { margin:0 0 8px; font-size:16px; }
+  .answer p { margin:0 0 8px; font-size:14px; }
+  .answer ul { margin:0 0 8px; padding-left:18px; font-size:14px; }
+  .answer li { margin:3px 0; }
+  .answer-more { color:var(--mut); font-size:13px; margin:0; }
   @media (max-width:860px) { .fcols { grid-template-columns:repeat(2,1fr); } }'''
 
 
@@ -372,6 +385,32 @@ def footer_nav(verified):
             f'verified {html.escape(verified)}. Limits change without notice — this is a map, not a contract.</p>')
 
 
+def answer_block():
+    total_models = sum(len(p["models"]) for p in ROWS)
+    ranked = sorted(ROWS, key=lambda p: len(p["models"]), reverse=True)
+    widest = ranked[0]
+    api = next((p for p in ranked if p.get("access_method") == "api_key" and p is not widest), None)
+    tool = next((p for p in ranked if p.get("access_method") in ("login", "bundled")), None)
+
+    def item(label, p, note):
+        return (f'<li><strong>{label}:</strong> '
+                f'<a href="/providers/{slug(p["name"])}/">{html.escape(p["name"])}</a> — {note}</li>')
+
+    items = [item("Widest choice", widest, f'{count_noun(len(widest["models"]), "free model")} in one place')]
+    if api:
+        items.append(item("Direct API key", api, f'{count_noun(len(api["models"]), "free model")}, callable with a key'))
+    if tool:
+        items.append(item("Coding tool", tool, f'{count_noun(len(tool["models"]), "free model")}, {tool.get("access_method")} access'))
+    return f"""<section class="answer">
+  <h2>Which free LLM API should I use?</h2>
+  <p>Free LLM inference you can build with: {count_noun(len(ROWS), "provider")}, {count_noun(total_models, "model")}, no card for most entries. Pick by how you get in:</p>
+  <ul>
+    {"".join(items)}
+  </ul>
+  <p class="answer-more">Every provider is listed below, with a detail page for limits and how to get in.</p>
+</section>"""
+
+
 def build_html():
     total_models = sum(len(p["models"]) for p in ROWS)
     provider_count = len(ROWS)
@@ -386,6 +425,7 @@ def build_html():
     verified = html.escape(VERIFIED_MAX)
     website = html.escape(WEBSITE)
     footer = footer_nav(verified)
+    answer = answer_block()
     tagline = html.escape(TAGLINE)
     defs = "\n".join(f"<p><strong>{html.escape(k)}</strong> — {html.escape(v)}</p>" for k, v in definitions().items())
     t = TITLE.lower()
@@ -406,6 +446,15 @@ def build_html():
         "description": meta_desc,
         "url": WEBSITE,
         "dateModified": VERIFIED_MAX,
+        "version": DATA_VERSION,
+        "distribution": [
+            {"@type": "DataDownload", "encodingFormat": "application/json",
+             "contentUrl": f"{WEBSITE}/data/providers.json"},
+            {"@type": "DataDownload", "encodingFormat": "application/schema+json",
+             "contentUrl": f"{WEBSITE}/data/schema.json"},
+            {"@type": "DataDownload", "encodingFormat": "text/plain",
+             "contentUrl": f"{WEBSITE}/llms.txt"},
+        ],
         "license": "https://opensource.org/licenses/MIT",
         **({"sameAs": REPO} if REPO else {}),
         "keywords": ["free LLM API", "inference providers", "rate limits", "AI agents", "WebMCP", "llms.txt"],
@@ -424,6 +473,7 @@ def build_html():
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{head_title}</title>
 <meta name="description" content="{head_desc}">
+<meta name="data-version" content="{DATA_VERSION}">
 <link rel="canonical" href="{website}">
 <link rel="alternate" type="text/markdown" href="{website}/index.md">
 <link rel="alternate" type="text/plain" title="LLM summary" href="{website}/llms.txt">
@@ -456,6 +506,8 @@ def build_html():
     <p class="tagline">{tagline}</p>
     <span class="meta">verified {verified} · <a href="#about" id="aboutlink">about / contribute</a></span>
   </header>
+
+  {answer}
 
   <noscript>
     <div class="table-wrap">
@@ -794,9 +846,10 @@ def build_provider_page(p):
     verified = html.escape(p_max)
     footer = footer_nav(verified)
     verified_human = date.fromisoformat(p_max).strftime("%d %b %Y")
+    verified_month = date.fromisoformat(p_max).strftime("%b %Y")
     page_url = f"{WEBSITE.rstrip('/')}/providers/{s}/"
     count = len(p["models"])
-    title = f"{p['name']} Free Tier: {count_noun(count, 'Model')}, Rate Limits, and How to Get In"
+    title = f"{p['name']} Free Tier: {count_noun(count, 'Model')}, Rate Limits ({verified_month})"
     desc = (f"{p['name']}: {p['free_type']}, {ACCESS_PROSE.get(access, access)} access, {count_noun(count, 'free model')}. "
             f"Rate limits, context windows, and terms from official docs, last checked {verified_human}.")
     how = HOW_TO_GET_IN.get(access, HOW_TO_GET_IN["api_key"]).format(url=html.escape(p["url"]))
@@ -808,6 +861,8 @@ def build_provider_page(p):
         "@type": "WebPage",
         "name": title,
         "dateModified": p["verified"],
+        "version": DATA_VERSION,
+        "isPartOf": {"@type": "Dataset", "name": TITLE, "url": WEBSITE},
         "about": {"@type": "Thing", "name": p["name"], "url": p["url"]},
     }, ensure_ascii=False)
     return f"""<!doctype html>
@@ -817,6 +872,7 @@ def build_provider_page(p):
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{html.escape(title)}</title>
 <meta name="description" content="{html.escape(desc)}">
+<meta name="data-version" content="{DATA_VERSION}">
 <link rel="canonical" href="{page_url}">
 <link rel="alternate" type="text/markdown" href="{page_url}index.md">
 
@@ -952,8 +1008,36 @@ def main():
         + "\n".join(sitemap_urls) + "\n"
         "</urlset>\n"
     )
-    (dist / "data" / "providers.json").write_text(json.dumps(DATA, indent=2) + "\n")
+    out = dict(DATA)
+    out["data_version"] = DATA_VERSION
+    (dist / "data" / "providers.json").write_text(json.dumps(out, indent=2) + "\n")
     (dist / "data" / "schema.json").write_text(json.dumps(build_schema(), indent=2) + "\n")
+    recent = sorted(
+        ({"provider": p["name"], "verified": max_verified([p])} for p in ROWS),
+        key=lambda x: x["verified"], reverse=True,
+    )[:20]
+    (dist / "data" / "changelog.json").write_text(json.dumps({
+        "version": DATA_VERSION,
+        "updated": VERIFIED_MAX,
+        "providers": len(ROWS),
+        "models": sum(len(p["models"]) for p in ROWS),
+        "recent": recent,
+    }, indent=2) + "\n")
+    (dist / "_headers").write_text(
+        f"/data/*\n"
+        f"  X-Data-Version: {DATA_VERSION}\n"
+        f"  X-Last-Verified: {VERIFIED_MAX}\n"
+        f"  Cache-Control: public, max-age=0, must-revalidate\n"
+        f"/llms.txt\n"
+        f"  X-Data-Version: {DATA_VERSION}\n"
+        f"  X-Last-Verified: {VERIFIED_MAX}\n"
+        f"/index.md\n"
+        f"  X-Data-Version: {DATA_VERSION}\n"
+        f"  X-Last-Verified: {VERIFIED_MAX}\n"
+        f"/providers/*\n"
+        f"  X-Data-Version: {DATA_VERSION}\n"
+        f"  X-Last-Verified: {VERIFIED_MAX}\n"
+    )
     # ponytail: per-provider JSON split; whole file is ~40KB so single-file fetch stays the default path
     for p in ROWS:
         (dist / "data" / f"{slug(p['name'])}.json").write_text(json.dumps(p, indent=2) + "\n")
@@ -967,7 +1051,21 @@ def main():
     )
     (dist / "b4d83ac2bcee40a798bc63319e92d730.txt").write_text("b4d83ac2bcee40a798bc63319e92d730")
     total = sum(len(p["models"]) for p in ROWS)
-    print(f"ok: {count_noun(len(ROWS), 'provider')}, {count_noun(total, 'model')} -> dist/ (verified {VERIFIED_MAX})")
+    index_html = (dist / "index.html").read_text()
+    assert index_html.count('href="/providers/') >= len(ROWS), "footer provider links missing"
+    assert "FreeInference" in index_html, "brand missing from homepage title"
+    assert f'name="data-version" content="{DATA_VERSION}"' in index_html, "data version missing"
+    titles = []
+    for p in ROWS:
+        page = (dist / "providers" / slug(p["name"]) / "index.html").read_text()
+        m = re.search(r"<title>(.*?)</title>", page)
+        assert m, f"{p['name']}: missing title"
+        assert len(m.group(1)) <= 75, f"{p['name']}: title too long ({len(m.group(1))})"
+        assert f'name="data-version" content="{DATA_VERSION}"' in page, f"{p['name']}: data version missing"
+        titles.append(m.group(1))
+    assert len(titles) == len(set(titles)), "duplicate provider titles"
+    print(f"ok: {count_noun(len(ROWS), 'provider')}, {count_noun(total, 'model')} -> dist/ (verified {VERIFIED_MAX}, version {DATA_VERSION})")
+    print(f"verify: {len(titles)} unique provider pages · {index_html.count('href=\"/providers/')} footer links")
 
 
 if __name__ == "__main__":

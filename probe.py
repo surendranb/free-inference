@@ -120,6 +120,12 @@ def sync_openrouter(prov, today):
                 "rpd": "50 (below $10 credits) / 1,000 ($10+ credits)",
                 "tpd": "Not published", "verified": today,
             })
+    # Preserve manually verified / pinned models not in the raw :free API response
+    for name, old in by_name.items():
+        if old.get("pinned") or name.startswith("meta/muse-spark"):
+            if name not in free:
+                old["verified"] = today
+                rows.append(old)
     prov["models"] = rows
     prov["verified"] = today
     prov["verified_method"] = "live-probe"

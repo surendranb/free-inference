@@ -4,262 +4,24 @@
   "providers_audited": 38,
   "models_cataloged": 119,
   "audit_summary": {
-    "stale_count": 18,
+    "stale_count": 1,
     "stale_providers": [
-      {
-        "provider": "GitHub Copilot (Free)",
-        "days_stale": 47,
-        "verified": "2026-09-12",
-        "docs_url": "https://docs.github.com/en/copilot/get-started/plans"
-      },
-      {
-        "provider": "Kiro (AWS)",
-        "days_stale": 47,
-        "verified": "2026-09-12",
-        "docs_url": "https://kiro.dev/pricing"
-      },
-      {
-        "provider": "Trae (ByteDance)",
-        "days_stale": 47,
-        "verified": "2026-09-12",
-        "docs_url": "https://www.trae.ai/pricing"
-      },
-      {
-        "provider": "Bolt.new",
-        "days_stale": 47,
-        "verified": "2026-09-12",
-        "docs_url": "https://support.bolt.new/account-and-subscription/tokens"
-      },
-      {
-        "provider": "Lovable",
-        "days_stale": 47,
-        "verified": "2026-09-12",
-        "docs_url": "https://docs.lovable.dev/introduction/credits-and-usage"
-      },
-      {
-        "provider": "v0 (Vercel)",
-        "days_stale": 47,
-        "verified": "2026-09-12",
-        "docs_url": "https://v0.app/docs/pricing"
-      },
-      {
-        "provider": "Kaggle Notebooks",
-        "days_stale": 47,
-        "verified": "2026-09-12",
-        "docs_url": "https://www.kaggle.com/docs/efficient-gpu-usage"
-      },
-      {
-        "provider": "Hugging Face Spaces",
-        "days_stale": 47,
-        "verified": "2026-09-12",
-        "docs_url": "https://huggingface.co/docs/hub/spaces-overview"
-      },
-      {
-        "provider": "Cursor (Hobby)",
-        "days_stale": 47,
-        "verified": "2026-09-12",
-        "docs_url": "https://cursor.com/docs/models-and-pricing"
-      },
-      {
-        "provider": "Devin (Free)",
-        "days_stale": 47,
-        "verified": "2026-09-12",
-        "docs_url": "https://docs.devin.ai/admin/billing/self-serve"
-      },
-      {
-        "provider": "Windsurf",
-        "days_stale": 47,
-        "verified": "2026-09-12",
-        "docs_url": "https://docs.windsurf.com/windsurf/accounts/usage"
-      },
-      {
-        "provider": "Qoder",
-        "days_stale": 47,
-        "verified": "2026-09-12",
-        "docs_url": "https://docs.qoder.com/account/pricing"
-      },
-      {
-        "provider": "Antigravity CLI (Google)",
-        "days_stale": 47,
-        "verified": "2026-09-12",
-        "docs_url": "https://antigravity.google/pricing"
-      },
-      {
-        "provider": "Google Colab",
-        "days_stale": 47,
-        "verified": "2026-09-12",
-        "docs_url": "https://research.google.com/colaboratory/faq.html"
-      },
-      {
-        "provider": "Figma (Starter)",
-        "days_stale": 47,
-        "verified": "2026-09-12",
-        "docs_url": "https://www.figma.com/pricing/"
-      },
       {
         "provider": "Canva (Free)",
         "days_stale": 47,
         "verified": "2026-09-12",
         "docs_url": "https://www.canva.com/help/ai-access/"
-      },
-      {
-        "provider": "Framer (Free)",
-        "days_stale": 47,
-        "verified": "2026-09-12",
-        "docs_url": "https://www.framer.com/pricing"
-      },
-      {
-        "provider": "Replit (Starter)",
-        "days_stale": 47,
-        "verified": "2026-09-12",
-        "docs_url": "https://docs.replit.com/help/pricing-and-plans"
       }
     ],
     "syntax_issues": []
   },
   "doc_audits": [
     {
-      "provider": "GitHub Copilot (Free)",
-      "docs_url": "https://docs.github.com/en/copilot/get-started/plans",
-      "status": "active",
-      "is_free_active": true,
-      "summary": "GitHub Copilot offers a rate-limited free tier accessed via user login, featuring auto-selected models and various integrated agent capabilities.",
-      "audited_date": "2026-10-29"
-    },
-    {
-      "provider": "Kiro (AWS)",
-      "docs_url": "https://kiro.dev/pricing",
-      "status": "active",
-      "is_free_active": true,
-      "summary": "The Kiro Free tier remains active, offering 50 monthly credits with access to open-weight models and Claude Sonnet 4.5 for users who sign up via social login or AWS Builder ID.",
-      "audited_date": "2026-10-29"
-    },
-    {
-      "provider": "Trae (ByteDance)",
-      "docs_url": "https://www.trae.ai/pricing",
-      "status": "active",
-      "is_free_active": true,
-      "summary": "Trae offers a rate-limited Free tier with auto mode only, limited usage, and limited autocomplete capabilities.",
-      "audited_date": "2026-10-29"
-    },
-    {
-      "provider": "Bolt.new",
-      "docs_url": "https://support.bolt.new/account-and-subscription/tokens",
-      "status": "active",
-      "is_free_active": true,
-      "summary": "Bolt.new offers an active free tier with a token allowance that resets on the 1st of each calendar month.",
-      "audited_date": "2026-10-29"
-    },
-    {
-      "provider": "Lovable",
-      "docs_url": "https://docs.lovable.dev/introduction/credits-and-usage",
-      "status": "active",
-      "is_free_active": true,
-      "summary": "Lovable provides a free plan tier and free allowances that cover building and usage costs within the platform.",
-      "audited_date": "2026-10-29"
-    },
-    {
-      "provider": "v0 (Vercel)",
-      "docs_url": "https://v0.app/docs/pricing",
-      "status": "active",
-      "is_free_active": true,
-      "summary": "v0 offers a Free plan with no monthly cost, a daily message limit of 7 messages, and a one-time $5 free credit allowance for new users.",
-      "audited_date": "2026-10-29"
-    },
-    {
-      "provider": "Kaggle Notebooks",
-      "docs_url": "https://www.kaggle.com/docs/efficient-gpu-usage",
-      "status": "active",
-      "is_free_active": true,
-      "summary": "Kaggle Notebooks provides a rate-limited free tier requiring login with access to open-weight models loaded via GPU runtimes.",
-      "audited_date": "2026-10-29"
-    },
-    {
-      "provider": "Hugging Face Spaces",
-      "docs_url": "https://huggingface.co/docs/hub/spaces-overview",
-      "status": "active",
-      "is_free_active": true,
-      "summary": "Hugging Face Spaces continues to offer free-tier access via standard CPU instances and rate-limited ZeroGPU allocations requiring a login.",
-      "audited_date": "2026-10-29"
-    },
-    {
-      "provider": "Cursor (Hobby)",
-      "docs_url": "https://cursor.com/docs/models-and-pricing",
-      "status": "active",
-      "is_free_active": true,
-      "summary": "The Cursor Free tier provides limited access using Cursor's own models (Grok 4.7, Grok 4.6, Grok 4.5, and Composer 2.5) with fixed settings and no access to advanced features or third-party models.",
-      "audited_date": "2026-10-29"
-    },
-    {
-      "provider": "Devin (Free)",
-      "docs_url": "https://docs.devin.ai/admin/billing/self-serve",
-      "status": "active",
-      "is_free_active": true,
-      "summary": "Devin offers an active Free plan for individuals to try the service with limited usage, access to Devin Review, and access to DeepWiki.",
-      "audited_date": "2026-10-29"
-    },
-    {
-      "provider": "Windsurf",
-      "docs_url": "https://docs.windsurf.com/windsurf/accounts/usage",
-      "status": "active",
-      "is_free_active": true,
-      "summary": "Windsurf maintains a Free plan tier that users are downgraded to upon canceling paid subscriptions, with access details available via the Devin Desktop widget or settings page.",
-      "audited_date": "2026-10-29"
-    },
-    {
-      "provider": "Qoder",
-      "docs_url": "https://docs.qoder.com/account/pricing",
-      "status": "active",
-      "is_free_active": true,
-      "summary": "Qoder offers a Free individual plan featuring basic models for limited user messages, along with access to limited-time free models.",
-      "audited_date": "2026-10-29"
-    },
-    {
-      "provider": "Antigravity CLI (Google)",
-      "docs_url": "https://antigravity.google/pricing",
-      "status": "active",
-      "is_free_active": true,
-      "summary": "The Antigravity CLI offers a free individual tier providing access to a variety of agent models, unlimited tab completions, unlimited command requests, and basic weekly rate limits.",
-      "audited_date": "2026-10-29"
-    },
-    {
-      "provider": "Google Colab",
-      "docs_url": "https://research.google.com/colaboratory/faq.html",
-      "status": "active",
-      "is_free_active": true,
-      "summary": "Google Colab provides a free-of-charge hosted Jupyter Notebook service with access to computing resources like GPUs and TPUs, subject to dynamic usage limits, a standard memory profile, and restrictions against compute-intensive non-programming tasks.",
-      "audited_date": "2026-10-29"
-    },
-    {
-      "provider": "Figma (Starter)",
-      "docs_url": "https://www.figma.com/pricing/",
-      "status": "active",
-      "is_free_active": true,
-      "summary": "The Figma Starter tier remains active as a free plan offering limited access to Figma products, including unlimited drafts, UI kits, templates, and a daily AI credit allowance.",
-      "audited_date": "2026-10-29"
-    },
-    {
       "provider": "Canva (Free)",
       "docs_url": "https://www.canva.com/help/ai-access/",
       "status": "unreachable",
       "is_free_active": null,
       "summary": "HTTP Error 403: Forbidden",
-      "audited_date": "2026-10-29"
-    },
-    {
-      "provider": "Framer (Free)",
-      "docs_url": "https://www.framer.com/pricing",
-      "status": "active",
-      "is_free_active": true,
-      "summary": "Framer offers a free tier with 500 AI credits, a free Framer domain, 1 GB of bandwidth, and access to the MCP server during its preview.",
-      "audited_date": "2026-10-29"
-    },
-    {
-      "provider": "Replit (Starter)",
-      "docs_url": "https://docs.replit.com/help/pricing-and-plans",
-      "status": "active",
-      "is_free_active": true,
-      "summary": "The Replit Starter plan remains active as a free tier offering a daily Agent allowance, limited monthly cloud credits, basic Agent access, and one published app.",
       "audited_date": "2026-10-29"
     }
   ],
@@ -270,71 +32,71 @@
       "id": "kilo-auto/free",
       "family": "auto-router",
       "task": "general",
-      "recommended_page_slug": "general-chat",
-      "summary": "Dynamic automatic routing model provided by Kilo Gateway optimized for zero-cost general inference."
+      "recommended_page_slug": "kilo-auto-free",
+      "summary": "An automatic routing model provided by Kilo Gateway offering free general-purpose inference with a 256k context window."
     },
     {
       "id": "reflection/beam-free",
       "family": "reflection",
       "task": "reasoning",
-      "recommended_page_slug": "reasoning",
-      "summary": "High-context reasoning model featuring a 1M token context window designed for complex logical tasks."
+      "recommended_page_slug": "reflection-beam-free",
+      "summary": "A high-context (1M tokens) reasoning and reflection-oriented model available for free on Kilo Gateway."
     },
     {
       "id": "stealth/glyph-cluster",
-      "family": "custom-mixture",
+      "family": "stealth",
       "task": "general",
-      "recommended_page_slug": "general-chat",
-      "summary": "Specialized cluster model with a 256k context window for general-purpose handling on Kilo Gateway."
+      "recommended_page_slug": "stealth-glyph-cluster",
+      "summary": "A stealth-architecture model supporting a 256k context length, optimized for general tasks via Kilo Gateway."
     },
     {
       "id": "google/lyria-3-pro-preview",
-      "family": "lyria",
-      "task": "general",
-      "recommended_page_slug": "preview",
-      "summary": "Google Lyria 3 Pro preview model with massive 1M token context, offering free experimental inference."
+      "family": "google-lyria",
+      "task": "reasoning",
+      "recommended_page_slug": "google-lyria-3-pro-preview",
+      "summary": "Google Lyria 3 Pro preview model with a massive 1M context window, tuned for advanced processing and reasoning."
     },
     {
       "id": "google/lyria-3-clip-preview",
-      "family": "lyria",
+      "family": "google-lyria",
       "task": "general",
-      "recommended_page_slug": "preview",
-      "summary": "Google Lyria 3 Clip preview variant supporting large context windows for specialized preview tasks."
+      "recommended_page_slug": "google-lyria-3-clip-preview",
+      "summary": "Google Lyria 3 Clip preview model featuring a 1M context length for broad generation and retrieval tasks."
     },
     {
       "id": "openrouter/free",
-      "family": "meta-router",
+      "family": "auto-router",
       "task": "general",
-      "recommended_page_slug": "general-chat",
-      "summary": "Meta-routing endpoint proxying various free-tier models via OpenRouter integration."
+      "recommended_page_slug": "openrouter-free-router",
+      "summary": "A meta-router model aggregating free tier endpoints, backed by a 200k context window."
     },
     {
       "id": "novita/ling-3.1-flash",
       "family": "ling",
-      "task": "general",
-      "recommended_page_slug": "general-chat",
-      "summary": "Fast lightweight flash model from Novita/InclusionAI suited for rapid general responses."
+      "task": "coding",
+      "recommended_page_slug": "novita-ling-3-1-flash",
+      "summary": "Novita's Ling 3.1 Flash model optimized for fast, lightweight coding and text generation tasks."
     },
     {
       "id": "nvidia/nemotron-3.5-lightning-30b-a3b",
       "family": "nemotron",
       "task": "reasoning",
-      "recommended_page_slug": "reasoning",
-      "summary": "NVIDIA Nemotron 3.5 Lightning 30B variant optimized for high-speed high-capability tasks."
+      "recommended_page_slug": "nvidia-nemotron-3-5-lightning-30b-a3b",
+      "summary": "NVIDIA Nemotron 3.5 Lightning (30B A3B) configured for high-speed reasoning and inference."
     },
     {
       "id": "nvidia/muse-glimmer-30b",
       "family": "muse",
       "task": "general",
-      "recommended_page_slug": "general-chat",
-      "summary": "NVIDIA Muse Glimmer 30B architecture offering balanced general-purpose free generation."
+      "recommended_page_slug": "nvidia-muse-glimmer-30b",
+      "summary": "NVIDIA Muse Glimmer 30B model built for general chat and multi-turn instruction following."
     },
     {
       "id": "novita/inclusionai/ling-3.0-tiny",
       "family": "ling",
       "task": "general",
-      "recommended_page_slug": "general-chat",
-      "summary": "Tiny variant of the Ling 3.0 series by InclusionAI through Novita for low-overhead inference."
+      "recommended_page_slug": "novita-inclusionai-ling-3-0-tiny",
+      "summary": "InclusionAI's Ling 3.0 Tiny model hosted on Novita, designed for ultra-low latency general utility tasks."
     }
   ],
   "status": "completed"

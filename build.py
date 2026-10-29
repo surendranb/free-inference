@@ -786,7 +786,7 @@ function render(app) {{
       <h2>${{p.name}}<span class="ftype">${{p.free_type}}</span><span class="amchip">${{AM[p.access_method] || p.access_method}}</span></h2>
       <a class="purl" href="${{p.url}}" target="_blank" rel="noopener">${{p.url}}</a>
       <div class="pnotes">${{p.notes}}</div>
-      <div class="pnotes"><strong>${{p.verified_method === "live-probe" ? "Live-probed" : "Docs-verified"}} ${{p.verified}}</strong>${{p.verified_method === "docs" ? " · verified against official public documentation" : " · re-verified nightly via live probe"}}</div>${{dead}}
+      <div class="pnotes"><strong>Last updated: ${{p.verified}}</strong>${{p.verified_method === "docs" ? " · verified against official public documentation" : " · verified nightly via automated probe"}}</div>${{dead}}
     </div>
     <div class="table-wrap"><table>
       <thead><tr><th data-k="name">Model</th><th data-k="cost">Cost</th><th data-k="context">Context</th>
@@ -836,11 +836,111 @@ def slug(name):
 ACCESS_LABEL = {"api_key": "API key", "login": "Login", "bundled": "Bundled"}
 ACCESS_PROSE = {"api_key": "API key", "login": "login", "bundled": "bundled"}
 
-HOW_TO_GET_IN = {
-    "api_key": "Create a key at {url} and call it from your harness.",
-    "login": "Sign in to {url} — no API key; the free allowance is tied to your account.",
-    "bundled": "Inference is included inside {url}; there is no key to use elsewhere.",
-}
+def parse_ctx_val(ctx_str):
+    m = re.match(r"(\d+)([KM]?)", str(ctx_str).upper())
+    if not m:
+        return 0
+    val, unit = int(m.group(1)), m.group(2)
+    return val * 1024 if unit == "M" else (val if unit == "K" else val // 1024)
+
+
+def clean_ctx_token(ctx_str):
+    c = str(ctx_str).strip()
+    if not c or c == "—" or "model-dependent" in c.lower() or "varies" in c.lower():
+        return ""
+    m = re.search(r"\d+[KM]?", c.upper())
+    return m.group(0) if m else ""
+
+
+def generate_provider_descriptions(p, verified_human):
+    count = len(p["models"])
+    m_count = f"{count} free model{'s' if count != 1 else ''}"
+
+    # Clean model names: strip :free suffix, parens, and trim
+    m_names = []
+    for m in p["models"][:3]:
+        raw = m["name"].replace(":free", "")
+        cleaned = re.sub(r"\(.*?\)", "", raw).strip()
+        m_names.append(cleaned if cleaned else raw)
+
+    # Max context
+    contexts = [clean_ctx_token(m.get("context", "")) for m in p["models"]]
+    contexts = [c for c in contexts if c]
+    best_ctx = max(contexts, key=parse_ctx_val) if contexts else ""
+    ctx_str = f"up to {best_ctx} context" if best_ctx else ""
+
+    # Card / Billing requirement
+    notes_lower = p.get("notes", "").lower()
+    if "no credit card" in notes_lower or "no card" in notes_lower:
+        card_long = "no credit card required"
+        card_short = "no card needed"
+    elif "card required" in notes_lower or "credit card required" in notes_lower:
+        card_long = "credit card required"
+        card_short = "card required"
+    else:
+        card_long = ""
+        card_short = ""
+
+    # Protocol & endpoint
+    endpoint = p.get("base_url", "")
+    if not endpoint:
+        url_m = re.search(r"https?://[^\s\),]+", p.get("notes", ""))
+        endpoint = url_m.group(0).rstrip(".") if url_m else ""
+
+    if "openai-compatible" in notes_lower and endpoint:
+        proto_og = f"OpenAI-compatible endpoint ({endpoint})"
+        proto_meta = "OpenAI API"
+    elif "openai-compatible" in notes_lower:
+        proto_og = "OpenAI-compatible endpoint"
+        proto_meta = "OpenAI API"
+    elif endpoint:
+        proto_og = f"API endpoint ({endpoint})"
+        proto_meta = "API key"
+    elif p.get("access_method") == "api_key":
+        proto_og = "API key access"
+        proto_meta = "API key"
+    elif p.get("access_method") == "login":
+        proto_og = "Web / CLI login access"
+        proto_meta = "login access"
+    else:
+        proto_og = "Bundled app access"
+        proto_meta = "bundled"
+
+    # Surface 1: SEO Meta Description (Target: 150-160 chars)
+    if count > 1 and m_names:
+        models_meta = f"({', '.join(m_names[:2])})"
+    elif count == 1 and m_names:
+        models_meta = f"({m_names[0]})"
+    else:
+        models_meta = ""
+    parts_meta = [f"{m_count} on {p['name']}"]
+    if models_meta:
+        parts_meta[0] += f" {models_meta}"
+    dtls_meta = [d for d in [proto_meta, ctx_str, card_short] if d]
+    meta_desc = f"{parts_meta[0]}. {', '.join(dtls_meta)}. Last updated: {verified_human}."
+
+    # Surface 2: Social & Agent OG Description (Target: 200-260 chars)
+    if count > 2:
+        models_og = f"including {', '.join(m_names[:2])}, and {m_names[2]}"
+    elif count == 2:
+        models_og = f"including {m_names[0]} and {m_names[1]}"
+    elif count == 1:
+        models_og = f"({m_names[0]})"
+    else:
+        models_og = ""
+    parts_og = [f"{m_count} on {p['name']}"]
+    if models_og:
+        parts_og[0] += f" {models_og}"
+    dtls_og = [d for d in [proto_og, ctx_str, card_long] if d]
+    og_desc = f"{parts_og[0]}. {', '.join(dtls_og)}. Last updated: {verified_human}."
+
+    # Adaptive clamp if endpoint URL pushed OG beyond 260 chars
+    if len(og_desc) > 260 and endpoint:
+        proto_og = "OpenAI-compatible endpoint" if "openai-compatible" in notes_lower else "API key access"
+        dtls_og = [d for d in [proto_og, ctx_str, card_long] if d]
+        og_desc = f"{parts_og[0]}. {', '.join(dtls_og)}. Last updated: {verified_human}."
+
+    return meta_desc, og_desc
 
 
 def model_row_html(m):
@@ -865,16 +965,16 @@ def build_provider_page(p):
     page_url = f"{WEBSITE.rstrip('/')}/providers/{s}/"
     count = len(p["models"])
     title = f"{p['name']} Free Tier: {count_noun(count, 'Model')}, Rate Limits ({verified_month})"
-    desc = (f"{p['name']}: {p['free_type']}, {ACCESS_PROSE.get(access, access)} access, {count_noun(count, 'free model')}. "
-            f"Rate limits, context windows, and terms from official docs, last checked {verified_human}.")
-    how = HOW_TO_GET_IN.get(access, HOW_TO_GET_IN["api_key"]).format(url=html.escape(p["url"]))
+    meta_desc, og_desc = generate_provider_descriptions(p, verified_human)
     docs = html.escape(p.get("docs_url", p["url"]))
     notes = html.escape(p.get("notes", ""))
+    notes_html = f"<p>{notes}</p>" if notes else ""
     rows = "\n".join(model_row_html(m) for m in p["models"])
     ld = json.dumps({
         "@context": "https://schema.org",
         "@type": "WebPage",
         "name": title,
+        "description": og_desc,
         "dateModified": p["verified"],
         "version": DATA_VERSION,
         "isPartOf": {"@type": "Dataset", "name": TITLE, "url": WEBSITE},
@@ -886,7 +986,7 @@ def build_provider_page(p):
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{html.escape(title)}</title>
-<meta name="description" content="{html.escape(desc)}">
+<meta name="description" content="{html.escape(meta_desc)}">
 <meta name="data-version" content="{DATA_VERSION}">
 <link rel="canonical" href="{page_url}">
 <link rel="alternate" type="text/markdown" href="{page_url}index.md">
@@ -895,12 +995,12 @@ def build_provider_page(p):
 <meta property="og:type" content="website">
 <meta property="og:url" content="{page_url}">
 <meta property="og:title" content="{html.escape(title)}">
-<meta property="og:description" content="{html.escape(desc)}">
+<meta property="og:description" content="{html.escape(og_desc)}">
 <meta property="og:updated_time" content="{verified}T00:00:00Z">
 
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="{html.escape(title)}">
-<meta name="twitter:description" content="{html.escape(desc)}">
+<meta name="twitter:description" content="{html.escape(og_desc)}">
 
 <link rel="icon" href="data:,">
 {PLAUSIBLE}\n{CLARITY}
@@ -913,13 +1013,13 @@ def build_provider_page(p):
 <div class="wrap">
   <header>
     <h1>{name}</h1>
-    <p class="tagline">{free_type} · {access_label} · {artifact} · last checked {verified_human}</p>
+    <p class="tagline">{free_type} · {access_label} · {artifact} · Last updated: {verified_human}</p>
     <span class="meta"><a href="/">← back to the directory</a></span>
   </header>
 
-  <p>{how}</p>
-  <p>{notes}</p>
-  <p>Source: <a href="{docs}" target="_blank" rel="noopener">{docs}</a></p>
+  <p><strong>{html.escape(og_desc)}</strong></p>
+  {notes_html}
+  <p>Source: <a href="{docs}" target="_blank" rel="noopener">{docs}</a> · Last updated: {verified_human}</p>
 
   <div class="table-wrap"><table>
     <thead><tr><th>Model</th><th>Cost</th><th>Context</th><th>RPM</th><th>TPM</th><th>RPD</th><th>Day tokens</th><th>Verified</th></tr></thead>
@@ -946,21 +1046,23 @@ def build_provider_md(p):
     access_label = ACCESS_LABEL.get(access, access)
     p_max = max_verified([p])
     verified_human = date.fromisoformat(p_max).strftime("%d %b %Y")
-    how = HOW_TO_GET_IN.get(access, HOW_TO_GET_IN["api_key"]).format(url=p["url"])
+    meta_desc, og_desc = generate_provider_descriptions(p, verified_human)
     lines = [
         f"# {p['name']}",
         "",
-        f"{p['free_type']} · {access_label} · {p.get('artifact', '—')} · last checked {verified_human}",
+        f"{p['free_type']} · {access_label} · {p.get('artifact', '—')} · Last updated: {verified_human}",
         "",
-        how,
+        og_desc,
         "",
-        p.get("notes", ""),
-        "",
-        f"Source: {p.get('docs_url', p['url'])}",
+    ]
+    if p.get("notes"):
+        lines.extend([p["notes"], ""])
+    lines.extend([
+        f"Source: {p.get('docs_url', p['url'])} · Last updated: {verified_human}",
         "",
         "| Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |",
         "| --- | --- | --- | --- | --- | --- | --- | --- |",
-    ]
+    ])
     for m in p["models"]:
         cells = " | ".join(str(m[k]).replace("|", "\\|") for k in
                            ("name", "cost", "context", "rpm", "tpm", "rpd", "tpd", "verified"))

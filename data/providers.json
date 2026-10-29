@@ -463,6 +463,26 @@
           "rpd": "Varies by account",
           "tpd": "Not published",
           "verified": "2026-10-29"
+        },
+        {
+          "name": "gemma-4-26b-a4b-it",
+          "cost": "$0",
+          "context": "256K",
+          "rpm": "15",
+          "tpm": "1M",
+          "rpd": "1,500",
+          "tpd": "Not published",
+          "verified": "2026-10-29"
+        },
+        {
+          "name": "gemma-4-31b-it",
+          "cost": "$0",
+          "context": "256K",
+          "rpm": "15",
+          "tpm": "1M",
+          "rpd": "1,500",
+          "tpd": "Not published",
+          "verified": "2026-10-29"
         }
       ],
       "verified_method": "live-probe",
@@ -474,69 +494,99 @@
       "name": "Groq",
       "url": "https://console.groq.com/docs/rate-limits",
       "free_type": "Rate-limited free",
-      "notes": "LPU hardware, fastest time-to-first-token. Limits per API key per model; some models get half allowance. No credit card. Limits visible in x-ratelimit-* response headers.",
+      "notes": "LPU hardware, fastest time-to-first-token. Limits pooled at organization level per model. No credit card required. Limits visible in x-ratelimit-* response headers.",
       "timeout": "Not published",
-      "verified": "2026-08-30",
+      "verified": "2026-10-29",
       "models": [
         {
+          "name": "llama-3.3-70b-versatile",
+          "cost": "$0",
+          "context": "128K",
+          "rpm": "30",
+          "tpm": "12K",
+          "rpd": "1,000",
+          "tpd": "100K tokens/day",
+          "verified": "2026-10-29"
+        },
+        {
+          "name": "llama-3.1-8b-instant",
+          "cost": "$0",
+          "context": "128K",
+          "rpm": "30",
+          "tpm": "6K",
+          "rpd": "14,400",
+          "tpd": "500K tokens/day",
+          "verified": "2026-10-29"
+        },
+        {
+          "name": "meta-llama/llama-4-scout-17b-16e-instruct",
+          "cost": "$0",
+          "context": "128K",
+          "rpm": "30",
+          "tpm": "30K",
+          "rpd": "1,000",
+          "tpd": "500K tokens/day",
+          "verified": "2026-10-29"
+        },
+        {
           "name": "openai/gpt-oss-120b",
-          "cost": "zsh",
+          "cost": "$0",
           "context": "128K",
           "rpm": "30",
           "tpm": "8K",
           "rpd": "1,000",
           "tpd": "200K tokens/day",
-          "verified": "2026-08-30"
+          "verified": "2026-10-29"
         },
         {
           "name": "openai/gpt-oss-20b",
-          "cost": "zsh",
+          "cost": "$0",
           "context": "128K",
           "rpm": "30",
           "tpm": "8K",
           "rpd": "1,000",
           "tpd": "200K tokens/day",
-          "verified": "2026-08-30"
+          "verified": "2026-10-29"
         },
         {
           "name": "qwen/qwen3.6-27b",
-          "cost": "zsh",
+          "cost": "$0",
           "context": "128K",
           "rpm": "30",
           "tpm": "8K",
           "rpd": "1,000",
           "tpd": "200K tokens/day",
-          "verified": "2026-08-30"
+          "verified": "2026-10-29"
         },
         {
           "name": "qwen/qwen3.8-27b",
-          "cost": "zsh",
+          "cost": "$0",
           "context": "128K",
           "rpm": "30",
           "tpm": "8K",
           "rpd": "1,000",
           "tpd": "2M tokens/day",
-          "verified": "2026-08-30"
+          "verified": "2026-10-29"
         },
         {
           "name": "meta-llama/llama-prompt-guard-2-22m",
-          "cost": "zsh",
+          "cost": "$0",
           "context": "128K",
           "rpm": "30",
           "tpm": "15K",
           "rpd": "14,400",
           "tpd": "500K tokens/day",
-          "verified": "2026-08-30"
+          "verified": "2026-10-29"
         },
         {
           "name": "groq/compound",
-          "cost": "zsh",
+          "cost": "$0",
           "context": "128K",
           "rpm": "30",
           "tpm": "70K",
           "rpd": "250",
           "tpd": "Not published",
-          "verified": "2026-08-30"
+          "verified": "2026-10-29"
         }
       ],
       "verified_method": "docs",
@@ -586,7 +636,7 @@
       "free_type": "Rate-limited free",
       "notes": "Neurons are normalized GPU-compute units, shared pool across all models. Resets 00:00 UTC. Hard stop when pool exhausted, errors not overage. No credit card.",
       "timeout": "Not published",
-      "verified": "2026-08-30",
+      "verified": "2026-10-29",
       "models": [
         {
           "name": "~80 free models (Llama 3.x/4, Qwen, Gemma, DeepSeek-R1 distills, FLUX, Whisper, BGE embeddings)",
@@ -597,6 +647,46 @@
           "rpd": "Not published",
           "tpd": "10,000 neurons/day",
           "verified": "2026-08-30"
+        },
+        {
+          "name": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+          "cost": "$0",
+          "context": "128K",
+          "rpm": "300",
+          "tpm": "Model-dependent",
+          "rpd": "Not published",
+          "tpd": "10,000 neurons/day",
+          "verified": "2026-10-29"
+        },
+        {
+          "name": "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b",
+          "cost": "$0",
+          "context": "128K",
+          "rpm": "300",
+          "tpm": "Model-dependent",
+          "rpd": "Not published",
+          "tpd": "10,000 neurons/day",
+          "verified": "2026-10-29"
+        },
+        {
+          "name": "@cf/qwen/qwen2.5-72b-instruct",
+          "cost": "$0",
+          "context": "128K",
+          "rpm": "300",
+          "tpm": "Model-dependent",
+          "rpd": "Not published",
+          "tpd": "10,000 neurons/day",
+          "verified": "2026-10-29"
+        },
+        {
+          "name": "@cf/meta/llama-3.1-8b-instruct",
+          "cost": "$0",
+          "context": "128K",
+          "rpm": "300",
+          "tpm": "Model-dependent",
+          "rpd": "Not published",
+          "tpd": "10,000 neurons/day",
+          "verified": "2026-10-29"
         }
       ],
       "verified_method": "docs",
@@ -611,7 +701,7 @@
       "free_type": "Rate-limited free",
       "notes": "Two products: Serverless API (free, rate-limited) and Inference Providers gateway. Cold starts 10-30s on unpopular models. Limits not published as fixed numbers.",
       "timeout": "Not published",
-      "verified": "2026-08-30",
+      "verified": "2026-10-29",
       "models": [
         {
           "name": "Llama 3.2 8B (Serverless)",
@@ -621,7 +711,7 @@
           "tpm": "Model max context",
           "rpd": "Not published",
           "tpd": "Small monthly credit pool (PRO: 2M credits/mo)",
-          "verified": "2026-08-30"
+          "verified": "2026-10-29"
         },
         {
           "name": "Qwen 2.5 7B (Serverless)",
@@ -631,7 +721,7 @@
           "tpm": "Model max context",
           "rpd": "Not published",
           "tpd": "Small monthly credit pool (PRO: 2M credits/mo)",
-          "verified": "2026-08-30"
+          "verified": "2026-10-29"
         },
         {
           "name": "Mistral 7B (Serverless)",
@@ -641,7 +731,7 @@
           "tpm": "Model max context",
           "rpd": "Not published",
           "tpd": "Small monthly credit pool (PRO: 2M credits/mo)",
-          "verified": "2026-08-30"
+          "verified": "2026-10-29"
         },
         {
           "name": "Inference Providers gateway (15+ partners)",
@@ -651,13 +741,14 @@
           "tpm": "Model max context",
           "rpd": "Not published",
           "tpd": "Small monthly credit pool (PRO: 2M credits/mo)",
-          "verified": "2026-08-30"
+          "verified": "2026-10-29"
         }
       ],
       "verified_method": "docs",
       "docs_url": "https://huggingface.co/docs/inference-providers/index",
       "access_method": "api_key",
-      "artifact": "code"
+      "artifact": "code",
+      "base_url": "https://api-inference.huggingface.co/v1"
     },
     {
       "name": "Mistral La Plateforme",
@@ -665,7 +756,7 @@
       "free_type": "Rate-limited free (Experiment)",
       "notes": "Phone (SMS) verification required, no card. Exact limits no longer published - see Admin Console Limits per workspace. Evaluation tier, not production.",
       "timeout": "Not published",
-      "verified": "2026-08-30",
+      "verified": "2026-10-29",
       "models": [
         {
           "name": "Mistral Large",
@@ -675,7 +766,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "~1B tokens/month",
-          "verified": "2026-08-30"
+          "verified": "2026-10-29"
         },
         {
           "name": "Codestral",
@@ -685,7 +776,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "~1B tokens/month",
-          "verified": "2026-08-30"
+          "verified": "2026-10-29"
         },
         {
           "name": "All API models (Experiment tier)",
@@ -695,7 +786,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "~1B tokens/month",
-          "verified": "2026-08-30"
+          "verified": "2026-10-29"
         }
       ],
       "verified_method": "docs",
@@ -774,7 +865,7 @@
       "free_type": "Trial credits",
       "notes": "Credit-based, not a rate-limited-free tier. Larger grants need corporate email, tie to ~90-day evaluation windows.",
       "timeout": "Not published",
-      "verified": "2026-08-30",
+      "verified": "2026-10-29",
       "models": [
         {
           "name": "GLM-5",
@@ -784,7 +875,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "~1,000 credits at signup (up to ~5,000)",
-          "verified": "2026-08-30"
+          "verified": "2026-10-29"
         },
         {
           "name": "Kimi-2.5",
@@ -794,7 +885,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "~1,000 credits at signup (up to ~5,000)",
-          "verified": "2026-08-30"
+          "verified": "2026-10-29"
         },
         {
           "name": "NIM-packaged open models",
@@ -804,7 +895,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "~1,000 credits at signup (up to ~5,000)",
-          "verified": "2026-08-30"
+          "verified": "2026-10-29"
         }
       ],
       "verified_method": "docs",
@@ -819,7 +910,7 @@
       "free_type": "Rate-limited free",
       "notes": "Free-tier limits revised twice in the past year - verify. Peak-hour throttling. Flash models are free regardless of tier. OpenAI-compatible.",
       "timeout": "Not published",
-      "verified": "2026-08-30",
+      "verified": "2026-10-29",
       "models": [
         {
           "name": "GLM-5.1",
@@ -829,7 +920,7 @@
           "tpm": "Not published",
           "rpd": "1,000 (1K RPD tier)",
           "tpd": "Not published",
-          "verified": "2026-08-30"
+          "verified": "2026-10-29"
         },
         {
           "name": "GLM-4.5-Flash",
@@ -839,7 +930,7 @@
           "tpm": "Not published",
           "rpd": "1,000",
           "tpd": "Not published",
-          "verified": "2026-08-30"
+          "verified": "2026-10-29"
         },
         {
           "name": "GLM-4.7-Flash",
@@ -849,7 +940,7 @@
           "tpm": "Not published",
           "rpd": "1,000",
           "tpd": "Not published",
-          "verified": "2026-08-30"
+          "verified": "2026-10-29"
         },
         {
           "name": "GLM-4.6V-Flash (vision)",
@@ -859,7 +950,7 @@
           "tpm": "Not published",
           "rpd": "1,000",
           "tpd": "Not published",
-          "verified": "2026-08-30"
+          "verified": "2026-10-29"
         }
       ],
       "verified_method": "docs",
@@ -1441,24 +1532,74 @@
       "artifact": "code",
       "models": [
         {
-          "name": "minimax/minimax-m2.1:free",
+          "name": "cohere/north-mini-code:free",
           "cost": "$0",
-          "context": "Not published",
-          "rpm": "200/hour per IP (anonymous)",
-          "tpm": "Not published",
-          "rpd": "Not published",
+          "context": "250K",
+          "rpm": "20",
+          "tpm": "Provider-dependent",
+          "rpd": "200/day",
           "tpd": "Not published",
-          "verified": "2026-10-01"
+          "verified": "2026-10-29"
         },
         {
-          "name": "z-ai/glm-5:free",
+          "name": "poolside/laguna-s-2.1:free",
           "cost": "$0",
-          "context": "Not published",
-          "rpm": "200/hour per IP (anonymous)",
-          "tpm": "Not published",
-          "rpd": "Not published",
+          "context": "256K",
+          "rpm": "20",
+          "tpm": "Provider-dependent",
+          "rpd": "200/day",
           "tpd": "Not published",
-          "verified": "2026-10-01"
+          "verified": "2026-10-29"
+        },
+        {
+          "name": "poolside/laguna-xs-2.1:free",
+          "cost": "$0",
+          "context": "256K",
+          "rpm": "20",
+          "tpm": "Provider-dependent",
+          "rpd": "200/day",
+          "tpd": "Not published",
+          "verified": "2026-10-29"
+        },
+        {
+          "name": "liquid/lfm-2.5-2.6b:free",
+          "cost": "$0",
+          "context": "64K",
+          "rpm": "20",
+          "tpm": "Provider-dependent",
+          "rpd": "200/day",
+          "tpd": "Not published",
+          "verified": "2026-10-29"
+        },
+        {
+          "name": "dots-studio/dots-3-note-preview:free",
+          "cost": "$0",
+          "context": "500K",
+          "rpm": "20",
+          "tpm": "Provider-dependent",
+          "rpd": "200/day",
+          "tpd": "Not published",
+          "verified": "2026-10-29"
+        },
+        {
+          "name": "nvidia/nemotron-3.5-lightning:free",
+          "cost": "$0",
+          "context": "1000000",
+          "rpm": "20",
+          "tpm": "Provider-dependent",
+          "rpd": "200/day",
+          "tpd": "Not published",
+          "verified": "2026-10-29"
+        },
+        {
+          "name": "nvidia/nemotron-3.5-super-vl:free",
+          "cost": "$0",
+          "context": "1000000",
+          "rpm": "20",
+          "tpm": "Provider-dependent",
+          "rpd": "200/day",
+          "tpd": "Not published",
+          "verified": "2026-10-29"
         }
       ],
       "base_url": "https://api.kilo.ai/v1"
@@ -1475,34 +1616,64 @@
       "artifact": "code",
       "models": [
         {
-          "name": "Hermes-4-70B",
+          "name": "poolside/laguna-s-2.1:free",
           "cost": "$0",
-          "context": "128K",
+          "context": "256K",
           "rpm": "50",
           "tpm": "500K",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-10-01"
+          "verified": "2026-10-29"
         },
         {
-          "name": "Hermes-4-405B",
+          "name": "poolside/laguna-xs-2.1:free",
           "cost": "$0",
-          "context": "128K",
+          "context": "256K",
           "rpm": "50",
           "tpm": "500K",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-10-01"
+          "verified": "2026-10-29"
         },
         {
-          "name": "Hermes-4.3-36B",
+          "name": "stepfun/step-3.7-flash:free",
           "cost": "$0",
           "context": "128K",
           "rpm": "50",
           "tpm": "500K",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-10-01"
+          "verified": "2026-10-29"
+        },
+        {
+          "name": "upstage/solar-mini4:free",
+          "cost": "$0",
+          "context": "64K",
+          "rpm": "50",
+          "tpm": "500K",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-10-29"
+        },
+        {
+          "name": "reflection/beam-1.0-501b-a23b:free",
+          "cost": "$0",
+          "context": "128K",
+          "rpm": "50",
+          "tpm": "500K",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-10-29"
+        },
+        {
+          "name": "ornith/ornith-1.5-122b:free",
+          "cost": "$0",
+          "context": "128K",
+          "rpm": "50",
+          "tpm": "500K",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-10-29"
         }
       ],
       "base_url": "https://inference-api.nousresearch.com/v1"
@@ -1563,20 +1734,30 @@
       "artifact": "code",
       "models": [
         {
-          "name": "nvidia/nemotron-3-super-120b:free (via Requesty)",
+          "name": "nvidia/nemotron-3-super-120b-a12b",
           "cost": "$0",
-          "context": "Not published",
-          "rpm": "20/min shared",
+          "context": "128K",
+          "rpm": "Not published",
           "tpm": "Not published",
           "rpd": "200/day shared",
           "tpd": "Not published",
-          "verified": "2026-10-01"
+          "verified": "2026-10-29"
         },
         {
-          "name": "google/gemma-4-31b-it:free (via Requesty)",
+          "name": "google/gemma-4-31b-it",
           "cost": "$0",
-          "context": "Not published",
-          "rpm": "20/min shared",
+          "context": "256K",
+          "rpm": "Not published",
+          "tpm": "Not published",
+          "rpd": "200/day shared",
+          "tpd": "Not published",
+          "verified": "2026-10-29"
+        },
+        {
+          "name": "poolside/laguna-xs.2",
+          "cost": "$0",
+          "context": "256K",
+          "rpm": "Not published",
           "tpm": "Not published",
           "rpd": "200/day shared",
           "tpd": "Not published",
@@ -1608,6 +1789,96 @@
         }
       ],
       "base_url": "https://endpoints.ai.cloud.ovh.net/v1"
+    },
+    {
+      "name": "SiliconFlow",
+      "url": "https://siliconflow.cn",
+      "free_type": "Rate-limited free",
+      "notes": "Large-scale inference gateway offering permanently free open-source model tiers plus 14M free signup tokens. OpenAI-compatible API. No credit card required.",
+      "timeout": "Not published",
+      "verified": "2026-10-29",
+      "models": [
+        {
+          "name": "deepseek-ai/DeepSeek-R1-Distill-Qwen-7B",
+          "cost": "$0",
+          "context": "32K",
+          "rpm": "1000",
+          "tpm": "40K",
+          "rpd": "100",
+          "tpd": "Not published",
+          "verified": "2026-10-29"
+        },
+        {
+          "name": "deepseek-ai/DeepSeek-V3",
+          "cost": "$0",
+          "context": "64K",
+          "rpm": "30 RPH",
+          "tpm": "40K",
+          "rpd": "100",
+          "tpd": "Not published",
+          "verified": "2026-10-29"
+        },
+        {
+          "name": "Qwen/Qwen2.5-7B-Instruct",
+          "cost": "$0",
+          "context": "32K",
+          "rpm": "1000",
+          "tpm": "40K",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-10-29"
+        },
+        {
+          "name": "THUDM/glm-4-9b-chat",
+          "cost": "$0",
+          "context": "32K",
+          "rpm": "1000",
+          "tpm": "40K",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-10-29"
+        }
+      ],
+      "verified_method": "docs",
+      "docs_url": "https://docs.siliconflow.cn/",
+      "access_method": "api_key",
+      "artifact": "code",
+      "base_url": "https://api.siliconflow.cn/v1"
+    },
+    {
+      "name": "DeepSeek Platform",
+      "url": "https://api-docs.deepseek.com",
+      "free_type": "Trial credits",
+      "notes": "5M free tokens granted on new account creation (valid 30 days). OpenAI-compatible API format with cache-miss/cache-hit pricing.",
+      "timeout": "Not published",
+      "verified": "2026-10-29",
+      "models": [
+        {
+          "name": "deepseek-chat",
+          "cost": "$0 (5M signup tokens)",
+          "context": "64K",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "5M tokens grant",
+          "verified": "2026-10-29"
+        },
+        {
+          "name": "deepseek-reasoner",
+          "cost": "$0 (5M signup tokens)",
+          "context": "64K",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "5M tokens grant",
+          "verified": "2026-10-29"
+        }
+      ],
+      "verified_method": "docs",
+      "docs_url": "https://api-docs.deepseek.com/",
+      "access_method": "api_key",
+      "artifact": "code",
+      "base_url": "https://api.deepseek.com/v1"
     }
   ],
   "ga_measurement_id": "G-CFXWNKBD7G",

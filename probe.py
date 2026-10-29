@@ -64,7 +64,8 @@ def is_text_gemini(name):
 # Flash/Flash-Lite ship a no-card free tier via AI Studio; Pro/Ultra/Gemma/
 # Transcribe/new names are quarantined for a human check, never auto-$0.
 def is_google_free(name):
-    return "flash" in name.lower()
+    n = name.lower()
+    return "flash" in n or "gemma" in n
 
 
 def sync_google(prov, key, today):

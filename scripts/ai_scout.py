@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-"""Autonomous AI Studio Discovery Scout for FreeInference.dev.
+"""Autonomous AI Studio Discovery Scout & Catalog Auditor for FreeInference.dev.
 
 Runs nightly via GitHub Actions (.github/workflows/nightly-probe.yml) or locally.
-Uses Google AI Studio (gemini-3.5-flash-lite) to analyze live model inventories from
-OpenRouter, Google AI Studio, and public endpoints, classifying new free models and
-evaluating new provider additions against strict $0 inclusion criteria.
+1. Audits existing providers for staleness (>30 days), cost syntax errors, and missing base URLs.
+2. Polls live model inventories across multiple aggregators (OpenRouter, Kilo, Nous, Requesty).
+3. Uses Google AI Studio (gemini-3.5-flash-lite) to classify newly discovered free models
+   and evaluate candidate additions against strict $0 developer inference criteria.
 """
 import json
 import os
@@ -12,13 +13,13 @@ import re
 import sys
 import urllib.request
 import urllib.error
-from datetime import date
+from datetime import date, datetime
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
-from probe import gemini_key, get_json
+from probe import gemini_key, get_json, _live_free_ids
 
 DATA_PATH = ROOT / "data" / "providers.json"
 REPORT_PATH = ROOT / "data" / "scout_report.json"
@@ -53,7 +54,7 @@ def scout_openrouter_free_models():
                     "id": mid,
                     "name": m.get("name", mid),
                     "context_length": m.get("context_length", 0),
-                    "description": m.get("description", "")
+                    "source": "OpenRouter"
                 })
         return free_models
     except Exception as e:
@@ -61,8 +62,66 @@ def scout_openrouter_free_models():
         return []
 
 
+def scout_endpoint_models(name, url):
+    """Fetch all $0 / free models from a zero-price gateway endpoint."""
+    try:
+        d = get_json(url)
+        items = d.get("data", d) if isinstance(d, dict) else d
+        if not isinstance(items, list):
+            return []
+        free_ids = _live_free_ids(items)
+        out = []
+        for m in items:
+            if isinstance(m, dict) and m.get("id") in free_ids:
+                out.append({
+                    "id": m.get("id"),
+                    "name": m.get("name", m.get("id")),
+                    "context_length": m.get("context_length", 0),
+                    "source": name
+                })
+        return out
+    except Exception as e:
+        print(f"Warning: could not fetch {name} models: {e}")
+        return []
+
+
+def audit_catalog(catalog_data):
+    """Perform ground truth audit on providers and models."""
+    issues = []
+    stale_providers = []
+    today = date.today()
+
+    for p in catalog_data.get("providers", []):
+        pname = p.get("name", "Unknown")
+        # Staleness check (>30 days)
+        v_str = p.get("verified", "")
+        try:
+            v_date = datetime.fromisoformat(v_str).date()
+            days_old = (today - v_date).days
+            if days_old > 30:
+                stale_providers.append({"provider": pname, "days_stale": days_old, "verified": v_str})
+        except ValueError:
+            issues.append(f"{pname}: missing or invalid verified date '{v_str}'")
+
+        # Base URL check on API providers
+        if p.get("access_method") == "api_key" and not p.get("base_url"):
+            issues.append(f"{pname}: API provider missing base_url")
+
+        # Cost syntax check
+        for m in p.get("models", []):
+            cost = m.get("cost", "")
+            if cost and not (cost.startswith("$") or "free" in cost.lower() or "0" in cost):
+                issues.append(f"{pname} / {m.get('name')}: suspicious cost '{cost}'")
+
+    return {
+        "stale_count": len(stale_providers),
+        "stale_providers": stale_providers,
+        "syntax_issues": issues
+    }
+
+
 def run_scout(apply_updates=False):
-    print("--> Starting AI Studio Discovery Scout...")
+    print("--> Starting AI Studio Discovery Scout & Catalog Auditor...")
     today = date.today().isoformat()
     key = gemini_key()
     
@@ -77,16 +136,31 @@ def run_scout(apply_updates=False):
         for m in p["models"]
     }
 
-    # 1. Scout OpenRouter for newly added :free models
-    live_openrouter = scout_openrouter_free_models()
-    new_openrouter = [m for m in live_openrouter if m["id"] not in existing_models]
-    print(f"Discovered {len(live_openrouter)} live :free models on OpenRouter ({len(new_openrouter)} new since last catalog update).")
+    # 1. Run Catalog Ground Truth Audit
+    audit_results = audit_catalog(catalog_data)
+    print(f"Catalog audit: {len(catalog_data['providers'])} providers, {len(existing_models)} models.")
+    if audit_results["syntax_issues"]:
+        print(f"WARNING: {len(audit_results['syntax_issues'])} syntax issues found:")
+        for iss in audit_results["syntax_issues"]:
+            print(f"  - {iss}")
+    else:
+        print("Catalog syntax: 100% clean (zero cost syntax bugs or missing base URLs).")
+
+    # 2. Multi-Source Discovery Scout
+    live_models = []
+    live_models.extend(scout_openrouter_free_models())
+    live_models.extend(scout_endpoint_models("Kilo Gateway", "https://api.kilo.ai/api/gateway/models"))
+    live_models.extend(scout_endpoint_models("Nous Portal", "https://inference-api.nousresearch.com/v1/models"))
+    live_models.extend(scout_endpoint_models("Requesty", "https://router.requesty.ai/v1/models"))
+
+    new_discoveries = [m for m in live_models if m["id"] not in existing_models]
+    print(f"Discovered {len(live_models)} live free models across 4 gateways ({len(new_discoveries)} new).")
 
     classified_candidates = []
-    if new_openrouter:
-        sample_to_classify = new_openrouter[:10]  # analyze batch
+    if new_discoveries:
+        sample_to_classify = new_discoveries[:10]  # analyze batch
         prompt = f"""You are the automated catalog classifier for FreeInference.dev.
-Analyze these newly discovered free LLM models on OpenRouter:
+Analyze these newly discovered free LLM models from public gateways:
 {json.dumps(sample_to_classify, indent=2)}
 
 For each model, classify its architecture family, task category (coding, vision, reasoning, general), and whether it qualifies for free developer inference ($0 API).
@@ -95,7 +169,6 @@ Output strictly valid JSON with no markdown formatting.
 """
         try:
             raw_response = call_ai_studio(prompt, key)
-            # Strip any accidental ```json wrappers
             cleaned = re.sub(r"^```(?:json)?\s*|\s*```$", "", raw_response, flags=re.MULTILINE).strip()
             classified_candidates = json.loads(cleaned)
             print(f"Successfully classified {len(classified_candidates)} candidate models via AI Studio.")
@@ -110,8 +183,11 @@ Output strictly valid JSON with no markdown formatting.
     report = {
         "scouted_date": today,
         "model_used": MODEL_NAME,
-        "openrouter_free_total": len(live_openrouter),
-        "new_discoveries_count": len(new_openrouter),
+        "providers_audited": len(catalog_data["providers"]),
+        "models_cataloged": len(existing_models),
+        "audit": audit_results,
+        "live_gateway_free_total": len(live_models),
+        "new_discoveries_count": len(new_discoveries),
         "candidates": classified_candidates,
         "status": "completed"
     }
@@ -123,16 +199,19 @@ Output strictly valid JSON with no markdown formatting.
     gh_summary_path = os.environ.get("GITHUB_STEP_SUMMARY")
     if gh_summary_path:
         with open(gh_summary_path, "a") as f:
-            f.write(f"### 🤖 FreeInference Nightly AI Scout ({today})\n\n")
+            f.write(f"### 🤖 FreeInference Nightly AI Scout & Audit ({today})\n\n")
             f.write(f"- **Engine**: Google AI Studio `{MODEL_NAME}`\n")
-            f.write(f"- **OpenRouter Free Models**: {len(live_openrouter)} total ({len(new_openrouter)} new)\n\n")
+            f.write(f"- **Catalog Health**: {len(catalog_data['providers'])} providers · {len(existing_models)} models\n")
+            f.write(f"- **Stale Providers (>30d)**: {audit_results['stale_count']}\n")
+            f.write(f"- **Live Gateway $0 Models**: {len(live_models)} across OpenRouter, Kilo, Nous, Requesty\n\n")
             if classified_candidates:
-                f.write("| Model ID | Family | Task | Recommended Slug |\n")
-                f.write("| --- | --- | --- | --- |\n")
+                f.write("#### Newly Discovered Candidate Models\n\n")
+                f.write("| Model ID | Source | Family | Task | Recommended Slug |\n")
+                f.write("| --- | --- | --- | --- | --- |\n")
                 for c in classified_candidates:
-                    f.write(f"| `{c.get('id')}` | {c.get('family')} | {c.get('task')} | `{c.get('recommended_page_slug')}` |\n")
+                    f.write(f"| `{c.get('id')}` | {c.get('source', 'gateway')} | {c.get('family')} | {c.get('task')} | `{c.get('recommended_page_slug')}` |\n")
             else:
-                f.write("All live free models are currently cataloged and verified.\n")
+                f.write("All live free models across monitored gateways are cataloged and verified.\n")
 
     return 0
 

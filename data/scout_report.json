@@ -1,8 +1,177 @@
 {
   "scouted_date": "2026-10-29",
   "model_used": "gemini-3.5-flash-lite",
-  "openrouter_free_total": 16,
-  "new_discoveries_count": 0,
-  "candidates": [],
+  "providers_audited": 38,
+  "models_cataloged": 119,
+  "audit": {
+    "stale_count": 18,
+    "stale_providers": [
+      {
+        "provider": "GitHub Copilot (Free)",
+        "days_stale": 47,
+        "verified": "2026-09-12"
+      },
+      {
+        "provider": "Kiro (AWS)",
+        "days_stale": 47,
+        "verified": "2026-09-12"
+      },
+      {
+        "provider": "Trae (ByteDance)",
+        "days_stale": 47,
+        "verified": "2026-09-12"
+      },
+      {
+        "provider": "Bolt.new",
+        "days_stale": 47,
+        "verified": "2026-09-12"
+      },
+      {
+        "provider": "Lovable",
+        "days_stale": 47,
+        "verified": "2026-09-12"
+      },
+      {
+        "provider": "v0 (Vercel)",
+        "days_stale": 47,
+        "verified": "2026-09-12"
+      },
+      {
+        "provider": "Kaggle Notebooks",
+        "days_stale": 47,
+        "verified": "2026-09-12"
+      },
+      {
+        "provider": "Hugging Face Spaces",
+        "days_stale": 47,
+        "verified": "2026-09-12"
+      },
+      {
+        "provider": "Cursor (Hobby)",
+        "days_stale": 47,
+        "verified": "2026-09-12"
+      },
+      {
+        "provider": "Devin (Free)",
+        "days_stale": 47,
+        "verified": "2026-09-12"
+      },
+      {
+        "provider": "Windsurf",
+        "days_stale": 47,
+        "verified": "2026-09-12"
+      },
+      {
+        "provider": "Qoder",
+        "days_stale": 47,
+        "verified": "2026-09-12"
+      },
+      {
+        "provider": "Antigravity CLI (Google)",
+        "days_stale": 47,
+        "verified": "2026-09-12"
+      },
+      {
+        "provider": "Google Colab",
+        "days_stale": 47,
+        "verified": "2026-09-12"
+      },
+      {
+        "provider": "Figma (Starter)",
+        "days_stale": 47,
+        "verified": "2026-09-12"
+      },
+      {
+        "provider": "Canva (Free)",
+        "days_stale": 47,
+        "verified": "2026-09-12"
+      },
+      {
+        "provider": "Framer (Free)",
+        "days_stale": 47,
+        "verified": "2026-09-12"
+      },
+      {
+        "provider": "Replit (Starter)",
+        "days_stale": 47,
+        "verified": "2026-09-12"
+      }
+    ],
+    "syntax_issues": []
+  },
+  "live_gateway_free_total": 53,
+  "new_discoveries_count": 16,
+  "candidates": [
+    {
+      "id": "kilo-auto/free",
+      "family": "auto-router",
+      "task": "general",
+      "recommended_page_slug": "general-routers",
+      "summary": "Dynamic automated router model routing free tier requests through Kilo Gateway with a 256k context window."
+    },
+    {
+      "id": "reflection/beam-free",
+      "family": "reflection",
+      "task": "reasoning",
+      "recommended_page_slug": "reasoning-models",
+      "summary": "High-context 1M token reflection-based reasoning model optimized for complex analytical tasks."
+    },
+    {
+      "id": "stealth/glyph-cluster",
+      "family": "stealth",
+      "task": "general",
+      "recommended_page_slug": "general-models",
+      "summary": "Cluster-backed proprietary or experimental free-tier model with 256k context support."
+    },
+    {
+      "id": "google/lyria-3-pro-preview",
+      "family": "google-lyria",
+      "task": "reasoning",
+      "recommended_page_slug": "preview-models",
+      "summary": "Google Lyria series professional preview model featuring an expansive 1M context window."
+    },
+    {
+      "id": "google/lyria-3-clip-preview",
+      "family": "google-lyria",
+      "task": "general",
+      "recommended_page_slug": "preview-models",
+      "summary": "Google Lyria series clip preview variant tailored for fast, multi-modal or chunked analysis with 1M context."
+    },
+    {
+      "id": "openrouter/free",
+      "family": "meta-router",
+      "task": "general",
+      "recommended_page_slug": "general-routers",
+      "summary": "Meta-gateway routing mechanism aggregating multiple free-tier endpoints with a 200k context limit."
+    },
+    {
+      "id": "novita/ling-3.1-flash",
+      "family": "novita-ling",
+      "task": "coding",
+      "recommended_page_slug": "coding-models",
+      "summary": "Novita lightweight flash model focused on high-speed code generation and completion tasks."
+    },
+    {
+      "id": "nvidia/nemotron-3.5-lightning-30b-a3b",
+      "family": "nemotron",
+      "task": "reasoning",
+      "recommended_page_slug": "reasoning-models",
+      "summary": "NVIDIA 30B parameter lightning-optimized dense/MoE hybrid model geared toward rapid logical inference."
+    },
+    {
+      "id": "nvidia/muse-glimmer-30b",
+      "family": "muse",
+      "task": "general",
+      "recommended_page_slug": "general-models",
+      "summary": "NVIDIA Muse Glimmer 30B model tuned for general conversational and instruction-following tasks."
+    },
+    {
+      "id": "novita/inclusionai/ling-3.0-tiny",
+      "family": "novita-ling",
+      "task": "general",
+      "recommended_page_slug": "lightweight-models",
+      "summary": "InclusionAI tiny footprint model hosted via Novita, optimized for low-latency generic edge applications."
+    }
+  ],
   "status": "completed"
 }

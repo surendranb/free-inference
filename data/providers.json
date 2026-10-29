@@ -19,11 +19,11 @@
   "providers": [
     {
       "name": "OpenCode Zen",
-      "url": "https://opencode.ai/docs/zen",
+      "url": "https://opencode.ai/v2/docs/console/models/",
       "free_type": "Promo free (limited time)",
-      "notes": "Free models are limited-time promos; some may use data for training. No credit card. OpenAI-compatible base URL opencode.ai/zen/v1. List free models: opencode models | grep -i free",
+      "notes": "Free models are limited-time promos; some may use data for training. No credit card. OpenAI-compatible base URL: https://opencode.ai/inference/openai/v1 (Jev 1.13 uses systemone endpoint). Free-tier chat models require the OpenCode client. Live CLI: opencode models | grep -i free",
       "timeout": "Not published",
-      "verified": "2026-10-01",
+      "verified": "2026-10-29",
       "models": [
         {
           "name": "Big Pickle",
@@ -33,27 +33,27 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-10-01"
+          "verified": "2026-10-29"
         },
         {
-          "name": "Space Bunny Free",
+          "name": "GLM-5.3-Flash Free",
           "cost": "$0 (promo)",
-          "context": "256K - 1M",
+          "context": "128K - 1M",
           "rpm": "Not published",
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-10-01"
+          "verified": "2026-10-29"
         },
         {
-          "name": "LongCat 2.5 Preview Free",
+          "name": "DeepSeek V4.1 Flash Free",
           "cost": "$0 (promo)",
-          "context": "256K - 1M",
+          "context": "128K - 1M",
           "rpm": "Not published",
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-10-01"
+          "verified": "2026-10-29"
         },
         {
           "name": "MiMo-V2.6-Flash Free",
@@ -63,27 +63,27 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-10-01"
+          "verified": "2026-10-29"
         },
         {
-          "name": "MiMo-V2.5 Free",
+          "name": "Beam Free",
           "cost": "$0 (promo)",
-          "context": "256K - 1M",
+          "context": "128K - 1M",
           "rpm": "Not published",
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-10-01"
+          "verified": "2026-10-29"
         },
         {
-          "name": "Ling 3.0 Flash Fin Free",
+          "name": "Flint 40B Free",
           "cost": "$0 (promo)",
-          "context": "256K - 1M",
+          "context": "128K - 1M",
           "rpm": "Not published",
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-10-01"
+          "verified": "2026-10-29"
         },
         {
           "name": "Nemotron 3 Ultra Free",
@@ -93,7 +93,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-10-01"
+          "verified": "2026-10-29"
         },
         {
           "name": "Nemotron 3.5 Lightning Free",
@@ -103,17 +103,17 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-10-01"
+          "verified": "2026-10-29"
         },
         {
-          "name": "Muse Spark 1.3 Contributor Free",
+          "name": "Nemotron 3.5 Super VL Free",
           "cost": "$0 (promo)",
           "context": "256K - 1M",
           "rpm": "Not published",
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-10-01"
+          "verified": "2026-10-29"
         },
         {
           "name": "Jev 1.13 Free",
@@ -123,14 +123,14 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-10-01"
+          "verified": "2026-10-29"
         }
       ],
-      "verified_method": "docs",
-      "docs_url": "https://opencode.ai/docs/zen",
+      "verified_method": "live-probe",
+      "docs_url": "https://opencode.ai/v2/docs/console/models/",
       "access_method": "api_key",
       "artifact": "code",
-      "base_url": "https://opencode.ai/zen/v1"
+      "base_url": "https://opencode.ai/inference/openai/v1"
     },
     {
       "name": "OpenRouter",

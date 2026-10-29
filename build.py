@@ -192,6 +192,12 @@ def build_llms():
     lines += [f"- [{p['name']}]({site}/providers/{slug(p['name'])}/) · [markdown]({site}/providers/{slug(p['name'])}/index.md)" for p in ROWS]
     lines += [
         "",
+        "## Free API Guides & Slices",
+        "",
+    ]
+    lines += [f"- [{cfg['h1']}]({site}/{s}/) · [markdown]({site}/{s}/index.md)" for s, cfg in sorted(FREE_PAGES_CONFIG.items())]
+    lines += [
+        "",
         "## Definitions",
         "",
         *[f"- {k}: {v}" for k, v in definitions().items()],
@@ -240,6 +246,7 @@ def build_schema():
                         "timeout": {"type": "string"},
                         "access_method": {"type": "string", "enum": ["api_key", "login", "bundled"]},
                         "artifact": {"type": "string"},
+                        "base_url": {"type": "string"},
                         "verified": {"type": "string"},
                         "verified_method": {"type": "string", "enum": ["live-probe", "docs"]},
                         "models": {
@@ -339,6 +346,13 @@ CSS = '''  :root { --bg:#fff; --ink:#1a1a1a; --mut:#6b6b6b; --line:#e3e3e3; --se
   .answer ul { margin:0 0 8px; padding-left:18px; font-size:14px; }
   .answer li { margin:3px 0; }
   .answer-more { color:var(--mut); font-size:13px; margin:0; }
+  .code-box { background:#f8f9fa; border:1px solid var(--line); border-radius:6px; padding:12px 16px; font-family:ui-monospace,SFMono-Regular,Consolas,monospace; font-size:13px; overflow-x:auto; margin:10px 0; }
+  .code-box code { font-family:inherit; }
+  .quick-connect { border:1px solid var(--line); border-radius:8px; padding:16px 18px; margin:20px 0; background:#fafafa; }
+  .quick-connect h2 { margin:0 0 8px; font-size:16px; }
+  .quick-connect p { margin:0 0 8px; font-size:14px; }
+  .models { margin-top:24px; }
+  .models h2 { margin:0 0 12px; font-size:17px; }
   @media (max-width:860px) { .fcols { grid-template-columns:repeat(2,1fr); } }'''
 
 
@@ -968,6 +982,745 @@ def build_index_md():
     return md
 
 
+FREE_PAGES_CONFIG = {
+    "free-deepseek-api": {
+        "title": "Free DeepSeek API — $0 Endpoints, Rate Limits & Keys (2026)",
+        "h1": "Free DeepSeek API Endpoints & Rate Limits",
+        "bluf": "Free DeepSeek API access is available via SambaNova Cloud (DeepSeek-V3.1 & V3.2), DeepInfra, and Cloudflare Workers AI. No credit card is required on rate-limited tiers.",
+        "desc": "Directory of free DeepSeek API endpoints. Rate limits, context windows, and base URLs for DeepSeek-V3.1, V3.2, and distills without credit card.",
+        "filter": lambda p, m: "deepseek" in m["name"].lower() or "deepseek" in p["name"].lower(),
+        "tool_snippet": {
+            "base_url": "https://api.sambanova.ai/v1",
+            "model": "DeepSeek-V3.2",
+            "provider": "SambaNova Cloud",
+            "notes": "Direct OpenAI-compatible base URL for free DeepSeek-V3.2 inference."
+        }
+    },
+    "free-glm-api": {
+        "title": "Free GLM API — $0 Zhipu Endpoints, Rate Limits & Keys (2026)",
+        "h1": "Free GLM API Endpoints & Rate Limits",
+        "bluf": "Free GLM API inference is provided directly by Z.AI (Zhipu BigModel) with GLM-5.1, GLM-4.7-Flash, and GLM-4.6V-Flash, as well as NVIDIA NIM and Kilo Gateway with OpenAI-compatible endpoints.",
+        "desc": "Free GLM API directory. Rate limits, context windows, and base URLs for GLM-5.1, GLM-4.7-Flash, and GLM-4.6V without paying subscription fees.",
+        "filter": lambda p, m: "glm" in m["name"].lower() or "zhipu" in p["name"].lower() or "z.ai" in p["name"].lower(),
+        "tool_snippet": {
+            "base_url": "https://open.bigmodel.cn/api/paas/v4/",
+            "model": "GLM-4.7-Flash",
+            "provider": "Z.AI (Zhipu)",
+            "notes": "OpenAI-compatible endpoint for free GLM-4.7-Flash inference."
+        }
+    },
+    "free-qwen-api": {
+        "title": "Free Qwen API — $0 Alibaba Qwen Endpoints & Rate Limits (2026)",
+        "h1": "Free Qwen API Endpoints & Rate Limits",
+        "bluf": "Free Qwen API inference is available through Groq (Qwen 3.8 27B at ultra-high speed), Cerebras ($5 trial), DeepInfra, and Hugging Face Serverless with standard OpenAI compatibility.",
+        "desc": "Compare free Qwen API providers. Rate limits, context windows, and token quotas for Qwen 3.8, Qwen 2.5 Coder, and 72B open models.",
+        "filter": lambda p, m: "qwen" in m["name"].lower(),
+        "tool_snippet": {
+            "base_url": "https://api.groq.com/openai/v1",
+            "model": "qwen/qwen3.8-27b",
+            "provider": "Groq",
+            "notes": "Sub-second latency Qwen 3.8 27B inference via Groq LPU."
+        }
+    },
+    "free-llama-api": {
+        "title": "Free Llama API — $0 Meta Llama 3.3 Endpoints & Limits (2026)",
+        "h1": "Free Llama API Endpoints & Rate Limits",
+        "bluf": "Free Llama API access is hosted by SambaNova Cloud (Llama 3.3 70B Instruct at high throughput), Groq, Cloudflare Workers AI, and Hugging Face with zero credit card required.",
+        "desc": "Directory of free Meta Llama API endpoints. Rate limits and context windows for Llama 3.3 70B, Llama 3.2 8B, and Guard models.",
+        "filter": lambda p, m: "llama" in m["name"].lower(),
+        "tool_snippet": {
+            "base_url": "https://api.sambanova.ai/v1",
+            "model": "Meta-Llama-3.3-70B-Instruct",
+            "provider": "SambaNova Cloud",
+            "notes": "High-throughput Llama 3.3 70B Instruct via SambaNova Cloud."
+        }
+    },
+    "free-gemini-api": {
+        "title": "Free Gemini API — Google AI Studio Endpoints & Limits (2026)",
+        "h1": "Free Gemini API Endpoints & Rate Limits",
+        "bluf": "Google AI Studio provides 14 free Gemini models (including Gemini 2.5 Flash, 3.5 Flash, and Flash-Lite) with 1M context windows, up to 15 RPM, and an official OpenAI-compatible endpoint.",
+        "desc": "Complete reference for Google AI Studio free Gemini API tier. Verified RPM, TPM, RPD, and 1M context limits across all Gemini models.",
+        "filter": lambda p, m: "gemini" in m["name"].lower() or "google ai studio" in p["name"].lower(),
+        "tool_snippet": {
+            "base_url": "https://generativelanguage.googleapis.com/v1beta/openai/",
+            "model": "gemini-2.5-flash",
+            "provider": "Google AI Studio (Gemini API)",
+            "notes": "Official Google AI Studio OpenAI-compatible endpoint with 1M context."
+        }
+    },
+    "free-mistral-api": {
+        "title": "Free Mistral API — $0 Codestral & Large Endpoints (2026)",
+        "h1": "Free Mistral API Endpoints & Rate Limits",
+        "bluf": "Mistral La Plateforme offers free experiment tier API keys for Codestral and Mistral Large with 1 req/sec and 1B tokens/month without requiring a credit card.",
+        "desc": "Directory of free Mistral API keys. Rate limits and token allowances for Codestral, Mistral Large, and Mistral 7B.",
+        "filter": lambda p, m: "mistral" in m["name"].lower() or "codestral" in m["name"].lower() or "mistral" in p["name"].lower(),
+        "tool_snippet": {
+            "base_url": "https://api.mistral.ai/v1",
+            "model": "Codestral",
+            "provider": "Mistral La Plateforme",
+            "notes": "Codestral endpoint with 1B free tokens/month on Experiment tier."
+        }
+    },
+    "free-muse-spark-api": {
+        "title": "Free Muse Spark API — $0 Meta Model Endpoints & Limits (2026)",
+        "h1": "Free Muse Spark API Endpoints & Rate Limits",
+        "bluf": "Free Muse Spark API inference (Meta Muse Spark 1.3 Contributor Free with 1M context) is available on OpenRouter and OpenCode Zen with standard OpenAI-compatible base URLs.",
+        "desc": "Free Muse Spark API directory. Rate limits, context windows, and base URLs for Meta Muse Spark 1.3 Contributor Free.",
+        "filter": lambda p, m: "muse" in m["name"].lower() or "spark" in m["name"].lower(),
+        "tool_snippet": {
+            "base_url": "https://openrouter.ai/api/v1",
+            "model": "meta/muse-spark-1.3-contributor:free",
+            "provider": "OpenRouter",
+            "notes": "Muse Spark 1.3 Contributor Free with 1M context window."
+        }
+    },
+    "free-nemotron-api": {
+        "title": "Free Nemotron API — NVIDIA Nemotron Endpoints & Limits (2026)",
+        "h1": "Free Nemotron API Endpoints & Rate Limits",
+        "bluf": "Free Nemotron API models—including Nemotron 3 Ultra 550B, 3.5 Lightning, and Super-VL—are available on OpenRouter (1M context), OpenCode Zen, and Requesty.",
+        "desc": "Compare free NVIDIA Nemotron API providers. Verified rate limits and context windows for Nemotron 3 Ultra, Lightning, and Nano Omni.",
+        "filter": lambda p, m: "nemotron" in m["name"].lower(),
+        "tool_snippet": {
+            "base_url": "https://openrouter.ai/api/v1",
+            "model": "nvidia/nemotron-3.5-lightning:free",
+            "provider": "OpenRouter",
+            "notes": "NVIDIA Nemotron 3.5 Lightning with 1M context window."
+        }
+    },
+    "free-gemma-api": {
+        "title": "Free Gemma API — Google Gemma 4 Endpoints & Rate Limits (2026)",
+        "h1": "Free Gemma API Endpoints & Rate Limits",
+        "bluf": "Google Gemma 4 models (26B and 31B parameter models with 256K context) are accessible for free on SambaNova Cloud, OpenRouter, and Requesty with zero credit card required.",
+        "desc": "Free Google Gemma API directory. Rate limits, context windows, and base URLs for Gemma 4 31B and 26B instruction-tuned models.",
+        "filter": lambda p, m: "gemma" in m["name"].lower(),
+        "tool_snippet": {
+            "base_url": "https://api.sambanova.ai/v1",
+            "model": "gemma-4-31B-it",
+            "provider": "SambaNova Cloud",
+            "notes": "Google Gemma 4 31B parameter model via SambaNova."
+        }
+    },
+    "free-cohere-api": {
+        "title": "Free Cohere API — Command R+ & North Mini Endpoints (2026)",
+        "h1": "Free Cohere API Endpoints & Rate Limits",
+        "bluf": "Cohere provides a free trial key with 1,000 monthly calls across Command A and Command R+, while OpenRouter hosts cohere/north-mini-code:free with 250K context at $0.",
+        "desc": "Free Cohere API key options. Rate limits and endpoints for Command R+, Command A, and North Mini Code models.",
+        "filter": lambda p, m: "cohere" in m["name"].lower() or "cohere" in p["name"].lower(),
+        "tool_snippet": {
+            "base_url": "https://openrouter.ai/api/v1",
+            "model": "cohere/north-mini-code:free",
+            "provider": "OpenRouter",
+            "notes": "Cohere North Mini Code model hosted free on OpenRouter."
+        }
+    },
+    "free-liquid-api": {
+        "title": "Free Liquid API — LFM 2.5 Models & Rate Limits (2026)",
+        "h1": "Free Liquid API Endpoints & Rate Limits",
+        "bluf": "Liquid AI Liquid Foundation Models (LFM-2.5-2.6B with 64K context) are available completely free on OpenRouter at 20 RPM and up to 1,000 RPD.",
+        "desc": "Free Liquid AI LFM API directory. Rate limits, context window, and base URLs for Liquid Foundation Models.",
+        "filter": lambda p, m: "liquid" in m["name"].lower() or "lfm" in m["name"].lower(),
+        "tool_snippet": {
+            "base_url": "https://openrouter.ai/api/v1",
+            "model": "liquid/lfm-2.5-2.6b:free",
+            "provider": "OpenRouter",
+            "notes": "Liquid AI LFM 2.5 2.6B model on OpenRouter."
+        }
+    },
+    "free-poolside-api": {
+        "title": "Free Poolside API — Laguna S & XS Models & Limits (2026)",
+        "h1": "Free Poolside API Endpoints & Rate Limits",
+        "bluf": "Poolside Laguna models (Laguna S 2.1 and XS 2.1 with 256K context) are available on OpenRouter free tier with 20 RPM and up to 1,000 RPD.",
+        "desc": "Free Poolside API endpoints. Rate limits, context windows, and base URLs for Laguna S and Laguna XS code models.",
+        "filter": lambda p, m: "poolside" in m["name"].lower() or "laguna" in m["name"].lower(),
+        "tool_snippet": {
+            "base_url": "https://openrouter.ai/api/v1",
+            "model": "poolside/laguna-s-2.1:free",
+            "provider": "OpenRouter",
+            "notes": "Poolside Laguna S 2.1 model with 256K context."
+        }
+    },
+    "free-inkling-api": {
+        "title": "Free Inkling API — Thinking Machines Reasoning Models (2026)",
+        "h1": "Free Inkling API Endpoints & Rate Limits",
+        "bluf": "Thinking Machines Inkling and Inkling-Small reasoning models featuring 1M (1024K) context windows are hosted for free on OpenRouter with 20 RPM.",
+        "desc": "Free Inkling reasoning API directory. Rate limits, 1M context windows, and base URLs for Thinking Machines models.",
+        "filter": lambda p, m: "inkling" in m["name"].lower() or "thinkingmachines" in m["name"].lower(),
+        "tool_snippet": {
+            "base_url": "https://openrouter.ai/api/v1",
+            "model": "thinkingmachines/inkling:free",
+            "provider": "OpenRouter",
+            "notes": "Thinking Machines Inkling reasoning model with 1024K context."
+        }
+    },
+    "free-deepseek-v3-api": {
+        "title": "Free DeepSeek-V3 API — $0 Endpoints & Rate Limits (2026)",
+        "h1": "Free DeepSeek-V3 API Endpoints & Rate Limits",
+        "bluf": "Free DeepSeek-V3.1 and V3.2 API access is live on SambaNova Cloud (128K context, high tok/s) and DeepInfra without requiring a paid subscription.",
+        "desc": "Free DeepSeek-V3 API directory. Rate limits, context windows, and base URLs for DeepSeek-V3.1 and V3.2 without credit card.",
+        "filter": lambda p, m: "deepseek" in m["name"].lower() and any(v in m["name"].lower() for v in ["v3", "3.1", "3.2"]),
+        "tool_snippet": {
+            "base_url": "https://api.sambanova.ai/v1",
+            "model": "DeepSeek-V3.2",
+            "provider": "SambaNova Cloud",
+            "notes": "Direct OpenAI-compatible base URL for free DeepSeek-V3.2 inference."
+        }
+    },
+    "free-qwen-coder-api": {
+        "title": "Free Qwen Coder API — Coding Models & Rate Limits (2026)",
+        "h1": "Free Qwen Coder API Endpoints & Rate Limits",
+        "bluf": "Qwen 3.8 and Qwen 2.5 Coder models are available via Groq, Cerebras, DeepInfra, and AWS Kiro with standard OpenAI-compatible base URLs.",
+        "desc": "Free Qwen Coder API directory. Compare rate limits, context windows, and providers offering free Qwen code generation models.",
+        "filter": lambda p, m: "qwen" in m["name"].lower() and ("coder" in m["name"].lower() or "qwen" in m["name"].lower()),
+        "tool_snippet": {
+            "base_url": "https://api.groq.com/openai/v1",
+            "model": "qwen/qwen3.8-27b",
+            "provider": "Groq",
+            "notes": "Fast code generation with Qwen 3.8 on Groq."
+        }
+    },
+    "free-llama-3-3-70b-api": {
+        "title": "Free Llama 3.3 70B API — $0 Endpoints & Limits (2026)",
+        "h1": "Free Llama 3.3 70B API Endpoints & Rate Limits",
+        "bluf": "Meta Llama 3.3 70B Instruct is available with full free tier access on SambaNova Cloud (128K context) and Together AI ($5 trial credits) with OpenAI-compatible endpoints.",
+        "desc": "Free Meta Llama 3.3 70B API endpoints. Verified rate limits, context windows, and setup guides without credit card.",
+        "filter": lambda p, m: "llama" in m["name"].lower() and ("70b" in m["name"].lower() or "3.3" in m["name"].lower()),
+        "tool_snippet": {
+            "base_url": "https://api.sambanova.ai/v1",
+            "model": "Meta-Llama-3.3-70B-Instruct",
+            "provider": "SambaNova Cloud",
+            "notes": "High-throughput Llama 3.3 70B Instruct via SambaNova Cloud."
+        }
+    },
+    "free-gemini-flash-api": {
+        "title": "Free Gemini Flash API — 1M Context & Rate Limits (2026)",
+        "h1": "Free Gemini Flash API Endpoints & Rate Limits",
+        "bluf": "Gemini 2.5 Flash, 3.5 Flash, and Flash-Lite provide 1,000,000 token context windows at 15 RPM completely free via Google AI Studio API and OpenAI base URL.",
+        "desc": "Free Gemini Flash API directory. Compare rate limits, 1M context windows, and base URLs across all Gemini Flash versions.",
+        "filter": lambda p, m: "gemini" in m["name"].lower() and "flash" in m["name"].lower(),
+        "tool_snippet": {
+            "base_url": "https://generativelanguage.googleapis.com/v1beta/openai/",
+            "model": "gemini-2.5-flash",
+            "provider": "Google AI Studio (Gemini API)",
+            "notes": "Official Google AI Studio OpenAI-compatible endpoint with 1M context."
+        }
+    },
+    "free-codestral-api": {
+        "title": "Free Codestral API — Mistral Code Model & Limits (2026)",
+        "h1": "Free Codestral API Endpoints & Rate Limits",
+        "bluf": "Mistral Codestral is available for free developer use on Mistral La Plateforme Experiment tier at 1 req/sec and 1 billion tokens per month.",
+        "desc": "Free Mistral Codestral API key setup. Rate limits, monthly token quotas, and base URLs for coding tasks.",
+        "filter": lambda p, m: "codestral" in m["name"].lower(),
+        "tool_snippet": {
+            "base_url": "https://api.mistral.ai/v1",
+            "model": "Codestral",
+            "provider": "Mistral La Plateforme",
+            "notes": "Codestral endpoint with 1B free tokens/month on Experiment tier."
+        }
+    },
+    "free-glm-4-flash-api": {
+        "title": "Free GLM-4 Flash API — Fast $0 Endpoints & Limits (2026)",
+        "h1": "Free GLM-4 Flash API Endpoints & Rate Limits",
+        "bluf": "Z.AI provides GLM-4.7-Flash and GLM-4.5-Flash completely free with up to 203K context, fast inference speeds, and an OpenAI-compatible base URL.",
+        "desc": "Free GLM-4 Flash API endpoints. Rate limits, context windows, and OpenAI-compatible base URL configuration for Z.AI.",
+        "filter": lambda p, m: "glm-4" in m["name"].lower() and "flash" in m["name"].lower(),
+        "tool_snippet": {
+            "base_url": "https://open.bigmodel.cn/api/paas/v4/",
+            "model": "GLM-4.7-Flash",
+            "provider": "Z.AI (Zhipu)",
+            "notes": "OpenAI-compatible endpoint for free GLM-4.7-Flash inference."
+        }
+    },
+    "free-llm-api": {
+        "title": "Free LLM API Directory — All $0 Developer Endpoints (2026)",
+        "h1": "Free LLM API Directory: Complete $0 Endpoints",
+        "bluf": "Directory of all 18 LLM providers offering direct, free API keys for developers. Filtered by rate limits (RPM/TPM/RPD), context window size, and terms.",
+        "desc": "Complete directory of free LLM APIs for developers. Compare rate limits, tokens per minute, daily caps, and context windows across all providers.",
+        "filter": lambda p, m: p.get("access_method") == "api_key",
+        "tool_snippet": {
+            "base_url": "https://api.groq.com/openai/v1",
+            "model": "qwen/qwen3.8-27b",
+            "provider": "Groq",
+            "notes": "Direct, card-free LLM API key with sub-second response times."
+        }
+    },
+    "free-llm-api-no-credit-card": {
+        "title": "Free LLM API Without Credit Card — 14 Card-Free Providers (2026)",
+        "h1": "Free LLM APIs Requiring No Credit Card",
+        "bluf": "14 LLM providers offer permanently free API keys with zero credit card required at signup, including Google AI Studio, Groq, SambaNova, OpenRouter, and Z.AI.",
+        "desc": "Verified free LLM APIs requiring no credit card at signup. Rate limits, context windows, and base URLs for 14 card-free inference providers.",
+        "filter": lambda p, m: p.get("access_method") == "api_key" and "Trial" not in p.get("free_type", ""),
+        "tool_snippet": {
+            "base_url": "https://api.groq.com/openai/v1",
+            "model": "qwen/qwen3.8-27b",
+            "provider": "Groq",
+            "notes": "Card-free, instant developer key setup."
+        }
+    },
+    "free-openai-compatible-api": {
+        "title": "Free OpenAI-Compatible API — Base URLs & Drop-in Keys (2026)",
+        "h1": "Free OpenAI-Compatible API Endpoints & Base URLs",
+        "bluf": "17 free providers support the OpenAI /v1/chat/completions specification. Swap base_url and api_key directly in the OpenAI SDK, LangChain, LiteLLM, or Cursor.",
+        "desc": "Free OpenAI-compatible API base URLs. Drop-in endpoints for Groq, SambaNova, Google AI Studio, DeepInfra, and Z.AI with code examples.",
+        "filter": lambda p, m: bool(p.get("base_url")),
+        "tool_snippet": {
+            "base_url": "https://api.sambanova.ai/v1",
+            "model": "DeepSeek-V3.2",
+            "provider": "SambaNova Cloud",
+            "notes": "Universal drop-in for any client expecting the OpenAI completions API."
+        }
+    },
+    "free-keyless-api": {
+        "title": "Free Keyless LLM API — Anonymous & Zero-Auth Endpoints (2026)",
+        "h1": "Free Keyless LLM APIs: Zero Authentication Required",
+        "bluf": "Keyless inference endpoints require no API key or account creation. Callable immediately via IP rate-limiting on OVHcloud, Kilo Gateway, and Hugging Face.",
+        "desc": "Zero-auth and keyless LLM API endpoints. Test LLMs instantly without accounts, logins, or API keys using anonymous IP-limited endpoints.",
+        "filter": lambda p, m: p.get("name") in ("OVHcloud AI Endpoints", "Kilo Gateway", "Cloudflare Workers AI", "Hugging Face"),
+        "tool_snippet": {
+            "base_url": "https://endpoints.ai.cloud.ovh.net/v1",
+            "model": "Mistral 7B (Serverless)",
+            "provider": "OVHcloud AI Endpoints",
+            "notes": "Anonymous IP-based rate limiting without mandatory signup."
+        }
+    },
+    "free-trial-credits": {
+        "title": "Free LLM Trial Credits — $5 to $10 Free Developer Credits (2026)",
+        "h1": "Free LLM API Trial Credits & Grants",
+        "bluf": "High-throughput cloud providers offering free trial credits ($5-$10) for testing, including Cerebras (wafer-scale 2,000+ tok/s), DeepInfra, and Together AI.",
+        "desc": "Free LLM trial credits and developer grants. Compare trial credit amounts, expiration terms, and throughput on Cerebras, DeepInfra, and Together AI.",
+        "filter": lambda p, m: "Trial" in p.get("free_type", ""),
+        "tool_snippet": {
+            "base_url": "https://api.deepinfra.com/v1/openai",
+            "model": "deepseek-ai/DeepSeek-V3.1",
+            "provider": "DeepInfra",
+            "notes": "Free sign-up trial credits with OpenAI-compatible API base URL."
+        }
+    },
+    "free-coding-api": {
+        "title": "Free Coding LLM API — Code Generation Models & Limits (2026)",
+        "h1": "Free Coding LLM APIs & Code Generation Models",
+        "bluf": "Free APIs specialized for code generation, refactoring, and agentic workflows, featuring Codestral, Qwen 3.8 Coder, North Mini Code, and Muse Spark Contributor.",
+        "desc": "Best free coding LLM APIs. Rate limits, context windows, and base URLs for Codestral, Qwen Coder, and code-specialized models.",
+        "filter": lambda p, m: any(w in m["name"].lower() for w in ["code", "coder", "codestral", "spark", "laguna"]) or (p.get("artifact") == "code" and p.get("access_method") == "api_key"),
+        "tool_snippet": {
+            "base_url": "https://api.mistral.ai/v1",
+            "model": "Codestral",
+            "provider": "Mistral La Plateforme",
+            "notes": "Dedicated code generation model with 1B free tokens/month."
+        }
+    },
+    "free-vision-api": {
+        "title": "Free Vision LLM API — Multimodal Image & Text Models (2026)",
+        "h1": "Free Vision & Multimodal LLM APIs",
+        "bluf": "Free vision APIs supporting image understanding, OCR, and document analysis, including Gemini 2.5 Flash, GLM-4.6V-Flash, and Nemotron 3.5 Super-VL.",
+        "desc": "Free vision LLM API directory. Rate limits and multimodal endpoints for Gemini Flash, GLM-4.6V, and Nemotron Super-VL.",
+        "filter": lambda p, m: any(w in m["name"].lower() for w in ["vision", "vl", "omni", "flash-preview", "4.6v"]),
+        "tool_snippet": {
+            "base_url": "https://generativelanguage.googleapis.com/v1beta/openai/",
+            "model": "gemini-2.5-flash",
+            "provider": "Google AI Studio (Gemini API)",
+            "notes": "Multimodal image and video input via OpenAI-compatible endpoint."
+        }
+    },
+    "free-reasoning-api": {
+        "title": "Free Reasoning LLM API — Chain-of-Thought Models (2026)",
+        "h1": "Free Reasoning & Chain-of-Thought LLM APIs",
+        "bluf": "Free reasoning APIs offering extended thinking and step-by-step verification, featuring Nemotron Reasoning, Inkling, and DeepSeek R1 distills.",
+        "desc": "Free reasoning and thinking LLM APIs. Rate limits, context windows, and base URLs for DeepSeek R1 distills and Nemotron reasoning models.",
+        "filter": lambda p, m: any(w in m["name"].lower() for w in ["reasoning", "r1", "inkling", "ultra", "thinking"]),
+        "tool_snippet": {
+            "base_url": "https://openrouter.ai/api/v1",
+            "model": "thinkingmachines/inkling:free",
+            "provider": "OpenRouter",
+            "notes": "Chain-of-thought reasoning model with 1M context."
+        }
+    },
+    "free-long-context-api": {
+        "title": "Free Long-Context LLM API — 1M+ Token Windows at $0 (2026)",
+        "h1": "Free Long-Context LLM APIs (128K to 1M+ Tokens)",
+        "bluf": "Free LLM APIs supporting massive context windows from 128,000 to 1,000,000 tokens for large-codebase analysis and document synthesis.",
+        "desc": "Directory of free long-context LLM APIs. Compare 128K, 256K, and 1,000,000 token context window providers and rate limits.",
+        "filter": lambda p, m: any(w in str(m.get("context", "")).lower() for w in ["1000000", "1024k", "256k", "203k", "250k"]),
+        "tool_snippet": {
+            "base_url": "https://generativelanguage.googleapis.com/v1beta/openai/",
+            "model": "gemini-2.5-flash",
+            "provider": "Google AI Studio (Gemini API)",
+            "notes": "1,000,000 token context window on Google AI Studio free tier."
+        }
+    },
+    "free-cursor-api": {
+        "title": "Free API Keys for Cursor — OpenAI Base URLs & Setup (2026)",
+        "h1": "Free API Keys for Cursor: OpenAI-Compatible Setup",
+        "bluf": "Connect free high-speed LLM APIs directly to Cursor IDE using custom OpenAI Base URLs. Works with Groq, SambaNova, Google AI Studio, and DeepInfra with zero fees.",
+        "desc": "How to get free API keys for Cursor IDE. Step-by-step OpenAI base URL override instructions, verified models, and speed benchmarks.",
+        "filter": lambda p, m: bool(p.get("base_url")) and p.get("access_method") == "api_key",
+        "tool_snippet": {
+            "base_url": "https://api.groq.com/openai/v1",
+            "model": "qwen/qwen3.8-27b",
+            "provider": "Groq",
+            "notes": "In Cursor Settings → Models → OpenAI API Key → Override OpenAI Base URL, paste this URL."
+        }
+    },
+    "free-cline-api": {
+        "title": "Free API Keys for Cline & Roo Code — Endpoints & Setup (2026)",
+        "h1": "Free API Endpoints for Cline & Roo Code",
+        "bluf": "Configure Cline and Roo Code autonomous coding agents using free OpenAI-compatible endpoints or Google AI Studio keys without paying Anthropic or OpenAI API fees.",
+        "desc": "Use free LLM APIs in Cline and Roo Code. Configure OpenAI-compatible providers, set custom base URLs, and choose optimal free coding models.",
+        "filter": lambda p, m: bool(p.get("base_url")) and p.get("access_method") == "api_key",
+        "tool_snippet": {
+            "base_url": "https://generativelanguage.googleapis.com/v1beta/openai/",
+            "model": "gemini-2.5-flash",
+            "provider": "Google AI Studio (Gemini API)",
+            "notes": "In Cline settings, select OpenAI Compatible provider and enter this base URL."
+        }
+    },
+    "free-claude-code-api": {
+        "title": "Free API Keys for Claude Code — Compatible Providers (2026)",
+        "h1": "Free API Keys & Endpoints for Claude Code CLI",
+        "bluf": "Free endpoints compatible with Claude Code CLI and agent harnesses via OpenAI-compatible proxy layers, Google Gemini adapters, or Groq fast inference.",
+        "desc": "How to run Claude Code CLI with free LLM endpoints. Compatible providers, proxy setup, and verified rate limits.",
+        "filter": lambda p, m: bool(p.get("base_url")) and p.get("access_method") == "api_key",
+        "tool_snippet": {
+            "base_url": "https://api.groq.com/openai/v1",
+            "model": "qwen/qwen3.8-27b",
+            "provider": "Groq",
+            "notes": "Use with Claude Code CLI proxy wrappers or compatible agent frameworks."
+        }
+    }
+}
+
+
+def free_model_row_html(p, m):
+    e = html.escape
+    p_link = f'<a href="/providers/{slug(p["name"])}/">{e(p["name"])}</a>'
+    cells = [
+        f"<td><strong>{e(str(m['name']))}</strong></td>",
+        f"<td>{p_link}</td>",
+        f"<td>{e(str(m['cost']))}</td>",
+        f"<td>{e(str(m['context']))}</td>",
+        f"<td>{e(str(m['rpm']))}</td>",
+        f"<td>{e(str(m['tpm']))}</td>",
+        f"<td>{e(str(m['rpd']))}</td>",
+        f"<td>{e(str(m['tpd']))}</td>",
+        f"<td>{e(str(m['verified']))}</td>",
+    ]
+    return f"<tr>{''.join(cells)}</tr>"
+
+
+def free_model_row_md(p, m):
+    p_link = f"[{p['name']}](/providers/{slug(p['name'])}/)"
+    vals = [m["name"], p_link, m["cost"], m["context"], m["rpm"], m["tpm"], m["rpd"], m["tpd"], m["verified"]]
+    return "| " + " | ".join(str(v).replace("|", "\\|") for v in vals) + " |"
+
+
+def free_answer_block(cfg, matched):
+    bluf = cfg["bluf"]
+    prov_count = len(set(p["name"] for p, _ in matched))
+    model_count = len(matched)
+    seen = set()
+    top_provs = []
+    for p, _ in matched:
+        if p["name"] not in seen:
+            seen.add(p["name"])
+            top_provs.append(p)
+            if len(top_provs) == 4:
+                break
+    takeaways = []
+    for p in top_provs:
+        p_models = [m["name"] for p_m, m in matched if p_m["name"] == p["name"]]
+        models_str = ", ".join(p_models[:2])
+        if len(p_models) > 2:
+            models_str += f" (+{len(p_models)-2} more)"
+        takeaways.append(f'<li><strong><a href="/providers/{slug(p["name"])}/">{html.escape(p["name"])}</a>:</strong> {html.escape(p["free_type"])} — {html.escape(models_str)}</li>')
+    return f"""<section class="answer">
+  <h2>Quick Answer</h2>
+  <p>{html.escape(bluf)}</p>
+  <ul>
+    {"".join(takeaways)}
+  </ul>
+  <p class="answer-more">Total available in this directory: {count_noun(prov_count, 'provider')}, {count_noun(model_count, 'free model')}. Verified limits below.</p>
+</section>"""
+
+
+def free_footer_nav(verified):
+    cols = []
+    col_families = [
+        ("free-deepseek-api", "Free DeepSeek API"),
+        ("free-glm-api", "Free GLM API"),
+        ("free-qwen-api", "Free Qwen API"),
+        ("free-llama-api", "Free Llama API"),
+        ("free-gemini-api", "Free Gemini API"),
+        ("free-mistral-api", "Free Mistral API"),
+        ("free-muse-spark-api", "Free Muse Spark API"),
+        ("free-nemotron-api", "Free Nemotron API"),
+        ("free-gemma-api", "Free Gemma API"),
+        ("free-cohere-api", "Free Cohere API"),
+    ]
+    cols.append('<div class="fcol"><h3>Model Families</h3><ul>' +
+                ''.join(f'<li><a href="/{s}/">{t}</a></li>' for s, t in col_families) +
+                '</ul></div>')
+
+    col_flagship = [
+        ("free-deepseek-v3-api", "Free DeepSeek-V3 API"),
+        ("free-qwen-coder-api", "Free Qwen Coder API"),
+        ("free-llama-3-3-70b-api", "Free Llama 3.3 70B API"),
+        ("free-gemini-flash-api", "Free Gemini Flash API"),
+        ("free-codestral-api", "Free Codestral API"),
+        ("free-glm-4-flash-api", "Free GLM-4 Flash API"),
+        ("free-liquid-api", "Free Liquid LFM API"),
+        ("free-poolside-api", "Free Poolside API"),
+        ("free-inkling-api", "Free Inkling API"),
+    ]
+    cols.append('<div class="fcol"><h3>Flagship Models</h3><ul>' +
+                ''.join(f'<li><a href="/{s}/">{t}</a></li>' for s, t in col_flagship) +
+                '</ul></div>')
+
+    col_friction = [
+        ("free-llm-api", "Free LLM API Directory"),
+        ("free-llm-api-no-credit-card", "No Credit Card APIs"),
+        ("free-openai-compatible-api", "OpenAI Compatible APIs"),
+        ("free-keyless-api", "Keyless / Anonymous APIs"),
+        ("free-trial-credits", "Free Trial Credits ($5-$10)"),
+    ]
+    cols.append('<div class="fcol"><h3>Friction Tiers</h3><ul>' +
+                ''.join(f'<li><a href="/{s}/">{t}</a></li>' for s, t in col_friction) +
+                '</ul></div>')
+
+    col_tools = [
+        ("free-coding-api", "Free Coding APIs"),
+        ("free-vision-api", "Free Vision APIs"),
+        ("free-reasoning-api", "Free Reasoning APIs"),
+        ("free-long-context-api", "Free Long Context APIs"),
+        ("free-cursor-api", "Free Keys for Cursor"),
+        ("free-cline-api", "Free Keys for Cline"),
+        ("free-claude-code-api", "Free Keys for Claude Code"),
+    ]
+    cols.append('<div class="fcol"><h3>Tasks & Tools</h3><ul>' +
+                ''.join(f'<li><a href="/{s}/">{t}</a></li>' for s, t in col_tools) +
+                '</ul></div>')
+
+    col_machine = [
+        ("/", "Full Directory (Home)"),
+        ("/llms.txt", "llms.txt (Agent Summary)"),
+        ("/data/providers.json", "providers.json (Raw Data)"),
+        ("/data/schema.json", "schema.json (JSON Schema)"),
+        ("/sitemap.xml", "sitemap.xml (All Pages)"),
+    ]
+    cols.append('<div class="fcol"><h3>Machine & Catalog</h3><ul>' +
+                ''.join(f'<li><a href="{u}">{t}</a></li>' for u, t in col_machine) +
+                '</ul></div>')
+
+    return ('<nav class="fcols" aria-label="Free API Slices">' + "".join(cols) + '</nav>'
+            f'<p class="fnote">FreeInference.dev programmatic slice · verified {html.escape(verified)}. Limits change without notice — this is a map, not a contract.</p>')
+
+
+def build_free_page(slug_key, cfg):
+    matched = [(p, m) for p in ROWS for m in p["models"] if cfg["filter"](p, m)]
+    title = cfg["title"]
+    desc = cfg["desc"]
+    h1 = cfg["h1"]
+    page_url = f"{WEBSITE}/{slug_key}/"
+    prov_count = len(set(p["name"] for p, _ in matched))
+    model_count = len(matched)
+    max_p = max_verified([p for p, _ in matched])
+    verified = html.escape(max_p)
+    verified_human = date.fromisoformat(max_p).strftime("%d %b %Y")
+    tagline = f"{count_noun(prov_count, 'provider')} · {count_noun(model_count, 'free model')} · verified {verified_human}"
+    answer = free_answer_block(cfg, matched)
+    footer = free_footer_nav(verified)
+    quick_connect_html = ""
+    if "tool_snippet" in cfg:
+        ts = cfg["tool_snippet"]
+        b_url = html.escape(ts["base_url"])
+        m_name = html.escape(ts["model"])
+        p_name = html.escape(ts["provider"])
+        p_slug = slug(ts["provider"])
+        notes = html.escape(ts.get("notes", ""))
+        quick_connect_html = f"""<section class="quick-connect">
+  <h2>⚡ Quick Connect</h2>
+  <p>{notes}</p>
+  <div class="code-box"><code><strong>Base URL:</strong> {b_url}<br>
+<strong>Model:</strong> {m_name}<br>
+<strong>Provider:</strong> <a href="/providers/{p_slug}/">{p_name}</a></code></div>
+  <pre class="code-box"><code class="language-python">from openai import OpenAI
+
+client = OpenAI(
+    base_url="{b_url}",
+    api_key="your-api-key",  # from {p_name}
+)
+
+response = client.chat.completions.create(
+    model="{m_name}",
+    messages=[{{"role": "user", "content": "Hello!"}}],
+)
+print(response.choices[0].message.content)</code></pre>
+</section>"""
+    rows_html = "\n".join(free_model_row_html(p, m) for p, m in matched)
+    ga_id = DATA.get("ga_measurement_id", "")
+    ga = (f'<script async src="https://www.googletagmanager.com/gtag/js?id={ga_id}"></script>\n'
+          f'<script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments)}};'
+          f"gtag('js',new Date());gtag('config','{ga_id}');</script>") if ga_id else ""
+    ld = json.dumps({
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "CollectionPage",
+                "name": title,
+                "description": desc,
+                "url": page_url,
+                "dateModified": max_p,
+                "version": DATA_VERSION,
+                "isPartOf": {"@type": "Dataset", "name": TITLE, "url": WEBSITE},
+                "isAccessibleForFree": True,
+                "offers": {
+                    "@type": "Offer",
+                    "price": "0",
+                    "priceCurrency": "USD"
+                }
+            },
+            {
+                "@type": "FAQPage",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": f"How do I access {h1}?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": cfg["bluf"]
+                        }
+                    }
+                ]
+            }
+        ]
+    }, ensure_ascii=False)
+    return f"""<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{html.escape(title)}</title>
+<meta name="description" content="{html.escape(desc)}">
+<meta name="data-version" content="{DATA_VERSION}">
+<link rel="canonical" href="{page_url}">
+<link rel="alternate" type="text/markdown" href="{page_url}index.md">
+
+<meta property="og:site_name" content="{html.escape(TITLE)}">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{page_url}">
+<meta property="og:title" content="{html.escape(title)}">
+<meta property="og:description" content="{html.escape(desc)}">
+<meta property="og:updated_time" content="{verified}T00:00:00Z">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="{html.escape(title)}">
+<meta name="twitter:description" content="{html.escape(desc)}">
+
+<link rel="icon" href="data:,">
+{ga}
+{PLAUSIBLE}\n{CLARITY}
+<script type="application/ld+json">{ld}</script>
+<style>
+{CSS}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>{html.escape(h1)}</h1>
+    <p class="tagline">{tagline}</p>
+    <span class="meta"><a href="/">← all free providers</a> · <a href="/llms.txt">llms.txt</a></span>
+  </header>
+
+  {answer}
+
+  {quick_connect_html}
+
+  <section class="models">
+    <h2>Rate Limits &amp; Model Inventory</h2>
+    <div class="table-wrap"><table aria-label="{html.escape(h1)} rate limits and models">
+      <thead><tr><th scope="col">Model</th><th scope="col">Provider</th><th scope="col">Cost</th><th scope="col">Context</th><th scope="col">RPM</th><th scope="col">TPM</th><th scope="col">RPD</th><th scope="col">Day tokens</th><th scope="col">Verified</th></tr></thead>
+      <tbody>
+{rows_html}
+      </tbody>
+    </table></div>
+  </section>
+
+  <p>Machine-readable: <a href="{page_url}index.md">Markdown Twin</a> · <a href="/data/providers.json">providers.json</a> · <a href="/sitemap.xml">sitemap.xml</a></p>
+  <p><a href="/">← back to the full directory</a></p>
+
+  <footer>
+  {footer}
+  </footer>
+</div>
+</body>
+</html>
+"""
+
+
+def build_free_md(slug_key, cfg):
+    matched = [(p, m) for p in ROWS for m in p["models"] if cfg["filter"](p, m)]
+    h1 = cfg["h1"]
+    bluf = cfg["bluf"]
+    page_url = f"{WEBSITE}/{slug_key}/"
+    prov_count = len(set(p["name"] for p, _ in matched))
+    model_count = len(matched)
+    max_p = max_verified([p for p, _ in matched])
+    verified_human = date.fromisoformat(max_p).strftime("%d %b %Y")
+    lines = [
+        f"# {h1}",
+        "",
+        f"> {count_noun(prov_count, 'provider')} · {count_noun(model_count, 'free model')} · verified {verified_human}",
+        "",
+        "## Quick Answer",
+        "",
+        bluf,
+        "",
+    ]
+    if "tool_snippet" in cfg:
+        ts = cfg["tool_snippet"]
+        lines += [
+            "## Quick Connect",
+            "",
+            ts.get("notes", ""),
+            "",
+            f"- **Base URL:** `{ts['base_url']}`",
+            f"- **Model:** `{ts['model']}`",
+            f"- **Provider:** [{ts['provider']}](/providers/{slug(ts['provider'])}/)",
+            "",
+            "```python",
+            "from openai import OpenAI",
+            "",
+            "client = OpenAI(",
+            f"    base_url=\"{ts['base_url']}\",",
+            f"    api_key=\"your-api-key\",  # from {ts['provider']}",
+            ")",
+            "",
+            "response = client.chat.completions.create(",
+            f"    model=\"{ts['model']}\",",
+            "    messages=[{\"role\": \"user\", \"content\": \"Hello!\"}],",
+            ")",
+            "print(response.choices[0].message.content)",
+            "```",
+            "",
+        ]
+    lines += [
+        "## Rate Limits & Model Inventory",
+        "",
+        "| Model | Provider | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |",
+        "| --- | --- | --- | --- | --- | --- | --- | --- | --- |",
+    ]
+    for p, m in matched:
+        lines.append(free_model_row_md(p, m))
+    lines += [
+        "",
+        f"Web page: {page_url}",
+        f"Machine-readable JSON: /data/providers.json",
+        f"Agent summary: /llms.txt",
+        "",
+        f"Numbers cross-checked against official docs and live probes as of {max_p}. Limits change without notice — this is a map, not a contract.",
+    ]
+    return "\n".join(lines) + "\n"
+
+
 def build_404():
     return f"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><title>404 — {html.escape(TITLE)}</title>
@@ -1000,8 +1753,14 @@ def main():
         pdir.mkdir(parents=True, exist_ok=True)
         (pdir / "index.html").write_text(build_provider_page(p))
         (pdir / "index.md").write_text(build_provider_md(p))
+    for s, cfg in FREE_PAGES_CONFIG.items():
+        sdir = dist / s
+        sdir.mkdir(parents=True, exist_ok=True)
+        (sdir / "index.html").write_text(build_free_page(s, cfg))
+        (sdir / "index.md").write_text(build_free_md(s, cfg))
     sitemap_urls = [f"  <url><loc>{WEBSITE}/</loc><lastmod>{VERIFIED_MAX}</lastmod></url>"]
     sitemap_urls += [f"  <url><loc>{WEBSITE}/providers/{slug(p['name'])}/</loc><lastmod>{p['verified']}</lastmod></url>" for p in ROWS]
+    sitemap_urls += [f"  <url><loc>{WEBSITE}/{s}/</loc><lastmod>{VERIFIED_MAX}</lastmod></url>" for s in sorted(FREE_PAGES_CONFIG.keys())]
     (dist / "sitemap.xml").write_text(
         '<?xml version="1.0" encoding="UTF-8"?>\n'
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
@@ -1037,6 +1796,9 @@ def main():
         f"/providers/*\n"
         f"  X-Data-Version: {DATA_VERSION}\n"
         f"  X-Last-Verified: {VERIFIED_MAX}\n"
+        f"/free-*\n"
+        f"  X-Data-Version: {DATA_VERSION}\n"
+        f"  X-Last-Verified: {VERIFIED_MAX}\n"
     )
     # ponytail: per-provider JSON split; whole file is ~40KB so single-file fetch stays the default path
     for p in ROWS:
@@ -1064,8 +1826,19 @@ def main():
         assert f'name="data-version" content="{DATA_VERSION}"' in page, f"{p['name']}: data version missing"
         titles.append(m.group(1))
     assert len(titles) == len(set(titles)), "duplicate provider titles"
+    free_titles = []
+    for s, cfg in FREE_PAGES_CONFIG.items():
+        page = (dist / s / "index.html").read_text()
+        m = re.search(r"<title>(.*?)</title>", page)
+        assert m, f"{s}: missing title"
+        assert len(m.group(1)) <= 75, f"{s}: title too long ({len(m.group(1))})"
+        assert f'name="data-version" content="{DATA_VERSION}"' in page, f"{s}: data version missing"
+        assert f'<link rel="canonical" href="{WEBSITE}/{s}/">' in page, f"{s}: canonical URL missing"
+        assert f'<link rel="alternate" type="text/markdown" href="{WEBSITE}/{s}/index.md">' in page, f"{s}: md alternate missing"
+        free_titles.append(m.group(1))
+    assert len(free_titles) == len(set(free_titles)), "duplicate free page titles"
     print(f"ok: {count_noun(len(ROWS), 'provider')}, {count_noun(total, 'model')} -> dist/ (verified {VERIFIED_MAX}, version {DATA_VERSION})")
-    print(f"verify: {len(titles)} unique provider pages · {index_html.count('href=\"/providers/')} footer links")
+    print(f"verify: {len(titles)} provider pages · {len(free_titles)} free-* pages · {index_html.count('href=\"/providers/')} footer links")
 
 
 if __name__ == "__main__":

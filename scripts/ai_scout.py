@@ -26,6 +26,61 @@ from probe import gemini_key, get_json, _live_free_ids, UA
 DATA_PATH = ROOT / "data" / "providers.json"
 REPORT_PATH = ROOT / "data" / "scout_report.json"
 MODEL_NAME = "gemini-3.5-flash-lite"
+ANTIGRAVITY_AGENT = "antigravity-preview-09-2026"
+INTERACTIONS_URL = "https://generativelanguage.googleapis.com/v1beta/interactions"
+
+
+def call_antigravity_agent(prompt, key, timeout=120):
+    """Invoke Antigravity Managed Agent in Google's cloud sandbox with Chrome & web access."""
+    url = f"{INTERACTIONS_URL}?key={key}"
+    body = {
+        "agent": ANTIGRAVITY_AGENT,
+        "input": prompt,
+        "environment": "remote",
+        "background": True,
+        "store": True,
+        "agent_config": {
+            "type": "antigravity",
+            "max_total_tokens": 50000
+        }
+    }
+    req = urllib.request.Request(
+        url,
+        data=json.dumps(body).encode("utf-8"),
+        headers={"Content-Type": "application/json"}
+    )
+    with urllib.request.urlopen(req, timeout=30) as r:
+        init_res = json.load(r)
+    
+    iid = init_res.get("id")
+    if not iid:
+        raise RuntimeError("No interaction ID returned by Antigravity Agent API")
+    
+    poll_url = f"{INTERACTIONS_URL}/{iid}?key={key}"
+    t0 = time.time()
+    while time.time() - t0 < timeout:
+        time.sleep(5)
+        with urllib.request.urlopen(poll_url, timeout=30) as r:
+            poll_res = json.load(r)
+        status = poll_res.get("status")
+        if status in ("completed", "failed", "incomplete"):
+            steps = poll_res.get("steps", [])
+            output_text = ""
+            for s in reversed(steps):
+                for c in s.get("content", []):
+                    if "text" in c and c["text"].strip():
+                        output_text = c["text"].strip()
+                        break
+                if output_text:
+                    break
+            return {
+                "status": status,
+                "output_text": output_text,
+                "steps_count": len(steps),
+                "interaction_id": iid,
+                "usage": poll_res.get("usage", {})
+            }
+    raise TimeoutError(f"Antigravity agent interaction {iid} timed out after {timeout}s")
 
 
 def call_ai_studio(prompt, key, retries=1):
@@ -154,7 +209,7 @@ def audit_catalog(catalog_data):
 
 
 def audit_stale_provider_docs(catalog_data, key, apply_updates=False, max_audits=10):
-    """Autonomously fetch documentation for stale providers and verify with AI Studio."""
+    """Autonomously audit stale providers using Google AI Studio Antigravity Managed Agent in cloud sandbox."""
     today = date.today().isoformat()
     audit_results = []
     audited_count = 0
@@ -177,34 +232,37 @@ def audit_stale_provider_docs(catalog_data, key, apply_updates=False, max_audits
         if not doc_url:
             continue
 
-        print(f"--> Auditing docs for {pname} ({doc_url})...")
+        print(f"--> [Antigravity Agent] Auditing live ground truth for {pname} ({doc_url})...")
         try:
-            req = urllib.request.Request(doc_url, headers=UA)
-            with urllib.request.urlopen(req, timeout=12) as resp:
-                raw_html = resp.read().decode('utf-8', errors='ignore')
-            
-            clean_text = clean_html(raw_html)
-            snippet = extract_pricing_context(clean_text)
+            prompt = f"""You are the Antigravity ground truth auditor for FreeInference.dev.
+Audit the official free tier for provider: {pname}.
+Official Documentation / Pricing URL: {doc_url}
 
-            prompt = f"""You are the automated ground truth auditor for FreeInference.dev.
-Review this official documentation text for {pname}:
-\"\"\"{snippet}\"\"\"
-
-Current cataloged status for {pname}:
+Current catalog data:
 - Free tier type: {p.get('free_type')}
 - Access method: {p.get('access_method')}
 - Cataloged models: {[m.get('name') for m in p.get('models', [])]}
 
-Answer strictly in JSON with keys:
-- "status": "active" (if free tier/allowance still exists), "retired" (if shutdown/paid-only), or "changed"
+Task:
+1. Navigate to {doc_url} using your tools (Google Chrome / url_context / curl / bash).
+2. Inspect the live rendered page, pricing tables, quotas, token limits, and free allowances.
+3. If the page redirected or pricing moved to a subpage, find the current pricing/free tier.
+4. Output your conclusion strictly as a JSON object with keys:
+- "status": "active" (free tier exists), "retired" (discontinued/paid-only), or "changed"
 - "is_free_active": boolean
-- "summary": one sentence describing the verified free offering.
+- "summary": concise 1-sentence summary of the verified free allowance, limits, and reset cadence.
 
-Output strictly valid JSON with no markdown fences.
+Output valid JSON only with no conversational text.
 """
-            ai_raw = call_ai_studio(prompt, key)
-            ai_clean = re.sub(r"^```(?:json)?\s*|\s*```$", "", ai_raw, flags=re.MULTILINE).strip()
-            eval_data = json.loads(ai_clean)
+            agent_res = call_antigravity_agent(prompt, key, timeout=150)
+            raw_out = agent_res.get("output_text", "")
+            
+            # Extract JSON block
+            json_match = re.search(r'\{[^{}]*"status"[^{}]*\}', raw_out, re.DOTALL)
+            if json_match:
+                eval_data = json.loads(json_match.group(0))
+            else:
+                eval_data = json.loads(re.sub(r"^```(?:json)?\s*|\s*```$", "", raw_out, flags=re.MULTILINE).strip())
 
             audit_entry = {
                 "provider": pname,
@@ -212,7 +270,9 @@ Output strictly valid JSON with no markdown fences.
                 "status": eval_data.get("status", "active"),
                 "is_free_active": eval_data.get("is_free_active", True),
                 "summary": eval_data.get("summary", ""),
-                "audited_date": today
+                "audited_date": today,
+                "agent_steps": agent_res.get("steps_count", 0),
+                "interaction_id": agent_res.get("interaction_id")
             }
             audit_results.append(audit_entry)
             audited_count += 1
@@ -221,12 +281,12 @@ Output strictly valid JSON with no markdown fences.
                 p["verified"] = today
                 for m in p.get("models", []):
                     m["verified"] = today
-                print(f"  ✓ Verified active: refreshed {pname} verification date to {today}.")
+                print(f"  ✓ Verified active ({agent_res.get('steps_count', 0)} agent steps): refreshed {pname} verification date to {today}.")
             elif not eval_data.get("is_free_active"):
-                print(f"  ⚠ WARNING: AI flagged {pname} as NOT active/free: {eval_data.get('summary')}")
+                print(f"  ⚠ WARNING: Agent flagged {pname} as NOT active/free: {eval_data.get('summary')}")
 
         except Exception as e:
-            print(f"  Notice: doc audit skipped for {pname}: {e}")
+            print(f"  Notice: Antigravity agent audit skipped for {pname}: {e}")
             audit_results.append({
                 "provider": pname,
                 "docs_url": doc_url,
@@ -304,7 +364,7 @@ Output strictly valid JSON with no markdown formatting.
     # Build report
     report = {
         "scouted_date": today,
-        "model_used": MODEL_NAME,
+        "model_used": f"{MODEL_NAME} + {ANTIGRAVITY_AGENT}",
         "providers_audited": len(catalog_data["providers"]),
         "models_cataloged": len(existing_models),
         "audit_summary": audit_summary,
@@ -323,7 +383,7 @@ Output strictly valid JSON with no markdown formatting.
     if gh_summary_path:
         with open(gh_summary_path, "a") as f:
             f.write(f"### 🤖 FreeInference Nightly AI Scout & Audit ({today})\n\n")
-            f.write(f"- **Engine**: Google AI Studio `{MODEL_NAME}`\n")
+            f.write(f"- **Engines**: Discovery via `{MODEL_NAME}` · Live Sandbox Audits via `{ANTIGRAVITY_AGENT}`\n")
             f.write(f"- **Catalog Size**: {len(catalog_data['providers'])} providers · {len(existing_models)} models\n")
             f.write(f"- **Doc Audits Conducted**: {len(doc_audits)}\n")
             f.write(f"- **Live Gateway Models**: {len(live_models)} across 4 endpoints\n\n")

@@ -292,8 +292,17 @@ def check_doc_links(data):
             with urllib.request.urlopen(req, timeout=15) as r:
                 if r.status >= 400:
                     out.append(f"{prov['name']}: docs URL returned {r.status}")
-        except Exception as e:
-            out.append(f"{prov['name']}: docs URL unreachable ({e})")
+        except Exception:
+            # CDNs or web frameworks (e.g. Kaggle, Cloudflare) often reject HEAD (404/405); fallback to GET
+            try:
+                get_headers = dict(UA)
+                get_headers["Range"] = "bytes=0-1024"
+                req = urllib.request.Request(prov["url"], headers=get_headers, method="GET")
+                with urllib.request.urlopen(req, timeout=15) as r:
+                    if r.status >= 400:
+                        out.append(f"{prov['name']}: docs URL returned {r.status}")
+            except Exception as e2:
+                out.append(f"{prov['name']}: docs URL unreachable ({e2})")
     return out
 
 

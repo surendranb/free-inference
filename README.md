@@ -202,96 +202,96 @@ Free LLM inference you can build with: an API key, a CLI login, or inference bun
 
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Auto-selected (GPT-5 mini, Claude Haiku/Sonnet, Gemini Flash line) | $0 | Not published | Not published | Not published | Not published | Not published | 2026-09-12 |
+| Auto-selected (GPT-5 mini, Claude Haiku/Sonnet, Gemini Flash line) | $0 | Not published | Not published | Not published | Not published | Not published | 2026-10-29 |
 
 ### Kiro (AWS)
 
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Qwen3 Coder Next | $0 | Not published | Not published | Not published | Not published | Not published | 2026-09-12 |
-| DeepSeek 3.2 | $0 | Not published | Not published | Not published | Not published | Not published | 2026-09-12 |
-| MiniMax M2.1 | $0 | Not published | Not published | Not published | Not published | Not published | 2026-09-12 |
-| Claude Sonnet 4.5 | $0 | Not published | Not published | Not published | Not published | Not published | 2026-09-12 |
+| Qwen3 Coder Next | $0 | Not published | Not published | Not published | Not published | Not published | 2026-10-29 |
+| DeepSeek 3.2 | $0 | Not published | Not published | Not published | Not published | Not published | 2026-10-29 |
+| MiniMax M2.1 | $0 | Not published | Not published | Not published | Not published | Not published | 2026-10-29 |
+| Claude Sonnet 4.5 | $0 | Not published | Not published | Not published | Not published | Not published | 2026-10-29 |
 
 ### Trae (ByteDance)
 
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Frontier models (bundled, auto-selected) | $0 | Not published | Not published | Not published | Not published | Not published | 2026-09-12 |
+| Frontier models (bundled, auto-selected) | $0 | Not published | Not published | Not published | Not published | Not published | 2026-10-29 |
 
 ### Bolt.new
 
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Frontier models (bundled, auto-selected) | $0 | Not published | Not published | Not published | Not published | Not published | 2026-09-12 |
+| Frontier models (bundled, auto-selected) | $0 | Not published | Not published | Not published | Not published | Not published | 2026-10-29 |
 
 ### Lovable
 
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Frontier models (bundled, Fable 5.1) | $0 | Not published | Not published | Not published | Not published | Not published | 2026-09-12 |
+| Frontier models (bundled, Fable 5.1) | $0 | Not published | Not published | Not published | Not published | Not published | 2026-10-29 |
 
 ### v0 (Vercel)
 
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Frontier models (bundled, auto-selected) | $0 | Not published | Not published | Not published | Not published | Not published | 2026-09-12 |
+| Frontier models (bundled, auto-selected) | $0 | Not published | Not published | Not published | Not published | Not published | 2026-10-29 |
 
 ### Kaggle Notebooks
 
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Open-weight models you load (GPU runtime) | $0 | Not published | Not published | Not published | Not published | Not published | 2026-09-12 |
+| Open-weight models you load (GPU runtime) | $0 | Not published | Not published | Not published | Not published | Not published | 2026-10-29 |
 
 ### Hugging Face Spaces
 
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Any Hugging Face model you load (ZeroGPU) | $0 | Not published | Not published | Not published | Not published | Not published | 2026-09-12 |
+| Any Hugging Face model you load (ZeroGPU) | $0 | Not published | Not published | Not published | Not published | Not published | 2026-10-29 |
 
 ### Cursor (Hobby)
 
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Composer 2 (own) | $0 | Not published | Not published | Not published | Not published | Not published | 2026-09-12 |
-| Auto (auto-selected, limited frontier) | $0 | Not published | Not published | Not published | Not published | Not published | 2026-09-12 |
+| Composer 2 (own) | $0 | Not published | Not published | Not published | Not published | Not published | 2026-10-29 |
+| Auto (auto-selected, limited frontier) | $0 | Not published | Not published | Not published | Not published | Not published | 2026-10-29 |
 
 ### Devin (Free)
 
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| SWE-1.7 / SWE-2 (own) | $0 | Not published | Not published | Not published | Not published | Not published | 2026-09-12 |
-| Open models (auto-selected) | $0 | Not published | Not published | Not published | Not published | Not published | 2026-09-12 |
+| SWE-1.7 / SWE-2 (own) | $0 | Not published | Not published | Not published | Not published | Not published | 2026-10-29 |
+| Open models (auto-selected) | $0 | Not published | Not published | Not published | Not published | Not published | 2026-10-29 |
 
 ### Windsurf
 
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Frontier models (via Auto) | $0 | Not published | Not published | Not published | Not published | Not published | 2026-09-12 |
+| Frontier models (via Auto) | $0 | Not published | Not published | Not published | Not published | Not published | 2026-10-29 |
 
 ### Qoder
 
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Frontier models + BYO key | $0 | Not published | Not published | Not published | Not published | Not published | 2026-09-12 |
+| Frontier models + BYO key | $0 | Not published | Not published | Not published | Not published | Not published | 2026-10-29 |
 
 ### Antigravity CLI (Google)
 
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Gemini 3.8/3.7/3.6 Flash, Gemini 3.1 Pro, Claude Sonnet/Opus 4.6, gpt-oss-120b | $0 | Not published | Not published | Not published | Not published | Not published | 2026-09-12 |
+| Gemini 3.8/3.7/3.6 Flash, Gemini 3.1 Pro, Claude Sonnet/Opus 4.6, gpt-oss-120b | $0 | Not published | Not published | Not published | Not published | Not published | 2026-10-29 |
 
 ### Google Colab
 
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Gemini (AI features) + GPU for your code | $0 | Not published | Not published | Not published | Not published | Not published | 2026-09-12 |
+| Gemini (AI features) + GPU for your code | $0 | Not published | Not published | Not published | Not published | Not published | 2026-10-29 |
 
 ### Figma (Starter)
 
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Figma AI, Make, agent | $0 | Not published | Not published | Not published | Not published | Not published | 2026-09-12 |
+| Figma AI, Make, agent | $0 | Not published | Not published | Not published | Not published | Not published | 2026-10-29 |
 
 ### Canva (Free)
 
@@ -303,13 +303,13 @@ Free LLM inference you can build with: an API key, a CLI login, or inference bun
 
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Framer Agents | $0 (trial credits) | Not published | Not published | Not published | Not published | Not published | 2026-09-12 |
+| Framer Agents | $0 (trial credits) | Not published | Not published | Not published | Not published | Not published | 2026-10-29 |
 
 ### Replit (Starter)
 
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Frontier models (bundled, auto-selected) | $0 | Not published | Not published | Not published | Not published | Not published | 2026-09-12 |
+| Frontier models (bundled, auto-selected) | $0 | Not published | Not published | Not published | Not published | Not published | 2026-10-29 |
 
 ### Kilo Gateway
 

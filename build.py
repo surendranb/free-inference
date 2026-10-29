@@ -432,10 +432,13 @@ def build_html():
 
     page_title = f"FreeInference.dev — Free LLM API Directory: {count_noun(total_models, 'Model')}, {count_noun(provider_count, 'Provider')}, Updated {VERIFIED_HUMAN}"
     meta_desc = (f"{count_noun(total_models, 'free LLM model')}, {count_noun(provider_count, 'provider')} — an API key, a CLI login, "
-                 f"or inference bundled in an IDE. No credit card required. Updated {VERIFIED_HUMAN}.")
+                 f"or inference bundled in an IDE. No credit card required. Last updated: {VERIFIED_HUMAN}.")
+    og_desc = (f"{count_noun(total_models, 'free LLM model')} across {count_noun(provider_count, 'provider')} (including Google AI Studio, Groq, "
+               f"OpenRouter, and OpenCode Zen). OpenAI-compatible endpoints, rate limits, and context windows. Last updated: {VERIFIED_HUMAN}.")
 
     head_title = html.escape(page_title)
-    head_desc = html.escape(meta_desc)
+    head_meta = html.escape(meta_desc)
+    head_og = html.escape(og_desc)
     data_json = json.dumps(DATA, ensure_ascii=False, indent=1)
     verified = html.escape(VERIFIED_MAX)
     website = html.escape(WEBSITE)
@@ -458,7 +461,7 @@ def build_html():
         "@context": "https://schema.org",
         "@type": "Dataset",
         "name": TITLE,
-        "description": meta_desc,
+        "description": og_desc,
         "url": WEBSITE,
         "dateModified": VERIFIED_MAX,
         "version": DATA_VERSION,
@@ -487,7 +490,7 @@ def build_html():
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{head_title}</title>
-<meta name="description" content="{head_desc}">
+<meta name="description" content="{head_meta}">
 <meta name="data-version" content="{DATA_VERSION}">
 <link rel="canonical" href="{website}">
 <link rel="alternate" type="text/markdown" href="{website}/index.md">
@@ -498,13 +501,13 @@ def build_html():
 <meta property="og:type" content="website">
 <meta property="og:url" content="{website}">
 <meta property="og:title" content="{head_title}">
-<meta property="og:description" content="{head_desc}">
+<meta property="og:description" content="{head_og}">
 <meta property="og:updated_time" content="{verified}T00:00:00Z">
 
 <!-- Twitter / X Metadata -->
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="{head_title}">
-<meta name="twitter:description" content="{head_desc}">
+<meta name="twitter:description" content="{head_og}">
 
 <link rel="icon" href="data:,">
 {ga}
@@ -1616,10 +1619,42 @@ def free_footer_nav(verified):
             f'<p class="fnote">FreeInference.dev programmatic slice · verified {html.escape(verified)}. Limits change without notice — this is a map, not a contract.</p>')
 
 
+def generate_slice_descriptions(cfg, matched, verified_human):
+    prov_count = len(set(p["name"] for p, _ in matched))
+    model_count = len(matched)
+
+    top_p = []
+    for p, _ in matched:
+        p_name = p["name"].split(" (")[0]
+        if p_name not in top_p:
+            top_p.append(p_name)
+            if len(top_p) == 3:
+                break
+
+    topic = cfg["h1"]
+    for prefix in ["Free ", "Zero-Cost "]:
+        if topic.startswith(prefix):
+            topic = topic[len(prefix):]
+    for suffix in [" Endpoints & Rate Limits", " Models", " Free Tier", " Models & Inference"]:
+        if topic.endswith(suffix):
+            topic = topic[:-len(suffix)]
+
+    top_two = ", ".join(top_p[:2])
+    p_noun = count_noun(prov_count, "provider")
+
+    # Surface 1: SEO Meta Description (Target: 140-160 chars)
+    meta_desc = f"{model_count} free {topic} models across {p_noun} ({top_two}). $0 endpoints, rate limits & keys. Last updated: {verified_human}."
+
+    # Surface 2: Social & Agent OG Description (Target: 200-260 chars)
+    provs_og = ", ".join(top_p[:-1]) + f", and {top_p[-1]}" if len(top_p) > 2 else " and ".join(top_p)
+    og_desc = f"{model_count} free {topic} models across {p_noun} including {provs_og}. Verified rate limits, context windows, and OpenAI-compatible endpoints. Last updated: {verified_human}."
+
+    return meta_desc, og_desc
+
+
 def build_free_page(slug_key, cfg):
     matched = [(p, m) for p in ROWS for m in p["models"] if cfg["filter"](p, m)]
     title = cfg["title"]
-    desc = cfg["desc"]
     h1 = cfg["h1"]
     page_url = f"{WEBSITE}/{slug_key}/"
     prov_count = len(set(p["name"] for p, _ in matched))
@@ -1627,7 +1662,8 @@ def build_free_page(slug_key, cfg):
     max_p = max_verified([p for p, _ in matched])
     verified = html.escape(max_p)
     verified_human = date.fromisoformat(max_p).strftime("%d %b %Y")
-    tagline = f"{count_noun(prov_count, 'provider')} · {count_noun(model_count, 'free model')} · verified {verified_human}"
+    meta_desc, og_desc = generate_slice_descriptions(cfg, matched, verified_human)
+    tagline = f"{count_noun(prov_count, 'provider')} · {count_noun(model_count, 'free model')} · Last updated: {verified_human}"
     answer = free_answer_block(cfg, matched)
     footer = free_footer_nav(verified)
     quick_connect_html = ""
@@ -1668,7 +1704,7 @@ print(response.choices[0].message.content)</code></pre>
             {
                 "@type": "CollectionPage",
                 "name": title,
-                "description": desc,
+                "description": og_desc,
                 "url": page_url,
                 "dateModified": max_p,
                 "version": DATA_VERSION,
@@ -1701,7 +1737,7 @@ print(response.choices[0].message.content)</code></pre>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{html.escape(title)}</title>
-<meta name="description" content="{html.escape(desc)}">
+<meta name="description" content="{html.escape(meta_desc)}">
 <meta name="data-version" content="{DATA_VERSION}">
 <link rel="canonical" href="{page_url}">
 <link rel="alternate" type="text/markdown" href="{page_url}index.md">
@@ -1710,12 +1746,12 @@ print(response.choices[0].message.content)</code></pre>
 <meta property="og:type" content="website">
 <meta property="og:url" content="{page_url}">
 <meta property="og:title" content="{html.escape(title)}">
-<meta property="og:description" content="{html.escape(desc)}">
+<meta property="og:description" content="{html.escape(og_desc)}">
 <meta property="og:updated_time" content="{verified}T00:00:00Z">
 
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="{html.escape(title)}">
-<meta name="twitter:description" content="{html.escape(desc)}">
+<meta name="twitter:description" content="{html.escape(og_desc)}">
 
 <link rel="icon" href="data:,">
 {ga}
@@ -1768,12 +1804,15 @@ def build_free_md(slug_key, cfg):
     model_count = len(matched)
     max_p = max_verified([p for p, _ in matched])
     verified_human = date.fromisoformat(max_p).strftime("%d %b %Y")
+    meta_desc, og_desc = generate_slice_descriptions(cfg, matched, verified_human)
     lines = [
         f"# {h1}",
         "",
-        f"> {count_noun(prov_count, 'provider')} · {count_noun(model_count, 'free model')} · verified {verified_human}",
+        f"> {count_noun(prov_count, 'provider')} · {count_noun(model_count, 'free model')} · Last updated: {verified_human}",
         "",
         "## Quick Answer",
+        "",
+        og_desc,
         "",
         bluf,
         "",

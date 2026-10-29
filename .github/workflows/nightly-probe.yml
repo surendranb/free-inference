@@ -24,7 +24,7 @@ jobs:
       - name: Run AI Studio discovery scout
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: python3 scripts/ai_scout.py
+        run: python3 scripts/ai_scout.py --apply
       - name: Build site (regenerates README.md + dist/)
         run: python3 build.py
       - name: Verify programmatic matrix

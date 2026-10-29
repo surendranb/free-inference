@@ -1044,7 +1044,7 @@
       "free_type": "Rate-limited free",
       "notes": "Free plan: 2,000 completions/mo plus an unpublished allowance of GitHub AI Credits; models auto-selected. Login with GitHub OAuth, no card.",
       "timeout": "Not published",
-      "verified": "2026-09-12",
+      "verified": "2026-10-29",
       "models": [
         {
           "name": "Auto-selected (GPT-5 mini, Claude Haiku/Sonnet, Gemini Flash line)",
@@ -1054,7 +1054,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-09-12"
+          "verified": "2026-10-29"
         }
       ],
       "verified_method": "docs",
@@ -1068,7 +1068,7 @@
       "free_type": "Rate-limited free",
       "notes": "Free plan: 50 credits/mo, resets monthly, unused credits do not roll over. Login via social or AWS Builder ID; no card for the free tier.",
       "timeout": "Not published",
-      "verified": "2026-09-12",
+      "verified": "2026-10-29",
       "models": [
         {
           "name": "Qwen3 Coder Next",
@@ -1078,7 +1078,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-09-12"
+          "verified": "2026-10-29"
         },
         {
           "name": "DeepSeek 3.2",
@@ -1088,7 +1088,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-09-12"
+          "verified": "2026-10-29"
         },
         {
           "name": "MiniMax M2.1",
@@ -1098,7 +1098,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-09-12"
+          "verified": "2026-10-29"
         },
         {
           "name": "Claude Sonnet 4.5",
@@ -1108,7 +1108,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-09-12"
+          "verified": "2026-10-29"
         }
       ],
       "verified_method": "docs",
@@ -1122,7 +1122,7 @@
       "free_type": "Rate-limited free",
       "notes": "Free plan: 5,000 autocompletions/mo plus limited standard-queue usage and SOLO mode. Frontier models bundled in the vendor UI; no card.",
       "timeout": "Not published",
-      "verified": "2026-09-12",
+      "verified": "2026-10-29",
       "models": [
         {
           "name": "Frontier models (bundled, auto-selected)",
@@ -1132,7 +1132,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-09-12"
+          "verified": "2026-10-29"
         }
       ],
       "verified_method": "docs",
@@ -1146,7 +1146,7 @@
       "free_type": "Rate-limited free",
       "notes": "Free plan: 1M tokens/mo with a 300K/day cap, resets monthly. Frontier models bundled; no card.",
       "timeout": "Not published",
-      "verified": "2026-09-12",
+      "verified": "2026-10-29",
       "models": [
         {
           "name": "Frontier models (bundled, auto-selected)",
@@ -1156,7 +1156,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-09-12"
+          "verified": "2026-10-29"
         }
       ],
       "verified_method": "docs",
@@ -1170,7 +1170,7 @@
       "free_type": "Rate-limited free",
       "notes": "Free plan: 5 build credits/day (max 30/mo) plus 20 cloud and 4 AI credits/mo. Frontier models bundled (Fable 5.1); no card.",
       "timeout": "Not published",
-      "verified": "2026-09-12",
+      "verified": "2026-10-29",
       "models": [
         {
           "name": "Frontier models (bundled, Fable 5.1)",
@@ -1180,7 +1180,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-09-12"
+          "verified": "2026-10-29"
         }
       ],
       "verified_method": "docs",
@@ -1194,7 +1194,7 @@
       "free_type": "Rate-limited free",
       "notes": "Free plan: $5/mo credits plus 7 messages/day. Frontier models bundled; no card.",
       "timeout": "Not published",
-      "verified": "2026-09-12",
+      "verified": "2026-10-29",
       "models": [
         {
           "name": "Frontier models (bundled, auto-selected)",
@@ -1204,7 +1204,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-09-12"
+          "verified": "2026-10-29"
         }
       ],
       "verified_method": "docs",
@@ -1218,7 +1218,7 @@
       "free_type": "Rate-limited free",
       "notes": "Free ~30 GPU-h/week (resets weekly), P100 or 2xT4, 12h sessions. Open-weight models you load yourself; phone verification may apply.",
       "timeout": "Not published",
-      "verified": "2026-09-12",
+      "verified": "2026-10-29",
       "models": [
         {
           "name": "Open-weight models you load (GPU runtime)",
@@ -1228,7 +1228,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-09-12"
+          "verified": "2026-10-29"
         }
       ],
       "verified_method": "docs",
@@ -1242,7 +1242,7 @@
       "free_type": "Rate-limited free",
       "notes": "Static Spaces free for everyone; free personal accounts host up to 2 ZeroGPU Gradio Spaces. Any HF model you load; no card. Persistent or upgraded Spaces require a Pro subscription.",
       "timeout": "Not published",
-      "verified": "2026-09-12",
+      "verified": "2026-10-29",
       "models": [
         {
           "name": "Any Hugging Face model you load (ZeroGPU)",
@@ -1252,7 +1252,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-09-12"
+          "verified": "2026-10-29"
         }
       ],
       "verified_method": "docs",
@@ -1266,7 +1266,7 @@
       "free_type": "Rate-limited free",
       "notes": "Hobby plan: limited Agent requests and Tab completions; quota unpublished by the vendor. Own + limited frontier models bundled; no card.",
       "timeout": "Not published",
-      "verified": "2026-09-12",
+      "verified": "2026-10-29",
       "models": [
         {
           "name": "Composer 2 (own)",
@@ -1276,7 +1276,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-09-12"
+          "verified": "2026-10-29"
         },
         {
           "name": "Auto (auto-selected, limited frontier)",
@@ -1286,7 +1286,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-09-12"
+          "verified": "2026-10-29"
         }
       ],
       "verified_method": "docs",
@@ -1300,7 +1300,7 @@
       "free_type": "Rate-limited free",
       "notes": "Free plan: light quota, unpublished. SWE-1.7/SWE-2 plus open models bundled; no card.",
       "timeout": "Not published",
-      "verified": "2026-09-12",
+      "verified": "2026-10-29",
       "models": [
         {
           "name": "SWE-1.7 / SWE-2 (own)",
@@ -1310,7 +1310,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-09-12"
+          "verified": "2026-10-29"
         },
         {
           "name": "Open models (auto-selected)",
@@ -1320,7 +1320,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-09-12"
+          "verified": "2026-10-29"
         }
       ],
       "verified_method": "docs",
@@ -1334,7 +1334,7 @@
       "free_type": "Rate-limited free",
       "notes": "Free plan: light quota plus unlimited Tab/inline edits; numeric limits unpublished. Frontier models via Auto; no card.",
       "timeout": "Not published",
-      "verified": "2026-09-12",
+      "verified": "2026-10-29",
       "models": [
         {
           "name": "Frontier models (via Auto)",
@@ -1344,7 +1344,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-09-12"
+          "verified": "2026-10-29"
         }
       ],
       "verified_method": "docs",
@@ -1358,7 +1358,7 @@
       "free_type": "Rate-limited free",
       "notes": "Free plan: limited completions/NES and basic models, plus BYOK; quota unpublished. No card.",
       "timeout": "Not published",
-      "verified": "2026-09-12",
+      "verified": "2026-10-29",
       "models": [
         {
           "name": "Frontier models + BYO key",
@@ -1368,7 +1368,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-09-12"
+          "verified": "2026-10-29"
         }
       ],
       "verified_method": "docs",
@@ -1382,7 +1382,7 @@
       "free_type": "Rate-limited free",
       "notes": "Individual plan: unlimited Tab and command requests with unpublished basic weekly rate limits. Google login; no card.",
       "timeout": "Not published",
-      "verified": "2026-09-12",
+      "verified": "2026-10-29",
       "models": [
         {
           "name": "Gemini 3.8/3.7/3.6 Flash, Gemini 3.1 Pro, Claude Sonnet/Opus 4.6, gpt-oss-120b",
@@ -1392,7 +1392,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-09-12"
+          "verified": "2026-10-29"
         }
       ],
       "verified_method": "docs",
@@ -1406,7 +1406,7 @@
       "free_type": "Rate-limited free",
       "notes": "Free GPU/TPU with 12h max sessions; Colab does not publish these limits. Google login; no card.",
       "timeout": "Not published",
-      "verified": "2026-09-12",
+      "verified": "2026-10-29",
       "models": [
         {
           "name": "Gemini (AI features) + GPU for your code",
@@ -1416,7 +1416,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-09-12"
+          "verified": "2026-10-29"
         }
       ],
       "verified_method": "docs",
@@ -1430,7 +1430,7 @@
       "free_type": "Rate-limited free",
       "notes": "Starter plan: 150 AI credits/day, up to 500/mo. Figma AI, Make, and agent bundled; no card.",
       "timeout": "Not published",
-      "verified": "2026-09-12",
+      "verified": "2026-10-29",
       "models": [
         {
           "name": "Figma AI, Make, agent",
@@ -1440,7 +1440,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-09-12"
+          "verified": "2026-10-29"
         }
       ],
       "verified_method": "docs",
@@ -1478,7 +1478,7 @@
       "free_type": "Trial credits",
       "notes": "Free plan: 500 AI credits to try (one-off), free Framer domain, non-commercial. No card.",
       "timeout": "Not published",
-      "verified": "2026-09-12",
+      "verified": "2026-10-29",
       "models": [
         {
           "name": "Framer Agents",
@@ -1488,7 +1488,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-09-12"
+          "verified": "2026-10-29"
         }
       ],
       "verified_method": "docs",
@@ -1502,7 +1502,7 @@
       "free_type": "Rate-limited free",
       "notes": "Starter: daily Agent allowance plus limited monthly cloud credits and 1 published app; numbers unpublished. Frontier models bundled; no card.",
       "timeout": "Not published",
-      "verified": "2026-09-12",
+      "verified": "2026-10-29",
       "models": [
         {
           "name": "Frontier models (bundled, auto-selected)",
@@ -1512,7 +1512,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-09-12"
+          "verified": "2026-10-29"
         }
       ],
       "verified_method": "docs",

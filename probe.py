@@ -283,6 +283,36 @@ def sync_keyless_models(prov, endpoint, today):
     return msg
 
 
+def sync_opencode(prov, today):
+    """Direct ground-truth verification against OpenCode docs #free-models section."""
+    url = prov.get("docs_url") or prov.get("url") or "https://opencode.ai/v2/docs/console/models/"
+    req = urllib.request.Request(url, headers=UA)
+    with urllib.request.urlopen(req, timeout=15) as r:
+        html = r.read().decode("utf-8")
+    
+    idx = html.find('id="free-models"')
+    if idx == -1:
+        raise RuntimeError("free-models section not found in OpenCode docs")
+    
+    sub = html[idx:idx+3500]
+    found = 0
+    missing = []
+    for m in prov["models"]:
+        m_name = m["name"].replace(" Free", "").strip().lower()
+        if m_name in sub.lower():
+            m["verified"] = today
+            found += 1
+        else:
+            missing.append(m["name"])
+    
+    prov["verified"] = today
+    prov["verified_method"] = "live-probe"
+    msg = f"ok: {found}/{len(prov['models'])} models confirmed in #free-models"
+    if missing:
+        msg += f"; MISSING: {missing}"
+    return msg
+
+
 def check_doc_links(data):
     """Dead-link detection only — never extracts limits from docs (layouts change silently)."""
     out = []
@@ -317,6 +347,8 @@ def main():
                 results.append(("Google AI Studio", sync_google(prov, key, today) if key else "skipped (no GEMINI_API_KEY)"))
             elif prov["name"] == "OpenRouter":
                 results.append(("OpenRouter", sync_openrouter(prov, today)))
+            elif prov["name"] == "OpenCode Zen":
+                results.append(("OpenCode Zen", sync_opencode(prov, today)))
             elif prov["name"] in KEYLESS_MODEL_ENDPOINTS:
                 results.append((prov["name"], sync_keyless_models(prov, KEYLESS_MODEL_ENDPOINTS[prov["name"]], today)))
         except Exception as e:

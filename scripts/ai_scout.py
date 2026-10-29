@@ -145,6 +145,53 @@ def scout_openrouter_free_models():
         return []
 
 
+def poll_openrouter_rss(existing_models):
+    """Directly poll OpenRouter RSS feed for new model additions with (free) tag."""
+    url = "https://openrouter.ai/api/v1/models?use_rss=true"
+    req = urllib.request.Request(url, headers={"User-Agent": "FreeInference-Scout/1.0"})
+    try:
+        with urllib.request.urlopen(req, timeout=15) as r:
+            xml_data = r.read()
+    except Exception as e:
+        print(f"Notice: OpenRouter RSS fetch skipped: {e}")
+        return []
+
+    import xml.etree.ElementTree as ET
+    try:
+        root = ET.fromstring(xml_data)
+    except Exception as e:
+        print(f"Notice: OpenRouter RSS parse failed: {e}")
+        return []
+
+    channel = root.find("channel")
+    if channel is None:
+        return []
+
+    catalog_ids = {m.lower().split("/")[-1].replace(":free", "") for m in existing_models}
+    rss_discoveries = []
+    for item in channel.findall("item"):
+        title = item.find("title").text if item.find("title") is not None else ""
+        link = item.find("link").text if item.find("link") is not None else ""
+        pub_date = item.find("pubDate").text if item.find("pubDate") is not None else ""
+        desc = item.find("description").text if item.find("description") is not None else ""
+
+        if "(free)" in title.lower() or ":free" in title.lower():
+            id_match = re.search(r"\(([^()]+/[^()]+)\)", title)
+            model_id = id_match.group(1).strip() if id_match else link.replace("https://openrouter.ai/", "").strip()
+            base_id = model_id.split("/")[-1].replace(":free", "").lower()
+            is_new = base_id not in catalog_ids and model_id.lower() not in {m.lower() for m in existing_models}
+            rss_discoveries.append({
+                "model_id": model_id,
+                "title": title,
+                "link": link,
+                "pub_date": pub_date,
+                "description": desc[:200],
+                "is_new_to_catalog": is_new
+            })
+
+    return rss_discoveries
+
+
 def scout_endpoint_models(name, url):
     """Fetch all $0 / free models from a zero-price gateway endpoint."""
     try:
@@ -330,6 +377,11 @@ def run_scout(apply_updates=False):
     new_discoveries = [m for m in live_models if m["id"] not in existing_models]
     print(f"Discovered {len(live_models)} live free models across 4 gateways ({len(new_discoveries)} new).")
 
+    # 2b. Direct OpenRouter RSS Feed Stream for Real-Time Additions
+    rss_free_models = poll_openrouter_rss(existing_models)
+    new_rss_models = [m for m in rss_free_models if m.get("is_new_to_catalog")]
+    print(f"OpenRouter RSS Stream: {len(rss_free_models)} free models found in feed ({len(new_rss_models)} new to catalog).")
+
     classified_candidates = []
     if new_discoveries:
         sample_to_classify = new_discoveries[:10]  # analyze top candidates
@@ -371,6 +423,9 @@ Output strictly valid JSON with no markdown formatting.
         "doc_audits": doc_audits,
         "live_gateway_free_total": len(live_models),
         "new_discoveries_count": len(new_discoveries),
+        "openrouter_rss_stream_count": len(rss_free_models),
+        "openrouter_rss_new_count": len(new_rss_models),
+        "openrouter_rss_stream": rss_free_models,
         "candidates": classified_candidates,
         "status": "completed"
     }

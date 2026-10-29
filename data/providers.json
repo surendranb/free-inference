@@ -1,6 +1,6 @@
 {
   "title": "Free Inference",
-  "tagline": "Free LLM inference you can build with: an API key, a CLI login, or inference bundled inside a coding tool or builder. The test is whether you can ship an artifact you keep — code, an app, a site, a design, an agent, a skill. Chat-only free tiers are excluded on purpose.",
+  "tagline": "Free LLM inference you can build with: an API key, a CLI login, or inference bundled inside a coding tool or builder. The test is whether you can ship an artifact you keep \u2014 code, an app, a site, a design, an agent, a skill. Chat-only free tiers are excluded on purpose.",
   "verified": "2026-10-29",
   "website": "https://freeinference.dev",
   "repo": "",
@@ -148,7 +148,7 @@
           "tpm": "Provider-dependent",
           "rpd": "50 (below $10 credits) / 1,000 ($10+ credits)",
           "tpd": "Not published",
-          "verified": "2026-10-28"
+          "verified": "2026-10-29"
         },
         {
           "name": "dots-studio/dots-3-note-preview:free",
@@ -158,7 +158,7 @@
           "tpm": "Provider-dependent",
           "rpd": "50 (below $10 credits) / 1,000 ($10+ credits)",
           "tpd": "Not published",
-          "verified": "2026-10-28"
+          "verified": "2026-10-29"
         },
         {
           "name": "google/gemma-4-26b-a4b-it:free",
@@ -168,7 +168,7 @@
           "tpm": "Provider-dependent",
           "rpd": "50 (below $10 credits) / 1,000 ($10+ credits)",
           "tpd": "Not published",
-          "verified": "2026-10-28"
+          "verified": "2026-10-29"
         },
         {
           "name": "google/gemma-4-31b-it:free",
@@ -178,7 +178,7 @@
           "tpm": "Provider-dependent",
           "rpd": "50 (below $10 credits) / 1,000 ($10+ credits)",
           "tpd": "Not published",
-          "verified": "2026-10-28"
+          "verified": "2026-10-29"
         },
         {
           "name": "liquid/lfm-2.5-2.6b:free",
@@ -188,7 +188,7 @@
           "tpm": "Provider-dependent",
           "rpd": "50 (below $10 credits) / 1,000 ($10+ credits)",
           "tpd": "Not published",
-          "verified": "2026-10-28"
+          "verified": "2026-10-29"
         },
         {
           "name": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
@@ -198,7 +198,7 @@
           "tpm": "Provider-dependent",
           "rpd": "50 (below $10 credits) / 1,000 ($10+ credits)",
           "tpd": "Not published",
-          "verified": "2026-10-28"
+          "verified": "2026-10-29"
         },
         {
           "name": "nvidia/nemotron-3-ultra-550b-a55b:free",
@@ -208,7 +208,7 @@
           "tpm": "Provider-dependent",
           "rpd": "50 (below $10 credits) / 1,000 ($10+ credits)",
           "tpd": "Not published",
-          "verified": "2026-10-28"
+          "verified": "2026-10-29"
         },
         {
           "name": "nvidia/nemotron-3.5-content-safety:free",
@@ -218,7 +218,7 @@
           "tpm": "Provider-dependent",
           "rpd": "50 (below $10 credits) / 1,000 ($10+ credits)",
           "tpd": "Not published",
-          "verified": "2026-10-28"
+          "verified": "2026-10-29"
         },
         {
           "name": "nvidia/nemotron-3.5-lightning:free",
@@ -228,7 +228,7 @@
           "tpm": "Provider-dependent",
           "rpd": "50 (below $10 credits) / 1,000 ($10+ credits)",
           "tpd": "Not published",
-          "verified": "2026-10-28"
+          "verified": "2026-10-29"
         },
         {
           "name": "nvidia/nemotron-3.5-super-vl:free",
@@ -238,7 +238,7 @@
           "tpm": "Provider-dependent",
           "rpd": "50 (below $10 credits) / 1,000 ($10+ credits)",
           "tpd": "Not published",
-          "verified": "2026-10-28"
+          "verified": "2026-10-29"
         },
         {
           "name": "poolside/laguna-s-2.1:free",
@@ -248,7 +248,7 @@
           "tpm": "Provider-dependent",
           "rpd": "50 (below $10 credits) / 1,000 ($10+ credits)",
           "tpd": "Not published",
-          "verified": "2026-10-28"
+          "verified": "2026-10-29"
         },
         {
           "name": "poolside/laguna-xs-2.1:free",
@@ -258,7 +258,7 @@
           "tpm": "Provider-dependent",
           "rpd": "50 (below $10 credits) / 1,000 ($10+ credits)",
           "tpd": "Not published",
-          "verified": "2026-10-28"
+          "verified": "2026-10-29"
         },
         {
           "name": "recursive/flint-v1.0:free",
@@ -268,7 +268,7 @@
           "tpm": "Provider-dependent",
           "rpd": "50 (below $10 credits) / 1,000 ($10+ credits)",
           "tpd": "Not published",
-          "verified": "2026-10-28"
+          "verified": "2026-10-29"
         },
         {
           "name": "thinkingmachines/inkling-small:free",
@@ -278,7 +278,7 @@
           "tpm": "Provider-dependent",
           "rpd": "50 (below $10 credits) / 1,000 ($10+ credits)",
           "tpd": "Not published",
-          "verified": "2026-10-28"
+          "verified": "2026-10-29"
         },
         {
           "name": "thinkingmachines/inkling:free",
@@ -288,7 +288,7 @@
           "tpm": "Provider-dependent",
           "rpd": "50 (below $10 credits) / 1,000 ($10+ credits)",
           "tpd": "Not published",
-          "verified": "2026-10-28"
+          "verified": "2026-10-29"
         },
         {
           "name": "xingchen-agi/xing4.0-29b-a4b:free",
@@ -298,7 +298,7 @@
           "tpm": "Provider-dependent",
           "rpd": "50 (below $10 credits) / 1,000 ($10+ credits)",
           "tpd": "Not published",
-          "verified": "2026-10-28"
+          "verified": "2026-10-29"
         },
         {
           "name": "meta/muse-spark-1.3-contributor:free",
@@ -320,9 +320,9 @@
       "name": "Google AI Studio (Gemini API)",
       "url": "https://ai.google.dev/gemini-api/docs/rate-limits",
       "free_type": "Rate-limited free",
-      "notes": "Free forever, no card, most generous major-provider tier. Live-verified against the v1beta API with an API key (2026-08-12) — model list and context windows are real; per-account quota varies by account age (see AI Studio rate-limit dashboard). Free-tier data may be used for training.",
+      "notes": "Free forever, no card, most generous major-provider tier. Live-verified against the v1beta API with an API key (2026-08-12) \u2014 model list and context windows are real; per-account quota varies by account age (see AI Studio rate-limit dashboard). Free-tier data may be used for training.",
       "timeout": "Not published",
-      "verified": "2026-10-28",
+      "verified": "2026-10-29",
       "models": [
         {
           "name": "gemini-2.5-flash",
@@ -332,7 +332,7 @@
           "tpm": "Varies by account",
           "rpd": "Varies by account",
           "tpd": "Not published",
-          "verified": "2026-10-28"
+          "verified": "2026-10-29"
         },
         {
           "name": "gemini-2.5-flash-lite",
@@ -342,7 +342,7 @@
           "tpm": "Varies by account",
           "rpd": "Varies by account",
           "tpd": "Not published",
-          "verified": "2026-10-28"
+          "verified": "2026-10-29"
         },
         {
           "name": "gemini-3-flash-preview",
@@ -352,7 +352,7 @@
           "tpm": "Varies by account",
           "rpd": "Varies by account",
           "tpd": "Not published",
-          "verified": "2026-10-28"
+          "verified": "2026-10-29"
         },
         {
           "name": "gemini-3.1-flash-lite",
@@ -362,7 +362,7 @@
           "tpm": "Varies by account",
           "rpd": "Varies by account",
           "tpd": "Not published",
-          "verified": "2026-10-28"
+          "verified": "2026-10-29"
         },
         {
           "name": "gemini-3.1-flash-lite-preview",
@@ -372,7 +372,7 @@
           "tpm": "Varies by account",
           "rpd": "Varies by account",
           "tpd": "Not published",
-          "verified": "2026-10-28"
+          "verified": "2026-10-29"
         },
         {
           "name": "gemini-3.5-flash",
@@ -382,7 +382,7 @@
           "tpm": "Varies by account",
           "rpd": "Varies by account",
           "tpd": "Not published",
-          "verified": "2026-10-28"
+          "verified": "2026-10-29"
         },
         {
           "name": "gemini-3.5-flash-lite",
@@ -392,7 +392,7 @@
           "tpm": "Varies by account",
           "rpd": "Varies by account",
           "tpd": "Not published",
-          "verified": "2026-10-28"
+          "verified": "2026-10-29"
         },
         {
           "name": "gemini-3.6-flash",
@@ -402,7 +402,7 @@
           "tpm": "Varies by account",
           "rpd": "Varies by account",
           "tpd": "Not published",
-          "verified": "2026-10-28"
+          "verified": "2026-10-29"
         },
         {
           "name": "gemini-3.7-flash",
@@ -412,7 +412,7 @@
           "tpm": "Varies by account",
           "rpd": "Varies by account",
           "tpd": "Not published",
-          "verified": "2026-10-28"
+          "verified": "2026-10-29"
         },
         {
           "name": "gemini-3.8-flash",
@@ -422,7 +422,7 @@
           "tpm": "Varies by account",
           "rpd": "Varies by account",
           "tpd": "Not published",
-          "verified": "2026-10-28"
+          "verified": "2026-10-29"
         },
         {
           "name": "gemini-flash-latest",
@@ -432,7 +432,7 @@
           "tpm": "Varies by account",
           "rpd": "Varies by account",
           "tpd": "Not published",
-          "verified": "2026-10-28"
+          "verified": "2026-10-29"
         },
         {
           "name": "gemini-flash-lite-latest",
@@ -442,7 +442,7 @@
           "tpm": "Varies by account",
           "rpd": "Varies by account",
           "tpd": "Not published",
-          "verified": "2026-10-28"
+          "verified": "2026-10-29"
         },
         {
           "name": "gemini-omni-1.1-flash",
@@ -452,7 +452,7 @@
           "tpm": "Varies by account",
           "rpd": "Varies by account",
           "tpd": "Not published",
-          "verified": "2026-10-28"
+          "verified": "2026-10-29"
         },
         {
           "name": "gemini-omni-flash-preview",
@@ -462,7 +462,7 @@
           "tpm": "Varies by account",
           "rpd": "Varies by account",
           "tpd": "Not published",
-          "verified": "2026-10-28"
+          "verified": "2026-10-29"
         }
       ],
       "verified_method": "live-probe",
@@ -549,7 +549,7 @@
       "name": "Cerebras",
       "url": "https://inference-docs.cerebras.ai/support/rate-limits",
       "free_type": "Trial credits",
-      "notes": "Wafer-scale hardware, 2,000+ tok/s. No permanent free tier — $5 trial credits, 30-day expiry, card required. Per-model limits on a rotating shortlist.",
+      "notes": "Wafer-scale hardware, 2,000+ tok/s. No permanent free tier \u2014 $5 trial credits, 30-day expiry, card required. Per-model limits on a rotating shortlist.",
       "timeout": "Not published",
       "verified": "2026-10-01",
       "models": [
@@ -710,7 +710,7 @@
       "free_type": "Rate-limited free",
       "notes": "OpenAI-compatible base URL api.sambanova.ai/v1. Preview models can be pulled at any time. No credit card, no phone verification.",
       "timeout": "Not published",
-      "verified": "2026-10-28",
+      "verified": "2026-10-29",
       "models": [
         {
           "name": "DeepSeek-V3.1",
@@ -720,7 +720,7 @@
           "tpm": "Not published",
           "rpd": "20",
           "tpd": "200K tokens/day",
-          "verified": "2026-10-28"
+          "verified": "2026-10-29"
         },
         {
           "name": "DeepSeek-V3.2",
@@ -730,7 +730,7 @@
           "tpm": "Not published",
           "rpd": "20",
           "tpd": "200K tokens/day",
-          "verified": "2026-10-28"
+          "verified": "2026-10-29"
         },
         {
           "name": "Meta-Llama-3.3-70B-Instruct",
@@ -740,7 +740,7 @@
           "tpm": "Not published",
           "rpd": "20",
           "tpd": "200K tokens/day",
-          "verified": "2026-10-28"
+          "verified": "2026-10-29"
         },
         {
           "name": "gemma-4-31B-it",
@@ -750,7 +750,7 @@
           "tpm": "Not published",
           "rpd": "20",
           "tpd": "200K tokens/day",
-          "verified": "2026-10-28"
+          "verified": "2026-10-29"
         },
         {
           "name": "gpt-oss-120b",
@@ -760,7 +760,7 @@
           "tpm": "Not published",
           "rpd": "20",
           "tpd": "200K tokens/day",
-          "verified": "2026-10-28"
+          "verified": "2026-10-29"
         }
       ],
       "verified_method": "live-probe",
@@ -871,7 +871,7 @@
       "name": "Together AI",
       "url": "https://www.together.ai/pricing",
       "free_type": "Trial credits",
-      "notes": "No trial — paid entry, $5 minimum credit purchase, card required. Prepaid balance, no expiry. Startup programs can grant more.",
+      "notes": "No trial \u2014 paid entry, $5 minimum credit purchase, card required. Prepaid balance, no expiry. Startup programs can grant more.",
       "timeout": "Not published",
       "verified": "2026-10-01",
       "models": [
@@ -898,7 +898,7 @@
       "free_type": "Trial credits",
       "notes": "200 concurrent requests per model - high ceiling. Credit-based, no daily cap while credits last. Notable models below; 185+ total in catalog-wide trial credits.",
       "timeout": "Not published",
-      "verified": "2026-10-28",
+      "verified": "2026-10-29",
       "models": [
         {
           "name": "deepseek-ai/DeepSeek-V3.1",
@@ -908,7 +908,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "$5 signup credits",
-          "verified": "2026-10-28"
+          "verified": "2026-10-29"
         },
         {
           "name": "Qwen/Qwen3-32B",
@@ -918,7 +918,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "$5 signup credits",
-          "verified": "2026-10-28"
+          "verified": "2026-10-29"
         },
         {
           "name": "Qwen/Qwen2.5-72B-Instruct",
@@ -928,7 +928,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "$5 signup credits",
-          "verified": "2026-10-28"
+          "verified": "2026-10-29"
         },
         {
           "name": "zai-org/GLM-4.7",
@@ -938,7 +938,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "$5 signup credits",
-          "verified": "2026-10-28"
+          "verified": "2026-10-29"
         }
       ],
       "verified_method": "live-probe",
@@ -1435,7 +1435,7 @@
       "free_type": "Rate-limited free",
       "notes": "Universal gateway, $0 forever for default free models. Anonymous keyless at 200 req/hour per IP; :free-tagged models. OpenAI-compatible. No credit card.",
       "timeout": "Not published",
-      "verified": "2026-10-28",
+      "verified": "2026-10-29",
       "verified_method": "live-probe",
       "access_method": "api_key",
       "artifact": "code",
@@ -1469,7 +1469,7 @@
       "free_type": "Rate-limited free",
       "notes": "Nous Research Hermes models, $0 monthly plan. Free 50 RPM / 500k TPM. OpenAI-compatible. No card on free plan.",
       "timeout": "Not published",
-      "verified": "2026-10-28",
+      "verified": "2026-10-29",
       "verified_method": "live-probe",
       "access_method": "api_key",
       "artifact": "code",
@@ -1557,7 +1557,7 @@
       "free_type": "Rate-limited free",
       "notes": "Gateway, $0 free models at 200 req/day. Routing, caching, EU residency. No credit card required.",
       "timeout": "Not published",
-      "verified": "2026-10-28",
+      "verified": "2026-10-29",
       "verified_method": "live-probe",
       "access_method": "api_key",
       "artifact": "code",
@@ -1580,7 +1580,7 @@
           "tpm": "Not published",
           "rpd": "200/day shared",
           "tpd": "Not published",
-          "verified": "2026-10-28"
+          "verified": "2026-10-29"
         }
       ],
       "base_url": "https://router.requesty.ai/v1"
@@ -1591,7 +1591,7 @@
       "free_type": "Rate-limited free",
       "notes": "EU-sovereign. Anonymous keyless 2 req/min per IP per model. Authed 400 req/min. No usage cap apart from rate. No card for anonymous.",
       "timeout": "Not published",
-      "verified": "2026-10-28",
+      "verified": "2026-10-29",
       "verified_method": "live-probe",
       "access_method": "api_key",
       "artifact": "code",
@@ -1604,7 +1604,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-10-28"
+          "verified": "2026-10-29"
         }
       ],
       "base_url": "https://endpoints.ai.cloud.ovh.net/v1"

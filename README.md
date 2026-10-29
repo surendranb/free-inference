@@ -2,7 +2,7 @@
 
 Free LLM inference you can build with: an API key, a CLI login, or inference bundled inside a coding tool or builder. The test is whether you can ship an artifact you keep — code, an app, a site, a design, an agent, a skill. Chat-only free tiers are excluded on purpose.
 
-> **2026-10-29** · 36 providers · 108 free models
+> **2026-10-29** · 38 providers · 132 free models
 > Interactive site: https://freeinference.dev · Agent summary: https://freeinference.dev/llms.txt · Machine data: https://freeinference.dev/data/providers.json (validate against https://freeinference.dev/data/schema.json)
 
 ## Providers
@@ -11,10 +11,10 @@ Free LLM inference you can build with: an API key, a CLI login, or inference bun
 | --- | --- | --- | --- | --- |
 | [OpenCode Zen](https://opencode.ai/docs/zen) | api_key | Promo free (limited time) | Big Pickle, Space Bunny Free, LongCat 2.5 Preview Free, MiMo-V2.6-Flash Free, MiMo-V2.5 Free, Ling 3.0 Flash Fin Free, +4 more | Free models are limited-time promos; some may use data for training. No credit card. OpenAI-compatible base URL opencode.ai/zen/v1. List free models: opencode models | grep -i free |
 | [OpenRouter](https://openrouter.ai/models?max_price=0) | api_key | Rate-limited free | cohere/north-mini-code:free, dots-studio/dots-3-note-preview:free, google/gemma-4-26b-a4b-it:free, google/gemma-4-31b-it:free, liquid/lfm-2.5-2.6b:free, nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free, +11 more | Updated via GitHub Connect test (2026-08-12) |
-| [Google AI Studio (Gemini API)](https://ai.google.dev/gemini-api/docs/rate-limits) | api_key | Rate-limited free | gemini-2.5-flash, gemini-2.5-flash-lite, gemini-3-flash-preview, gemini-3.1-flash-lite, gemini-3.1-flash-lite-preview, gemini-3.5-flash, +8 more | Free forever, no card, most generous major-provider tier. Live-verified against the v1beta API with an API key (2026-08-12) — model list and context windows are real; per-account quota varies by account age (see AI Studio rate-limit dashboard). Free-tier data may be used for training. |
-| [Groq](https://console.groq.com/docs/rate-limits) | api_key | Rate-limited free | openai/gpt-oss-120b, openai/gpt-oss-20b, qwen/qwen3.6-27b, qwen/qwen3.8-27b, meta-llama/llama-prompt-guard-2-22m, groq/compound | LPU hardware, fastest time-to-first-token. Limits per API key per model; some models get half allowance. No credit card. Limits visible in x-ratelimit-* response headers. |
+| [Google AI Studio (Gemini API)](https://ai.google.dev/gemini-api/docs/rate-limits) | api_key | Rate-limited free | gemini-2.5-flash, gemini-2.5-flash-lite, gemini-3-flash-preview, gemini-3.1-flash-lite, gemini-3.1-flash-lite-preview, gemini-3.5-flash, +10 more | Free forever, no card, most generous major-provider tier. Live-verified against the v1beta API with an API key (2026-08-12) — model list and context windows are real; per-account quota varies by account age (see AI Studio rate-limit dashboard). Free-tier data may be used for training. |
+| [Groq](https://console.groq.com/docs/rate-limits) | api_key | Rate-limited free | llama-3.3-70b-versatile, llama-3.1-8b-instant, meta-llama/llama-4-scout-17b-16e-instruct, openai/gpt-oss-120b, openai/gpt-oss-20b, qwen/qwen3.6-27b, +3 more | LPU hardware, fastest time-to-first-token. Limits pooled at organization level per model. No credit card required. Limits visible in x-ratelimit-* response headers. |
 | [Cerebras](https://inference-docs.cerebras.ai/support/rate-limits) | api_key | Trial credits | gpt-oss-120b, qwen-3.8-27b | Wafer-scale hardware, 2,000+ tok/s. No permanent free tier — $5 trial credits, 30-day expiry, card required. Per-model limits on a rotating shortlist. |
-| [Cloudflare Workers AI](https://developers.cloudflare.com/workers-ai/platform/limits) | api_key | Rate-limited free | ~80 free models (Llama 3.x/4, Qwen, Gemma, DeepSeek-R1 distills, FLUX, Whisper, BGE embeddings) | Neurons are normalized GPU-compute units, shared pool across all models. Resets 00:00 UTC. Hard stop when pool exhausted, errors not overage. No credit card. |
+| [Cloudflare Workers AI](https://developers.cloudflare.com/workers-ai/platform/limits) | api_key | Rate-limited free | ~80 free models (Llama 3.x/4, Qwen, Gemma, DeepSeek-R1 distills, FLUX, Whisper, BGE embeddings), @cf/meta/llama-3.3-70b-instruct-fp8-fast, @cf/deepseek-ai/deepseek-r1-distill-qwen-32b, @cf/qwen/qwen2.5-72b-instruct, @cf/meta/llama-3.1-8b-instruct | Neurons are normalized GPU-compute units, shared pool across all models. Resets 00:00 UTC. Hard stop when pool exhausted, errors not overage. No credit card. |
 | [Hugging Face](https://huggingface.co/docs/inference-providers) | api_key | Rate-limited free | Llama 3.2 8B (Serverless), Qwen 2.5 7B (Serverless), Mistral 7B (Serverless), Inference Providers gateway (15+ partners) | Two products: Serverless API (free, rate-limited) and Inference Providers gateway. Cold starts 10-30s on unpopular models. Limits not published as fixed numbers. |
 | [Mistral La Plateforme](https://docs.mistral.ai) | api_key | Rate-limited free (Experiment) | Mistral Large, Codestral, All API models (Experiment tier) | Phone (SMS) verification required, no card. Exact limits no longer published - see Admin Console Limits per workspace. Evaluation tier, not production. |
 | [SambaNova Cloud](https://cloud.sambanova.ai/apis) | api_key | Rate-limited free | DeepSeek-V3.1, DeepSeek-V3.2, Meta-Llama-3.3-70B-Instruct, gemma-4-31B-it, gpt-oss-120b | OpenAI-compatible base URL api.sambanova.ai/v1. Preview models can be pulled at any time. No credit card, no phone verification. |
@@ -40,11 +40,13 @@ Free LLM inference you can build with: an API key, a CLI login, or inference bun
 | [Canva (Free)](https://www.canva.com/en/pricing/) | bundled | Rate-limited free | Canva AI, Magic Media | Free plan: up to 20 Standard AI uses or 20 Premium per month (resets monthly); Magic Media text-to-image is 50 lifetime. No card. |
 | [Framer (Free)](https://www.framer.com/pricing) | bundled | Trial credits | Framer Agents | Free plan: 500 AI credits to try (one-off), free Framer domain, non-commercial. No card. |
 | [Replit (Starter)](https://docs.replit.com/help/pricing-and-plans) | bundled | Rate-limited free | Frontier models (bundled, auto-selected) | Starter: daily Agent allowance plus limited monthly cloud credits and 1 published app; numbers unpublished. Frontier models bundled; no card. |
-| [Kilo Gateway](https://kilo.ai/gateway) | api_key | Rate-limited free | minimax/minimax-m2.1:free, z-ai/glm-5:free | Universal gateway, $0 forever for default free models. Anonymous keyless at 200 req/hour per IP; :free-tagged models. OpenAI-compatible. No credit card. |
-| [Nous Portal](https://portal.nousresearch.com/api-docs) | api_key | Rate-limited free | Hermes-4-70B, Hermes-4-405B, Hermes-4.3-36B | Nous Research Hermes models, $0 monthly plan. Free 50 RPM / 500k TPM. OpenAI-compatible. No card on free plan. |
+| [Kilo Gateway](https://kilo.ai/gateway) | api_key | Rate-limited free | cohere/north-mini-code:free, poolside/laguna-s-2.1:free, poolside/laguna-xs-2.1:free, liquid/lfm-2.5-2.6b:free, dots-studio/dots-3-note-preview:free, nvidia/nemotron-3.5-lightning:free, +1 more | Universal gateway, $0 forever for default free models. Anonymous keyless at 200 req/hour per IP; :free-tagged models. OpenAI-compatible. No credit card. |
+| [Nous Portal](https://portal.nousresearch.com/api-docs) | api_key | Rate-limited free | poolside/laguna-s-2.1:free, poolside/laguna-xs-2.1:free, stepfun/step-3.7-flash:free, upstage/solar-mini4:free, reflection/beam-1.0-501b-a23b:free, ornith/ornith-1.5-122b:free | Nous Research Hermes models, $0 monthly plan. Free 50 RPM / 500k TPM. OpenAI-compatible. No card on free plan. |
 | [Cohere](https://docs.cohere.com/docs/rate-limits) | api_key | Rate-limited free | Command A, Command R+, Command R7B | Evaluation key, 1,000 calls/month. Chat 20 req/min per model. Embed 2k inputs/min. No card for trial key. Non-production limits. |
-| [Requesty](https://www.requesty.ai/pricing) | api_key | Rate-limited free | nvidia/nemotron-3-super-120b:free (via Requesty), google/gemma-4-31b-it:free (via Requesty) | Gateway, $0 free models at 200 req/day. Routing, caching, EU residency. No credit card required. |
+| [Requesty](https://www.requesty.ai/pricing) | api_key | Rate-limited free | nvidia/nemotron-3-super-120b-a12b, google/gemma-4-31b-it, poolside/laguna-xs.2 | Gateway, $0 free models at 200 req/day. Routing, caching, EU residency. No credit card required. |
 | [OVHcloud AI Endpoints](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/) | api_key | Rate-limited free | 10 free models (anonymous keyless) | EU-sovereign. Anonymous keyless 2 req/min per IP per model. Authed 400 req/min. No usage cap apart from rate. No card for anonymous. |
+| [SiliconFlow](https://siliconflow.cn) | api_key | Rate-limited free | deepseek-ai/DeepSeek-R1-Distill-Qwen-7B, deepseek-ai/DeepSeek-V3, Qwen/Qwen2.5-7B-Instruct, THUDM/glm-4-9b-chat | Large-scale inference gateway offering permanently free open-source model tiers plus 14M free signup tokens. OpenAI-compatible API. No credit card required. |
+| [DeepSeek Platform](https://api-docs.deepseek.com) | api_key | Trial credits | deepseek-chat, deepseek-reasoner | 5M free tokens granted on new account creation (valid 30 days). OpenAI-compatible API format with cache-miss/cache-hit pricing. |
 
 ## Models (per provider)
 
@@ -103,17 +105,22 @@ Free LLM inference you can build with: an API key, a CLI login, or inference bun
 | gemini-flash-lite-latest | $0 | 1024K | Varies by account | Varies by account | Varies by account | Not published | 2026-10-29 |
 | gemini-omni-1.1-flash | $0 | 128K | Varies by account | Varies by account | Varies by account | Not published | 2026-10-29 |
 | gemini-omni-flash-preview | $0 | 128K | Varies by account | Varies by account | Varies by account | Not published | 2026-10-29 |
+| gemma-4-26b-a4b-it | $0 | 256K | 15 | 1M | 1,500 | Not published | 2026-10-29 |
+| gemma-4-31b-it | $0 | 256K | 15 | 1M | 1,500 | Not published | 2026-10-29 |
 
 ### Groq
 
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| openai/gpt-oss-120b | zsh | 128K | 30 | 8K | 1,000 | 200K tokens/day | 2026-08-30 |
-| openai/gpt-oss-20b | zsh | 128K | 30 | 8K | 1,000 | 200K tokens/day | 2026-08-30 |
-| qwen/qwen3.6-27b | zsh | 128K | 30 | 8K | 1,000 | 200K tokens/day | 2026-08-30 |
-| qwen/qwen3.8-27b | zsh | 128K | 30 | 8K | 1,000 | 2M tokens/day | 2026-08-30 |
-| meta-llama/llama-prompt-guard-2-22m | zsh | 128K | 30 | 15K | 14,400 | 500K tokens/day | 2026-08-30 |
-| groq/compound | zsh | 128K | 30 | 70K | 250 | Not published | 2026-08-30 |
+| llama-3.3-70b-versatile | $0 | 128K | 30 | 12K | 1,000 | 100K tokens/day | 2026-10-29 |
+| llama-3.1-8b-instant | $0 | 128K | 30 | 6K | 14,400 | 500K tokens/day | 2026-10-29 |
+| meta-llama/llama-4-scout-17b-16e-instruct | $0 | 128K | 30 | 30K | 1,000 | 500K tokens/day | 2026-10-29 |
+| openai/gpt-oss-120b | $0 | 128K | 30 | 8K | 1,000 | 200K tokens/day | 2026-10-29 |
+| openai/gpt-oss-20b | $0 | 128K | 30 | 8K | 1,000 | 200K tokens/day | 2026-10-29 |
+| qwen/qwen3.6-27b | $0 | 128K | 30 | 8K | 1,000 | 200K tokens/day | 2026-10-29 |
+| qwen/qwen3.8-27b | $0 | 128K | 30 | 8K | 1,000 | 2M tokens/day | 2026-10-29 |
+| meta-llama/llama-prompt-guard-2-22m | $0 | 128K | 30 | 15K | 14,400 | 500K tokens/day | 2026-10-29 |
+| groq/compound | $0 | 128K | 30 | 70K | 250 | Not published | 2026-10-29 |
 
 ### Cerebras
 
@@ -127,23 +134,27 @@ Free LLM inference you can build with: an API key, a CLI login, or inference bun
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | ~80 free models (Llama 3.x/4, Qwen, Gemma, DeepSeek-R1 distills, FLUX, Whisper, BGE embeddings) | $0 | 8K-128K+ (model-dependent) | 300 text gen (720-1,500 other tasks) | Model-dependent | Not published | 10,000 neurons/day | 2026-08-30 |
+| @cf/meta/llama-3.3-70b-instruct-fp8-fast | $0 | 128K | 300 | Model-dependent | Not published | 10,000 neurons/day | 2026-10-29 |
+| @cf/deepseek-ai/deepseek-r1-distill-qwen-32b | $0 | 128K | 300 | Model-dependent | Not published | 10,000 neurons/day | 2026-10-29 |
+| @cf/qwen/qwen2.5-72b-instruct | $0 | 128K | 300 | Model-dependent | Not published | 10,000 neurons/day | 2026-10-29 |
+| @cf/meta/llama-3.1-8b-instruct | $0 | 128K | 300 | Model-dependent | Not published | 10,000 neurons/day | 2026-10-29 |
 
 ### Hugging Face
 
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Llama 3.2 8B (Serverless) | $0 | Model-dependent | ~300 req/hour (Serverless) | Model max context | Not published | Small monthly credit pool (PRO: 2M credits/mo) | 2026-08-30 |
-| Qwen 2.5 7B (Serverless) | $0 | Model-dependent | ~300 req/hour (Serverless) | Model max context | Not published | Small monthly credit pool (PRO: 2M credits/mo) | 2026-08-30 |
-| Mistral 7B (Serverless) | $0 | Model-dependent | ~300 req/hour (Serverless) | Model max context | Not published | Small monthly credit pool (PRO: 2M credits/mo) | 2026-08-30 |
-| Inference Providers gateway (15+ partners) | $0 | Model-dependent | ~300 req/hour (Serverless) | Model max context | Not published | Small monthly credit pool (PRO: 2M credits/mo) | 2026-08-30 |
+| Llama 3.2 8B (Serverless) | $0 | Model-dependent | ~300 req/hour (Serverless) | Model max context | Not published | Small monthly credit pool (PRO: 2M credits/mo) | 2026-10-29 |
+| Qwen 2.5 7B (Serverless) | $0 | Model-dependent | ~300 req/hour (Serverless) | Model max context | Not published | Small monthly credit pool (PRO: 2M credits/mo) | 2026-10-29 |
+| Mistral 7B (Serverless) | $0 | Model-dependent | ~300 req/hour (Serverless) | Model max context | Not published | Small monthly credit pool (PRO: 2M credits/mo) | 2026-10-29 |
+| Inference Providers gateway (15+ partners) | $0 | Model-dependent | ~300 req/hour (Serverless) | Model max context | Not published | Small monthly credit pool (PRO: 2M credits/mo) | 2026-10-29 |
 
 ### Mistral La Plateforme
 
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Mistral Large | $0 (Experiment) | Model-dependent | ~1 req/sec | Not published | Not published | ~1B tokens/month | 2026-08-30 |
-| Codestral | $0 (Experiment) | Model-dependent | ~1 req/sec | Not published | Not published | ~1B tokens/month | 2026-08-30 |
-| All API models (Experiment tier) | $0 (Experiment) | Model-dependent | ~1 req/sec | Not published | Not published | ~1B tokens/month | 2026-08-30 |
+| Mistral Large | $0 (Experiment) | Model-dependent | ~1 req/sec | Not published | Not published | ~1B tokens/month | 2026-10-29 |
+| Codestral | $0 (Experiment) | Model-dependent | ~1 req/sec | Not published | Not published | ~1B tokens/month | 2026-10-29 |
+| All API models (Experiment tier) | $0 (Experiment) | Model-dependent | ~1 req/sec | Not published | Not published | ~1B tokens/month | 2026-10-29 |
 
 ### SambaNova Cloud
 
@@ -159,18 +170,18 @@ Free LLM inference you can build with: an API key, a CLI login, or inference bun
 
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| GLM-5 | $0 (trial credits) | Model-dependent | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-08-30 |
-| Kimi-2.5 | $0 (trial credits) | Model-dependent | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-08-30 |
-| NIM-packaged open models | $0 (trial credits) | Model-dependent | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-08-30 |
+| GLM-5 | $0 (trial credits) | Model-dependent | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-10-29 |
+| Kimi-2.5 | $0 (trial credits) | Model-dependent | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-10-29 |
+| NIM-packaged open models | $0 (trial credits) | Model-dependent | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-10-29 |
 
 ### Z.AI (Zhipu)
 
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| GLM-5.1 | $0 | Up to 203K | 3 (burst) | Not published | 1,000 (1K RPD tier) | Not published | 2026-08-30 |
-| GLM-4.5-Flash | $0 | Up to 203K | 3 (burst) | Not published | 1,000 | Not published | 2026-08-30 |
-| GLM-4.7-Flash | $0 | Up to 203K | 3 (burst) | Not published | 1,000 | Not published | 2026-08-30 |
-| GLM-4.6V-Flash (vision) | $0 | Up to 203K | 3 (burst) | Not published | 1,000 | Not published | 2026-08-30 |
+| GLM-5.1 | $0 | Up to 203K | 3 (burst) | Not published | 1,000 (1K RPD tier) | Not published | 2026-10-29 |
+| GLM-4.5-Flash | $0 | Up to 203K | 3 (burst) | Not published | 1,000 | Not published | 2026-10-29 |
+| GLM-4.7-Flash | $0 | Up to 203K | 3 (burst) | Not published | 1,000 | Not published | 2026-10-29 |
+| GLM-4.6V-Flash (vision) | $0 | Up to 203K | 3 (burst) | Not published | 1,000 | Not published | 2026-10-29 |
 
 ### Together AI
 
@@ -304,16 +315,24 @@ Free LLM inference you can build with: an API key, a CLI login, or inference bun
 
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| minimax/minimax-m2.1:free | $0 | Not published | 200/hour per IP (anonymous) | Not published | Not published | Not published | 2026-10-01 |
-| z-ai/glm-5:free | $0 | Not published | 200/hour per IP (anonymous) | Not published | Not published | Not published | 2026-10-01 |
+| cohere/north-mini-code:free | $0 | 250K | 20 | Provider-dependent | 200/day | Not published | 2026-10-29 |
+| poolside/laguna-s-2.1:free | $0 | 256K | 20 | Provider-dependent | 200/day | Not published | 2026-10-29 |
+| poolside/laguna-xs-2.1:free | $0 | 256K | 20 | Provider-dependent | 200/day | Not published | 2026-10-29 |
+| liquid/lfm-2.5-2.6b:free | $0 | 64K | 20 | Provider-dependent | 200/day | Not published | 2026-10-29 |
+| dots-studio/dots-3-note-preview:free | $0 | 500K | 20 | Provider-dependent | 200/day | Not published | 2026-10-29 |
+| nvidia/nemotron-3.5-lightning:free | $0 | 1000000 | 20 | Provider-dependent | 200/day | Not published | 2026-10-29 |
+| nvidia/nemotron-3.5-super-vl:free | $0 | 1000000 | 20 | Provider-dependent | 200/day | Not published | 2026-10-29 |
 
 ### Nous Portal
 
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Hermes-4-70B | $0 | 128K | 50 | 500K | Not published | Not published | 2026-10-01 |
-| Hermes-4-405B | $0 | 128K | 50 | 500K | Not published | Not published | 2026-10-01 |
-| Hermes-4.3-36B | $0 | 128K | 50 | 500K | Not published | Not published | 2026-10-01 |
+| poolside/laguna-s-2.1:free | $0 | 256K | 50 | 500K | Not published | Not published | 2026-10-29 |
+| poolside/laguna-xs-2.1:free | $0 | 256K | 50 | 500K | Not published | Not published | 2026-10-29 |
+| stepfun/step-3.7-flash:free | $0 | 128K | 50 | 500K | Not published | Not published | 2026-10-29 |
+| upstage/solar-mini4:free | $0 | 64K | 50 | 500K | Not published | Not published | 2026-10-29 |
+| reflection/beam-1.0-501b-a23b:free | $0 | 128K | 50 | 500K | Not published | Not published | 2026-10-29 |
+| ornith/ornith-1.5-122b:free | $0 | 128K | 50 | 500K | Not published | Not published | 2026-10-29 |
 
 ### Cohere
 
@@ -327,14 +346,31 @@ Free LLM inference you can build with: an API key, a CLI login, or inference bun
 
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| nvidia/nemotron-3-super-120b:free (via Requesty) | $0 | Not published | 20/min shared | Not published | 200/day shared | Not published | 2026-10-01 |
-| google/gemma-4-31b-it:free (via Requesty) | $0 | Not published | 20/min shared | Not published | 200/day shared | Not published | 2026-10-29 |
+| nvidia/nemotron-3-super-120b-a12b | $0 | 128K | Not published | Not published | 200/day shared | Not published | 2026-10-29 |
+| google/gemma-4-31b-it | $0 | 256K | Not published | Not published | 200/day shared | Not published | 2026-10-29 |
+| poolside/laguna-xs.2 | $0 | 256K | Not published | Not published | 200/day shared | Not published | 2026-10-29 |
 
 ### OVHcloud AI Endpoints
 
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | 10 free models (anonymous keyless) | $0 | Model-dependent | 2/min per IP | Not published | Not published | Not published | 2026-10-29 |
+
+### SiliconFlow
+
+| Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| deepseek-ai/DeepSeek-R1-Distill-Qwen-7B | $0 | 32K | 1000 | 40K | 100 | Not published | 2026-10-29 |
+| deepseek-ai/DeepSeek-V3 | $0 | 64K | 30 RPH | 40K | 100 | Not published | 2026-10-29 |
+| Qwen/Qwen2.5-7B-Instruct | $0 | 32K | 1000 | 40K | Not published | Not published | 2026-10-29 |
+| THUDM/glm-4-9b-chat | $0 | 32K | 1000 | 40K | Not published | Not published | 2026-10-29 |
+
+### DeepSeek Platform
+
+| Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| deepseek-chat | $0 (5M signup tokens) | 64K | 60 | Not published | Not published | 5M tokens grant | 2026-10-29 |
+| deepseek-reasoner | $0 (5M signup tokens) | 64K | 60 | Not published | Not published | 5M tokens grant | 2026-10-29 |
 ## Definitions
 
 | Term | Meaning |

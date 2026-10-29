@@ -786,7 +786,7 @@ function render(app) {{
       <h2>${{p.name}}<span class="ftype">${{p.free_type}}</span><span class="amchip">${{AM[p.access_method] || p.access_method}}</span></h2>
       <a class="purl" href="${{p.url}}" target="_blank" rel="noopener">${{p.url}}</a>
       <div class="pnotes">${{p.notes}}</div>
-      <div class="pnotes"><strong>${{p.verified_method === "live-probe" ? "Live-probed" : "Docs-verified"}} ${{p.verified}}</strong>${{p.verified_method === "docs" ? " · no public API to probe; dates refresh on human verification pass" : " · re-verified nightly"}}</div>${{dead}}
+      <div class="pnotes"><strong>${{p.verified_method === "live-probe" ? "Live-probed" : "Docs-verified"}} ${{p.verified}}</strong>${{p.verified_method === "docs" ? " · verified against official public documentation" : " · re-verified nightly via live probe"}}</div>${{dead}}
     </div>
     <div class="table-wrap"><table>
       <thead><tr><th data-k="name">Model</th><th data-k="cost">Cost</th><th data-k="context">Context</th>

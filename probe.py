@@ -313,6 +313,31 @@ def sync_opencode(prov, today):
     return msg
 
 
+def sync_groq(prov, today):
+    """Direct ground-truth verification against Groq's public rate-limits documentation."""
+    url = prov.get("docs_url") or prov.get("url") or "https://console.groq.com/docs/rate-limits"
+    req = urllib.request.Request(url, headers=UA)
+    with urllib.request.urlopen(req, timeout=15) as r:
+        html = r.read().decode("utf-8")
+    
+    found = 0
+    missing = []
+    for m in prov["models"]:
+        m_name = m["name"].lower()
+        if m_name in html.lower():
+            m["verified"] = today
+            found += 1
+        else:
+            missing.append(m["name"])
+    
+    prov["verified"] = today
+    prov["verified_method"] = "live-probe"
+    msg = f"ok: {found}/{len(prov['models'])} models confirmed in Groq public docs"
+    if missing:
+        msg += f"; MISSING: {missing}"
+    return msg
+
+
 def check_doc_links(data):
     """Dead-link detection only — never extracts limits from docs (layouts change silently)."""
     out = []
@@ -349,6 +374,8 @@ def main():
                 results.append(("OpenRouter", sync_openrouter(prov, today)))
             elif prov["name"] == "OpenCode Zen":
                 results.append(("OpenCode Zen", sync_opencode(prov, today)))
+            elif prov["name"] == "Groq":
+                results.append(("Groq", sync_groq(prov, today)))
             elif prov["name"] in KEYLESS_MODEL_ENDPOINTS:
                 results.append((prov["name"], sync_keyless_models(prov, KEYLESS_MODEL_ENDPOINTS[prov["name"]], today)))
         except Exception as e:

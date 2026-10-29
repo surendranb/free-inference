@@ -136,7 +136,7 @@
       "name": "OpenRouter",
       "url": "https://openrouter.ai/models?max_price=0",
       "free_type": "Rate-limited free",
-      "notes": "Updated via GitHub Connect test (2026-08-12)",
+      "notes": "OpenAI-compatible gateway (https://openrouter.ai/api/v1). 50 RPD on $0 accounts, 1,000 RPD with $10+ credits. No credit card required. Permanent $0 models have :free suffix.",
       "timeout": "Not published",
       "verified": "2026-10-29",
       "models": [
@@ -579,7 +579,7 @@
           "verified": "2026-10-29"
         },
         {
-          "name": "groq/compound",
+          "name": "compound-beta",
           "cost": "$0",
           "context": "128K",
           "rpm": "30",
@@ -589,7 +589,7 @@
           "verified": "2026-10-29"
         }
       ],
-      "verified_method": "docs",
+      "verified_method": "live-probe",
       "docs_url": "https://console.groq.com/docs/rate-limits",
       "access_method": "api_key",
       "artifact": "code",

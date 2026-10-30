@@ -1,6 +1,6 @@
 {
-  "scouted_date": "2026-10-29",
-  "model_used": "gemini-3.5-flash-lite",
+  "scouted_date": "2026-10-30",
+  "model_used": "gemini-3.5-flash-lite + antigravity-preview-09-2026",
   "providers_audited": 38,
   "models_cataloged": 119,
   "audit_summary": {
@@ -8,7 +8,7 @@
     "stale_providers": [
       {
         "provider": "Canva (Free)",
-        "days_stale": 47,
+        "days_stale": 48,
         "verified": "2026-09-12",
         "docs_url": "https://www.canva.com/help/ai-access/"
       }
@@ -19,84 +19,218 @@
     {
       "provider": "Canva (Free)",
       "docs_url": "https://www.canva.com/help/ai-access/",
-      "status": "unreachable",
-      "is_free_active": null,
-      "summary": "HTTP Error 403: Forbidden",
-      "audited_date": "2026-10-29"
+      "status": "active",
+      "is_free_active": true,
+      "summary": "Canva Free provides a shared monthly allowance of up to 20 uses across Standard and Premium AI tools (with short pauses between generations upon reaching limits) that resets each month, while Ultra AI tools are excluded.",
+      "audited_date": "2026-10-30",
+      "agent_steps": 11,
+      "interaction_id": "v1_ChdvSERrYXFDM0RaWHdxdHNQZ2ZPem1BRRIXb0hEa2FxQzNEWlh3cXRzUGdmT3ptQUU"
     }
   ],
   "live_gateway_free_total": 53,
   "new_discoveries_count": 16,
+  "openrouter_rss_stream_count": 16,
+  "openrouter_rss_new_count": 0,
+  "openrouter_rss_stream": [
+    {
+      "model_id": "recursive/flint-v1.0",
+      "title": "Recursive: Flint (free) (recursive/flint-v1.0)",
+      "link": "https://openrouter.ai/recursive/flint-v1.0",
+      "pub_date": "Wed, 21 Oct 2026 22:46:05 GMT",
+      "description": "Flint is an open-weight mixture-of-experts model from Recursive, with about 2.5B active parameters out of 40B total, built by Recursive's autoresearch system Eureka Machine for coding agents. It is su",
+      "is_new_to_catalog": false
+    },
+    {
+      "model_id": "xingchen-agi/xing4.0-29b-a4b",
+      "title": "XingChen: Xing4.0 29B A4B (free) (xingchen-agi/xing4.0-29b-a4b)",
+      "link": "https://openrouter.ai/xingchen-agi/xing4.0-29b-a4b",
+      "pub_date": "Fri, 16 Oct 2026 19:04:56 GMT",
+      "description": "Xing4.0-29B-A4B is an open-weight mixture-of-experts language model from China Telecom's AI team (TeleAI) and the successor to the TeleChat series. It has 29B total parameters with 4B active per token",
+      "is_new_to_catalog": false
+    },
+    {
+      "model_id": "nvidia/nemotron-3.5-super-vl",
+      "title": "NVIDIA: Nemotron 3.5 Super VL (free) (nvidia/nemotron-3.5-super-vl)",
+      "link": "https://openrouter.ai/nvidia/nemotron-3.5-super-vl",
+      "pub_date": "Thu, 15 Oct 2026 15:04:22 GMT",
+      "description": "NVIDIA Nemotron 3.5 Super VL is an open multimodal mixture-of-experts model from NVIDIA, with 12B active parameters out of 120B total. It takes text, images, documents, GUI screenshots, and video...",
+      "is_new_to_catalog": false
+    },
+    {
+      "model_id": "dots-studio/dots-3-note-preview",
+      "title": "Dots Studio: Dots3-Note Preview (free) (dots-studio/dots-3-note-preview)",
+      "link": "https://openrouter.ai/dots-studio/dots-3-note-preview",
+      "pub_date": "Fri, 14 Aug 2026 04:06:01 GMT",
+      "description": "Dots3-Note Preview is an open-weight mixture-of-experts model from Dots Studio, with 16B active parameters out of 280B total. It is the lightest model in the Dots 3 family and is...",
+      "is_new_to_catalog": false
+    },
+    {
+      "model_id": "liquid/lfm-2.5-2.6b",
+      "title": "LiquidAI: LFM2.5-2.6B (free) (liquid/lfm-2.5-2.6b)",
+      "link": "https://openrouter.ai/liquid/lfm-2.5-2.6b",
+      "pub_date": "Tue, 11 Aug 2026 17:48:39 GMT",
+      "description": "LFM2.5-2.6B is a compact reasoning model from Liquid AI. It is suited for agent workflows, data extraction, RAG, and long-context processing. Liquid advises against using it for agentic coding or...",
+      "is_new_to_catalog": false
+    },
+    {
+      "model_id": "nvidia/nemotron-3.5-lightning",
+      "title": "NVIDIA: Nemotron 3.5 Lightning (free) (nvidia/nemotron-3.5-lightning)",
+      "link": "https://openrouter.ai/nvidia/nemotron-3.5-lightning",
+      "pub_date": "Tue, 11 Aug 2026 12:52:31 GMT",
+      "description": "NVIDIA Nemotron 3.5 Lightning is an open mixture-of-experts model from NVIDIA, with 3B active parameters out of 30B total. It is suited for high-throughput agentic workloads and specialized tasks that",
+      "is_new_to_catalog": false
+    },
+    {
+      "model_id": "thinkingmachines/inkling-small",
+      "title": "Thinking Machines: Inkling Small (free) (thinkingmachines/inkling-small)",
+      "link": "https://openrouter.ai/thinkingmachines/inkling-small",
+      "pub_date": "Thu, 30 Jul 2026 20:25:17 GMT",
+      "description": "Inkling Small is an open-weight multimodal mixture-of-experts model from Thinking Machines Lab, with 12B active parameters out of 276B total. It is positioned as the smaller, more efficient member of.",
+      "is_new_to_catalog": false
+    },
+    {
+      "model_id": "poolside/laguna-s-2.1",
+      "title": "Poolside: Laguna S 2.1 (free) (poolside/laguna-s-2.1)",
+      "link": "https://openrouter.ai/poolside/laguna-s-2.1",
+      "pub_date": "Tue, 21 Jul 2026 16:51:23 GMT",
+      "description": "Laguna S 2.1 is the latest coding agent model from <a href=\"<https://poolside.ai/>\">Poolside</a>. Laguna S 2.1 is a 118B total parameter model with 8B active parameters, scoring 70.2% on Terminal-Benc",
+      "is_new_to_catalog": false
+    },
+    {
+      "model_id": "thinkingmachines/inkling",
+      "title": "Thinking Machines: Inkling (free) (thinkingmachines/inkling)",
+      "link": "https://openrouter.ai/thinkingmachines/inkling",
+      "pub_date": "Fri, 17 Jul 2026 22:05:56 GMT",
+      "description": "Inkling is an open-weight multimodal mixture-of-experts model from Thinking Machines Lab, with 41B active parameters out of 975B total. It is designed for general-purpose reasoning, coding, agentic an",
+      "is_new_to_catalog": false
+    },
+    {
+      "model_id": "poolside/laguna-xs-2.1",
+      "title": "Poolside: Laguna XS 2.1 (free) (poolside/laguna-xs-2.1)",
+      "link": "https://openrouter.ai/poolside/laguna-xs-2.1",
+      "pub_date": "Thu, 02 Jul 2026 14:27:09 GMT",
+      "description": "Laguna XS 2.1 is the latest coding agent model in the 33B-A3B category from <a href=\"https://poolside.ai/\">Poolside</a> and a step forward from their Laguna XS.2 model (released in April 2026). It com",
+      "is_new_to_catalog": false
+    },
+    {
+      "model_id": "cohere/north-mini-code",
+      "title": "Cohere: North Mini Code (free) (cohere/north-mini-code)",
+      "link": "https://openrouter.ai/cohere/north-mini-code",
+      "pub_date": "Wed, 17 Jun 2026 19:15:48 GMT",
+      "description": "North Mini Code is Cohere's first agentic coding model and the debut of its North family. A sparse mixture-of-experts model with 30B total parameters and 3B active, it is optimized...",
+      "is_new_to_catalog": false
+    },
+    {
+      "model_id": "nvidia/nemotron-3.5-content-safety",
+      "title": "NVIDIA: Nemotron 3.5 Content Safety (free) (nvidia/nemotron-3.5-content-safety)",
+      "link": "https://openrouter.ai/nvidia/nemotron-3.5-content-safety",
+      "pub_date": "Thu, 04 Jun 2026 14:04:24 GMT",
+      "description": "NVIDIA Nemotron 3.5 Content Safety is a compact 4B-parameter multimodal guardrail model from NVIDIA, fine-tuned from Google Gemma-3-4B. It moderates both inputs to and responses from LLMs and VLMs, ac",
+      "is_new_to_catalog": false
+    },
+    {
+      "model_id": "nvidia/nemotron-3-ultra-550b-a55b",
+      "title": "NVIDIA: Nemotron 3 Ultra (free) (nvidia/nemotron-3-ultra-550b-a55b)",
+      "link": "https://openrouter.ai/nvidia/nemotron-3-ultra-550b-a55b",
+      "pub_date": "Thu, 04 Jun 2026 05:33:28 GMT",
+      "description": "NVIDIA Nemotron 3 Ultra is an open frontier-reasoning and orchestration model from NVIDIA, with 55B active parameters out of 550B total (MoE). Built on a hybrid Transformer-Mamba mixture-of-experts ar",
+      "is_new_to_catalog": false
+    },
+    {
+      "model_id": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning",
+      "title": "NVIDIA: Nemotron 3 Nano Omni (free) (nvidia/nemotron-3-nano-omni-30b-a3b-reasoning)",
+      "link": "https://openrouter.ai/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning",
+      "pub_date": "Tue, 28 Apr 2026 16:18:15 GMT",
+      "description": "NVIDIA Nemotron\u2122 3 Nano Omni is a 30B-A3B open multimodal model designed to function as a perception and context sub-agent in enterprise agent systems. It accepts text, image, video, and...",
+      "is_new_to_catalog": false
+    },
+    {
+      "model_id": "google/gemma-4-26b-a4b-it",
+      "title": "Google: Gemma 4 26B A4B  (free) (google/gemma-4-26b-a4b-it)",
+      "link": "https://openrouter.ai/google/gemma-4-26b-a4b-it",
+      "pub_date": "Fri, 03 Apr 2026 14:53:09 GMT",
+      "description": "Gemma 4 26B A4B IT is an instruction-tuned Mixture-of-Experts (MoE) model from Google DeepMind. Despite 25.2B total parameters, only 3.8B activate per token during inference \u2014 delivering near-31B qual",
+      "is_new_to_catalog": false
+    },
+    {
+      "model_id": "google/gemma-4-31b-it",
+      "title": "Google: Gemma 4 31B (free) (google/gemma-4-31b-it)",
+      "link": "https://openrouter.ai/google/gemma-4-31b-it",
+      "pub_date": "Thu, 02 Apr 2026 16:48:06 GMT",
+      "description": "Gemma 4 31B Instruct is Google DeepMind's 30.7B dense multimodal model supporting text and image input with text output. Features a 256K token context window, configurable thinking/reasoning mode, nat",
+      "is_new_to_catalog": false
+    }
+  ],
   "candidates": [
     {
       "id": "kilo-auto/free",
       "family": "auto-router",
       "task": "general",
       "recommended_page_slug": "kilo-auto-free",
-      "summary": "An automatic routing model provided by Kilo Gateway offering free general-purpose inference with a 256k context window."
+      "summary": "Dynamic automated routing model prioritizing free tier endpoints with a 256k context window."
     },
     {
       "id": "reflection/beam-free",
       "family": "reflection",
       "task": "reasoning",
       "recommended_page_slug": "reflection-beam-free",
-      "summary": "A high-context (1M tokens) reasoning and reflection-oriented model available for free on Kilo Gateway."
+      "summary": "High-context reasoning model featuring a 1M token context window distributed via Kilo Gateway."
     },
     {
       "id": "stealth/glyph-cluster",
-      "family": "stealth",
+      "family": "custom-mixture",
       "task": "general",
       "recommended_page_slug": "stealth-glyph-cluster",
-      "summary": "A stealth-architecture model supporting a 256k context length, optimized for general tasks via Kilo Gateway."
+      "summary": "Specialized stealth cluster model optimized for general text generation tasks with 256k context."
     },
     {
       "id": "google/lyria-3-pro-preview",
       "family": "google-lyria",
       "task": "reasoning",
       "recommended_page_slug": "google-lyria-3-pro-preview",
-      "summary": "Google Lyria 3 Pro preview model with a massive 1M context window, tuned for advanced processing and reasoning."
+      "summary": "Google Lyria 3 Pro preview release featuring advanced generation capabilities and 1M context length."
     },
     {
       "id": "google/lyria-3-clip-preview",
       "family": "google-lyria",
       "task": "general",
       "recommended_page_slug": "google-lyria-3-clip-preview",
-      "summary": "Google Lyria 3 Clip preview model featuring a 1M context length for broad generation and retrieval tasks."
+      "summary": "Google Lyria 3 Clip preview model optimized for shorter snippet generation and multimodal-adjacent workflows."
     },
     {
       "id": "openrouter/free",
-      "family": "auto-router",
+      "family": "meta-router",
       "task": "general",
       "recommended_page_slug": "openrouter-free-router",
-      "summary": "A meta-router model aggregating free tier endpoints, backed by a 200k context window."
+      "summary": "Gateway aggregator router pulling from top available free model tiers across OpenRouter pool."
     },
     {
       "id": "novita/ling-3.1-flash",
       "family": "ling",
-      "task": "coding",
+      "task": "general",
       "recommended_page_slug": "novita-ling-3-1-flash",
-      "summary": "Novita's Ling 3.1 Flash model optimized for fast, lightweight coding and text generation tasks."
+      "summary": "Lightweight, fast inference model by Novita offering zero-cost developer access."
     },
     {
       "id": "nvidia/nemotron-3.5-lightning-30b-a3b",
       "family": "nemotron",
       "task": "reasoning",
-      "recommended_page_slug": "nvidia-nemotron-3-5-lightning-30b-a3b",
-      "summary": "NVIDIA Nemotron 3.5 Lightning (30B A3B) configured for high-speed reasoning and inference."
+      "recommended_page_slug": "nvidia-nemotron-3-5-lightning",
+      "summary": "Nvidia Nemotron 30B variant optimized for high throughput lightning-fast inference performance."
     },
     {
       "id": "nvidia/muse-glimmer-30b",
       "family": "muse",
       "task": "general",
       "recommended_page_slug": "nvidia-muse-glimmer-30b",
-      "summary": "NVIDIA Muse Glimmer 30B model built for general chat and multi-turn instruction following."
+      "summary": "Nvidia Muse Glimmer 30B model providing balanced general-purpose dialogue capabilities."
     },
     {
       "id": "novita/inclusionai/ling-3.0-tiny",
       "family": "ling",
       "task": "general",
-      "recommended_page_slug": "novita-inclusionai-ling-3-0-tiny",
-      "summary": "InclusionAI's Ling 3.0 Tiny model hosted on Novita, designed for ultra-low latency general utility tasks."
+      "recommended_page_slug": "novita-ling-3-0-tiny",
+      "summary": "Ultra-compact InclusionAI Ling 3.0 Tiny model designed for low-latency edge and basic tasks."
     }
   ],
   "status": "completed"

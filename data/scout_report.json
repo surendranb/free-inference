@@ -1,34 +1,16 @@
 {
-  "scouted_date": "2026-10-30",
+  "scouted_date": "2026-10-31",
   "model_used": "gemini-3.5-flash-lite + antigravity-preview-09-2026",
   "providers_audited": 38,
   "models_cataloged": 119,
   "audit_summary": {
-    "stale_count": 1,
-    "stale_providers": [
-      {
-        "provider": "Canva (Free)",
-        "days_stale": 48,
-        "verified": "2026-09-12",
-        "docs_url": "https://www.canva.com/help/ai-access/"
-      }
-    ],
+    "stale_count": 0,
+    "stale_providers": [],
     "syntax_issues": []
   },
-  "doc_audits": [
-    {
-      "provider": "Canva (Free)",
-      "docs_url": "https://www.canva.com/help/ai-access/",
-      "status": "active",
-      "is_free_active": true,
-      "summary": "Canva Free provides a shared monthly allowance of up to 20 uses across Standard and Premium AI tools (with short pauses between generations upon reaching limits) that resets each month, while Ultra AI tools are excluded.",
-      "audited_date": "2026-10-30",
-      "agent_steps": 11,
-      "interaction_id": "v1_ChdvSERrYXFDM0RaWHdxdHNQZ2ZPem1BRRIXb0hEa2FxQzNEWlh3cXRzUGdmT3ptQUU"
-    }
-  ],
-  "live_gateway_free_total": 53,
-  "new_discoveries_count": 16,
+  "doc_audits": [],
+  "live_gateway_free_total": 54,
+  "new_discoveries_count": 17,
   "openrouter_rss_stream_count": 16,
   "openrouter_rss_new_count": 0,
   "openrouter_rss_stream": [
@@ -167,70 +149,70 @@
       "family": "auto-router",
       "task": "general",
       "recommended_page_slug": "kilo-auto-free",
-      "summary": "Dynamic automated routing model prioritizing free tier endpoints with a 256k context window."
+      "summary": "Automatic free model router routing requests dynamically across available free backends on Kilo Gateway."
     },
     {
       "id": "reflection/beam-free",
       "family": "reflection",
       "task": "reasoning",
       "recommended_page_slug": "reflection-beam-free",
-      "summary": "High-context reasoning model featuring a 1M token context window distributed via Kilo Gateway."
+      "summary": "High-context reasoning model featuring a 1M token context window optimized for complex problem solving."
     },
     {
       "id": "stealth/glyph-cluster",
-      "family": "custom-mixture",
+      "family": "stealth",
       "task": "general",
       "recommended_page_slug": "stealth-glyph-cluster",
-      "summary": "Specialized stealth cluster model optimized for general text generation tasks with 256k context."
+      "summary": "Stealth architecture cluster model with 256k context length designed for balanced general-purpose tasks."
     },
     {
       "id": "google/lyria-3-pro-preview",
-      "family": "google-lyria",
-      "task": "reasoning",
+      "family": "lyria",
+      "task": "general",
       "recommended_page_slug": "google-lyria-3-pro-preview",
-      "summary": "Google Lyria 3 Pro preview release featuring advanced generation capabilities and 1M context length."
+      "summary": "Google Lyria 3 Pro preview model supporting massive 1M context length for deep creative and analytical tasks."
     },
     {
       "id": "google/lyria-3-clip-preview",
-      "family": "google-lyria",
+      "family": "lyria",
       "task": "general",
       "recommended_page_slug": "google-lyria-3-clip-preview",
-      "summary": "Google Lyria 3 Clip preview model optimized for shorter snippet generation and multimodal-adjacent workflows."
+      "summary": "Google Lyria 3 Clip preview variant tailored for compressed context generation and fast response times."
     },
     {
       "id": "openrouter/free",
-      "family": "meta-router",
+      "family": "auto-router",
       "task": "general",
-      "recommended_page_slug": "openrouter-free-router",
-      "summary": "Gateway aggregator router pulling from top available free model tiers across OpenRouter pool."
+      "recommended_page_slug": "openrouter-free",
+      "summary": "Meta-router gateway directing queries to the pool of currently active free models available via OpenRouter."
+    },
+    {
+      "id": "inclusionai/ling-3.1-flash-1019-free",
+      "family": "ling",
+      "task": "general",
+      "recommended_page_slug": "inclusionai-ling-3-1-flash-1019-free",
+      "summary": "InclusionAI Ling 3.1 Flash offering a 1M token context window with zero-cost developer access."
     },
     {
       "id": "novita/ling-3.1-flash",
       "family": "ling",
       "task": "general",
       "recommended_page_slug": "novita-ling-3-1-flash",
-      "summary": "Lightweight, fast inference model by Novita offering zero-cost developer access."
+      "summary": "Novita-hosted variant of the Ling 3.1 Flash model discovered via Requesty gateway."
     },
     {
       "id": "nvidia/nemotron-3.5-lightning-30b-a3b",
       "family": "nemotron",
       "task": "reasoning",
-      "recommended_page_slug": "nvidia-nemotron-3-5-lightning",
-      "summary": "Nvidia Nemotron 30B variant optimized for high throughput lightning-fast inference performance."
+      "recommended_page_slug": "nvidia-nemotron-3-5-lightning-30b-a3b",
+      "summary": "Nvidia Nemotron 3.5 Lightning 30B parameter model tuned for rapid low-latency reasoning."
     },
     {
       "id": "nvidia/muse-glimmer-30b",
       "family": "muse",
       "task": "general",
       "recommended_page_slug": "nvidia-muse-glimmer-30b",
-      "summary": "Nvidia Muse Glimmer 30B model providing balanced general-purpose dialogue capabilities."
-    },
-    {
-      "id": "novita/inclusionai/ling-3.0-tiny",
-      "family": "ling",
-      "task": "general",
-      "recommended_page_slug": "novita-ling-3-0-tiny",
-      "summary": "Ultra-compact InclusionAI Ling 3.0 Tiny model designed for low-latency edge and basic tasks."
+      "summary": "Nvidia Muse Glimmer 30B model providing general instruction-following and content generation capabilities."
     }
   ],
   "status": "completed"

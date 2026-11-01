@@ -1,17 +1,65 @@
 {
-  "scouted_date": "2026-10-31",
+  "scouted_date": "2026-11-01",
   "model_used": "gemini-3.5-flash-lite + antigravity-preview-09-2026",
   "providers_audited": 38,
   "models_cataloged": 119,
   "audit_summary": {
-    "stale_count": 0,
-    "stale_providers": [],
+    "stale_count": 3,
+    "stale_providers": [
+      {
+        "provider": "Cerebras",
+        "days_stale": 31,
+        "verified": "2026-10-01",
+        "docs_url": "https://inference-docs.cerebras.ai/support/rate-limits"
+      },
+      {
+        "provider": "Together AI",
+        "days_stale": 31,
+        "verified": "2026-10-01",
+        "docs_url": "https://docs.together.ai/docs/rate-limits"
+      },
+      {
+        "provider": "Cohere",
+        "days_stale": 31,
+        "verified": "2026-10-01",
+        "docs_url": "https://docs.cohere.com/docs/rate-limits"
+      }
+    ],
     "syntax_issues": []
   },
-  "doc_audits": [],
-  "live_gateway_free_total": 54,
+  "doc_audits": [
+    {
+      "provider": "Cerebras",
+      "docs_url": "https://inference-docs.cerebras.ai/support/rate-limits",
+      "status": "active",
+      "is_free_active": true,
+      "summary": "Cerebras offers a Free Trial providing a one-time $5 credit valid for 30 days upon adding a verified payment method, with rate limits of 5 RPM, 30K uncached TPM (90K total TPM), and 1M TPH/TPD per model and no recurring renewal.",
+      "audited_date": "2026-11-01",
+      "agent_steps": 18,
+      "interaction_id": "v1_ChdoeGpuYXJDMEl2S0Z5dE1Qdk4tT2tRWRIXaHhqbmFyQzBJdktGeXRNUHZOLU9rUVk"
+    },
+    {
+      "provider": "Together AI",
+      "docs_url": "https://docs.together.ai/docs/rate-limits",
+      "status": "unreachable",
+      "is_free_active": null,
+      "summary": "Expecting value: line 1 column 1 (char 0)",
+      "audited_date": "2026-11-01"
+    },
+    {
+      "provider": "Cohere",
+      "docs_url": "https://docs.cohere.com/docs/rate-limits",
+      "status": "active",
+      "is_free_active": true,
+      "summary": "Cohere offers a free trial API tier providing up to 1,000 calls per month at a rate limit of 20 requests per minute for Chat models (including Command A, Command R+, and Command R7B), resetting monthly.",
+      "audited_date": "2026-11-01",
+      "agent_steps": 9,
+      "interaction_id": "v1_Chc5QmpuYXREZkRzX0owX2dQdV8zSndBMBIXOUJqbmF0RGZEc19KMF9nUHVfM0p3QTA"
+    }
+  ],
+  "live_gateway_free_total": 48,
   "new_discoveries_count": 17,
-  "openrouter_rss_stream_count": 16,
+  "openrouter_rss_stream_count": 14,
   "openrouter_rss_new_count": 0,
   "openrouter_rss_stream": [
     {
@@ -71,27 +119,11 @@
       "is_new_to_catalog": false
     },
     {
-      "model_id": "poolside/laguna-s-2.1",
-      "title": "Poolside: Laguna S 2.1 (free) (poolside/laguna-s-2.1)",
-      "link": "https://openrouter.ai/poolside/laguna-s-2.1",
-      "pub_date": "Tue, 21 Jul 2026 16:51:23 GMT",
-      "description": "Laguna S 2.1 is the latest coding agent model from <a href=\"<https://poolside.ai/>\">Poolside</a>. Laguna S 2.1 is a 118B total parameter model with 8B active parameters, scoring 70.2% on Terminal-Benc",
-      "is_new_to_catalog": false
-    },
-    {
       "model_id": "thinkingmachines/inkling",
       "title": "Thinking Machines: Inkling (free) (thinkingmachines/inkling)",
       "link": "https://openrouter.ai/thinkingmachines/inkling",
       "pub_date": "Fri, 17 Jul 2026 22:05:56 GMT",
       "description": "Inkling is an open-weight multimodal mixture-of-experts model from Thinking Machines Lab, with 41B active parameters out of 975B total. It is designed for general-purpose reasoning, coding, agentic an",
-      "is_new_to_catalog": false
-    },
-    {
-      "model_id": "poolside/laguna-xs-2.1",
-      "title": "Poolside: Laguna XS 2.1 (free) (poolside/laguna-xs-2.1)",
-      "link": "https://openrouter.ai/poolside/laguna-xs-2.1",
-      "pub_date": "Thu, 02 Jul 2026 14:27:09 GMT",
-      "description": "Laguna XS 2.1 is the latest coding agent model in the 33B-A3B category from <a href=\"https://poolside.ai/\">Poolside</a> and a step forward from their Laguna XS.2 model (released in April 2026). It com",
       "is_new_to_catalog": false
     },
     {
@@ -149,70 +181,70 @@
       "family": "auto-router",
       "task": "general",
       "recommended_page_slug": "kilo-auto-free",
-      "summary": "Automatic free model router routing requests dynamically across available free backends on Kilo Gateway."
+      "summary": "Dynamic routing free model wrapper provided by Kilo Gateway supporting a 256k context window."
     },
     {
       "id": "reflection/beam-free",
       "family": "reflection",
       "task": "reasoning",
       "recommended_page_slug": "reflection-beam-free",
-      "summary": "High-context reasoning model featuring a 1M token context window optimized for complex problem solving."
+      "summary": "High-context (1M tokens) reasoning-focused model available for free on Kilo Gateway."
     },
     {
       "id": "stealth/glyph-cluster",
-      "family": "stealth",
+      "family": "proprietary",
       "task": "general",
       "recommended_page_slug": "stealth-glyph-cluster",
-      "summary": "Stealth architecture cluster model with 256k context length designed for balanced general-purpose tasks."
+      "summary": "Stealth infrastructure model featuring a 256k context window for general text tasks."
     },
     {
       "id": "google/lyria-3-pro-preview",
       "family": "lyria",
-      "task": "general",
+      "task": "reasoning",
       "recommended_page_slug": "google-lyria-3-pro-preview",
-      "summary": "Google Lyria 3 Pro preview model supporting massive 1M context length for deep creative and analytical tasks."
+      "summary": "Google Lyria 3 Pro preview model with a massive 1M context window geared toward complex tasks."
     },
     {
       "id": "google/lyria-3-clip-preview",
       "family": "lyria",
       "task": "general",
       "recommended_page_slug": "google-lyria-3-clip-preview",
-      "summary": "Google Lyria 3 Clip preview variant tailored for compressed context generation and fast response times."
+      "summary": "Google Lyria 3 Clip preview variant offering a 1M context window for efficient multi-modal or clip-based text workloads."
     },
     {
       "id": "openrouter/free",
       "family": "auto-router",
       "task": "general",
       "recommended_page_slug": "openrouter-free",
-      "summary": "Meta-router gateway directing queries to the pool of currently active free models available via OpenRouter."
+      "summary": "Aggregated router pointing to zero-cost models across OpenRouter's ecosystem via Kilo Gateway."
     },
     {
       "id": "inclusionai/ling-3.1-flash-1019-free",
       "family": "ling",
       "task": "general",
-      "recommended_page_slug": "inclusionai-ling-3-1-flash-1019-free",
-      "summary": "InclusionAI Ling 3.1 Flash offering a 1M token context window with zero-cost developer access."
+      "recommended_page_slug": "inclusionai-ling-3.1-flash-1019-free",
+      "summary": "InclusionAI Ling 3.1 Flash offering an ultra-long 1M context window completely free of charge."
     },
     {
       "id": "novita/ling-3.1-flash",
       "family": "ling",
       "task": "general",
-      "recommended_page_slug": "novita-ling-3-1-flash",
-      "summary": "Novita-hosted variant of the Ling 3.1 Flash model discovered via Requesty gateway."
+      "recommended_page_slug": "novita-ling-3.1-flash",
+      "summary": "Novita-hosted variant of the Ling 3.1 Flash architecture available for standard inference pipelines."
     },
     {
       "id": "nvidia/nemotron-3.5-lightning-30b-a3b",
       "family": "nemotron",
       "task": "reasoning",
-      "recommended_page_slug": "nvidia-nemotron-3-5-lightning-30b-a3b",
-      "summary": "Nvidia Nemotron 3.5 Lightning 30B parameter model tuned for rapid low-latency reasoning."
+      "recommended_page_slug": "nvidia-nemotron-3.5-lightning-30b-a3b",
+      "summary": "NVIDIA Nemotron 3.5 Lightning 30B optimized for rapid reasoning and structured response generation."
     },
     {
       "id": "nvidia/muse-glimmer-30b",
       "family": "muse",
       "task": "general",
       "recommended_page_slug": "nvidia-muse-glimmer-30b",
-      "summary": "Nvidia Muse Glimmer 30B model providing general instruction-following and content generation capabilities."
+      "summary": "NVIDIA Muse Glimmer 30B medium-scale architecture tailored for flexible conversational and completion tasks."
     }
   ],
   "status": "completed"

@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      issues: write
     steps:
       - uses: actions/checkout@v4
         with:
@@ -24,6 +25,7 @@ jobs:
       - name: Run AI Studio discovery scout
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python3 scripts/ai_scout.py --apply
       - name: Build site (regenerates README.md + dist/)
         run: python3 build.py

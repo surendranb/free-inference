@@ -1,62 +1,91 @@
 {
-  "scouted_date": "2026-11-01",
+  "scouted_date": "2026-11-02",
   "model_used": "gemini-3.5-flash-lite + antigravity-preview-09-2026",
-  "providers_audited": 38,
-  "models_cataloged": 119,
+  "providers_audited": 37,
+  "models_cataloged": 118,
   "audit_summary": {
-    "stale_count": 3,
-    "stale_providers": [
-      {
-        "provider": "Cerebras",
-        "days_stale": 31,
-        "verified": "2026-10-01",
-        "docs_url": "https://inference-docs.cerebras.ai/support/rate-limits"
-      },
-      {
-        "provider": "Together AI",
-        "days_stale": 31,
-        "verified": "2026-10-01",
-        "docs_url": "https://docs.together.ai/docs/rate-limits"
-      },
-      {
-        "provider": "Cohere",
-        "days_stale": 31,
-        "verified": "2026-10-01",
-        "docs_url": "https://docs.cohere.com/docs/rate-limits"
-      }
-    ],
+    "stale_count": 0,
+    "stale_providers": [],
     "syntax_issues": []
   },
-  "doc_audits": [
+  "doc_audits": [],
+  "candidate_providers_count": 103,
+  "candidate_audits": [
     {
-      "provider": "Cerebras",
-      "docs_url": "https://inference-docs.cerebras.ai/support/rate-limits",
-      "status": "active",
-      "is_free_active": true,
-      "summary": "Cerebras offers a Free Trial providing a one-time $5 credit valid for 30 days upon adding a verified payment method, with rate limits of 5 RPM, 30K uncached TPM (90K total TPM), and 1M TPH/TPD per model and no recurring renewal.",
-      "audited_date": "2026-11-01",
-      "agent_steps": 18,
-      "interaction_id": "v1_ChdoeGpuYXJDMEl2S0Z5dE1Qdk4tT2tRWRIXaHhqbmFyQzBJdktGeXRNUHZOLU9rUVk"
-    },
-    {
-      "provider": "Together AI",
-      "docs_url": "https://docs.together.ai/docs/rate-limits",
+      "name": "Featherless",
+      "url": "https://featherless.ai/pricing",
+      "source": "Hugging Face Inference Providers",
       "status": "unreachable",
-      "is_free_active": null,
-      "summary": "Expecting value: line 1 column 1 (char 0)",
-      "audited_date": "2026-11-01"
+      "is_free_active": false,
+      "summary": "Empty response text",
+      "audited_date": "2026-11-02"
     },
     {
-      "provider": "Cohere",
-      "docs_url": "https://docs.cohere.com/docs/rate-limits",
-      "status": "active",
-      "is_free_active": true,
-      "summary": "Cohere offers a free trial API tier providing up to 1,000 calls per month at a rate limit of 20 requests per minute for Chat models (including Command A, Command R+, and Command R7B), resetting monthly.",
-      "audited_date": "2026-11-01",
-      "agent_steps": 9,
-      "interaction_id": "v1_Chc5QmpuYXREZkRzX0owX2dQdV8zSndBMBIXOUJqbmF0RGZEc19KMF9nUHVfM0p3QTA"
+      "name": "Baseten",
+      "url": "https://www.baseten.co/pricing",
+      "source": "Hugging Face Inference Providers",
+      "status": "unreachable",
+      "is_free_active": false,
+      "summary": "Empty response text",
+      "audited_date": "2026-11-02"
+    },
+    {
+      "name": "PublicAI",
+      "url": "https://publicai.com",
+      "source": "Hugging Face Inference Providers",
+      "status": "unreachable",
+      "is_free_active": false,
+      "summary": "Antigravity agent interaction v1_ChdPZ19vYXZXMUpianU2OTRQdlppNm9RVRIXT2dfb2F2VzFKYmp1Njk0UHZaaTZvUVU timed out after 150s",
+      "audited_date": "2026-11-02"
+    },
+    {
+      "name": "Novita AI",
+      "url": "https://novita.ai/pricing",
+      "source": "Hugging Face Inference Providers",
+      "status": "unreachable",
+      "is_free_active": false,
+      "summary": "Empty response text",
+      "audited_date": "2026-11-02"
+    },
+    {
+      "name": "Scaleway",
+      "url": "https://www.scaleway.com/en/pricing/",
+      "source": "Hugging Face Inference Providers",
+      "status": "unreachable",
+      "is_free_active": false,
+      "summary": "Empty response text",
+      "audited_date": "2026-11-02"
+    },
+    {
+      "name": "fal.ai",
+      "url": "https://fal.ai/pricing",
+      "source": "Hugging Face Inference Providers",
+      "status": "paid_only",
+      "is_free_active": false,
+      "free_type": "None",
+      "summary": "fal.ai operates strictly on a prepaid credit model requiring an upfront credit purchase to make API calls, with no free developer tier or recurring free allowance for API inference.",
+      "candidate_models": [],
+      "base_url": "https://fal.run",
+      "audited_date": "2026-11-02",
+      "agent_steps": 19,
+      "interaction_id": "v1_ChdteERvYXJQekNhMkI2OTRQck5tbG1BOBIXbXhEb2FyUHpDYTJCNjk0UHJObWxtQTg"
+    },
+    {
+      "name": "Replicate",
+      "url": "https://replicate.com/pricing",
+      "source": "Hugging Face Inference Providers",
+      "status": "paid_only",
+      "is_free_active": false,
+      "free_type": "None",
+      "summary": "Replicate operates on a prepaid pay-as-you-go billing model requiring upfront payment setup, with no permanent $0 developer free tier, recurring allowance, or API trial credits.",
+      "candidate_models": [],
+      "base_url": "https://api.replicate.com/v1",
+      "audited_date": "2026-11-02",
+      "agent_steps": 20,
+      "interaction_id": "v1_ChczQkRvYXNYdEc1bXg2OTRQX1ozRW9BOBIXM0JEb2FzWHRHNW14Njk0UF9aM0VvQTg"
     }
   ],
+  "verified_new_providers": [],
   "live_gateway_free_total": 48,
   "new_discoveries_count": 17,
   "openrouter_rss_stream_count": 14,
@@ -181,70 +210,70 @@
       "family": "auto-router",
       "task": "general",
       "recommended_page_slug": "kilo-auto-free",
-      "summary": "Dynamic routing free model wrapper provided by Kilo Gateway supporting a 256k context window."
+      "summary": "Dynamic automated routing model proxy that dynamically selects underlying free tiers on Kilo Gateway."
     },
     {
       "id": "reflection/beam-free",
       "family": "reflection",
       "task": "reasoning",
       "recommended_page_slug": "reflection-beam-free",
-      "summary": "High-context (1M tokens) reasoning-focused model available for free on Kilo Gateway."
+      "summary": "Large 1M context reflection-based model optimized for deep logical reasoning and task execution."
     },
     {
       "id": "stealth/glyph-cluster",
-      "family": "proprietary",
+      "family": "mixture-of-experts",
       "task": "general",
       "recommended_page_slug": "stealth-glyph-cluster",
-      "summary": "Stealth infrastructure model featuring a 256k context window for general text tasks."
+      "summary": "Experimental high-throughput cluster model geared towards massive parallel context utilization."
     },
     {
       "id": "google/lyria-3-pro-preview",
-      "family": "lyria",
-      "task": "reasoning",
+      "family": "google-lyria",
+      "task": "general",
       "recommended_page_slug": "google-lyria-3-pro-preview",
-      "summary": "Google Lyria 3 Pro preview model with a massive 1M context window geared toward complex tasks."
+      "summary": "Preview generation model from Google with extensive 1M context handling capability."
     },
     {
       "id": "google/lyria-3-clip-preview",
-      "family": "lyria",
+      "family": "google-lyria",
       "task": "general",
       "recommended_page_slug": "google-lyria-3-clip-preview",
-      "summary": "Google Lyria 3 Clip preview variant offering a 1M context window for efficient multi-modal or clip-based text workloads."
+      "summary": "Clip-optimized preview variant of the Google Lyria model line featuring 1M context support."
     },
     {
       "id": "openrouter/free",
       "family": "auto-router",
       "task": "general",
       "recommended_page_slug": "openrouter-free",
-      "summary": "Aggregated router pointing to zero-cost models across OpenRouter's ecosystem via Kilo Gateway."
+      "summary": "Meta-router that aggregates and routes requests across various available free endpoints on OpenRouter."
     },
     {
       "id": "inclusionai/ling-3.1-flash-1019-free",
       "family": "ling",
       "task": "general",
-      "recommended_page_slug": "inclusionai-ling-3.1-flash-1019-free",
-      "summary": "InclusionAI Ling 3.1 Flash offering an ultra-long 1M context window completely free of charge."
+      "recommended_page_slug": "inclusionai-ling-31-flash-1019-free",
+      "summary": "Ultra-long context 1M flash model designed for rapid synthesis and conversational flows."
     },
     {
       "id": "novita/ling-3.1-flash",
       "family": "ling",
       "task": "general",
-      "recommended_page_slug": "novita-ling-3.1-flash",
-      "summary": "Novita-hosted variant of the Ling 3.1 Flash architecture available for standard inference pipelines."
+      "recommended_page_slug": "novita-ling-31-flash",
+      "summary": "Novita-hosted variant of the Ling 3.1 Flash architecture; requires context verification."
     },
     {
       "id": "nvidia/nemotron-3.5-lightning-30b-a3b",
       "family": "nemotron",
       "task": "reasoning",
-      "recommended_page_slug": "nvidia-nemotron-3.5-lightning-30b-a3b",
-      "summary": "NVIDIA Nemotron 3.5 Lightning 30B optimized for rapid reasoning and structured response generation."
+      "recommended_page_slug": "nvidia-nemotron-35-lightning-30b-a3b",
+      "summary": "Nvidia Nemotron-based lightning optimized 30B parameter model built for high-speed reasoning."
     },
     {
       "id": "nvidia/muse-glimmer-30b",
       "family": "muse",
       "task": "general",
       "recommended_page_slug": "nvidia-muse-glimmer-30b",
-      "summary": "NVIDIA Muse Glimmer 30B medium-scale architecture tailored for flexible conversational and completion tasks."
+      "summary": "Nvidia Muse Glimmer 30B parameter foundation model optimized for general generative tasks."
     }
   ],
   "status": "completed"

@@ -2,7 +2,7 @@
 
 Free LLM inference you can build with: an API key, a CLI login, or inference bundled inside a coding tool or builder. The test is whether you can ship an artifact you keep — code, an app, a site, a design, an agent, a skill. Chat-only free tiers are excluded on purpose.
 
-> **2026-11-01** · 38 providers · 130 free models
+> **2026-11-01** · 37 providers · 129 free models
 > Interactive site: https://freeinference.dev · Agent summary: https://freeinference.dev/llms.txt · Machine data: https://freeinference.dev/data/providers.json (validate against https://freeinference.dev/data/schema.json)
 
 ## Providers
@@ -20,7 +20,6 @@ Free LLM inference you can build with: an API key, a CLI login, or inference bun
 | [SambaNova Cloud](https://cloud.sambanova.ai/apis) | api_key | Rate-limited free | DeepSeek-V3.1, DeepSeek-V3.2, Meta-Llama-3.3-70B-Instruct, gemma-4-31B-it, gpt-oss-120b | OpenAI-compatible base URL api.sambanova.ai/v1. Preview models can be pulled at any time. No credit card, no phone verification. |
 | [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com) | api_key | Trial credits | GLM-5, Kimi-2.5, NIM-packaged open models | Credit-based, not a rate-limited-free tier. Larger grants need corporate email, tie to ~90-day evaluation windows. |
 | [Z.AI (Zhipu)](https://z.ai) | api_key | Rate-limited free | GLM-5.1, GLM-4.5-Flash, GLM-4.7-Flash, GLM-4.6V-Flash (vision) | Free-tier limits revised twice in the past year - verify. Peak-hour throttling. Flash models are free regardless of tier. OpenAI-compatible. |
-| [Together AI](https://www.together.ai/pricing) | api_key | Trial credits | 200+ open models (Llama, Qwen, DeepSeek) | No trial — paid entry, $5 minimum credit purchase, card required. Prepaid balance, no expiry. Startup programs can grant more. |
 | [DeepInfra](https://docs.deepinfra.com/account/rate-limits) | api_key | Trial credits | deepseek-ai/DeepSeek-V3.1, Qwen/Qwen3-32B, Qwen/Qwen2.5-72B-Instruct, zai-org/GLM-4.7 | 200 concurrent requests per model - high ceiling. Credit-based, no daily cap while credits last. Notable models below; 185+ total in catalog-wide trial credits. |
 | [GitHub Copilot (Free)](https://github.com/features/copilot) | login | Rate-limited free | Auto-selected (GPT-5 mini, Claude Haiku/Sonnet, Gemini Flash line) | Free plan: 2,000 completions/mo plus an unpublished allowance of GitHub AI Credits; models auto-selected. Login with GitHub OAuth, no card. |
 | [Kiro (AWS)](https://kiro.dev/pricing) | login | Rate-limited free | Qwen3 Coder Next, DeepSeek 3.2, MiniMax M2.1, Claude Sonnet 4.5 | Free plan: 50 credits/mo, resets monthly, unused credits do not roll over. Login via social or AWS Builder ID; no card for the free tier. |
@@ -180,12 +179,6 @@ Free LLM inference you can build with: an API key, a CLI login, or inference bun
 | GLM-4.5-Flash | $0 | Up to 203K | 3 (burst) | Not published | 1,000 | Not published | 2026-10-29 |
 | GLM-4.7-Flash | $0 | Up to 203K | 3 (burst) | Not published | 1,000 | Not published | 2026-10-29 |
 | GLM-4.6V-Flash (vision) | $0 | Up to 203K | 3 (burst) | Not published | 1,000 | Not published | 2026-10-29 |
-
-### Together AI
-
-| Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| 200+ open models (Llama, Qwen, DeepSeek) | $5 minimum (no trial) | Model-dependent | ~60 (Build tier) | ~100K (Build tier) | Not published | $5 minimum purchase, prepaid, no expiry | 2026-10-01 |
 
 ### DeepInfra
 

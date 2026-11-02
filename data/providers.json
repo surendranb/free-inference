@@ -939,31 +939,6 @@
       "base_url": "https://open.bigmodel.cn/api/paas/v4/"
     },
     {
-      "name": "Together AI",
-      "url": "https://www.together.ai/pricing",
-      "free_type": "Trial credits",
-      "notes": "No trial \u2014 paid entry, $5 minimum credit purchase, card required. Prepaid balance, no expiry. Startup programs can grant more.",
-      "timeout": "Not published",
-      "verified": "2026-10-01",
-      "models": [
-        {
-          "name": "200+ open models (Llama, Qwen, DeepSeek)",
-          "cost": "$5 minimum (no trial)",
-          "context": "Model-dependent",
-          "rpm": "~60 (Build tier)",
-          "tpm": "~100K (Build tier)",
-          "rpd": "Not published",
-          "tpd": "$5 minimum purchase, prepaid, no expiry",
-          "verified": "2026-10-01"
-        }
-      ],
-      "verified_method": "docs",
-      "docs_url": "https://docs.together.ai/docs/rate-limits",
-      "access_method": "api_key",
-      "artifact": "code",
-      "base_url": "https://api.together.xyz/v1"
-    },
-    {
       "name": "DeepInfra",
       "url": "https://docs.deepinfra.com/account/rate-limits",
       "free_type": "Trial credits",

@@ -401,6 +401,15 @@ def main():
     changed = DATA.read_text().rstrip("\n") != canonical
     DATA.write_text(canonical + "\n")
 
+    # Record failures for ai_scout.py autonomous feedback loop
+    failures = [{"provider": name, "error": res} for name, res in results if "FAILED:" in res or "MISSING:" in res]
+    pf_path = ROOT / "data" / "probe_failures.json"
+    if failures:
+        pf_path.write_text(json.dumps({"date": today, "failures": failures}, indent=2) + "\n")
+        print(f"probe failures recorded to {pf_path}: {len(failures)} issues")
+    elif pf_path.exists():
+        pf_path.unlink()
+
     print("probe results:")
     for name, res in results:
         print(f"  {name}: {res}")

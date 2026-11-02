@@ -12,6 +12,8 @@ import hashlib
 import html
 import json
 import re
+import struct
+import zlib
 from datetime import date
 from pathlib import Path
 
@@ -58,6 +60,10 @@ CLARITY = """<!-- Microsoft Clarity -->
     })(window, document, "clarity", "script", "yz5j1y2n6n");
 </script>"""
 
+FAVICON_TAGS = """<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="alternate icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">"""
+
 KEY = {"Provider": "name", "Free tier": "free_type", "Free models": "models", "RPM": "rpm",
        "TPM": "tpm", "RPD": "rpd", "Day tokens": "tpd", "Context": "context",
        "Timeout": "timeout", "Notes": "notes"}
@@ -97,6 +103,14 @@ def build_readme():
 
 > **{VERIFIED_MAX}** · {count_noun(len(ROWS), 'provider')} · {count_noun(total, 'free model')}
 > Interactive site: {WEBSITE} · Agent summary: {WEBSITE}/llms.txt · Machine data: {WEBSITE}/data/providers.json (validate against {WEBSITE}/data/schema.json)
+
+### Quick Navigation & Intent Slices
+
+- 💳 **No Credit Card or Subscription**: [{WEBSITE}/free-llm-api-no-credit-card/]({WEBSITE}/free-llm-api-no-credit-card/)
+- ⚡ **OpenAI-Compatible Drop-in Endpoints**: [{WEBSITE}/free-openai-compatible-api/]({WEBSITE}/free-openai-compatible-api/)
+- 🤖 **Free Coding & Cursor / Cline Keys**: [{WEBSITE}/free-coding-api/]({WEBSITE}/free-coding-api/) · [{WEBSITE}/free-cursor-api/]({WEBSITE}/free-cursor-api/)
+- 📋 **OpenAI Catalog Endpoint**: `GET {WEBSITE}/v1/models`
+- 🧠 **Top Model Guides**: [DeepSeek V3.2]({WEBSITE}/free-deepseek-api/) · [Llama 3.3 70B]({WEBSITE}/free-llama-api/) · [Qwen 3.8]({WEBSITE}/free-qwen-api/) · [Gemini 2.5 Flash]({WEBSITE}/free-gemini-api/) · [GLM-5 / 4.7]({WEBSITE}/free-glm-api/)
 
 ## Providers
 
@@ -509,7 +523,7 @@ def build_html():
 <meta name="twitter:title" content="{head_title}">
 <meta name="twitter:description" content="{head_og}">
 
-<link rel="icon" href="data:,">
+{FAVICON_TAGS}
 {ga}
 {PLAUSIBLE}\n{CLARITY}
 <script type="application/ld+json">{ld}</script>
@@ -1005,7 +1019,7 @@ def build_provider_page(p):
 <meta name="twitter:title" content="{html.escape(title)}">
 <meta name="twitter:description" content="{html.escape(og_desc)}">
 
-<link rel="icon" href="data:,">
+{FAVICON_TAGS}
 {PLAUSIBLE}\n{CLARITY}
 <script type="application/ld+json">{ld}</script>
 <style>
@@ -1017,7 +1031,7 @@ def build_provider_page(p):
   <header>
     <h1>{name}</h1>
     <p class="tagline">{free_type} · {access_label} · {artifact} · Last updated: {verified_human}</p>
-    <span class="meta"><a href="/">← back to the directory</a></span>
+    <span class="meta"><a href="/">← directory</a> · <a href="/v1/models">/v1/models</a> · <a href="{REPO}">github</a></span>
   </header>
 
   <p><strong>{html.escape(og_desc)}</strong></p>
@@ -1339,7 +1353,7 @@ FREE_PAGES_CONFIG = {
     "free-llm-api": {
         "title": "Free LLM API Directory — All $0 Developer Endpoints (2026)",
         "h1": "Free LLM API Directory: Complete $0 Endpoints",
-        "bluf": "Directory of all 18 LLM providers offering direct, free API keys for developers. Filtered by rate limits (RPM/TPM/RPD), context window size, and terms.",
+        "bluf": "Directory of verified LLM providers offering direct, free API keys for developers with zero subscription. Filtered by rate limits (RPM/TPM/RPD), context window size, and terms.",
         "desc": "Complete directory of free LLM APIs for developers. Compare rate limits, tokens per minute, daily caps, and context windows across all providers.",
         "filter": lambda p, m: p.get("access_method") == "api_key",
         "tool_snippet": {
@@ -1350,10 +1364,10 @@ FREE_PAGES_CONFIG = {
         }
     },
     "free-llm-api-no-credit-card": {
-        "title": "Free LLM API Without Credit Card — 14 Card-Free Providers (2026)",
-        "h1": "Free LLM APIs Requiring No Credit Card",
-        "bluf": "14 LLM providers offer permanently free API keys with zero credit card required at signup, including Google AI Studio, Groq, SambaNova, OpenRouter, and Z.AI.",
-        "desc": "Verified free LLM APIs requiring no credit card at signup. Rate limits, context windows, and base URLs for 14 card-free inference providers.",
+        "title": "Free LLM API Without Credit Card — No Subscription Required (2026)",
+        "h1": "Free LLM APIs Requiring No Credit Card or Subscription",
+        "bluf": "Verified LLM providers offering permanently free API keys with zero credit card and no paid subscription required at signup, including Google AI Studio, Groq, SambaNova, OpenRouter, and Z.AI.",
+        "desc": "Verified free LLM APIs requiring no credit card or subscription at signup. Rate limits, context windows, and base URLs for 14 card-free inference providers.",
         "filter": lambda p, m: p.get("access_method") == "api_key" and "Trial" not in p.get("free_type", ""),
         "tool_snippet": {
             "base_url": "https://api.groq.com/openai/v1",
@@ -1680,6 +1694,7 @@ def build_free_page(slug_key, cfg):
   <div class="code-box"><code><strong>Base URL:</strong> {b_url}<br>
 <strong>Model:</strong> {m_name}<br>
 <strong>Provider:</strong> <a href="/providers/{p_slug}/">{p_name}</a></code></div>
+  <p><strong>Python (OpenAI SDK):</strong></p>
   <pre class="code-box"><code class="language-python">from openai import OpenAI
 
 client = OpenAI(
@@ -1692,6 +1707,14 @@ response = client.chat.completions.create(
     messages=[{{"role": "user", "content": "Hello!"}}],
 )
 print(response.choices[0].message.content)</code></pre>
+  <p><strong>cURL (Terminal / Shell):</strong></p>
+  <pre class="code-box"><code class="language-bash">curl -X POST "{b_url}/chat/completions" \\
+  -H "Content-Type: application/json" \\
+  -H "Authorization: Bearer $API_KEY" \\
+  -d '{{
+    "model": "{m_name}",
+    "messages": [{{"role": "user", "content": "Hello!"}}]
+  }}'</code></pre>
 </section>"""
     rows_html = "\n".join(free_model_row_html(p, m) for p, m in matched)
     ga_id = DATA.get("ga_measurement_id", "")
@@ -1753,7 +1776,7 @@ print(response.choices[0].message.content)</code></pre>
 <meta name="twitter:title" content="{html.escape(title)}">
 <meta name="twitter:description" content="{html.escape(og_desc)}">
 
-<link rel="icon" href="data:,">
+{FAVICON_TAGS}
 {ga}
 {PLAUSIBLE}\n{CLARITY}
 <script type="application/ld+json">{ld}</script>
@@ -1766,7 +1789,7 @@ print(response.choices[0].message.content)</code></pre>
   <header>
     <h1>{html.escape(h1)}</h1>
     <p class="tagline">{tagline}</p>
-    <span class="meta"><a href="/">← all free providers</a> · <a href="/llms.txt">llms.txt</a></span>
+    <span class="meta"><a href="/">← directory</a> · <a href="/v1/models">/v1/models</a> · <a href="{REPO}">github</a></span>
   </header>
 
   {answer}
@@ -1828,6 +1851,8 @@ def build_free_md(slug_key, cfg):
             f"- **Model:** `{ts['model']}`",
             f"- **Provider:** [{ts['provider']}](/providers/{slug(ts['provider'])}/)",
             "",
+            "### Python (OpenAI SDK)",
+            "",
             "```python",
             "from openai import OpenAI",
             "",
@@ -1841,6 +1866,18 @@ def build_free_md(slug_key, cfg):
             "    messages=[{\"role\": \"user\", \"content\": \"Hello!\"}],",
             ")",
             "print(response.choices[0].message.content)",
+            "```",
+            "",
+            "### cURL (Terminal / Shell)",
+            "",
+            "```bash",
+            f"curl -X POST \"{ts['base_url']}/chat/completions\" \\",
+            "  -H \"Content-Type: application/json\" \\",
+            "  -H \"Authorization: Bearer $API_KEY\" \\",
+            "  -d '{",
+            f"    \"model\": \"{ts['model']}\",",
+            "    \"messages\": [{\"role\": \"user\", \"content\": \"Hello!\"}]",
+            "  }'",
             "```",
             "",
         ]
@@ -1872,6 +1909,158 @@ def build_404():
 """
 
 
+def build_favicon(dist):
+    # Happy Hues #17: Navy #001858, Teal #8bd3dd, Pink #f582ae
+    svg_content = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <rect width="32" height="32" rx="6" fill="#001858"/>
+  <path d="M17 4 L9 17 L15 17 L13 28 L23 14 L17 14 Z" fill="url(#bolt-grad)"/>
+  <defs>
+    <linearGradient id="bolt-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#8bd3dd"/>
+      <stop offset="100%" stop-color="#f582ae"/>
+    </linearGradient>
+  </defs>
+</svg>
+"""
+    (dist / "favicon.svg").write_text(svg_content)
+
+    def create_rgba(size):
+        raw = bytearray()
+        r_corner = size * 0.2
+        scale = size / 32.0
+        poly = [
+            (17 * scale, 4 * scale),
+            (9 * scale, 17 * scale),
+            (15 * scale, 17 * scale),
+            (13 * scale, 28 * scale),
+            (23 * scale, 14 * scale),
+            (17 * scale, 14 * scale),
+        ]
+
+        def point_in_poly(x, y, p):
+            inside = False
+            n = len(p)
+            p1x, p1y = p[0]
+            for i in range(n + 1):
+                p2x, p2y = p[i % n]
+                if y > min(p1y, p2y):
+                    if y <= max(p1y, p2y):
+                        if x <= max(p1x, p2x):
+                            if p1y != p2y:
+                                xinters = (y - p1y) * (p2x - p1x) / (p2y - p1y) + p1x
+                            if p1x == p2x or x <= xinters:
+                                inside = not inside
+                p1x, p1y = p2x, p2y
+            return inside
+
+        for y in range(size):
+            raw.append(0)  # filter type none
+            for x in range(size):
+                cx = min(max(x, r_corner), size - 1 - r_corner)
+                cy = min(max(y, r_corner), size - 1 - r_corner)
+                d = ((x - cx) ** 2 + (y - cy) ** 2) ** 0.5
+                if d > r_corner:
+                    raw.extend([0, 0, 0, 0])
+                else:
+                    if point_in_poly(x + 0.5, y + 0.5, poly):
+                        if y < size * 0.55:
+                            raw.extend([139, 211, 221, 255])  # teal #8bd3dd
+                        else:
+                            raw.extend([245, 130, 174, 255])  # pink #f582ae
+                    else:
+                        raw.extend([0, 24, 88, 255])  # navy #001858
+        return bytes(raw)
+
+    def encode_png(width, height, raw_bytes):
+        def chunk(tag, data):
+            return struct.pack(">I", len(data)) + tag + data + struct.pack(">I", zlib.crc32(tag + data) & 0xFFFFFFFF)
+
+        ihdr = struct.pack(">IIBBBBB", width, height, 8, 6, 0, 0, 0)
+        idat = zlib.compress(raw_bytes, 9)
+        return b"\x89PNG\r\n\x1a\n" + chunk(b"IHDR", ihdr) + chunk(b"IDAT", idat) + chunk(b"IEND", b"")
+
+    def encode_ico(png_data, width=32, height=32):
+        header = struct.pack("<HHH", 0, 1, 1)
+        entry = struct.pack(
+            "<BBBBHHII",
+            width if width < 256 else 0,
+            height if height < 256 else 0,
+            0,
+            0,
+            1,
+            32,
+            len(png_data),
+            22,
+        )
+        return header + entry + png_data
+
+    png32 = encode_png(32, 32, create_rgba(32))
+    png180 = encode_png(180, 180, create_rgba(180))
+    ico32 = encode_ico(png32, 32, 32)
+
+    (dist / "apple-touch-icon.png").write_bytes(png180)
+    (dist / "favicon.ico").write_bytes(ico32)
+
+
+def build_v1_endpoints(dist):
+    v1_dir = dist / "v1"
+    v1_dir.mkdir(parents=True, exist_ok=True)
+    (dist / "models").parent.mkdir(parents=True, exist_ok=True)
+
+    model_entries = []
+    for p in ROWS:
+        for m in p["models"]:
+            model_entries.append({
+                "id": m["name"],
+                "object": "model",
+                "created": 1730000000,
+                "owned_by": p["name"],
+                "permission": [],
+                "root": m["name"],
+                "parent": None,
+                "free_tier": {
+                    "provider": p["name"],
+                    "provider_url": p["url"],
+                    "base_url": p.get("base_url") or "",
+                    "access_method": p.get("access_method") or "",
+                    "free_type": p["free_type"],
+                    "cost": m["cost"],
+                    "context": m["context"],
+                    "rpm": m["rpm"],
+                    "tpm": m["tpm"],
+                    "rpd": m["rpd"],
+                    "tpd": m["tpd"],
+                    "verified": m["verified"],
+                },
+            })
+
+    models_payload = {
+        "object": "list",
+        "data": model_entries,
+        "last_updated": VERIFIED_MAX,
+        "data_version": DATA_VERSION,
+        "total_models": len(model_entries),
+    }
+
+    models_json_str = json.dumps(models_payload, indent=2) + "\n"
+    (v1_dir / "models").write_text(models_json_str)
+    (dist / "models").write_text(models_json_str)
+
+    chat_notice = {
+        "error": {
+            "message": "FreeInference.dev is an open directory and catalog of free inference endpoints, not an API proxy. To query free models, connect directly to any provider base_url listed in /v1/models (e.g. SambaNova, Groq, Google AI Studio, DeepInfra, Z.AI).",
+            "type": "invalid_request_error",
+            "param": None,
+            "code": "catalog_only_directory",
+            "directory_url": WEBSITE,
+            "models_endpoint": f"{WEBSITE}/v1/models",
+            "documentation": f"{WEBSITE}/free-openai-compatible-api/",
+        }
+    }
+    (v1_dir / "chat").mkdir(parents=True, exist_ok=True)
+    (v1_dir / "chat" / "completions").write_text(json.dumps(chat_notice, indent=2) + "\n")
+
+
 def main():
     assert DATA["columns"] and ROWS, "empty columns or rows"
     required = {"name", "url", "free_type", "verified", "verified_method", "models"}
@@ -1890,6 +2079,8 @@ def main():
     (dist / "llms.txt").write_text(build_llms())
     (dist / "index.md").write_text(build_index_md())
     (dist / "404.html").write_text(build_404())
+    build_favicon(dist)
+    build_v1_endpoints(dist)
     for p in ROWS:
         pdir = dist / "providers" / slug(p["name"])
         pdir.mkdir(parents=True, exist_ok=True)
@@ -1929,6 +2120,20 @@ def main():
         f"  X-Data-Version: {DATA_VERSION}\n"
         f"  X-Last-Verified: {VERIFIED_MAX}\n"
         f"  Cache-Control: public, max-age=0, must-revalidate\n"
+        f"/v1/*\n"
+        f"  Access-Control-Allow-Origin: *\n"
+        f"  Access-Control-Allow-Methods: GET, POST, OPTIONS\n"
+        f"  Access-Control-Allow-Headers: *\n"
+        f"  Content-Type: application/json; charset=utf-8\n"
+        f"  X-Data-Version: {DATA_VERSION}\n"
+        f"  X-Last-Verified: {VERIFIED_MAX}\n"
+        f"/models\n"
+        f"  Access-Control-Allow-Origin: *\n"
+        f"  Access-Control-Allow-Methods: GET, OPTIONS\n"
+        f"  Access-Control-Allow-Headers: *\n"
+        f"  Content-Type: application/json; charset=utf-8\n"
+        f"  X-Data-Version: {DATA_VERSION}\n"
+        f"  X-Last-Verified: {VERIFIED_MAX}\n"
         f"/llms.txt\n"
         f"  X-Data-Version: {DATA_VERSION}\n"
         f"  X-Last-Verified: {VERIFIED_MAX}\n"
@@ -1941,6 +2146,14 @@ def main():
         f"/free-*\n"
         f"  X-Data-Version: {DATA_VERSION}\n"
         f"  X-Last-Verified: {VERIFIED_MAX}\n"
+        f"/favicon.*\n"
+        f"  Cache-Control: public, max-age=604800, immutable\n"
+        f"/apple-touch-icon.png\n"
+        f"  Cache-Control: public, max-age=604800, immutable\n"
+    )
+    (dist / "_redirects").write_text(
+        "/v1/models/ /v1/models 301\n"
+        "/models/ /models 301\n"
     )
     # ponytail: per-provider JSON split; whole file is ~40KB so single-file fetch stays the default path
     for p in ROWS:
@@ -1955,6 +2168,12 @@ def main():
     )
     (dist / "b4d83ac2bcee40a798bc63319e92d730.txt").write_text("b4d83ac2bcee40a798bc63319e92d730")
     total = sum(len(p["models"]) for p in ROWS)
+    assert (dist / "favicon.ico").stat().st_size > 0, "missing favicon.ico"
+    assert (dist / "favicon.svg").stat().st_size > 0, "missing favicon.svg"
+    assert (dist / "apple-touch-icon.png").stat().st_size > 0, "missing apple-touch-icon.png"
+    assert (dist / "v1" / "models").stat().st_size > 0, "missing /v1/models"
+    assert (dist / "models").stat().st_size > 0, "missing /models"
+    assert (dist / "v1" / "chat" / "completions").stat().st_size > 0, "missing /v1/chat/completions"
     index_html = (dist / "index.html").read_text()
     assert index_html.count('href="/providers/') >= len(ROWS), "footer provider links missing"
     assert "FreeInference" in index_html, "brand missing from homepage title"

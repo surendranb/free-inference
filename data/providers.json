@@ -3,7 +3,7 @@
   "tagline": "Free LLM inference you can build with: an API key, a CLI login, or inference bundled inside a coding tool or builder. The test is whether you can ship an artifact you keep \u2014 code, an app, a site, a design, an agent, a skill. Chat-only free tiers are excluded on purpose.",
   "verified": "2026-11-01",
   "website": "https://freeinference.dev",
-  "repo": "",
+  "repo": "https://github.com/surendranb/free-inference",
   "columns": [
     "Provider",
     "Free tier",

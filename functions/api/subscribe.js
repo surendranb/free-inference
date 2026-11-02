@@ -65,6 +65,12 @@ export async function onRequestPost(context) {
       console.warn("SUBSCRIBERS_KV binding not found on environment");
     }
 
+    if (context.waitUntil) {
+      context.waitUntil(notifySlack(env, { email, country, source: record.source, referer }));
+    } else {
+      notifySlack(env, { email, country, source: record.source, referer });
+    }
+
     return new Response(
       JSON.stringify({
         success: true,
@@ -77,6 +83,40 @@ export async function onRequestPost(context) {
       JSON.stringify({ success: false, error: "Failed to save subscription. Please try again." }),
       { status: 500, headers: corsHeaders }
     );
+  }
+}
+
+async function notifySlack(env, { email, country, source, referer }) {
+  try {
+    const token = env && env.SLACK_BOT_TOKEN;
+    const webhook = env && env.SLACK_WEBHOOK_URL;
+    const channel = (env && env.SLACK_CHANNEL_ID) || "C0BLW648J3T"; // #build
+
+    if (!token && !webhook) return;
+
+    const text = `⚡ *New FreeInference Subscriber!*\n• *Email:* \`${email}\`\n• *Country:* ${country}\n• *Source:* \`${source || "web_form"}\`${referer ? `\n• *Referer:* ${referer}` : ""}`;
+
+    if (webhook) {
+      await fetch(webhook, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text }),
+      });
+    } else if (token) {
+      await fetch("https://slack.com/api/chat.postMessage", {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${token}`,
+          "Content-Type": "application/json; charset=utf-8",
+        },
+        body: JSON.stringify({
+          channel: channel,
+          text: text,
+        }),
+      });
+    }
+  } catch (e) {
+    // Non-blocking: Slack alert failure must never degrade subscription response
   }
 }
 

@@ -498,31 +498,39 @@ def audit_catalog(catalog_data):
     }
 
 
-def audit_stale_provider_docs(catalog_data, key, apply_updates=False, max_audits=10):
-    """Autonomously audit stale providers using Google AI Studio Antigravity Managed Agent in cloud sandbox."""
+def audit_stale_provider_docs(catalog_data, key, apply_updates=False, max_audits=10, priority_providers=None):
+    """Autonomously audit stale or failing providers using Google AI Studio Antigravity Managed Agent in cloud sandbox."""
     today = date.today().isoformat()
     audit_results = []
     audited_count = 0
+    priority_set = set(priority_providers or [])
 
-    for p in catalog_data.get("providers", []):
+    provs = list(catalog_data.get("providers", []))
+    provs.sort(key=lambda p: 0 if p.get("name") in priority_set else 1)
+
+    for p in provs:
         if audited_count >= max_audits:
             break
 
-        v_str = p.get("verified", "")
-        try:
-            v_date = datetime.fromisoformat(v_str).date()
-            days_old = (date.today() - v_date).days
-            if days_old <= 30:
-                continue
-        except ValueError:
-            continue
-
         pname = p.get("name")
+        is_priority = pname in priority_set
+
+        if not is_priority:
+            v_str = p.get("verified", "")
+            try:
+                v_date = datetime.fromisoformat(v_str).date()
+                days_old = (date.today() - v_date).days
+                if days_old <= 30:
+                    continue
+            except ValueError:
+                continue
+
         doc_url = p.get("docs_url") or p.get("url")
         if not doc_url:
             continue
 
-        print(f"--> [Antigravity Agent] Auditing live ground truth for {pname} ({doc_url})...")
+        prefix_tag = "[Probe Failure Priority]" if is_priority else "[Antigravity Agent]"
+        print(f"--> {prefix_tag} Auditing live ground truth for {pname} ({doc_url})...")
         try:
             prompt = f"""You are the Antigravity ground truth auditor for FreeInference.dev.
 Audit the official free tier for provider: {pname}.
@@ -825,6 +833,18 @@ def run_scout(apply_updates=False):
         for m in p["models"]
     }
 
+    # 0. Check for probe failures from Loop 1 (probe.py)
+    probe_failures_path = ROOT / "data" / "probe_failures.json"
+    failing_providers = []
+    if probe_failures_path.exists():
+        try:
+            pf_data = json.loads(probe_failures_path.read_text())
+            failing_providers = [f["provider"] for f in pf_data.get("failures", []) if "provider" in f]
+            if failing_providers:
+                print(f"--> [Loop 1->2] Prioritizing {len(failing_providers)} providers flagged by probe.py: {failing_providers}")
+        except Exception as pf_err:
+            print(f"Notice: Failed to read probe_failures.json: {pf_err}")
+
     # 1. Run Catalog Ground Truth Audit
     audit_summary = audit_catalog(catalog_data)
     print(f"Catalog status: {len(catalog_data['providers'])} providers, {len(existing_models)} models.")
@@ -868,8 +888,8 @@ Output strictly valid JSON with no markdown formatting.
                 for m in sample_to_classify
             ]
 
-    # 3. Autonomous Doc-Auditor for Stale Providers
-    doc_audits = audit_stale_provider_docs(catalog_data, key, apply_updates=apply_updates, max_audits=18)
+    # 3. Autonomous Doc-Auditor for Stale & Failing Providers
+    doc_audits = audit_stale_provider_docs(catalog_data, key, apply_updates=apply_updates, max_audits=18, priority_providers=failing_providers)
     print(f"Completed {len(doc_audits)} autonomous doc-audits.")
 
     if apply_updates and doc_audits:

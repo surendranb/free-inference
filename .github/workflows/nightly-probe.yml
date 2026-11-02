@@ -27,6 +27,14 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python3 scripts/ai_scout.py --apply
+      - name: Generate Weekly Dispatch (Mondays)
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          BUTTONDOWN_API_KEY: ${{ secrets.BUTTONDOWN_API_KEY }}
+        run: |
+          if [ "$(date +%u)" -eq 1 ]; then
+            python3 scripts/generate_newsletter.py
+          fi
       - name: Build site (regenerates README.md + dist/)
         run: python3 build.py
       - name: Verify programmatic matrix
@@ -36,8 +44,8 @@ jobs:
         run: |
           git config user.name "free-inference-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if ! git diff --quiet data/providers.json README.md data/scout_report.json; then
-            git add data/providers.json README.md data/scout_report.json
+          if ! git diff --quiet data/providers.json README.md data/scout_report.json data/newsletters/ skills/; then
+            git add data/providers.json README.md data/scout_report.json data/newsletters/ skills/
             git commit -m "probe: nightly verification & scout update ($(date -u +%Y-%m-%d))"
             git push
           fi

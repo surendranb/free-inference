@@ -62,7 +62,8 @@ CLARITY = """<!-- Microsoft Clarity -->
 
 FAVICON_TAGS = """<link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="alternate icon" href="/favicon.ico">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">"""
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="alternate" type="application/atom+xml" title="Free Inference Changelog Feed" href="/feed.xml">"""
 
 KEY = {"Provider": "name", "Free tier": "free_type", "Free models": "models", "RPM": "rpm",
        "TPM": "tpm", "RPD": "rpd", "Day tokens": "tpd", "Context": "context",
@@ -104,12 +105,15 @@ def build_readme():
 > **{VERIFIED_MAX}** · {count_noun(len(ROWS), 'provider')} · {count_noun(total, 'free model')}
 > Interactive site: {WEBSITE} · Agent summary: {WEBSITE}/llms.txt · Machine data: {WEBSITE}/data/providers.json (validate against {WEBSITE}/data/schema.json)
 
-### Quick Navigation & Intent Slices
+### Quick Navigation & Machine Access
 
+- 🤖 **Agent Skill (`SKILL.md`)**: [{WEBSITE}/skill.md]({WEBSITE}/skill.md) (install: `curl -fsSL {WEBSITE}/skill.md -o ~/.agents/skills/free-inference/SKILL.md`)
+- 📋 **OpenAI Catalog Endpoint**: `GET {WEBSITE}/v1/models`
+- 📡 **Changelog RSS/Atom Feed**: [{WEBSITE}/feed.xml]({WEBSITE}/feed.xml)
+- 📬 **Weekly Dispatch (Newsletter)**: [{WEBSITE}/newsletter/]({WEBSITE}/newsletter/)
 - 💳 **No Credit Card or Subscription**: [{WEBSITE}/free-llm-api-no-credit-card/]({WEBSITE}/free-llm-api-no-credit-card/)
 - ⚡ **OpenAI-Compatible Drop-in Endpoints**: [{WEBSITE}/free-openai-compatible-api/]({WEBSITE}/free-openai-compatible-api/)
-- 🤖 **Free Coding & Cursor / Cline Keys**: [{WEBSITE}/free-coding-api/]({WEBSITE}/free-coding-api/) · [{WEBSITE}/free-cursor-api/]({WEBSITE}/free-cursor-api/)
-- 📋 **OpenAI Catalog Endpoint**: `GET {WEBSITE}/v1/models`
+- 🛠 **Free Coding & Cursor / Cline Keys**: [{WEBSITE}/free-coding-api/]({WEBSITE}/free-coding-api/) · [{WEBSITE}/free-cursor-api/]({WEBSITE}/free-cursor-api/)
 - 🧠 **Top Model Guides**: [DeepSeek V3.2]({WEBSITE}/free-deepseek-api/) · [Llama 3.3 70B]({WEBSITE}/free-llama-api/) · [Qwen 3.8]({WEBSITE}/free-qwen-api/) · [Gemini 2.5 Flash]({WEBSITE}/free-gemini-api/) · [GLM-5 / 4.7]({WEBSITE}/free-glm-api/)
 
 ## Providers
@@ -367,6 +371,14 @@ CSS = '''  :root { --bg:#fff; --ink:#1a1a1a; --mut:#6b6b6b; --line:#e3e3e3; --se
   .quick-connect p { margin:0 0 8px; font-size:14px; }
   .models { margin-top:24px; }
   .models h2 { margin:0 0 12px; font-size:17px; }
+  .newsletter-box { margin:24px 0; padding:18px 20px; border:1px solid var(--line); border-radius:8px; background:#fafafa; }
+  .newsletter-box h3 { margin:0 0 6px; font-size:15px; }
+  .newsletter-box p { margin:0 0 12px; color:var(--mut); font-size:13.5px; }
+  .newsletter-form { display:flex; gap:8px; max-width:480px; }
+  .newsletter-form input { flex:1; padding:8px 12px; border:1px solid var(--line); border-radius:6px; font:inherit; font-size:13.5px; background:var(--bg); color:var(--ink); }
+  .newsletter-form button { padding:8px 16px; background:var(--sel); color:var(--selink); border:none; border-radius:6px; cursor:pointer; font:inherit; font-size:13.5px; font-weight:600; white-space:nowrap; }
+  .newsletter-form button:hover { opacity:0.9; }
+  @media (max-width:600px) { .newsletter-form { flex-direction:column; } }
   @media (max-width:860px) { .fcols { grid-template-columns:repeat(2,1fr); } }'''
 
 
@@ -403,6 +415,10 @@ def footer_nav(verified):
                         for s in leftovers)
         cols.append(f'<div class="fcol"><h3>More providers</h3><ul>{items}</ul></div>')
     cols.append('<div class="fcol"><h3>Machine access</h3><ul>'
+                '<li><a href="/v1/models">/v1/models</a></li>'
+                '<li><a href="/skill.md">skill.md</a></li>'
+                '<li><a href="/feed.xml">feed.xml</a></li>'
+                '<li><a href="/newsletter/">newsletter</a></li>'
                 '<li><a href="/llms.txt">llms.txt</a></li>'
                 '<li><a href="/index.md">index.md</a></li>'
                 '<li><a href="/data/providers.json">providers.json</a></li>'
@@ -1620,6 +1636,10 @@ def free_footer_nav(verified):
 
     col_machine = [
         ("/", "Full Directory (Home)"),
+        ("/v1/models", "OpenAI /v1/models"),
+        ("/skill.md", "Agent Skill (SKILL.md)"),
+        ("/feed.xml", "RSS / Atom Feed"),
+        ("/newsletter/", "Weekly Dispatch Archive"),
         ("/llms.txt", "llms.txt (Agent Summary)"),
         ("/data/providers.json", "providers.json (Raw Data)"),
         ("/data/schema.json", "schema.json (JSON Schema)"),
@@ -1629,7 +1649,17 @@ def free_footer_nav(verified):
                 ''.join(f'<li><a href="{u}">{t}</a></li>' for u, t in col_machine) +
                 '</ul></div>')
 
-    return ('<nav class="fcols" aria-label="Free API Slices">' + "".join(cols) + '</nav>'
+    newsletter_html = """<section class="newsletter-box">
+  <h3>⚡ Free Inference Weekly</h3>
+  <p>Curated $0 LLM quotas, newly verified models, and breaking changes drafted every Monday by the Antigravity Agent. Zero spam, unsubscribe in 1 click.</p>
+  <form action="https://buttondown.email/api/emails/embed-subscribe/freeinference" method="post" target="popupwindow" class="newsletter-form">
+    <input type="email" name="email" id="bd-email" placeholder="you@domain.com" required aria-label="Your email address">
+    <button type="submit">Subscribe</button>
+  </form>
+</section>"""
+
+    return (newsletter_html +
+            '<nav class="fcols" aria-label="Free API Slices">' + "".join(cols) + '</nav>'
             f'<p class="fnote">FreeInference.dev programmatic slice · verified {html.escape(verified)}. Limits change without notice — this is a map, not a contract.</p>')
 
 
@@ -2061,6 +2091,247 @@ def build_v1_endpoints(dist):
     (v1_dir / "chat" / "completions").write_text(json.dumps(chat_notice, indent=2) + "\n")
 
 
+def build_skill(dist):
+    skills_dir = ROOT / "skills" / "free-inference"
+    skills_dir.mkdir(parents=True, exist_ok=True)
+    dist_skills_dir = dist / "skills" / "free-inference"
+    dist_skills_dir.mkdir(parents=True, exist_ok=True)
+
+    total_models = sum(len(p["models"]) for p in ROWS)
+    total_provs = len(ROWS)
+
+    skill_content = f"""---
+name: free-inference
+description: Query, filter, and configure verified $0 free LLM inference providers, OpenAI-compatible base URLs, and active rate limits (RPM/TPM/RPD) across {total_provs} providers and {total_models} models.
+version: 1.0.0
+updated: {VERIFIED_MAX}
+homepage: {WEBSITE}
+update_url: {WEBSITE}/skills/free-inference/SKILL.md
+short_url: {WEBSITE}/skill.md
+models_url: {WEBSITE}/v1/models
+---
+
+# Free Inference Agent Skill
+
+> **⚡ Live Freshness & Update Protocol**:
+> Free tier quotas, models, and endpoints change without notice. Before recommending any endpoint, or to update your local skill heuristics to the latest catalog state, fetch:
+> **`{WEBSITE}/skills/free-inference/SKILL.md`** (or short URL **`{WEBSITE}/skill.md`**)
+>
+> Real-time machine models catalog: **`{WEBSITE}/v1/models`** · Raw JSON: **`{WEBSITE}/data/providers.json`**
+
+Use this skill when the user asks for free LLM APIs, $0 inference endpoints, drop-in keys for coding tools (Cursor, Cline, Claude Code, Aider), rate limits, or context windows.
+
+---
+
+## 1. Quick Task Heuristics
+
+When the user specifies a task, prioritize these verified $0 providers:
+
+### A. Coding Assistants (Cursor, Cline, Claude Code, Aider)
+- **Groq**: Ultra-low latency via LPU.
+  - Base URL: `https://api.groq.com/openai/v1`
+  - Top Models: `llama-3.3-70b-versatile`, `qwen/qwen3.6-27b`, `meta-llama/llama-4-scout-17b-16e-instruct`
+  - Access: Free API key, no credit card required.
+- **SambaNova Cloud**: High throughput, full frontier open models.
+  - Base URL: `https://api.sambanova.ai/v1`
+  - Top Models: `DeepSeek-V3.2`, `Meta-Llama-3.3-70B-Instruct`
+  - Access: Free API key, no credit card, universal OpenAI drop-in.
+- **OpenCode Zen**: Generous developer limits.
+  - Base URL: `https://opencode.ai/inference/openai/v1`
+  - Top Models: `Big Pickle`, `GLM-5.3-Flash Free`, `DeepSeek V4.1 Flash Free`
+  - Access: Free developer key.
+
+### B. Massive Context Windows (>= 128k - 1M Tokens)
+- **Google AI Studio (Gemini API)**: 1,000,000 token context window.
+  - Base URL: `https://generativelanguage.googleapis.com/v1beta/openai/`
+  - Top Models: `gemini-2.5-flash`, `gemini-2.5-flash-lite`, `gemini-3.5-flash`
+  - Access: 15 RPM, $0 permanently, no credit card.
+- **OpenCode Zen**: Up to 1M context on `Big Pickle`.
+- **SambaNova Cloud**: 131k context on `DeepSeek-V3.2`.
+
+### C. Drop-in OpenAI Compatibility (`base_url` swap)
+To use any free provider in code expecting OpenAI's client, swap `base_url` and `api_key`:
+- SambaNova: `https://api.sambanova.ai/v1`
+- Groq: `https://api.groq.com/openai/v1`
+- Google AI Studio: `https://generativelanguage.googleapis.com/v1beta/openai/`
+- DeepInfra: `https://api.deepinfra.com/v1/openai`
+- Z.AI (Zhipu): `https://open.bigmodel.cn/api/paas/v4/`
+
+### D. Zero Credit Card Required (Permanently $0)
+Google AI Studio, Groq, SambaNova Cloud, OpenRouter, Cloudflare Workers AI, DeepInfra, Z.AI, Hugging Face, Cerebras (trial).
+
+---
+
+## 2. Real-Time Verification Step
+
+Before generating an implementation for a user, check live availability against the FreeInference endpoint:
+
+```bash
+# Query all models live
+curl -s {WEBSITE}/v1/models | jq '.data[] | select(.id | test("DeepSeek|Llama|Qwen"; "i")) | {{id, provider: .free_tier.provider, base_url: .free_tier.base_url, rpm: .free_tier.rpm}}'
+```
+
+Or in Python:
+```python
+import urllib.request, json
+
+req = urllib.request.Request("{WEBSITE}/v1/models", headers={{"User-Agent": "FreeInference-Agent/1.0"}})
+with urllib.request.urlopen(req) as resp:
+    data = json.load(resp)
+    print(f"Catalog contains {{data['total_models']}} free models across {{len(data['data'])}} entries.")
+```
+
+---
+
+## 3. Drop-in Python Example
+
+```python
+from openai import OpenAI
+
+# Example: SambaNova Cloud ($0 DeepSeek-V3.2)
+client = OpenAI(
+    base_url="https://api.sambanova.ai/v1",
+    api_key="your-sambanova-key",
+)
+
+response = client.chat.completions.create(
+    model="DeepSeek-V3.2",
+    messages=[{{"role": "user", "content": "Write a fast binary search in Python."}}],
+)
+print(response.choices[0].message.content)
+```
+
+---
+
+## 4. Updates & Ground Truth
+- Full interactive directory: [{WEBSITE}]({WEBSITE})
+- Complete Markdown Twin: [{WEBSITE}/index.md]({WEBSITE}/index.md)
+- Agent Summary: [{WEBSITE}/llms.txt]({WEBSITE}/llms.txt)
+- Atom/RSS Feed: [{WEBSITE}/feed.xml]({WEBSITE}/feed.xml)
+- Update this skill: `curl -fsSL {WEBSITE}/skill.md -o ~/.agents/skills/free-inference/SKILL.md`
+"""
+
+    (skills_dir / "SKILL.md").write_text(skill_content)
+    (dist_skills_dir / "SKILL.md").write_text(skill_content)
+    (dist / "skill.md").write_text(skill_content)
+
+
+def build_feed(dist):
+    entries = []
+    sorted_provs = sorted(ROWS, key=lambda p: max_verified([p]), reverse=True)[:15]
+
+    for p in sorted_provs:
+        p_verified = max_verified([p])
+        p_slug = slug(p["name"])
+        models_str = html.escape(", ".join(m["name"] for m in p["models"][:5]))
+        if len(p["models"]) > 5:
+            models_str += f", +{len(p['models']) - 5} more"
+        notes = html.escape(p.get("notes", "Verified free inference tier."))
+
+        entry_xml = f"""  <entry>
+    <title>{html.escape(p['name'])}: {html.escape(p['free_type'])} ({len(p['models'])} free models)</title>
+    <link href="{WEBSITE}/providers/{p_slug}/"/>
+    <id>urn:freeinference:provider:{p_slug}:{p_verified}</id>
+    <updated>{p_verified}T00:00:00Z</updated>
+    <summary type="html"><![CDATA[
+      <p><strong>Provider:</strong> {html.escape(p['name'])}</p>
+      <p><strong>Free Tier:</strong> {html.escape(p['free_type'])}</p>
+      <p><strong>Models:</strong> {models_str}</p>
+      <p><strong>Notes:</strong> {notes}</p>
+      <p><a href="{WEBSITE}/providers/{p_slug}/">View limits and base URLs</a></p>
+    ]]></summary>
+    <author><name>FreeInference.dev</name></author>
+  </entry>"""
+        entries.append(entry_xml)
+
+    feed_xml = f"""<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>{html.escape(TITLE)} Updates</title>
+  <subtitle>{html.escape(TAGLINE)}</subtitle>
+  <link href="{WEBSITE}/feed.xml" rel="self"/>
+  <link href="{WEBSITE}/"/>
+  <updated>{VERIFIED_MAX}T00:00:00Z</updated>
+  <id>{WEBSITE}/</id>
+  <author><name>FreeInference.dev</name></author>
+{chr(10).join(entries)}
+</feed>
+"""
+    (dist / "feed.xml").write_text(feed_xml)
+
+
+def build_newsletter_page(dist):
+    ndir = dist / "newsletter"
+    ndir.mkdir(parents=True, exist_ok=True)
+    newsletters_dir = ROOT / "data" / "newsletters"
+    newsletters_dir.mkdir(parents=True, exist_ok=True)
+
+    issues = []
+    for f in sorted(newsletters_dir.glob("*.md"), reverse=True):
+        content = f.read_text()
+        first_line = content.splitlines()[0] if content.splitlines() else f.stem
+        title = first_line.lstrip("#").strip()
+        issues.append((f.stem, title, content))
+
+    issues_html = ""
+    if issues:
+        issues_html = "<h2>Recent Dispatches</h2>\n<ul class=\"dispatch-list\">\n"
+        for stem, title, content in issues:
+            issues_html += f"""  <li>
+    <h3>{html.escape(title)}</h3>
+    <p class=\"dmeta\">Published {html.escape(stem)} · Drafted by Antigravity Agent</p>
+    <div class=\"code-box\"><pre>{html.escape(content)}</pre></div>
+  </li>\n"""
+        issues_html += "</ul>\n"
+    else:
+        issues_html = "<p>No dispatches published yet. The inaugural issue drops this Monday at 09:00 IST.</p>"
+
+    html_content = f"""<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Free Inference Dispatch — Weekly $0 AI Inference Updates</title>
+<meta name="description" content="Weekly developer dispatch covering verified $0 LLM quotas, newly cataloged models, and rate limit changes drafted by the Antigravity Agent.">
+<meta name="data-version" content="{DATA_VERSION}">
+<link rel="canonical" href="{WEBSITE}/newsletter/">
+{FAVICON_TAGS}
+{PLAUSIBLE}\n{CLARITY}
+<style>
+{CSS}
+.dispatch-list {{ list-style: none; padding: 0; }}
+.dispatch-list li {{ margin-bottom: 32px; border-bottom: 1px solid var(--line); padding-bottom: 24px; }}
+.dmeta {{ font-size: 13px; color: var(--mut); margin: 4px 0 12px; }}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>The Free Inference Dispatch</h1>
+    <p class="tagline">Weekly $0 LLM quotas, newly cataloged models, and breaking changes drafted every Monday by the Antigravity Agent.</p>
+    <span class="meta"><a href="/">← directory</a> · <a href="/v1/models">/v1/models</a> · <a href="/skill.md">skill.md</a> · <a href="{REPO}">github</a></span>
+  </header>
+
+  <section class="newsletter-box" style="margin-top:0;">
+    <h3>⚡ Subscribe to The Weekly Dispatch</h3>
+    <p>Get the weekly diff delivered to your inbox every Monday at 09:00 IST. Strictly verified $0 endpoints, zero marketing hype, unsubscribe in 1 click.</p>
+    <form action="https://buttondown.email/api/emails/embed-subscribe/freeinference" method="post" target="popupwindow" class="newsletter-form">
+      <input type="email" name="email" id="bd-email" placeholder="you@domain.com" required aria-label="Your email address">
+      <button type="submit">Subscribe</button>
+    </form>
+  </section>
+
+  <p>Also available via machine feeds: <a href="/feed.xml">RSS / Atom Feed (feed.xml)</a> · <a href="/skill.md">Agent Skill (skill.md)</a> · <a href="/v1/models">OpenAI Catalog API (/v1/models)</a></p>
+
+  {issues_html}
+
+  <p><a href="/">← back to the full directory</a></p>
+</div>
+</body>
+</html>
+"""
+    (ndir / "index.html").write_text(html_content)
+
+
 def main():
     assert DATA["columns"] and ROWS, "empty columns or rows"
     required = {"name", "url", "free_type", "verified", "verified_method", "models"}
@@ -2081,6 +2352,9 @@ def main():
     (dist / "404.html").write_text(build_404())
     build_favicon(dist)
     build_v1_endpoints(dist)
+    build_skill(dist)
+    build_feed(dist)
+    build_newsletter_page(dist)
     for p in ROWS:
         pdir = dist / "providers" / slug(p["name"])
         pdir.mkdir(parents=True, exist_ok=True)
@@ -2091,7 +2365,12 @@ def main():
         sdir.mkdir(parents=True, exist_ok=True)
         (sdir / "index.html").write_text(build_free_page(s, cfg))
         (sdir / "index.md").write_text(build_free_md(s, cfg))
-    sitemap_urls = [f"  <url><loc>{WEBSITE}/</loc><lastmod>{VERIFIED_MAX}</lastmod></url>"]
+    sitemap_urls = [
+        f"  <url><loc>{WEBSITE}/</loc><lastmod>{VERIFIED_MAX}</lastmod></url>",
+        f"  <url><loc>{WEBSITE}/newsletter/</loc><lastmod>{VERIFIED_MAX}</lastmod></url>",
+        f"  <url><loc>{WEBSITE}/skill.md</loc><lastmod>{VERIFIED_MAX}</lastmod></url>",
+        f"  <url><loc>{WEBSITE}/feed.xml</loc><lastmod>{VERIFIED_MAX}</lastmod></url>",
+    ]
     sitemap_urls += [f"  <url><loc>{WEBSITE}/providers/{slug(p['name'])}/</loc><lastmod>{p['verified']}</lastmod></url>" for p in ROWS]
     sitemap_urls += [f"  <url><loc>{WEBSITE}/{s}/</loc><lastmod>{VERIFIED_MAX}</lastmod></url>" for s in sorted(FREE_PAGES_CONFIG.keys())]
     (dist / "sitemap.xml").write_text(
@@ -2134,6 +2413,24 @@ def main():
         f"  Content-Type: application/json; charset=utf-8\n"
         f"  X-Data-Version: {DATA_VERSION}\n"
         f"  X-Last-Verified: {VERIFIED_MAX}\n"
+        f"/skill.md\n"
+        f"  Access-Control-Allow-Origin: *\n"
+        f"  Content-Type: text/markdown; charset=utf-8\n"
+        f"  X-Data-Version: {DATA_VERSION}\n"
+        f"  X-Last-Verified: {VERIFIED_MAX}\n"
+        f"  Cache-Control: public, max-age=3600\n"
+        f"/skills/*\n"
+        f"  Access-Control-Allow-Origin: *\n"
+        f"  Content-Type: text/markdown; charset=utf-8\n"
+        f"  X-Data-Version: {DATA_VERSION}\n"
+        f"  X-Last-Verified: {VERIFIED_MAX}\n"
+        f"  Cache-Control: public, max-age=3600\n"
+        f"/feed.xml\n"
+        f"  Access-Control-Allow-Origin: *\n"
+        f"  Content-Type: application/atom+xml; charset=utf-8\n"
+        f"  X-Data-Version: {DATA_VERSION}\n"
+        f"  X-Last-Verified: {VERIFIED_MAX}\n"
+        f"  Cache-Control: public, max-age=3600\n"
         f"/llms.txt\n"
         f"  X-Data-Version: {DATA_VERSION}\n"
         f"  X-Last-Verified: {VERIFIED_MAX}\n"
@@ -2154,6 +2451,8 @@ def main():
     (dist / "_redirects").write_text(
         "/v1/models/ /v1/models 301\n"
         "/models/ /models 301\n"
+        "/skill /skill.md 301\n"
+        "/skills/free-inference /skills/free-inference/SKILL.md 301\n"
     )
     # ponytail: per-provider JSON split; whole file is ~40KB so single-file fetch stays the default path
     for p in ROWS:
@@ -2174,6 +2473,10 @@ def main():
     assert (dist / "v1" / "models").stat().st_size > 0, "missing /v1/models"
     assert (dist / "models").stat().st_size > 0, "missing /models"
     assert (dist / "v1" / "chat" / "completions").stat().st_size > 0, "missing /v1/chat/completions"
+    assert (dist / "skill.md").stat().st_size > 0, "missing dist/skill.md"
+    assert (dist / "skills" / "free-inference" / "SKILL.md").stat().st_size > 0, "missing SKILL.md"
+    assert (dist / "feed.xml").stat().st_size > 0, "missing dist/feed.xml"
+    assert (dist / "newsletter" / "index.html").stat().st_size > 0, "missing newsletter page"
     index_html = (dist / "index.html").read_text()
     assert index_html.count('href="/providers/') >= len(ROWS), "footer provider links missing"
     assert "FreeInference" in index_html, "brand missing from homepage title"

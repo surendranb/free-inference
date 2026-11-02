@@ -7,7 +7,8 @@ function detectAgentFamily(ua) {
   if (u.includes("chatgpt") || u.includes("gptbot") || u.includes("openai") || u.includes("oai-searchbot")) return "ChatGPT / OpenAI";
   if (u.includes("perplexity")) return "Perplexity";
   if (u.includes("cursor")) return "Cursor";
-  if (u.includes("google-extended") || u.includes("gemini")) return "Google Gemini / Vertex";
+  if (u.includes("cline")) return "Cline";
+  if (u.includes("antigravity") || u.includes("gemini") || u.includes("google-extended")) return "Google Gemini / Antigravity";
   if (u.includes("langchain")) return "LangChain";
   if (u.includes("llamaindex")) return "LlamaIndex";
   if (u.includes("python") || u.includes("requests") || u.includes("httpx") || u.includes("urllib") || u.includes("aiohttp")) return "Python Script";
@@ -174,7 +175,22 @@ export async function onRequest(context) {
     }
   }
 
-  // 2. Track hits to llms.txt, index.md, provider markdown, and all data JSON files
+  // 1c. Content negotiation or alias for skill
+  if (pathname === "/skill" || pathname === "/skills") {
+    const res = await context.env.ASSETS.fetch(new URL("/skill.md", req.url));
+    if (res.ok) {
+      if (context.waitUntil) {
+        context.waitUntil(sendGaHit(req, "/skill.md", "skill"));
+      }
+      logEvent(context, req, "/skill.md", "skill", res);
+      return new Response(res.body, {
+        status: 200,
+        headers: { "content-type": "text/markdown; charset=utf-8", "access-control-allow-origin": "*", vary: "Accept" },
+      });
+    }
+  }
+
+  // 2. Track hits to llms.txt, index.md, provider markdown, data JSON, skills, feeds, and models API
   let fileType = null;
   if (pathname === "/llms.txt") {
     fileType = "llms.txt";
@@ -182,6 +198,12 @@ export async function onRequest(context) {
     fileType = "markdown";
   } else if (pathname.startsWith("/data/") && pathname.endsWith(".json")) {
     fileType = "json";
+  } else if (pathname === "/skill.md" || pathname.startsWith("/skills/")) {
+    fileType = "skill";
+  } else if (pathname === "/feed.xml" || pathname === "/changelog.xml") {
+    fileType = "feed";
+  } else if (pathname === "/v1/models" || pathname === "/models") {
+    fileType = "models_api";
   }
 
   if (fileType && context.waitUntil) {

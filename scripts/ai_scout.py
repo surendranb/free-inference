@@ -15,6 +15,7 @@ import sys
 import time
 import urllib.request
 import urllib.error
+from urllib.parse import urlparse
 from datetime import date, datetime
 from pathlib import Path
 
@@ -28,6 +29,236 @@ REPORT_PATH = ROOT / "data" / "scout_report.json"
 MODEL_NAME = "gemini-3.5-flash-lite"
 ANTIGRAVITY_AGENT = "antigravity-preview-09-2026"
 INTERACTIONS_URL = "https://generativelanguage.googleapis.com/v1beta/interactions"
+GITHUB_REPO = "surendranb/free-inference"
+
+
+def extract_first_json(text):
+    """Robustly extract the first valid JSON object or array from model output."""
+    if not text:
+        raise ValueError("Empty response text")
+    
+    # 1. Check for markdown json code fence
+    fence_matches = re.findall(r'```(?:json)?\s*([\s\S]*?)\s*```', text)
+    for m in fence_matches:
+        try:
+            return json.loads(m.strip())
+        except Exception:
+            pass
+
+    # 2. Balanced bracket scan for JSON object
+    start_idx = text.find('{')
+    while start_idx != -1:
+        depth = 0
+        in_string = False
+        escape = False
+        for i in range(start_idx, len(text)):
+            c = text[i]
+            if escape:
+                escape = False
+                continue
+            if c == '\\':
+                escape = True
+                continue
+            if c == '"':
+                in_string = not in_string
+                continue
+            if not in_string:
+                if c == '{':
+                    depth += 1
+                elif c == '}':
+                    depth -= 1
+                    if depth == 0:
+                        candidate = text[start_idx:i+1]
+                        try:
+                            val = json.loads(candidate)
+                            if isinstance(val, dict):
+                                return val
+                        except Exception:
+                            break
+        start_idx = text.find('{', start_idx + 1)
+
+    # 3. Fallback: stripped load
+    cleaned = re.sub(r"^```(?:json)?\s*|\s*```$", "", text, flags=re.MULTILINE).strip()
+    return json.loads(cleaned)
+
+
+def get_github_token():
+    """Retrieve GitHub token from environment or local gh CLI."""
+    token = os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN")
+    if not token:
+        try:
+            import subprocess
+            token = subprocess.check_output(["gh", "auth", "token"], text=True, stderr=subprocess.DEVNULL).strip()
+        except Exception:
+            token = None
+    return token
+
+
+def find_existing_issue(title_prefix, state="open", repo=GITHUB_REPO):
+    """Check if an issue matching title_prefix already exists in repo."""
+    token = get_github_token()
+    if not token:
+        return None
+    url = f"https://api.github.com/repos/{repo}/issues?state={state}&per_page=100"
+    req = urllib.request.Request(url, headers={
+        "Authorization": f"Bearer {token}",
+        "Accept": "application/vnd.github.v3+json",
+        "User-Agent": "FreeInference-Scout/1.0"
+    })
+    try:
+        with urllib.request.urlopen(req, timeout=15) as r:
+            issues = json.load(r)
+            norm_prefix = title_prefix.lower().strip()
+            for issue in issues:
+                if issue.get("pull_request"):
+                    continue  # skip PRs
+                issue_title = issue.get("title", "").lower()
+                if norm_prefix in issue_title:
+                    return issue
+    except Exception as e:
+        print(f"Notice: Querying existing GitHub issues skipped: {e}")
+    return None
+
+
+def create_github_issue(title, body, labels, repo=GITHUB_REPO):
+    """Create a GitHub Issue via REST API with gh CLI fallback."""
+    token = get_github_token()
+    if not token:
+        print(f"Notice: No GitHub token available to create issue: '{title}'")
+        return None
+
+    url = f"https://api.github.com/repos/{repo}/issues"
+    payload = {
+        "title": title,
+        "body": body,
+        "labels": labels
+    }
+    req = urllib.request.Request(
+        url,
+        data=json.dumps(payload).encode("utf-8"),
+        headers={
+            "Authorization": f"Bearer {token}",
+            "Accept": "application/vnd.github.v3+json",
+            "Content-Type": "application/json",
+            "User-Agent": "FreeInference-Scout/1.0"
+        }
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=15) as r:
+            res = json.load(r)
+            issue_url = res.get("html_url")
+            print(f"  ✓ Created GitHub Issue #{res.get('number')}: {issue_url}")
+            return res
+    except Exception as e:
+        print(f"Notice: GitHub REST API failed ({e}), attempting gh CLI fallback...")
+        try:
+            import subprocess
+            cmd = ["gh", "issue", "create", "--repo", repo, "--title", title, "--body", body]
+            for lbl in labels:
+                cmd.extend(["--label", lbl])
+            out = subprocess.check_output(cmd, text=True, stderr=subprocess.DEVNULL).strip()
+            print(f"  ✓ Created GitHub Issue via gh CLI: {out}")
+            return {"html_url": out}
+        except Exception as gh_err:
+            print(f"Notice: Failed to create GitHub issue via gh CLI: {gh_err}")
+    return None
+
+
+def report_deprecation_issue(pname, doc_url, audit_entry):
+    """File a GitHub deprecation issue if one is not already open."""
+    search_prefix = f"[Deprecation] {pname}"
+    existing = find_existing_issue(search_prefix, state="open")
+    if existing:
+        print(f"  Notice: Deprecation issue already open #{existing.get('number')}: {existing.get('html_url')}")
+        return existing
+
+    title = f"[Deprecation] {pname}: Free tier discontinued"
+    body = f"""### ⚠ Provider Deprecation Alert: {pname}
+
+The Antigravity ground truth agent audited official documentation for **{pname}** and verified that its free tier has been discontinued or degraded to paid-only.
+
+- **Provider**: {pname}
+- **Docs / Pricing URL**: {doc_url}
+- **Verified Date**: {audit_entry.get('audited_date')}
+- **Agent Interaction**: `{audit_entry.get('interaction_id')}` ({audit_entry.get('agent_steps')} steps)
+- **Status**: `{audit_entry.get('status')}`
+
+#### Audit Findings
+> {audit_entry.get('summary')}
+
+#### Recommended Action
+Retire `{pname}` from `data/providers.json` and rebuild the site matrix via `python3 build.py`.
+"""
+    return create_github_issue(title, body, ["catalog:deprecation"])
+
+
+def report_candidate_issue(cand_entry):
+    """File a GitHub candidate issue if this provider hasn't been evaluated yet."""
+    cname = cand_entry["name"]
+    search_prefix = f"[New Provider Candidate] {cname}"
+    existing = find_existing_issue(search_prefix, state="all")
+    if existing:
+        print(f"  Notice: Candidate issue already exists #{existing.get('number')}: {existing.get('html_url')}")
+        return existing
+
+    title = f"[New Provider Candidate] {cname}: Free tier verified"
+    models_str = "\n".join(f"- `{m}`" for m in cand_entry.get("candidate_models", [])) or "- Model catalog discovery pending"
+    
+    staged_models = []
+    for m in cand_entry.get("candidate_models", [])[:3]:
+        staged_models.append({
+            "name": m,
+            "cost": "$0",
+            "context": "Model-dependent",
+            "rpm": "Published on portal",
+            "verified": cand_entry.get("audited_date")
+        })
+    if not staged_models:
+        staged_models.append({
+            "name": f"{cname} Free Model",
+            "cost": "$0",
+            "context": "Model-dependent",
+            "rpm": "Published on portal",
+            "verified": cand_entry.get("audited_date")
+        })
+
+    staged_json = {
+        "name": cname,
+        "url": cand_entry["url"],
+        "free_type": cand_entry.get("free_type", "Permanent $0"),
+        "notes": cand_entry.get("summary", ""),
+        "timeout": "Not published",
+        "verified": cand_entry.get("audited_date"),
+        "models": staged_models,
+        "verified_method": "antigravity-agent",
+        "docs_url": cand_entry["url"],
+        "access_method": "api_key",
+        "base_url": cand_entry.get("base_url") or "https://api..."
+    }
+
+    body = f"""### 🚀 New Provider Candidate Discovered: {cname}
+
+The Antigravity ground truth agent discovered and verified a new free inference provider.
+
+- **Provider**: {cname}
+- **Website / Docs**: {cand_entry['url']}
+- **Discovered Via**: {cand_entry['source']}
+- **Free Tier Type**: {cand_entry.get('free_type')}
+- **Verified Date**: {cand_entry.get('audited_date')}
+- **Agent Interaction**: `{cand_entry.get('interaction_id')}` ({cand_entry.get('agent_steps')} steps)
+
+#### Verified Allowance
+> {cand_entry.get('summary')}
+
+#### Candidate Models
+{models_str}
+
+#### Ready-to-Merge JSON Staging
+```json
+{json.dumps(staged_json, indent=2)}
+```
+"""
+    return create_github_issue(title, body, ["catalog:candidate"])
 
 
 def call_antigravity_agent(prompt, key, timeout=120):
@@ -73,6 +304,18 @@ def call_antigravity_agent(prompt, key, timeout=120):
                         break
                 if output_text:
                     break
+
+            # If no conversational text was generated (e.g. status == incomplete),
+            # harvest thought summaries across steps
+            if not output_text:
+                summaries = []
+                for s in steps:
+                    for sm in s.get("summary", []):
+                        if isinstance(sm, dict) and sm.get("text"):
+                            summaries.append(sm["text"])
+                if summaries:
+                    output_text = "\n\n".join(summaries)
+
             return {
                 "status": status,
                 "output_text": output_text,
@@ -304,12 +547,16 @@ Output valid JSON only with no conversational text.
             agent_res = call_antigravity_agent(prompt, key, timeout=150)
             raw_out = agent_res.get("output_text", "")
             
-            # Extract JSON block
-            json_match = re.search(r'\{[^{}]*"status"[^{}]*\}', raw_out, re.DOTALL)
-            if json_match:
-                eval_data = json.loads(json_match.group(0))
-            else:
-                eval_data = json.loads(re.sub(r"^```(?:json)?\s*|\s*```$", "", raw_out, flags=re.MULTILINE).strip())
+            # Extract JSON block robustly
+            try:
+                eval_data = extract_first_json(raw_out)
+            except Exception as parse_err:
+                print(f"  Notice: JSON unwrap error for {pname} ({parse_err}): {raw_out[:180]}")
+                eval_data = {
+                    "status": "unreachable",
+                    "is_free_active": None,
+                    "summary": f"Parse error: {parse_err}"
+                }
 
             audit_entry = {
                 "provider": pname,
@@ -329,8 +576,9 @@ Output valid JSON only with no conversational text.
                 for m in p.get("models", []):
                     m["verified"] = today
                 print(f"  ✓ Verified active ({agent_res.get('steps_count', 0)} agent steps): refreshed {pname} verification date to {today}.")
-            elif not eval_data.get("is_free_active"):
+            elif eval_data.get("is_free_active") is False or eval_data.get("status") == "retired":
                 print(f"  ⚠ WARNING: Agent flagged {pname} as NOT active/free: {eval_data.get('summary')}")
+                report_deprecation_issue(pname, doc_url, audit_entry)
 
         except Exception as e:
             print(f"  Notice: Antigravity agent audit skipped for {pname}: {e}")
@@ -344,6 +592,221 @@ Output valid JSON only with no conversational text.
             })
 
     return audit_results
+
+
+def poll_candidate_providers(catalog_data):
+    """Discover uncataloged external providers across Hugging Face & OpenRouter registries."""
+    existing_names = set()
+    existing_domains = set()
+
+    def norm(s):
+        return re.sub(r'[^a-z0-9]', '', s.lower())
+
+    for p in catalog_data.get("providers", []):
+        existing_names.add(norm(p.get("name", "")))
+        for ukey in ("url", "docs_url", "base_url"):
+            u = p.get(ukey)
+            if u:
+                netloc = urlparse(u).netloc.lower()
+                if netloc.startswith("www."):
+                    netloc = netloc[4:]
+                existing_domains.add(netloc)
+
+    # Exclude known non-qualifying or retired providers from auto-re-auditing
+    ignore_names = {"togetherai", "openai", "anthropic"}
+    candidates = {}
+
+    # 1. Hugging Face Inference Providers
+    try:
+        hf_url = "https://huggingface.co/docs/inference-providers/en/index"
+        req = urllib.request.Request(hf_url, headers={"User-Agent": "FreeInference-Scout/1.0"})
+        with urllib.request.urlopen(req, timeout=15) as r:
+            html = r.read().decode("utf-8")
+        hf_slugs = set(re.findall(r'href="/docs/inference-providers/en/providers/([^"]+)"', html))
+        
+        hf_names = {
+            "baseten": ("Baseten", "https://www.baseten.co/pricing"),
+            "fal-ai": ("fal.ai", "https://fal.ai/pricing"),
+            "featherless-ai": ("Featherless", "https://featherless.ai/pricing"),
+            "fireworks-ai": ("Fireworks AI", "https://fireworks.ai/pricing"),
+            "novita": ("Novita AI", "https://novita.ai/pricing"),
+            "nscale": ("nScale", "https://nscale.com"),
+            "publicai": ("PublicAI", "https://publicai.com"),
+            "replicate": ("Replicate", "https://replicate.com/pricing"),
+            "scaleway": ("Scaleway", "https://www.scaleway.com/en/pricing/"),
+            "wavespeed": ("WaveSpeed", "https://wavespeed.ai")
+        }
+        for slug in hf_slugs:
+            if slug in hf_names:
+                cname, curl = hf_names[slug]
+                if norm(cname) not in existing_names and norm(cname) not in ignore_names:
+                    candidates[norm(cname)] = {
+                        "name": cname,
+                        "url": curl,
+                        "source": "Hugging Face Inference Providers",
+                        "slug": slug
+                    }
+    except Exception as e:
+        print(f"Notice: HF inference providers fetch skipped: {e}")
+
+    # 2. OpenRouter Providers API
+    try:
+        or_url = "https://openrouter.ai/api/v1/providers"
+        req = urllib.request.Request(or_url, headers={"User-Agent": "FreeInference-Scout/1.0"})
+        with urllib.request.urlopen(req, timeout=15) as r:
+            or_data = json.load(r)
+        for p in or_data.get("data", []):
+            cname = p.get("name")
+            if not cname:
+                continue
+            if norm(cname) in existing_names or norm(cname) in ignore_names:
+                continue
+            website = p.get("privacy_policy_url") or p.get("terms_of_service_url") or ""
+            domain = ""
+            if website:
+                d = urlparse(website).netloc.lower()
+                if d.startswith("www."):
+                    d = d[4:]
+                domain = d
+            if domain and domain in existing_domains:
+                continue
+            target_url = f"https://{domain}" if domain else ""
+            if target_url and norm(cname) not in candidates:
+                candidates[norm(cname)] = {
+                    "name": cname,
+                    "url": target_url,
+                    "source": "OpenRouter Providers Registry",
+                    "slug": p.get("slug")
+                }
+    except Exception as e:
+        print(f"Notice: OpenRouter providers fetch skipped: {e}")
+
+    return list(candidates.values())
+
+
+def audit_provider_candidates(candidates, key, max_audits=2):
+    """Use Antigravity Managed Agent in cloud sandbox to audit new provider candidates."""
+    if not key or not candidates:
+        return {"verified": [], "all_audited": []}
+
+    # Check previously audited candidate history to avoid re-auditing paid-only providers
+    audited_history = {}
+    if REPORT_PATH.exists():
+        try:
+            prev_report = json.loads(REPORT_PATH.read_text())
+            for ca in prev_report.get("candidate_audits", []):
+                c_name = ca.get("name")
+                if c_name:
+                    audited_history[c_name.lower()] = ca.get("audited_date")
+        except Exception:
+            pass
+
+    verified_candidates = []
+    audit_records = []
+    audited_count = 0
+
+    for cand in candidates:
+        if audited_count >= max_audits:
+            break
+
+        cname = cand["name"]
+        curl = cand["url"]
+        
+        # Skip if audited within last 60 days
+        prev_date = audited_history.get(cname.lower())
+        if prev_date:
+            try:
+                days_since = (date.today() - datetime.fromisoformat(prev_date).date()).days
+                if days_since < 60:
+                    continue
+            except Exception:
+                pass
+
+        # Also skip if an issue already exists in GitHub (open or closed)
+        if find_existing_issue(f"[New Provider Candidate] {cname}", state="all"):
+            continue
+
+        print(f"--> [Discovery Scout] Auditing candidate provider {cname} ({curl})...")
+        audited_count += 1
+        prompt = f"""You are the Antigravity ground truth auditor for FreeInference.dev.
+Investigate newly discovered AI inference provider candidate: {cname}.
+Official Website / Docs URL: {curl}
+
+Task:
+1. Navigate to {curl} using your tools (Google Chrome / url_context / curl / bash).
+2. Find developer pricing, free tier, trial credits, rate limits, or API keys.
+3. Check if {cname} offers a genuine $0 developer free tier, recurring free allowance, or free trial credits without requiring an upfront paid credit card purchase.
+4. Output your conclusion strictly as a JSON object with keys:
+- "status": "active" (free tier exists), "paid_only" (strictly prepaid/credit card purchase required), or "no_api"
+- "is_free_active": boolean (true if developer can use models for $0)
+- "free_type": "Permanent $0", "Trial credits", "Rate limited", or "None"
+- "summary": concise 1-sentence summary of the verified free allowance, limits, and reset cadence.
+- "candidate_models": list of free model names/IDs (strings)
+- "base_url": API base URL if discovered, or null
+
+Output valid JSON only with no conversational text.
+"""
+        try:
+            agent_res = call_antigravity_agent(prompt, key, timeout=150)
+            raw_out = agent_res.get("output_text", "")
+            try:
+                eval_data = extract_first_json(raw_out)
+            except Exception:
+                # If agent was cut off or emitted thoughts, synthesize structured JSON from its real observations
+                synth_prompt = f"""Based on these Antigravity agent observations from auditing {cname} ({curl}):
+{raw_out[:3000]}
+
+Does this provider offer a genuine $0 developer inference free tier or free trial credits without upfront card payment?
+Output strictly valid JSON with keys:
+- "status": "active" (free tier exists), "paid_only" (strictly prepaid/credit card purchase required), or "no_api"
+- "is_free_active": boolean (true if developer can use models for $0)
+- "free_type": "Permanent $0", "Trial credits", "Rate limited", or "None"
+- "summary": concise 1-sentence summary of the verified free allowance, limits, and reset cadence.
+- "candidate_models": list of free model names/IDs (strings)
+- "base_url": API base URL if discovered, or null
+"""
+                synth_raw = call_ai_studio(synth_prompt, key)
+                eval_data = extract_first_json(synth_raw)
+
+            audit_entry = {
+                "name": cname,
+                "url": curl,
+                "source": cand["source"],
+                "status": eval_data.get("status", "unknown"),
+                "is_free_active": eval_data.get("is_free_active", False),
+                "free_type": eval_data.get("free_type", "None"),
+                "summary": eval_data.get("summary", ""),
+                "candidate_models": eval_data.get("candidate_models", []),
+                "base_url": eval_data.get("base_url"),
+                "audited_date": date.today().isoformat(),
+                "agent_steps": agent_res.get("steps_count", 0),
+                "interaction_id": agent_res.get("interaction_id")
+            }
+            audit_records.append(audit_entry)
+
+            if eval_data.get("is_free_active"):
+                print(f"  ✓ Verified FREE provider candidate: {cname}! ({agent_res.get('steps_count')} agent steps)")
+                verified_candidates.append(audit_entry)
+                report_candidate_issue(audit_entry)
+            else:
+                print(f"  ✗ Provider candidate {cname} is paid-only / not free: {eval_data.get('summary')}")
+
+        except Exception as e:
+            print(f"  Notice: Candidate audit skipped for {cname}: {e}")
+            audit_records.append({
+                "name": cname,
+                "url": curl,
+                "source": cand["source"],
+                "status": "unreachable",
+                "is_free_active": False,
+                "summary": str(e),
+                "audited_date": date.today().isoformat()
+            })
+
+    return {
+        "verified": verified_candidates,
+        "all_audited": audit_records
+    }
 
 
 def run_scout(apply_updates=False):
@@ -413,6 +876,14 @@ Output strictly valid JSON with no markdown formatting.
         DATA_PATH.write_text(json.dumps(catalog_data, indent=2) + "\n")
         print(f"Updated {DATA_PATH} with fresh verification timestamps.")
 
+    # 4. Autonomous Discovery & Audit of New Service Providers
+    candidate_providers = poll_candidate_providers(catalog_data)
+    print(f"Discovered {len(candidate_providers)} uncataloged external providers across Hugging Face & OpenRouter.")
+
+    candidate_audit_results = audit_provider_candidates(candidate_providers, key, max_audits=2)
+    verified_candidates = candidate_audit_results.get("verified", [])
+    candidate_records = candidate_audit_results.get("all_audited", [])
+
     # Build report
     report = {
         "scouted_date": today,
@@ -421,6 +892,9 @@ Output strictly valid JSON with no markdown formatting.
         "models_cataloged": len(existing_models),
         "audit_summary": audit_summary,
         "doc_audits": doc_audits,
+        "candidate_providers_count": len(candidate_providers),
+        "candidate_audits": candidate_records,
+        "verified_new_providers": verified_candidates,
         "live_gateway_free_total": len(live_models),
         "new_discoveries_count": len(new_discoveries),
         "openrouter_rss_stream_count": len(rss_free_models),
@@ -441,7 +915,15 @@ Output strictly valid JSON with no markdown formatting.
             f.write(f"- **Engines**: Discovery via `{MODEL_NAME}` · Live Sandbox Audits via `{ANTIGRAVITY_AGENT}`\n")
             f.write(f"- **Catalog Size**: {len(catalog_data['providers'])} providers · {len(existing_models)} models\n")
             f.write(f"- **Doc Audits Conducted**: {len(doc_audits)}\n")
+            f.write(f"- **New Providers Discovered**: {len(candidate_providers)} across HF & OpenRouter ({len(verified_candidates)} verified free)\n")
             f.write(f"- **Live Gateway Models**: {len(live_models)} across 4 endpoints\n\n")
+            if verified_candidates:
+                f.write("#### 🚀 Verified New Provider Candidates\n\n")
+                f.write("| Provider | Source | Free Tier Type | Summary |\n")
+                f.write("| --- | --- | --- | --- |\n")
+                for vp in verified_candidates:
+                    f.write(f"| [{vp['name']}]({vp['url']}) | {vp['source']} | {vp['free_type']} | {vp['summary']} |\n")
+                f.write("\n")
             if doc_audits:
                 f.write("#### Autonomous Doc Audits\n\n")
                 f.write("| Provider | Status | Summary |\n")
@@ -449,6 +931,12 @@ Output strictly valid JSON with no markdown formatting.
                 for d in doc_audits:
                     status_icon = "✓" if d.get("is_free_active") else "⚠"
                     f.write(f"| {d['provider']} | {status_icon} {d['status']} | {d['summary']} |\n")
+                f.write("\n")
+            deprecations = [d for d in doc_audits if d.get("is_free_active") is False]
+            if deprecations:
+                f.write("#### ⚠ Deprecations Flagged to GitHub Issues\n\n")
+                for dep in deprecations:
+                    f.write(f"- **{dep['provider']}**: {dep['summary']}\n")
                 f.write("\n")
             if classified_candidates:
                 f.write("#### Newly Discovered Candidate Models\n\n")

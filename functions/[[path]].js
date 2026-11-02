@@ -204,6 +204,8 @@ export async function onRequest(context) {
     fileType = "feed";
   } else if (pathname === "/v1/models" || pathname === "/models") {
     fileType = "models_api";
+  } else if (pathname.startsWith("/api/")) {
+    fileType = "api";
   }
 
   if (fileType && context.waitUntil) {
@@ -220,6 +222,10 @@ export async function onRequest(context) {
 
   const res = await context.next();
   logEvent(context, req, pathname, fileType || "html", res);
-  res.headers.set("Vary", "Accept");
+  try {
+    res.headers.set("Vary", "Accept");
+  } catch (e) {
+    // ignore immutable header errors
+  }
   return res;
 }

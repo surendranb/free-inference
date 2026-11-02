@@ -29,6 +29,35 @@ MODEL_NAME = "gemini-3.5-flash-lite"
 API_URL = f"https://generativelanguage.googleapis.com/v1beta/models/{MODEL_NAME}:generateContent"
 
 
+def get_kv_subscribers():
+    """Retrieve verified subscriber emails from Cloudflare KV."""
+    account_id = "b8a2db803c867cf7208358fd8bcb191a"
+    ns_id = "6daab6e498a74ac9b022fa84605ffb9d"
+    token = os.environ.get("CLOUDFLARE_API_TOKEN")
+    if not token:
+        try:
+            import tomllib
+            cfg = Path.home() / ".wrangler" / "config" / "default.toml"
+            if cfg.exists():
+                with open(cfg, "rb") as f:
+                    token = tomllib.load(f).get("oauth_token")
+        except Exception:
+            pass
+    if not token:
+        return []
+    try:
+        req = urllib.request.Request(
+            f"https://api.cloudflare.com/client/v4/accounts/{account_id}/storage/kv/namespaces/{ns_id}/keys?prefix=sub:",
+            headers={"Authorization": f"Bearer {token}"}
+        )
+        with urllib.request.urlopen(req, timeout=10) as resp:
+            data = json.loads(resp.read().decode())
+            return [k["name"].removeprefix("sub:") for k in data.get("result", []) if "name" in k]
+    except Exception as e:
+        print(f"Notice: Could not list KV subscribers: {e}")
+        return []
+
+
 def get_buttondown_key():
     key = os.environ.get("BUTTONDOWN_API_KEY")
     if key:
@@ -140,6 +169,9 @@ Tone guidelines:
 
     # Rebuild site so newsletter archive updates
     subprocess.run([sys.executable, str(ROOT / "build.py")], check=True)
+
+    subscribers = get_kv_subscribers()
+    print(f"--> Active subscribers in Cloudflare KV: {len(subscribers)}")
 
     # Optional Buttondown dispatch
     bd_key = get_buttondown_key()

@@ -374,12 +374,22 @@ CSS = '''  :root { --bg:#fff; --ink:#1a1a1a; --mut:#6b6b6b; --line:#e3e3e3; --se
   .newsletter-box { margin:24px 0; padding:18px 20px; border:1px solid var(--line); border-radius:8px; background:#fafafa; }
   .newsletter-box h3 { margin:0 0 6px; font-size:15px; }
   .newsletter-box p { margin:0 0 12px; color:var(--mut); font-size:13.5px; }
-  .newsletter-form { display:flex; gap:8px; max-width:480px; }
+  .newsletter-form { display:flex; flex-direction:column; gap:4px; max-width:480px; }
+  .newsletter-form-row { display:flex; gap:8px; }
   .newsletter-form input { flex:1; padding:8px 12px; border:1px solid var(--line); border-radius:6px; font:inherit; font-size:13.5px; background:var(--bg); color:var(--ink); }
   .newsletter-form button { padding:8px 16px; background:var(--sel); color:var(--selink); border:none; border-radius:6px; cursor:pointer; font:inherit; font-size:13.5px; font-weight:600; white-space:nowrap; }
   .newsletter-form button:hover { opacity:0.9; }
-  @media (max-width:600px) { .newsletter-form { flex-direction:column; } }
+  .newsletter-msg { font-size:12.5px; min-height:16px; margin-top:4px; }
+  @media (max-width:600px) { .newsletter-form-row { flex-direction:column; } }
   @media (max-width:860px) { .fcols { grid-template-columns:repeat(2,1fr); } }'''
+
+NEWSLETTER_FORM_SNIPPET = """<form class="newsletter-form" onsubmit="event.preventDefault();var f=this,b=f.querySelector('button'),i=f.querySelector('input'),m=f.querySelector('.newsletter-msg');b.disabled=true;b.textContent='Subscribing...';fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:i.value})}).then(function(r){return r.json()}).then(function(d){if(d.success){b.textContent='Subscribed!';i.disabled=true;m.textContent='You are on the list. Issues drop Mondays at 09:00 IST.';m.style.color='#166534';}else{b.disabled=false;b.textContent='Subscribe';m.textContent=d.error||'Failed to subscribe';m.style.color='#991b1b';}}).catch(function(){b.disabled=false;b.textContent='Subscribe';m.textContent='Network error. Please try again.';m.style.color='#991b1b';});">
+  <div class="newsletter-form-row">
+    <input type="email" name="email" placeholder="you@domain.com" required aria-label="Your email address">
+    <button type="submit">Subscribe</button>
+  </div>
+  <div class="newsletter-msg"></div>
+</form>"""
 
 
 FOOTER_GROUPS = [
@@ -1649,13 +1659,10 @@ def free_footer_nav(verified):
                 ''.join(f'<li><a href="{u}">{t}</a></li>' for u, t in col_machine) +
                 '</ul></div>')
 
-    newsletter_html = """<section class="newsletter-box">
+    newsletter_html = f"""<section class="newsletter-box">
   <h3>⚡ Free Inference Weekly</h3>
   <p>Curated $0 LLM quotas, newly verified models, and breaking changes drafted every Monday by the Antigravity Agent. Zero spam, unsubscribe in 1 click.</p>
-  <form action="https://buttondown.email/api/emails/embed-subscribe/freeinference" method="post" target="popupwindow" class="newsletter-form">
-    <input type="email" name="email" id="bd-email" placeholder="you@domain.com" required aria-label="Your email address">
-    <button type="submit">Subscribe</button>
-  </form>
+  {NEWSLETTER_FORM_SNIPPET}
 </section>"""
 
     return (newsletter_html +
@@ -2314,10 +2321,7 @@ def build_newsletter_page(dist):
   <section class="newsletter-box" style="margin-top:0;">
     <h3>⚡ Subscribe to The Weekly Dispatch</h3>
     <p>Get the weekly diff delivered to your inbox every Monday at 09:00 IST. Strictly verified $0 endpoints, zero marketing hype, unsubscribe in 1 click.</p>
-    <form action="https://buttondown.email/api/emails/embed-subscribe/freeinference" method="post" target="popupwindow" class="newsletter-form">
-      <input type="email" name="email" id="bd-email" placeholder="you@domain.com" required aria-label="Your email address">
-      <button type="submit">Subscribe</button>
-    </form>
+    {NEWSLETTER_FORM_SNIPPET}
   </section>
 
   <p>Also available via machine feeds: <a href="/feed.xml">RSS / Atom Feed (feed.xml)</a> · <a href="/skill.md">Agent Skill (skill.md)</a> · <a href="/v1/models">OpenAI Catalog API (/v1/models)</a></p>

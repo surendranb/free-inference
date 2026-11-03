@@ -1,5 +1,5 @@
 {
-  "scouted_date": "2026-11-02",
+  "scouted_date": "2026-11-03",
   "model_used": "gemini-3.5-flash-lite + antigravity-preview-09-2026",
   "providers_audited": 37,
   "models_cataloged": 118,
@@ -14,8 +14,10 @@
       "docs_url": "https://kilo.ai/gateway",
       "status": "unreachable",
       "is_free_active": null,
-      "summary": "Antigravity agent interaction v1_ChdSSGJvYXVDaEFjdlF6N0lQck5qOThBZxIXUkhib2F1Q2hBY3ZRejdJUHJOajk4QWc timed out after 150s",
-      "audited_date": "2026-11-02"
+      "summary": "Parse error: Expecting value: line 1 column 1 (char 0)",
+      "audited_date": "2026-11-03",
+      "agent_steps": 35,
+      "interaction_id": "v1_Chdvc0xwYXJ6bUc5LWV6N0lQcHRLNXFRWRIXb3NMcGFyem1HOS1lejdJUHB0SzVxUVk"
     },
     {
       "provider": "Nous Portal",
@@ -23,60 +25,45 @@
       "status": "unreachable",
       "is_free_active": null,
       "summary": "Parse error: Expecting value: line 1 column 1 (char 0)",
-      "audited_date": "2026-11-02",
-      "agent_steps": 23,
-      "interaction_id": "v1_ChczSGJvYXRQWkJPeTJfUFVQdHFqbm9BSRIXM0hib2F0UFpCT3kyX1BVUHRxam5vQUk"
+      "audited_date": "2026-11-03",
+      "agent_steps": 11,
+      "interaction_id": "v1_ChdDOFBwYXRQRUY5aWZ6N0lQOGE2RHNBRRIXQzhQcGF0UEVGOWlmejdJUDhhNkRzQUU"
     }
   ],
-  "candidate_providers_count": 103,
+  "candidate_providers_count": 104,
   "candidate_audits": [
     {
-      "name": "nScale",
-      "url": "https://nscale.com",
+      "name": "Scaleway",
+      "url": "https://www.scaleway.com/en/pricing/",
       "source": "Hugging Face Inference Providers",
       "status": "paid_only",
       "is_free_active": false,
       "free_type": "None",
-      "summary": "nScale requires a minimum $5 credit purchase and credit card information to start, meaning there is no genuine $0 no-card developer free tier despite an initial $5 promotional credit.",
+      "summary": "Scaleway requires a mandatory payment method and a credit card authorization charge during account creation to access their services and API keys, meaning there is no genuine $0 upfront-free tier.",
       "candidate_models": [],
-      "base_url": "https://inference.api.nscale.com/v1",
-      "audited_date": "2026-11-02",
-      "agent_steps": 43,
-      "interaction_id": "v1_ChZGSGZvYW9MTE51YWlfdU1QeHVQME9REhZGSGZvYW9MTE51YWlfdU1QeHVQME9R"
+      "base_url": null,
+      "audited_date": "2026-11-03",
+      "agent_steps": 16,
+      "interaction_id": "v1_ChdLY1BwYXJfdkw2R2U5TW9QN3JXNTJBSRIXS2NQcGFyX3ZMNkdlOU1vUDdyVzUyQUk"
     },
     {
-      "name": "Fireworks AI",
-      "url": "https://fireworks.ai/pricing",
+      "name": "Replicate",
+      "url": "https://replicate.com/pricing",
       "source": "Hugging Face Inference Providers",
-      "status": "active",
-      "is_free_active": true,
-      "free_type": "Trial credits",
-      "summary": "Fireworks AI offers a trial with initial $1 credit for free model access, but requires payment details after depletion for continued service.",
+      "status": "paid_only",
+      "is_free_active": false,
+      "free_type": "None",
+      "summary": "Replicate operates on a paid, consumption-based pricing model requiring a credit card or prepaid credit setup to access API inference, with no permanent recurring $0 free tier.",
       "candidate_models": [],
-      "base_url": null,
-      "audited_date": "2026-11-02",
-      "agent_steps": 25,
-      "interaction_id": "v1_ChdmbmZvYXNDUUtlYWV6N0lQNmRQRy1BVRIXZm5mb2FzQ1FLZWFlejdJUDZkUEctQVU"
+      "base_url": "https://api.replicate.com/v1",
+      "audited_date": "2026-11-03",
+      "agent_steps": 20,
+      "interaction_id": "v1_ChdZTVBwYXQ3TUVjelZ6N0lQOF9XNDRBURIXWU1QcGF0N01FY3pWejdJUDhfVzQ0QVE"
     }
   ],
-  "verified_new_providers": [
-    {
-      "name": "Fireworks AI",
-      "url": "https://fireworks.ai/pricing",
-      "source": "Hugging Face Inference Providers",
-      "status": "active",
-      "is_free_active": true,
-      "free_type": "Trial credits",
-      "summary": "Fireworks AI offers a trial with initial $1 credit for free model access, but requires payment details after depletion for continued service.",
-      "candidate_models": [],
-      "base_url": null,
-      "audited_date": "2026-11-02",
-      "agent_steps": 25,
-      "interaction_id": "v1_ChdmbmZvYXNDUUtlYWV6N0lQNmRQRy1BVRIXZm5mb2FzQ1FLZWFlejdJUDZkUEctQVU"
-    }
-  ],
-  "live_gateway_free_total": 48,
-  "new_discoveries_count": 17,
+  "verified_new_providers": [],
+  "live_gateway_free_total": 49,
+  "new_discoveries_count": 16,
   "openrouter_rss_stream_count": 14,
   "openrouter_rss_new_count": 0,
   "openrouter_rss_stream": [
@@ -199,70 +186,70 @@
       "family": "auto-router",
       "task": "general",
       "recommended_page_slug": "kilo-auto-free",
-      "summary": "Automated routing model on Kilo Gateway optimizing for general-purpose free inference."
+      "summary": "Automatic routing free tier model provided via Kilo Gateway with a 256k context window."
     },
     {
       "id": "reflection/beam-free",
       "family": "reflection",
       "task": "reasoning",
       "recommended_page_slug": "reflection-beam-free",
-      "summary": "High-context reasoning model featuring a 1M token window optimized for complex problem solving."
+      "summary": "High-context 1M token reasoning model featuring advanced beam search architecture on Kilo Gateway."
     },
     {
       "id": "stealth/glyph-cluster",
       "family": "stealth",
       "task": "general",
       "recommended_page_slug": "stealth-glyph-cluster",
-      "summary": "Proprietary cluster-based general-purpose model with a 256k context window."
+      "summary": "Experimental stealth cluster model with a 256k context length available for free inference."
     },
     {
       "id": "google/lyria-3-pro-preview",
       "family": "google-lyria",
-      "task": "general",
+      "task": "reasoning",
       "recommended_page_slug": "google-lyria-3-pro-preview",
-      "summary": "Google Lyria 3 Pro preview model with an extensive 1M context length."
+      "summary": "Preview release of Google's Lyria 3 Pro model supporting up to 1M tokens of context."
     },
     {
       "id": "google/lyria-3-clip-preview",
       "family": "google-lyria",
       "task": "general",
       "recommended_page_slug": "google-lyria-3-clip-preview",
-      "summary": "Google Lyria 3 Clip preview model tailored for fast generation with a 1M context window."
+      "summary": "Preview release of Google's Lyria 3 Clip model optimized for efficient multimodal or text processing."
     },
     {
       "id": "openrouter/free",
-      "family": "auto-router",
+      "family": "router",
       "task": "general",
       "recommended_page_slug": "openrouter-free",
-      "summary": "Meta-router model aggregating various free tier endpoints from OpenRouter."
-    },
-    {
-      "id": "inclusionai/ling-3.1-flash-1019-free",
-      "family": "ling",
-      "task": "general",
-      "recommended_page_slug": "inclusionai-ling-31-flash-1019-free",
-      "summary": "InclusionAI Ling 3.1 Flash variant offering a massive 1M context window on the free tier."
+      "summary": "Aggregated router endpoint for accessing diverse zero-cost models across OpenRouter integration."
     },
     {
       "id": "novita/ling-3.1-flash",
       "family": "ling",
       "task": "general",
-      "recommended_page_slug": "novita-ling-31-flash",
-      "summary": "Novita-hosted Ling 3.1 Flash general-purpose model endpoint."
+      "recommended_page_slug": "novita-ling-3-1-flash",
+      "summary": "Fast lightweight LLM variant from the Ling 3.1 family hosted via Requesty."
     },
     {
       "id": "nvidia/nemotron-3.5-lightning-30b-a3b",
       "family": "nemotron",
       "task": "reasoning",
-      "recommended_page_slug": "nvidia-nemotron-35-lightning-30b-a3b",
-      "summary": "NVIDIA Nemotron 3.5 Lightning 30B parameter model geared toward efficient high-speed reasoning."
+      "recommended_page_slug": "nvidia-nemotron-3-5-lightning-30b-a3b",
+      "summary": "Nvidia Nemotron 3.5 Lightning 30B parameter model tuned for rapid low-latency response generation."
     },
     {
       "id": "nvidia/muse-glimmer-30b",
       "family": "muse",
       "task": "general",
       "recommended_page_slug": "nvidia-muse-glimmer-30b",
-      "summary": "NVIDIA Muse Glimmer 30B model providing balanced general-purpose conversational capabilities."
+      "summary": "Nvidia Muse Glimmer 30B model geared towards creative and general-purpose tasks."
+    },
+    {
+      "id": "novita/inclusionai/ling-3.0-tiny",
+      "family": "ling",
+      "task": "general",
+      "recommended_page_slug": "novita-inclusionai-ling-3-0-tiny",
+      "summary": "Tiny variant of the InclusionAI Ling 3.0 series designed for maximum inference efficiency."
     }
   ],
   "status": "completed"

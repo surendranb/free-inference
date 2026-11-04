@@ -1,5 +1,5 @@
 {
-  "scouted_date": "2026-11-03",
+  "scouted_date": "2026-11-04",
   "model_used": "gemini-3.5-flash-lite + antigravity-preview-09-2026",
   "providers_audited": 37,
   "models_cataloged": 118,
@@ -10,14 +10,24 @@
   },
   "doc_audits": [
     {
+      "provider": "SambaNova Cloud",
+      "docs_url": "https://cloud.sambanova.ai/apis",
+      "status": "active",
+      "is_free_active": true,
+      "summary": "SambaNova Cloud provides an active rate-limited free tier with no payment method required, granting 20 RPM, 20 requests per day (RPD), and 200,000 tokens per day (TPD) per model with daily resets across supported production and preview models.",
+      "audited_date": "2026-11-04",
+      "agent_steps": 30,
+      "interaction_id": "v1_ChdRUmZyYXQydEZhS3RfUFVQclk2c2lBZxIXUVJmcmF0MnRGYUt0X1BVUHJZNnNpQWc"
+    },
+    {
       "provider": "Kilo Gateway",
       "docs_url": "https://kilo.ai/gateway",
       "status": "unreachable",
       "is_free_active": null,
       "summary": "Parse error: Expecting value: line 1 column 1 (char 0)",
-      "audited_date": "2026-11-03",
-      "agent_steps": 35,
-      "interaction_id": "v1_Chdvc0xwYXJ6bUc5LWV6N0lQcHRLNXFRWRIXb3NMcGFyem1HOS1lejdJUHB0SzVxUVk"
+      "audited_date": "2026-11-04",
+      "agent_steps": 46,
+      "interaction_id": "v1_ChdxeGZyYXFHSkl0X1ktOFlQMDhMWWtRSRIXcXhmcmFxR0pJdF9ZLThZUDA4TFlrUUk"
     },
     {
       "provider": "Nous Portal",
@@ -25,45 +35,45 @@
       "status": "unreachable",
       "is_free_active": null,
       "summary": "Parse error: Expecting value: line 1 column 1 (char 0)",
-      "audited_date": "2026-11-03",
-      "agent_steps": 11,
-      "interaction_id": "v1_ChdDOFBwYXRQRUY5aWZ6N0lQOGE2RHNBRRIXQzhQcGF0UEVGOWlmejdJUDhhNkRzQUU"
+      "audited_date": "2026-11-04",
+      "agent_steps": 16,
+      "interaction_id": "v1_ChdRUmpyYXN1b0R2ZkVfUFVQNGIzQzRRSRIXUVJqcmFzdW9EdmZFX1BVUDRiM0M0UUk"
     }
   ],
-  "candidate_providers_count": 104,
+  "candidate_providers_count": 106,
   "candidate_audits": [
     {
-      "name": "Scaleway",
-      "url": "https://www.scaleway.com/en/pricing/",
+      "name": "fal.ai",
+      "url": "https://fal.ai/pricing",
       "source": "Hugging Face Inference Providers",
       "status": "paid_only",
       "is_free_active": false,
       "free_type": "None",
-      "summary": "Scaleway requires a mandatory payment method and a credit card authorization charge during account creation to access their services and API keys, meaning there is no genuine $0 upfront-free tier.",
+      "summary": "fal.ai operates on a strictly prepaid credit model requiring an upfront paid balance for API inference, with promotional and trial credits explicitly restricted to web Sandbox and Playground usage rather than the API.",
       "candidate_models": [],
-      "base_url": null,
-      "audited_date": "2026-11-03",
-      "agent_steps": 16,
-      "interaction_id": "v1_ChdLY1BwYXJfdkw2R2U5TW9QN3JXNTJBSRIXS2NQcGFyX3ZMNkdlOU1vUDdyVzUyQUk"
+      "base_url": "https://fal.run",
+      "audited_date": "2026-11-04",
+      "agent_steps": 21,
+      "interaction_id": "v1_ChdvUmpyYXRxdUNxTFRfUFVQbk83Uy1RNBIXb1JqcmF0cXVDcUxUX1BVUG5PN1MtUTQ"
     },
     {
-      "name": "Replicate",
-      "url": "https://replicate.com/pricing",
+      "name": "Featherless",
+      "url": "https://featherless.ai/pricing",
       "source": "Hugging Face Inference Providers",
       "status": "paid_only",
       "is_free_active": false,
       "free_type": "None",
-      "summary": "Replicate operates on a paid, consumption-based pricing model requiring a credit card or prepaid credit setup to access API inference, with no permanent recurring $0 free tier.",
+      "summary": "Featherless AI operates on a strictly paid subscription and credit top-up model with no free tier or trial credit system available.",
       "candidate_models": [],
-      "base_url": "https://api.replicate.com/v1",
-      "audited_date": "2026-11-03",
-      "agent_steps": 20,
-      "interaction_id": "v1_ChdZTVBwYXQ3TUVjelZ6N0lQOF9XNDRBURIXWU1QcGF0N01FY3pWejdJUDhfVzQ0QVE"
+      "base_url": null,
+      "audited_date": "2026-11-04",
+      "agent_steps": 35,
+      "interaction_id": "v1_ChcxaGpyYXJmN05zMnQxTWtQeDdfSmdRbxIXMWhqcmFyZjdOczJ0MU1rUHg3X0pnUW8"
     }
   ],
   "verified_new_providers": [],
-  "live_gateway_free_total": 49,
-  "new_discoveries_count": 16,
+  "live_gateway_free_total": 44,
+  "new_discoveries_count": 18,
   "openrouter_rss_stream_count": 14,
   "openrouter_rss_new_count": 0,
   "openrouter_rss_stream": [
@@ -183,73 +193,66 @@
   "candidates": [
     {
       "id": "kilo-auto/free",
-      "family": "auto-router",
+      "family": "router",
       "task": "general",
       "recommended_page_slug": "kilo-auto-free",
-      "summary": "Automatic routing free tier model provided via Kilo Gateway with a 256k context window."
+      "summary": "Automatic free tier router provided by Kilo Gateway, dynamically balancing load across available general-purpose models."
     },
     {
       "id": "reflection/beam-free",
       "family": "reflection",
       "task": "reasoning",
       "recommended_page_slug": "reflection-beam-free",
-      "summary": "High-context 1M token reasoning model featuring advanced beam search architecture on Kilo Gateway."
+      "summary": "High-context reasoning model featuring a 1M token context window, optimized for complex logical analysis and problem-solving."
     },
     {
       "id": "stealth/glyph-cluster",
       "family": "stealth",
       "task": "general",
       "recommended_page_slug": "stealth-glyph-cluster",
-      "summary": "Experimental stealth cluster model with a 256k context length available for free inference."
+      "summary": "Stealth architecture model with a 256k context length, suited for general multi-turn text generation and summarization."
+    },
+    {
+      "id": "stealth/crouton-alpha",
+      "family": "stealth",
+      "task": "general",
+      "recommended_page_slug": "stealth-crouton-alpha",
+      "summary": "Early alpha generation stealth model boasting a massive 1M token context length for broad context ingestion."
     },
     {
       "id": "google/lyria-3-pro-preview",
-      "family": "google-lyria",
-      "task": "reasoning",
+      "family": "google",
+      "task": "general",
       "recommended_page_slug": "google-lyria-3-pro-preview",
-      "summary": "Preview release of Google's Lyria 3 Pro model supporting up to 1M tokens of context."
+      "summary": "Google Lyria 3 Pro preview release oriented toward advanced generative text and content creation tasks."
     },
     {
       "id": "google/lyria-3-clip-preview",
-      "family": "google-lyria",
-      "task": "general",
+      "family": "google",
+      "task": "vision",
       "recommended_page_slug": "google-lyria-3-clip-preview",
-      "summary": "Preview release of Google's Lyria 3 Clip model optimized for efficient multimodal or text processing."
+      "summary": "Google Lyria 3 preview variant optimized for multimodal processing and clip-based visual understanding."
     },
     {
       "id": "openrouter/free",
       "family": "router",
       "task": "general",
       "recommended_page_slug": "openrouter-free",
-      "summary": "Aggregated router endpoint for accessing diverse zero-cost models across OpenRouter integration."
+      "summary": "OpenRouter free-tier aggregation endpoint routing requests dynamically across free models."
     },
     {
       "id": "novita/ling-3.1-flash",
-      "family": "ling",
+      "family": "novita",
       "task": "general",
       "recommended_page_slug": "novita-ling-3-1-flash",
-      "summary": "Fast lightweight LLM variant from the Ling 3.1 family hosted via Requesty."
+      "summary": "Novita Ling 3.1 Flash lightweight model designed for rapid, low-latency inference."
     },
     {
       "id": "nvidia/nemotron-3.5-lightning-30b-a3b",
-      "family": "nemotron",
+      "family": "nvidia",
       "task": "reasoning",
       "recommended_page_slug": "nvidia-nemotron-3-5-lightning-30b-a3b",
-      "summary": "Nvidia Nemotron 3.5 Lightning 30B parameter model tuned for rapid low-latency response generation."
-    },
-    {
-      "id": "nvidia/muse-glimmer-30b",
-      "family": "muse",
-      "task": "general",
-      "recommended_page_slug": "nvidia-muse-glimmer-30b",
-      "summary": "Nvidia Muse Glimmer 30B model geared towards creative and general-purpose tasks."
-    },
-    {
-      "id": "novita/inclusionai/ling-3.0-tiny",
-      "family": "ling",
-      "task": "general",
-      "recommended_page_slug": "novita-inclusionai-ling-3-0-tiny",
-      "summary": "Tiny variant of the InclusionAI Ling 3.0 series designed for maximum inference efficiency."
+      "summary": "NVIDIA Nemotron 3.5 Lightning 30B architecture optimized for fast reasoning and efficient token generation."
     }
   ],
   "status": "completed"

@@ -166,8 +166,8 @@ Free LLM inference you can build with: an API key, a CLI login, or inference bun
 
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| DeepSeek-V3.1 | $0 | 128K | 20 | Not published | 20 | 200K tokens/day | 2026-11-04 |
-| DeepSeek-V3.2 | $0 | 128K | 20 | Not published | 20 | 200K tokens/day | 2026-11-04 |
+| DeepSeek-V3.1 | $0 | 128K | 20 | Not published | 20 | 200K tokens/day | 2026-11-05 |
+| DeepSeek-V3.2 | $0 | 128K | 20 | Not published | 20 | 200K tokens/day | 2026-11-05 |
 | Meta-Llama-3.3-70B-Instruct | $0 | 128K | 20 | Not published | 20 | 200K tokens/day | 2026-11-05 |
 | gemma-4-31B-it | $0 | 128K | 20 | Not published | 20 | 200K tokens/day | 2026-11-05 |
 | gpt-oss-120b | $0 | 128K | 20 | Not published | 20 | 200K tokens/day | 2026-11-05 |

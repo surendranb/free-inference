@@ -1,8 +1,8 @@
 {
-  "scouted_date": "2026-11-04",
+  "scouted_date": "2026-11-05",
   "model_used": "gemini-3.5-flash-lite + antigravity-preview-09-2026",
   "providers_audited": 37,
-  "models_cataloged": 118,
+  "models_cataloged": 116,
   "audit_summary": {
     "stale_count": 0,
     "stale_providers": [],
@@ -14,10 +14,10 @@
       "docs_url": "https://cloud.sambanova.ai/apis",
       "status": "active",
       "is_free_active": true,
-      "summary": "SambaNova Cloud provides an active rate-limited free tier with no payment method required, granting 20 RPM, 20 requests per day (RPD), and 200,000 tokens per day (TPD) per model with daily resets across supported production and preview models.",
-      "audited_date": "2026-11-04",
-      "agent_steps": 30,
-      "interaction_id": "v1_ChdRUmZyYXQydEZhS3RfUFVQclk2c2lBZxIXUVJmcmF0MnRGYUt0X1BVUHJZNnNpQWc"
+      "summary": "SambaNova Cloud offers an active rate-limited free tier without requiring a payment method, providing 20 requests per minute, 20 requests per day, and 200,000 tokens per day per model across all cataloged models with daily resets.",
+      "audited_date": "2026-11-05",
+      "agent_steps": 28,
+      "interaction_id": "v1_ChdmYmpzYXQ3MUtxV1ZfdU1QMy1lejRBbxIXZmJqc2F0NzFLcVdWX3VNUDMtZXo0QW8"
     },
     {
       "provider": "Kilo Gateway",
@@ -25,9 +25,9 @@
       "status": "unreachable",
       "is_free_active": null,
       "summary": "Parse error: Expecting value: line 1 column 1 (char 0)",
-      "audited_date": "2026-11-04",
-      "agent_steps": 46,
-      "interaction_id": "v1_ChdxeGZyYXFHSkl0X1ktOFlQMDhMWWtRSRIXcXhmcmFxR0pJdF9ZLThZUDA4TFlrUUk"
+      "audited_date": "2026-11-05",
+      "agent_steps": 55,
+      "interaction_id": "v1_ChcwN2pzYXBlMU1QSG96N0lQaHV2amdRVRIXMDdqc2FwZTFNUEhvejdJUGh1dmpnUVU"
     },
     {
       "provider": "Nous Portal",
@@ -35,46 +35,41 @@
       "status": "unreachable",
       "is_free_active": null,
       "summary": "Parse error: Expecting value: line 1 column 1 (char 0)",
-      "audited_date": "2026-11-04",
-      "agent_steps": 16,
-      "interaction_id": "v1_ChdRUmpyYXN1b0R2ZkVfUFVQNGIzQzRRSRIXUVJqcmFzdW9EdmZFX1BVUDRiM0M0UUk"
+      "audited_date": "2026-11-05",
+      "agent_steps": 18,
+      "interaction_id": "v1_ChdiYm5zYXBDUko4aVk5TW9QemRlMS1BZxIXYmJuc2FwQ1JKOGlZOU1vUHpkZTEtQWc"
     }
   ],
-  "candidate_providers_count": 106,
+  "candidate_providers_count": 107,
   "candidate_audits": [
     {
-      "name": "fal.ai",
-      "url": "https://fal.ai/pricing",
+      "name": "PublicAI",
+      "url": "https://publicai.com",
       "source": "Hugging Face Inference Providers",
-      "status": "paid_only",
+      "status": "unreachable",
       "is_free_active": false,
-      "free_type": "None",
-      "summary": "fal.ai operates on a strictly prepaid credit model requiring an upfront paid balance for API inference, with promotional and trial credits explicitly restricted to web Sandbox and Playground usage rather than the API.",
-      "candidate_models": [],
-      "base_url": "https://fal.run",
-      "audited_date": "2026-11-04",
-      "agent_steps": 21,
-      "interaction_id": "v1_ChdvUmpyYXRxdUNxTFRfUFVQbk83Uy1RNBIXb1JqcmF0cXVDcUxUX1BVUG5PN1MtUTQ"
+      "summary": "Unterminated string starting at: line 5 column 14 (char 90)",
+      "audited_date": "2026-11-05"
     },
     {
-      "name": "Featherless",
-      "url": "https://featherless.ai/pricing",
+      "name": "nScale",
+      "url": "https://nscale.com",
       "source": "Hugging Face Inference Providers",
       "status": "paid_only",
       "is_free_active": false,
       "free_type": "None",
-      "summary": "Featherless AI operates on a strictly paid subscription and credit top-up model with no free tier or trial credit system available.",
+      "summary": "nScale utilizes a credit-based billing model requiring purchases and does not offer a genuine $0 developer free tier or free trial credits.",
       "candidate_models": [],
       "base_url": null,
-      "audited_date": "2026-11-04",
-      "agent_steps": 35,
-      "interaction_id": "v1_ChcxaGpyYXJmN05zMnQxTWtQeDdfSmdRbxIXMWhqcmFyZjdOczJ0MU1rUHg3X0pnUW8"
+      "audited_date": "2026-11-05",
+      "agent_steps": 32,
+      "interaction_id": "v1_Chd6Ym5zYXZiZko0ZkJ6N0lQbnZhOXlBURIXemJuc2F2YmZKNGZCejdJUG52YTl5QVE"
     }
   ],
   "verified_new_providers": [],
-  "live_gateway_free_total": 44,
-  "new_discoveries_count": 18,
-  "openrouter_rss_stream_count": 14,
+  "live_gateway_free_total": 43,
+  "new_discoveries_count": 19,
+  "openrouter_rss_stream_count": 12,
   "openrouter_rss_new_count": 0,
   "openrouter_rss_stream": [
     {
@@ -123,22 +118,6 @@
       "link": "https://openrouter.ai/nvidia/nemotron-3.5-lightning",
       "pub_date": "Tue, 11 Aug 2026 12:52:31 GMT",
       "description": "NVIDIA Nemotron 3.5 Lightning is an open mixture-of-experts model from NVIDIA, with 3B active parameters out of 30B total. It is suited for high-throughput agentic workloads and specialized tasks that",
-      "is_new_to_catalog": false
-    },
-    {
-      "model_id": "thinkingmachines/inkling-small",
-      "title": "Thinking Machines: Inkling Small (free) (thinkingmachines/inkling-small)",
-      "link": "https://openrouter.ai/thinkingmachines/inkling-small",
-      "pub_date": "Thu, 30 Jul 2026 20:25:17 GMT",
-      "description": "Inkling Small is an open-weight multimodal mixture-of-experts model from Thinking Machines Lab, with 12B active parameters out of 276B total. It is positioned as the smaller, more efficient member of.",
-      "is_new_to_catalog": false
-    },
-    {
-      "model_id": "thinkingmachines/inkling",
-      "title": "Thinking Machines: Inkling (free) (thinkingmachines/inkling)",
-      "link": "https://openrouter.ai/thinkingmachines/inkling",
-      "pub_date": "Fri, 17 Jul 2026 22:05:56 GMT",
-      "description": "Inkling is an open-weight multimodal mixture-of-experts model from Thinking Machines Lab, with 41B active parameters out of 975B total. It is designed for general-purpose reasoning, coding, agentic an",
       "is_new_to_catalog": false
     },
     {
@@ -193,66 +172,73 @@
   "candidates": [
     {
       "id": "kilo-auto/free",
-      "family": "router",
+      "family": "unknown",
       "task": "general",
-      "recommended_page_slug": "kilo-auto-free",
-      "summary": "Automatic free tier router provided by Kilo Gateway, dynamically balancing load across available general-purpose models."
+      "recommended_page_slug": "free-llm-api",
+      "summary": "Auto Free"
     },
     {
       "id": "reflection/beam-free",
-      "family": "reflection",
-      "task": "reasoning",
-      "recommended_page_slug": "reflection-beam-free",
-      "summary": "High-context reasoning model featuring a 1M token context window, optimized for complex logical analysis and problem-solving."
+      "family": "unknown",
+      "task": "general",
+      "recommended_page_slug": "free-llm-api",
+      "summary": "Reflection: Beam 1.0 (free)"
     },
     {
       "id": "stealth/glyph-cluster",
-      "family": "stealth",
+      "family": "unknown",
       "task": "general",
-      "recommended_page_slug": "stealth-glyph-cluster",
-      "summary": "Stealth architecture model with a 256k context length, suited for general multi-turn text generation and summarization."
+      "recommended_page_slug": "free-llm-api",
+      "summary": "Stealth: Glyph Cluster (free)"
     },
     {
       "id": "stealth/crouton-alpha",
-      "family": "stealth",
+      "family": "unknown",
       "task": "general",
-      "recommended_page_slug": "stealth-crouton-alpha",
-      "summary": "Early alpha generation stealth model boasting a massive 1M token context length for broad context ingestion."
+      "recommended_page_slug": "free-llm-api",
+      "summary": "Crouton Alpha"
     },
     {
       "id": "google/lyria-3-pro-preview",
-      "family": "google",
+      "family": "unknown",
       "task": "general",
-      "recommended_page_slug": "google-lyria-3-pro-preview",
-      "summary": "Google Lyria 3 Pro preview release oriented toward advanced generative text and content creation tasks."
+      "recommended_page_slug": "free-llm-api",
+      "summary": "Google: Lyria 3 Pro Preview"
     },
     {
       "id": "google/lyria-3-clip-preview",
-      "family": "google",
-      "task": "vision",
-      "recommended_page_slug": "google-lyria-3-clip-preview",
-      "summary": "Google Lyria 3 preview variant optimized for multimodal processing and clip-based visual understanding."
+      "family": "unknown",
+      "task": "general",
+      "recommended_page_slug": "free-llm-api",
+      "summary": "Google: Lyria 3 Clip Preview"
     },
     {
       "id": "openrouter/free",
-      "family": "router",
+      "family": "unknown",
       "task": "general",
-      "recommended_page_slug": "openrouter-free",
-      "summary": "OpenRouter free-tier aggregation endpoint routing requests dynamically across free models."
+      "recommended_page_slug": "free-llm-api",
+      "summary": "OpenRouter Free Models Router"
+    },
+    {
+      "id": "stealth/crouton-alpha",
+      "family": "unknown",
+      "task": "general",
+      "recommended_page_slug": "free-llm-api",
+      "summary": "Crouton Alpha"
+    },
+    {
+      "id": "meituan/longcat-2.5:free",
+      "family": "unknown",
+      "task": "general",
+      "recommended_page_slug": "free-llm-api",
+      "summary": "LongCat-2.5:Free"
     },
     {
       "id": "novita/ling-3.1-flash",
-      "family": "novita",
+      "family": "unknown",
       "task": "general",
-      "recommended_page_slug": "novita-ling-3-1-flash",
-      "summary": "Novita Ling 3.1 Flash lightweight model designed for rapid, low-latency inference."
-    },
-    {
-      "id": "nvidia/nemotron-3.5-lightning-30b-a3b",
-      "family": "nvidia",
-      "task": "reasoning",
-      "recommended_page_slug": "nvidia-nemotron-3-5-lightning-30b-a3b",
-      "summary": "NVIDIA Nemotron 3.5 Lightning 30B architecture optimized for fast reasoning and efficient token generation."
+      "recommended_page_slug": "free-llm-api",
+      "summary": "novita/ling-3.1-flash"
     }
   ],
   "status": "completed"

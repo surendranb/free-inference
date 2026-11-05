@@ -1288,14 +1288,16 @@ FREE_PAGES_CONFIG = {
     "free-inkling-api": {
         "title": "Free Inkling API — Thinking Machines Reasoning Models (2026)",
         "h1": "Free Inkling API Endpoints & Rate Limits",
-        "bluf": "Thinking Machines Inkling and Inkling-Small reasoning models featuring 1M (1024K) context windows are hosted for free on OpenRouter with 20 RPM.",
-        "desc": "Free Inkling reasoning API directory. Rate limits, 1M context windows, and base URLs for Thinking Machines models.",
+        "bluf": "Thinking Machines Inkling models are currently unlisted on free tiers after OpenRouter ended its free promotional window. Verified alternative reasoning models with 128K–1M context windows include DeepSeek-R1 and Nemotron Reasoning.",
+        "desc": "Free Inkling reasoning API directory. Upstream status, alternative reasoning models, rate limits, and 1M context endpoints.",
         "filter": lambda p, m: "inkling" in m["name"].lower() or "thinkingmachines" in m["name"].lower(),
+        "fallback_filter": lambda p, m: any(k in m["name"].lower() for k in ["nemotron-3-nano-omni", "deepseek-r1", "gemini-2.5-flash"]),
+        "upstream_notice": "Thinking Machines Inkling and Inkling-Small models have rotated off OpenRouter's free promotional tier and are currently paid-only upstream ($1.00/$4.05 per 1M tokens). The table below lists active, verified $0 alternative reasoning models with long context windows.",
         "tool_snippet": {
             "base_url": "https://openrouter.ai/api/v1",
-            "model": "thinkingmachines/inkling:free",
+            "model": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
             "provider": "OpenRouter",
-            "notes": "Thinking Machines Inkling reasoning model with 1024K context."
+            "notes": "Verified free reasoning alternative on OpenRouter with 128K context and 20 RPM."
         }
     },
     "free-deepseek-v3-api": {
@@ -1705,6 +1707,15 @@ def generate_slice_descriptions(cfg, matched, verified_human):
 
 def build_free_page(slug_key, cfg):
     matched = [(p, m) for p in ROWS for m in p["models"] if cfg["filter"](p, m)]
+    is_fallback = False
+    if not matched:
+        is_fallback = True
+        fb_fn = cfg.get("fallback_filter")
+        if fb_fn:
+            matched = [(p, m) for p in ROWS for m in p["models"] if fb_fn(p, m)]
+        if not matched:
+            matched = [(p, m) for p in ROWS for m in p["models"] if any(k in m["name"].lower() for k in ["reasoning", "r1", "flash", "nemotron"])][:5]
+
     title = cfg["title"]
     h1 = cfg["h1"]
     page_url = f"{WEBSITE}/{slug_key}/"
@@ -1714,9 +1725,16 @@ def build_free_page(slug_key, cfg):
     verified = html.escape(max_p)
     verified_human = date.fromisoformat(max_p).strftime("%d %b %Y")
     meta_desc, og_desc = generate_slice_descriptions(cfg, matched, verified_human)
-    tagline = f"{count_noun(prov_count, 'provider')} · {count_noun(model_count, 'free model')} · Last updated: {verified_human}"
+    tagline_status = " (recommended alternatives)" if is_fallback else ""
+    tagline = f"{count_noun(prov_count, 'provider')} · {count_noun(model_count, 'free model')}{tagline_status} · Last updated: {verified_human}"
     answer = free_answer_block(cfg, matched)
     footer = free_footer_nav(verified)
+    notice_html = ""
+    if is_fallback:
+        custom_notice = cfg.get("upstream_notice", "Models for this category are currently unlisted or paid-only on upstream provider free tiers. The table below lists verified active $0 alternative models.")
+        notice_html = f"""<aside class="upstream-notice" style="background:#fff3cd;border:1px solid #ffeeba;border-left:4px solid #ffc107;padding:12px 16px;margin:16px 0;border-radius:4px;">
+  <p style="margin:0;color:#856404;font-size:14px;line-height:1.5;"><strong>⚠️ Upstream Status Notice:</strong> {html.escape(custom_notice)}</p>
+</aside>"""
     quick_connect_html = ""
     if "tool_snippet" in cfg:
         ts = cfg["tool_snippet"]
@@ -1831,10 +1849,12 @@ print(response.choices[0].message.content)</code></pre>
 
   {answer}
 
+  {notice_html}
+
   {quick_connect_html}
 
   <section class="models">
-    <h2>Rate Limits &amp; Model Inventory</h2>
+    <h2>{'Rate Limits &amp; Recommended Free Alternatives' if is_fallback else 'Rate Limits &amp; Model Inventory'}</h2>
     <div class="table-wrap"><table aria-label="{html.escape(h1)} rate limits and models">
       <thead><tr><th scope="col">Model</th><th scope="col">Provider</th><th scope="col">Cost</th><th scope="col">Context</th><th scope="col">RPM</th><th scope="col">TPM</th><th scope="col">RPD</th><th scope="col">Day tokens</th><th scope="col">Verified</th></tr></thead>
       <tbody>
@@ -1857,6 +1877,15 @@ print(response.choices[0].message.content)</code></pre>
 
 def build_free_md(slug_key, cfg):
     matched = [(p, m) for p in ROWS for m in p["models"] if cfg["filter"](p, m)]
+    is_fallback = False
+    if not matched:
+        is_fallback = True
+        fb_fn = cfg.get("fallback_filter")
+        if fb_fn:
+            matched = [(p, m) for p in ROWS for m in p["models"] if fb_fn(p, m)]
+        if not matched:
+            matched = [(p, m) for p in ROWS for m in p["models"] if any(k in m["name"].lower() for k in ["reasoning", "r1", "flash", "nemotron"])][:5]
+
     h1 = cfg["h1"]
     bluf = cfg["bluf"]
     page_url = f"{WEBSITE}/{slug_key}/"
@@ -1865,11 +1894,20 @@ def build_free_md(slug_key, cfg):
     max_p = max_verified([p for p, _ in matched])
     verified_human = date.fromisoformat(max_p).strftime("%d %b %Y")
     meta_desc, og_desc = generate_slice_descriptions(cfg, matched, verified_human)
+    tagline_status = " (recommended alternatives)" if is_fallback else ""
     lines = [
         f"# {h1}",
         "",
-        f"> {count_noun(prov_count, 'provider')} · {count_noun(model_count, 'free model')} · Last updated: {verified_human}",
+        f"> {count_noun(prov_count, 'provider')} · {count_noun(model_count, 'free model')}{tagline_status} · Last updated: {verified_human}",
         "",
+    ]
+    if is_fallback:
+        custom_notice = cfg.get("upstream_notice", "Models for this category are currently unlisted or paid-only on upstream provider free tiers. The table below lists verified active $0 alternative models.")
+        lines += [
+            f"> ⚠️ **Upstream Status Notice:** {custom_notice}",
+            "",
+        ]
+    lines += [
         "## Quick Answer",
         "",
         og_desc,
@@ -1919,7 +1957,7 @@ def build_free_md(slug_key, cfg):
             "",
         ]
     lines += [
-        "## Rate Limits & Model Inventory",
+        "## Rate Limits & Recommended Free Alternatives" if is_fallback else "## Rate Limits & Model Inventory",
         "",
         "| Model | Provider | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |",
         "| --- | --- | --- | --- | --- | --- | --- | --- | --- |",

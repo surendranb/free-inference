@@ -91,7 +91,8 @@ def verify_matrix():
         if not md_content.startswith(f"# {cfg['h1']}"):
             errors.append(f"{slug}: index.md missing matching H1")
             
-        summary.append((slug, row_count if m_tbody else 0, len(m_title.group(1)) if m_title else 0))
+        status_str = f"{row_count} (fallback)" if "upstream-notice" in html_content else row_count
+        summary.append((slug, status_str, len(m_title.group(1)) if m_title else 0))
 
     # 2. Check homepage integrity
     index_html = (DIST / "index.html").read_text()
@@ -103,11 +104,11 @@ def verify_matrix():
         errors.append("Homepage footer provider links missing")
 
     # Output report
-    print(f"\n{'SLUG':<30} {'MODELS':<8} {'TITLE LEN':<10}")
-    print("-" * 50)
+    print(f"\n{'SLUG':<30} {'MODELS':<16} {'TITLE LEN':<10}")
+    print("-" * 58)
     for s, count, tlen in summary:
-        print(f"{s:<30} {count:<8} {tlen:<10}")
-    print("-" * 50)
+        print(f"{s:<30} {str(count):<16} {tlen:<10}")
+    print("-" * 58)
     
     if errors:
         print(f"\nFAILED: {len(errors)} error(s) detected:")

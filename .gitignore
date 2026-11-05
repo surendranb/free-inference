@@ -4,3 +4,4 @@ __pycache__/
 dist/
 .wrangler/
 *.bak
+data/probe_failures.json

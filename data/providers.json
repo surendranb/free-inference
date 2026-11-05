@@ -124,6 +124,26 @@
           "rpd": "Not published",
           "tpd": "Not published",
           "verified": "2026-11-05"
+        },
+        {
+          "name": "Crouton Alpha Free",
+          "cost": "$0 (promo)",
+          "context": "256K - 1M",
+          "rpm": "Not published",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-05"
+        },
+        {
+          "name": "Pulse Alpha Free",
+          "cost": "$0 (promo)",
+          "context": "256K - 1M",
+          "rpm": "Not published",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-05"
         }
       ],
       "verified_method": "live-probe",
@@ -1814,6 +1834,86 @@
       "access_method": "api_key",
       "artifact": "code",
       "base_url": "https://api.deepseek.com/v1"
+    },
+    {
+      "name": "TypeSafe AI",
+      "url": "https://typesafe.ai/",
+      "free_type": "Trial credits",
+      "notes": "$5 free signup credits (~120M input tokens on Jev). OpenAI-compatible endpoint. Ideal for Jev code generation, fast structured outputs, and type safety.",
+      "timeout": "Not published",
+      "verified": "2026-11-05",
+      "models": [
+        {
+          "name": "typesafe/jev-1.13",
+          "cost": "$0 ($5 signup credits)",
+          "context": "256K",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-05"
+        }
+      ],
+      "verified_method": "dashboard",
+      "docs_url": "https://docs.typesafe.ai/",
+      "access_method": "api_key",
+      "artifact": "code",
+      "base_url": "https://api.typesafe.ai/v1"
+    },
+    {
+      "name": "Braintrust",
+      "url": "https://www.braintrust.dev/pricing",
+      "free_type": "Trial credits",
+      "notes": "Starter plan ($0/mo, no card required) includes $10/month recurring model credits covering built-in models (DeepSeek V4.1 Flash, GLM-5.3 Flash, Kimi K3, GPT-6 Luna) in playgrounds, evaluations, prompts, and the Braintrust SDK.",
+      "timeout": "Not published",
+      "verified": "2026-11-05",
+      "models": [
+        {
+          "name": "deepseek-v4.1-flash",
+          "cost": "$0 ($10/mo model credits)",
+          "context": "128K",
+          "rpm": "Not published",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-05"
+        },
+        {
+          "name": "glm-5.3-flash",
+          "cost": "$0 ($10/mo model credits)",
+          "context": "128K",
+          "rpm": "Not published",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-05"
+        },
+        {
+          "name": "kimi-k3",
+          "cost": "$0 ($10/mo model credits)",
+          "context": "128K",
+          "rpm": "Not published",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-05"
+        },
+        {
+          "name": "gpt-6-luna",
+          "cost": "$0 ($10/mo model credits)",
+          "context": "128K",
+          "rpm": "Not published",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-05"
+        }
+      ],
+      "verified_method": "docs",
+      "docs_url": "https://docs.braintrust.dev/plans-and-limits#model-credits",
+      "access_method": "api_key",
+      "artifact": "code",
+      "base_url": "https://api.braintrust.dev/v1/proxy"
     }
   ],
   "ga_measurement_id": "G-CFXWNKBD7G",

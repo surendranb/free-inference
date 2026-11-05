@@ -543,14 +543,14 @@ Current catalog data:
 
 Task:
 1. Navigate to {doc_url} using your tools (Google Chrome / url_context / curl / bash).
-2. Read the live rendered page, pricing tables, quotas, token limits, and free allowances.
+2. Read the live rendered page, pricing tables, quotas, token limits, audio second limits (ASH/ASD), and free allowances.
 3. If the page redirected or pricing moved to a subpage, find the current pricing/free tier.
-4. Extract every verified $0 / free model currently offered on this page.
+4. Extract every verified $0 / free model currently offered on this page across ALL inference modalities: Text, Code, Speech-to-Text (STT/Whisper), Text-to-Speech (TTS/Audio), Vision/Multimodal, and Embeddings.
 5. Output your conclusion strictly as a JSON object with keys:
 - "status": "active" (free tier exists), "retired" (discontinued/paid-only), or "changed"
 - "is_free_active": boolean
 - "free_type": "Rate-limited free", "Trial credits", or "Promo free (limited time)"
-- "models": list of free models with objects: [{{"name": "string", "cost": "$0", "context": "string", "rpm": "string", "rpd": "string"}}]
+- "models": list of free models with objects: [{{"name": "string", "cost": "$0", "context": "string (context window, max audio length, or input type)", "rpm": "string", "tpm": "string (tokens/min or audio seconds/hr)", "rpd": "string", "tpd": "string (tokens/day, audio seconds/day, or credit amount)"}}]
 - "summary": concise 1-sentence summary of the verified free allowance, limits, and reset cadence.
 
 Output valid JSON only with no conversational text.
@@ -744,6 +744,25 @@ def poll_candidate_providers(catalog_data):
                                 "source": f"Upstream Creator for {m_name}",
                                 "slug": creator_slug
                             }
+
+    # 5. Speech, Audio, and Multimodal Inference Platforms
+    audio_providers = {
+        "elevenlabs": ("ElevenLabs", "https://elevenlabs.io/pricing"),
+        "cartesia": ("Cartesia", "https://cartesia.ai/pricing"),
+        "fish-audio": ("Fish Audio", "https://fish.audio/pricing"),
+        "speechify": ("Speechify API", "https://speechify.com/api"),
+        "playht": ("Play.ht", "https://play.ht/pricing"),
+        "gladia": ("Gladia", "https://www.gladia.io/pricing"),
+        "rev-ai": ("Rev.ai", "https://www.rev.ai/pricing"),
+    }
+    for slug, (aname, aurl) in audio_providers.items():
+        if norm(aname) not in existing_names and norm(aname) not in ignore_names:
+            candidates[norm(aname)] = {
+                "name": aname,
+                "url": aurl,
+                "source": "Speech & Audio Inference",
+                "slug": slug
+            }
 
     return list(candidates.values())
 

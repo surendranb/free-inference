@@ -1,6 +1,6 @@
 ---
 name: free-inference
-description: Query, filter, and configure verified $0 free LLM inference providers, OpenAI-compatible base URLs, and active rate limits (RPM/TPM/RPD) across 39 providers and 143 models.
+description: Query, filter, and configure verified $0 free LLM inference providers, OpenAI-compatible base URLs, and active rate limits (RPM/TPM/RPD) across 41 providers and 153 models.
 version: 1.0.0
 updated: 2026-11-05
 homepage: https://freeinference.dev

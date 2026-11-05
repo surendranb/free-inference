@@ -1864,12 +1864,22 @@
       "name": "Braintrust",
       "url": "https://www.braintrust.dev/pricing",
       "free_type": "Trial credits",
-      "notes": "Starter plan ($0/mo, no card required) includes $10/month recurring model credits covering built-in models (DeepSeek V4.1 Flash, GLM-5.3 Flash, Kimi K3, GPT-6 Luna) in playgrounds, evaluations, prompts, and the Braintrust SDK.",
+      "notes": "Starter plan ($0/mo, no card required) includes $10/month recurring model credits covering 13 built-in models (GPT-6 series, GPT-5.6 series, DeepSeek V4/V4.1, GLM-5.2/5.3, Kimi K3, and Jev) in playgrounds, evaluations, prompts, and the Braintrust SDK.",
       "timeout": "Not published",
       "verified": "2026-11-05",
       "models": [
         {
           "name": "deepseek-v4.1-flash",
+          "cost": "$0 ($10/mo model credits)",
+          "context": "128K",
+          "rpm": "Not published",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-05"
+        },
+        {
+          "name": "deepseek-v4-flash-0731",
           "cost": "$0 ($10/mo model credits)",
           "context": "128K",
           "rpm": "Not published",
@@ -1889,6 +1899,16 @@
           "verified": "2026-11-05"
         },
         {
+          "name": "glm-5.2",
+          "cost": "$0 ($10/mo model credits)",
+          "context": "128K",
+          "rpm": "Not published",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-05"
+        },
+        {
           "name": "kimi-k3",
           "cost": "$0 ($10/mo model credits)",
           "context": "128K",
@@ -1899,7 +1919,77 @@
           "verified": "2026-11-05"
         },
         {
+          "name": "jev",
+          "cost": "$0 ($10/mo model credits)",
+          "context": "256K",
+          "rpm": "Not published",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-05"
+        },
+        {
           "name": "gpt-6-luna",
+          "cost": "$0 ($10/mo model credits)",
+          "context": "128K",
+          "rpm": "Not published",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-05"
+        },
+        {
+          "name": "gpt-6-sol",
+          "cost": "$0 ($10/mo model credits)",
+          "context": "128K",
+          "rpm": "Not published",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-05"
+        },
+        {
+          "name": "gpt-6.1-sol",
+          "cost": "$0 ($10/mo model credits)",
+          "context": "128K",
+          "rpm": "Not published",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-05"
+        },
+        {
+          "name": "gpt-6-astra",
+          "cost": "$0 ($10/mo model credits)",
+          "context": "128K",
+          "rpm": "Not published",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-05"
+        },
+        {
+          "name": "gpt-5.6-luna",
+          "cost": "$0 ($10/mo model credits)",
+          "context": "128K",
+          "rpm": "Not published",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-05"
+        },
+        {
+          "name": "gpt-5.6-terra",
+          "cost": "$0 ($10/mo model credits)",
+          "context": "128K",
+          "rpm": "Not published",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-05"
+        },
+        {
+          "name": "gpt-5.6-sol",
           "cost": "$0 ($10/mo model credits)",
           "context": "128K",
           "rpm": "Not published",

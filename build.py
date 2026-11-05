@@ -2085,14 +2085,71 @@ def build_v1_endpoints(dist):
 
     chat_notice = {
         "error": {
-            "message": "FreeInference.dev is an open directory and catalog of free inference endpoints, not an API proxy. To query free models, connect directly to any provider base_url listed in /v1/models (e.g. SambaNova, Groq, Google AI Studio, DeepInfra, Z.AI).",
-            "type": "invalid_request_error",
+            "message": "FreeInference.dev is an open verified catalog and directory of $0 free inference providers, not an API proxy or inference gateway. Direct inference requests (POST /v1/chat/completions) are not executed on this domain. To run free inference, query our catalog at /v1/models to select a provider, and route your requests directly to that provider's base_url (e.g. Groq, SambaNova, Google AI Studio, Cerebras).",
+            "type": "catalog_only_directory",
             "param": None,
-            "code": "catalog_only_directory",
+            "code": "method_not_allowed",
+        },
+        "catalog": {
             "directory_url": WEBSITE,
             "models_endpoint": f"{WEBSITE}/v1/models",
+            "raw_json": f"{WEBSITE}/data/providers.json",
+            "llms_txt": f"{WEBSITE}/llms.txt",
             "documentation": f"{WEBSITE}/free-openai-compatible-api/",
-        }
+        },
+        "skill": {
+            "name": "free-inference",
+            "description": "Official Agent Skill for Cursor, Claude Code, Cline, and LLM agent loops to automatically query, filter, and configure verified $0 endpoints and rate limits.",
+            "install_url": f"{WEBSITE}/skill.md",
+            "canonical_url": f"{WEBSITE}/skills/free-inference/SKILL.md",
+            "instructions": f"Download or reference {WEBSITE}/skill.md in your agent prompt to dynamically discover active free models.",
+        },
+        "newsletter": {
+            "name": "FreeInference Weekly Dispatch",
+            "description": "Weekly automated email digest tracking new free models, quota changes, and verified $0 provider drops.",
+            "web_archive": f"{WEBSITE}/newsletter/",
+            "api_subscribe": {
+                "endpoint": f"{WEBSITE}/api/subscribe",
+                "method": "POST",
+                "headers": {"Content-Type": "application/json"},
+                "body": {"email": "developer@example.com"},
+                "curl_example": f"curl -X POST {WEBSITE}/api/subscribe -H 'Content-Type: application/json' -d '{{\"email\": \"you@example.com\"}}'",
+            },
+        },
+        "feed": {
+            "atom_feed": f"{WEBSITE}/feed.xml",
+            "description": "Atom / RSS syndication feed for automated catalog aggregators, RSS readers, and agent monitors.",
+        },
+        "quick_drop_in_providers": [
+            {
+                "provider": "SambaNova Cloud",
+                "base_url": "https://api.sambanova.ai/v1",
+                "recommended_model": "DeepSeek-V3.2",
+                "free_tier": "Free API key, 0 credit card, 131k context window",
+                "signup_url": "https://cloud.sambanova.ai",
+            },
+            {
+                "provider": "Groq",
+                "base_url": "https://api.groq.com/openai/v1",
+                "recommended_model": "llama-3.3-70b-versatile",
+                "free_tier": "Free API key, 0 credit card, ultra-low latency LPU",
+                "signup_url": "https://console.groq.com",
+            },
+            {
+                "provider": "Google AI Studio",
+                "base_url": "https://generativelanguage.googleapis.com/v1beta/openai/",
+                "recommended_model": "gemini-2.5-flash",
+                "free_tier": "15 RPM permanently free, 1,000,000 token context window",
+                "signup_url": "https://aistudio.google.com",
+            },
+            {
+                "provider": "Cerebras",
+                "base_url": "https://api.cerebras.ai/v1",
+                "recommended_model": "llama-3.3-70b",
+                "free_tier": "Free trial credits, 2,000+ tokens/sec throughput",
+                "signup_url": "https://cloud.cerebras.ai",
+            },
+        ],
     }
     (v1_dir / "chat").mkdir(parents=True, exist_ok=True)
     (v1_dir / "chat" / "completions").write_text(json.dumps(chat_notice, indent=2) + "\n")

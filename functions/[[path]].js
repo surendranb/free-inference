@@ -1,6 +1,81 @@
 // Content negotiation & server-side GA4 telemetry for agents, CLI hits, and raw data requests.
 const GA_ID = "G-CFXWNKBD7G";
 
+const CORS_HEADERS = {
+  "access-control-allow-origin": "*",
+  "access-control-allow-methods": "GET, POST, OPTIONS, HEAD",
+  "access-control-allow-headers": "*",
+};
+
+const CHAT_GUIDANCE = {
+  error: {
+    message: "FreeInference.dev is an open verified catalog and directory of $0 free inference providers, not an API proxy or inference gateway. Direct inference requests (POST /v1/chat/completions) are not executed on this domain. To run free inference, query our catalog at /v1/models to select a provider, and route your requests directly to that provider's base_url (e.g. Groq, SambaNova, Google AI Studio, Cerebras).",
+    type: "catalog_only_directory",
+    code: "method_not_allowed",
+    param: null,
+  },
+  catalog: {
+    directory_url: "https://freeinference.dev",
+    models_endpoint: "https://freeinference.dev/v1/models",
+    raw_json: "https://freeinference.dev/data/providers.json",
+    llms_txt: "https://freeinference.dev/llms.txt",
+    documentation: "https://freeinference.dev/free-openai-compatible-api/",
+  },
+  skill: {
+    name: "free-inference",
+    description: "Official Agent Skill for Cursor, Claude Code, Cline, and LLM agent loops to automatically query, filter, and configure verified $0 endpoints and rate limits.",
+    install_url: "https://freeinference.dev/skill.md",
+    canonical_url: "https://freeinference.dev/skills/free-inference/SKILL.md",
+    instructions: "Download or reference https://freeinference.dev/skill.md in your agent prompt to dynamically discover active free models.",
+  },
+  newsletter: {
+    name: "FreeInference Weekly Dispatch",
+    description: "Weekly automated email digest tracking new free models, quota changes, and verified $0 provider drops.",
+    web_archive: "https://freeinference.dev/newsletter/",
+    api_subscribe: {
+      endpoint: "https://freeinference.dev/api/subscribe",
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: { email: "developer@example.com" },
+      curl_example: "curl -X POST https://freeinference.dev/api/subscribe -H 'Content-Type: application/json' -d '{\"email\": \"you@example.com\"}'",
+    },
+  },
+  feed: {
+    atom_feed: "https://freeinference.dev/feed.xml",
+    description: "Atom / RSS syndication feed for automated catalog aggregators, RSS readers, and agent monitors.",
+  },
+  quick_drop_in_providers: [
+    {
+      provider: "SambaNova Cloud",
+      base_url: "https://api.sambanova.ai/v1",
+      recommended_model: "DeepSeek-V3.2",
+      free_tier: "Free API key, 0 credit card, 131k context window",
+      signup_url: "https://cloud.sambanova.ai",
+    },
+    {
+      provider: "Groq",
+      base_url: "https://api.groq.com/openai/v1",
+      recommended_model: "llama-3.3-70b-versatile",
+      free_tier: "Free API key, 0 credit card, ultra-low latency LPU",
+      signup_url: "https://console.groq.com",
+    },
+    {
+      provider: "Google AI Studio",
+      base_url: "https://generativelanguage.googleapis.com/v1beta/openai/",
+      recommended_model: "gemini-2.5-flash",
+      free_tier: "15 RPM permanently free, 1,000,000 token context window",
+      signup_url: "https://aistudio.google.com",
+    },
+    {
+      provider: "Cerebras",
+      base_url: "https://api.cerebras.ai/v1",
+      recommended_model: "llama-3.3-70b",
+      free_tier: "Free trial credits, 2,000+ tokens/sec throughput",
+      signup_url: "https://cloud.cerebras.ai",
+    },
+  ],
+};
+
 function detectAgentFamily(ua) {
   const u = (ua || "").toLowerCase();
   if (u.includes("claude") || u.includes("anthropic")) return "Claude / Anthropic";
@@ -142,6 +217,58 @@ export async function onRequest(context) {
   const url = new URL(req.url);
   const pathname = url.pathname;
   const accept = req.headers.get("accept") || "";
+
+  // 0. CORS preflight for all endpoints
+  if (req.method === "OPTIONS") {
+    return new Response(null, { status: 204, headers: CORS_HEADERS });
+  }
+
+  // 0b. Path normalization for /v1/models (stripping markdown backticks, URL-encoded %60, trailing quotes, /api/v1/models)
+  let decodedPath = pathname;
+  try {
+    decodedPath = decodeURIComponent(pathname);
+  } catch (e) {}
+  const cleanPath = decodedPath.replace(/[`'"]+$/, "").trim();
+  if (cleanPath === "/v1/models" || cleanPath === "/models" || cleanPath === "/api/v1/models") {
+    if (context.waitUntil) context.waitUntil(sendGaHit(req, "/v1/models", "models_api"));
+    const res = await context.env.ASSETS.fetch(new URL("/v1/models", req.url));
+    if (res.ok) {
+      logEvent(context, req, "/v1/models", "models_api", res);
+      return new Response(res.body, {
+        status: 200,
+        headers: {
+          "content-type": "application/json; charset=utf-8",
+          ...CORS_HEADERS,
+          "cache-control": "public, max-age=300",
+        },
+      });
+    }
+  }
+
+  // 0c. Direct inference & chat completion interception: Developer Guidance
+  const isChatInference = /^\/(v1\/)?chat(\/completions)?\/?$/.test(pathname)
+    || /^\/(api\/)?(v1\/)?messages\/?$/.test(pathname)
+    || /^\/api\/chat(\/completions)?\/?$/.test(pathname)
+    || pathname.endsWith("/v1/chat/completions")
+    || pathname.endsWith("/api/chat")
+    || pathname.endsWith("/api/chat/completions");
+
+  if (isChatInference) {
+    const status = (req.method === "GET" || req.method === "HEAD") ? 200 : 405;
+    if (context.waitUntil) {
+      context.waitUntil(sendGaHit(req, pathname, status === 405 ? "guidance_405" : "chat_guidance"));
+    }
+    logEvent(context, req, pathname, "guidance_405", { status });
+    return new Response(JSON.stringify(CHAT_GUIDANCE, null, 2) + "\n", {
+      status: status,
+      headers: {
+        "content-type": "application/json; charset=utf-8",
+        ...CORS_HEADERS,
+        "allow": "GET, HEAD, OPTIONS",
+        "cache-control": "no-store",
+      },
+    });
+  }
 
   // 1. Content negotiation for markdown on root
   if (pathname === "/" && accept.includes("text/markdown")) {

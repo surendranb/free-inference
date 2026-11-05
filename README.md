@@ -2,7 +2,7 @@
 
 Free LLM inference you can build with: an API key, a CLI login, or inference bundled inside a coding tool or builder. The test is whether you can ship an artifact you keep — code, an app, a site, a design, an agent, a skill. Chat-only free tiers are excluded on purpose.
 
-> **2026-11-05** · 39 providers · 134 free models
+> **2026-11-05** · 39 providers · 143 free models
 > Interactive site: https://freeinference.dev · Agent summary: https://freeinference.dev/llms.txt · Machine data: https://freeinference.dev/data/providers.json (validate against https://freeinference.dev/data/schema.json)
 
 ### Quick Navigation & Machine Access
@@ -58,7 +58,7 @@ Free LLM inference you can build with: an API key, a CLI login, or inference bun
 | [SiliconFlow](https://siliconflow.cn) | api_key | Rate-limited free | deepseek-ai/DeepSeek-R1-Distill-Qwen-7B, deepseek-ai/DeepSeek-V3, Qwen/Qwen2.5-7B-Instruct, THUDM/glm-4-9b-chat | Large-scale inference gateway offering permanently free open-source model tiers plus 14M free signup tokens. OpenAI-compatible API. No credit card required. |
 | [DeepSeek Platform](https://api-docs.deepseek.com) | api_key | Trial credits | deepseek-chat, deepseek-reasoner | 5M free tokens granted on new account creation (valid 30 days). OpenAI-compatible API format with cache-miss/cache-hit pricing. |
 | [TypeSafe AI](https://typesafe.ai/) | api_key | Trial credits | typesafe/jev-1.13 | $5 free signup credits (~120M input tokens on Jev). OpenAI-compatible endpoint. Ideal for Jev code generation, fast structured outputs, and type safety. |
-| [Braintrust](https://www.braintrust.dev/pricing) | api_key | Trial credits | deepseek-v4.1-flash, glm-5.3-flash, kimi-k3, gpt-6-luna | Starter plan ($0/mo, no card required) includes $10/month recurring model credits covering built-in models (DeepSeek V4.1 Flash, GLM-5.3 Flash, Kimi K3, GPT-6 Luna) in playgrounds, evaluations, prompts, and the Braintrust SDK. |
+| [Braintrust](https://www.braintrust.dev/pricing) | api_key | Trial credits | deepseek-v4.1-flash, deepseek-v4-flash-0731, glm-5.3-flash, glm-5.2, kimi-k3, jev, +7 more | Starter plan ($0/mo, no card required) includes $10/month recurring model credits covering 13 built-in models (GPT-6 series, GPT-5.6 series, DeepSeek V4/V4.1, GLM-5.2/5.3, Kimi K3, and Jev) in playgrounds, evaluations, prompts, and the Braintrust SDK. |
 
 ## Models (per provider)
 
@@ -387,9 +387,18 @@ Free LLM inference you can build with: an API key, a CLI login, or inference bun
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | deepseek-v4.1-flash | $0 ($10/mo model credits) | 128K | Not published | Not published | Not published | Not published | 2026-11-05 |
+| deepseek-v4-flash-0731 | $0 ($10/mo model credits) | 128K | Not published | Not published | Not published | Not published | 2026-11-05 |
 | glm-5.3-flash | $0 ($10/mo model credits) | 128K | Not published | Not published | Not published | Not published | 2026-11-05 |
+| glm-5.2 | $0 ($10/mo model credits) | 128K | Not published | Not published | Not published | Not published | 2026-11-05 |
 | kimi-k3 | $0 ($10/mo model credits) | 128K | Not published | Not published | Not published | Not published | 2026-11-05 |
+| jev | $0 ($10/mo model credits) | 256K | Not published | Not published | Not published | Not published | 2026-11-05 |
 | gpt-6-luna | $0 ($10/mo model credits) | 128K | Not published | Not published | Not published | Not published | 2026-11-05 |
+| gpt-6-sol | $0 ($10/mo model credits) | 128K | Not published | Not published | Not published | Not published | 2026-11-05 |
+| gpt-6.1-sol | $0 ($10/mo model credits) | 128K | Not published | Not published | Not published | Not published | 2026-11-05 |
+| gpt-6-astra | $0 ($10/mo model credits) | 128K | Not published | Not published | Not published | Not published | 2026-11-05 |
+| gpt-5.6-luna | $0 ($10/mo model credits) | 128K | Not published | Not published | Not published | Not published | 2026-11-05 |
+| gpt-5.6-terra | $0 ($10/mo model credits) | 128K | Not published | Not published | Not published | Not published | 2026-11-05 |
+| gpt-5.6-sol | $0 ($10/mo model credits) | 128K | Not published | Not published | Not published | Not published | 2026-11-05 |
 ## Definitions
 
 | Term | Meaning |

@@ -1533,6 +1533,58 @@ FREE_PAGES_CONFIG = {
             "provider": "Groq",
             "notes": "Use with Claude Code CLI proxy wrappers or compatible agent frameworks."
         }
+    },
+    "free-stt-api": {
+        "title": "Free Speech-to-Text API — $0 Audio Transcription (2026)",
+        "h1": "Free Speech-to-Text (STT) APIs & Audio Transcription",
+        "bluf": "Free speech-to-text API endpoints for audio transcription, including Groq (Whisper Large v3 at 2,000 requests/day), Deepgram ($200 credits), and AssemblyAI ($50 credits) with zero credit card required.",
+        "desc": "Free speech-to-text API directory. Compare rate limits, audio size limits, and base URLs for Whisper, Nova-3, and Universal-1 without paid subscriptions.",
+        "filter": lambda p, m: any(w in m["name"].lower() for w in ["whisper", "nova", "universal", "conformer", "stt"]) or "audio" in m.get("context", "").lower() or "speech-to-text" in m.get("context", "").lower(),
+        "tool_snippet": {
+            "base_url": "https://api.groq.com/openai/v1",
+            "model": "whisper-large-v3-turbo",
+            "provider": "Groq",
+            "notes": "Hosted Whisper Large v3 Turbo on Groq LPU with 2,000 requests/day free."
+        }
+    },
+    "free-tts-api": {
+        "title": "Free Text-to-Speech API — $0 Voice Synthesis (2026)",
+        "h1": "Free Text-to-Speech (TTS) APIs & Voice Synthesis",
+        "bluf": "Free text-to-speech API endpoints for voice synthesis and voice agents, including Groq (CanopyLabs Orpheus) and Deepgram (Aura) with generous free allowances and no credit card required.",
+        "desc": "Free text-to-speech API directory. Compare rate limits, audio quotas, and endpoints for Orpheus and Aura voice synthesis.",
+        "filter": lambda p, m: any(w in m["name"].lower() for w in ["orpheus", "aura", "tts"]) or "text-to-speech" in m.get("context", "").lower(),
+        "tool_snippet": {
+            "base_url": "https://api.groq.com/openai/v1",
+            "model": "canopylabs/orpheus-v1-english",
+            "provider": "Groq",
+            "notes": "Text-to-speech audio synthesis with Orpheus on Groq."
+        }
+    },
+    "free-whisper-api": {
+        "title": "Free Whisper API — $0 Hosted OpenAI Whisper Endpoints (2026)",
+        "h1": "Free Hosted Whisper API Endpoints & Rate Limits",
+        "bluf": "Free hosted OpenAI Whisper API endpoints for high-throughput speech transcription, including Groq (Whisper Large v3 & Turbo at 2,000 RPD) and Cloudflare Workers AI with zero credit card.",
+        "desc": "Free hosted Whisper API endpoints. Compare audio limits, time-to-first-token, and request quotas for Whisper Large v3 on Groq and Cloudflare.",
+        "filter": lambda p, m: "whisper" in m["name"].lower(),
+        "tool_snippet": {
+            "base_url": "https://api.groq.com/openai/v1",
+            "model": "whisper-large-v3-turbo",
+            "provider": "Groq",
+            "notes": "Fastest hosted Whisper Large v3 Turbo transcription endpoint."
+        }
+    },
+    "free-audio-api": {
+        "title": "Free Audio AI API — $0 Speech-to-Text & Voice Synthesis (2026)",
+        "h1": "Free Audio & Voice Inference APIs",
+        "bluf": "Complete directory of verified free audio inference APIs covering Speech-to-Text (STT) and Text-to-Speech (TTS) across Groq, Deepgram, AssemblyAI, and Cloudflare Workers AI.",
+        "desc": "Directory of free audio AI APIs. Compare free quotas, audio minutes, and endpoints for Whisper, Orpheus, Nova, and Aura.",
+        "filter": lambda p, m: any(w in m["name"].lower() for w in ["whisper", "orpheus", "nova", "aura", "universal", "conformer", "stt", "tts", "audio"]) or "audio" in m.get("context", "").lower() or "text-to-speech" in m.get("context", "").lower(),
+        "tool_snippet": {
+            "base_url": "https://api.groq.com/openai/v1",
+            "model": "whisper-large-v3-turbo",
+            "provider": "Groq",
+            "notes": "Unified audio speech recognition and synthesis."
+        }
     }
 }
 
@@ -1635,6 +1687,10 @@ def free_footer_nav(verified):
 
     col_tools = [
         ("free-coding-api", "Free Coding APIs"),
+        ("free-audio-api", "Free Audio & Voice APIs"),
+        ("free-stt-api", "Free Speech-to-Text APIs"),
+        ("free-tts-api", "Free Text-to-Speech APIs"),
+        ("free-whisper-api", "Free Hosted Whisper API"),
         ("free-vision-api", "Free Vision APIs"),
         ("free-reasoning-api", "Free Reasoning APIs"),
         ("free-long-context-api", "Free Long Context APIs"),

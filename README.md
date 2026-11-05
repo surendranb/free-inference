@@ -1,8 +1,8 @@
 # Free Inference
 
-Free LLM inference you can build with: an API key, a CLI login, or inference bundled inside a coding tool or builder. The test is whether you can ship an artifact you keep — code, an app, a site, a design, an agent, a skill. Chat-only free tiers are excluded on purpose.
+Free AI & LLM inference you can build with: an API key, a CLI login, or inference bundled inside a coding tool or builder. Speech-to-text, voice synthesis, code, vision, and reasoning. The test is whether you can ship an artifact you keep — code, an app, an audio file, a site, a design, an agent, a skill. Chat-only free tiers are excluded on purpose.
 
-> **2026-11-05** · 39 providers · 143 free models
+> **2026-11-05** · 41 providers · 153 free models
 > Interactive site: https://freeinference.dev · Agent summary: https://freeinference.dev/llms.txt · Machine data: https://freeinference.dev/data/providers.json (validate against https://freeinference.dev/data/schema.json)
 
 ### Quick Navigation & Machine Access
@@ -20,12 +20,12 @@ Free LLM inference you can build with: an API key, a CLI login, or inference bun
 
 | Provider | Access | Free tier | Notable models | Notes |
 | --- | --- | --- | --- | --- |
-| [OpenCode Zen](https://opencode.ai/v2/docs/console/models/) | api_key | Promo free (limited time) | Big Pickle, GLM-5.3-Flash Free, DeepSeek V4.1 Flash Free, MiMo-V2.6-Flash Free, Beam Free, Flint 40B Free, +6 more | Free models are limited-time promos; some may use data for training. No credit card. OpenAI-compatible base URL: https://opencode.ai/inference/openai/v1 (Jev 1.13 uses systemone endpoint). Free-tier chat models require the OpenCode client. Live CLI: opencode models | grep -i free |
+| [OpenCode Zen](https://opencode.ai/v2/docs/console/models/) | api_key | Promo free (limited time) | Big Pickle, GLM-5.3-Flash Free, DeepSeek V4.1 Flash Free, MiMo-V2.6-Flash Free, Beam Free, Flint 40B Free, +6 more | 12 free coding and reasoning models with zero credit card required. Drop-in OpenAI-compatible endpoint for Cursor, Cline, and agentic workflows (promo models may use prompt data for training). |
 | [OpenRouter](https://openrouter.ai/models?max_price=0) | api_key | Rate-limited free | cohere/north-mini-code:free, dots-studio/dots-3-note-preview:free, google/gemma-4-26b-a4b-it:free, google/gemma-4-31b-it:free, liquid/lfm-2.5-2.6b:free, nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free, +7 more | OpenAI-compatible gateway (https://openrouter.ai/api/v1). 50 RPD on $0 accounts, 1,000 RPD with $10+ credits. No credit card required. Permanent $0 models have :free suffix. |
 | [Google AI Studio (Gemini API)](https://ai.google.dev/gemini-api/docs/rate-limits) | api_key | Rate-limited free | gemini-2.5-flash, gemini-2.5-flash-lite, gemini-3-flash-preview, gemini-3.1-flash-lite, gemini-3.1-flash-lite-preview, gemini-3.5-flash, +10 more | Free forever, no card, most generous major-provider tier. Live-verified against the v1beta API with an API key (2026-08-12) — model list and context windows are real; per-account quota varies by account age (see AI Studio rate-limit dashboard). Free-tier data may be used for training. |
-| [Groq](https://console.groq.com/docs/rate-limits) | api_key | Rate-limited free | llama-3.3-70b-versatile, llama-3.1-8b-instant, meta-llama/llama-4-scout-17b-16e-instruct, openai/gpt-oss-120b, openai/gpt-oss-20b, qwen/qwen3.6-27b, +3 more | LPU hardware, fastest time-to-first-token. Limits pooled at organization level per model. No credit card required. Limits visible in x-ratelimit-* response headers. |
+| [Groq](https://console.groq.com/docs/rate-limits) | api_key | Rate-limited free | llama-3.3-70b-versatile, llama-3.1-8b-instant, meta-llama/llama-4-scout-17b-16e-instruct, openai/gpt-oss-120b, openai/gpt-oss-20b, qwen/qwen3.6-27b, +7 more | LPU hardware, fastest time-to-first-token. 9 free LLMs plus Whisper STT (2,000 req/day) and Orpheus TTS (100 req/day). Limits pooled at organization level per model. No credit card required. OpenAI-compatible API format. |
 | [Cerebras](https://inference-docs.cerebras.ai/support/rate-limits) | api_key | Trial credits | gpt-oss-120b, qwen-3.8-27b | Wafer-scale hardware, 2,000+ tok/s. No permanent free tier — $5 trial credits, 30-day expiry, card required. Per-model limits on a rotating shortlist. |
-| [Cloudflare Workers AI](https://developers.cloudflare.com/workers-ai/platform/limits) | api_key | Rate-limited free | ~80 free models (Llama 3.x/4, Qwen, Gemma, DeepSeek-R1 distills, FLUX, Whisper, BGE embeddings), @cf/meta/llama-3.3-70b-instruct-fp8-fast, @cf/deepseek-ai/deepseek-r1-distill-qwen-32b, @cf/qwen/qwen2.5-72b-instruct, @cf/meta/llama-3.1-8b-instruct | Neurons are normalized GPU-compute units, shared pool across all models. Resets 00:00 UTC. Hard stop when pool exhausted, errors not overage. No credit card. |
+| [Cloudflare Workers AI](https://developers.cloudflare.com/workers-ai/platform/limits) | api_key | Rate-limited free | ~80 free models (Llama 3.x/4, Qwen, Gemma, DeepSeek-R1 distills, FLUX, Whisper, BGE embeddings), @cf/meta/llama-3.3-70b-instruct-fp8-fast, @cf/deepseek-ai/deepseek-r1-distill-qwen-32b, @cf/qwen/qwen2.5-72b-instruct, @cf/meta/llama-3.1-8b-instruct, @cf/openai/whisper | Neurons are normalized GPU-compute units, shared pool across all models. Resets 00:00 UTC. Hard stop when pool exhausted, errors not overage. No credit card. |
 | [Hugging Face](https://huggingface.co/docs/inference-providers) | api_key | Rate-limited free | Llama 3.2 8B (Serverless), Qwen 2.5 7B (Serverless), Mistral 7B (Serverless), Inference Providers gateway (15+ partners) | Two products: Serverless API (free, rate-limited) and Inference Providers gateway. Cold starts 10-30s on unpopular models. Limits not published as fixed numbers. |
 | [Mistral La Plateforme](https://docs.mistral.ai) | api_key | Rate-limited free (Experiment) | Mistral Large, Codestral, All API models (Experiment tier) | Phone (SMS) verification required, no card. Exact limits no longer published - see Admin Console Limits per workspace. Evaluation tier, not production. |
 | [SambaNova Cloud](https://cloud.sambanova.ai/apis) | api_key | Rate-limited free | DeepSeek-V3.1, DeepSeek-V3.2, Meta-Llama-3.3-70B-Instruct, gemma-4-31B-it, gpt-oss-120b | OpenAI-compatible base URL api.sambanova.ai/v1. Preview models can be pulled at any time. No credit card, no phone verification. |
@@ -59,6 +59,8 @@ Free LLM inference you can build with: an API key, a CLI login, or inference bun
 | [DeepSeek Platform](https://api-docs.deepseek.com) | api_key | Trial credits | deepseek-chat, deepseek-reasoner | 5M free tokens granted on new account creation (valid 30 days). OpenAI-compatible API format with cache-miss/cache-hit pricing. |
 | [TypeSafe AI](https://typesafe.ai/) | api_key | Trial credits | typesafe/jev-1.13 | $5 free signup credits (~120M input tokens on Jev). OpenAI-compatible endpoint. Ideal for Jev code generation, fast structured outputs, and type safety. |
 | [Braintrust](https://www.braintrust.dev/pricing) | api_key | Trial credits | deepseek-v4.1-flash, deepseek-v4-flash-0731, glm-5.3-flash, glm-5.2, kimi-k3, jev, +7 more | Starter plan ($0/mo, no card required) includes $10/month recurring model credits covering 13 built-in models (GPT-6 series, GPT-5.6 series, DeepSeek V4/V4.1, GLM-5.2/5.3, Kimi K3, and Jev) in playgrounds, evaluations, prompts, and the Braintrust SDK. |
+| [Deepgram](https://deepgram.com/pricing) | api_key | Trial credits | nova-3, nova-2, aura | $200 free signup credit grant (~43,000 minutes / 700+ hours of speech transcription or TTS). No expiration, no credit card required. REST, WebSocket, and OpenAI-compatible audio endpoints. |
+| [AssemblyAI](https://www.assemblyai.com/pricing) | api_key | Trial credits | universal-1, conformer-2 | $50 free signup credits covering pre-recorded and real-time streaming speech-to-text, speech understanding, and audio guardrails. No credit card required. |
 
 ## Models (per provider)
 
@@ -131,6 +133,10 @@ Free LLM inference you can build with: an API key, a CLI login, or inference bun
 | qwen/qwen3.8-27b | $0 | 128K | 30 | 8K | 1,000 | 2M tokens/day | 2026-11-05 |
 | meta-llama/llama-prompt-guard-2-22m | $0 | 128K | 30 | 15K | 14,400 | 500K tokens/day | 2026-11-05 |
 | compound-beta | $0 | 128K | 30 | 70K | 250 | Not published | 2026-11-05 |
+| whisper-large-v3-turbo | $0 | 25MB audio | 20 | 7.2K ASH (Audio sec/hr) | 2,000 | 28.8K ASD (8h audio/day) | 2026-11-05 |
+| whisper-large-v3 | $0 | 25MB audio | 20 | 7.2K ASH (Audio sec/hr) | 2,000 | 28.8K ASD (8h audio/day) | 2026-11-05 |
+| canopylabs/orpheus-v1-english | $0 | Text-to-speech | 10 | 1.2K ASH (Audio sec/hr) | 100 | 3.6K ASD (1h audio/day) | 2026-11-05 |
+| canopylabs/orpheus-arabic-saudi | $0 | Text-to-speech | 10 | 1.2K ASH (Audio sec/hr) | 100 | 3.6K ASD (1h audio/day) | 2026-11-05 |
 
 ### Cerebras
 
@@ -148,6 +154,7 @@ Free LLM inference you can build with: an API key, a CLI login, or inference bun
 | @cf/deepseek-ai/deepseek-r1-distill-qwen-32b | $0 | 128K | 300 | Model-dependent | Not published | 10,000 neurons/day | 2026-10-29 |
 | @cf/qwen/qwen2.5-72b-instruct | $0 | 128K | 300 | Model-dependent | Not published | 10,000 neurons/day | 2026-10-29 |
 | @cf/meta/llama-3.1-8b-instruct | $0 | 128K | 300 | Model-dependent | Not published | 10,000 neurons/day | 2026-10-29 |
+| @cf/openai/whisper | $0 | 25MB audio | 300 | Model-dependent | Not published | 10,000 neurons/day | 2026-11-05 |
 
 ### Hugging Face
 
@@ -399,6 +406,21 @@ Free LLM inference you can build with: an API key, a CLI login, or inference bun
 | gpt-5.6-luna | $0 ($10/mo model credits) | 128K | Not published | Not published | Not published | Not published | 2026-11-05 |
 | gpt-5.6-terra | $0 ($10/mo model credits) | 128K | Not published | Not published | Not published | Not published | 2026-11-05 |
 | gpt-5.6-sol | $0 ($10/mo model credits) | 128K | Not published | Not published | Not published | Not published | 2026-11-05 |
+
+### Deepgram
+
+| Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| nova-3 | $0 ($200 credit grant) | 43K min audio | 100 | Not published | Not published | 700+ hours grant | 2026-11-05 |
+| nova-2 | $0 ($200 credit grant) | 43K min audio | 100 | Not published | Not published | 700+ hours grant | 2026-11-05 |
+| aura | $0 ($200 credit grant) | Text-to-speech | 100 | Not published | Not published | $200 credit grant | 2026-11-05 |
+
+### AssemblyAI
+
+| Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| universal-1 | $0 ($50 credit grant) | Pre-recorded &amp; streaming audio | 100 | Not published | Not published | $50 credit grant | 2026-11-05 |
+| conformer-2 | $0 ($50 credit grant) | Speech-to-text audio | 100 | Not published | Not published | $50 credit grant | 2026-11-05 |
 ## Definitions
 
 | Term | Meaning |

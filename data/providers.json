@@ -1,6 +1,6 @@
 {
   "title": "Free Inference",
-  "tagline": "Free LLM inference you can build with: an API key, a CLI login, or inference bundled inside a coding tool or builder. The test is whether you can ship an artifact you keep \u2014 code, an app, a site, a design, an agent, a skill. Chat-only free tiers are excluded on purpose.",
+  "tagline": "Free AI & LLM inference you can build with: an API key, a CLI login, or inference bundled inside a coding tool or builder. Speech-to-text, voice synthesis, code, vision, and reasoning. The test is whether you can ship an artifact you keep \u2014 code, an app, an audio file, a site, a design, an agent, a skill. Chat-only free tiers are excluded on purpose.",
   "verified": "2026-11-05",
   "website": "https://freeinference.dev",
   "repo": "https://github.com/surendranb/free-inference",
@@ -21,7 +21,7 @@
       "name": "OpenCode Zen",
       "url": "https://opencode.ai/v2/docs/console/models/",
       "free_type": "Promo free (limited time)",
-      "notes": "Free models are limited-time promos; some may use data for training. No credit card. OpenAI-compatible base URL: https://opencode.ai/inference/openai/v1 (Jev 1.13 uses systemone endpoint). Free-tier chat models require the OpenCode client. Live CLI: opencode models | grep -i free",
+      "notes": "12 free coding and reasoning models with zero credit card required. Drop-in OpenAI-compatible endpoint for Cursor, Cline, and agentic workflows (promo models may use prompt data for training).",
       "timeout": "Not published",
       "verified": "2026-11-05",
       "models": [
@@ -474,7 +474,7 @@
       "name": "Groq",
       "url": "https://console.groq.com/docs/rate-limits",
       "free_type": "Rate-limited free",
-      "notes": "LPU hardware, fastest time-to-first-token. Limits pooled at organization level per model. No credit card required. Limits visible in x-ratelimit-* response headers.",
+      "notes": "LPU hardware, fastest time-to-first-token. 9 free LLMs plus Whisper STT (2,000 req/day) and Orpheus TTS (100 req/day). Limits pooled at organization level per model. No credit card required. OpenAI-compatible API format.",
       "timeout": "Not published",
       "verified": "2026-11-05",
       "models": [
@@ -566,6 +566,46 @@
           "tpm": "70K",
           "rpd": "250",
           "tpd": "Not published",
+          "verified": "2026-11-05"
+        },
+        {
+          "name": "whisper-large-v3-turbo",
+          "cost": "$0",
+          "context": "25MB audio",
+          "rpm": "20",
+          "tpm": "7.2K ASH (Audio sec/hr)",
+          "rpd": "2,000",
+          "tpd": "28.8K ASD (8h audio/day)",
+          "verified": "2026-11-05"
+        },
+        {
+          "name": "whisper-large-v3",
+          "cost": "$0",
+          "context": "25MB audio",
+          "rpm": "20",
+          "tpm": "7.2K ASH (Audio sec/hr)",
+          "rpd": "2,000",
+          "tpd": "28.8K ASD (8h audio/day)",
+          "verified": "2026-11-05"
+        },
+        {
+          "name": "canopylabs/orpheus-v1-english",
+          "cost": "$0",
+          "context": "Text-to-speech",
+          "rpm": "10",
+          "tpm": "1.2K ASH (Audio sec/hr)",
+          "rpd": "100",
+          "tpd": "3.6K ASD (1h audio/day)",
+          "verified": "2026-11-05"
+        },
+        {
+          "name": "canopylabs/orpheus-arabic-saudi",
+          "cost": "$0",
+          "context": "Text-to-speech",
+          "rpm": "10",
+          "tpm": "1.2K ASH (Audio sec/hr)",
+          "rpd": "100",
+          "tpd": "3.6K ASD (1h audio/day)",
           "verified": "2026-11-05"
         }
       ],
@@ -667,6 +707,16 @@
           "rpd": "Not published",
           "tpd": "10,000 neurons/day",
           "verified": "2026-10-29"
+        },
+        {
+          "name": "@cf/openai/whisper",
+          "cost": "$0",
+          "context": "25MB audio",
+          "rpm": "300",
+          "tpm": "Model-dependent",
+          "rpd": "Not published",
+          "tpd": "10,000 neurons/day",
+          "verified": "2026-11-05"
         }
       ],
       "verified_method": "docs",
@@ -2004,6 +2054,86 @@
       "access_method": "api_key",
       "artifact": "code",
       "base_url": "https://api.braintrust.dev/v1/proxy"
+    },
+    {
+      "name": "Deepgram",
+      "url": "https://deepgram.com/pricing",
+      "free_type": "Trial credits",
+      "notes": "$200 free signup credit grant (~43,000 minutes / 700+ hours of speech transcription or TTS). No expiration, no credit card required. REST, WebSocket, and OpenAI-compatible audio endpoints.",
+      "timeout": "Not published",
+      "verified": "2026-11-05",
+      "models": [
+        {
+          "name": "nova-3",
+          "cost": "$0 ($200 credit grant)",
+          "context": "43K min audio",
+          "rpm": "100",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "700+ hours grant",
+          "verified": "2026-11-05"
+        },
+        {
+          "name": "nova-2",
+          "cost": "$0 ($200 credit grant)",
+          "context": "43K min audio",
+          "rpm": "100",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "700+ hours grant",
+          "verified": "2026-11-05"
+        },
+        {
+          "name": "aura",
+          "cost": "$0 ($200 credit grant)",
+          "context": "Text-to-speech",
+          "rpm": "100",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "$200 credit grant",
+          "verified": "2026-11-05"
+        }
+      ],
+      "verified_method": "docs",
+      "docs_url": "https://developers.deepgram.com/",
+      "access_method": "api_key",
+      "artifact": "code",
+      "base_url": "https://api.deepgram.com/v1"
+    },
+    {
+      "name": "AssemblyAI",
+      "url": "https://www.assemblyai.com/pricing",
+      "free_type": "Trial credits",
+      "notes": "$50 free signup credits covering pre-recorded and real-time streaming speech-to-text, speech understanding, and audio guardrails. No credit card required.",
+      "timeout": "Not published",
+      "verified": "2026-11-05",
+      "models": [
+        {
+          "name": "universal-1",
+          "cost": "$0 ($50 credit grant)",
+          "context": "Pre-recorded & streaming audio",
+          "rpm": "100",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "$50 credit grant",
+          "verified": "2026-11-05"
+        },
+        {
+          "name": "conformer-2",
+          "cost": "$0 ($50 credit grant)",
+          "context": "Speech-to-text audio",
+          "rpm": "100",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "$50 credit grant",
+          "verified": "2026-11-05"
+        }
+      ],
+      "verified_method": "docs",
+      "docs_url": "https://www.assemblyai.com/docs",
+      "access_method": "api_key",
+      "artifact": "code",
+      "base_url": "https://api.assemblyai.com/v2"
     }
   ],
   "ga_measurement_id": "G-CFXWNKBD7G",

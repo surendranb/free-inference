@@ -2,7 +2,7 @@
 
 Free LLM inference you can build with: an API key, a CLI login, or inference bundled inside a coding tool or builder. The test is whether you can ship an artifact you keep — code, an app, a site, a design, an agent, a skill. Chat-only free tiers are excluded on purpose.
 
-> **2026-11-05** · 37 providers · 127 free models
+> **2026-11-05** · 39 providers · 134 free models
 > Interactive site: https://freeinference.dev · Agent summary: https://freeinference.dev/llms.txt · Machine data: https://freeinference.dev/data/providers.json (validate against https://freeinference.dev/data/schema.json)
 
 ### Quick Navigation & Machine Access
@@ -20,7 +20,7 @@ Free LLM inference you can build with: an API key, a CLI login, or inference bun
 
 | Provider | Access | Free tier | Notable models | Notes |
 | --- | --- | --- | --- | --- |
-| [OpenCode Zen](https://opencode.ai/v2/docs/console/models/) | api_key | Promo free (limited time) | Big Pickle, GLM-5.3-Flash Free, DeepSeek V4.1 Flash Free, MiMo-V2.6-Flash Free, Beam Free, Flint 40B Free, +4 more | Free models are limited-time promos; some may use data for training. No credit card. OpenAI-compatible base URL: https://opencode.ai/inference/openai/v1 (Jev 1.13 uses systemone endpoint). Free-tier chat models require the OpenCode client. Live CLI: opencode models | grep -i free |
+| [OpenCode Zen](https://opencode.ai/v2/docs/console/models/) | api_key | Promo free (limited time) | Big Pickle, GLM-5.3-Flash Free, DeepSeek V4.1 Flash Free, MiMo-V2.6-Flash Free, Beam Free, Flint 40B Free, +6 more | Free models are limited-time promos; some may use data for training. No credit card. OpenAI-compatible base URL: https://opencode.ai/inference/openai/v1 (Jev 1.13 uses systemone endpoint). Free-tier chat models require the OpenCode client. Live CLI: opencode models | grep -i free |
 | [OpenRouter](https://openrouter.ai/models?max_price=0) | api_key | Rate-limited free | cohere/north-mini-code:free, dots-studio/dots-3-note-preview:free, google/gemma-4-26b-a4b-it:free, google/gemma-4-31b-it:free, liquid/lfm-2.5-2.6b:free, nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free, +7 more | OpenAI-compatible gateway (https://openrouter.ai/api/v1). 50 RPD on $0 accounts, 1,000 RPD with $10+ credits. No credit card required. Permanent $0 models have :free suffix. |
 | [Google AI Studio (Gemini API)](https://ai.google.dev/gemini-api/docs/rate-limits) | api_key | Rate-limited free | gemini-2.5-flash, gemini-2.5-flash-lite, gemini-3-flash-preview, gemini-3.1-flash-lite, gemini-3.1-flash-lite-preview, gemini-3.5-flash, +10 more | Free forever, no card, most generous major-provider tier. Live-verified against the v1beta API with an API key (2026-08-12) — model list and context windows are real; per-account quota varies by account age (see AI Studio rate-limit dashboard). Free-tier data may be used for training. |
 | [Groq](https://console.groq.com/docs/rate-limits) | api_key | Rate-limited free | llama-3.3-70b-versatile, llama-3.1-8b-instant, meta-llama/llama-4-scout-17b-16e-instruct, openai/gpt-oss-120b, openai/gpt-oss-20b, qwen/qwen3.6-27b, +3 more | LPU hardware, fastest time-to-first-token. Limits pooled at organization level per model. No credit card required. Limits visible in x-ratelimit-* response headers. |
@@ -57,6 +57,8 @@ Free LLM inference you can build with: an API key, a CLI login, or inference bun
 | [OVHcloud AI Endpoints](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/) | api_key | Rate-limited free | 10 free models (anonymous keyless) | EU-sovereign. Anonymous keyless 2 req/min per IP per model. Authed 400 req/min. No usage cap apart from rate. No card for anonymous. |
 | [SiliconFlow](https://siliconflow.cn) | api_key | Rate-limited free | deepseek-ai/DeepSeek-R1-Distill-Qwen-7B, deepseek-ai/DeepSeek-V3, Qwen/Qwen2.5-7B-Instruct, THUDM/glm-4-9b-chat | Large-scale inference gateway offering permanently free open-source model tiers plus 14M free signup tokens. OpenAI-compatible API. No credit card required. |
 | [DeepSeek Platform](https://api-docs.deepseek.com) | api_key | Trial credits | deepseek-chat, deepseek-reasoner | 5M free tokens granted on new account creation (valid 30 days). OpenAI-compatible API format with cache-miss/cache-hit pricing. |
+| [TypeSafe AI](https://typesafe.ai/) | api_key | Trial credits | typesafe/jev-1.13 | $5 free signup credits (~120M input tokens on Jev). OpenAI-compatible endpoint. Ideal for Jev code generation, fast structured outputs, and type safety. |
+| [Braintrust](https://www.braintrust.dev/pricing) | api_key | Trial credits | deepseek-v4.1-flash, glm-5.3-flash, kimi-k3, gpt-6-luna | Starter plan ($0/mo, no card required) includes $10/month recurring model credits covering built-in models (DeepSeek V4.1 Flash, GLM-5.3 Flash, Kimi K3, GPT-6 Luna) in playgrounds, evaluations, prompts, and the Braintrust SDK. |
 
 ## Models (per provider)
 
@@ -74,6 +76,8 @@ Free LLM inference you can build with: an API key, a CLI login, or inference bun
 | Nemotron 3.5 Lightning Free | $0 (promo) | 256K - 1M | Not published | Not published | Not published | Not published | 2026-11-05 |
 | Nemotron 3.5 Super VL Free | $0 (promo) | 256K - 1M | Not published | Not published | Not published | Not published | 2026-11-05 |
 | Jev 1.13 Free | $0 (promo) | 256K - 1M | Not published | Not published | Not published | Not published | 2026-11-05 |
+| Crouton Alpha Free | $0 (promo) | 256K - 1M | Not published | Not published | Not published | Not published | 2026-11-05 |
+| Pulse Alpha Free | $0 (promo) | 256K - 1M | Not published | Not published | Not published | Not published | 2026-11-05 |
 
 ### OpenRouter
 
@@ -371,6 +375,21 @@ Free LLM inference you can build with: an API key, a CLI login, or inference bun
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | deepseek-chat | $0 (5M signup tokens) | 64K | 60 | Not published | Not published | 5M tokens grant | 2026-10-29 |
 | deepseek-reasoner | $0 (5M signup tokens) | 64K | 60 | Not published | Not published | 5M tokens grant | 2026-10-29 |
+
+### TypeSafe AI
+
+| Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| typesafe/jev-1.13 | $0 ($5 signup credits) | 256K | 60 | Not published | Not published | Not published | 2026-11-05 |
+
+### Braintrust
+
+| Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| deepseek-v4.1-flash | $0 ($10/mo model credits) | 128K | Not published | Not published | Not published | Not published | 2026-11-05 |
+| glm-5.3-flash | $0 ($10/mo model credits) | 128K | Not published | Not published | Not published | Not published | 2026-11-05 |
+| kimi-k3 | $0 ($10/mo model credits) | 128K | Not published | Not published | Not published | Not published | 2026-11-05 |
+| gpt-6-luna | $0 ($10/mo model credits) | 128K | Not published | Not published | Not published | Not published | 2026-11-05 |
 ## Definitions
 
 | Term | Meaning |

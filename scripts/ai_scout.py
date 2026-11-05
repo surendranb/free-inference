@@ -543,11 +543,14 @@ Current catalog data:
 
 Task:
 1. Navigate to {doc_url} using your tools (Google Chrome / url_context / curl / bash).
-2. Inspect the live rendered page, pricing tables, quotas, token limits, and free allowances.
+2. Read the live rendered page, pricing tables, quotas, token limits, and free allowances.
 3. If the page redirected or pricing moved to a subpage, find the current pricing/free tier.
-4. Output your conclusion strictly as a JSON object with keys:
+4. Extract every verified $0 / free model currently offered on this page.
+5. Output your conclusion strictly as a JSON object with keys:
 - "status": "active" (free tier exists), "retired" (discontinued/paid-only), or "changed"
 - "is_free_active": boolean
+- "free_type": "Rate-limited free", "Trial credits", or "Promo free (limited time)"
+- "models": list of free models with objects: [{{"name": "string", "cost": "$0", "context": "string", "rpm": "string", "rpd": "string"}}]
 - "summary": concise 1-sentence summary of the verified free allowance, limits, and reset cadence.
 
 Output valid JSON only with no conversational text.
@@ -581,8 +584,15 @@ Output valid JSON only with no conversational text.
 
             if eval_data.get("is_free_active") and apply_updates:
                 p["verified"] = today
-                for m in p.get("models", []):
-                    m["verified"] = today
+                audited_models = eval_data.get("models", [])
+                if audited_models and isinstance(audited_models, list) and len(audited_models) > 0:
+                    for am in audited_models:
+                        am["verified"] = today
+                    p["models"] = audited_models
+                    print(f"  ✓ Agent updated {pname} model inventory ({len(audited_models)} free models found).")
+                else:
+                    for m in p.get("models", []):
+                        m["verified"] = today
                 print(f"  ✓ Verified active ({agent_res.get('steps_count', 0)} agent steps): refreshed {pname} verification date to {today}.")
             elif eval_data.get("is_free_active") is False or eval_data.get("status") == "retired":
                 print(f"  ⚠ WARNING: Agent flagged {pname} as NOT active/free: {eval_data.get('summary')}")
@@ -688,6 +698,52 @@ def poll_candidate_providers(catalog_data):
                 }
     except Exception as e:
         print(f"Notice: OpenRouter providers fetch skipped: {e}")
+
+    # 3. Modern AI Gateways, Evaluators & Proxy Platforms
+    gateways = {
+        "braintrust": ("Braintrust", "https://www.braintrust.dev/pricing"),
+        "vercel-ai-gateway": ("Vercel AI Gateway", "https://vercel.com/docs/ai/ai-gateway"),
+        "helicone": ("Helicone", "https://www.helicone.ai/pricing"),
+        "portkey": ("Portkey", "https://portkey.ai/pricing"),
+        "nebius": ("Nebius AI Studio", "https://nebius.com/services/studio"),
+        "hyperbolic": ("Hyperbolic", "https://hyperbolic.xyz/pricing"),
+        "aimlapi": ("AIML API", "https://aimlapi.com/pricing"),
+    }
+    for slug, (gname, gurl) in gateways.items():
+        if norm(gname) not in existing_names and norm(gname) not in ignore_names:
+            candidates[norm(gname)] = {
+                "name": gname,
+                "url": gurl,
+                "source": "AI Gateways & Evaluators",
+                "slug": slug
+            }
+
+    # 4. Upstream Model Creator Labs from Aggregators
+    # Traces model prefixes like typesafe/*, liquid/*, stepfun/*, thinkingmachines/*, etc.
+    creator_map = {
+        "typesafe": ("TypeSafe AI", "https://typesafe.ai"),
+        "liquid": ("Liquid AI", "https://console.liquid.ai"),
+        "stepfun": ("StepFun", "https://platform.stepfun.com"),
+        "thinkingmachines": ("Thinking Machines Lab", "https://thinkingmachines.ai"),
+        "recursive": ("Recursive AI", "https://recursive.ai"),
+        "dots-studio": ("Dots Studio", "https://dots.ai"),
+        "poolside": ("Poolside AI", "https://poolside.ai"),
+    }
+    for p in catalog_data.get("providers", []):
+        if p.get("name") in ("OpenRouter", "OpenCode Zen", "Kilo Gateway", "Requesty", "Nous Portal"):
+            for m in p.get("models", []):
+                m_name = m.get("name", "")
+                if "/" in m_name:
+                    creator_slug = m_name.split("/")[0].strip().lower()
+                    if creator_slug in creator_map:
+                        cname, curl = creator_map[creator_slug]
+                        if norm(cname) not in existing_names and norm(cname) not in ignore_names:
+                            candidates[norm(cname)] = {
+                                "name": cname,
+                                "url": curl,
+                                "source": f"Upstream Creator for {m_name}",
+                                "slug": creator_slug
+                            }
 
     return list(candidates.values())
 

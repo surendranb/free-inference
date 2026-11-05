@@ -13,6 +13,7 @@ Exit code 0 always; the GitHub Action commits only when the file changed.
 """
 import json
 import os
+import re
 import subprocess
 import sys
 import urllib.error
@@ -294,20 +295,46 @@ def sync_opencode(prov, today):
     if idx == -1:
         raise RuntimeError("free-models section not found in OpenCode docs")
     
-    sub = html[idx:idx+3500]
+    end_idx = html.find('</ul>', idx)
+    sub = html[idx:end_idx + 10] if end_idx != -1 else html[idx:idx + 4000]
+    
+    # Parse all free model names declared in the official #free-models list
+    page_models = re.findall(r'<li>\s*([A-Za-z0-9\.\-_ ]+?)\s+(?:is|is free|is a stealth|is available)', sub)
+    norm_page = {m.strip().lower(): m.strip() for m in page_models}
+    
+    by_norm_name = {m["name"].replace(" Free", "").strip().lower(): m for m in prov["models"]}
+    
     found = 0
     missing = []
-    for m in prov["models"]:
-        m_name = m["name"].replace(" Free", "").strip().lower()
-        if m_name in sub.lower():
+    for norm_name, m in by_norm_name.items():
+        if any(norm_name in p_name for p_name in norm_page):
             m["verified"] = today
             found += 1
         else:
             missing.append(m["name"])
+            
+    # Auto-add newly discovered models from the page if not in catalog
+    added = []
+    for norm_p, raw_name in norm_page.items():
+        if not any(k in norm_p for k in by_norm_name):
+            new_entry = {
+                "name": raw_name,
+                "cost": "$0 (promo)",
+                "context": "256K - 1M",
+                "rpm": "Not published",
+                "tpm": "Not published",
+                "rpd": "Not published",
+                "tpd": "Not published",
+                "verified": today,
+            }
+            prov["models"].append(new_entry)
+            added.append(raw_name)
     
     prov["verified"] = today
     prov["verified_method"] = "live-probe"
     msg = f"ok: {found}/{len(prov['models'])} models confirmed in #free-models"
+    if added:
+        msg += f"; ADDED: {added}"
     if missing:
         msg += f"; MISSING: {missing}"
     return msg

@@ -349,16 +349,24 @@ CSS = '''  :root { --bg:#fff; --ink:#1a1a1a; --mut:#6b6b6b; --line:#e3e3e3; --se
   .modal .x { position:absolute; };
   .close { float:right; border:1px solid var(--line); background:none; font:inherit; font-size:14px;
             cursor:pointer; padding:2px 10px; border-radius:6px; }
-  footer { margin-top:32px; color:var(--mut); font-size:13px; }
-  .fcols { display:grid; grid-template-columns:repeat(5,1fr); gap:20px 24px; text-align:left;
-           margin:32px 0 14px; padding-top:22px; border-top:1px solid var(--line); }
-  .fcol h3 { margin:0 0 8px; font-size:12px; text-transform:uppercase; letter-spacing:.04em;
-             color:var(--ink); font-weight:600; }
+  footer { margin-top:48px; color:var(--mut); font-size:13px; border-top:1px solid var(--line); padding-top:32px; }
+  .fsection { margin-bottom:32px; }
+  .fsection:not(:last-child) { border-bottom:1px solid var(--line); padding-bottom:28px; }
+  .fheader { margin-bottom:16px; text-align:left; }
+  .fheader h2 { margin:0 0 4px; font-size:13px; text-transform:uppercase; letter-spacing:.05em; color:var(--ink); font-weight:700; }
+  .fheader p { margin:0; font-size:12.5px; color:var(--mut); }
+  .fgrid, .fcols { display:grid; grid-template-columns:repeat(4,1fr); gap:20px 28px; text-align:left; }
+  .fcol h3 { margin:0 0 10px; font-size:12px; text-transform:uppercase; letter-spacing:.04em; color:var(--ink); font-weight:600; }
   .fcol ul { list-style:none; margin:0; padding:0; }
-  .fcol li { margin:4px 0; font-size:13px; }
+  .fcol li { margin:5px 0; font-size:13px; line-height:1.4; }
   .fcol a { color:var(--mut); text-decoration:none; }
   .fcol a:hover { color:var(--ink); text-decoration:underline; }
-  .fnote { font-size:12px; color:var(--mut); margin:0 0 8px; }
+  .fbottom { padding-top:4px; text-align:left; }
+  .fbottom-links { font-size:12.5px; line-height:1.8; color:var(--mut); margin-bottom:10px; }
+  .fbottom-links a { color:var(--mut); text-decoration:none; font-weight:500; }
+  .fbottom-links a:hover { color:var(--ink); text-decoration:underline; }
+  .fbottom-title { color:var(--ink); font-weight:600; margin-right:6px; }
+  .fmeta, .fnote { font-size:12px; color:var(--mut); margin:0; line-height:1.5; }
   .answer { border:1px solid var(--line); border-radius:10px; padding:16px 18px; margin:20px 0 4px; }
   .answer h2 { margin:0 0 8px; font-size:16px; }
   .answer p { margin:0 0 8px; font-size:14px; }
@@ -382,7 +390,8 @@ CSS = '''  :root { --bg:#fff; --ink:#1a1a1a; --mut:#6b6b6b; --line:#e3e3e3; --se
   .newsletter-form button:hover { opacity:0.9; }
   .newsletter-msg { font-size:12.5px; min-height:16px; margin-top:4px; }
   @media (max-width:600px) { .newsletter-form-row { flex-direction:column; } }
-  @media (max-width:860px) { .fcols { grid-template-columns:repeat(2,1fr); } }'''
+  @media (max-width:960px) { .fgrid, .fcols { grid-template-columns:repeat(2,1fr); gap:18px 20px; } }
+  @media (max-width:540px) { .fgrid, .fcols { grid-template-columns:1fr; } }'''
 
 NEWSLETTER_FORM_SNIPPET = """<form class="newsletter-form" onsubmit="event.preventDefault();var f=this,b=f.querySelector('button'),i=f.querySelector('input'),m=f.querySelector('.newsletter-msg');b.disabled=true;b.textContent='Subscribing...';fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:i.value})}).then(function(r){return r.json()}).then(function(d){if(d.success){b.textContent='Subscribed!';i.disabled=true;m.textContent='You are on the list. Issues drop Mondays at 09:00 IST.';m.style.color='#166534';}else{b.disabled=false;b.textContent='Subscribe';m.textContent=d.error||'Failed to subscribe';m.style.color='#991b1b';}}).catch(function(){b.disabled=false;b.textContent='Subscribe';m.textContent='Network error. Please try again.';m.style.color='#991b1b';});">
   <div class="newsletter-form-row">
@@ -393,25 +402,90 @@ NEWSLETTER_FORM_SNIPPET = """<form class="newsletter-form" onsubmit="event.preve
 </form>"""
 
 
-FOOTER_GROUPS = [
-    ("Coding tools", ["github-copilot--free", "cursor--hobby", "windsurf", "kiro--aws",
-                      "trae--bytedance", "bolt-new", "lovable", "v0--vercel", "replit--starter"]),
-    ("Labs & clouds", ["google-ai-studio--gemini-api", "mistral-la-plateforme",
-                       "nvidia-nim--build-nvidia-com", "cohere", "together-ai",
-                       "sambanova-cloud", "deepinfra", "cloudflare-workers-ai", "hugging-face"]),
-    ("Gateways & keys", ["openrouter", "groq", "cerebras", "z-ai--zhipu", "requesty",
-                         "ovhcloud-ai-endpoints", "nous-portal", "kilo-gateway", "opencode-zen",
-                         "siliconflow", "deepseek-platform"]),
-    ("Builders & notebooks", ["kaggle-notebooks", "hugging-face-spaces", "google-colab",
-                              "figma--starter", "canva--free", "framer--free", "devin--free",
-                              "qoder", "antigravity-cli--google"]),
+FOOTER_PROVIDER_GROUPS = [
+    ("AI Labs & Clouds", [
+        "google-ai-studio--gemini-api", "mistral-la-plateforme", "nvidia-nim--build-nvidia-com",
+        "cohere", "sambanova-cloud", "cloudflare-workers-ai", "deepseek-platform",
+        "z-ai--zhipu", "liquid-ai", "dots-studio", "braintrust",
+    ]),
+    ("Inference Gateways", [
+        "openrouter", "groq", "cerebras", "deepinfra", "opencode-zen",
+        "siliconflow", "requesty", "kilo-gateway", "nous-portal", "ovhcloud-ai-endpoints",
+    ]),
+    ("Coding Agents & IDEs", [
+        "github-copilot--free", "cursor--hobby", "windsurf", "devin--free", "kiro--aws",
+        "trae--bytedance", "bolt-new", "lovable", "v0--vercel", "replit--starter", "qoder",
+    ]),
+    ("Audio, Sandboxes & Builders", [
+        "deepgram", "assemblyai", "google-colab", "kaggle-notebooks",
+        "hugging-face-spaces", "antigravity-cli--google", "figma--starter", "canva--free", "framer--free",
+    ]),
 ]
 
+FOOTER_CAPABILITY_GROUPS = [
+    ("Tasks & Modalities", [
+        ("free-coding-api", "Coding & Code Gen"),
+        ("free-audio-api", "Audio & Voice APIs"),
+        ("free-stt-api", "Speech-to-Text (STT)"),
+        ("free-tts-api", "Text-to-Speech (TTS)"),
+        ("free-whisper-api", "Hosted Whisper Models"),
+        ("free-vision-api", "Vision & Multimodal"),
+        ("free-reasoning-api", "Reasoning & Chain-of-Thought"),
+        ("free-long-context-api", "Long Context (128K–1M)"),
+    ]),
+    ("Access & Setup", [
+        ("free-llm-api", "Complete $0 Directory"),
+        ("free-llm-api-no-credit-card", "No Credit Card Required"),
+        ("free-openai-compatible-api", "OpenAI-Compatible Base URLs"),
+        ("free-keyless-api", "Keyless / Anonymous APIs"),
+        ("free-trial-credits", "Free Trial Credits ($5–$200)"),
+        ("free-cursor-api", "Free Keys for Cursor"),
+        ("free-cline-api", "Free Endpoints for Cline"),
+        ("free-claude-code-api", "Free Keys for Claude Code"),
+    ]),
+    ("Flagship Models", [
+        ("free-deepseek-v3-api", "DeepSeek-V3"),
+        ("free-qwen-coder-api", "Qwen 2.5 Coder"),
+        ("free-llama-3-3-70b-api", "Llama 3.3 70B"),
+        ("free-gemini-flash-api", "Gemini Flash"),
+        ("free-codestral-api", "Mistral Codestral"),
+        ("free-glm-4-flash-api", "GLM-4 Flash"),
+        ("free-liquid-api", "Liquid LFM"),
+        ("free-poolside-api", "Poolside"),
+        ("free-inkling-api", "Inkling"),
+    ]),
+    ("Model Families", [
+        ("free-deepseek-api", "DeepSeek (V3/R1)"),
+        ("free-llama-api", "Meta Llama"),
+        ("free-qwen-api", "Alibaba Qwen"),
+        ("free-gemini-api", "Google Gemini"),
+        ("free-mistral-api", "Mistral AI"),
+        ("free-gemma-api", "Google Gemma"),
+        ("free-glm-api", "Zhipu GLM"),
+        ("free-nemotron-api", "NVIDIA Nemotron"),
+        ("free-cohere-api", "Cohere Command"),
+        ("free-muse-spark-api", "Muse Spark"),
+    ]),
+]
 
-def footer_nav(verified):
+# Backwards compatibility alias
+FOOTER_GROUPS = FOOTER_PROVIDER_GROUPS
+
+
+def footer_nav(verified, include_newsletter=True):
     by_slug = {slug(p["name"]): p for p in ROWS}
-    grouped, cols = set(), []
-    for label, slugs in FOOTER_GROUPS:
+    total_models = sum(len(p["models"]) for p in ROWS)
+
+    # 1. Capability Taxonomy (35 slices across 4 columns)
+    cap_cols = []
+    for label, items in FOOTER_CAPABILITY_GROUPS:
+        li_items = "".join(f'<li><a href="/{s}/">{html.escape(title)}</a></li>' for s, title in items)
+        cap_cols.append(f'<div class="fcol"><h3>{html.escape(label)}</h3><ul>{li_items}</ul></div>')
+
+    # 2. Complete Provider Taxonomy (41 providers across 4 columns)
+    grouped = set()
+    prov_cols = []
+    for label, slugs in FOOTER_PROVIDER_GROUPS:
         items = []
         for s in slugs:
             p = by_slug.get(s)
@@ -419,26 +493,56 @@ def footer_nav(verified):
                 grouped.add(s)
                 items.append(f'<li><a href="/providers/{s}/">{html.escape(p["name"])}</a></li>')
         if items:
-            cols.append(f'<div class="fcol"><h3>{label}</h3><ul>{"".join(items)}</ul></div>')
+            prov_cols.append(f'<div class="fcol"><h3>{html.escape(label)}</h3><ul>{"".join(items)}</ul></div>')
+
+    # Dynamic fallback: if future providers are added without taxonomy updates, list under Newly Added
     leftovers = [s for s in by_slug if s not in grouped]
     if leftovers:
-        items = "".join(f'<li><a href="/providers/{s}/">{html.escape(by_slug[s]["name"])}</a></li>'
-                        for s in leftovers)
-        cols.append(f'<div class="fcol"><h3>More providers</h3><ul>{items}</ul></div>')
-    cols.append('<div class="fcol"><h3>Machine access</h3><ul>'
-                '<li><a href="/v1/models">/v1/models</a></li>'
-                '<li><a href="/skill.md">skill.md</a></li>'
-                '<li><a href="/feed.xml">feed.xml</a></li>'
-                '<li><a href="/newsletter/">newsletter</a></li>'
-                '<li><a href="/llms.txt">llms.txt</a></li>'
-                '<li><a href="/index.md">index.md</a></li>'
-                '<li><a href="/data/providers.json">providers.json</a></li>'
-                '<li><a href="/data/schema.json">schema.json</a></li>'
-                '<li><a href="/sitemap.xml">sitemap.xml</a></li></ul></div>')
-    total_models = sum(len(p["models"]) for p in ROWS)
-    return ('<nav class="fcols" aria-label="All providers">' + "".join(cols) + '</nav>'
-            f'<p class="fnote">{count_noun(len(ROWS), "provider")} · {count_noun(total_models, "model")} · '
-            f'verified {html.escape(verified)}. Limits change without notice — this is a map, not a contract.</p>')
+        items = "".join(f'<li><a href="/providers/{s}/">{html.escape(by_slug[s]["name"])}</a></li>' for s in leftovers)
+        prov_cols.append(f'<div class="fcol"><h3>Newly Added</h3><ul>{items}</ul></div>')
+
+    newsletter_html = f"""<section class="newsletter-box">
+  <h3>⚡ Free Inference Weekly</h3>
+  <p>Curated $0 LLM quotas, newly verified models, and breaking changes drafted every Monday by the Antigravity Agent. Zero spam, unsubscribe in 1 click.</p>
+  {NEWSLETTER_FORM_SNIPPET}
+</section>""" if include_newsletter else ""
+
+    return f"""{newsletter_html}
+<div class="fsection">
+  <div class="fheader">
+    <h2>Directory by Capability</h2>
+    <p>Browse verified $0 inference by modality, access requirement, and model family.</p>
+  </div>
+  <nav class="fgrid" aria-label="Directory by Capability">
+    {"".join(cap_cols)}
+  </nav>
+</div>
+
+<div class="fsection">
+  <div class="fheader">
+    <h2>All Verified Providers ({len(ROWS)})</h2>
+    <p>Direct access methods: API keys, IDE bundles, and cloud developer sandboxes.</p>
+  </div>
+  <nav class="fgrid" aria-label="All Verified Providers">
+    {"".join(prov_cols)}
+  </nav>
+</div>
+
+<div class="fbottom">
+  <div class="fbottom-links">
+    <span class="fbottom-title">Machine & Agent Interfaces:</span>
+    <a href="/v1/models">OpenAI API (/v1/models)</a> ·
+    <a href="/skill.md">Antigravity Skill (skill.md)</a> ·
+    <a href="/llms.txt">Agent Context (llms.txt)</a> ·
+    <a href="/data/providers.json">JSON Dataset</a> ·
+    <a href="/data/schema.json">JSON Schema</a> ·
+    <a href="/feed.xml">RSS Feed</a> ·
+    <a href="/newsletter/">Weekly Dispatch</a> ·
+    <a href="/index.md">Raw Markdown</a> ·
+    <a href="/sitemap.xml">Sitemap</a>
+  </div>
+  <p class="fmeta">{count_noun(len(ROWS), "provider")} · {count_noun(total_models, "free model")} · verified {html.escape(verified)}. Limits change without notice — this is an autonomous map, not a contract.</p>
+</div>"""
 
 
 def answer_block():
@@ -1643,90 +1747,7 @@ def free_answer_block(cfg, matched):
 
 
 def free_footer_nav(verified):
-    cols = []
-    col_families = [
-        ("free-deepseek-api", "Free DeepSeek API"),
-        ("free-glm-api", "Free GLM API"),
-        ("free-qwen-api", "Free Qwen API"),
-        ("free-llama-api", "Free Llama API"),
-        ("free-gemini-api", "Free Gemini API"),
-        ("free-mistral-api", "Free Mistral API"),
-        ("free-muse-spark-api", "Free Muse Spark API"),
-        ("free-nemotron-api", "Free Nemotron API"),
-        ("free-gemma-api", "Free Gemma API"),
-        ("free-cohere-api", "Free Cohere API"),
-    ]
-    cols.append('<div class="fcol"><h3>Model Families</h3><ul>' +
-                ''.join(f'<li><a href="/{s}/">{t}</a></li>' for s, t in col_families) +
-                '</ul></div>')
-
-    col_flagship = [
-        ("free-deepseek-v3-api", "Free DeepSeek-V3 API"),
-        ("free-qwen-coder-api", "Free Qwen Coder API"),
-        ("free-llama-3-3-70b-api", "Free Llama 3.3 70B API"),
-        ("free-gemini-flash-api", "Free Gemini Flash API"),
-        ("free-codestral-api", "Free Codestral API"),
-        ("free-glm-4-flash-api", "Free GLM-4 Flash API"),
-        ("free-liquid-api", "Free Liquid LFM API"),
-        ("free-poolside-api", "Free Poolside API"),
-        ("free-inkling-api", "Free Inkling API"),
-    ]
-    cols.append('<div class="fcol"><h3>Flagship Models</h3><ul>' +
-                ''.join(f'<li><a href="/{s}/">{t}</a></li>' for s, t in col_flagship) +
-                '</ul></div>')
-
-    col_friction = [
-        ("free-llm-api", "Free LLM API Directory"),
-        ("free-llm-api-no-credit-card", "No Credit Card APIs"),
-        ("free-openai-compatible-api", "OpenAI Compatible APIs"),
-        ("free-keyless-api", "Keyless / Anonymous APIs"),
-        ("free-trial-credits", "Free Trial Credits ($5-$10)"),
-    ]
-    cols.append('<div class="fcol"><h3>Friction Tiers</h3><ul>' +
-                ''.join(f'<li><a href="/{s}/">{t}</a></li>' for s, t in col_friction) +
-                '</ul></div>')
-
-    col_tools = [
-        ("free-coding-api", "Free Coding APIs"),
-        ("free-audio-api", "Free Audio & Voice APIs"),
-        ("free-stt-api", "Free Speech-to-Text APIs"),
-        ("free-tts-api", "Free Text-to-Speech APIs"),
-        ("free-whisper-api", "Free Hosted Whisper API"),
-        ("free-vision-api", "Free Vision APIs"),
-        ("free-reasoning-api", "Free Reasoning APIs"),
-        ("free-long-context-api", "Free Long Context APIs"),
-        ("free-cursor-api", "Free Keys for Cursor"),
-        ("free-cline-api", "Free Keys for Cline"),
-        ("free-claude-code-api", "Free Keys for Claude Code"),
-    ]
-    cols.append('<div class="fcol"><h3>Tasks & Tools</h3><ul>' +
-                ''.join(f'<li><a href="/{s}/">{t}</a></li>' for s, t in col_tools) +
-                '</ul></div>')
-
-    col_machine = [
-        ("/", "Full Directory (Home)"),
-        ("/v1/models", "OpenAI /v1/models"),
-        ("/skill.md", "Agent Skill (SKILL.md)"),
-        ("/feed.xml", "RSS / Atom Feed"),
-        ("/newsletter/", "Weekly Dispatch Archive"),
-        ("/llms.txt", "llms.txt (Agent Summary)"),
-        ("/data/providers.json", "providers.json (Raw Data)"),
-        ("/data/schema.json", "schema.json (JSON Schema)"),
-        ("/sitemap.xml", "sitemap.xml (All Pages)"),
-    ]
-    cols.append('<div class="fcol"><h3>Machine & Catalog</h3><ul>' +
-                ''.join(f'<li><a href="{u}">{t}</a></li>' for u, t in col_machine) +
-                '</ul></div>')
-
-    newsletter_html = f"""<section class="newsletter-box">
-  <h3>⚡ Free Inference Weekly</h3>
-  <p>Curated $0 LLM quotas, newly verified models, and breaking changes drafted every Monday by the Antigravity Agent. Zero spam, unsubscribe in 1 click.</p>
-  {NEWSLETTER_FORM_SNIPPET}
-</section>"""
-
-    return (newsletter_html +
-            '<nav class="fcols" aria-label="Free API Slices">' + "".join(cols) + '</nav>'
-            f'<p class="fnote">FreeInference.dev programmatic slice · verified {html.escape(verified)}. Limits change without notice — this is a map, not a contract.</p>')
+    return footer_nav(verified, include_newsletter=True)
 
 
 def generate_slice_descriptions(cfg, matched, verified_human):

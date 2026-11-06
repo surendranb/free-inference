@@ -2,7 +2,7 @@
 
 Free AI & LLM inference you can build with: an API key, a CLI login, or inference bundled inside a coding tool or builder. Speech-to-text, voice synthesis, code, vision, and reasoning. The test is whether you can ship an artifact you keep — code, an app, an audio file, a site, a design, an agent, a skill. Chat-only free tiers are excluded on purpose.
 
-> **2026-11-06** · 41 providers · 153 free models
+> **2026-11-06** · 40 providers · 148 free models
 > Interactive site: https://freeinference.dev · Agent summary: https://freeinference.dev/llms.txt · Machine data: https://freeinference.dev/data/providers.json (validate against https://freeinference.dev/data/schema.json)
 
 ### Quick Navigation & Machine Access
@@ -26,7 +26,6 @@ Free AI & LLM inference you can build with: an API key, a CLI login, or inferenc
 | [Groq](https://console.groq.com/docs/rate-limits) | api_key | Rate-limited free | llama-3.3-70b-versatile, llama-3.1-8b-instant, meta-llama/llama-4-scout-17b-16e-instruct, openai/gpt-oss-120b, openai/gpt-oss-20b, qwen/qwen3.6-27b, +7 more | Groq offers 13 free models (9 LLMs, 2 Whisper STT, 2 Orpheus TTS), translating to up to 14,400 text requests/day and 2,000 audio transcriptions/day (~8 hours/day). No credit card required. Limits are pooled at organization level. |
 | [Cerebras](https://inference-docs.cerebras.ai/support/rate-limits) | api_key | Trial credits | gpt-oss-120b, qwen-3.8-27b | Cerebras offers $5 trial credit across 2 models (gpt-oss-120b, qwen-3.8-27b with 8K context cap), translating to 1M tokens/day at 2,000+ tokens/sec. Credit card required. Trial credits expire in 30 days. |
 | [Cloudflare Workers AI](https://developers.cloudflare.com/workers-ai/platform/limits) | api_key | Rate-limited free | ~80 free models (Llama 3.x/4, Qwen, Gemma, DeepSeek-R1 distills, FLUX, Whisper, BGE embeddings), @cf/meta/llama-3.3-70b-instruct-fp8-fast, @cf/deepseek-ai/deepseek-r1-distill-qwen-32b, @cf/qwen/qwen2.5-72b-instruct, @cf/meta/llama-3.1-8b-instruct, @cf/openai/whisper | Cloudflare Workers AI offers ~80 free models (including Llama 3.3 70B, DeepSeek-R1 distills, Whisper, and FLUX), translating to 10,000 neurons/day (~hundreds of queries or audio minutes). No credit card required. Hard stop at 10,000 neurons until 00:00 UTC daily reset. |
-| [Hugging Face](https://huggingface.co/docs/inference-providers) | api_key | Rate-limited free | Llama 3.2 8B (Serverless), Qwen 2.5 7B (Serverless), Mistral 7B (Serverless), Inference Providers gateway (15+ partners) | Hugging Face offers free serverless inference on popular open models (up to ~300 requests/hour), with 10–30s cold starts on low-traffic weights. No credit card required. Rate limits throttle dynamically based on shared cluster load. |
 | [Mistral La Plateforme](https://docs.mistral.ai) | api_key | Rate-limited free (Experiment) | Mistral Large, Codestral, All API models (Experiment tier) | Mistral offers free evaluation API access across 4 models (including Codestral and Mistral Small), translating to 1B free tokens/month on Experiment tier. Phone verification required; no credit card required. Restricted to evaluation and non-production prototyping. |
 | [SambaNova Cloud](https://cloud.sambanova.ai/apis) | api_key | Trial credits | DeepSeek-V3.1, DeepSeek-V3.2, Meta-Llama-3.3-70B-Instruct, gemma-4-31B-it, gpt-oss-120b | [The Grant] Free tier. [The Output] Allows free access to models. [The Process] Does not require a credit card, but requires account creation. [The Condition] Credits expire in 90 days. |
 | [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com) | api_key | Trial credits | GLM-5, Kimi-2.5, NIM-packaged open models | NVIDIA NIM offers 1,000 free trial credits across catalog models (including Nemotron 3.5 Lightning with 1M context), translating to ~40 hours of inference testing. No credit card required; corporate email required for extended credits. Credits tie to a 90-day evaluation window. |
@@ -41,7 +40,6 @@ Free AI & LLM inference you can build with: an API key, a CLI login, or inferenc
 | [Kaggle Notebooks](https://www.kaggle.com/docs/efficient-gpu-usage) | login | Rate-limited free | Open-weight models you load (GPU runtime) | Kaggle offers 30 GPU-hours/week (NVIDIA P100 or 2xT4) in 12-hour maximum execution sessions. Phone verification required for GPU access; no credit card required. GPU quota resets weekly. |
 | [Hugging Face Spaces](https://huggingface.co/docs/hub/spaces-overview) | login | Rate-limited free | Any Hugging Face model you load (ZeroGPU) | Hugging Face Spaces offers free hosting for up to 2 ZeroGPU Gradio spaces with dynamic GPU allocation. Free account required, no credit card required. Persistent storage and dedicated hardware require a Pro tier. |
 | [Cursor (Hobby)](https://cursor.com/pricing) | bundled | Rate-limited free | Composer 2 (own), Auto (auto-selected, limited frontier) | Cursor Hobby offers 2,000 free completion edits and limited agent requests. Account login required, no credit card required. Quota is metered per user account with frontier models auto-selected. |
-| [Devin (Free)](https://devin.ai/pricing) | bundled | Rate-limited free | SWE-1.7 / SWE-2 (own), Open models (auto-selected) | Devin Free offers a limited daily quota of agentic software engineering runs. Account login required, no credit card required. Runs bundled inside the Devin interface on SWE-2 and open models. |
 | [Windsurf](https://docs.windsurf.com/windsurf/accounts/usage) | bundled | Rate-limited free | Frontier models (via Auto) | Windsurf offers unlimited inline code edits/Tab completions plus a limited starter quota of Cascade agent prompts. Account login required, no credit card required. Advanced frontier routing requires a paid plan. |
 | [Qoder](https://docs.qoder.com/account/pricing) | bundled | Rate-limited free | Frontier models + BYO key | Qoder offers free basic code autocompletions and limited Next-Edit-Suggestion (NES) runs. Account login required, no credit card required. Unlimited usage requires bringing your own API keys. |
 | [Antigravity CLI (Google)](https://antigravity.google/pricing) | login | Rate-limited free | Gemini 3.8/3.7/3.6 Flash, Gemini 3.1 Pro, Claude Sonnet/Opus 4.6, gpt-oss-120b | Antigravity CLI offers free weekly quotas for terminal and editor agent tasks. Google account login required, no credit card required. Quotas reset weekly; rate limits apply during high-load periods. |
@@ -61,6 +59,7 @@ Free AI & LLM inference you can build with: an API key, a CLI login, or inferenc
 | [Braintrust](https://www.braintrust.dev/pricing) | api_key | Trial credits | deepseek-v4.1-flash, deepseek-v4-flash-0731, glm-5.3-flash, glm-5.2, kimi-k3, jev, +7 more | Braintrust offers $10/month recurring model credit on Starter across 13 built-in models (including GPT-6 series, DeepSeek V4.1, GLM-5.3, and Jev). Work email required, no credit card required. Model credit resets monthly with no rollover. |
 | [Deepgram](https://deepgram.com/pricing) | api_key | Trial credits | nova-3, nova-2, aura | Deepgram offers $200 free credit across 3 models, translating to ~43,000 minutes (700+ hours) of speech transcription and TTS. Account registration required, no credit card required. Free credits do not expire. |
 | [AssemblyAI](https://www.assemblyai.com/pricing) | api_key | Trial credits | universal-1, conformer-2 | AssemblyAI offers $50 free credit across 2 models, translating to ~135 hours of audio transcription and streaming speech-to-text. Account registration required, no credit card required. Free credits do not expire. |
+| [Dots Studio](https://dots.ai) | api_key | Trial credits | dots-3-note-preview | Dots Studio offers free trial API credits and inference testing on Dots-3 Note and open-weight models. No credit card required. Trial credits are intended for evaluation and prototype development. |
 
 ## Models (per provider)
 
@@ -155,15 +154,6 @@ Free AI & LLM inference you can build with: an API key, a CLI login, or inferenc
 | @cf/qwen/qwen2.5-72b-instruct | $0 | 128K | 300 | Model-dependent | Not published | 10,000 neurons/day | 2026-10-29 |
 | @cf/meta/llama-3.1-8b-instruct | $0 | 128K | 300 | Model-dependent | Not published | 10,000 neurons/day | 2026-10-29 |
 | @cf/openai/whisper | $0 | 25MB audio | 300 | Model-dependent | Not published | 10,000 neurons/day | 2026-11-05 |
-
-### Hugging Face
-
-| Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| Llama 3.2 8B (Serverless) | $0 | Model-dependent | ~300 req/hour (Serverless) | Model max context | Not published | Small monthly credit pool (PRO: 2M credits/mo) | 2026-10-29 |
-| Qwen 2.5 7B (Serverless) | $0 | Model-dependent | ~300 req/hour (Serverless) | Model max context | Not published | Small monthly credit pool (PRO: 2M credits/mo) | 2026-10-29 |
-| Mistral 7B (Serverless) | $0 | Model-dependent | ~300 req/hour (Serverless) | Model max context | Not published | Small monthly credit pool (PRO: 2M credits/mo) | 2026-10-29 |
-| Inference Providers gateway (15+ partners) | $0 | Model-dependent | ~300 req/hour (Serverless) | Model max context | Not published | Small monthly credit pool (PRO: 2M credits/mo) | 2026-10-29 |
 
 ### Mistral La Plateforme
 
@@ -266,13 +256,6 @@ Free AI & LLM inference you can build with: an API key, a CLI login, or inferenc
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | Composer 2 (own) | $0 | Not published | Not published | Not published | Not published | Not published | 2026-10-29 |
 | Auto (auto-selected, limited frontier) | $0 | Not published | Not published | Not published | Not published | Not published | 2026-10-29 |
-
-### Devin (Free)
-
-| Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| SWE-1.7 / SWE-2 (own) | $0 | Not published | Not published | Not published | Not published | Not published | 2026-10-29 |
-| Open models (auto-selected) | $0 | Not published | Not published | Not published | Not published | Not published | 2026-10-29 |
 
 ### Windsurf
 
@@ -421,6 +404,12 @@ Free AI & LLM inference you can build with: an API key, a CLI login, or inferenc
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | universal-1 | $0 ($50 credit grant) | Pre-recorded &amp; streaming audio | 100 | Not published | Not published | $50 credit grant | 2026-11-05 |
 | conformer-2 | $0 ($50 credit grant) | Speech-to-text audio | 100 | Not published | Not published | $50 credit grant | 2026-11-05 |
+
+### Dots Studio
+
+| Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| dots-3-note-preview | $0 (trial) | 128K | 60 | Not published | Not published | Not published | 2026-11-06 |
 ## Definitions
 
 | Term | Meaning |

@@ -164,6 +164,41 @@ def create_github_issue(title, body, labels, repo=GITHUB_REPO):
     return None
 
 
+def close_github_issue(issue_number, comment):
+    """Close a GitHub issue with an explanation comment."""
+    token = os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN")
+    repo = os.environ.get("GITHUB_REPOSITORY", "surendranb/free-inference")
+    try:
+        if token:
+            comment_url = f"https://api.github.com/repos/{repo}/issues/{issue_number}/comments"
+            req = urllib.request.Request(
+                comment_url,
+                data=json.dumps({"body": comment}).encode("utf-8"),
+                headers={"Authorization": f"Bearer {token}", "Accept": "application/vnd.github+json", "Content-Type": "application/json"}
+            )
+            with urllib.request.urlopen(req, timeout=15):
+                pass
+            issue_url = f"https://api.github.com/repos/{repo}/issues/{issue_number}"
+            req = urllib.request.Request(
+                issue_url,
+                data=json.dumps({"state": "closed", "state_reason": "completed"}).encode("utf-8"),
+                headers={"Authorization": f"Bearer {token}", "Accept": "application/vnd.github+json", "Content-Type": "application/json"},
+                method="PATCH"
+            )
+            with urllib.request.urlopen(req, timeout=15):
+                print(f"  ✓ Closed GitHub Issue #{issue_number}")
+                return
+    except Exception as e:
+        print(f"Notice: Failed to close issue #{issue_number} via API ({e}), attempting gh CLI fallback...")
+    try:
+        import subprocess
+        subprocess.run(["gh", "issue", "comment", str(issue_number), "--repo", repo, "--body", comment], check=True, stderr=subprocess.DEVNULL)
+        subprocess.run(["gh", "issue", "close", str(issue_number), "--repo", repo, "--reason", "completed"], check=True, stderr=subprocess.DEVNULL)
+        print(f"  ✓ Closed GitHub Issue #{issue_number} via gh CLI")
+    except Exception as gh_err:
+        print(f"Notice: Failed to close issue #{issue_number} via gh CLI: {gh_err}")
+
+
 def report_deprecation_issue(pname, doc_url, audit_entry):
     """File a GitHub deprecation issue if one is not already open."""
     search_prefix = f"[Deprecation] {pname}"
@@ -608,16 +643,30 @@ Extract the verified free tier status and details. Output strictly valid JSON wi
                 audited_models = eval_data.get("models", [])
                 if audited_models and isinstance(audited_models, list) and len(audited_models) > 0:
                     for am in audited_models:
+                        am.setdefault("cost", "$0")
+                        am.setdefault("context", "Not published")
+                        am.setdefault("rpm", "Not published")
+                        am.setdefault("tpm", "Not published")
+                        am.setdefault("rpd", "Not published")
+                        am.setdefault("tpd", "Not published")
                         am["verified"] = today
                     p["models"] = audited_models
                     print(f"  ✓ Agent updated {pname} model inventory ({len(audited_models)} free models found).")
                 else:
                     for m in p.get("models", []):
+                        m.setdefault("cost", "$0")
+                        m.setdefault("context", "Not published")
+                        m.setdefault("rpm", "Not published")
+                        m.setdefault("tpm", "Not published")
+                        m.setdefault("rpd", "Not published")
+                        m.setdefault("tpd", "Not published")
                         m["verified"] = today
                 print(f"  ✓ Verified active ({agent_res.get('steps_count', 0)} agent steps): refreshed {pname} verification date to {today}.")
             elif eval_data.get("is_free_active") is False or eval_data.get("status") == "retired":
                 print(f"  ⚠ WARNING: Agent flagged {pname} as NOT active/free: {eval_data.get('summary')}")
                 report_deprecation_issue(pname, doc_url, audit_entry)
+                if apply_updates:
+                    p["_retire"] = True
 
         except Exception as e:
             print(f"  Notice: Antigravity agent audit skipped for {pname}: {e}")
@@ -629,6 +678,16 @@ Extract the verified free tier status and details. Output strictly valid JSON wi
                 "summary": str(e),
                 "audited_date": today
             })
+
+    if apply_updates:
+        retired = [p["name"] for p in catalog_data.get("providers", []) if p.get("_retire")]
+        if retired:
+            catalog_data["providers"] = [p for p in catalog_data.get("providers", []) if not p.get("_retire")]
+            print(f"  ✓ Automatically retired {len(retired)} discontinued providers from catalog: {retired}")
+            for rname in retired:
+                existing_issue = find_existing_issue(f"[Deprecation] {rname}", state="open")
+                if existing_issue:
+                    close_github_issue(existing_issue["number"], f"Resolved: {rname} retired from catalog based on verified Antigravity agent audit.")
 
     return audit_results
 
@@ -749,7 +808,7 @@ Output strictly a JSON array of objects with these keys, with no conversational 
 poll_candidate_providers = scout_candidates_search_first
 
 
-def audit_provider_candidates(candidates, key, max_audits=None):
+def audit_provider_candidates(candidates, key, max_audits=None, catalog_data=None, apply_updates=False):
     """Engine 2: Use Antigravity Managed Agent in cloud sandbox to audit new provider candidates."""
     if not key or not candidates:
         return {"verified": [], "all_audited": []}
@@ -858,6 +917,41 @@ Output strictly valid JSON with keys:
                 print(f"  ✓ Verified FREE provider candidate: {cname}! ({agent_res.get('steps_count')} agent steps)")
                 verified_candidates.append(audit_entry)
                 report_candidate_issue(audit_entry)
+                if apply_updates and catalog_data is not None:
+                    # Auto-graduate verified candidate into catalog
+                    candidate_models = []
+                    raw_c_models = eval_data.get("candidate_models") or [f"{cname} Free Model"]
+                    for cm in raw_c_models:
+                        m_name = cm if isinstance(cm, str) else cm.get("name", f"{cname} Free Model")
+                        candidate_models.append({
+                            "name": m_name,
+                            "cost": "$0 (trial)" if "trial" in audit_entry.get("free_type", "").lower() else "$0",
+                            "context": "Model-dependent",
+                            "rpm": "Published on portal",
+                            "tpm": "Not published",
+                            "rpd": "Not published",
+                            "tpd": "Not published",
+                            "verified": date.today().isoformat()
+                        })
+                    new_provider_entry = {
+                        "name": cname,
+                        "url": curl,
+                        "free_type": audit_entry.get("free_type", "Trial credits"),
+                        "notes": audit_entry.get("notes") or audit_entry.get("summary", ""),
+                        "timeout": "Not published",
+                        "verified": date.today().isoformat(),
+                        "channel": cand.get("channel", "web"),
+                        "verified_method": "docs",
+                        "access_method": cand.get("access_method", "api_key"),
+                        "artifact": "code",
+                        "base_url": audit_entry.get("base_url") or "",
+                        "models": candidate_models
+                    }
+                    catalog_data.setdefault("providers", []).append(new_provider_entry)
+                    print(f"  ✓ Auto-graduated new provider candidate {cname} into catalog.")
+                    existing_cand_issue = find_existing_issue(f"[New Provider Candidate] {cname}", state="open")
+                    if existing_cand_issue:
+                        close_github_issue(existing_cand_issue["number"], f"Resolved: {cname} auto-graduated into catalog with verified 4-point fact notes.")
             else:
                 print(f"  ✗ Provider candidate {cname} is paid-only / not free: {eval_data.get('summary')}")
 
@@ -954,18 +1048,21 @@ Output strictly valid JSON with no markdown formatting.
     doc_audits = verify_web_providers_docs(catalog_data, key, apply_updates=apply_updates, max_audits=audit_limit, priority_providers=failing_providers, force_all=force_all)
     print(f"Completed {len(doc_audits)} autonomous doc-audits.")
 
-    if apply_updates and doc_audits:
-        catalog_data["verified"] = max((p.get("verified", "") for p in catalog_data["providers"]), default=today)
-        DATA_PATH.write_text(json.dumps(catalog_data, indent=2) + "\n")
-        print(f"Updated {DATA_PATH} with fresh verification timestamps.")
-
     # 4. Search-First Discovery & Modality Queueing
     candidate_providers = scout_candidates_search_first(catalog_data, key)
     print(f"Discovered {len(candidate_providers)} candidate providers via Search Frontier & Aggregators.")
 
-    candidate_audit_results = audit_provider_candidates(candidate_providers, key, max_audits=audit_limit)
+    candidate_audit_results = audit_provider_candidates(
+        candidate_providers, key, max_audits=audit_limit,
+        catalog_data=catalog_data, apply_updates=apply_updates
+    )
     verified_candidates = candidate_audit_results.get("verified", [])
     candidate_records = candidate_audit_results.get("all_audited", [])
+
+    if apply_updates and (doc_audits or verified_candidates):
+        catalog_data["verified"] = max((p.get("verified", "") for p in catalog_data["providers"]), default=today)
+        DATA_PATH.write_text(json.dumps(catalog_data, indent=2) + "\n")
+        print(f"Updated {DATA_PATH} with fresh verification and catalog changes.")
 
     # Build report
     report = {

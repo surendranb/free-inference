@@ -637,16 +637,16 @@ Extract the verified free tier status and details. Output strictly valid JSON wi
 audit_stale_provider_docs = verify_web_providers_docs
 
 
-def poll_candidate_providers(catalog_data):
-    """Discover uncataloged external providers across Hugging Face & OpenRouter registries."""
-    existing_names = set()
+def scout_candidates_search_first(catalog_data, key):
+    """Engine 2: Search-First Discovery Scout.
+    
+    1. Queries live web signals via Google Search for newly announced/updated developer free tiers.
+    2. Traces newly surfaced upstream creator labs from aggregator :free models.
+    3. Resolves provider identity, modality (api, feed, web), and access method.
+    """
+    existing_names = {re.sub(r'[^a-z0-9]', '', p.get("name", "").lower()) for p in catalog_data.get("providers", [])}
     existing_domains = set()
-
-    def norm(s):
-        return re.sub(r'[^a-z0-9]', '', s.lower())
-
     for p in catalog_data.get("providers", []):
-        existing_names.add(norm(p.get("name", "")))
         for ukey in ("url", "docs_url", "base_url"):
             u = p.get(ukey)
             if u:
@@ -655,104 +655,72 @@ def poll_candidate_providers(catalog_data):
                     netloc = netloc[4:]
                 existing_domains.add(netloc)
 
-    # Exclude known non-qualifying or retired providers from auto-re-auditing
-    ignore_names = {"togetherai", "openai", "anthropic"}
     candidates = {}
 
-    # 1. Hugging Face Inference Providers
-    try:
-        hf_url = "https://huggingface.co/docs/inference-providers/en/index"
-        req = urllib.request.Request(hf_url, headers={"User-Agent": "FreeInference-Scout/1.0"})
-        with urllib.request.urlopen(req, timeout=15) as r:
-            html = r.read().decode("utf-8")
-        hf_slugs = set(re.findall(r'href="/docs/inference-providers/en/providers/([^"]+)"', html))
-        
-        hf_names = {
-            "baseten": ("Baseten", "https://www.baseten.co/pricing"),
-            "fal-ai": ("fal.ai", "https://fal.ai/pricing"),
-            "featherless-ai": ("Featherless", "https://featherless.ai/pricing"),
-            "fireworks-ai": ("Fireworks AI", "https://fireworks.ai/pricing"),
-            "novita": ("Novita AI", "https://novita.ai/pricing"),
-            "nscale": ("nScale", "https://nscale.com"),
-            "publicai": ("PublicAI", "https://publicai.com"),
-            "replicate": ("Replicate", "https://replicate.com/pricing"),
-            "scaleway": ("Scaleway", "https://www.scaleway.com/en/pricing/"),
-            "wavespeed": ("WaveSpeed", "https://wavespeed.ai")
-        }
-        for slug in hf_slugs:
-            if slug in hf_names:
-                cname, curl = hf_names[slug]
-                if norm(cname) not in existing_names and norm(cname) not in ignore_names:
-                    candidates[norm(cname)] = {
-                        "name": cname,
-                        "url": curl,
-                        "source": "Hugging Face Inference Providers",
-                        "slug": slug
-                    }
-    except Exception as e:
-        print(f"Notice: HF inference providers fetch skipped: {e}")
+    # 1. Search Grounding via Google Search (Live Frontier)
+    if key:
+        print("--> [Discovery Scout] Querying Google Search for live free inference announcements...")
+        search_prompt = """You are the Discovery Scout for FreeInference.dev.
+Search the live web for active or recently launched AI model providers offering genuine developer free tiers, free trial credits without upfront credit card purchase, or free inference APIs (text, coding, vision, speech-to-text, text-to-speech) in 2026.
+Focus on developer inference you can build with (API keys, OpenAI-compatible endpoints, CLI tools, libraries). Chat-only web UIs are strictly excluded.
 
-    # 2. OpenRouter Providers API
-    try:
-        or_url = "https://openrouter.ai/api/v1/providers"
-        req = urllib.request.Request(or_url, headers={"User-Agent": "FreeInference-Scout/1.0"})
-        with urllib.request.urlopen(req, timeout=15) as r:
-            or_data = json.load(r)
-        for p in or_data.get("data", []):
-            cname = p.get("name")
-            if not cname:
-                continue
-            if norm(cname) in existing_names or norm(cname) in ignore_names:
-                continue
-            website = p.get("privacy_policy_url") or p.get("terms_of_service_url") or ""
-            domain = ""
-            if website:
-                d = urlparse(website).netloc.lower()
-                if d.startswith("www."):
-                    d = d[4:]
-                domain = d
-            if domain and domain in existing_domains:
-                continue
-            target_url = f"https://{domain}" if domain else ""
-            if target_url and norm(cname) not in candidates:
-                candidates[norm(cname)] = {
-                    "name": cname,
-                    "url": target_url,
-                    "source": "OpenRouter Providers Registry",
-                    "slug": p.get("slug")
+Find up to 3 genuine, uncataloged candidate providers that have an active free tier.
+For each candidate, determine:
+- "name": Provider name
+- "url": Official developer / documentation / pricing URL
+- "channel": Native verification modality: "api" (public endpoint / OpenAPI specs), "web" (documentation / pricing table), or "feed" (changelog / releases)
+- "access_method": "api_key", "login", or "bundled"
+- "free_type": "Rate-limited free", "Trial credits", or "Promo free (limited time)"
+- "free_signal": Specific evidence of the free grant (e.g. dollar amount, free models, rate limits)
+
+Output strictly a JSON array of objects with these keys, with no conversational text or markdown code fences.
+"""
+        for attempt in range(2):
+            try:
+                url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={key}"
+                body = {
+                    "contents": [{"parts": [{"text": search_prompt}]}],
+                    "tools": [{"googleSearch": {}}]
                 }
-    except Exception as e:
-        print(f"Notice: OpenRouter providers fetch skipped: {e}")
+                req = urllib.request.Request(url, data=json.dumps(body).encode("utf-8"), headers={"Content-Type": "application/json"})
+                with urllib.request.urlopen(req, timeout=30) as r:
+                    res = json.load(r)
+                    raw_text = res["candidates"][0]["content"]["parts"][0]["text"]
+                    search_candidates = extract_first_json(raw_text)
+                    if isinstance(search_candidates, list):
+                        for sc in search_candidates:
+                            cname = sc.get("name", "").strip()
+                            curl = sc.get("url", "").strip()
+                            norm_name = re.sub(r'[^a-z0-9]', '', cname.lower())
+                            if norm_name and norm_name not in existing_names and curl:
+                                cdomain = urlparse(curl).netloc.lower().replace("www.", "")
+                                if cdomain and cdomain not in existing_domains:
+                                    candidates[norm_name] = {
+                                        "name": cname,
+                                        "url": curl,
+                                        "channel": sc.get("channel", "web"),
+                                        "access_method": sc.get("access_method", "api_key"),
+                                        "free_type": sc.get("free_type", "Rate-limited free"),
+                                        "source": "Google Search Live Frontier",
+                                        "free_signal": sc.get("free_signal", "")
+                                    }
+                                    print(f"  ✓ Search surfaced candidate: {cname} ({curl}) [modality: {sc.get('channel', 'web')}]")
+                        break
+            except Exception as e:
+                if attempt == 0 and "429" in str(e):
+                    time.sleep(5)
+                    continue
+                print(f"Notice: Google Search discovery query skipped: {e}")
 
-    # 3. Modern AI Gateways, Evaluators & Proxy Platforms
-    gateways = {
-        "braintrust": ("Braintrust", "https://www.braintrust.dev/pricing"),
-        "vercel-ai-gateway": ("Vercel AI Gateway", "https://vercel.com/docs/ai/ai-gateway"),
-        "helicone": ("Helicone", "https://www.helicone.ai/pricing"),
-        "portkey": ("Portkey", "https://portkey.ai/pricing"),
-        "nebius": ("Nebius AI Studio", "https://nebius.com/services/studio"),
-        "hyperbolic": ("Hyperbolic", "https://hyperbolic.xyz/pricing"),
-        "aimlapi": ("AIML API", "https://aimlapi.com/pricing"),
-    }
-    for slug, (gname, gurl) in gateways.items():
-        if norm(gname) not in existing_names and norm(gname) not in ignore_names:
-            candidates[norm(gname)] = {
-                "name": gname,
-                "url": gurl,
-                "source": "AI Gateways & Evaluators",
-                "slug": slug
-            }
-
-    # 4. Upstream Model Creator Labs from Aggregators
-    # Traces model prefixes like typesafe/*, liquid/*, stepfun/*, thinkingmachines/*, etc.
+    # 2. Upstream Model Creator Labs from Aggregators
+    # Traces active free models like typesafe/*, liquid/*, stepfun/*, thinkingmachines/*, etc.
     creator_map = {
-        "typesafe": ("TypeSafe AI", "https://typesafe.ai"),
-        "liquid": ("Liquid AI", "https://console.liquid.ai"),
-        "stepfun": ("StepFun", "https://platform.stepfun.com"),
-        "thinkingmachines": ("Thinking Machines Lab", "https://thinkingmachines.ai"),
-        "recursive": ("Recursive AI", "https://recursive.ai"),
-        "dots-studio": ("Dots Studio", "https://dots.ai"),
-        "poolside": ("Poolside AI", "https://poolside.ai"),
+        "liquid": ("Liquid AI", "https://console.liquid.ai", "web"),
+        "stepfun": ("StepFun", "https://platform.stepfun.com", "web"),
+        "thinkingmachines": ("Thinking Machines Lab", "https://thinkingmachines.ai", "web"),
+        "recursive": ("Recursive AI", "https://recursive.ai", "web"),
+        "dots-studio": ("Dots Studio", "https://dots.ai", "web"),
+        "poolside": ("Poolside AI", "https://poolside.ai", "web"),
     }
     for p in catalog_data.get("providers", []):
         if p.get("name") in ("OpenRouter", "OpenCode Zen", "Kilo Gateway", "Requesty", "Nous Portal"):
@@ -761,35 +729,24 @@ def poll_candidate_providers(catalog_data):
                 if "/" in m_name:
                     creator_slug = m_name.split("/")[0].strip().lower()
                     if creator_slug in creator_map:
-                        cname, curl = creator_map[creator_slug]
-                        if norm(cname) not in existing_names and norm(cname) not in ignore_names:
-                            candidates[norm(cname)] = {
+                        cname, curl, cmodality = creator_map[creator_slug]
+                        norm_name = re.sub(r'[^a-z0-9]', '', cname.lower())
+                        if norm_name not in existing_names and norm_name not in candidates:
+                            candidates[norm_name] = {
                                 "name": cname,
                                 "url": curl,
+                                "channel": cmodality,
+                                "access_method": "api_key",
+                                "free_type": "Rate-limited free",
                                 "source": f"Upstream Creator for {m_name}",
-                                "slug": creator_slug
+                                "free_signal": f"Aggregator model {m_name} actively offered"
                             }
 
-    # 5. Speech, Audio, and Multimodal Inference Platforms
-    audio_providers = {
-        "elevenlabs": ("ElevenLabs", "https://elevenlabs.io/pricing"),
-        "cartesia": ("Cartesia", "https://cartesia.ai/pricing"),
-        "fish-audio": ("Fish Audio", "https://fish.audio/pricing"),
-        "speechify": ("Speechify API", "https://speechify.com/api"),
-        "playht": ("Play.ht", "https://play.ht/pricing"),
-        "gladia": ("Gladia", "https://www.gladia.io/pricing"),
-        "rev-ai": ("Rev.ai", "https://www.rev.ai/pricing"),
-    }
-    for slug, (aname, aurl) in audio_providers.items():
-        if norm(aname) not in existing_names and norm(aname) not in ignore_names:
-            candidates[norm(aname)] = {
-                "name": aname,
-                "url": aurl,
-                "source": "Speech & Audio Inference",
-                "slug": slug
-            }
-
     return list(candidates.values())
+
+
+# Backwards compatibility alias
+poll_candidate_providers = scout_candidates_search_first
 
 
 def audit_provider_candidates(candidates, key, max_audits=None):
@@ -1002,9 +959,9 @@ Output strictly valid JSON with no markdown formatting.
         DATA_PATH.write_text(json.dumps(catalog_data, indent=2) + "\n")
         print(f"Updated {DATA_PATH} with fresh verification timestamps.")
 
-    # 4. Autonomous Discovery & Audit of New Service Providers
-    candidate_providers = poll_candidate_providers(catalog_data)
-    print(f"Discovered {len(candidate_providers)} uncataloged external providers across Hugging Face & OpenRouter.")
+    # 4. Search-First Discovery & Modality Queueing
+    candidate_providers = scout_candidates_search_first(catalog_data, key)
+    print(f"Discovered {len(candidate_providers)} candidate providers via Search Frontier & Aggregators.")
 
     candidate_audit_results = audit_provider_candidates(candidate_providers, key, max_audits=audit_limit)
     verified_candidates = candidate_audit_results.get("verified", [])

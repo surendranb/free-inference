@@ -556,7 +556,15 @@ def verify_web_providers_docs(catalog_data, key, apply_updates=False, max_audits
             if p.get("verified") == today and p.get("verified_method") == "live-probe":
                 continue
 
-        doc_url = p.get("docs_url") or p.get("url")
+        # Prioritize canonical /pricing URL over deep documentation subpages
+        primary_url = p.get("url", "")
+        docs_url = p.get("docs_url", "")
+        if "pricing" in primary_url.lower():
+            doc_url = primary_url
+        elif "pricing" in docs_url.lower():
+            doc_url = docs_url
+        else:
+            doc_url = docs_url or primary_url
         if not doc_url:
             continue
 
@@ -663,10 +671,48 @@ Extract the verified free tier status and details. Output strictly valid JSON wi
                         m["verified"] = today
                 print(f"  ✓ Verified active ({agent_res.get('steps_count', 0)} agent steps): refreshed {pname} verification date to {today}.")
             elif eval_data.get("is_free_active") is False or eval_data.get("status") == "retired":
-                print(f"  ⚠ WARNING: Agent flagged {pname} as NOT active/free: {eval_data.get('summary')}")
-                report_deprecation_issue(pname, doc_url, audit_entry)
-                if apply_updates:
-                    p["_retire"] = True
+                # Fallback guardrail: If the audited URL was a subpage and different from primary URL,
+                # audit the primary URL before declaring retirement.
+                primary_url = p.get("url")
+                if primary_url and doc_url != primary_url:
+                    print(f"  Notice: Auditing canonical URL {primary_url} for {pname} before declaring retirement...")
+                    try:
+                        fallback_prompt = f"""You are the Antigravity ground truth auditor for FreeInference.dev.
+The subpage ({doc_url}) did not show an active free tier for {pname}.
+Audit the canonical website / pricing page: {primary_url}.
+Does {pname} offer an active $0 developer free tier, rate-limited free plan, free trial, or bundled free tools?
+Output strictly JSON with keys:
+- 'status': 'active' or 'retired'
+- 'is_free_active': boolean
+- 'summary': concise summary
+- 'free_type': free tier type
+- 'notes': 4-point fact string
+- 'models': list of free models
+"""
+                        fallback_res = call_antigravity_agent(fallback_prompt, key, timeout=120)
+                        raw_fb = fallback_res.get("output_text", "")
+                        fallback_data = extract_first_json(raw_fb)
+                        if fallback_data.get("is_free_active"):
+                            print(f"  ✓ Fallback saved {pname}! Canonical page {primary_url} has active free tier.")
+                            eval_data = fallback_data
+                            p["docs_url"] = primary_url
+                            audit_entry["docs_url"] = primary_url
+                            audit_entry["status"] = "active"
+                            audit_entry["is_free_active"] = True
+                            audit_entry["summary"] = eval_data.get("summary", "")
+                            if apply_updates:
+                                p["verified"] = today
+                                p["verified_method"] = "docs"
+                                if eval_data.get("notes"):
+                                    p["notes"] = eval_data["notes"]
+                    except Exception as fb_err:
+                        print(f"  Notice: Fallback audit for {pname} encountered: {fb_err}")
+
+                if eval_data.get("is_free_active") is False or eval_data.get("status") == "retired":
+                    print(f"  ⚠ WARNING: Agent confirmed {pname} as NOT active/free: {eval_data.get('summary')}")
+                    report_deprecation_issue(pname, doc_url, audit_entry)
+                    if apply_updates:
+                        p["_retire"] = True
 
         except Exception as e:
             print(f"  Notice: Antigravity agent audit skipped for {pname}: {e}")

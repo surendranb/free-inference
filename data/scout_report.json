@@ -1,8 +1,8 @@
 {
-  "scouted_date": "2026-11-05",
+  "scouted_date": "2026-11-06",
   "model_used": "gemini-3.5-flash-lite + antigravity-preview-09-2026",
-  "providers_audited": 37,
-  "models_cataloged": 116,
+  "providers_audited": 41,
+  "models_cataloged": 142,
   "audit_summary": {
     "stale_count": 0,
     "stale_providers": [],
@@ -14,56 +14,28 @@
       "docs_url": "https://cloud.sambanova.ai/apis",
       "status": "active",
       "is_free_active": true,
-      "summary": "SambaNova Cloud offers an active rate-limited free tier without requiring a payment method, providing 20 requests per minute, 20 requests per day, and 200,000 tokens per day per model across all cataloged models with daily resets.",
-      "audited_date": "2026-11-05",
-      "agent_steps": 28,
-      "interaction_id": "v1_ChdmYmpzYXQ3MUtxV1ZfdU1QMy1lejRBbxIXZmJqc2F0NzFLcVdWX3VNUDMtZXo0QW8"
-    },
-    {
-      "provider": "Kilo Gateway",
-      "docs_url": "https://kilo.ai/gateway",
-      "status": "unreachable",
-      "is_free_active": null,
-      "summary": "Parse error: Expecting value: line 1 column 1 (char 0)",
-      "audited_date": "2026-11-05",
-      "agent_steps": 55,
-      "interaction_id": "v1_ChcwN2pzYXBlMU1QSG96N0lQaHV2amdRVRIXMDdqc2FwZTFNUEhvejdJUGh1dmpnUVU"
-    },
-    {
-      "provider": "Nous Portal",
-      "docs_url": "https://portal.nousresearch.com/api-docs",
-      "status": "unreachable",
-      "is_free_active": null,
-      "summary": "Parse error: Expecting value: line 1 column 1 (char 0)",
-      "audited_date": "2026-11-05",
-      "agent_steps": 18,
-      "interaction_id": "v1_ChdiYm5zYXBDUko4aVk5TW9QemRlMS1BZxIXYmJuc2FwQ1JKOGlZOU1vUHpkZTEtQWc"
+      "summary": "The free tier offers a trial of credits that is active for 90 days, without requiring a credit card to get started.",
+      "audited_date": "2026-11-06",
+      "agent_steps": 46,
+      "interaction_id": "v1_Chc5a3Z0YXRTcktZVEI2OTRQenVYUW1ROBIXOWt2dGF0U3JLWVRCNjk0UHp1WFFtUTg"
     }
   ],
-  "candidate_providers_count": 107,
+  "candidate_providers_count": 120,
   "candidate_audits": [
     {
-      "name": "PublicAI",
-      "url": "https://publicai.com",
-      "source": "Hugging Face Inference Providers",
-      "status": "unreachable",
-      "is_free_active": false,
-      "summary": "Unterminated string starting at: line 5 column 14 (char 90)",
-      "audited_date": "2026-11-05"
-    },
-    {
-      "name": "nScale",
-      "url": "https://nscale.com",
+      "name": "Featherless",
+      "url": "https://featherless.ai/pricing",
       "source": "Hugging Face Inference Providers",
       "status": "paid_only",
       "is_free_active": false,
       "free_type": "None",
-      "summary": "nScale utilizes a credit-based billing model requiring purchases and does not offer a genuine $0 developer free tier or free trial credits.",
+      "notes": "[The Grant] Featherless does not offer an ongoing free tier, recurring token allowance, or active free trial credits for developers. [The Output] Zero free tokens or API inference requests; requests are blocked when the account credit balance is zero or below. [The Process] Users must sign up and add an upfront payment method to purchase prepaid Developer credits (starting from $50/month or Pay-As-You-Go) or subscribe to the Chat plan ($25/month). [The Condition] API usage is strictly gated behind paid prepaid credits or an active monthly subscription with no $0 developer access.",
+      "summary": "Featherless is strictly paid-only, requiring a minimum $50/month prepaid Developer credit plan or $25/month Chat subscription with no free tier or trial credits.",
       "candidate_models": [],
-      "base_url": null,
-      "audited_date": "2026-11-05",
-      "agent_steps": 32,
-      "interaction_id": "v1_Chd6Ym5zYXZiZko0ZkJ6N0lQbnZhOXlBURIXemJuc2F2YmZKNGZCejdJUG52YTl5QVE"
+      "base_url": "https://api.featherless.ai/v1",
+      "audited_date": "2026-11-06",
+      "agent_steps": 37,
+      "interaction_id": "v1_ChdsRXp0YW9Dd0hhX2c2OTRQbGJHMWdBdxIXbEV6dGFvQ3dIYV9nNjk0UGxiRzFnQXc"
     }
   ],
   "verified_new_providers": [],
@@ -172,73 +144,66 @@
   "candidates": [
     {
       "id": "kilo-auto/free",
-      "family": "unknown",
+      "family": "auto-router",
       "task": "general",
-      "recommended_page_slug": "free-llm-api",
-      "summary": "Auto Free"
+      "recommended_page_slug": "kilo-auto-free",
+      "summary": "An automated routing model provided by Kilo Gateway designed for general-purpose free inference."
     },
     {
       "id": "reflection/beam-free",
-      "family": "unknown",
-      "task": "general",
-      "recommended_page_slug": "free-llm-api",
-      "summary": "Reflection: Beam 1.0 (free)"
+      "family": "reflection",
+      "task": "reasoning",
+      "recommended_page_slug": "reflection-beam-free",
+      "summary": "A high-context reasoning model featuring 1M context length, optimized for complex analytical tasks."
     },
     {
       "id": "stealth/glyph-cluster",
-      "family": "unknown",
+      "family": "stealth",
       "task": "general",
-      "recommended_page_slug": "free-llm-api",
-      "summary": "Stealth: Glyph Cluster (free)"
+      "recommended_page_slug": "stealth-glyph-cluster",
+      "summary": "A stealth-class general inference model with a 256k context window."
     },
     {
       "id": "stealth/crouton-alpha",
-      "family": "unknown",
-      "task": "general",
-      "recommended_page_slug": "free-llm-api",
-      "summary": "Crouton Alpha"
+      "family": "crouton",
+      "task": "reasoning",
+      "recommended_page_slug": "stealth-crouton-alpha",
+      "summary": "An experimental alpha reasoning model with an expansive 1M context length available across multiple gateways."
     },
     {
       "id": "google/lyria-3-pro-preview",
-      "family": "unknown",
+      "family": "lyria",
       "task": "general",
-      "recommended_page_slug": "free-llm-api",
-      "summary": "Google: Lyria 3 Pro Preview"
+      "recommended_page_slug": "google-lyria-3-pro-preview",
+      "summary": "A Google preview model specialized in advanced generation tasks with 1M context support."
     },
     {
       "id": "google/lyria-3-clip-preview",
-      "family": "unknown",
+      "family": "lyria",
       "task": "general",
-      "recommended_page_slug": "free-llm-api",
-      "summary": "Google: Lyria 3 Clip Preview"
+      "recommended_page_slug": "google-lyria-3-clip-preview",
+      "summary": "A specialized Google preview variant optimized for shorter snippet processing and creative tasks."
     },
     {
       "id": "openrouter/free",
-      "family": "unknown",
+      "family": "meta-router",
       "task": "general",
-      "recommended_page_slug": "free-llm-api",
-      "summary": "OpenRouter Free Models Router"
-    },
-    {
-      "id": "stealth/crouton-alpha",
-      "family": "unknown",
-      "task": "general",
-      "recommended_page_slug": "free-llm-api",
-      "summary": "Crouton Alpha"
+      "recommended_page_slug": "openrouter-free-router",
+      "summary": "A meta-router endpoint that aggregates multiple free models from the OpenRouter network."
     },
     {
       "id": "meituan/longcat-2.5:free",
-      "family": "unknown",
-      "task": "general",
-      "recommended_page_slug": "free-llm-api",
-      "summary": "LongCat-2.5:Free"
+      "family": "longcat",
+      "task": "reasoning",
+      "recommended_page_slug": "meituan-longcat-2-5-free",
+      "summary": "Meituan's long-context model offering a 1M token window for deep document analysis and reasoning."
     },
     {
       "id": "novita/ling-3.1-flash",
-      "family": "unknown",
+      "family": "ling",
       "task": "general",
-      "recommended_page_slug": "free-llm-api",
-      "summary": "novita/ling-3.1-flash"
+      "recommended_page_slug": "novita-ling-3-1-flash",
+      "summary": "A lightweight flash model from Novita focused on low-latency, general-purpose completions."
     }
   ],
   "status": "completed"

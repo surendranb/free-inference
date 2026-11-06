@@ -267,6 +267,7 @@ def build_schema():
                         "base_url": {"type": "string"},
                         "verified": {"type": "string"},
                         "verified_method": {"type": "string", "enum": ["live-probe", "docs"]},
+                        "channel": {"type": "string", "enum": ["api", "feed", "web"]},
                         "models": {
                             "type": "array",
                             "items": {

@@ -1,7 +1,7 @@
 {
   "title": "Free Inference",
   "tagline": "Free AI & LLM inference you can build with: an API key, a CLI login, or inference bundled inside a coding tool or builder. Speech-to-text, voice synthesis, code, vision, and reasoning. The test is whether you can ship an artifact you keep \u2014 code, an app, an audio file, a site, a design, an agent, a skill. Chat-only free tiers are excluded on purpose.",
-  "verified": "2026-11-05",
+  "verified": "2026-11-06",
   "website": "https://freeinference.dev",
   "repo": "https://github.com/surendranb/free-inference",
   "columns": [
@@ -23,7 +23,7 @@
       "free_type": "Promo free (limited time)",
       "notes": "OpenCode Zen offers 12 free models with 256K\u20131M context (including Big Pickle, Jev 1.13, Flint 40B, and Crouton). No credit card required. Free-tier prompts are retained for model training.",
       "timeout": "Not published",
-      "verified": "2026-11-05",
+      "verified": "2026-11-06",
       "models": [
         {
           "name": "Big Pickle",
@@ -33,7 +33,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "GLM-5.3-Flash Free",
@@ -43,7 +43,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "DeepSeek V4.1 Flash Free",
@@ -53,7 +53,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "MiMo-V2.6-Flash Free",
@@ -63,7 +63,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "Beam Free",
@@ -73,7 +73,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "Flint 40B Free",
@@ -83,7 +83,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "Nemotron 3 Ultra Free",
@@ -93,7 +93,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "Nemotron 3.5 Lightning Free",
@@ -103,7 +103,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "Nemotron 3.5 Super VL Free",
@@ -113,7 +113,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "Jev 1.13 Free",
@@ -123,7 +123,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "Crouton Alpha Free",
@@ -133,7 +133,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "Pulse Alpha Free",
@@ -143,14 +143,15 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         }
       ],
       "verified_method": "live-probe",
       "docs_url": "https://opencode.ai/v2/docs/console/models/",
       "access_method": "api_key",
       "artifact": "code",
-      "base_url": "https://opencode.ai/inference/openai/v1"
+      "base_url": "https://opencode.ai/inference/openai/v1",
+      "channel": "web"
     },
     {
       "name": "OpenRouter",
@@ -158,7 +159,7 @@
       "free_type": "Rate-limited free",
       "notes": "OpenRouter offers 13 permanently free models (:free suffix) with 64K\u2013500K context, translating to 50 requests/day (1,000 requests/day with + purchased credits). No credit card required. Upstream model availability determines live rate limits.",
       "timeout": "Not published",
-      "verified": "2026-11-05",
+      "verified": "2026-11-06",
       "models": [
         {
           "name": "cohere/north-mini-code:free",
@@ -168,7 +169,7 @@
           "tpm": "Provider-dependent",
           "rpd": "50 (below $10 credits) / 1,000 ($10+ credits)",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "dots-studio/dots-3-note-preview:free",
@@ -178,7 +179,7 @@
           "tpm": "Provider-dependent",
           "rpd": "50 (below $10 credits) / 1,000 ($10+ credits)",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "google/gemma-4-26b-a4b-it:free",
@@ -188,7 +189,7 @@
           "tpm": "Provider-dependent",
           "rpd": "50 (below $10 credits) / 1,000 ($10+ credits)",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "google/gemma-4-31b-it:free",
@@ -198,7 +199,7 @@
           "tpm": "Provider-dependent",
           "rpd": "50 (below $10 credits) / 1,000 ($10+ credits)",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "liquid/lfm-2.5-2.6b:free",
@@ -208,7 +209,7 @@
           "tpm": "Provider-dependent",
           "rpd": "50 (below $10 credits) / 1,000 ($10+ credits)",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
@@ -218,7 +219,7 @@
           "tpm": "Provider-dependent",
           "rpd": "50 (below $10 credits) / 1,000 ($10+ credits)",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "nvidia/nemotron-3-ultra-550b-a55b:free",
@@ -228,7 +229,7 @@
           "tpm": "Provider-dependent",
           "rpd": "50 (below $10 credits) / 1,000 ($10+ credits)",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "nvidia/nemotron-3.5-content-safety:free",
@@ -238,7 +239,7 @@
           "tpm": "Provider-dependent",
           "rpd": "50 (below $10 credits) / 1,000 ($10+ credits)",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "nvidia/nemotron-3.5-lightning:free",
@@ -248,7 +249,7 @@
           "tpm": "Provider-dependent",
           "rpd": "50 (below $10 credits) / 1,000 ($10+ credits)",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "nvidia/nemotron-3.5-super-vl:free",
@@ -258,7 +259,7 @@
           "tpm": "Provider-dependent",
           "rpd": "50 (below $10 credits) / 1,000 ($10+ credits)",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "recursive/flint-v1.0:free",
@@ -268,7 +269,7 @@
           "tpm": "Provider-dependent",
           "rpd": "50 (below $10 credits) / 1,000 ($10+ credits)",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "xingchen-agi/xing4.0-29b-a4b:free",
@@ -278,7 +279,7 @@
           "tpm": "Provider-dependent",
           "rpd": "50 (below $10 credits) / 1,000 ($10+ credits)",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "meta/muse-spark-1.3-contributor:free",
@@ -288,13 +289,14 @@
           "tpm": "Provider-dependent",
           "rpd": "50 (below $10 credits) / 1,000 ($10+ credits)",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         }
       ],
       "verified_method": "live-probe",
       "access_method": "api_key",
       "artifact": "code",
-      "base_url": "https://openrouter.ai/api/v1"
+      "base_url": "https://openrouter.ai/api/v1",
+      "channel": "api"
     },
     {
       "name": "Google AI Studio (Gemini API)",
@@ -302,7 +304,7 @@
       "free_type": "Rate-limited free",
       "notes": "Google AI Studio offers 16 free models with up to 1M context, translating to 15\u201330 requests/minute (up to 1,500 requests/day per model). No credit card required. Free-tier prompts and outputs are retained for model training.",
       "timeout": "Not published",
-      "verified": "2026-11-05",
+      "verified": "2026-11-06",
       "models": [
         {
           "name": "gemini-2.5-flash",
@@ -312,7 +314,7 @@
           "tpm": "Varies by account",
           "rpd": "Varies by account",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "gemini-2.5-flash-lite",
@@ -322,7 +324,7 @@
           "tpm": "Varies by account",
           "rpd": "Varies by account",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "gemini-3-flash-preview",
@@ -332,7 +334,7 @@
           "tpm": "Varies by account",
           "rpd": "Varies by account",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "gemini-3.1-flash-lite",
@@ -342,7 +344,7 @@
           "tpm": "Varies by account",
           "rpd": "Varies by account",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "gemini-3.1-flash-lite-preview",
@@ -352,7 +354,7 @@
           "tpm": "Varies by account",
           "rpd": "Varies by account",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "gemini-3.5-flash",
@@ -362,7 +364,7 @@
           "tpm": "Varies by account",
           "rpd": "Varies by account",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "gemini-3.5-flash-lite",
@@ -372,7 +374,7 @@
           "tpm": "Varies by account",
           "rpd": "Varies by account",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "gemini-3.6-flash",
@@ -382,7 +384,7 @@
           "tpm": "Varies by account",
           "rpd": "Varies by account",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "gemini-3.7-flash",
@@ -392,7 +394,7 @@
           "tpm": "Varies by account",
           "rpd": "Varies by account",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "gemini-3.8-flash",
@@ -402,7 +404,7 @@
           "tpm": "Varies by account",
           "rpd": "Varies by account",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "gemini-flash-latest",
@@ -412,7 +414,7 @@
           "tpm": "Varies by account",
           "rpd": "Varies by account",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "gemini-flash-lite-latest",
@@ -422,7 +424,7 @@
           "tpm": "Varies by account",
           "rpd": "Varies by account",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "gemini-omni-1.1-flash",
@@ -432,7 +434,7 @@
           "tpm": "Varies by account",
           "rpd": "Varies by account",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "gemini-omni-flash-preview",
@@ -442,7 +444,7 @@
           "tpm": "Varies by account",
           "rpd": "Varies by account",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "gemma-4-26b-a4b-it",
@@ -452,7 +454,7 @@
           "tpm": "1M",
           "rpd": "1,500",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "gemma-4-31b-it",
@@ -462,13 +464,14 @@
           "tpm": "1M",
           "rpd": "1,500",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         }
       ],
       "verified_method": "live-probe",
       "access_method": "api_key",
       "artifact": "code",
-      "base_url": "https://generativelanguage.googleapis.com/v1beta/openai/"
+      "base_url": "https://generativelanguage.googleapis.com/v1beta/openai/",
+      "channel": "api"
     },
     {
       "name": "Groq",
@@ -476,7 +479,7 @@
       "free_type": "Rate-limited free",
       "notes": "Groq offers 13 free models (9 LLMs, 2 Whisper STT, 2 Orpheus TTS), translating to up to 14,400 text requests/day and 2,000 audio transcriptions/day (~8 hours/day). No credit card required. Limits are pooled at organization level.",
       "timeout": "Not published",
-      "verified": "2026-11-05",
+      "verified": "2026-11-06",
       "models": [
         {
           "name": "llama-3.3-70b-versatile",
@@ -486,7 +489,7 @@
           "tpm": "12K",
           "rpd": "1,000",
           "tpd": "100K tokens/day",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "llama-3.1-8b-instant",
@@ -496,7 +499,7 @@
           "tpm": "6K",
           "rpd": "14,400",
           "tpd": "500K tokens/day",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "meta-llama/llama-4-scout-17b-16e-instruct",
@@ -506,7 +509,7 @@
           "tpm": "30K",
           "rpd": "1,000",
           "tpd": "500K tokens/day",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "openai/gpt-oss-120b",
@@ -516,7 +519,7 @@
           "tpm": "8K",
           "rpd": "1,000",
           "tpd": "200K tokens/day",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "openai/gpt-oss-20b",
@@ -526,7 +529,7 @@
           "tpm": "8K",
           "rpd": "1,000",
           "tpd": "200K tokens/day",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "qwen/qwen3.6-27b",
@@ -536,7 +539,7 @@
           "tpm": "8K",
           "rpd": "1,000",
           "tpd": "200K tokens/day",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "qwen/qwen3.8-27b",
@@ -546,7 +549,7 @@
           "tpm": "8K",
           "rpd": "1,000",
           "tpd": "2M tokens/day",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "meta-llama/llama-prompt-guard-2-22m",
@@ -556,7 +559,7 @@
           "tpm": "15K",
           "rpd": "14,400",
           "tpd": "500K tokens/day",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "compound-beta",
@@ -566,7 +569,7 @@
           "tpm": "70K",
           "rpd": "250",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "whisper-large-v3-turbo",
@@ -576,7 +579,7 @@
           "tpm": "7.2K ASH (Audio sec/hr)",
           "rpd": "2,000",
           "tpd": "28.8K ASD (8h audio/day)",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "whisper-large-v3",
@@ -586,7 +589,7 @@
           "tpm": "7.2K ASH (Audio sec/hr)",
           "rpd": "2,000",
           "tpd": "28.8K ASD (8h audio/day)",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "canopylabs/orpheus-v1-english",
@@ -596,7 +599,7 @@
           "tpm": "1.2K ASH (Audio sec/hr)",
           "rpd": "100",
           "tpd": "3.6K ASD (1h audio/day)",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "canopylabs/orpheus-arabic-saudi",
@@ -606,14 +609,15 @@
           "tpm": "1.2K ASH (Audio sec/hr)",
           "rpd": "100",
           "tpd": "3.6K ASD (1h audio/day)",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         }
       ],
       "verified_method": "live-probe",
       "docs_url": "https://console.groq.com/docs/rate-limits",
       "access_method": "api_key",
       "artifact": "code",
-      "base_url": "https://api.groq.com/openai/v1"
+      "base_url": "https://api.groq.com/openai/v1",
+      "channel": "web"
     },
     {
       "name": "Cerebras",
@@ -648,7 +652,8 @@
       "docs_url": "https://inference-docs.cerebras.ai/support/rate-limits",
       "access_method": "api_key",
       "artifact": "code",
-      "base_url": "https://api.cerebras.ai/v1"
+      "base_url": "https://api.cerebras.ai/v1",
+      "channel": "web"
     },
     {
       "name": "Cloudflare Workers AI",
@@ -723,7 +728,8 @@
       "docs_url": "https://developers.cloudflare.com/workers-ai/platform/limits/",
       "access_method": "api_key",
       "artifact": "code",
-      "base_url": "https://api.cloudflare.com/client/v4/accounts/{account_id}/ai/v1"
+      "base_url": "https://api.cloudflare.com/client/v4/accounts/{account_id}/ai/v1",
+      "channel": "web"
     },
     {
       "name": "Hugging Face",
@@ -778,7 +784,8 @@
       "docs_url": "https://huggingface.co/docs/inference-providers/index",
       "access_method": "api_key",
       "artifact": "code",
-      "base_url": "https://api-inference.huggingface.co/v1"
+      "base_url": "https://api-inference.huggingface.co/v1",
+      "channel": "web"
     },
     {
       "name": "Mistral La Plateforme",
@@ -823,15 +830,16 @@
       "docs_url": "https://docs.mistral.ai/",
       "access_method": "api_key",
       "artifact": "code",
-      "base_url": "https://api.mistral.ai/v1"
+      "base_url": "https://api.mistral.ai/v1",
+      "channel": "web"
     },
     {
       "name": "SambaNova Cloud",
       "url": "https://cloud.sambanova.ai/apis",
-      "free_type": "Rate-limited free",
-      "notes": "SambaNova Cloud offers 5 free models (including DeepSeek-V3.2, Llama 3.3 70B, and Gemma 4 31B) with 128K context, translating to 10\u201330 requests/minute. No credit card required. Preview models may rotate or unpublish without advance notice.",
+      "free_type": "Trial credits",
+      "notes": "[The Grant] Free tier. [The Output] Allows free access to models. [The Process] Does not require a credit card, but requires account creation. [The Condition] Credits expire in 90 days.",
       "timeout": "Not published",
-      "verified": "2026-11-05",
+      "verified": "2026-11-06",
       "models": [
         {
           "name": "DeepSeek-V3.1",
@@ -841,7 +849,7 @@
           "tpm": "Not published",
           "rpd": "20",
           "tpd": "200K tokens/day",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "DeepSeek-V3.2",
@@ -851,7 +859,7 @@
           "tpm": "Not published",
           "rpd": "20",
           "tpd": "200K tokens/day",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "Meta-Llama-3.3-70B-Instruct",
@@ -861,7 +869,7 @@
           "tpm": "Not published",
           "rpd": "20",
           "tpd": "200K tokens/day",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "gemma-4-31B-it",
@@ -871,7 +879,7 @@
           "tpm": "Not published",
           "rpd": "20",
           "tpd": "200K tokens/day",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "gpt-oss-120b",
@@ -881,13 +889,14 @@
           "tpm": "Not published",
           "rpd": "20",
           "tpd": "200K tokens/day",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         }
       ],
-      "verified_method": "live-probe",
+      "verified_method": "docs",
       "access_method": "api_key",
       "artifact": "code",
-      "base_url": "https://api.sambanova.ai/v1"
+      "base_url": "https://api.sambanova.ai/v1",
+      "channel": "api"
     },
     {
       "name": "NVIDIA NIM (build.nvidia.com)",
@@ -932,7 +941,8 @@
       "docs_url": "https://build.nvidia.com/explore/reasoning",
       "access_method": "api_key",
       "artifact": "code",
-      "base_url": "https://integrate.api.nvidia.com/v1"
+      "base_url": "https://integrate.api.nvidia.com/v1",
+      "channel": "web"
     },
     {
       "name": "Z.AI (Zhipu)",
@@ -986,7 +996,8 @@
       "verified_method": "docs",
       "access_method": "api_key",
       "artifact": "code",
-      "base_url": "https://open.bigmodel.cn/api/paas/v4/"
+      "base_url": "https://open.bigmodel.cn/api/paas/v4/",
+      "channel": "web"
     },
     {
       "name": "DeepInfra",
@@ -994,7 +1005,7 @@
       "free_type": "Trial credits",
       "notes": "DeepInfra offers $5 signup trial credit across 185+ models (including DeepSeek-V3.1, Qwen 3 32B, and GLM-4.7), translating to ~50M tokens at 200 concurrent requests. No credit card required. Credits remain active until depleted.",
       "timeout": "Not published",
-      "verified": "2026-11-05",
+      "verified": "2026-11-06",
       "models": [
         {
           "name": "deepseek-ai/DeepSeek-V3.1",
@@ -1004,7 +1015,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "$5 signup credits",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "Qwen/Qwen3-32B",
@@ -1014,7 +1025,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "$5 signup credits",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "Qwen/Qwen2.5-72B-Instruct",
@@ -1024,7 +1035,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "$5 signup credits",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "zai-org/GLM-4.7",
@@ -1034,14 +1045,15 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "$5 signup credits",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         }
       ],
       "verified_method": "live-probe",
       "docs_url": "https://deepinfra.com/docs",
       "access_method": "api_key",
       "artifact": "code",
-      "base_url": "https://api.deepinfra.com/v1/openai"
+      "base_url": "https://api.deepinfra.com/v1/openai",
+      "channel": "api"
     },
     {
       "name": "GitHub Copilot (Free)",
@@ -1065,7 +1077,8 @@
       "verified_method": "docs",
       "docs_url": "https://docs.github.com/en/copilot/get-started/plans",
       "access_method": "login",
-      "artifact": "code"
+      "artifact": "code",
+      "channel": "web"
     },
     {
       "name": "Kiro (AWS)",
@@ -1119,7 +1132,8 @@
       "verified_method": "docs",
       "docs_url": "https://kiro.dev/pricing",
       "access_method": "login",
-      "artifact": "code"
+      "artifact": "code",
+      "channel": "web"
     },
     {
       "name": "Trae (ByteDance)",
@@ -1143,7 +1157,8 @@
       "verified_method": "docs",
       "docs_url": "https://www.trae.ai/pricing",
       "access_method": "bundled",
-      "artifact": "code"
+      "artifact": "code",
+      "channel": "web"
     },
     {
       "name": "Bolt.new",
@@ -1167,7 +1182,8 @@
       "verified_method": "docs",
       "docs_url": "https://support.bolt.new/account-and-subscription/tokens",
       "access_method": "bundled",
-      "artifact": "app/website"
+      "artifact": "app/website",
+      "channel": "web"
     },
     {
       "name": "Lovable",
@@ -1191,7 +1207,8 @@
       "verified_method": "docs",
       "docs_url": "https://docs.lovable.dev/introduction/credits-and-usage",
       "access_method": "bundled",
-      "artifact": "app/website"
+      "artifact": "app/website",
+      "channel": "web"
     },
     {
       "name": "v0 (Vercel)",
@@ -1215,7 +1232,8 @@
       "verified_method": "docs",
       "docs_url": "https://v0.app/docs/pricing",
       "access_method": "bundled",
-      "artifact": "app/website"
+      "artifact": "app/website",
+      "channel": "web"
     },
     {
       "name": "Kaggle Notebooks",
@@ -1239,7 +1257,8 @@
       "verified_method": "docs",
       "docs_url": "https://www.kaggle.com/docs/efficient-gpu-usage",
       "access_method": "login",
-      "artifact": "notebook"
+      "artifact": "notebook",
+      "channel": "web"
     },
     {
       "name": "Hugging Face Spaces",
@@ -1263,7 +1282,8 @@
       "verified_method": "docs",
       "docs_url": "https://huggingface.co/docs/hub/spaces-overview",
       "access_method": "login",
-      "artifact": "app/agent"
+      "artifact": "app/agent",
+      "channel": "web"
     },
     {
       "name": "Cursor (Hobby)",
@@ -1297,7 +1317,8 @@
       "verified_method": "docs",
       "docs_url": "https://cursor.com/docs/models-and-pricing",
       "access_method": "bundled",
-      "artifact": "code"
+      "artifact": "code",
+      "channel": "web"
     },
     {
       "name": "Devin (Free)",
@@ -1331,7 +1352,8 @@
       "verified_method": "docs",
       "docs_url": "https://docs.devin.ai/admin/billing/self-serve",
       "access_method": "bundled",
-      "artifact": "code"
+      "artifact": "code",
+      "channel": "web"
     },
     {
       "name": "Windsurf",
@@ -1355,7 +1377,8 @@
       "verified_method": "docs",
       "docs_url": "https://docs.windsurf.com/windsurf/accounts/usage",
       "access_method": "bundled",
-      "artifact": "code"
+      "artifact": "code",
+      "channel": "web"
     },
     {
       "name": "Qoder",
@@ -1379,7 +1402,8 @@
       "verified_method": "docs",
       "docs_url": "https://docs.qoder.com/account/pricing",
       "access_method": "bundled",
-      "artifact": "code"
+      "artifact": "code",
+      "channel": "web"
     },
     {
       "name": "Antigravity CLI (Google)",
@@ -1403,7 +1427,8 @@
       "verified_method": "docs",
       "docs_url": "https://antigravity.google/pricing",
       "access_method": "login",
-      "artifact": "code/agent"
+      "artifact": "code/agent",
+      "channel": "web"
     },
     {
       "name": "Google Colab",
@@ -1427,7 +1452,8 @@
       "verified_method": "docs",
       "docs_url": "https://research.google.com/colaboratory/faq.html",
       "access_method": "login",
-      "artifact": "notebook"
+      "artifact": "notebook",
+      "channel": "web"
     },
     {
       "name": "Figma (Starter)",
@@ -1451,7 +1477,8 @@
       "verified_method": "docs",
       "docs_url": "https://www.figma.com/pricing/",
       "access_method": "bundled",
-      "artifact": "design/prototype/site"
+      "artifact": "design/prototype/site",
+      "channel": "web"
     },
     {
       "name": "Canva (Free)",
@@ -1475,7 +1502,8 @@
       "verified_method": "docs",
       "docs_url": "https://www.canva.com/help/ai-access/",
       "access_method": "bundled",
-      "artifact": "design"
+      "artifact": "design",
+      "channel": "web"
     },
     {
       "name": "Framer (Free)",
@@ -1499,7 +1527,8 @@
       "verified_method": "docs",
       "docs_url": "https://www.framer.com/pricing",
       "access_method": "bundled",
-      "artifact": "website"
+      "artifact": "website",
+      "channel": "web"
     },
     {
       "name": "Replit (Starter)",
@@ -1523,7 +1552,8 @@
       "verified_method": "docs",
       "docs_url": "https://docs.replit.com/help/pricing-and-plans",
       "access_method": "bundled",
-      "artifact": "app/website"
+      "artifact": "app/website",
+      "channel": "web"
     },
     {
       "name": "Kilo Gateway",
@@ -1531,7 +1561,7 @@
       "free_type": "Rate-limited free",
       "notes": "Kilo Gateway offers 7 free models with 64K\u2013256K context, translating to 200 requests/hour per IP address. No credit card required. Model availability reflects upstream provider quotas.",
       "timeout": "Not published",
-      "verified": "2026-11-05",
+      "verified": "2026-11-06",
       "verified_method": "live-probe",
       "access_method": "api_key",
       "artifact": "code",
@@ -1544,7 +1574,7 @@
           "tpm": "Provider-dependent",
           "rpd": "200/day",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "poolside/laguna-s-2.1:free",
@@ -1584,7 +1614,7 @@
           "tpm": "Provider-dependent",
           "rpd": "200/day",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "nvidia/nemotron-3.5-lightning:free",
@@ -1594,7 +1624,7 @@
           "tpm": "Provider-dependent",
           "rpd": "200/day",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "nvidia/nemotron-3.5-super-vl:free",
@@ -1604,10 +1634,11 @@
           "tpm": "Provider-dependent",
           "rpd": "200/day",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         }
       ],
-      "base_url": "https://api.kilo.ai/v1"
+      "base_url": "https://api.kilo.ai/v1",
+      "channel": "api"
     },
     {
       "name": "Nous Portal",
@@ -1615,7 +1646,7 @@
       "free_type": "Rate-limited free",
       "notes": "Nous Portal offers 5 free Hermes and open-weight models, translating to 50 requests/minute and 500,000 tokens/minute. Free account registration required, no credit card required. Preview models may be adjusted during experimental rounds.",
       "timeout": "Not published",
-      "verified": "2026-11-05",
+      "verified": "2026-11-06",
       "verified_method": "live-probe",
       "access_method": "api_key",
       "artifact": "code",
@@ -1648,7 +1679,7 @@
           "tpm": "500K",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "upstage/solar-mini4:free",
@@ -1658,7 +1689,7 @@
           "tpm": "500K",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "reflection/beam-1.0-501b-a23b:free",
@@ -1668,7 +1699,7 @@
           "tpm": "500K",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "ornith/ornith-1.5-122b:free",
@@ -1681,7 +1712,8 @@
           "verified": "2026-11-02"
         }
       ],
-      "base_url": "https://inference-api.nousresearch.com/v1"
+      "base_url": "https://inference-api.nousresearch.com/v1",
+      "channel": "api"
     },
     {
       "name": "Cohere",
@@ -1725,7 +1757,8 @@
           "verified": "2026-11-01"
         }
       ],
-      "base_url": "https://api.cohere.com/v1"
+      "base_url": "https://api.cohere.com/v1",
+      "channel": "web"
     },
     {
       "name": "Requesty",
@@ -1733,7 +1766,7 @@
       "free_type": "Rate-limited free",
       "notes": "Requesty offers 3 free models with 128K context, translating to 200 requests/day per account. Email registration required, no credit card required. Quota resets daily at 00:00 UTC.",
       "timeout": "Not published",
-      "verified": "2026-11-05",
+      "verified": "2026-11-06",
       "verified_method": "live-probe",
       "access_method": "api_key",
       "artifact": "code",
@@ -1746,7 +1779,7 @@
           "tpm": "Not published",
           "rpd": "200/day shared",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "google/gemma-4-31b-it",
@@ -1756,7 +1789,7 @@
           "tpm": "Not published",
           "rpd": "200/day shared",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         },
         {
           "name": "poolside/laguna-xs.2",
@@ -1766,10 +1799,11 @@
           "tpm": "Not published",
           "rpd": "200/day shared",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         }
       ],
-      "base_url": "https://router.requesty.ai/v1"
+      "base_url": "https://router.requesty.ai/v1",
+      "channel": "api"
     },
     {
       "name": "OVHcloud AI Endpoints",
@@ -1777,7 +1811,7 @@
       "free_type": "Rate-limited free",
       "notes": "OVHcloud offers 10 free open-source models, translating to 2 requests/minute per IP keyless (or 400 requests/minute with a registered account). No credit card required for anonymous keyless access. Quota is enforced per client IP.",
       "timeout": "Not published",
-      "verified": "2026-11-05",
+      "verified": "2026-11-06",
       "verified_method": "live-probe",
       "access_method": "api_key",
       "artifact": "code",
@@ -1790,10 +1824,11 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-06"
         }
       ],
-      "base_url": "https://endpoints.ai.cloud.ovh.net/v1"
+      "base_url": "https://endpoints.ai.cloud.ovh.net/v1",
+      "channel": "api"
     },
     {
       "name": "SiliconFlow",
@@ -1848,7 +1883,8 @@
       "docs_url": "https://docs.siliconflow.cn/",
       "access_method": "api_key",
       "artifact": "code",
-      "base_url": "https://api.siliconflow.cn/v1"
+      "base_url": "https://api.siliconflow.cn/v1",
+      "channel": "web"
     },
     {
       "name": "DeepSeek Platform",
@@ -1883,7 +1919,8 @@
       "docs_url": "https://api-docs.deepseek.com/",
       "access_method": "api_key",
       "artifact": "code",
-      "base_url": "https://api.deepseek.com/v1"
+      "base_url": "https://api.deepseek.com/v1",
+      "channel": "web"
     },
     {
       "name": "TypeSafe AI",
@@ -1908,7 +1945,8 @@
       "docs_url": "https://docs.typesafe.ai/",
       "access_method": "api_key",
       "artifact": "code",
-      "base_url": "https://api.typesafe.ai/v1"
+      "base_url": "https://api.typesafe.ai/v1",
+      "channel": "web"
     },
     {
       "name": "Braintrust",
@@ -2053,7 +2091,8 @@
       "docs_url": "https://docs.braintrust.dev/plans-and-limits#model-credits",
       "access_method": "api_key",
       "artifact": "code",
-      "base_url": "https://api.braintrust.dev/v1/proxy"
+      "base_url": "https://api.braintrust.dev/v1/proxy",
+      "channel": "web"
     },
     {
       "name": "Deepgram",
@@ -2098,7 +2137,8 @@
       "docs_url": "https://developers.deepgram.com/",
       "access_method": "api_key",
       "artifact": "code",
-      "base_url": "https://api.deepgram.com/v1"
+      "base_url": "https://api.deepgram.com/v1",
+      "channel": "web"
     },
     {
       "name": "AssemblyAI",
@@ -2133,7 +2173,8 @@
       "docs_url": "https://www.assemblyai.com/docs",
       "access_method": "api_key",
       "artifact": "code",
-      "base_url": "https://api.assemblyai.com/v2"
+      "base_url": "https://api.assemblyai.com/v2",
+      "channel": "web"
     }
   ],
   "ga_measurement_id": "G-CFXWNKBD7G",

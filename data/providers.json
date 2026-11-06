@@ -1270,6 +1270,41 @@
       "channel": "web"
     },
     {
+      "name": "Devin (Free)",
+      "url": "https://devin.ai/pricing",
+      "free_type": "Rate-limited free",
+      "notes": "Devin offers a Free plan with a light quota to code with agents, free use of SWE-2, unlimited inline edits, and unlimited Tab completions. Account login required, no credit card required. Runs bundled inside the Devin interface on SWE-2 and limited models.",
+      "timeout": "Not published",
+      "verified": "2026-11-06",
+      "models": [
+        {
+          "name": "SWE-2 (Free)",
+          "cost": "$0",
+          "context": "Not published",
+          "rpm": "Light quota",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-06"
+        },
+        {
+          "name": "Limited models (auto-selected)",
+          "cost": "$0",
+          "context": "Not published",
+          "rpm": "Light quota",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-06"
+        }
+      ],
+      "verified_method": "docs",
+      "docs_url": "https://devin.ai/pricing",
+      "access_method": "bundled",
+      "artifact": "code",
+      "channel": "web"
+    },
+    {
       "name": "Qoder",
       "url": "https://docs.qoder.com/account/pricing",
       "free_type": "Rate-limited free",

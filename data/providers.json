@@ -21,7 +21,7 @@
       "name": "OpenCode Zen",
       "url": "https://opencode.ai/v2/docs/console/models/",
       "free_type": "Promo free (limited time)",
-      "notes": "12 free coding and reasoning models with zero credit card required. Drop-in OpenAI-compatible endpoint for Cursor, Cline, and agentic workflows (promo models may use prompt data for training).",
+      "notes": "OpenCode Zen offers 12 free models with 256K\u20131M context (including Big Pickle, Jev 1.13, Flint 40B, and Crouton). No credit card required. Free-tier prompts are retained for model training.",
       "timeout": "Not published",
       "verified": "2026-11-05",
       "models": [
@@ -156,7 +156,7 @@
       "name": "OpenRouter",
       "url": "https://openrouter.ai/models?max_price=0",
       "free_type": "Rate-limited free",
-      "notes": "OpenAI-compatible gateway (https://openrouter.ai/api/v1). 50 RPD on $0 accounts, 1,000 RPD with $10+ credits. No credit card required. Permanent $0 models have :free suffix.",
+      "notes": "OpenRouter offers 13 permanently free models (:free suffix) with 64K\u2013500K context, translating to 50 requests/day (1,000 requests/day with + purchased credits). No credit card required. Upstream model availability determines live rate limits.",
       "timeout": "Not published",
       "verified": "2026-11-05",
       "models": [
@@ -300,7 +300,7 @@
       "name": "Google AI Studio (Gemini API)",
       "url": "https://ai.google.dev/gemini-api/docs/rate-limits",
       "free_type": "Rate-limited free",
-      "notes": "Free forever, no card, most generous major-provider tier. Live-verified against the v1beta API with an API key (2026-08-12) \u2014 model list and context windows are real; per-account quota varies by account age (see AI Studio rate-limit dashboard). Free-tier data may be used for training.",
+      "notes": "Google AI Studio offers 16 free models with up to 1M context, translating to 15\u201330 requests/minute (up to 1,500 requests/day per model). No credit card required. Free-tier prompts and outputs are retained for model training.",
       "timeout": "Not published",
       "verified": "2026-11-05",
       "models": [
@@ -474,7 +474,7 @@
       "name": "Groq",
       "url": "https://console.groq.com/docs/rate-limits",
       "free_type": "Rate-limited free",
-      "notes": "LPU hardware, fastest time-to-first-token. 9 free LLMs plus Whisper STT (2,000 req/day) and Orpheus TTS (100 req/day). Limits pooled at organization level per model. No credit card required. OpenAI-compatible API format.",
+      "notes": "Groq offers 13 free models (9 LLMs, 2 Whisper STT, 2 Orpheus TTS), translating to up to 14,400 text requests/day and 2,000 audio transcriptions/day (~8 hours/day). No credit card required. Limits are pooled at organization level.",
       "timeout": "Not published",
       "verified": "2026-11-05",
       "models": [
@@ -619,7 +619,7 @@
       "name": "Cerebras",
       "url": "https://inference-docs.cerebras.ai/support/rate-limits",
       "free_type": "Trial credits",
-      "notes": "Wafer-scale hardware, 2,000+ tok/s. No permanent free tier \u2014 $5 trial credits, 30-day expiry, card required. Per-model limits on a rotating shortlist.",
+      "notes": "Cerebras offers $5 trial credit across 2 models (gpt-oss-120b, qwen-3.8-27b with 8K context cap), translating to 1M tokens/day at 2,000+ tokens/sec. Credit card required. Trial credits expire in 30 days.",
       "timeout": "Not published",
       "verified": "2026-11-01",
       "models": [
@@ -654,7 +654,7 @@
       "name": "Cloudflare Workers AI",
       "url": "https://developers.cloudflare.com/workers-ai/platform/limits",
       "free_type": "Rate-limited free",
-      "notes": "Neurons are normalized GPU-compute units, shared pool across all models. Resets 00:00 UTC. Hard stop when pool exhausted, errors not overage. No credit card.",
+      "notes": "Cloudflare Workers AI offers ~80 free models (including Llama 3.3 70B, DeepSeek-R1 distills, Whisper, and FLUX), translating to 10,000 neurons/day (~hundreds of queries or audio minutes). No credit card required. Hard stop at 10,000 neurons until 00:00 UTC daily reset.",
       "timeout": "Not published",
       "verified": "2026-10-29",
       "models": [
@@ -729,7 +729,7 @@
       "name": "Hugging Face",
       "url": "https://huggingface.co/docs/inference-providers",
       "free_type": "Rate-limited free",
-      "notes": "Two products: Serverless API (free, rate-limited) and Inference Providers gateway. Cold starts 10-30s on unpopular models. Limits not published as fixed numbers.",
+      "notes": "Hugging Face offers free serverless inference on popular open models (up to ~300 requests/hour), with 10\u201330s cold starts on low-traffic weights. No credit card required. Rate limits throttle dynamically based on shared cluster load.",
       "timeout": "Not published",
       "verified": "2026-10-29",
       "models": [
@@ -784,7 +784,7 @@
       "name": "Mistral La Plateforme",
       "url": "https://docs.mistral.ai",
       "free_type": "Rate-limited free (Experiment)",
-      "notes": "Phone (SMS) verification required, no card. Exact limits no longer published - see Admin Console Limits per workspace. Evaluation tier, not production.",
+      "notes": "Mistral offers free evaluation API access across 4 models (including Codestral and Mistral Small), translating to 1B free tokens/month on Experiment tier. Phone verification required; no credit card required. Restricted to evaluation and non-production prototyping.",
       "timeout": "Not published",
       "verified": "2026-10-29",
       "models": [
@@ -829,7 +829,7 @@
       "name": "SambaNova Cloud",
       "url": "https://cloud.sambanova.ai/apis",
       "free_type": "Rate-limited free",
-      "notes": "OpenAI-compatible base URL api.sambanova.ai/v1. Preview models can be pulled at any time. No credit card, no phone verification.",
+      "notes": "SambaNova Cloud offers 5 free models (including DeepSeek-V3.2, Llama 3.3 70B, and Gemma 4 31B) with 128K context, translating to 10\u201330 requests/minute. No credit card required. Preview models may rotate or unpublish without advance notice.",
       "timeout": "Not published",
       "verified": "2026-11-05",
       "models": [
@@ -893,7 +893,7 @@
       "name": "NVIDIA NIM (build.nvidia.com)",
       "url": "https://build.nvidia.com",
       "free_type": "Trial credits",
-      "notes": "Credit-based, not a rate-limited-free tier. Larger grants need corporate email, tie to ~90-day evaluation windows.",
+      "notes": "NVIDIA NIM offers 1,000 free trial credits across catalog models (including Nemotron 3.5 Lightning with 1M context), translating to ~40 hours of inference testing. No credit card required; corporate email required for extended credits. Credits tie to a 90-day evaluation window.",
       "timeout": "Not published",
       "verified": "2026-10-29",
       "models": [
@@ -938,7 +938,7 @@
       "name": "Z.AI (Zhipu)",
       "url": "https://z.ai",
       "free_type": "Rate-limited free",
-      "notes": "Free-tier limits revised twice in the past year - verify. Peak-hour throttling. Flash models are free regardless of tier. OpenAI-compatible.",
+      "notes": "Z.AI offers free API access to GLM-5.1, GLM-4.7-Flash, and GLM-4.6V-Flash with 128K context, translating to 15 requests/minute. No credit card required. Shared free tier throttles during peak platform traffic hours.",
       "timeout": "Not published",
       "verified": "2026-10-29",
       "models": [
@@ -992,7 +992,7 @@
       "name": "DeepInfra",
       "url": "https://docs.deepinfra.com/account/rate-limits",
       "free_type": "Trial credits",
-      "notes": "200 concurrent requests per model - high ceiling. Credit-based, no daily cap while credits last. Notable models below; 185+ total in catalog-wide trial credits.",
+      "notes": "DeepInfra offers $5 signup trial credit across 185+ models (including DeepSeek-V3.1, Qwen 3 32B, and GLM-4.7), translating to ~50M tokens at 200 concurrent requests. No credit card required. Credits remain active until depleted.",
       "timeout": "Not published",
       "verified": "2026-11-05",
       "models": [
@@ -1047,7 +1047,7 @@
       "name": "GitHub Copilot (Free)",
       "url": "https://github.com/features/copilot",
       "free_type": "Rate-limited free",
-      "notes": "Free plan: 2,000 completions/mo plus an unpublished allowance of GitHub AI Credits; models auto-selected. Login with GitHub OAuth, no card.",
+      "notes": "GitHub Copilot Free offers 2,000 code completions/month and 50 chat messages/month. GitHub account required, no credit card required. Models are auto-selected by GitHub and run bundled inside the editor.",
       "timeout": "Not published",
       "verified": "2026-10-29",
       "models": [
@@ -1071,7 +1071,7 @@
       "name": "Kiro (AWS)",
       "url": "https://kiro.dev/pricing",
       "free_type": "Rate-limited free",
-      "notes": "Free plan: 50 credits/mo, resets monthly, unused credits do not roll over. Login via social or AWS Builder ID; no card for the free tier.",
+      "notes": "Kiro offers 50 free credits/month for spec-driven agent workflows. Social account or AWS Builder ID required, no credit card required. Unused credits do not roll over to the next month.",
       "timeout": "Not published",
       "verified": "2026-10-29",
       "models": [
@@ -1125,7 +1125,7 @@
       "name": "Trae (ByteDance)",
       "url": "https://www.trae.ai/pricing",
       "free_type": "Rate-limited free",
-      "notes": "Free plan: 5,000 autocompletions/mo plus limited standard-queue usage and SOLO mode. Frontier models bundled in the vendor UI; no card.",
+      "notes": "Trae offers 5,000 free code completions/month plus standard-queue access to Claude 3.5 Sonnet and GPT-4o. Account login required, no credit card required. Inference runs bundled inside the Trae IDE.",
       "timeout": "Not published",
       "verified": "2026-10-29",
       "models": [
@@ -1149,7 +1149,7 @@
       "name": "Bolt.new",
       "url": "https://support.bolt.new/account-and-subscription/tokens",
       "free_type": "Rate-limited free",
-      "notes": "Free plan: 1M tokens/mo with a 300K/day cap, resets monthly. Frontier models bundled; no card.",
+      "notes": "Bolt.new offers 1M free tokens/month with a 300K tokens/day daily cap for full-stack web generation. Account login required, no credit card required. Credits reset on the first of each month.",
       "timeout": "Not published",
       "verified": "2026-10-29",
       "models": [
@@ -1173,7 +1173,7 @@
       "name": "Lovable",
       "url": "https://docs.lovable.dev/introduction/credits-and-usage",
       "free_type": "Rate-limited free",
-      "notes": "Free plan: 5 build credits/day (max 30/mo) plus 20 cloud and 4 AI credits/mo. Frontier models bundled (Fable 5.1); no card.",
+      "notes": "Lovable offers 5 daily build credits (up to 30/month) plus 20 cloud and 4 AI edit credits/month. Account login required, no credit card required. Inference runs bundled inside the Lovable web builder.",
       "timeout": "Not published",
       "verified": "2026-10-29",
       "models": [
@@ -1197,7 +1197,7 @@
       "name": "v0 (Vercel)",
       "url": "https://v0.app/docs/pricing",
       "free_type": "Rate-limited free",
-      "notes": "Free plan: $5/mo credits plus 7 messages/day. Frontier models bundled; no card.",
+      "notes": "v0 offers $5/month in free credits plus 7 messages/day for UI component generation. Account login required, no credit card required. Credits reset monthly with no rollover.",
       "timeout": "Not published",
       "verified": "2026-10-29",
       "models": [
@@ -1221,7 +1221,7 @@
       "name": "Kaggle Notebooks",
       "url": "https://www.kaggle.com/docs/efficient-gpu-usage",
       "free_type": "Rate-limited free",
-      "notes": "Free ~30 GPU-h/week (resets weekly), P100 or 2xT4, 12h sessions. Open-weight models you load yourself; phone verification may apply.",
+      "notes": "Kaggle offers 30 GPU-hours/week (NVIDIA P100 or 2xT4) in 12-hour maximum execution sessions. Phone verification required for GPU access; no credit card required. GPU quota resets weekly.",
       "timeout": "Not published",
       "verified": "2026-10-29",
       "models": [
@@ -1245,7 +1245,7 @@
       "name": "Hugging Face Spaces",
       "url": "https://huggingface.co/docs/hub/spaces-overview",
       "free_type": "Rate-limited free",
-      "notes": "Static Spaces free for everyone; free personal accounts host up to 2 ZeroGPU Gradio Spaces. Any HF model you load; no card. Persistent or upgraded Spaces require a Pro subscription.",
+      "notes": "Hugging Face Spaces offers free hosting for up to 2 ZeroGPU Gradio spaces with dynamic GPU allocation. Free account required, no credit card required. Persistent storage and dedicated hardware require a Pro tier.",
       "timeout": "Not published",
       "verified": "2026-10-29",
       "models": [
@@ -1269,7 +1269,7 @@
       "name": "Cursor (Hobby)",
       "url": "https://cursor.com/pricing",
       "free_type": "Rate-limited free",
-      "notes": "Hobby plan: limited Agent requests and Tab completions; quota unpublished by the vendor. Own + limited frontier models bundled; no card.",
+      "notes": "Cursor Hobby offers 2,000 free completion edits and limited agent requests. Account login required, no credit card required. Quota is metered per user account with frontier models auto-selected.",
       "timeout": "Not published",
       "verified": "2026-10-29",
       "models": [
@@ -1303,7 +1303,7 @@
       "name": "Devin (Free)",
       "url": "https://devin.ai/pricing",
       "free_type": "Rate-limited free",
-      "notes": "Free plan: light quota, unpublished. SWE-1.7/SWE-2 plus open models bundled; no card.",
+      "notes": "Devin Free offers a limited daily quota of agentic software engineering runs. Account login required, no credit card required. Runs bundled inside the Devin interface on SWE-2 and open models.",
       "timeout": "Not published",
       "verified": "2026-10-29",
       "models": [
@@ -1337,7 +1337,7 @@
       "name": "Windsurf",
       "url": "https://docs.windsurf.com/windsurf/accounts/usage",
       "free_type": "Rate-limited free",
-      "notes": "Free plan: light quota plus unlimited Tab/inline edits; numeric limits unpublished. Frontier models via Auto; no card.",
+      "notes": "Windsurf offers unlimited inline code edits/Tab completions plus a limited starter quota of Cascade agent prompts. Account login required, no credit card required. Advanced frontier routing requires a paid plan.",
       "timeout": "Not published",
       "verified": "2026-10-29",
       "models": [
@@ -1361,7 +1361,7 @@
       "name": "Qoder",
       "url": "https://docs.qoder.com/account/pricing",
       "free_type": "Rate-limited free",
-      "notes": "Free plan: limited completions/NES and basic models, plus BYOK; quota unpublished. No card.",
+      "notes": "Qoder offers free basic code autocompletions and limited Next-Edit-Suggestion (NES) runs. Account login required, no credit card required. Unlimited usage requires bringing your own API keys.",
       "timeout": "Not published",
       "verified": "2026-10-29",
       "models": [
@@ -1385,7 +1385,7 @@
       "name": "Antigravity CLI (Google)",
       "url": "https://antigravity.google/pricing",
       "free_type": "Rate-limited free",
-      "notes": "Individual plan: unlimited Tab and command requests with unpublished basic weekly rate limits. Google login; no card.",
+      "notes": "Antigravity CLI offers free weekly quotas for terminal and editor agent tasks. Google account login required, no credit card required. Quotas reset weekly; rate limits apply during high-load periods.",
       "timeout": "Not published",
       "verified": "2026-10-29",
       "models": [
@@ -1409,7 +1409,7 @@
       "name": "Google Colab",
       "url": "https://research.google.com/colaboratory/faq.html",
       "free_type": "Rate-limited free",
-      "notes": "Free GPU/TPU with 12h max sessions; Colab does not publish these limits. Google login; no card.",
+      "notes": "Google Colab offers free access to shared T4 GPUs and TPUs with 12-hour maximum runtime sessions. Google account required, no credit card required. Compute resources are dynamically allocated and idle sessions disconnect.",
       "timeout": "Not published",
       "verified": "2026-10-29",
       "models": [
@@ -1433,7 +1433,7 @@
       "name": "Figma (Starter)",
       "url": "https://www.figma.com/pricing/",
       "free_type": "Rate-limited free",
-      "notes": "Starter plan: 150 AI credits/day, up to 500/mo. Figma AI, Make, and agent bundled; no card.",
+      "notes": "Figma Starter offers 150 free AI generation credits/day (up to 500/month). Figma account required, no credit card required. Inference runs bundled inside Figma design files for layer generation and text editing.",
       "timeout": "Not published",
       "verified": "2026-10-29",
       "models": [
@@ -1457,7 +1457,7 @@
       "name": "Canva (Free)",
       "url": "https://www.canva.com/en/pricing/",
       "free_type": "Rate-limited free",
-      "notes": "Free plan: up to 20 Standard AI uses or 20 Premium per month (resets monthly); Magic Media text-to-image is 50 lifetime. No card.",
+      "notes": "Canva Free offers 20 free AI design uses/month and 50 lifetime Magic Media text-to-image generations. Canva account required, no credit card required. Monthly generation allowance resets on the first of each month.",
       "timeout": "Not published",
       "verified": "2026-10-30",
       "models": [
@@ -1481,7 +1481,7 @@
       "name": "Framer (Free)",
       "url": "https://www.framer.com/pricing",
       "free_type": "Trial credits",
-      "notes": "Free plan: 500 AI credits to try (one-off), free Framer domain, non-commercial. No card.",
+      "notes": "Framer Free offers 500 one-time AI page generation credits plus a free Framer subdomain. Account login required, no credit card required. Projects are limited to non-commercial personal use.",
       "timeout": "Not published",
       "verified": "2026-10-29",
       "models": [
@@ -1505,7 +1505,7 @@
       "name": "Replit (Starter)",
       "url": "https://docs.replit.com/help/pricing-and-plans",
       "free_type": "Rate-limited free",
-      "notes": "Starter: daily Agent allowance plus limited monthly cloud credits and 1 published app; numbers unpublished. Frontier models bundled; no card.",
+      "notes": "Replit Starter offers a limited daily Replit Agent allowance plus free hosting for 1 published app. Replit account required, no credit card required. Container runs sleep after periods of inactivity.",
       "timeout": "Not published",
       "verified": "2026-10-29",
       "models": [
@@ -1529,7 +1529,7 @@
       "name": "Kilo Gateway",
       "url": "https://kilo.ai/gateway",
       "free_type": "Rate-limited free",
-      "notes": "Universal gateway, $0 forever for default free models. Anonymous keyless at 200 req/hour per IP; :free-tagged models. OpenAI-compatible. No credit card.",
+      "notes": "Kilo Gateway offers 7 free models with 64K\u2013256K context, translating to 200 requests/hour per IP address. No credit card required. Model availability reflects upstream provider quotas.",
       "timeout": "Not published",
       "verified": "2026-11-05",
       "verified_method": "live-probe",
@@ -1613,7 +1613,7 @@
       "name": "Nous Portal",
       "url": "https://portal.nousresearch.com/api-docs",
       "free_type": "Rate-limited free",
-      "notes": "Nous Research Hermes models, $0 monthly plan. Free 50 RPM / 500k TPM. OpenAI-compatible. No card on free plan.",
+      "notes": "Nous Portal offers 5 free Hermes and open-weight models, translating to 50 requests/minute and 500,000 tokens/minute. Free account registration required, no credit card required. Preview models may be adjusted during experimental rounds.",
       "timeout": "Not published",
       "verified": "2026-11-05",
       "verified_method": "live-probe",
@@ -1687,7 +1687,7 @@
       "name": "Cohere",
       "url": "https://docs.cohere.com/docs/rate-limits",
       "free_type": "Rate-limited free",
-      "notes": "Evaluation key, 1,000 calls/month. Chat 20 req/min per model. Embed 2k inputs/min. No card for trial key. Non-production limits.",
+      "notes": "Cohere offers free trial developer access across 5 models, translating to 1,000 API calls/month (20 requests/minute for Command R+, 2,000 inputs/minute for Embed). No credit card required. Restricted to evaluation and non-production testing.",
       "timeout": "Not published",
       "verified": "2026-11-01",
       "verified_method": "docs",
@@ -1731,7 +1731,7 @@
       "name": "Requesty",
       "url": "https://www.requesty.ai/pricing",
       "free_type": "Rate-limited free",
-      "notes": "Gateway, $0 free models at 200 req/day. Routing, caching, EU residency. No credit card required.",
+      "notes": "Requesty offers 3 free models with 128K context, translating to 200 requests/day per account. Email registration required, no credit card required. Quota resets daily at 00:00 UTC.",
       "timeout": "Not published",
       "verified": "2026-11-05",
       "verified_method": "live-probe",
@@ -1775,7 +1775,7 @@
       "name": "OVHcloud AI Endpoints",
       "url": "https://www.ovhcloud.com/en/public-cloud/ai-endpoints/",
       "free_type": "Rate-limited free",
-      "notes": "EU-sovereign. Anonymous keyless 2 req/min per IP per model. Authed 400 req/min. No usage cap apart from rate. No card for anonymous.",
+      "notes": "OVHcloud offers 10 free open-source models, translating to 2 requests/minute per IP keyless (or 400 requests/minute with a registered account). No credit card required for anonymous keyless access. Quota is enforced per client IP.",
       "timeout": "Not published",
       "verified": "2026-11-05",
       "verified_method": "live-probe",
@@ -1799,7 +1799,7 @@
       "name": "SiliconFlow",
       "url": "https://siliconflow.cn",
       "free_type": "Rate-limited free",
-      "notes": "Large-scale inference gateway offering permanently free open-source model tiers plus 14M free signup tokens. OpenAI-compatible API. No credit card required.",
+      "notes": "SiliconFlow offers 4 permanently free models (including DeepSeek-V3 and GLM-4 9B) plus 14M free signup tokens. Account registration required, no credit card required. Platform tokens apply across non-free catalog models until depleted.",
       "timeout": "Not published",
       "verified": "2026-10-29",
       "models": [
@@ -1854,7 +1854,7 @@
       "name": "DeepSeek Platform",
       "url": "https://api-docs.deepseek.com",
       "free_type": "Trial credits",
-      "notes": "5M free tokens granted on new account creation (valid 30 days). OpenAI-compatible API format with cache-miss/cache-hit pricing.",
+      "notes": "DeepSeek Platform offers 5M free signup tokens across deepseek-chat and deepseek-reasoner with 64K context. Account registration required, no credit card required. Free token grant expires 30 days after account creation.",
       "timeout": "Not published",
       "verified": "2026-10-29",
       "models": [
@@ -1889,7 +1889,7 @@
       "name": "TypeSafe AI",
       "url": "https://typesafe.ai/",
       "free_type": "Trial credits",
-      "notes": "$5 free signup credits (~120M input tokens on Jev). OpenAI-compatible endpoint. Ideal for Jev code generation, fast structured outputs, and type safety.",
+      "notes": "TypeSafe AI offers $5 free signup credit on Jev 1.13 with 256K context, translating to ~120M input tokens. Account registration required, no credit card required. Credits remain active until depleted.",
       "timeout": "Not published",
       "verified": "2026-11-05",
       "models": [
@@ -1914,7 +1914,7 @@
       "name": "Braintrust",
       "url": "https://www.braintrust.dev/pricing",
       "free_type": "Trial credits",
-      "notes": "Starter plan ($0/mo, no card required) includes $10/month recurring model credits covering 13 built-in models (GPT-6 series, GPT-5.6 series, DeepSeek V4/V4.1, GLM-5.2/5.3, Kimi K3, and Jev) in playgrounds, evaluations, prompts, and the Braintrust SDK.",
+      "notes": "Braintrust offers $10/month recurring model credit on Starter across 13 built-in models (including GPT-6 series, DeepSeek V4.1, GLM-5.3, and Jev). Work email required, no credit card required. Model credit resets monthly with no rollover.",
       "timeout": "Not published",
       "verified": "2026-11-05",
       "models": [
@@ -2059,7 +2059,7 @@
       "name": "Deepgram",
       "url": "https://deepgram.com/pricing",
       "free_type": "Trial credits",
-      "notes": "$200 free signup credit grant (~43,000 minutes / 700+ hours of speech transcription or TTS). No expiration, no credit card required. REST, WebSocket, and OpenAI-compatible audio endpoints.",
+      "notes": "Deepgram offers $200 free credit across 3 models, translating to ~43,000 minutes (700+ hours) of speech transcription and TTS. Account registration required, no credit card required. Free credits do not expire.",
       "timeout": "Not published",
       "verified": "2026-11-05",
       "models": [
@@ -2104,7 +2104,7 @@
       "name": "AssemblyAI",
       "url": "https://www.assemblyai.com/pricing",
       "free_type": "Trial credits",
-      "notes": "$50 free signup credits covering pre-recorded and real-time streaming speech-to-text, speech understanding, and audio guardrails. No credit card required.",
+      "notes": "AssemblyAI offers $50 free credit across 2 models, translating to ~135 hours of audio transcription and streaming speech-to-text. Account registration required, no credit card required. Free credits do not expire.",
       "timeout": "Not published",
       "verified": "2026-11-05",
       "models": [

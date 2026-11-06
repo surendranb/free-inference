@@ -498,31 +498,27 @@ def audit_catalog(catalog_data):
     }
 
 
-def audit_stale_provider_docs(catalog_data, key, apply_updates=False, max_audits=10, priority_providers=None):
-    """Autonomously audit stale or failing providers using Google AI Studio Antigravity Managed Agent in cloud sandbox."""
+def verify_web_providers_docs(catalog_data, key, apply_updates=False, max_audits=None, priority_providers=None, force_all=False):
+    """Engine 1: Verify 100% of Web/Docs catalog providers using Google AI Studio Antigravity Managed Agent in cloud sandbox."""
     today = date.today().isoformat()
     audit_results = []
     audited_count = 0
     priority_set = set(priority_providers or [])
 
     provs = list(catalog_data.get("providers", []))
+    # Prioritize probe failures first
     provs.sort(key=lambda p: 0 if p.get("name") in priority_set else 1)
 
     for p in provs:
-        if audited_count >= max_audits:
+        if max_audits is not None and audited_count >= max_audits:
             break
 
         pname = p.get("name")
         is_priority = pname in priority_set
 
-        if not is_priority:
-            v_str = p.get("verified", "")
-            try:
-                v_date = datetime.fromisoformat(v_str).date()
-                days_old = (date.today() - v_date).days
-                if days_old <= 30:
-                    continue
-            except ValueError:
+        # If already verified today via live-probe (and not a priority failure), ground truth is already established
+        if not is_priority and not force_all:
+            if p.get("verified") == today and p.get("verified_method") == "live-probe":
                 continue
 
         doc_url = p.get("docs_url") or p.get("url")
@@ -546,10 +542,14 @@ Task:
 2. Read the live rendered page, pricing tables, quotas, token limits, audio second limits (ASH/ASD), and free allowances.
 3. If the page redirected or pricing moved to a subpage, find the current pricing/free tier.
 4. Extract every verified $0 / free model currently offered on this page across ALL inference modalities: Text, Code, Speech-to-Text (STT/Whisper), Text-to-Speech (TTS/Audio), Vision/Multimodal, and Embeddings.
-5. Output your conclusion strictly as a JSON object with keys:
+5. Format the provider's notes strictly according to the 4-point fact model:
+   [The Grant] + [The Output] + [The Process] + [The Condition]
+   (e.g., "Deepgram offers $200 free credit and 4 speech models, translating to ~43,000 minutes or 700+ hours. No credit card required. Credits expire in 90 days.")
+6. Output your conclusion strictly as a JSON object with keys:
 - "status": "active" (free tier exists), "retired" (discontinued/paid-only), or "changed"
 - "is_free_active": boolean
 - "free_type": "Rate-limited free", "Trial credits", or "Promo free (limited time)"
+- "notes": string (strict 4-point fact format: [The Grant] + [The Output] + [The Process] + [The Condition])
 - "models": list of free models with objects: [{{"name": "string", "cost": "$0", "context": "string (context window, max audio length, or input type)", "rpm": "string", "tpm": "string (tokens/min or audio seconds/hr)", "rpd": "string", "tpd": "string (tokens/day, audio seconds/day, or credit amount)"}}]
 - "summary": concise 1-sentence summary of the verified free allowance, limits, and reset cadence.
 
@@ -558,16 +558,32 @@ Output valid JSON only with no conversational text.
             agent_res = call_antigravity_agent(prompt, key, timeout=150)
             raw_out = agent_res.get("output_text", "")
             
-            # Extract JSON block robustly
+            # Robust JSON extraction with fallback synthesis
             try:
                 eval_data = extract_first_json(raw_out)
             except Exception as parse_err:
-                print(f"  Notice: JSON unwrap error for {pname} ({parse_err}): {raw_out[:180]}")
-                eval_data = {
-                    "status": "unreachable",
-                    "is_free_active": None,
-                    "summary": f"Parse error: {parse_err}"
-                }
+                print(f"  Notice: JSON unwrap error for {pname} ({parse_err}), synthesizing from agent observations...")
+                try:
+                    synth_prompt = f"""Based on these Antigravity agent observations from auditing {pname} ({doc_url}):
+{raw_out[:3000]}
+
+Extract the verified free tier status and details. Output strictly valid JSON with keys:
+- "status": "active" (free tier exists), "retired" (discontinued/paid-only), or "changed"
+- "is_free_active": boolean
+- "free_type": "Rate-limited free", "Trial credits", or "Promo free (limited time)"
+- "notes": string (strict 4-point fact format: [The Grant] + [The Output] + [The Process] + [The Condition])
+- "models": list of free models [{{"name": "string", "cost": "$0", "context": "string", "rpm": "string", "tpm": "string", "rpd": "string", "tpd": "string"}}]
+- "summary": concise 1-sentence summary
+"""
+                    synth_raw = call_ai_studio(synth_prompt, key)
+                    eval_data = extract_first_json(synth_raw)
+                except Exception as synth_err:
+                    print(f"  Notice: Synthesis failed for {pname}: {synth_err}")
+                    eval_data = {
+                        "status": "unreachable",
+                        "is_free_active": None,
+                        "summary": f"Parse error: {parse_err}"
+                    }
 
             audit_entry = {
                 "provider": pname,
@@ -584,6 +600,11 @@ Output valid JSON only with no conversational text.
 
             if eval_data.get("is_free_active") and apply_updates:
                 p["verified"] = today
+                p["verified_method"] = "docs"
+                if eval_data.get("free_type") in ("Rate-limited free", "Trial credits", "Promo free (limited time)"):
+                    p["free_type"] = eval_data["free_type"]
+                if eval_data.get("notes") and len(eval_data["notes"]) > 20:
+                    p["notes"] = eval_data["notes"]
                 audited_models = eval_data.get("models", [])
                 if audited_models and isinstance(audited_models, list) and len(audited_models) > 0:
                     for am in audited_models:
@@ -610,6 +631,10 @@ Output valid JSON only with no conversational text.
             })
 
     return audit_results
+
+
+# Backwards compatibility alias
+audit_stale_provider_docs = verify_web_providers_docs
 
 
 def poll_candidate_providers(catalog_data):
@@ -767,8 +792,8 @@ def poll_candidate_providers(catalog_data):
     return list(candidates.values())
 
 
-def audit_provider_candidates(candidates, key, max_audits=2):
-    """Use Antigravity Managed Agent in cloud sandbox to audit new provider candidates."""
+def audit_provider_candidates(candidates, key, max_audits=None):
+    """Engine 2: Use Antigravity Managed Agent in cloud sandbox to audit new provider candidates."""
     if not key or not candidates:
         return {"verified": [], "all_audited": []}
 
@@ -789,7 +814,7 @@ def audit_provider_candidates(candidates, key, max_audits=2):
     audited_count = 0
 
     for cand in candidates:
-        if audited_count >= max_audits:
+        if max_audits is not None and audited_count >= max_audits:
             break
 
         cname = cand["name"]
@@ -819,10 +844,13 @@ Task:
 1. Navigate to {curl} using your tools (Google Chrome / url_context / curl / bash).
 2. Find developer pricing, free tier, trial credits, rate limits, or API keys.
 3. Check if {cname} offers a genuine $0 developer free tier, recurring free allowance, or free trial credits without requiring an upfront paid credit card purchase.
-4. Output your conclusion strictly as a JSON object with keys:
+4. Format the provider's notes strictly according to the 4-point fact model:
+   [The Grant] + [The Output] + [The Process] + [The Condition]
+5. Output your conclusion strictly as a JSON object with keys:
 - "status": "active" (free tier exists), "paid_only" (strictly prepaid/credit card purchase required), or "no_api"
 - "is_free_active": boolean (true if developer can use models for $0)
 - "free_type": "Permanent $0", "Trial credits", "Rate limited", or "None"
+- "notes": string strictly following 4-point fact format: [The Grant] + [The Output] + [The Process] + [The Condition]
 - "summary": concise 1-sentence summary of the verified free allowance, limits, and reset cadence.
 - "candidate_models": list of free model names/IDs (strings)
 - "base_url": API base URL if discovered, or null
@@ -844,6 +872,7 @@ Output strictly valid JSON with keys:
 - "status": "active" (free tier exists), "paid_only" (strictly prepaid/credit card purchase required), or "no_api"
 - "is_free_active": boolean (true if developer can use models for $0)
 - "free_type": "Permanent $0", "Trial credits", "Rate limited", or "None"
+- "notes": string strictly following 4-point fact format: [The Grant] + [The Output] + [The Process] + [The Condition]
 - "summary": concise 1-sentence summary of the verified free allowance, limits, and reset cadence.
 - "candidate_models": list of free model names/IDs (strings)
 - "base_url": API base URL if discovered, or null
@@ -858,6 +887,7 @@ Output strictly valid JSON with keys:
                 "status": eval_data.get("status", "unknown"),
                 "is_free_active": eval_data.get("is_free_active", False),
                 "free_type": eval_data.get("free_type", "None"),
+                "notes": eval_data.get("notes") or eval_data.get("summary", ""),
                 "summary": eval_data.get("summary", ""),
                 "candidate_models": eval_data.get("candidate_models", []),
                 "base_url": eval_data.get("base_url"),
@@ -892,7 +922,7 @@ Output strictly valid JSON with keys:
     }
 
 
-def run_scout(apply_updates=False):
+def run_scout(apply_updates=False, audit_limit=None, force_all=False):
     print("--> Starting AI Studio Discovery Scout & Catalog Auditor...")
     today = date.today().isoformat()
     key = gemini_key()
@@ -963,11 +993,12 @@ Output strictly valid JSON with no markdown formatting.
                 for m in sample_to_classify
             ]
 
-    # 3. Autonomous Doc-Auditor for Stale & Failing Providers
-    doc_audits = audit_stale_provider_docs(catalog_data, key, apply_updates=apply_updates, max_audits=18, priority_providers=failing_providers)
+    # 3. Autonomous Ground Truth Verifier for Web & Docs Providers
+    doc_audits = verify_web_providers_docs(catalog_data, key, apply_updates=apply_updates, max_audits=audit_limit, priority_providers=failing_providers, force_all=force_all)
     print(f"Completed {len(doc_audits)} autonomous doc-audits.")
 
     if apply_updates and doc_audits:
+        catalog_data["verified"] = max((p.get("verified", "") for p in catalog_data["providers"]), default=today)
         DATA_PATH.write_text(json.dumps(catalog_data, indent=2) + "\n")
         print(f"Updated {DATA_PATH} with fresh verification timestamps.")
 
@@ -975,7 +1006,7 @@ Output strictly valid JSON with no markdown formatting.
     candidate_providers = poll_candidate_providers(catalog_data)
     print(f"Discovered {len(candidate_providers)} uncataloged external providers across Hugging Face & OpenRouter.")
 
-    candidate_audit_results = audit_provider_candidates(candidate_providers, key, max_audits=2)
+    candidate_audit_results = audit_provider_candidates(candidate_providers, key, max_audits=audit_limit)
     verified_candidates = candidate_audit_results.get("verified", [])
     candidate_records = candidate_audit_results.get("all_audited", [])
 
@@ -1044,5 +1075,10 @@ Output strictly valid JSON with no markdown formatting.
 
 
 if __name__ == "__main__":
-    apply_flag = "--apply" in sys.argv
-    sys.exit(run_scout(apply_updates=apply_flag))
+    import argparse
+    parser = argparse.ArgumentParser(description="Autonomous Discovery Scout & Catalog Verifier for FreeInference.dev")
+    parser.add_argument("--apply", action="store_true", help="Apply updates to data/providers.json")
+    parser.add_argument("--limit", type=int, default=None, help="Limit number of audits (for testing; default is unconstrained)")
+    parser.add_argument("--force-all", action="store_true", help="Force audit of all web providers even if verified today")
+    args = parser.parse_args()
+    sys.exit(run_scout(apply_updates=args.apply, audit_limit=args.limit, force_all=args.force_all))

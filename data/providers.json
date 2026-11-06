@@ -734,40 +734,20 @@
     {
       "name": "Mistral La Plateforme",
       "url": "https://docs.mistral.ai",
-      "free_type": "Rate-limited free (Experiment)",
-      "notes": "Mistral offers free evaluation API access across 4 models (including Codestral and Mistral Small), translating to 1B free tokens/month on Experiment tier. Phone verification required; no credit card required. Restricted to evaluation and non-production prototyping.",
+      "free_type": "Rate-limited free",
+      "notes": "Mistral provides a free tier for developers to evaluate models. The output includes access to select baseline models via API. The process involves signing up for La Plateforme and utilizing default rate limits. The condition requires compliance with terms of service and staying within specified usage thresholds.",
       "timeout": "Not published",
-      "verified": "2026-10-29",
+      "verified": "2026-11-06",
       "models": [
         {
-          "name": "Mistral Large",
-          "cost": "$0 (Experiment)",
-          "context": "Model-dependent",
-          "rpm": "~1 req/sec",
-          "tpm": "Not published",
-          "rpd": "Not published",
-          "tpd": "~1B tokens/month",
-          "verified": "2026-10-29"
-        },
-        {
-          "name": "Codestral",
-          "cost": "$0 (Experiment)",
-          "context": "Model-dependent",
-          "rpm": "~1 req/sec",
-          "tpm": "Not published",
-          "rpd": "Not published",
-          "tpd": "~1B tokens/month",
-          "verified": "2026-10-29"
-        },
-        {
-          "name": "All API models (Experiment tier)",
-          "cost": "$0 (Experiment)",
-          "context": "Model-dependent",
-          "rpm": "~1 req/sec",
-          "tpm": "Not published",
-          "rpd": "Not published",
-          "tpd": "~1B tokens/month",
-          "verified": "2026-10-29"
+          "name": "mistral-tiny",
+          "cost": "$0",
+          "context": "32k",
+          "rpm": "Not specified",
+          "tpm": "Not specified",
+          "rpd": "Not specified",
+          "tpd": "Not specified",
+          "verified": "2026-11-06"
         }
       ],
       "verified_method": "docs",
@@ -781,58 +761,28 @@
       "name": "SambaNova Cloud",
       "url": "https://cloud.sambanova.ai/apis",
       "free_type": "Trial credits",
-      "notes": "[The Grant] Free tier. [The Output] Allows free access to models. [The Process] Does not require a credit card, but requires account creation. [The Condition] Credits expire in 90 days.",
+      "notes": "SambaNova Cloud provides initial trial credits upon account creation. Users can access production and preview models through an API key using these credits. The platform features pay-as-you-go credit systems alongside standard and free tier rate limits. Access is subject to community support guidelines and specific developer tier restrictions.",
       "timeout": "Not published",
       "verified": "2026-11-06",
       "models": [
         {
-          "name": "DeepSeek-V3.1",
-          "cost": "$0",
-          "context": "128K",
-          "rpm": "20",
-          "tpm": "Not published",
-          "rpd": "20",
-          "tpd": "200K tokens/day",
-          "verified": "2026-11-06"
-        },
-        {
-          "name": "DeepSeek-V3.2",
-          "cost": "$0",
-          "context": "128K",
-          "rpm": "20",
-          "tpm": "Not published",
-          "rpd": "20",
-          "tpd": "200K tokens/day",
-          "verified": "2026-11-06"
-        },
-        {
           "name": "Meta-Llama-3.3-70B-Instruct",
           "cost": "$0",
-          "context": "128K",
-          "rpm": "20",
-          "tpm": "Not published",
-          "rpd": "20",
-          "tpd": "200K tokens/day",
+          "context": "N/A",
+          "rpm": "N/A",
+          "tpm": "N/A",
+          "rpd": "N/A",
+          "tpd": "N/A",
           "verified": "2026-11-06"
         },
         {
-          "name": "gemma-4-31B-it",
+          "name": "DeepSeek-V3.1",
           "cost": "$0",
-          "context": "128K",
-          "rpm": "20",
-          "tpm": "Not published",
-          "rpd": "20",
-          "tpd": "200K tokens/day",
-          "verified": "2026-11-06"
-        },
-        {
-          "name": "gpt-oss-120b",
-          "cost": "$0",
-          "context": "128K",
-          "rpm": "20",
-          "tpm": "Not published",
-          "rpd": "20",
-          "tpd": "200K tokens/day",
+          "context": "N/A",
+          "rpm": "N/A",
+          "tpm": "N/A",
+          "rpd": "N/A",
+          "tpd": "N/A",
           "verified": "2026-11-06"
         }
       ],
@@ -1003,9 +953,9 @@
       "name": "GitHub Copilot (Free)",
       "url": "https://github.com/features/copilot",
       "free_type": "Rate-limited free",
-      "notes": "GitHub Copilot Free offers 2,000 code completions/month and 50 chat messages/month. GitHub account required, no credit card required. Models are auto-selected by GitHub and run bundled inside the editor.",
+      "notes": "GitHub provides Copilot Free with limited features for individual developers to try AI-powered coding assistance. The system delivers restricted agent access and limited AI credit allowances alongside Copilot Chat on GitHub.com and mobile. The implementation uses automated web data extraction, HTML table parsing, and policy analysis scripts via bash. Users receive free access subject to specific AI model availability constraints and organization or enterprise policy governance.",
       "timeout": "Not published",
-      "verified": "2026-10-29",
+      "verified": "2026-11-06",
       "models": [
         {
           "name": "Auto-selected (GPT-5 mini, Claude Haiku/Sonnet, Gemini Flash line)",
@@ -1015,7 +965,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-10-29"
+          "verified": "2026-11-06"
         }
       ],
       "verified_method": "docs",
@@ -1082,10 +1032,10 @@
     {
       "name": "Trae (ByteDance)",
       "url": "https://www.trae.ai/pricing",
-      "free_type": "Rate-limited free",
-      "notes": "Trae offers 5,000 free code completions/month plus standard-queue access to Claude 3.5 Sonnet and GPT-4o. Account login required, no credit card required. Inference runs bundled inside the Trae IDE.",
+      "free_type": "Trial credits",
+      "notes": "Trae offers free inference. The free allowance includes 5,000 monthly autocompletions and a one-time $3 usage allowance. Usage is renewed monthly, and the credits are valid for 90 days. The free tier requires no credit card.",
       "timeout": "Not published",
-      "verified": "2026-10-29",
+      "verified": "2026-11-06",
       "models": [
         {
           "name": "Frontier models (bundled, auto-selected)",
@@ -1095,7 +1045,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-10-29"
+          "verified": "2026-11-06"
         }
       ],
       "verified_method": "docs",
@@ -1108,19 +1058,19 @@
       "name": "Bolt.new",
       "url": "https://support.bolt.new/account-and-subscription/tokens",
       "free_type": "Rate-limited free",
-      "notes": "Bolt.new offers 1M free tokens/month with a 300K tokens/day daily cap for full-stack web generation. Account login required, no credit card required. Credits reset on the first of each month.",
+      "notes": "Bolt offers 1,000,000 tokens per month with a 300,000 daily token cap, translating to bundled frontier model inference for full-stack web and code generation via the Standard agent alongside hosting for up to 333k requests. No credit card required to sign up. Daily tokens reset every 24 hours without rollover, monthly quotas reset on the 1st of each calendar month, and free plan tokens do not roll over.",
       "timeout": "Not published",
-      "verified": "2026-10-29",
+      "verified": "2026-11-06",
       "models": [
         {
           "name": "Frontier models (bundled, auto-selected)",
           "cost": "$0",
-          "context": "Not published",
-          "rpm": "Not published",
-          "tpm": "Not published",
-          "rpd": "Not published",
-          "tpd": "Not published",
-          "verified": "2026-10-29"
+          "context": "Dynamic project context",
+          "rpm": "Unspecified",
+          "tpm": "Unspecified",
+          "rpd": "Unspecified",
+          "tpd": "300,000 tokens/day (1,000,000 tokens/month)",
+          "verified": "2026-11-06"
         }
       ],
       "verified_method": "docs",
@@ -1133,19 +1083,19 @@
       "name": "Lovable",
       "url": "https://docs.lovable.dev/introduction/credits-and-usage",
       "free_type": "Rate-limited free",
-      "notes": "Lovable offers 5 daily build credits (up to 30/month) plus 20 cloud and 4 AI edit credits/month. Account login required, no credit card required. Inference runs bundled inside the Lovable web builder.",
+      "notes": "1. The Grant: Lovable provides a rate-limited free tier for users building and iterating on applications. 2. The Output: Users get access to bundled frontier models including Fable 5.1 without direct financial cost. 3. The Process: Usage is governed by credits and rate limits determined by the platform's current policy. 4. The Condition: Availability and rate limits are subject to change as outlined in the official documentation.",
       "timeout": "Not published",
-      "verified": "2026-10-29",
+      "verified": "2026-11-06",
       "models": [
         {
-          "name": "Frontier models (bundled, Fable 5.1)",
+          "name": "Fable 5.1 (Frontier model)",
           "cost": "$0",
-          "context": "Not published",
-          "rpm": "Not published",
-          "tpm": "Not published",
-          "rpd": "Not published",
-          "tpd": "Not published",
-          "verified": "2026-10-29"
+          "context": "Not specified",
+          "rpm": "Not specified",
+          "tpm": "Not specified",
+          "rpd": "Not specified",
+          "tpd": "Not specified",
+          "verified": "2026-11-06"
         }
       ],
       "verified_method": "docs",
@@ -1158,19 +1108,19 @@
       "name": "v0 (Vercel)",
       "url": "https://v0.app/docs/pricing",
       "free_type": "Rate-limited free",
-      "notes": "v0 offers $5/month in free credits plus 7 messages/day for UI component generation. Account login required, no credit card required. Credits reset monthly with no rollover.",
+      "notes": "v0 offers a free plan granting 7 messages per day with bundled frontier models, plus a one-time $5 credit bonus for new accounts. Translates to 7 full-stack code and UI generations daily (~210 requests per month). No credit card required to sign up and build. Quotas reset daily at 00:00 UTC with no rollover, and custom model selection is restricted to paid plans.",
       "timeout": "Not published",
-      "verified": "2026-10-29",
+      "verified": "2026-11-06",
       "models": [
         {
           "name": "Frontier models (bundled, auto-selected)",
           "cost": "$0",
-          "context": "Not published",
-          "rpm": "Not published",
-          "tpm": "Not published",
-          "rpd": "Not published",
-          "tpd": "Not published",
-          "verified": "2026-10-29"
+          "context": "Text, code, and image/file input",
+          "rpm": "unspecified",
+          "tpm": "unspecified",
+          "rpd": "7 requests/day",
+          "tpd": "unspecified",
+          "verified": "2026-11-06"
         }
       ],
       "verified_method": "docs",
@@ -1183,19 +1133,19 @@
       "name": "Kaggle Notebooks",
       "url": "https://www.kaggle.com/docs/efficient-gpu-usage",
       "free_type": "Rate-limited free",
-      "notes": "Kaggle offers 30 GPU-hours/week (NVIDIA P100 or 2xT4) in 12-hour maximum execution sessions. Phone verification required for GPU access; no credit card required. GPU quota resets weekly.",
+      "notes": "Kaggle offers 30 hours of free GPU accelerator quota (NVIDIA T4 x2 / P100) and 20 hours of TPU v3-8 compute per week, translating to running self-hosted open-weight model inference and fine-tuning across sessions lasting up to 12 hours. Phone verification is required to unlock accelerators and internet access; no credit card required. Compute quota resets weekly, and interactive sessions terminate after 20 to 60 minutes of idle time.",
       "timeout": "Not published",
-      "verified": "2026-10-29",
+      "verified": "2026-11-06",
       "models": [
         {
           "name": "Open-weight models you load (GPU runtime)",
           "cost": "$0",
-          "context": "Not published",
-          "rpm": "Not published",
-          "tpm": "Not published",
-          "rpd": "Not published",
-          "tpd": "Not published",
-          "verified": "2026-10-29"
+          "context": "Model-dependent (16 GB P100 / 2x16 GB T4 VRAM, 29 GB RAM)",
+          "rpm": "N/A",
+          "tpm": "N/A",
+          "rpd": "N/A",
+          "tpd": "30 GPU hours/week (resets weekly)",
+          "verified": "2026-11-06"
         }
       ],
       "verified_method": "docs",
@@ -1233,29 +1183,59 @@
       "name": "Cursor (Hobby)",
       "url": "https://cursor.com/pricing",
       "free_type": "Rate-limited free",
-      "notes": "Cursor Hobby offers 2,000 free completion edits and limited agent requests. Account login required, no credit card required. Quota is metered per user account with frontier models auto-selected.",
+      "notes": "[The Grant] Cursor provides access to bundled internal models like Composer 2 and Grok variants on the Hobby/Free tier. [The Output] Users receive rate-limited access to these bundled models without direct monetary charges. [The Process] The system evaluates user plan tiers and applies automatic rate limits to free tier requests. [The Condition] This access remains active as long as usage stays within the specified free tier rate limits and legacy or current hobby plan parameters.",
       "timeout": "Not published",
-      "verified": "2026-10-29",
+      "verified": "2026-11-06",
       "models": [
         {
-          "name": "Composer 2 (own)",
+          "name": "Composer 2",
           "cost": "$0",
-          "context": "Not published",
-          "rpm": "Not published",
-          "tpm": "Not published",
-          "rpd": "Not published",
-          "tpd": "Not published",
-          "verified": "2026-10-29"
+          "context": "unknown",
+          "rpm": "unknown",
+          "tpm": "unknown",
+          "rpd": "unknown",
+          "tpd": "unknown",
+          "verified": "2026-11-06"
         },
         {
-          "name": "Auto (auto-selected, limited frontier)",
+          "name": "Composer 2.5",
           "cost": "$0",
-          "context": "Not published",
-          "rpm": "Not published",
-          "tpm": "Not published",
-          "rpd": "Not published",
-          "tpd": "Not published",
-          "verified": "2026-10-29"
+          "context": "unknown",
+          "rpm": "unknown",
+          "tpm": "unknown",
+          "rpd": "unknown",
+          "tpd": "unknown",
+          "verified": "2026-11-06"
+        },
+        {
+          "name": "Grok 4.5",
+          "cost": "$0",
+          "context": "unknown",
+          "rpm": "unknown",
+          "tpm": "unknown",
+          "rpd": "unknown",
+          "tpd": "unknown",
+          "verified": "2026-11-06"
+        },
+        {
+          "name": "Grok 4.6",
+          "cost": "$0",
+          "context": "unknown",
+          "rpm": "unknown",
+          "tpm": "unknown",
+          "rpd": "unknown",
+          "tpd": "unknown",
+          "verified": "2026-11-06"
+        },
+        {
+          "name": "Grok 4.7",
+          "cost": "$0",
+          "context": "unknown",
+          "rpm": "unknown",
+          "tpm": "unknown",
+          "rpd": "unknown",
+          "tpd": "unknown",
+          "verified": "2026-11-06"
         }
       ],
       "verified_method": "docs",
@@ -1268,19 +1248,19 @@
       "name": "Windsurf",
       "url": "https://docs.windsurf.com/windsurf/accounts/usage",
       "free_type": "Rate-limited free",
-      "notes": "Windsurf offers unlimited inline code edits/Tab completions plus a limited starter quota of Cascade agent prompts. Account login required, no credit card required. Advanced frontier routing requires a paid plan.",
+      "notes": "Windsurf provides a free tier. Users receive a set amount of usage and standard features at no cost. The free tier operates on a rate-limited basis. Usage allowances reset periodically under standard usage conditions.",
       "timeout": "Not published",
-      "verified": "2026-10-29",
+      "verified": "2026-11-06",
       "models": [
         {
-          "name": "Frontier models (via Auto)",
+          "name": "Standard Models",
           "cost": "$0",
-          "context": "Not published",
-          "rpm": "Not published",
-          "tpm": "Not published",
-          "rpd": "Not published",
-          "tpd": "Not published",
-          "verified": "2026-10-29"
+          "context": "Standard",
+          "rpm": "Not specified",
+          "tpm": "Not specified",
+          "rpd": "Not specified",
+          "tpd": "Not specified",
+          "verified": "2026-11-06"
         }
       ],
       "verified_method": "docs",
@@ -1318,19 +1298,49 @@
       "name": "Antigravity CLI (Google)",
       "url": "https://antigravity.google/pricing",
       "free_type": "Rate-limited free",
-      "notes": "Antigravity CLI offers free weekly quotas for terminal and editor agent tasks. Google account login required, no credit card required. Quotas reset weekly; rate limits apply during high-load periods.",
+      "notes": "The free tier provides access to select base models for general inference. The output consists of standard text, code, and basic multimodal completions. The process requires standard user authentication via the Antigravity CLI without requiring payment instrument setup. The condition is subject to dynamic rate limits and potential feature restrictions across modalities.",
       "timeout": "Not published",
-      "verified": "2026-10-29",
+      "verified": "2026-11-06",
       "models": [
         {
-          "name": "Gemini 3.8/3.7/3.6 Flash, Gemini 3.1 Pro, Claude Sonnet/Opus 4.6, gpt-oss-120b",
+          "name": "Gemini 3.8 Flash",
           "cost": "$0",
-          "context": "Not published",
-          "rpm": "Not published",
-          "tpm": "Not published",
-          "rpd": "Not published",
-          "tpd": "Not published",
-          "verified": "2026-10-29"
+          "context": "Standard",
+          "rpm": "N/A",
+          "tpm": "N/A",
+          "rpd": "N/A",
+          "tpd": "N/A",
+          "verified": "2026-11-06"
+        },
+        {
+          "name": "Gemini 3.7 Flash",
+          "cost": "$0",
+          "context": "Standard",
+          "rpm": "N/A",
+          "tpm": "N/A",
+          "rpd": "N/A",
+          "tpd": "N/A",
+          "verified": "2026-11-06"
+        },
+        {
+          "name": "Gemini 3.6 Flash",
+          "cost": "$0",
+          "context": "Standard",
+          "rpm": "N/A",
+          "tpm": "N/A",
+          "rpd": "N/A",
+          "tpd": "N/A",
+          "verified": "2026-11-06"
+        },
+        {
+          "name": "Gemini 3.1 Pro",
+          "cost": "$0",
+          "context": "Standard",
+          "rpm": "N/A",
+          "tpm": "N/A",
+          "rpd": "N/A",
+          "tpd": "N/A",
+          "verified": "2026-11-06"
         }
       ],
       "verified_method": "docs",
@@ -1343,9 +1353,9 @@
       "name": "Google Colab",
       "url": "https://research.google.com/colaboratory/faq.html",
       "free_type": "Rate-limited free",
-      "notes": "Google Colab offers free access to shared T4 GPUs and TPUs with 12-hour maximum runtime sessions. Google account required, no credit card required. Compute resources are dynamically allocated and idle sessions disconnect.",
+      "notes": "Google Colab offers free access to hosted Jupyter notebook compute resources including shared GPUs/TPUs and integrated Gemini AI coding features, translating to interactive execution sessions of up to 12 hours with standard system memory. Google account login required (age 18+ for AI features), no credit card required. Resources and rate limits fluctuate dynamically, idle runtimes disconnect, and non-interactive background execution is disallowed.",
       "timeout": "Not published",
-      "verified": "2026-10-29",
+      "verified": "2026-11-06",
       "models": [
         {
           "name": "Gemini (AI features) + GPU for your code",
@@ -1355,7 +1365,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-10-29"
+          "verified": "2026-11-06"
         }
       ],
       "verified_method": "docs",
@@ -1393,19 +1403,29 @@
       "name": "Canva (Free)",
       "url": "https://www.canva.com/en/pricing/",
       "free_type": "Rate-limited free",
-      "notes": "Canva Free offers 20 free AI design uses/month and 50 lifetime Magic Media text-to-image generations. Canva account required, no credit card required. Monthly generation allowance resets on the first of each month.",
+      "notes": "Free users are granted an allowance of 20 uses of standard or premium AI tools. The system outputs access to bundled models like Canva AI and Magic Media. The process enforces monthly limits on tools such as Magic Write, consuming a shared allowance. The condition strictly restricts free users from accessing ultra tools like Canva AI 2.0.",
       "timeout": "Not published",
-      "verified": "2026-10-30",
+      "verified": "2026-11-06",
       "models": [
         {
-          "name": "Canva AI, Magic Media",
+          "name": "Canva AI",
           "cost": "$0",
-          "context": "Not published",
-          "rpm": "Not published",
-          "tpm": "Not published",
-          "rpd": "Not published",
-          "tpd": "Not published",
-          "verified": "2026-10-30"
+          "context": "unknown",
+          "rpm": "unknown",
+          "tpm": "unknown",
+          "rpd": "20 uses (monthly shared limit)",
+          "tpd": "unknown",
+          "verified": "2026-11-06"
+        },
+        {
+          "name": "Magic Media",
+          "cost": "$0",
+          "context": "unknown",
+          "rpm": "unknown",
+          "tpm": "unknown",
+          "rpd": "20 uses (monthly shared limit)",
+          "tpd": "unknown",
+          "verified": "2026-11-06"
         }
       ],
       "verified_method": "docs",
@@ -1418,19 +1438,19 @@
       "name": "Framer (Free)",
       "url": "https://www.framer.com/pricing",
       "free_type": "Trial credits",
-      "notes": "Framer Free offers 500 one-time AI page generation credits plus a free Framer subdomain. Account login required, no credit card required. Projects are limited to non-commercial personal use.",
+      "notes": "Framer offers 500 one-time AI trial credits on its Free plan for workspaces without active subscriptions to power Framer Agents, translating to approximately 1 to 3 page generation or design sessions. No credit card is required to sign up and use the free plan. Credits are a one-time trial allotment that does not reset monthly, and agent features pause once the credits are exhausted unless upgraded to a paid plan.",
       "timeout": "Not published",
-      "verified": "2026-10-29",
+      "verified": "2026-11-06",
       "models": [
         {
           "name": "Framer Agents",
-          "cost": "$0 (trial credits)",
-          "context": "Not published",
-          "rpm": "Not published",
-          "tpm": "Not published",
-          "rpd": "Not published",
-          "tpd": "Not published",
-          "verified": "2026-10-29"
+          "cost": "$0",
+          "context": "Canvas-native web design, layout, styling, CMS, and copy generation",
+          "rpm": "Not specified",
+          "tpm": "Not specified",
+          "rpd": "Not specified",
+          "tpd": "500 credits (one-time trial)",
+          "verified": "2026-11-06"
         }
       ],
       "verified_method": "docs",
@@ -1628,42 +1648,62 @@
       "name": "Cohere",
       "url": "https://docs.cohere.com/docs/rate-limits",
       "free_type": "Rate-limited free",
-      "notes": "Cohere offers free trial developer access across 5 models, translating to 1,000 API calls/month (20 requests/minute for Command R+, 2,000 inputs/minute for Embed). No credit card required. Restricted to evaluation and non-production testing.",
+      "notes": "Cohere provides trial API keys [The Grant] allowing access to chat and embedding models [The Output] by registering an account and utilizing trial keys [The Process] subject to trial rate limits such as 20 requests per minute and 1,000 API calls per month [The Condition].",
       "timeout": "Not published",
-      "verified": "2026-11-01",
+      "verified": "2026-11-06",
       "verified_method": "docs",
       "access_method": "api_key",
       "artifact": "code",
       "models": [
         {
-          "name": "Command A",
+          "name": "Command A+",
           "cost": "$0",
-          "context": "256K",
+          "context": "N/A",
           "rpm": "20",
-          "tpm": "Not published",
-          "rpd": "Not published",
-          "tpd": "Not published",
-          "verified": "2026-11-01"
+          "tpm": "N/A",
+          "rpd": "N/A",
+          "tpd": "N/A",
+          "verified": "2026-11-06"
+        },
+        {
+          "name": "Command A Reasoning",
+          "cost": "$0",
+          "context": "N/A",
+          "rpm": "20",
+          "tpm": "N/A",
+          "rpd": "N/A",
+          "tpd": "N/A",
+          "verified": "2026-11-06"
         },
         {
           "name": "Command R+",
           "cost": "$0",
-          "context": "128K",
-          "rpm": "20",
-          "tpm": "Not published",
-          "rpd": "Not published",
-          "tpd": "Not published",
-          "verified": "2026-11-01"
+          "context": "N/A",
+          "rpm": "N/A",
+          "tpm": "N/A",
+          "rpd": "N/A",
+          "tpd": "N/A",
+          "verified": "2026-11-06"
+        },
+        {
+          "name": "Command R",
+          "cost": "$0",
+          "context": "N/A",
+          "rpm": "N/A",
+          "tpm": "N/A",
+          "rpd": "N/A",
+          "tpd": "N/A",
+          "verified": "2026-11-06"
         },
         {
           "name": "Command R7B",
           "cost": "$0",
-          "context": "128K",
-          "rpm": "20",
-          "tpm": "Not published",
-          "rpd": "Not published",
-          "tpd": "Not published",
-          "verified": "2026-11-01"
+          "context": "N/A",
+          "rpm": "N/A",
+          "tpm": "N/A",
+          "rpd": "N/A",
+          "tpd": "N/A",
+          "verified": "2026-11-06"
         }
       ],
       "base_url": "https://api.cohere.com/v1",
@@ -1742,50 +1782,20 @@
     {
       "name": "SiliconFlow",
       "url": "https://siliconflow.cn",
-      "free_type": "Rate-limited free",
-      "notes": "SiliconFlow offers 4 permanently free models (including DeepSeek-V3 and GLM-4 9B) plus 14M free signup tokens. Account registration required, no credit card required. Platform tokens apply across non-free catalog models until depleted.",
+      "free_type": "Trial credits",
+      "notes": "The Grant: $200 in credits is provided.\nThe Output: Credits can be used for speech models.\nThe Process: Access is granted without credit card requirement.\nThe Condition: Credits are valid for 90 days.",
       "timeout": "Not published",
-      "verified": "2026-10-29",
+      "verified": "2026-11-06",
       "models": [
         {
-          "name": "deepseek-ai/DeepSeek-R1-Distill-Qwen-7B",
+          "name": "Speech models (unspecified)",
           "cost": "$0",
-          "context": "32K",
-          "rpm": "1000",
-          "tpm": "40K",
-          "rpd": "100",
-          "tpd": "Not published",
-          "verified": "2026-10-29"
-        },
-        {
-          "name": "deepseek-ai/DeepSeek-V3",
-          "cost": "$0",
-          "context": "64K",
-          "rpm": "30 RPH",
-          "tpm": "40K",
-          "rpd": "100",
-          "tpd": "Not published",
-          "verified": "2026-10-29"
-        },
-        {
-          "name": "Qwen/Qwen2.5-7B-Instruct",
-          "cost": "$0",
-          "context": "32K",
-          "rpm": "1000",
-          "tpm": "40K",
-          "rpd": "Not published",
-          "tpd": "Not published",
-          "verified": "2026-10-29"
-        },
-        {
-          "name": "THUDM/glm-4-9b-chat",
-          "cost": "$0",
-          "context": "32K",
-          "rpm": "1000",
-          "tpm": "40K",
-          "rpd": "Not published",
-          "tpd": "Not published",
-          "verified": "2026-10-29"
+          "context": "43,000 minutes or 700+ hours",
+          "rpm": "N/A",
+          "tpm": "N/A",
+          "rpd": "N/A",
+          "tpd": "N/A",
+          "verified": "2026-11-06"
         }
       ],
       "verified_method": "docs",
@@ -1799,9 +1809,9 @@
       "name": "DeepSeek Platform",
       "url": "https://api-docs.deepseek.com",
       "free_type": "Trial credits",
-      "notes": "DeepSeek Platform offers 5M free signup tokens across deepseek-chat and deepseek-reasoner with 64K context. Account registration required, no credit card required. Free token grant expires 30 days after account creation.",
+      "notes": "The Grant: DeepSeek offers a granted balance upon account creation. The Output: Users can access API services without immediate paid top-ups. The Process: The platform automatically prioritizes using the granted balance first when both balances are available. The Condition: This applies until the granted balance is exhausted or expires, after which accounts rely on the topped-up balance.",
       "timeout": "Not published",
-      "verified": "2026-10-29",
+      "verified": "2026-11-06",
       "models": [
         {
           "name": "deepseek-chat",
@@ -1811,7 +1821,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "5M tokens grant",
-          "verified": "2026-10-29"
+          "verified": "2026-11-06"
         },
         {
           "name": "deepseek-reasoner",
@@ -1821,7 +1831,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "5M tokens grant",
-          "verified": "2026-10-29"
+          "verified": "2026-11-06"
         }
       ],
       "verified_method": "docs",
@@ -1829,32 +1839,6 @@
       "access_method": "api_key",
       "artifact": "code",
       "base_url": "https://api.deepseek.com/v1",
-      "channel": "web"
-    },
-    {
-      "name": "TypeSafe AI",
-      "url": "https://typesafe.ai/",
-      "free_type": "Trial credits",
-      "notes": "TypeSafe AI offers $5 free signup credit on Jev 1.13 with 256K context, translating to ~120M input tokens. Account registration required, no credit card required. Credits remain active until depleted.",
-      "timeout": "Not published",
-      "verified": "2026-11-05",
-      "models": [
-        {
-          "name": "typesafe/jev-1.13",
-          "cost": "$0 ($5 signup credits)",
-          "context": "256K",
-          "rpm": "60",
-          "tpm": "Not published",
-          "rpd": "Not published",
-          "tpd": "Not published",
-          "verified": "2026-11-05"
-        }
-      ],
-      "verified_method": "dashboard",
-      "docs_url": "https://docs.typesafe.ai/",
-      "access_method": "api_key",
-      "artifact": "code",
-      "base_url": "https://api.typesafe.ai/v1",
       "channel": "web"
     },
     {
@@ -2007,39 +1991,49 @@
       "name": "Deepgram",
       "url": "https://deepgram.com/pricing",
       "free_type": "Trial credits",
-      "notes": "Deepgram offers $200 free credit across 3 models, translating to ~43,000 minutes (700+ hours) of speech transcription and TTS. Account registration required, no credit card required. Free credits do not expire.",
+      "notes": "[The Grant] Deepgram provides $200 in free trial credits upon sign-up. [The Output] Users gain access to public speech-to-text and text-to-speech models including Nova-3, Nova-2, Flux, and Aura. [The Process] Users register for a Pay-As-You-Go account to receive the API key and access the platform. [The Condition] The credit allows for approximately 700 hours of Nova-3 transcription, subject to standard concurrency limits for pre-recorded and streaming requests.",
       "timeout": "Not published",
-      "verified": "2026-11-05",
+      "verified": "2026-11-06",
       "models": [
         {
           "name": "nova-3",
-          "cost": "$0 ($200 credit grant)",
-          "context": "43K min audio",
-          "rpm": "100",
-          "tpm": "Not published",
-          "rpd": "Not published",
-          "tpd": "700+ hours grant",
-          "verified": "2026-11-05"
+          "cost": "$0",
+          "context": "N/A",
+          "rpm": "N/A",
+          "tpm": "N/A",
+          "rpd": "N/A",
+          "tpd": "N/A",
+          "verified": "2026-11-06"
         },
         {
           "name": "nova-2",
-          "cost": "$0 ($200 credit grant)",
-          "context": "43K min audio",
-          "rpm": "100",
-          "tpm": "Not published",
-          "rpd": "Not published",
-          "tpd": "700+ hours grant",
-          "verified": "2026-11-05"
+          "cost": "$0",
+          "context": "N/A",
+          "rpm": "N/A",
+          "tpm": "N/A",
+          "rpd": "N/A",
+          "tpd": "N/A",
+          "verified": "2026-11-06"
+        },
+        {
+          "name": "flux",
+          "cost": "$0",
+          "context": "N/A",
+          "rpm": "N/A",
+          "tpm": "N/A",
+          "rpd": "N/A",
+          "tpd": "N/A",
+          "verified": "2026-11-06"
         },
         {
           "name": "aura",
-          "cost": "$0 ($200 credit grant)",
-          "context": "Text-to-speech",
-          "rpm": "100",
-          "tpm": "Not published",
-          "rpd": "Not published",
-          "tpd": "$200 credit grant",
-          "verified": "2026-11-05"
+          "cost": "$0",
+          "context": "N/A",
+          "rpm": "N/A",
+          "tpm": "N/A",
+          "rpd": "N/A",
+          "tpd": "N/A",
+          "verified": "2026-11-06"
         }
       ],
       "verified_method": "docs",
@@ -2053,29 +2047,19 @@
       "name": "AssemblyAI",
       "url": "https://www.assemblyai.com/pricing",
       "free_type": "Trial credits",
-      "notes": "AssemblyAI offers $50 free credit across 2 models, translating to ~135 hours of audio transcription and streaming speech-to-text. Account registration required, no credit card required. Free credits do not expire.",
+      "notes": "New accounts receive $50 in credits, valid for 90 days, usable across four speech models, and requiring no credit card.",
       "timeout": "Not published",
-      "verified": "2026-11-05",
+      "verified": "2026-11-06",
       "models": [
         {
-          "name": "universal-1",
-          "cost": "$0 ($50 credit grant)",
-          "context": "Pre-recorded & streaming audio",
-          "rpm": "100",
-          "tpm": "Not published",
-          "rpd": "Not published",
-          "tpd": "$50 credit grant",
-          "verified": "2026-11-05"
-        },
-        {
-          "name": "conformer-2",
-          "cost": "$0 ($50 credit grant)",
-          "context": "Speech-to-text audio",
-          "rpm": "100",
-          "tpm": "Not published",
-          "rpd": "Not published",
-          "tpd": "$50 credit grant",
-          "verified": "2026-11-05"
+          "name": "Unknown",
+          "cost": "$0",
+          "context": "Unknown",
+          "rpm": "Unknown",
+          "tpm": "Unknown",
+          "rpd": "Unknown",
+          "tpd": "43000 minutes",
+          "verified": "2026-11-06"
         }
       ],
       "verified_method": "docs",
@@ -2089,7 +2073,7 @@
       "name": "Dots Studio",
       "url": "https://dots.ai",
       "free_type": "Trial credits",
-      "notes": "Dots Studio offers free trial API credits and inference testing on Dots-3 Note and open-weight models. No credit card required. Trial credits are intended for evaluation and prototype development.",
+      "notes": "- The Grant: Users receive a trial credit system accessible via an API key.\n- The Output: A single available model named \"dots-3-note-preview\" is provided in the catalog.\n- The Process: Investigation of JavaScript bundles, API parameters, and documentation revealed context limits and model naming structures.\n- The Condition: Total input and output token sum cannot exceed the 524,288 token context window limit.",
       "timeout": "Not published",
       "verified": "2026-11-06",
       "channel": "web",
@@ -2100,9 +2084,34 @@
       "models": [
         {
           "name": "dots-3-note-preview",
+          "cost": "$0",
+          "context": "524288",
+          "rpm": "N/A",
+          "tpm": "N/A",
+          "rpd": "N/A",
+          "tpd": "N/A",
+          "verified": "2026-11-06"
+        }
+      ]
+    },
+    {
+      "name": "Liquid AI",
+      "url": "https://console.liquid.ai",
+      "free_type": "Trial credits",
+      "notes": "1. Liquid AI offers free promotional API credits to new developers upon console signup. 2. The output provides access to evaluate their models via the developer console and API. 3. The process requires creating an account on console.liquid.ai to claim the promotional allocation. 4. The condition is subject to promotional limits and potential expiration once the initial credit balance is exhausted.",
+      "timeout": "Not published",
+      "verified": "2026-11-06",
+      "channel": "web",
+      "verified_method": "docs",
+      "access_method": "api_key",
+      "artifact": "code",
+      "base_url": "https://console.liquid.ai",
+      "models": [
+        {
+          "name": "Liquid AI Free Model",
           "cost": "$0 (trial)",
-          "context": "128K",
-          "rpm": "60",
+          "context": "Model-dependent",
+          "rpm": "Published on portal",
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",

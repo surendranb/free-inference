@@ -1,8 +1,8 @@
 {
   "scouted_date": "2026-11-06",
   "model_used": "gemini-3.5-flash-lite + antigravity-preview-09-2026",
-  "providers_audited": 41,
-  "models_cataloged": 142,
+  "providers_audited": 40,
+  "models_cataloged": 137,
   "audit_summary": {
     "stale_count": 0,
     "stale_providers": [],
@@ -14,31 +14,382 @@
       "docs_url": "https://cloud.sambanova.ai/apis",
       "status": "active",
       "is_free_active": true,
-      "summary": "The free tier offers a trial of credits that is active for 90 days, without requiring a credit card to get started.",
+      "summary": "SambaNova Cloud offers a trial credit system and free tier access to production and preview models via API keys, subject to specific rate limits.",
       "audited_date": "2026-11-06",
-      "agent_steps": 46,
-      "interaction_id": "v1_Chc5a3Z0YXRTcktZVEI2OTRQenVYUW1ROBIXOWt2dGF0U3JLWVRCNjk0UHp1WFFtUTg"
-    }
-  ],
-  "candidate_providers_count": 120,
-  "candidate_audits": [
+      "agent_steps": 41,
+      "interaction_id": "v1_ChdGV250YXJ6aE9aclZ6N0lQamZtYWlBTRIXRldudGFyemhPWnJWejdJUGpmbWFpQU0"
+    },
     {
-      "name": "Featherless",
-      "url": "https://featherless.ai/pricing",
-      "source": "Hugging Face Inference Providers",
-      "status": "paid_only",
-      "is_free_active": false,
-      "free_type": "None",
-      "notes": "[The Grant] Featherless does not offer an ongoing free tier, recurring token allowance, or active free trial credits for developers. [The Output] Zero free tokens or API inference requests; requests are blocked when the account credit balance is zero or below. [The Process] Users must sign up and add an upfront payment method to purchase prepaid Developer credits (starting from $50/month or Pay-As-You-Go) or subscribe to the Chat plan ($25/month). [The Condition] API usage is strictly gated behind paid prepaid credits or an active monthly subscription with no $0 developer access.",
-      "summary": "Featherless is strictly paid-only, requiring a minimum $50/month prepaid Developer credit plan or $25/month Chat subscription with no free tier or trial credits.",
-      "candidate_models": [],
-      "base_url": "https://api.featherless.ai/v1",
+      "provider": "Kilo Gateway",
+      "docs_url": "https://kilo.ai/gateway",
+      "status": "unreachable",
+      "is_free_active": null,
+      "summary": "Antigravity agent interaction v1_ChdnbW50YXVxa0V1U3R6N0lQOVl6QzBRMBIXZ21udGF1cWtFdVN0ejdJUDlZekMwUTA timed out after 150s",
+      "audited_date": "2026-11-06"
+    },
+    {
+      "provider": "Nous Portal",
+      "docs_url": "https://portal.nousresearch.com/api-docs",
+      "status": "active",
+      "is_free_active": true,
+      "summary": "",
+      "audited_date": "2026-11-06",
+      "agent_steps": 23,
+      "interaction_id": "v1_ChdHbXJ0YXJHUE12NkN6N0lQLXF2aHFBURIXR21ydGFyR1BNdjZDejdJUC1xdmhxQVE"
+    },
+    {
+      "provider": "Cerebras",
+      "docs_url": "https://inference-docs.cerebras.ai/support/rate-limits",
+      "status": "active",
+      "is_free_active": true,
+      "summary": "The free tier is active and provides access to gpt-oss-120b and qwen-3.8-27b, confirmed via active status and catalog data. Token limits and reset cadence are not currently known.",
+      "audited_date": "2026-11-06",
+      "agent_steps": 53,
+      "interaction_id": "v1_ChdWR3J0YXVxWENvYWh6N0lQN0lfazJRNBIXVkdydGF1cVhDb2FoejdJUDdJX2syUTQ"
+    },
+    {
+      "provider": "Cloudflare Workers AI",
+      "docs_url": "https://developers.cloudflare.com/workers-ai/platform/limits/",
+      "status": "active",
+      "is_free_active": true,
+      "summary": "",
+      "audited_date": "2026-11-06",
+      "agent_steps": 33,
+      "interaction_id": "v1_Chc3bXJ0YXJtZEZfYWh6N0lQOHEzamtBRRIXN21ydGFybWRGX2FoejdJUDhxM2prQUU"
+    },
+    {
+      "provider": "Mistral La Plateforme",
+      "docs_url": "https://docs.mistral.ai/",
+      "status": "active",
+      "is_free_active": true,
+      "summary": "Mistral La Plateforme offers an active, rate-limited free tier enabling developers to access and evaluate baseline models at zero cost.",
+      "audited_date": "2026-11-06",
+      "agent_steps": 21,
+      "interaction_id": "v1_ChdXMnZ0YXJ2dERyYnF6N0lQbWFtczZRVRIXVzJ2dGFydnREcmJxejdJUG1hbXM2UVU"
+    },
+    {
+      "provider": "NVIDIA NIM (build.nvidia.com)",
+      "docs_url": "https://build.nvidia.com/explore/reasoning",
+      "status": "unreachable",
+      "is_free_active": null,
+      "summary": "Antigravity agent interaction v1_ChdqbXZ0YXJfU0ljU0txdHNQcEpYQjRBSRIXam12dGFyX1NJY1NLcXRzUHBKWEI0QUk timed out after 150s",
+      "audited_date": "2026-11-06"
+    },
+    {
+      "provider": "Z.AI (Zhipu)",
+      "docs_url": "https://z.ai",
+      "status": "unreachable",
+      "is_free_active": null,
+      "summary": "Antigravity agent interaction v1_ChdKMnp0YW9MWk5jS2V6N0lQM2VlQjhRMBIXSjJ6dGFvTFpOY0tlejdJUDNlZUI4UTA timed out after 150s",
+      "audited_date": "2026-11-06"
+    },
+    {
+      "provider": "GitHub Copilot (Free)",
+      "docs_url": "https://docs.github.com/en/copilot/get-started/plans",
+      "status": "active",
+      "is_free_active": true,
+      "summary": "GitHub Copilot Free offers individual developers limited access to AI-powered coding assistance, basic AI credit allowances, and Copilot Chat on GitHub.com and mobile.",
+      "audited_date": "2026-11-06",
+      "agent_steps": 35,
+      "interaction_id": "v1_Chd3R3p0YXZ6Z084MnlxdHNQMllTSXVBMBIXd0d6dGF2emdPODJ5cXRzUDJZU0l1QTA"
+    },
+    {
+      "provider": "Kiro (AWS)",
+      "docs_url": "https://kiro.dev/pricing",
+      "status": "unreachable",
+      "is_free_active": null,
+      "summary": "Antigravity agent interaction v1_ChdLVzN0YXBlTkp2WDF6N0lQM1pHcHNBTRIXS1czdGFwZU5KdlgxejdJUDNaR3BzQU0 timed out after 150s",
+      "audited_date": "2026-11-06"
+    },
+    {
+      "provider": "Trae (ByteDance)",
+      "docs_url": "https://www.trae.ai/pricing",
+      "status": "changed",
+      "is_free_active": true,
+      "summary": "Trae's free tier provides 5,000 monthly autocompletions and a one-time $3 credit, valid for 90 days and requiring no credit card.",
+      "audited_date": "2026-11-06",
+      "agent_steps": 23,
+      "interaction_id": "v1_Chd3bTN0YXA3aEVzWFJ6N0lQcnNmTm1BVRIXd20zdGFwN2hFc1hSejdJUHJzZk5tQVU"
+    },
+    {
+      "provider": "Bolt.new",
+      "docs_url": "https://support.bolt.new/account-and-subscription/tokens",
+      "status": "active",
+      "is_free_active": true,
+      "summary": "Bolt provides a free tier granting 1,000,000 tokens per month subject to a 300,000 daily token limit for bundled frontier models via the Standard agent, resetting daily and on the 1st of each calendar month with no rollover.",
+      "audited_date": "2026-11-06",
+      "agent_steps": 28,
+      "interaction_id": "v1_ChdIVzd0YXZtZ0dQYlV6N0lQOWZqNGtBNBIXSFc3dGF2bWdHUGJVejdJUDlmajRrQTQ"
+    },
+    {
+      "provider": "Lovable",
+      "docs_url": "https://docs.lovable.dev/introduction/credits-and-usage",
+      "status": "active",
+      "is_free_active": true,
+      "summary": "Lovable offers a rate-limited free tier that includes access to bundled frontier models like Fable 5.1 for $0.",
+      "audited_date": "2026-11-06",
+      "agent_steps": 23,
+      "interaction_id": "v1_ChdvVzd0YXVPN042clJ6N0lQMnFmVy1BcxIXb1c3dGF1TzdONnJSejdJUDJxZlctQXM"
+    },
+    {
+      "provider": "v0 (Vercel)",
+      "docs_url": "https://v0.app/docs/pricing",
+      "status": "active",
+      "is_free_active": true,
+      "summary": "v0 provides a free tier with 7 messages per day using auto-selected bundled frontier models, resetting daily at 00:00 UTC with no credit card required.",
+      "audited_date": "2026-11-06",
+      "agent_steps": 29,
+      "interaction_id": "v1_ChdDR190YXJYSktmdWh6N0lQbExHZGtRSRIXQ0dfdGFyWEpLZnVoejdJUGxMR2RrUUk"
+    },
+    {
+      "provider": "Kaggle Notebooks",
+      "docs_url": "https://www.kaggle.com/docs/efficient-gpu-usage",
+      "status": "active",
+      "is_free_active": true,
+      "summary": "Kaggle Notebooks provides verified users with 30 hours of free GPU compute and 20 hours of TPU compute per week, with a 12-hour per-session execution limit and a weekly reset cadence.",
+      "audited_date": "2026-11-06",
+      "agent_steps": 15,
+      "interaction_id": "v1_ChdqV190YXZYX09fR3R6N0lQdGMtRjZRMBIXaldfdGF2WF9PX0d0ejdJUHRjLUY2UTA"
+    },
+    {
+      "provider": "Hugging Face Spaces",
+      "docs_url": "https://huggingface.co/docs/hub/spaces-overview",
+      "status": "unreachable",
+      "is_free_active": null,
+      "summary": "Antigravity agent interaction v1_Chc1R190YXV6aUd2YlV6N0lQOWZqNGtBNBIXNUdfdGF1emlHdmJVejdJUDlmajRrQTQ timed out after 150s",
+      "audited_date": "2026-11-06"
+    },
+    {
+      "provider": "Cursor (Hobby)",
+      "docs_url": "https://cursor.com/docs/models-and-pricing",
+      "status": "active",
+      "is_free_active": true,
+      "summary": "Cursor offers an active Free/Hobby tier featuring rate-limited access to internal models such as Composer and Grok.",
+      "audited_date": "2026-11-06",
+      "agent_steps": 34,
+      "interaction_id": "v1_ChZmWER0YXZhRkRmN1h6N0lQaHJMMEdREhZmWER0YXZhRkRmN1h6N0lQaHJMMEdR"
+    },
+    {
+      "provider": "Windsurf",
+      "docs_url": "https://docs.windsurf.com/windsurf/accounts/usage",
+      "status": "active",
+      "is_free_active": true,
+      "summary": "Windsurf offers an active free tier that provides rate-limited access to standard features and usage allowances at no cost.",
+      "audited_date": "2026-11-06",
+      "agent_steps": 28,
+      "interaction_id": "v1_ChcybkR0YW96UUY2clJ6N0lQMnFmVy1BcxIXMm5EdGFvelFGNnJSejdJUDJxZlctQXM"
+    },
+    {
+      "provider": "Qoder",
+      "docs_url": "https://docs.qoder.com/account/pricing",
+      "status": "unreachable",
+      "is_free_active": null,
+      "summary": "Antigravity agent interaction v1_ChdKbkh0YXNlNkthNmR6N0lQOTZTdS1BRRIXSm5IdGFzZTZLYTZkejdJUDk2U3UtQUU timed out after 150s",
+      "audited_date": "2026-11-06"
+    },
+    {
+      "provider": "Antigravity CLI (Google)",
+      "docs_url": "https://antigravity.google/pricing",
+      "status": "active",
+      "is_free_active": true,
+      "summary": "The Antigravity CLI offers an active free tier providing access to universal Flash-tier and select Pro Gemini models subject to rate limits, while advanced models like Gemini 4 Argon remain restricted to paid plans.",
+      "audited_date": "2026-11-06",
+      "agent_steps": 38,
+      "interaction_id": "v1_Chd2M0h0YXFpUERJaS1xdHNQdXZES29BdxIXdjNIdGFxaVBESWktcXRzUHV2REtvQXc"
+    },
+    {
+      "provider": "Google Colab",
+      "docs_url": "https://research.google.com/colaboratory/faq.html",
+      "status": "active",
+      "is_free_active": true,
+      "summary": "Google Colab provides a free, rate-limited tier with dynamic GPU/TPU access and integrated Gemini AI assistance for interactive notebook sessions running up to 12 hours with fluctuating unlisted quotas.",
+      "audited_date": "2026-11-06",
+      "agent_steps": 20,
+      "interaction_id": "v1_ChdObkx0YXBfUEFaaU5xdHNQbTVQT2lRMBIXTm5MdGFwX1BBWmlOcXRzUG01UE9pUTA"
+    },
+    {
+      "provider": "Figma (Starter)",
+      "docs_url": "https://www.figma.com/pricing/",
+      "status": "unreachable",
+      "is_free_active": null,
+      "summary": "Antigravity agent interaction v1_ChdmWEx0YXUzckN2YndxdHNQcGFyUzZRcxIXZlhMdGF1M3JDdmJ3cXRzUHBhclM2UXM timed out after 150s",
+      "audited_date": "2026-11-06"
+    },
+    {
+      "provider": "Canva (Free)",
+      "docs_url": "https://www.canva.com/help/ai-access/",
+      "status": "active",
+      "is_free_active": true,
+      "summary": "Canva (Free) provides an active rate-limited free tier granting a shared monthly cap of 20 uses for standard and premium AI tools like Canva AI and Magic Media, with zero access to ultra tools.",
+      "audited_date": "2026-11-06",
+      "agent_steps": 24,
+      "interaction_id": "v1_ChZGM1B0YXNJN3ZLeXEydy1HcnFtaER3EhZGM1B0YXNJN3ZLeXEydy1HcnFtaER3"
+    },
+    {
+      "provider": "Framer (Free)",
+      "docs_url": "https://www.framer.com/pricing",
+      "status": "active",
+      "is_free_active": true,
+      "summary": "Framer provides a Free plan featuring a one-time trial allocation of 500 AI credits to try Framer Agents with no monthly reset.",
+      "audited_date": "2026-11-06",
+      "agent_steps": 21,
+      "interaction_id": "v1_ChdpSFB0YXZER0ZmNmh6N0lQbjlXeW9RNBIXaUhQdGF2REdGZjZoejdJUG45V3lvUTQ"
+    },
+    {
+      "provider": "Replit (Starter)",
+      "docs_url": "https://docs.replit.com/help/pricing-and-plans",
+      "status": "unreachable",
+      "is_free_active": null,
+      "summary": "Antigravity agent interaction v1_Chd6blB0YW83LUp2N0J6N0lQcEozNnNBcxIXem5QdGFvNy1KdjdCejdJUHBKMzZzQXM timed out after 150s",
+      "audited_date": "2026-11-06"
+    },
+    {
+      "provider": "Cohere",
+      "docs_url": "https://docs.cohere.com/docs/rate-limits",
+      "status": "active",
+      "is_free_active": true,
+      "summary": "Cohere offers a rate-limited trial tier for its chat and embedding models with a cap of 1,000 API calls per month and model-specific limits like 20 requests per minute.",
       "audited_date": "2026-11-06",
       "agent_steps": 37,
-      "interaction_id": "v1_ChdsRXp0YW9Dd0hhX2c2OTRQbGJHMWdBdxIXbEV6dGFvQ3dIYV9nNjk0UGxiRzFnQXc"
+      "interaction_id": "v1_ChdaM1R0YXVHVk1xdWpxdHNQN1BPVmlBTRIXWjNUdGF1R1ZNcXVqcXRzUDdQT1ZpQU0"
+    },
+    {
+      "provider": "SiliconFlow",
+      "docs_url": "https://docs.siliconflow.cn/",
+      "status": "active",
+      "is_free_active": true,
+      "summary": "There is a $200 free trial credit, usable for speech models, valid for 90 days, with no credit card required.",
+      "audited_date": "2026-11-06",
+      "agent_steps": 34,
+      "interaction_id": "v1_ChY5SFR0YXJJcjlxSFBzZ195cmVPUUFREhY5SFR0YXJJcjlxSFBzZ195cmVPUUFR"
+    },
+    {
+      "provider": "DeepSeek Platform",
+      "docs_url": "https://api-docs.deepseek.com/",
+      "status": "active",
+      "is_free_active": true,
+      "summary": "DeepSeek Platform provides an initial granted balance for users, automatically prioritizing these trial credits over topped-up balances for API usage.",
+      "audited_date": "2026-11-06",
+      "agent_steps": 12,
+      "interaction_id": "v1_ChZYM1h0YXZuUkpJRG16N0lQaXY2cGNREhZYM1h0YXZuUkpJRG16N0lQaXY2cGNR"
+    },
+    {
+      "provider": "TypeSafe AI",
+      "docs_url": "https://docs.typesafe.ai/",
+      "status": "retired",
+      "is_free_active": false,
+      "summary": "TypeSafe AI currently offers no free tier, trials, or promotional allowances, requiring developers to use paid early access options following the suspension of free credits due to misuse.",
+      "audited_date": "2026-11-06",
+      "agent_steps": 28,
+      "interaction_id": "v1_ChdoM1h0YXJEQ01iNmh6N0lQNmRhRjRBNBIXaDNYdGFyRENNYjZoejdJUDZkYUY0QTQ"
+    },
+    {
+      "provider": "Braintrust",
+      "docs_url": "https://docs.braintrust.dev/plans-and-limits#model-credits",
+      "status": "unreachable",
+      "is_free_active": null,
+      "summary": "Antigravity agent interaction v1_Chc1SFh0YXR2cEhxaXN6N0lQdXM3STZBMBIXNUhYdGF0dnBIcWlzejdJUHVzN0k2QTA timed out after 150s",
+      "audited_date": "2026-11-06"
+    },
+    {
+      "provider": "Deepgram",
+      "docs_url": "https://developers.deepgram.com/",
+      "status": "active",
+      "is_free_active": true,
+      "summary": "Deepgram offers a $200 trial credit on its Pay-As-You-Go plan, granting access to public models like Nova-3, Nova-2, Flux, and Aura under standard concurrency limits.",
+      "audited_date": "2026-11-06",
+      "agent_steps": 21,
+      "interaction_id": "v1_ChdmWGJ0YXRTOEZQYlV6N0lQOWZqNGtBNBIXZlhidGF0UzhGUGJVejdJUDlmajRrQTQ"
+    },
+    {
+      "provider": "AssemblyAI",
+      "docs_url": "https://www.assemblyai.com/docs",
+      "status": "active",
+      "is_free_active": true,
+      "summary": "New accounts receive a $50 credit for free usage, equating to approximately 43,000 minutes across four models, which expires after 90 days.",
+      "audited_date": "2026-11-06",
+      "agent_steps": 51,
+      "interaction_id": "v1_ChcybmJ0YXBTUkJzYlJ6N0lQcTRMMWlBURIXMm5idGFwU1JCc2JSejdJUHE0TDFpQVE"
+    },
+    {
+      "provider": "Dots Studio",
+      "docs_url": "https://dots.ai",
+      "status": "active",
+      "is_free_active": true,
+      "summary": "Dots Studio offers an active free trial credit system accessible via API key with access to the \"dots-3-note-preview\" model supporting up to 524,288 tokens.",
+      "audited_date": "2026-11-06",
+      "agent_steps": 51,
+      "interaction_id": "v1_ChZYM2Z0YXUycUpNSFF6N0lQeFByM0lBEhZYM2Z0YXUycUpNSFF6N0lQeFByM0lB"
     }
   ],
-  "verified_new_providers": [],
+  "candidate_providers_count": 4,
+  "candidate_audits": [
+    {
+      "name": "Liquid AI",
+      "url": "https://console.liquid.ai",
+      "source": "Upstream Creator for liquid/lfm-2.5-2.6b:free",
+      "status": "active",
+      "is_free_active": true,
+      "free_type": "Trial credits",
+      "notes": "1. Liquid AI offers free promotional API credits to new developers upon console signup. 2. The output provides access to evaluate their models via the developer console and API. 3. The process requires creating an account on console.liquid.ai to claim the promotional allocation. 4. The condition is subject to promotional limits and potential expiration once the initial credit balance is exhausted.",
+      "summary": "Liquid AI provides promotional free API credits upon signup in their developer console, allowing developers to test models without an upfront card payment.",
+      "candidate_models": [],
+      "base_url": "https://console.liquid.ai",
+      "audited_date": "2026-11-06",
+      "agent_steps": 14,
+      "interaction_id": "v1_ChdCM2p0YXJ1dENxclJ6N0lQMnFmVy1BcxIXQjNqdGFydXRDcXJSejdJUDJxZlctQXM"
+    },
+    {
+      "name": "Recursive AI",
+      "url": "https://recursive.ai",
+      "source": "Upstream Creator for recursive/flint-v1.0:free",
+      "status": "no_api",
+      "is_free_active": false,
+      "free_type": "None",
+      "notes": "[The Grant] None. Recursive AI (https://recursive.ai) does not offer a developer API, trial credits, or hosted model inference platform. [The Output] No API tokens, completions, context quotas, or rate-limited outputs are provided. [The Process] No account creation, API key provisioning, or verification process exists because https://recursive.ai is an inactive parked domain on Porkbun. [The Condition] Access is unavailable as there is no functional developer portal, API service, or inference infrastructure hosted at the domain.",
+      "summary": "Recursive AI does not offer an inference API or free tier as the domain recursive.ai is parked with no active developer services.",
+      "candidate_models": [],
+      "base_url": null,
+      "audited_date": "2026-11-06",
+      "agent_steps": 31,
+      "interaction_id": "v1_ChdKM2p0YXN5Tks5X3F6N0lQbU82QXFRTRIXSjNqdGFzeU5LOV9xejdJUG1PNkFxUU0"
+    },
+    {
+      "name": "Poolside AI",
+      "url": "https://poolside.ai",
+      "source": "Upstream Creator for poolside/laguna-s-2.1:free",
+      "status": "unreachable",
+      "is_free_active": false,
+      "summary": "HTTP Error 429: Too Many Requests",
+      "audited_date": "2026-11-06"
+    },
+    {
+      "name": "StepFun",
+      "url": "https://platform.stepfun.com",
+      "source": "Upstream Creator for stepfun/step-3.7-flash:free",
+      "status": "unreachable",
+      "is_free_active": false,
+      "summary": "Antigravity agent interaction v1_Chdtbmp0YXV6TEE0bTFxdHNQM2RpN29RcxIXbW5qdGF1ekxBNG0xcXRzUDNkaTdvUXM timed out after 150s",
+      "audited_date": "2026-11-06"
+    }
+  ],
+  "verified_new_providers": [
+    {
+      "name": "Liquid AI",
+      "url": "https://console.liquid.ai",
+      "source": "Upstream Creator for liquid/lfm-2.5-2.6b:free",
+      "status": "active",
+      "is_free_active": true,
+      "free_type": "Trial credits",
+      "notes": "1. Liquid AI offers free promotional API credits to new developers upon console signup. 2. The output provides access to evaluate their models via the developer console and API. 3. The process requires creating an account on console.liquid.ai to claim the promotional allocation. 4. The condition is subject to promotional limits and potential expiration once the initial credit balance is exhausted.",
+      "summary": "Liquid AI provides promotional free API credits upon signup in their developer console, allowing developers to test models without an upfront card payment.",
+      "candidate_models": [],
+      "base_url": "https://console.liquid.ai",
+      "audited_date": "2026-11-06",
+      "agent_steps": 14,
+      "interaction_id": "v1_ChdCM2p0YXJ1dENxclJ6N0lQMnFmVy1BcxIXQjNqdGFydXRDcXJSejdJUDJxZlctQXM"
+    }
+  ],
   "live_gateway_free_total": 43,
   "new_discoveries_count": 19,
   "openrouter_rss_stream_count": 12,
@@ -147,63 +498,63 @@
       "family": "auto-router",
       "task": "general",
       "recommended_page_slug": "kilo-auto-free",
-      "summary": "An automated routing model provided by Kilo Gateway designed for general-purpose free inference."
+      "summary": "Automatic routing free model via Kilo Gateway with a 256k context window."
     },
     {
       "id": "reflection/beam-free",
       "family": "reflection",
       "task": "reasoning",
       "recommended_page_slug": "reflection-beam-free",
-      "summary": "A high-context reasoning model featuring 1M context length, optimized for complex analytical tasks."
+      "summary": "High-context reasoning model featuring a 1M token context length."
     },
     {
       "id": "stealth/glyph-cluster",
       "family": "stealth",
       "task": "general",
       "recommended_page_slug": "stealth-glyph-cluster",
-      "summary": "A stealth-class general inference model with a 256k context window."
+      "summary": "Stealth architecture general-purpose model with 256k context window."
     },
     {
       "id": "stealth/crouton-alpha",
-      "family": "crouton",
+      "family": "stealth",
       "task": "reasoning",
       "recommended_page_slug": "stealth-crouton-alpha",
-      "summary": "An experimental alpha reasoning model with an expansive 1M context length available across multiple gateways."
+      "summary": "Alpha-stage stealth model boasting an expansive 1M context window."
     },
     {
       "id": "google/lyria-3-pro-preview",
-      "family": "lyria",
+      "family": "google-lyria",
       "task": "general",
       "recommended_page_slug": "google-lyria-3-pro-preview",
-      "summary": "A Google preview model specialized in advanced generation tasks with 1M context support."
+      "summary": "Preview release of Google's Lyria 3 Pro model with a 1M context window."
     },
     {
       "id": "google/lyria-3-clip-preview",
-      "family": "lyria",
+      "family": "google-lyria",
       "task": "general",
       "recommended_page_slug": "google-lyria-3-clip-preview",
-      "summary": "A specialized Google preview variant optimized for shorter snippet processing and creative tasks."
+      "summary": "Preview release of Google's Lyria 3 Clip variant with 1M context length."
     },
     {
       "id": "openrouter/free",
       "family": "meta-router",
       "task": "general",
-      "recommended_page_slug": "openrouter-free-router",
-      "summary": "A meta-router endpoint that aggregates multiple free models from the OpenRouter network."
+      "recommended_page_slug": "openrouter-free",
+      "summary": "Meta-router model routing to available free tiers with 200k context."
     },
     {
       "id": "meituan/longcat-2.5:free",
       "family": "longcat",
       "task": "reasoning",
       "recommended_page_slug": "meituan-longcat-2-5-free",
-      "summary": "Meituan's long-context model offering a 1M token window for deep document analysis and reasoning."
+      "summary": "Meituan's LongCat-2.5 free inference model supporting a 1M token context."
     },
     {
       "id": "novita/ling-3.1-flash",
-      "family": "ling",
-      "task": "general",
+      "family": "novita-ling",
+      "task": "coding",
       "recommended_page_slug": "novita-ling-3-1-flash",
-      "summary": "A lightweight flash model from Novita focused on low-latency, general-purpose completions."
+      "summary": "Novita Ling 3.1 Flash low-latency fast response model."
     }
   ],
   "status": "completed"

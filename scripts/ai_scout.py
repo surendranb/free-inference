@@ -615,12 +615,13 @@ Verification Instructions:
 2. Confirm if the free tier, free trial credits, or rate-limited free models are still actively offered.
 3. Check if any cataloged free models were discontinued or moved to paid-only.
 4. Keep your check concise: navigate, inspect the pricing tier, and output your answer immediately (aim for 1-3 browser actions). Do not wander into external pages.
+5. If the page is blocked by a security checkpoint, captcha, Cloudflare challenge, or redirects to an internal login page, mark status as "inconclusive". Do NOT mark "retired" unless the page explicitly states the free tier is discontinued or paid-only.
 
 Output strictly valid JSON:
 {{
-  "status": "active" (if free tier confirmed) | "retired" (if paid-only / discontinued) | "changed",
-  "is_free_active": true | false,
-  "summary": "1 concise sentence confirming the verified free allowance or what changed."
+  "status": "active" (if free tier confirmed) | "retired" (only if explicitly discontinued/paid-only) | "inconclusive" (if blocked by checkpoint/login/captcha),
+  "is_free_active": true | false | null,
+  "summary": "1 concise sentence confirming the verified free allowance or explaining why verification was inconclusive."
 }}
 """
             agent_res = call_antigravity_agent(prompt, key, timeout=60)
@@ -728,11 +729,25 @@ Navigate, check, and output strictly JSON with keys:
                     except Exception as fb_err:
                         print(f"  Notice: Fallback audit for {pname} encountered: {fb_err}")
 
-                if eval_data.get("is_free_active") is False or eval_data.get("status") == "retired":
+                # Guardrails against false-positive auto-retirement:
+                # 1. Active API providers tested by probe.py must never be retired by doc auditor failures.
+                # 2. Blocked pages (Cloudflare/Vercel checkpoints, captchas) are inconclusive, NOT retired.
+                # 3. Redirects to authenticated login consoles are inconclusive, NOT retired.
+                is_api_channel = p.get("channel") == "api" or p.get("verified_method") == "live-probe"
+                summary_text = (eval_data.get("summary") or "").lower()
+                is_inconclusive = eval_data.get("status") == "inconclusive" or any(w in summary_text for w in [
+                    "checkpoint", "security check", "captcha", "cloudflare", "blocked",
+                    "inconclusive", "unconfirmed", "unverified", "redirects to login", "login page"
+                ])
+
+                if (eval_data.get("is_free_active") is False or eval_data.get("status") == "retired") and not is_api_channel and not is_inconclusive:
                     print(f"  ⚠ WARNING: Agent confirmed {pname} as NOT active/free: {eval_data.get('summary')}")
                     report_deprecation_issue(pname, doc_url, audit_entry)
                     if apply_updates:
                         p["_retire"] = True
+                elif is_inconclusive or is_api_channel:
+                    print(f"  Notice: {pname} audit inconclusive or protected ({summary_text[:80]}); preserving existing catalog status.")
+                    audit_entry["status"] = "inconclusive" if is_inconclusive else audit_entry["status"]
 
         except Exception as e:
             is_429 = "429" in str(e) or (isinstance(e, urllib.error.HTTPError) and getattr(e, "code", None) == 429)

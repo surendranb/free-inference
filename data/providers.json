@@ -1446,7 +1446,7 @@
       "notes": "Confirmed active free tier with listed models",
       "timeout": "Not published",
       "verified": "2026-11-07",
-      "verified_method": "docs",
+      "verified_method": "live-probe",
       "access_method": "api_key",
       "artifact": "code",
       "models": [
@@ -2025,7 +2025,7 @@
           "tpm": "N/A",
           "rpd": "N/A",
           "tpd": "N/A",
-          "verified": "2026-11-06"
+          "verified": "2026-11-07"
         }
       ],
       "verified_method": "live-probe",
@@ -2040,7 +2040,7 @@
       "free_type": "Rate-limited free",
       "notes": "Z.AI offers free API access to GLM-5.1, GLM-4.7-Flash, and GLM-4.6V-Flash with 128K context, translating to 15 requests/minute. No credit card required. Shared free tier throttles during peak platform traffic hours.",
       "timeout": "Not published",
-      "verified": "2026-10-29",
+      "verified": "2026-11-07",
       "models": [
         {
           "name": "GLM-5.1",
@@ -2050,7 +2050,7 @@
           "tpm": "Not published",
           "rpd": "1,000 (1K RPD tier)",
           "tpd": "Not published",
-          "verified": "2026-10-29"
+          "verified": "2026-11-07"
         },
         {
           "name": "GLM-4.5-Flash",
@@ -2060,7 +2060,7 @@
           "tpm": "Not published",
           "rpd": "1,000",
           "tpd": "Not published",
-          "verified": "2026-10-29"
+          "verified": "2026-11-07"
         },
         {
           "name": "GLM-4.7-Flash",
@@ -2070,7 +2070,7 @@
           "tpm": "Not published",
           "rpd": "1,000",
           "tpd": "Not published",
-          "verified": "2026-10-29"
+          "verified": "2026-11-07"
         },
         {
           "name": "GLM-4.6V-Flash (vision)",
@@ -2080,7 +2080,7 @@
           "tpm": "Not published",
           "rpd": "1,000",
           "tpd": "Not published",
-          "verified": "2026-10-29"
+          "verified": "2026-11-07"
         }
       ],
       "verified_method": "docs",
@@ -2108,7 +2108,7 @@
           "tpm": "500K",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-10-31"
+          "verified": "2026-11-07"
         },
         {
           "name": "poolside/laguna-xs-2.1:free",
@@ -2118,7 +2118,7 @@
           "tpm": "500K",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-10-31"
+          "verified": "2026-11-07"
         },
         {
           "name": "stepfun/step-3.7-flash:free",
@@ -2158,7 +2158,7 @@
           "tpm": "500K",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-11-02"
+          "verified": "2026-11-07"
         }
       ],
       "base_url": "https://inference-api.nousresearch.com/v1",

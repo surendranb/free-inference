@@ -2,7 +2,7 @@
 
 Free AI & LLM inference you can build with: an API key, a CLI login, or inference bundled inside a coding tool or builder. Speech-to-text, voice synthesis, code, vision, and reasoning. The test is whether you can ship an artifact you keep — code, an app, an audio file, a site, a design, an agent, a skill. Chat-only free tiers are excluded on purpose.
 
-> **2026-11-07** · 41 providers · 152 free models
+> **2026-11-07** · 42 providers · 174 free models
 > Interactive site: https://freeinference.dev · Agent summary: https://freeinference.dev/llms.txt · Machine data: https://freeinference.dev/data/providers.json (validate against https://freeinference.dev/data/schema.json)
 
 ### Quick Navigation & Machine Access
@@ -27,7 +27,7 @@ Free AI & LLM inference you can build with: an API key, a CLI login, or inferenc
 | [Cerebras](https://inference-docs.cerebras.ai/support/rate-limits) | api_key | Trial credits | gpt-oss-120b, qwen-3.8-27b | Cerebras offers $5 trial credit across 2 models (gpt-oss-120b, qwen-3.8-27b with 8K context cap), translating to 1M tokens/day at 2,000+ tokens/sec. Credit card required. Trial credits expire in 30 days. |
 | [Cloudflare Workers AI](https://developers.cloudflare.com/workers-ai/platform/limits) | api_key | Rate-limited free | ~80 free models (Llama 3.x/4, Qwen, Gemma, DeepSeek-R1 distills, FLUX, Whisper, BGE embeddings), @cf/meta/llama-3.3-70b-instruct-fp8-fast, @cf/deepseek-ai/deepseek-r1-distill-qwen-32b, @cf/qwen/qwen2.5-72b-instruct, @cf/meta/llama-3.1-8b-instruct, @cf/openai/whisper | Cloudflare Workers AI offers ~80 free models (including Llama 3.3 70B, DeepSeek-R1 distills, Whisper, and FLUX), translating to 10,000 neurons/day (~hundreds of queries or audio minutes). No credit card required. Hard stop at 10,000 neurons until 00:00 UTC daily reset. |
 | [Mistral La Plateforme](https://docs.mistral.ai) | api_key | Rate-limited free | mistral-tiny | Mistral provides a free tier for developers to evaluate models. The output includes access to select baseline models via API. The process involves signing up for La Plateforme and utilizing default rate limits. The condition requires compliance with terms of service and staying within specified usage thresholds. |
-| [SambaNova Cloud](https://cloud.sambanova.ai/apis) | api_key | Trial credits | Meta-Llama-3.3-70B-Instruct, DeepSeek-V3.1 | SambaNova Cloud provides initial trial credits upon account creation. Users can access production and preview models through an API key using these credits. The platform features pay-as-you-go credit systems alongside standard and free tier rate limits. Access is subject to community support guidelines and specific developer tier restrictions. |
+| [SambaNova Cloud](https://cloud.sambanova.ai/apis) | api_key | Trial credits | Meta-Llama-3.3-70B-Instruct | 1. [The Grant] SambaNova Cloud provides a Free tier offering initial exploratory pay-as-you-go credits. 2. [The Output] Users gain access to select production models under specified free tier parameters. 3. [The Process] The evaluation was conducted by auditing official platform documentation and analyzing API response rate limits. 4. [The Condition] Specific models such as MiniMax-M3.1-Flash are excluded from the free tier offerings. |
 | [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com) | api_key | Trial credits | GLM-5, Kimi-2.5, NIM-packaged open models | NVIDIA NIM offers 1,000 free trial credits across catalog models (including Nemotron 3.5 Lightning with 1M context), translating to ~40 hours of inference testing. No credit card required; corporate email required for extended credits. Credits tie to a 90-day evaluation window. |
 | [Z.AI (Zhipu)](https://z.ai) | api_key | Rate-limited free | GLM-5.1, GLM-4.5-Flash, GLM-4.7-Flash, GLM-4.6V-Flash (vision) | Z.AI offers free API access to GLM-5.1, GLM-4.7-Flash, and GLM-4.6V-Flash with 128K context, translating to 15 requests/minute. No credit card required. Shared free tier throttles during peak platform traffic hours. |
 | [DeepInfra](https://docs.deepinfra.com/account/rate-limits) | api_key | Trial credits | deepseek-ai/DeepSeek-V3.1, Qwen/Qwen3-32B, Qwen/Qwen2.5-72B-Instruct, zai-org/GLM-4.7 | DeepInfra offers $5 signup trial credit across 185+ models (including DeepSeek-V3.1, Qwen 3 32B, and GLM-4.7), translating to ~50M tokens at 200 concurrent requests. No credit card required. Credits remain active until depleted. |
@@ -38,8 +38,8 @@ Free AI & LLM inference you can build with: an API key, a CLI login, or inferenc
 | [Lovable](https://docs.lovable.dev/introduction/credits-and-usage) | bundled | Rate-limited free | Fable 5.1 (Frontier model) | 1. The Grant: Lovable provides a rate-limited free tier for users building and iterating on applications. 2. The Output: Users get access to bundled frontier models including Fable 5.1 without direct financial cost. 3. The Process: Usage is governed by credits and rate limits determined by the platform's current policy. 4. The Condition: Availability and rate limits are subject to change as outlined in the official documentation. |
 | [v0 (Vercel)](https://v0.app/docs/pricing) | bundled | Rate-limited free | Frontier models (bundled, auto-selected) | v0 offers a free plan granting 7 messages per day with bundled frontier models, plus a one-time $5 credit bonus for new accounts. Translates to 7 full-stack code and UI generations daily (~210 requests per month). No credit card required to sign up and build. Quotas reset daily at 00:00 UTC with no rollover, and custom model selection is restricted to paid plans. |
 | [Kaggle Notebooks](https://www.kaggle.com/docs/efficient-gpu-usage) | login | Rate-limited free | Open-weight models you load (GPU runtime) | Kaggle offers 30 hours of free GPU accelerator quota (NVIDIA T4 x2 / P100) and 20 hours of TPU v3-8 compute per week, translating to running self-hosted open-weight model inference and fine-tuning across sessions lasting up to 12 hours. Phone verification is required to unlock accelerators and internet access; no credit card required. Compute quota resets weekly, and interactive sessions terminate after 20 to 60 minutes of idle time. |
-| [Hugging Face Spaces](https://huggingface.co/docs/hub/spaces-overview) | login | Rate-limited free | Any Hugging Face model you load (ZeroGPU) | Hugging Face Spaces offers free hosting for up to 2 ZeroGPU Gradio spaces with dynamic GPU allocation. Free account required, no credit card required. Persistent storage and dedicated hardware require a Pro tier. |
-| [Cursor (Hobby)](https://cursor.com/pricing) | bundled | Rate-limited free | Composer 2, Composer 2.5, Grok 4.5, Grok 4.6, Grok 4.7 | [The Grant] Cursor provides access to bundled internal models like Composer 2 and Grok variants on the Hobby/Free tier. [The Output] Users receive rate-limited access to these bundled models without direct monetary charges. [The Process] The system evaluates user plan tiers and applies automatic rate limits to free tier requests. [The Condition] This access remains active as long as usage stays within the specified free tier rate limits and legacy or current hobby plan parameters. |
+| [Hugging Face Spaces](https://huggingface.co/docs/hub/spaces-overview) | login | Rate-limited free | Any Hugging Face model you load (ZeroGPU) | Hugging Face Spaces provides 5 minutes of daily ZeroGPU compute on dynamic NVIDIA RTX Pro 6000 Blackwell GPUs (48 GB to 96 GB VRAM) along with free hosting for up to 2 Gradio Spaces. This allows users to deploy and run inference on any compatible Hugging Face model across text, vision, audio, and multimodal tasks with execution limits of 60 to 120 seconds per function call. Access requires creating and logging into a free Hugging Face account with a verified email address, with no credit card required. The 5-minute GPU quota resets 24 hours after the first GPU usage, spaces auto-sleep when inactive, and hosting personal ZeroGPU demos requires an account older than 30 days in good standing. |
+| [Cursor (Hobby)](https://cursor.com/pricing) | bundled | Rate-limited free | Cursor Free Models (Agent/Chat) | 1. Cursor grants users access to a complimentary Hobby tier for basic AI coding features. 2. The output provides limited agent requests and limited chat requests under rate-limited conditions. 3. The process involves checking the Cursor pricing and models documentation to cross-reference available free offerings. 4. This access remains conditioned upon staying within the specified rate limits of the free tier. |
 | [Windsurf](https://docs.windsurf.com/windsurf/accounts/usage) | bundled | Rate-limited free | Standard Models | Windsurf provides a free tier. Users receive a set amount of usage and standard features at no cost. The free tier operates on a rate-limited basis. Usage allowances reset periodically under standard usage conditions. |
 | [Devin (Free)](https://devin.ai/pricing) | bundled | Rate-limited free | SWE-2 (Free), Limited models (auto-selected) | Devin offers a Free plan with a light quota to code with agents, free use of SWE-2, unlimited inline edits, and unlimited Tab completions. Account login required, no credit card required. Runs bundled inside the Devin interface on SWE-2 and limited models. |
 | [Qoder](https://docs.qoder.com/account/pricing) | bundled | Rate-limited free | Frontier models + BYO key | Qoder offers free basic code autocompletions and limited Next-Edit-Suggestion (NES) runs. Account login required, no credit card required. Unlimited usage requires bringing your own API keys. |
@@ -67,6 +67,7 @@ The Condition: Credits are valid for 90 days. |
 - The Process: Investigation of JavaScript bundles, API parameters, and documentation revealed context limits and model naming structures.
 - The Condition: Total input and output token sum cannot exceed the 524,288 token context window limit. |
 | [Liquid AI](https://console.liquid.ai) | api_key | Trial credits | Liquid AI Free Model | 1. Liquid AI offers free promotional API credits to new developers upon console signup. 2. The output provides access to evaluate their models via the developer console and API. 3. The process requires creating an account on console.liquid.ai to claim the promotional allocation. 4. The condition is subject to promotional limits and potential expiration once the initial credit balance is exhausted. |
+| [Speka](https://speka.me) | api_key | Permanent $0 | deepseek-ai/deepseek-v4-flash, deepseek-ai/deepseek-v4-pro, meta/llama-3.1-8b-instruct, meta/llama-3.2-3b-instruct, meta/llama-3.2-11b-vision-instruct, meta/llama-3.2-90b-vision-instruct, +21 more | [The Grant] Speka provides a recurring $1.00 monthly model usage allowance on its Free plan ($0/mo) that refreshes every month. [The Output] Developers can generate completions, embeddings, and images across all open catalog models with 1 API key and a rate limit of 10 requests per minute (RPM). [The Process] Users sign up with email and password via speka.me/signup without requiring a credit card or upfront payment, and instantly create an API key in the dashboard. [The Condition] Requests are billed against the $1 monthly credit at standard per-token model rates; once the monthly allowance is exhausted, requests return HTTP 402 until the next monthly reset or paid upgrade. |
 
 ## Models (per provider)
 
@@ -173,8 +174,7 @@ The Condition: Credits are valid for 90 days. |
 
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Meta-Llama-3.3-70B-Instruct | $0 | N/A | N/A | N/A | N/A | N/A | 2026-11-07 |
-| DeepSeek-V3.1 | $0 | N/A | N/A | N/A | N/A | N/A | 2026-11-06 |
+| Meta-Llama-3.3-70B-Instruct | $0 | unknown | unknown | unknown | unknown | unknown | 2026-11-07 |
 
 ### NVIDIA NIM (build.nvidia.com)
 
@@ -251,17 +251,13 @@ The Condition: Credits are valid for 90 days. |
 
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Any Hugging Face model you load (ZeroGPU) | $0 | Not published | Not published | Not published | Not published | Not published | 2026-10-29 |
+| Any Hugging Face model you load (ZeroGPU) | $0 | Model-dependent (up to 96 GB VRAM; 60s default / 120s max GPU duration per call) | Rate-limited (queue-based) | Not specified | Not specified | 5 minutes GPU time / day | 2026-11-07 |
 
 ### Cursor (Hobby)
 
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Composer 2 | $0 | unknown | unknown | unknown | unknown | unknown | 2026-11-06 |
-| Composer 2.5 | $0 | unknown | unknown | unknown | unknown | unknown | 2026-11-06 |
-| Grok 4.5 | $0 | unknown | unknown | unknown | unknown | unknown | 2026-11-06 |
-| Grok 4.6 | $0 | unknown | unknown | unknown | unknown | unknown | 2026-11-06 |
-| Grok 4.7 | $0 | unknown | unknown | unknown | unknown | unknown | 2026-11-06 |
+| Cursor Free Models (Agent/Chat) | $0 | Not specified | Rate-limited | Rate-limited | Rate-limited | Rate-limited | 2026-11-07 |
 
 ### Windsurf
 
@@ -426,6 +422,38 @@ The Condition: Credits are valid for 90 days. |
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | Liquid AI Free Model | $0 (trial) | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-06 |
+
+### Speka
+
+| Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| deepseek-ai/deepseek-v4-flash | $0 | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-07 |
+| deepseek-ai/deepseek-v4-pro | $0 | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-07 |
+| meta/llama-3.1-8b-instruct | $0 | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-07 |
+| meta/llama-3.2-3b-instruct | $0 | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-07 |
+| meta/llama-3.2-11b-vision-instruct | $0 | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-07 |
+| meta/llama-3.2-90b-vision-instruct | $0 | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-07 |
+| meta/llama-3.3-70b-instruct | $0 | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-07 |
+| mistralai/mistral-nemotron | $0 | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-07 |
+| mistralai/mistral-medium-3.5-128b | $0 | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-07 |
+| mistralai/mistral-large-4-1t-a52b | $0 | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-07 |
+| nvidia/nemotron-3-nano-30b-a3b | $0 | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-07 |
+| nvidia/nemotron-3-super-120b-a12b | $0 | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-07 |
+| nvidia/nemotron-3-ultra-550b-a55b | $0 | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-07 |
+| nvidia/nemotron-3.5-bolt-e4b | $0 | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-07 |
+| nvidia/nemotron-3.5-lightning-30b-a3b | $0 | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-07 |
+| nvidia/nemotron-3-embed-1b | $0 | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-07 |
+| nvidia/nemotron-nano-9b-v2 | $0 | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-07 |
+| nvidia/nemotron-nano-12b-v2-vl | $0 | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-07 |
+| nvidia/llama-3.3-nemotron-super-49b-v1.5 | $0 | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-07 |
+| openai/gpt-oss-20b | $0 | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-07 |
+| openai/gpt-oss-120b | $0 | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-07 |
+| poolside/laguna-xs-2.1 | $0 | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-07 |
+| stepfun-ai/step-3.7-flash | $0 | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-07 |
+| stepfun-ai/step-5-preview | $0 | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-07 |
+| minimaxai/minimax-m3 | $0 | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-07 |
+| z-ai/glm-5.2 | $0 | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-07 |
+| black-forest-labs/flux.1-dev | $0 | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-07 |
 ## Definitions
 
 | Term | Meaning |

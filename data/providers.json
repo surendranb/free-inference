@@ -156,7 +156,7 @@
           "verified": "2026-11-07"
         }
       ],
-      "verified_method": "docs",
+      "verified_method": "live-probe",
       "docs_url": "https://opencode.ai/v2/docs/console/models/",
       "access_method": "api_key",
       "artifact": "code",
@@ -771,32 +771,22 @@
       "name": "SambaNova Cloud",
       "url": "https://cloud.sambanova.ai/apis",
       "free_type": "Trial credits",
-      "notes": "SambaNova Cloud provides initial trial credits upon account creation. Users can access production and preview models through an API key using these credits. The platform features pay-as-you-go credit systems alongside standard and free tier rate limits. Access is subject to community support guidelines and specific developer tier restrictions.",
+      "notes": "1. [The Grant] SambaNova Cloud provides a Free tier offering initial exploratory pay-as-you-go credits. 2. [The Output] Users gain access to select production models under specified free tier parameters. 3. [The Process] The evaluation was conducted by auditing official platform documentation and analyzing API response rate limits. 4. [The Condition] Specific models such as MiniMax-M3.1-Flash are excluded from the free tier offerings.",
       "timeout": "Not published",
       "verified": "2026-11-07",
       "models": [
         {
           "name": "Meta-Llama-3.3-70B-Instruct",
           "cost": "$0",
-          "context": "N/A",
-          "rpm": "N/A",
-          "tpm": "N/A",
-          "rpd": "N/A",
-          "tpd": "N/A",
+          "context": "unknown",
+          "rpm": "unknown",
+          "tpm": "unknown",
+          "rpd": "unknown",
+          "tpd": "unknown",
           "verified": "2026-11-07"
-        },
-        {
-          "name": "DeepSeek-V3.1",
-          "cost": "$0",
-          "context": "N/A",
-          "rpm": "N/A",
-          "tpm": "N/A",
-          "rpd": "N/A",
-          "tpd": "N/A",
-          "verified": "2026-11-06"
         }
       ],
-      "verified_method": "live-probe",
+      "verified_method": "docs",
       "access_method": "api_key",
       "artifact": "code",
       "base_url": "https://api.sambanova.ai/v1",
@@ -1168,19 +1158,19 @@
       "name": "Hugging Face Spaces",
       "url": "https://huggingface.co/docs/hub/spaces-overview",
       "free_type": "Rate-limited free",
-      "notes": "Hugging Face Spaces offers free hosting for up to 2 ZeroGPU Gradio spaces with dynamic GPU allocation. Free account required, no credit card required. Persistent storage and dedicated hardware require a Pro tier.",
+      "notes": "Hugging Face Spaces provides 5 minutes of daily ZeroGPU compute on dynamic NVIDIA RTX Pro 6000 Blackwell GPUs (48 GB to 96 GB VRAM) along with free hosting for up to 2 Gradio Spaces. This allows users to deploy and run inference on any compatible Hugging Face model across text, vision, audio, and multimodal tasks with execution limits of 60 to 120 seconds per function call. Access requires creating and logging into a free Hugging Face account with a verified email address, with no credit card required. The 5-minute GPU quota resets 24 hours after the first GPU usage, spaces auto-sleep when inactive, and hosting personal ZeroGPU demos requires an account older than 30 days in good standing.",
       "timeout": "Not published",
-      "verified": "2026-10-29",
+      "verified": "2026-11-07",
       "models": [
         {
           "name": "Any Hugging Face model you load (ZeroGPU)",
           "cost": "$0",
-          "context": "Not published",
-          "rpm": "Not published",
-          "tpm": "Not published",
-          "rpd": "Not published",
-          "tpd": "Not published",
-          "verified": "2026-10-29"
+          "context": "Model-dependent (up to 96 GB VRAM; 60s default / 120s max GPU duration per call)",
+          "rpm": "Rate-limited (queue-based)",
+          "tpm": "Not specified",
+          "rpd": "Not specified",
+          "tpd": "5 minutes GPU time / day",
+          "verified": "2026-11-07"
         }
       ],
       "verified_method": "docs",
@@ -1193,59 +1183,19 @@
       "name": "Cursor (Hobby)",
       "url": "https://cursor.com/pricing",
       "free_type": "Rate-limited free",
-      "notes": "[The Grant] Cursor provides access to bundled internal models like Composer 2 and Grok variants on the Hobby/Free tier. [The Output] Users receive rate-limited access to these bundled models without direct monetary charges. [The Process] The system evaluates user plan tiers and applies automatic rate limits to free tier requests. [The Condition] This access remains active as long as usage stays within the specified free tier rate limits and legacy or current hobby plan parameters.",
+      "notes": "1. Cursor grants users access to a complimentary Hobby tier for basic AI coding features. 2. The output provides limited agent requests and limited chat requests under rate-limited conditions. 3. The process involves checking the Cursor pricing and models documentation to cross-reference available free offerings. 4. This access remains conditioned upon staying within the specified rate limits of the free tier.",
       "timeout": "Not published",
-      "verified": "2026-11-06",
+      "verified": "2026-11-07",
       "models": [
         {
-          "name": "Composer 2",
+          "name": "Cursor Free Models (Agent/Chat)",
           "cost": "$0",
-          "context": "unknown",
-          "rpm": "unknown",
-          "tpm": "unknown",
-          "rpd": "unknown",
-          "tpd": "unknown",
-          "verified": "2026-11-06"
-        },
-        {
-          "name": "Composer 2.5",
-          "cost": "$0",
-          "context": "unknown",
-          "rpm": "unknown",
-          "tpm": "unknown",
-          "rpd": "unknown",
-          "tpd": "unknown",
-          "verified": "2026-11-06"
-        },
-        {
-          "name": "Grok 4.5",
-          "cost": "$0",
-          "context": "unknown",
-          "rpm": "unknown",
-          "tpm": "unknown",
-          "rpd": "unknown",
-          "tpd": "unknown",
-          "verified": "2026-11-06"
-        },
-        {
-          "name": "Grok 4.6",
-          "cost": "$0",
-          "context": "unknown",
-          "rpm": "unknown",
-          "tpm": "unknown",
-          "rpd": "unknown",
-          "tpd": "unknown",
-          "verified": "2026-11-06"
-        },
-        {
-          "name": "Grok 4.7",
-          "cost": "$0",
-          "context": "unknown",
-          "rpm": "unknown",
-          "tpm": "unknown",
-          "rpd": "unknown",
-          "tpd": "unknown",
-          "verified": "2026-11-06"
+          "context": "Not specified",
+          "rpm": "Rate-limited",
+          "tpm": "Rate-limited",
+          "rpd": "Rate-limited",
+          "tpd": "Rate-limited",
+          "verified": "2026-11-07"
         }
       ],
       "verified_method": "docs",
@@ -2161,6 +2111,291 @@
           "rpd": "Not published",
           "tpd": "Not published",
           "verified": "2026-11-06"
+        }
+      ]
+    },
+    {
+      "name": "Speka",
+      "url": "https://speka.me",
+      "free_type": "Permanent $0",
+      "notes": "[The Grant] Speka provides a recurring $1.00 monthly model usage allowance on its Free plan ($0/mo) that refreshes every month. [The Output] Developers can generate completions, embeddings, and images across all open catalog models with 1 API key and a rate limit of 10 requests per minute (RPM). [The Process] Users sign up with email and password via speka.me/signup without requiring a credit card or upfront payment, and instantly create an API key in the dashboard. [The Condition] Requests are billed against the $1 monthly credit at standard per-token model rates; once the monthly allowance is exhausted, requests return HTTP 402 until the next monthly reset or paid upgrade.",
+      "timeout": "Not published",
+      "verified": "2026-11-07",
+      "channel": "web",
+      "verified_method": "docs",
+      "access_method": "api_key",
+      "artifact": "code",
+      "base_url": "https://speka.me/v1",
+      "models": [
+        {
+          "name": "deepseek-ai/deepseek-v4-flash",
+          "cost": "$0",
+          "context": "Model-dependent",
+          "rpm": "Published on portal",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-07"
+        },
+        {
+          "name": "deepseek-ai/deepseek-v4-pro",
+          "cost": "$0",
+          "context": "Model-dependent",
+          "rpm": "Published on portal",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-07"
+        },
+        {
+          "name": "meta/llama-3.1-8b-instruct",
+          "cost": "$0",
+          "context": "Model-dependent",
+          "rpm": "Published on portal",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-07"
+        },
+        {
+          "name": "meta/llama-3.2-3b-instruct",
+          "cost": "$0",
+          "context": "Model-dependent",
+          "rpm": "Published on portal",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-07"
+        },
+        {
+          "name": "meta/llama-3.2-11b-vision-instruct",
+          "cost": "$0",
+          "context": "Model-dependent",
+          "rpm": "Published on portal",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-07"
+        },
+        {
+          "name": "meta/llama-3.2-90b-vision-instruct",
+          "cost": "$0",
+          "context": "Model-dependent",
+          "rpm": "Published on portal",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-07"
+        },
+        {
+          "name": "meta/llama-3.3-70b-instruct",
+          "cost": "$0",
+          "context": "Model-dependent",
+          "rpm": "Published on portal",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-07"
+        },
+        {
+          "name": "mistralai/mistral-nemotron",
+          "cost": "$0",
+          "context": "Model-dependent",
+          "rpm": "Published on portal",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-07"
+        },
+        {
+          "name": "mistralai/mistral-medium-3.5-128b",
+          "cost": "$0",
+          "context": "Model-dependent",
+          "rpm": "Published on portal",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-07"
+        },
+        {
+          "name": "mistralai/mistral-large-4-1t-a52b",
+          "cost": "$0",
+          "context": "Model-dependent",
+          "rpm": "Published on portal",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-07"
+        },
+        {
+          "name": "nvidia/nemotron-3-nano-30b-a3b",
+          "cost": "$0",
+          "context": "Model-dependent",
+          "rpm": "Published on portal",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-07"
+        },
+        {
+          "name": "nvidia/nemotron-3-super-120b-a12b",
+          "cost": "$0",
+          "context": "Model-dependent",
+          "rpm": "Published on portal",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-07"
+        },
+        {
+          "name": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost": "$0",
+          "context": "Model-dependent",
+          "rpm": "Published on portal",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-07"
+        },
+        {
+          "name": "nvidia/nemotron-3.5-bolt-e4b",
+          "cost": "$0",
+          "context": "Model-dependent",
+          "rpm": "Published on portal",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-07"
+        },
+        {
+          "name": "nvidia/nemotron-3.5-lightning-30b-a3b",
+          "cost": "$0",
+          "context": "Model-dependent",
+          "rpm": "Published on portal",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-07"
+        },
+        {
+          "name": "nvidia/nemotron-3-embed-1b",
+          "cost": "$0",
+          "context": "Model-dependent",
+          "rpm": "Published on portal",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-07"
+        },
+        {
+          "name": "nvidia/nemotron-nano-9b-v2",
+          "cost": "$0",
+          "context": "Model-dependent",
+          "rpm": "Published on portal",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-07"
+        },
+        {
+          "name": "nvidia/nemotron-nano-12b-v2-vl",
+          "cost": "$0",
+          "context": "Model-dependent",
+          "rpm": "Published on portal",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-07"
+        },
+        {
+          "name": "nvidia/llama-3.3-nemotron-super-49b-v1.5",
+          "cost": "$0",
+          "context": "Model-dependent",
+          "rpm": "Published on portal",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-07"
+        },
+        {
+          "name": "openai/gpt-oss-20b",
+          "cost": "$0",
+          "context": "Model-dependent",
+          "rpm": "Published on portal",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-07"
+        },
+        {
+          "name": "openai/gpt-oss-120b",
+          "cost": "$0",
+          "context": "Model-dependent",
+          "rpm": "Published on portal",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-07"
+        },
+        {
+          "name": "poolside/laguna-xs-2.1",
+          "cost": "$0",
+          "context": "Model-dependent",
+          "rpm": "Published on portal",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-07"
+        },
+        {
+          "name": "stepfun-ai/step-3.7-flash",
+          "cost": "$0",
+          "context": "Model-dependent",
+          "rpm": "Published on portal",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-07"
+        },
+        {
+          "name": "stepfun-ai/step-5-preview",
+          "cost": "$0",
+          "context": "Model-dependent",
+          "rpm": "Published on portal",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-07"
+        },
+        {
+          "name": "minimaxai/minimax-m3",
+          "cost": "$0",
+          "context": "Model-dependent",
+          "rpm": "Published on portal",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-07"
+        },
+        {
+          "name": "z-ai/glm-5.2",
+          "cost": "$0",
+          "context": "Model-dependent",
+          "rpm": "Published on portal",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-07"
+        },
+        {
+          "name": "black-forest-labs/flux.1-dev",
+          "cost": "$0",
+          "context": "Model-dependent",
+          "rpm": "Published on portal",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-07"
         }
       ]
     }

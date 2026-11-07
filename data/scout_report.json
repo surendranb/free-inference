@@ -1,8 +1,8 @@
 {
   "scouted_date": "2026-11-07",
   "model_used": "gemini-3.5-flash-lite + antigravity-preview-09-2026",
-  "providers_audited": 41,
-  "models_cataloged": 143,
+  "providers_audited": 42,
+  "models_cataloged": 142,
   "audit_summary": {
     "stale_count": 0,
     "stale_providers": [],
@@ -10,22 +10,14 @@
   },
   "doc_audits": [
     {
-      "provider": "OpenCode Zen",
-      "docs_url": "https://opencode.ai/v2/docs/console/models/",
-      "status": "active",
-      "is_free_active": true,
-      "summary": "OpenCode Zen maintains an active promotional free tier featuring a diverse catalog of zero-cost models subject to limited-time availability and data-sharing conditions.",
-      "audited_date": "2026-11-07",
-      "agent_steps": 24,
-      "interaction_id": "v1_ChdtN2Z1YXR2a0dlNmd6N0lQd3FXWjRBcxIXbTdmdWF0dmtHZTZnejdJUHdxV1o0QXM"
-    },
-    {
       "provider": "SambaNova Cloud",
       "docs_url": "https://cloud.sambanova.ai/apis",
-      "status": "unreachable",
-      "is_free_active": null,
-      "summary": "HTTP Error 429: Too Many Requests",
-      "audited_date": "2026-11-07"
+      "status": "active",
+      "is_free_active": true,
+      "summary": "SambaNova Cloud maintains an active free tier offering pay-as-you-go credits and access to select production models, though certain models like MiniMax-M3.1-Flash are excluded.",
+      "audited_date": "2026-11-07",
+      "agent_steps": 40,
+      "interaction_id": "v1_ChdqX191YXF5dUZ1NlVtdGtQN052TXNRWRIXal9fdWFxeXVGdTZVbXRrUDdOdk1zUVk"
     },
     {
       "provider": "Kilo Gateway",
@@ -40,10 +32,8 @@
       "docs_url": "https://portal.nousresearch.com/api-docs",
       "status": "unreachable",
       "is_free_active": null,
-      "summary": "Parse error: Expecting value: line 1 column 1 (char 0)",
-      "audited_date": "2026-11-07",
-      "agent_steps": 30,
-      "interaction_id": "v1_ChcxN2Z1YXRMM0pjWFJ6N0lQXzdMbHdBSRIXMTdmdWF0TDNKY1hSejdJUF83TGx3QUk"
+      "summary": "HTTP Error 429: Too Many Requests",
+      "audited_date": "2026-11-07"
     },
     {
       "provider": "Cerebras",
@@ -144,18 +134,22 @@
     {
       "provider": "Hugging Face Spaces",
       "docs_url": "https://huggingface.co/docs/hub/spaces-overview",
-      "status": "unreachable",
-      "is_free_active": null,
-      "summary": "HTTP Error 429: Too Many Requests",
-      "audited_date": "2026-11-07"
+      "status": "active",
+      "is_free_active": true,
+      "summary": "Free Hugging Face accounts receive 5 minutes of ZeroGPU compute per rolling 24-hour window on up to 96 GB VRAM GPUs and can host up to 2 ZeroGPU Gradio Spaces at no cost.",
+      "audited_date": "2026-11-07",
+      "agent_steps": 10,
+      "interaction_id": "v1_ChdDQUR2YXVLTkRKT2R6N0lQd0xLX2lRaxIXQ0FEdmF1S05ESk9kejdJUHdMS19pUWs"
     },
     {
       "provider": "Cursor (Hobby)",
       "docs_url": "https://cursor.com/pricing",
-      "status": "unreachable",
-      "is_free_active": null,
-      "summary": "HTTP Error 429: Too Many Requests",
-      "audited_date": "2026-11-07"
+      "status": "active",
+      "is_free_active": true,
+      "summary": "Cursor offers an active Hobby free tier featuring rate-limited access to basic AI chat and agent requests.",
+      "audited_date": "2026-11-07",
+      "agent_steps": 46,
+      "interaction_id": "v1_ChdQd0R2YXFmSUt2Zkktc0FQb052STZRaxIXUHdEdmFxZklLdmZJLXNBUG9Odkk2UWs"
     },
     {
       "provider": "Windsurf",
@@ -224,12 +218,10 @@
     {
       "provider": "Replit (Starter)",
       "docs_url": "https://docs.replit.com/help/pricing-and-plans",
-      "status": "active",
-      "is_free_active": true,
-      "summary": "Replit offers a Starter free tier providing basic cloud development environments and workspaces with standard platform limits.",
-      "audited_date": "2026-11-07",
-      "agent_steps": 43,
-      "interaction_id": "v1_ChdVYmp1YXNxY0FjclF6N0lQaklDeTBBTRIXVWJqdWFzcWNBY3JRejdJUGpJQ3kwQU0"
+      "status": "unreachable",
+      "is_free_active": null,
+      "summary": "HTTP Error 429: Too Many Requests",
+      "audited_date": "2026-11-07"
     },
     {
       "provider": "Cohere",
@@ -296,9 +288,139 @@
       "audited_date": "2026-11-07"
     }
   ],
-  "candidate_providers_count": 3,
-  "candidate_audits": [],
-  "verified_new_providers": [],
+  "candidate_providers_count": 5,
+  "candidate_audits": [
+    {
+      "name": "Speka",
+      "url": "https://speka.me",
+      "source": "Google Search Live Frontier",
+      "status": "active",
+      "is_free_active": true,
+      "free_type": "Permanent $0",
+      "notes": "[The Grant] Speka provides a recurring $1.00 monthly model usage allowance on its Free plan ($0/mo) that refreshes every month. [The Output] Developers can generate completions, embeddings, and images across all open catalog models with 1 API key and a rate limit of 10 requests per minute (RPM). [The Process] Users sign up with email and password via speka.me/signup without requiring a credit card or upfront payment, and instantly create an API key in the dashboard. [The Condition] Requests are billed against the $1 monthly credit at standard per-token model rates; once the monthly allowance is exhausted, requests return HTTP 402 until the next monthly reset or paid upgrade.",
+      "summary": "Speka provides a recurring $1 monthly free model allowance at 10 requests per minute with no credit card required, supporting all open catalog models via an OpenAI-compatible endpoint.",
+      "candidate_models": [
+        "deepseek-ai/deepseek-v4-flash",
+        "deepseek-ai/deepseek-v4-pro",
+        "meta/llama-3.1-8b-instruct",
+        "meta/llama-3.2-3b-instruct",
+        "meta/llama-3.2-11b-vision-instruct",
+        "meta/llama-3.2-90b-vision-instruct",
+        "meta/llama-3.3-70b-instruct",
+        "mistralai/mistral-nemotron",
+        "mistralai/mistral-medium-3.5-128b",
+        "mistralai/mistral-large-4-1t-a52b",
+        "nvidia/nemotron-3-nano-30b-a3b",
+        "nvidia/nemotron-3-super-120b-a12b",
+        "nvidia/nemotron-3-ultra-550b-a55b",
+        "nvidia/nemotron-3.5-bolt-e4b",
+        "nvidia/nemotron-3.5-lightning-30b-a3b",
+        "nvidia/nemotron-3-embed-1b",
+        "nvidia/nemotron-nano-9b-v2",
+        "nvidia/nemotron-nano-12b-v2-vl",
+        "nvidia/llama-3.3-nemotron-super-49b-v1.5",
+        "openai/gpt-oss-20b",
+        "openai/gpt-oss-120b",
+        "poolside/laguna-xs-2.1",
+        "stepfun-ai/step-3.7-flash",
+        "stepfun-ai/step-5-preview",
+        "minimaxai/minimax-m3",
+        "z-ai/glm-5.2",
+        "black-forest-labs/flux.1-dev"
+      ],
+      "base_url": "https://speka.me/v1",
+      "audited_date": "2026-11-07",
+      "agent_steps": 40,
+      "interaction_id": "v1_ChdGZ0h2YXEtbkNyV1VtdGtQa3R5TGtRWRIXRmdIdmFxLW5DcldVbXRrUGt0eUxrUVk"
+    },
+    {
+      "name": "Zhipu AI (GLM)",
+      "url": "https://www.zhipuai.cn/en",
+      "source": "Google Search Live Frontier",
+      "status": "unreachable",
+      "is_free_active": false,
+      "summary": "Antigravity agent interaction v1_ChdsQUh2YXAzaklyUG9qckVQeHFURG1RbxIXbEFIdmFwM2pJclBvanJFUHhxVERtUW8 timed out after 150s",
+      "audited_date": "2026-11-07"
+    },
+    {
+      "name": "Recursive AI",
+      "url": "https://recursive.ai",
+      "source": "Upstream Creator for recursive/flint-v1.0:free",
+      "status": "no_api",
+      "is_free_active": false,
+      "free_type": "None",
+      "notes": "[The Grant] Recursive AI provides no free tier, trial credits, or inference API access at recursive.ai. [The Output] No developer outputs, API keys, or model inference endpoints are available. [The Process] Investigation of the official domain confirms it is currently a parked 'Coming Soon' placeholder hosted on Porkbun without an operational service or developer portal. [The Condition] Service access and developer offerings are nonexistent until an active platform or API is deployed.",
+      "summary": "Recursive AI does not provide an inference API, free allowance, or developer access as the official domain is an inactive parked page.",
+      "candidate_models": [],
+      "base_url": null,
+      "audited_date": "2026-11-07",
+      "agent_steps": 39,
+      "interaction_id": "v1_ChdNQUx2YXNXSEZveWh6N0lQNy15Q3FBSRIXTUFMdmFzV0hGb3loejdJUDcteUNxQUk"
+    },
+    {
+      "name": "Poolside AI",
+      "url": "https://poolside.ai",
+      "source": "Upstream Creator for poolside/laguna-s-2.1:free",
+      "status": "unreachable",
+      "is_free_active": false,
+      "summary": "Antigravity agent interaction v1_Chd4d0x2YXRES09MSG96N0lQLTRxT3VRcxIXeHdMdmF0REtPTEhvejdJUC00cU91UXM timed out after 150s",
+      "audited_date": "2026-11-07"
+    },
+    {
+      "name": "StepFun",
+      "url": "https://platform.stepfun.com",
+      "source": "Upstream Creator for stepfun/step-3.7-flash:free",
+      "status": "unreachable",
+      "is_free_active": false,
+      "summary": "Antigravity agent interaction v1_ChdZd1B2YXJpYUh2V1o5TW9QcDYtb3NRcxIXWXdQdmFyaWFIdldaOU1vUHA2LW9zUXM timed out after 150s",
+      "audited_date": "2026-11-07"
+    }
+  ],
+  "verified_new_providers": [
+    {
+      "name": "Speka",
+      "url": "https://speka.me",
+      "source": "Google Search Live Frontier",
+      "status": "active",
+      "is_free_active": true,
+      "free_type": "Permanent $0",
+      "notes": "[The Grant] Speka provides a recurring $1.00 monthly model usage allowance on its Free plan ($0/mo) that refreshes every month. [The Output] Developers can generate completions, embeddings, and images across all open catalog models with 1 API key and a rate limit of 10 requests per minute (RPM). [The Process] Users sign up with email and password via speka.me/signup without requiring a credit card or upfront payment, and instantly create an API key in the dashboard. [The Condition] Requests are billed against the $1 monthly credit at standard per-token model rates; once the monthly allowance is exhausted, requests return HTTP 402 until the next monthly reset or paid upgrade.",
+      "summary": "Speka provides a recurring $1 monthly free model allowance at 10 requests per minute with no credit card required, supporting all open catalog models via an OpenAI-compatible endpoint.",
+      "candidate_models": [
+        "deepseek-ai/deepseek-v4-flash",
+        "deepseek-ai/deepseek-v4-pro",
+        "meta/llama-3.1-8b-instruct",
+        "meta/llama-3.2-3b-instruct",
+        "meta/llama-3.2-11b-vision-instruct",
+        "meta/llama-3.2-90b-vision-instruct",
+        "meta/llama-3.3-70b-instruct",
+        "mistralai/mistral-nemotron",
+        "mistralai/mistral-medium-3.5-128b",
+        "mistralai/mistral-large-4-1t-a52b",
+        "nvidia/nemotron-3-nano-30b-a3b",
+        "nvidia/nemotron-3-super-120b-a12b",
+        "nvidia/nemotron-3-ultra-550b-a55b",
+        "nvidia/nemotron-3.5-bolt-e4b",
+        "nvidia/nemotron-3.5-lightning-30b-a3b",
+        "nvidia/nemotron-3-embed-1b",
+        "nvidia/nemotron-nano-9b-v2",
+        "nvidia/nemotron-nano-12b-v2-vl",
+        "nvidia/llama-3.3-nemotron-super-49b-v1.5",
+        "openai/gpt-oss-20b",
+        "openai/gpt-oss-120b",
+        "poolside/laguna-xs-2.1",
+        "stepfun-ai/step-3.7-flash",
+        "stepfun-ai/step-5-preview",
+        "minimaxai/minimax-m3",
+        "z-ai/glm-5.2",
+        "black-forest-labs/flux.1-dev"
+      ],
+      "base_url": "https://speka.me/v1",
+      "audited_date": "2026-11-07",
+      "agent_steps": 40,
+      "interaction_id": "v1_ChdGZ0h2YXEtbkNyV1VtdGtQa3R5TGtRWRIXRmdIdmFxLW5DcldVbXRrUGt0eUxrUVk"
+    }
+  ],
   "live_gateway_free_total": 44,
   "new_discoveries_count": 19,
   "openrouter_rss_stream_count": 12,
@@ -407,63 +529,63 @@
       "family": "auto-router",
       "task": "general",
       "recommended_page_slug": "kilo-auto-free",
-      "summary": "An automated free routing model provided by Kilo Gateway optimized for general-purpose requests."
+      "summary": "An automated routing model from Kilo Gateway designed to balance general-purpose tasks dynamically across free-tier backends."
     },
     {
       "id": "reflection/beam-free",
       "family": "reflection",
       "task": "reasoning",
       "recommended_page_slug": "reflection-beam-free",
-      "summary": "A high-context reasoning model featuring a 1M token context length and reflection capabilities."
+      "summary": "A 1M context reflection-based reasoning model optimized for complex problem-solving and deep analysis."
     },
     {
       "id": "stealth/glyph-cluster",
       "family": "stealth",
       "task": "general",
       "recommended_page_slug": "stealth-glyph-cluster",
-      "summary": "A proprietary stealth model with a 256k context window, accessible for free via Kilo Gateway."
+      "summary": "A stealth-labeled general-purpose model with a 256k context window discovered on Kilo Gateway."
     },
     {
       "id": "stealth/crouton-alpha",
-      "family": "stealth",
+      "family": "crouton",
       "task": "reasoning",
       "recommended_page_slug": "stealth-crouton-alpha",
-      "summary": "An alpha-stage stealth reasoning model boasting a 1M token context length available across multiple portals."
+      "summary": "An alpha-stage reasoning model featuring a massive 1-million token context length available across multiple gateways."
     },
     {
       "id": "google/lyria-3-pro-preview",
-      "family": "google",
+      "family": "google-lyria",
       "task": "general",
       "recommended_page_slug": "google-lyria-3-pro-preview",
-      "summary": "Google Lyria 3 Pro preview model offering deep context processing and advanced language generation."
+      "summary": "A high-capacity preview model from Google with an extensive 1M context window tailored for advanced language workflows."
     },
     {
       "id": "google/lyria-3-clip-preview",
-      "family": "google",
-      "task": "vision",
+      "family": "google-lyria",
+      "task": "general",
       "recommended_page_slug": "google-lyria-3-clip-preview",
-      "summary": "A preview model combining multimodal clip capabilities with Google's Lyria architecture."
+      "summary": "A specialized preview clip variant of Google's Lyria architecture supporting long-context general tasks."
     },
     {
       "id": "openrouter/free",
       "family": "meta-router",
       "task": "general",
       "recommended_page_slug": "openrouter-free",
-      "summary": "A meta-router endpoint that dynamically selects and serves free models via OpenRouter infrastructure."
+      "summary": "A meta-router model configuration that aggregates and serves free-tier requests from OpenRouter via the Kilo Gateway."
     },
     {
       "id": "meituan/longcat-2.5:free",
-      "family": "meituan",
-      "task": "coding",
+      "family": "longcat",
+      "task": "reasoning",
       "recommended_page_slug": "meituan-longcat-2-5-free",
-      "summary": "LongCat-2.5 is a Meituan-developed model optimized for handling ultra-long contexts up to 1M tokens."
+      "summary": "Meituan's LongCat-2.5 model offering a 1M context window geared toward extended reasoning and context retrieval."
     },
     {
       "id": "novita/ling-3.1-flash",
-      "family": "novita",
+      "family": "ling",
       "task": "general",
       "recommended_page_slug": "novita-ling-3-1-flash",
-      "summary": "A fast, lightweight flash model from Novita designed for rapid inference and general completion tasks."
+      "summary": "A fast, lightweight flash model by Novita optimized for low-latency general tasks and chat completion."
     }
   ],
   "status": "completed"

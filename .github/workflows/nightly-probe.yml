@@ -18,15 +18,11 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Run probe
-        env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: python3 probe.py
-      - name: Run AI Studio discovery scout
+      - name: Run FreeInference Engine (Task 1: Verify & Task 2: Scout)
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python3 scripts/ai_scout.py --apply
+        run: python3 -m core.runner --verify --all --apply
       - name: Generate Weekly Dispatch (Mondays)
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}

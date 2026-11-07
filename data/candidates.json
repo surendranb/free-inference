@@ -1,0 +1,98 @@
+[
+  {
+    "id": "liquid/lfm-3-1.7b:free",
+    "name": "LiquidAI: LFM3-1.7B (free)",
+    "context_length": 262144,
+    "source": "OpenRouter API"
+  },
+  {
+    "id": "stealth/crouton-alpha",
+    "name": "Crouton Alpha",
+    "context_length": 1048576,
+    "source": "OpenRouter API"
+  },
+  {
+    "id": "recursive/flint-v1.0:free",
+    "name": "Recursive: Flint (free)",
+    "context_length": 262144,
+    "source": "OpenRouter API"
+  },
+  {
+    "id": "xingchen-agi/xing4.0-29b-a4b:free",
+    "name": "XingChen: Xing4.0 29B A4B (free)",
+    "context_length": 262144,
+    "source": "OpenRouter API"
+  },
+  {
+    "id": "nvidia/nemotron-3.5-super-vl:free",
+    "name": "NVIDIA: Nemotron 3.5 Super VL (free)",
+    "context_length": 1000000,
+    "source": "OpenRouter API"
+  },
+  {
+    "id": "dots-studio/dots-3-note-preview:free",
+    "name": "Dots Studio: Dots3-Note Preview (free)",
+    "context_length": 512000,
+    "source": "OpenRouter API"
+  },
+  {
+    "id": "liquid/lfm-2.5-2.6b:free",
+    "name": "LiquidAI: LFM2.5-2.6B (free)",
+    "context_length": 65536,
+    "source": "OpenRouter API"
+  },
+  {
+    "id": "nvidia/nemotron-3.5-lightning:free",
+    "name": "NVIDIA: Nemotron 3.5 Lightning (free)",
+    "context_length": 1000000,
+    "source": "OpenRouter API"
+  },
+  {
+    "id": "cohere/north-mini-code:free",
+    "name": "Cohere: North Mini Code (free)",
+    "context_length": 256000,
+    "source": "OpenRouter API"
+  },
+  {
+    "id": "nvidia/nemotron-3-ultra-550b-a55b:free",
+    "name": "NVIDIA: Nemotron 3 Ultra (free)",
+    "context_length": 1000000,
+    "source": "OpenRouter API"
+  },
+  {
+    "id": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
+    "name": "NVIDIA: Nemotron 3 Nano Omni (free)",
+    "context_length": 256000,
+    "source": "OpenRouter API"
+  },
+  {
+    "id": "google/gemma-4-26b-a4b-it:free",
+    "name": "Google: Gemma 4 26B A4B  (free)",
+    "context_length": 262144,
+    "source": "OpenRouter API"
+  },
+  {
+    "id": "google/gemma-4-31b-it:free",
+    "name": "Google: Gemma 4 31B (free)",
+    "context_length": 262144,
+    "source": "OpenRouter API"
+  },
+  {
+    "id": "google/lyria-3-pro-preview",
+    "name": "Google: Lyria 3 Pro Preview",
+    "context_length": 1048576,
+    "source": "OpenRouter API"
+  },
+  {
+    "id": "google/lyria-3-clip-preview",
+    "name": "Google: Lyria 3 Clip Preview",
+    "context_length": 1048576,
+    "source": "OpenRouter API"
+  },
+  {
+    "id": "openrouter/free",
+    "name": "Free Models Router",
+    "context_length": 200000,
+    "source": "OpenRouter API"
+  }
+]

@@ -1,8 +1,10 @@
 {
   "scouted_date": "2026-11-07",
   "model_used": "gemini-3.5-flash-lite + antigravity-preview-09-2026",
-  "providers_audited": 41,
-  "models_cataloged": 143,
+  "providers_audited": 33,
+  "doc_audits_rate_limited": 0,
+  "doc_audits_unreachable": 1,
+  "models_cataloged": 142,
   "audit_summary": {
     "stale_count": 0,
     "stale_providers": [],
@@ -10,294 +12,396 @@
   },
   "doc_audits": [
     {
-      "provider": "OpenCode Zen",
-      "docs_url": "https://opencode.ai/v2/docs/console/models/",
-      "status": "active",
-      "is_free_active": true,
-      "summary": "OpenCode Zen maintains an active promotional free tier featuring a diverse catalog of zero-cost models subject to limited-time availability and data-sharing conditions.",
+      "provider": "Kilo Gateway",
+      "docs_url": "https://kilo.ai/gateway",
+      "channel": "api",
+      "status": "inconclusive",
+      "is_free_active": false,
+      "summary": "The API fetch failed with an HTTP 404 Not Found error, making it impossible to verify the current status of the free tier or models.",
       "audited_date": "2026-11-07",
-      "agent_steps": 24,
-      "interaction_id": "v1_ChdtN2Z1YXR2a0dlNmd6N0lQd3FXWjRBcxIXbTdmdWF0dmtHZTZnejdJUHdxV1o0QXM"
+      "agent_steps": 1,
+      "interaction_id": "api-runner-diff"
     },
     {
       "provider": "SambaNova Cloud",
       "docs_url": "https://cloud.sambanova.ai/apis",
-      "status": "unreachable",
-      "is_free_active": null,
-      "summary": "HTTP Error 429: Too Many Requests",
-      "audited_date": "2026-11-07"
-    },
-    {
-      "provider": "Kilo Gateway",
-      "docs_url": "https://kilo.ai/gateway",
-      "status": "unreachable",
-      "is_free_active": null,
-      "summary": "HTTP Error 429: Too Many Requests",
-      "audited_date": "2026-11-07"
+      "channel": "api",
+      "status": "changed",
+      "is_free_active": true,
+      "summary": "SambaNova Cloud updated its model lineup, removing DeepSeek-V3.1 while retaining Meta-Llama-3.3-70B-Instruct and adding new models such as GLM-5.3, MiniMax-M3.1-Flash, gemma-4-31B-it, and gpt-oss-120b available via trial credits.",
+      "audited_date": "2026-11-07",
+      "agent_steps": 1,
+      "interaction_id": "api-runner-diff"
     },
     {
       "provider": "Nous Portal",
       "docs_url": "https://portal.nousresearch.com/api-docs",
-      "status": "unreachable",
-      "is_free_active": null,
-      "summary": "Parse error: Expecting value: line 1 column 1 (char 0)",
+      "channel": "api",
+      "status": "changed",
+      "is_free_active": true,
+      "summary": "All previously cataloged free models are no longer present in the live API response, and the endpoint now lists paid models like liquid/lfm-3-1.7b and ricursiveai/ripple-65b-preview.",
       "audited_date": "2026-11-07",
-      "agent_steps": 30,
-      "interaction_id": "v1_ChcxN2Z1YXRMM0pjWFJ6N0lQXzdMbHdBSRIXMTdmdWF0TDNKY1hSejdJUF83TGx3QUk"
+      "agent_steps": 1,
+      "interaction_id": "api-runner-diff"
     },
     {
       "provider": "Cerebras",
       "docs_url": "https://inference-docs.cerebras.ai/support/rate-limits",
-      "status": "unreachable",
-      "is_free_active": null,
-      "summary": "HTTP Error 429: Too Many Requests",
-      "audited_date": "2026-11-07"
+      "channel": "web",
+      "status": "active",
+      "is_free_active": true,
+      "summary": "Cerebras continues to offer a $5 trial credit valid for 30 days with a payment method across gpt-oss-120b and qwen-3.8-27b with a 1M tokens/day limit.",
+      "audited_date": "2026-11-07",
+      "agent_steps": 5,
+      "interaction_id": "v1_ChdXLWJ1YW82Q0xfclZ6N0lQZ2VMOHdBSRIXVy1idWFvNkNMX3JWejdJUGdlTDh3QUk"
     },
     {
       "provider": "Cloudflare Workers AI",
       "docs_url": "https://developers.cloudflare.com/workers-ai/platform/limits/",
-      "status": "unreachable",
+      "channel": "web",
+      "status": "inconclusive",
       "is_free_active": null,
-      "summary": "HTTP Error 429: Too Many Requests",
-      "audited_date": "2026-11-07"
+      "summary": "The verification observations did not provide a definitive confirmation of the current active status or specific changes regarding the $0 developer free tier.",
+      "audited_date": "2026-11-07",
+      "agent_steps": 10,
+      "interaction_id": "v1_ChdlLWJ1YW9hVkd2clZ6N0lQZ2VMOHdBSRIXZS1idWFvYVZHdnJWejdJUGdlTDh3QUk"
     },
     {
       "provider": "Mistral La Plateforme",
       "docs_url": "https://docs.mistral.ai/",
-      "status": "unreachable",
+      "channel": "web",
+      "status": "inconclusive",
       "is_free_active": null,
-      "summary": "HTTP Error 429: Too Many Requests",
-      "audited_date": "2026-11-07"
+      "summary": "The verification observations confirm ongoing review of Mistral's platform documentation and free tier models, but do not explicitly state whether the free tier status has changed or remains active.",
+      "audited_date": "2026-11-07",
+      "agent_steps": 15,
+      "interaction_id": "v1_ChdtLWJ1YW9fdkxidlV6N0lQOE5DU2lRdxIXbS1idWFvX3ZMYnZVejdJUDhOQ1NpUXc"
     },
     {
       "provider": "NVIDIA NIM (build.nvidia.com)",
       "docs_url": "https://build.nvidia.com/explore/reasoning",
-      "status": "unreachable",
-      "is_free_active": null,
-      "summary": "HTTP Error 429: Too Many Requests",
-      "audited_date": "2026-11-07"
-    },
-    {
-      "provider": "Z.AI (Zhipu)",
-      "docs_url": "https://z.ai",
-      "status": "unreachable",
-      "is_free_active": null,
-      "summary": "HTTP Error 429: Too Many Requests",
-      "audited_date": "2026-11-07"
+      "channel": "web",
+      "status": "active",
+      "is_free_active": true,
+      "summary": "The $0 developer free tier is confirmed active with ongoing checks for new model additions and catalog shifts.",
+      "audited_date": "2026-11-07",
+      "agent_steps": 11,
+      "interaction_id": "v1_ChcwT2J1YXRXX091YXE2ZGtQdDUzSy1BVRIXME9idWF0V19PdWFxNmRrUHQ1M0stQVU"
     },
     {
       "provider": "GitHub Copilot (Free)",
       "docs_url": "https://docs.github.com/en/copilot/get-started/plans",
-      "status": "unreachable",
-      "is_free_active": null,
-      "summary": "HTTP Error 429: Too Many Requests",
-      "audited_date": "2026-11-07"
+      "channel": "web",
+      "status": "active",
+      "is_free_active": true,
+      "summary": "The GitHub Copilot Free tier is confirmed active with a 2,000 completions per month cap, limited agents, and auto model selection.",
+      "audited_date": "2026-11-07",
+      "agent_steps": 5,
+      "interaction_id": "v1_ChdfZWJ1YXNLSEZmRFV6N0lQZy1MWXlBSRIXX2VidWFzS0hGZkRVejdJUGctTFl5QUk"
     },
     {
       "provider": "Kiro (AWS)",
       "docs_url": "https://kiro.dev/pricing",
-      "status": "unreachable",
+      "channel": "web",
+      "status": "inconclusive",
       "is_free_active": null,
-      "summary": "HTTP Error 429: Too Many Requests",
-      "audited_date": "2026-11-07"
+      "summary": "The provided observations note an ongoing analysis of Kiro's pricing and free tier offerings, but do not contain explicit verification data regarding whether the $0 developer free tier is active or what specific changes occurred.",
+      "audited_date": "2026-11-07",
+      "agent_steps": 5,
+      "interaction_id": "v1_ChdFLWZ1YXZhZUNyclZ6N0lQNHJiWnFRWRIXRS1mdWF2YWVDcnJWejdJUDRyYlpxUVk"
     },
     {
       "provider": "Trae (ByteDance)",
       "docs_url": "https://www.trae.ai/pricing",
-      "status": "unreachable",
-      "is_free_active": null,
-      "summary": "HTTP Error 429: Too Many Requests",
-      "audited_date": "2026-11-07"
+      "channel": "web",
+      "status": "active",
+      "is_free_active": true,
+      "summary": "Trae's developer free tier is confirmed active with trial credits including 5,000 monthly autocompletions and a one-time $3 allowance.",
+      "audited_date": "2026-11-07",
+      "agent_steps": 6,
+      "interaction_id": "v1_ChdQLWZ1YXZ2OUM0dXN6N0lQcnNLcjBBURIXUC1mdWF2djlDNHVzejdJUHJzS3IwQVE"
     },
     {
       "provider": "Bolt.new",
       "docs_url": "https://support.bolt.new/account-and-subscription/tokens",
-      "status": "unreachable",
-      "is_free_active": null,
-      "summary": "HTTP Error 429: Too Many Requests",
-      "audited_date": "2026-11-07"
+      "channel": "web",
+      "status": "active",
+      "is_free_active": true,
+      "summary": "Bolt continues to actively offer its free plan providing 1,000,000 tokens per month with a 300,000 daily token cap and no rollover.",
+      "audited_date": "2026-11-07",
+      "agent_steps": 13,
+      "interaction_id": "v1_ChdXLWZ1YXR6Mk5zWFJ6N0lQXzdMbHdBSRIXVy1mdWF0ejJOc1hSejdJUF83TGx3QUk"
     },
     {
       "provider": "Lovable",
       "docs_url": "https://docs.lovable.dev/introduction/credits-and-usage",
-      "status": "unreachable",
+      "channel": "web",
+      "status": "inconclusive",
       "is_free_active": null,
-      "summary": "HTTP Error 429: Too Many Requests",
-      "audited_date": "2026-11-07"
+      "summary": "The provided observations do not contain explicit details regarding the Lovable developer free tier status.",
+      "audited_date": "2026-11-07",
+      "agent_steps": 8,
+      "interaction_id": "v1_ChdrT2Z1YXJpbEs3SG96N0lQLTRxT3VRcxIXa09mdWFyaWxLN0hvejdJUC00cU91UXM"
     },
     {
       "provider": "v0 (Vercel)",
       "docs_url": "https://v0.app/docs/pricing",
-      "status": "unreachable",
+      "channel": "web",
+      "status": "inconclusive",
       "is_free_active": null,
-      "summary": "HTTP Error 429: Too Many Requests",
-      "audited_date": "2026-11-07"
+      "summary": "The provided observations do not contain the final extracted data from the v0 pricing page to confirm the status of the free tier.",
+      "audited_date": "2026-11-07",
+      "agent_steps": 10,
+      "interaction_id": "v1_ChdzdWZ1YXBTTEI2N0JxdHNQOXVYTGtRaxIXc3VmdWFwU0xCNjdCcXRzUDl1WExrUWs"
     },
     {
       "provider": "Kaggle Notebooks",
       "docs_url": "https://www.kaggle.com/docs/efficient-gpu-usage",
-      "status": "unreachable",
-      "is_free_active": null,
-      "summary": "HTTP Error 429: Too Many Requests",
-      "audited_date": "2026-11-07"
+      "channel": "web",
+      "status": "active",
+      "is_free_active": true,
+      "summary": "Confirmed that Kaggle continues to provide a rate-limited free tier offering 30 hours of GPU quota per week resetting weekly.",
+      "audited_date": "2026-11-07",
+      "agent_steps": 13,
+      "interaction_id": "v1_ChcyLWZ1YXFfRklLYlZ6N0lQMEpxMzRRYxIXMi1mdWFxX0ZJS2JWejdJUDBKcTM0UWM"
     },
     {
       "provider": "Hugging Face Spaces",
       "docs_url": "https://huggingface.co/docs/hub/spaces-overview",
-      "status": "unreachable",
-      "is_free_active": null,
-      "summary": "HTTP Error 429: Too Many Requests",
-      "audited_date": "2026-11-07"
+      "channel": "web",
+      "status": "active",
+      "is_free_active": true,
+      "summary": "Hugging Face Spaces continues to offer a rate-limited free hosting tier requiring only a free account.",
+      "audited_date": "2026-11-07",
+      "agent_steps": 13,
+      "interaction_id": "v1_ChdCZWp1YXF1R01wcld6N0lQcmZqaHNRWRIXQmVqdWFxdUdNcHJXejdJUHJmamhzUVk"
     },
     {
       "provider": "Cursor (Hobby)",
       "docs_url": "https://cursor.com/pricing",
-      "status": "unreachable",
+      "channel": "web",
+      "status": "inconclusive",
       "is_free_active": null,
-      "summary": "HTTP Error 429: Too Many Requests",
-      "audited_date": "2026-11-07"
+      "summary": "The verification attempt encountered access restrictions, leaving the active status of the free tier inconclusive.",
+      "audited_date": "2026-11-07",
+      "agent_steps": 9,
+      "interaction_id": "v1_ChdNZWp1YW92RUtKT2R6N0lQd0xLX2lRaxIXTWVqdWFvdkVLSk9kejdJUHdMS19pUWs"
     },
     {
       "provider": "Windsurf",
       "docs_url": "https://docs.windsurf.com/windsurf/accounts/usage",
-      "status": "unreachable",
+      "channel": "web",
+      "status": "inconclusive",
       "is_free_active": null,
-      "summary": "HTTP Error 429: Too Many Requests",
-      "audited_date": "2026-11-07"
+      "summary": "The verification is inconclusive because a 308 redirect from windsurf.com to devin.ai prevented direct confirmation of the current developer free tier status.",
+      "audited_date": "2026-11-07",
+      "agent_steps": 11,
+      "interaction_id": "v1_ChdVdWp1YXZMOUFaMmd6N0lQNjRXXzhRYxIXVXVqdWF2TDlBWjJnejdJUDY0V184UWM"
     },
     {
       "provider": "Devin (Free)",
       "docs_url": "https://devin.ai/pricing",
-      "status": "unreachable",
-      "is_free_active": null,
-      "summary": "HTTP Error 429: Too Many Requests",
-      "audited_date": "2026-11-07"
+      "channel": "web",
+      "status": "active",
+      "is_free_active": true,
+      "summary": "The Devin.ai $0 developer free tier is confirmed active with no significant changes to its rate-limited access or model availability.",
+      "audited_date": "2026-11-07",
+      "agent_steps": 12,
+      "interaction_id": "v1_ChdlZWp1YXZpTkJ2XzB6N0lQOVppRXVBSRIXZWVqdWF2aU5Cdl8wejdJUDlaaUV1QUk"
     },
     {
       "provider": "Qoder",
       "docs_url": "https://docs.qoder.com/account/pricing",
-      "status": "unreachable",
-      "is_free_active": null,
-      "summary": "HTTP Error 429: Too Many Requests",
-      "audited_date": "2026-11-07"
+      "channel": "web",
+      "status": "active",
+      "is_free_active": true,
+      "summary": "The $0 developer free tier is confirmed active with rate-limited free access to frontier models alongside bring-your-own-key options.",
+      "audited_date": "2026-11-07",
+      "agent_steps": 5,
+      "interaction_id": "v1_ChdzT2p1YXNLYUJkNjNxdHNQaUxHaDJBWRIXc09qdWFzS2FCZDYzcXRzUGlMR2gyQVk"
     },
     {
       "provider": "Antigravity CLI (Google)",
       "docs_url": "https://antigravity.google/pricing",
-      "status": "unreachable",
+      "channel": "web",
+      "status": "inconclusive",
       "is_free_active": null,
-      "summary": "HTTP Error 429: Too Many Requests",
-      "audited_date": "2026-11-07"
+      "summary": "The observations do not contain specific pricing details or conclusive verification data to confirm the status of the $0 developer free tier.",
+      "audited_date": "2026-11-07",
+      "agent_steps": 14,
+      "interaction_id": "v1_Chd5LWp1YXMzbUNQN256N0lQcWNuWDhBYxIXeS1qdWFzM21DUDduejdJUHFjblg4QWM"
     },
     {
       "provider": "Google Colab",
       "docs_url": "https://research.google.com/colaboratory/faq.html",
-      "status": "unreachable",
-      "is_free_active": null,
-      "summary": "HTTP Error 429: Too Many Requests",
-      "audited_date": "2026-11-07"
+      "channel": "web",
+      "status": "active",
+      "is_free_active": true,
+      "summary": "Google Colab continues to provide a rate-limited free tier featuring hosted GPU/TPU compute for up to 12-hour interactive sessions alongside integrated Gemini AI coding features.",
+      "audited_date": "2026-11-07",
+      "agent_steps": 9,
+      "interaction_id": "v1_ChctLWp1YXVYc0I1RHJ6N0lQOEtpZ21BWRIXLS1qdWF1WHNCNURyejdJUDhLaWdtQVk"
     },
     {
       "provider": "Figma (Starter)",
       "docs_url": "https://www.figma.com/pricing/",
-      "status": "unreachable",
-      "is_free_active": null,
-      "summary": "HTTP Error 429: Too Many Requests",
-      "audited_date": "2026-11-07"
+      "channel": "web",
+      "status": "active",
+      "is_free_active": true,
+      "summary": "The Figma Starter free tier is confirmed active with no changes to its offerings or AI generation credits.",
+      "audited_date": "2026-11-07",
+      "agent_steps": 15,
+      "interaction_id": "v1_ChdJT251YXJ5akdhTFh6N0lQa2ZYVXNRWRIXSU9udWFyeWpHYUxYejdJUGtmWFVzUVk"
     },
     {
       "provider": "Canva (Free)",
       "docs_url": "https://www.canva.com/en/pricing/",
-      "status": "unreachable",
+      "channel": "web",
+      "status": "inconclusive",
       "is_free_active": null,
-      "summary": "HTTP Error 429: Too Many Requests",
-      "audited_date": "2026-11-07"
+      "summary": "I encountered a security checkpoint, marking the free tier verification as inconclusive until I can bypass it.",
+      "audited_date": "2026-11-07",
+      "agent_steps": 11,
+      "interaction_id": "v1_ChdWZW51YXR5dk44bWttdGtQMGV6bDZBYxIXVmVudWF0eXZOOG1rbXRrUDBlemw2QWM"
     },
     {
       "provider": "Framer (Free)",
       "docs_url": "https://www.framer.com/pricing",
-      "status": "unreachable",
-      "is_free_active": null,
-      "summary": "HTTP Error 429: Too Many Requests",
-      "audited_date": "2026-11-07"
+      "channel": "web",
+      "status": "active",
+      "is_free_active": true,
+      "summary": "Framer continues to offer a Free plan with 500 one-time AI trial credits to test Framer Agents for workspaces without an active subscription.",
+      "audited_date": "2026-11-07",
+      "agent_steps": 13,
+      "interaction_id": "v1_ChdmLW51YW9meVBOYlV6N0lQamZmRWdRZxIXZi1udWFvZnlQTmJVejdJUGpmZkVnUWc"
     },
     {
       "provider": "Replit (Starter)",
       "docs_url": "https://docs.replit.com/help/pricing-and-plans",
+      "channel": "web",
       "status": "active",
       "is_free_active": true,
-      "summary": "Replit offers a Starter free tier providing basic cloud development environments and workspaces with standard platform limits.",
+      "summary": "Replit continues to offer an active Starter free tier featuring a daily Agent allowance in Free Mode, basic Agent access, and limited monthly cloud credits.",
       "audited_date": "2026-11-07",
-      "agent_steps": 43,
-      "interaction_id": "v1_ChdVYmp1YXNxY0FjclF6N0lQaklDeTBBTRIXVWJqdWFzcWNBY3JRejdJUGpJQ3kwQU0"
+      "agent_steps": 13,
+      "interaction_id": "v1_Chd0ZW51YXUyT0dybm96N0lQdDdhRjRBRRIXdGVudWF1Mk9Hcm5vejdJUHQ3YUY0QUU"
     },
     {
       "provider": "Cohere",
       "docs_url": "https://docs.cohere.com/docs/rate-limits",
-      "status": "unreachable",
-      "is_free_active": null,
-      "summary": "HTTP Error 429: Too Many Requests",
-      "audited_date": "2026-11-07"
+      "channel": "web",
+      "status": "changed",
+      "is_free_active": true,
+      "summary": "Cohere continues to offer a rate-limited free trial tier with 20 requests per minute and 1,000 API calls per month, expanding model offerings to include Command A, Command A Translate, Command A Vision, and North Mini Code alongside the existing cataloged models.",
+      "audited_date": "2026-11-07",
+      "agent_steps": 11,
+      "interaction_id": "v1_Chc2LW51YW9xREZNeXI2ZGtQd1lTUHlBOBIXNi1udWFvcURGTXlyNmRrUHdZU1B5QTg"
     },
     {
       "provider": "SiliconFlow",
       "docs_url": "https://docs.siliconflow.cn/",
-      "status": "unreachable",
+      "channel": "web",
+      "status": "inconclusive",
       "is_free_active": null,
-      "summary": "HTTP Error 429: Too Many Requests",
-      "audited_date": "2026-11-07"
+      "summary": "Verification observations noted the free tier documentation and trial terms, but did not explicitly confirm whether the $0 developer free tier is currently active.",
+      "audited_date": "2026-11-07",
+      "agent_steps": 6,
+      "interaction_id": "v1_ChdGZXJ1YW9DRk5LTFh6N0lQa2ZYVXNRWRIXRmVydWFvQ0ZOS0xYejdJUGtmWFVzUVk"
     },
     {
       "provider": "DeepSeek Platform",
       "docs_url": "https://api-docs.deepseek.com/",
-      "status": "unreachable",
-      "is_free_active": null,
-      "summary": "HTTP Error 429: Too Many Requests",
-      "audited_date": "2026-11-07"
+      "channel": "web",
+      "status": "active",
+      "is_free_active": true,
+      "summary": "The DeepSeek developer free tier/trial credits and models ('deepseek-chat' and 'deepseek-reasoner') are confirmed active based on documentation analysis.",
+      "audited_date": "2026-11-07",
+      "agent_steps": 12,
+      "interaction_id": "v1_ChdRZXJ1YXB6SkM0REJxdHNQNGFIQy1RVRIXUWVydWFwekpDNERCcXRzUDRhSEMtUVU"
     },
     {
       "provider": "Braintrust",
       "docs_url": "https://www.braintrust.dev/pricing",
-      "status": "unreachable",
-      "is_free_active": null,
-      "summary": "HTTP Error 429: Too Many Requests",
-      "audited_date": "2026-11-07"
+      "channel": "web",
+      "status": "active",
+      "is_free_active": true,
+      "summary": "The $0 developer Starter plan is confirmed active with included credits and pay-as-you-go overage rates.",
+      "audited_date": "2026-11-07",
+      "agent_steps": 16,
+      "interaction_id": "v1_ChdiZXJ1YXNTT0c5MnNxdHNQZ01HcG9BWRIXYmVydWFzU09HOTJzcXRzUGdNR3BvQVk"
     },
     {
       "provider": "Deepgram",
       "docs_url": "https://deepgram.com/pricing",
-      "status": "unreachable",
+      "channel": "web",
+      "status": "inconclusive",
       "is_free_active": null,
-      "summary": "HTTP Error 429: Too Many Requests",
-      "audited_date": "2026-11-07"
+      "summary": "The verification attempt was interrupted during the command execution phase, leaving the current status of Deepgram's free tier unconfirmed.",
+      "audited_date": "2026-11-07",
+      "agent_steps": 12,
+      "interaction_id": "v1_ChdtZXJ1YXRLMElvYXM2ZGtQcm82MThBVRIXbWVydWF0SzBJb2FzNmRrUHJvNjE4QVU"
     },
     {
       "provider": "AssemblyAI",
       "docs_url": "https://www.assemblyai.com/pricing",
-      "status": "unreachable",
+      "channel": "web",
+      "status": "inconclusive",
       "is_free_active": null,
-      "summary": "HTTP Error 429: Too Many Requests",
-      "audited_date": "2026-11-07"
+      "summary": "The observations do not explicitly confirm whether the $0 developer free tier is currently active or detail specific changes from the previous catalog.",
+      "audited_date": "2026-11-07",
+      "agent_steps": 13,
+      "interaction_id": "v1_Chd5dXJ1YXNtbkN1aWdxdHNQaTZ5TzRBZxIXeXVydWFzbW5DdWlncXRzUGk2eU80QWc"
     },
     {
       "provider": "Dots Studio",
       "docs_url": "https://dots.ai",
+      "channel": "web",
       "status": "unreachable",
       "is_free_active": null,
-      "summary": "HTTP Error 429: Too Many Requests",
+      "summary": "Antigravity agent interaction v1_Chc5ZXJ1YXFheE1QaXN6N0lQc01YWm1RaxIXOWVydWFxYXhNUGlzejdJUHNNWFptUWs timed out after 60s",
       "audited_date": "2026-11-07"
     },
     {
       "provider": "Liquid AI",
       "docs_url": "https://console.liquid.ai",
-      "status": "unreachable",
-      "is_free_active": null,
-      "summary": "HTTP Error 429: Too Many Requests",
-      "audited_date": "2026-11-07"
+      "channel": "web",
+      "status": "active",
+      "is_free_active": true,
+      "summary": "Liquid AI's developer free tier is confirmed active, offering new accounts $2 in free API credits upon signup.",
+      "audited_date": "2026-11-07",
+      "agent_steps": 10,
+      "interaction_id": "v1_ChdQdXZ1YXFpUU80U3R6N0lQa3FxN3dBcxIXUHV2dWFxaVFPNFN0ejdJUGtxcTd3QXM"
+    },
+    {
+      "provider": "Z.AI (Zhipu)",
+      "docs_url": "https://z.ai",
+      "channel": "web",
+      "status": "active",
+      "is_free_active": true,
+      "summary": "The existence of a rate-limited Z.AI free tier featuring models like GLM-5.1, GLM-4.5-Flash, GLM-4.7-Flash, and GLM-4.6V-Flash has been confirmed active.",
+      "audited_date": "2026-11-07",
+      "agent_steps": 10,
+      "interaction_id": "v1_ChdhdXZ1YXFXUENNbWVxdHNQNGJ2dm9BWRIXYXV2dWFxV1BDTW1lcXRzUDRidnZvQVk"
     }
   ],
-  "candidate_providers_count": 3,
-  "candidate_audits": [],
+  "candidate_providers_count": 4,
+  "candidate_audits": [
+    {
+      "name": "Plugsky",
+      "url": "https://plugsky.com/",
+      "source": "Google Search Live Frontier",
+      "status": "no_api",
+      "is_free_active": false,
+      "free_type": "None",
+      "notes": "No free grant or trial credits are offered. No functional free API tier is provided. Signup requires paid activation. Payment details or upfront purchase are mandatory.",
+      "summary": "Plugsky does not offer a free inference tier or trial credits, requiring upfront payment for access.",
+      "candidate_models": [],
+      "base_url": null,
+      "audited_date": "2026-11-07",
+      "agent_steps": 14,
+      "interaction_id": "v1_ChdxdXZ1YXFyM0FfNmh6N0lQbmN6UC1BTRIXcXV2dWFxcjNBXzZoejdJUG5jelAtQU0"
+    }
+  ],
   "verified_new_providers": [],
   "live_gateway_free_total": 44,
   "new_discoveries_count": 19,
@@ -407,63 +511,63 @@
       "family": "auto-router",
       "task": "general",
       "recommended_page_slug": "kilo-auto-free",
-      "summary": "An automated free routing model provided by Kilo Gateway optimized for general-purpose requests."
+      "summary": "Automated routing model on Kilo Gateway offering a 256k context window for general-purpose free inference."
     },
     {
       "id": "reflection/beam-free",
       "family": "reflection",
       "task": "reasoning",
       "recommended_page_slug": "reflection-beam-free",
-      "summary": "A high-context reasoning model featuring a 1M token context length and reflection capabilities."
+      "summary": "High-context 1M token reasoning model featuring reflection architecture available for free."
     },
     {
       "id": "stealth/glyph-cluster",
       "family": "stealth",
       "task": "general",
       "recommended_page_slug": "stealth-glyph-cluster",
-      "summary": "A proprietary stealth model with a 256k context window, accessible for free via Kilo Gateway."
+      "summary": "Stealth architecture cluster model with a 256k context length, optimized for general tasks."
     },
     {
       "id": "stealth/crouton-alpha",
       "family": "stealth",
-      "task": "reasoning",
+      "task": "general",
       "recommended_page_slug": "stealth-crouton-alpha",
-      "summary": "An alpha-stage stealth reasoning model boasting a 1M token context length available across multiple portals."
+      "summary": "Alpha release stealth model boasting an expansive 1M context window available via multiple gateways."
     },
     {
       "id": "google/lyria-3-pro-preview",
-      "family": "google",
+      "family": "google-lyria",
       "task": "general",
       "recommended_page_slug": "google-lyria-3-pro-preview",
-      "summary": "Google Lyria 3 Pro preview model offering deep context processing and advanced language generation."
+      "summary": "Google Lyria 3 Pro preview model with 1M context length for advanced media and text processing."
     },
     {
       "id": "google/lyria-3-clip-preview",
-      "family": "google",
-      "task": "vision",
+      "family": "google-lyria",
+      "task": "general",
       "recommended_page_slug": "google-lyria-3-clip-preview",
-      "summary": "A preview model combining multimodal clip capabilities with Google's Lyria architecture."
+      "summary": "Google Lyria 3 Clip preview model designed for snippet processing with 1M context support."
     },
     {
       "id": "openrouter/free",
-      "family": "meta-router",
+      "family": "auto-router",
       "task": "general",
       "recommended_page_slug": "openrouter-free",
-      "summary": "A meta-router endpoint that dynamically selects and serves free models via OpenRouter infrastructure."
+      "summary": "Meta-router model that aggregates free tier requests across the OpenRouter network with a 200k context limit."
     },
     {
       "id": "meituan/longcat-2.5:free",
-      "family": "meituan",
-      "task": "coding",
+      "family": "meituan-longcat",
+      "task": "general",
       "recommended_page_slug": "meituan-longcat-2-5-free",
-      "summary": "LongCat-2.5 is a Meituan-developed model optimized for handling ultra-long contexts up to 1M tokens."
+      "summary": "Meituan LongCat-2.5 free tier model featuring a massive 1M token context length for long-form context tasks."
     },
     {
       "id": "novita/ling-3.1-flash",
-      "family": "novita",
+      "family": "novita-ling",
       "task": "general",
       "recommended_page_slug": "novita-ling-3-1-flash",
-      "summary": "A fast, lightweight flash model from Novita designed for rapid inference and general completion tasks."
+      "summary": "Novita Ling 3.1 Flash lightweight model optimized for low-latency general inference."
     }
   ],
   "status": "completed"

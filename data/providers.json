@@ -156,7 +156,7 @@
           "verified": "2026-11-07"
         }
       ],
-      "verified_method": "docs",
+      "verified_method": "live-probe",
       "docs_url": "https://opencode.ai/v2/docs/console/models/",
       "access_method": "api_key",
       "artifact": "code",
@@ -635,7 +635,7 @@
       "free_type": "Trial credits",
       "notes": "Cerebras offers $5 trial credit across 2 models (gpt-oss-120b, qwen-3.8-27b with 8K context cap), translating to 1M tokens/day at 2,000+ tokens/sec. Credit card required. Trial credits expire in 30 days.",
       "timeout": "Not published",
-      "verified": "2026-11-01",
+      "verified": "2026-11-07",
       "models": [
         {
           "name": "gpt-oss-120b",
@@ -645,7 +645,7 @@
           "tpm": "30K",
           "rpd": "Not published",
           "tpd": "1M tokens/day (per model)",
-          "verified": "2026-11-01"
+          "verified": "2026-11-07"
         },
         {
           "name": "qwen-3.8-27b",
@@ -655,7 +655,7 @@
           "tpm": "30K",
           "rpd": "Not published",
           "tpd": "1M tokens/day (per model)",
-          "verified": "2026-11-01"
+          "verified": "2026-11-07"
         }
       ],
       "verified_method": "docs",
@@ -671,7 +671,7 @@
       "free_type": "Rate-limited free",
       "notes": "Cloudflare Workers AI offers ~80 free models (including Llama 3.3 70B, DeepSeek-R1 distills, Whisper, and FLUX), translating to 10,000 neurons/day (~hundreds of queries or audio minutes). No credit card required. Hard stop at 10,000 neurons until 00:00 UTC daily reset.",
       "timeout": "Not published",
-      "verified": "2026-10-29",
+      "verified": "2026-11-07",
       "models": [
         {
           "name": "~80 free models (Llama 3.x/4, Qwen, Gemma, DeepSeek-R1 distills, FLUX, Whisper, BGE embeddings)",
@@ -681,7 +681,7 @@
           "tpm": "Model-dependent",
           "rpd": "Not published",
           "tpd": "10,000 neurons/day",
-          "verified": "2026-08-30"
+          "verified": "2026-11-07"
         },
         {
           "name": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
@@ -691,7 +691,7 @@
           "tpm": "Model-dependent",
           "rpd": "Not published",
           "tpd": "10,000 neurons/day",
-          "verified": "2026-10-29"
+          "verified": "2026-11-07"
         },
         {
           "name": "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b",
@@ -701,7 +701,7 @@
           "tpm": "Model-dependent",
           "rpd": "Not published",
           "tpd": "10,000 neurons/day",
-          "verified": "2026-10-29"
+          "verified": "2026-11-07"
         },
         {
           "name": "@cf/qwen/qwen2.5-72b-instruct",
@@ -711,7 +711,7 @@
           "tpm": "Model-dependent",
           "rpd": "Not published",
           "tpd": "10,000 neurons/day",
-          "verified": "2026-10-29"
+          "verified": "2026-11-07"
         },
         {
           "name": "@cf/meta/llama-3.1-8b-instruct",
@@ -721,7 +721,7 @@
           "tpm": "Model-dependent",
           "rpd": "Not published",
           "tpd": "10,000 neurons/day",
-          "verified": "2026-10-29"
+          "verified": "2026-11-07"
         },
         {
           "name": "@cf/openai/whisper",
@@ -731,7 +731,7 @@
           "tpm": "Model-dependent",
           "rpd": "Not published",
           "tpd": "10,000 neurons/day",
-          "verified": "2026-11-05"
+          "verified": "2026-11-07"
         }
       ],
       "verified_method": "docs",
@@ -768,47 +768,12 @@
       "channel": "web"
     },
     {
-      "name": "SambaNova Cloud",
-      "url": "https://cloud.sambanova.ai/apis",
-      "free_type": "Trial credits",
-      "notes": "SambaNova Cloud provides initial trial credits upon account creation. Users can access production and preview models through an API key using these credits. The platform features pay-as-you-go credit systems alongside standard and free tier rate limits. Access is subject to community support guidelines and specific developer tier restrictions.",
-      "timeout": "Not published",
-      "verified": "2026-11-07",
-      "models": [
-        {
-          "name": "Meta-Llama-3.3-70B-Instruct",
-          "cost": "$0",
-          "context": "N/A",
-          "rpm": "N/A",
-          "tpm": "N/A",
-          "rpd": "N/A",
-          "tpd": "N/A",
-          "verified": "2026-11-07"
-        },
-        {
-          "name": "DeepSeek-V3.1",
-          "cost": "$0",
-          "context": "N/A",
-          "rpm": "N/A",
-          "tpm": "N/A",
-          "rpd": "N/A",
-          "tpd": "N/A",
-          "verified": "2026-11-06"
-        }
-      ],
-      "verified_method": "live-probe",
-      "access_method": "api_key",
-      "artifact": "code",
-      "base_url": "https://api.sambanova.ai/v1",
-      "channel": "api"
-    },
-    {
       "name": "NVIDIA NIM (build.nvidia.com)",
       "url": "https://build.nvidia.com",
       "free_type": "Trial credits",
       "notes": "NVIDIA NIM offers 1,000 free trial credits across catalog models (including Nemotron 3.5 Lightning with 1M context), translating to ~40 hours of inference testing. No credit card required; corporate email required for extended credits. Credits tie to a 90-day evaluation window.",
       "timeout": "Not published",
-      "verified": "2026-10-29",
+      "verified": "2026-11-07",
       "models": [
         {
           "name": "GLM-5",
@@ -818,7 +783,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "~1,000 credits at signup (up to ~5,000)",
-          "verified": "2026-10-29"
+          "verified": "2026-11-07"
         },
         {
           "name": "Kimi-2.5",
@@ -828,7 +793,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "~1,000 credits at signup (up to ~5,000)",
-          "verified": "2026-10-29"
+          "verified": "2026-11-07"
         },
         {
           "name": "NIM-packaged open models",
@@ -838,7 +803,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "~1,000 credits at signup (up to ~5,000)",
-          "verified": "2026-10-29"
+          "verified": "2026-11-07"
         }
       ],
       "verified_method": "docs",
@@ -846,61 +811,6 @@
       "access_method": "api_key",
       "artifact": "code",
       "base_url": "https://integrate.api.nvidia.com/v1",
-      "channel": "web"
-    },
-    {
-      "name": "Z.AI (Zhipu)",
-      "url": "https://z.ai",
-      "free_type": "Rate-limited free",
-      "notes": "Z.AI offers free API access to GLM-5.1, GLM-4.7-Flash, and GLM-4.6V-Flash with 128K context, translating to 15 requests/minute. No credit card required. Shared free tier throttles during peak platform traffic hours.",
-      "timeout": "Not published",
-      "verified": "2026-10-29",
-      "models": [
-        {
-          "name": "GLM-5.1",
-          "cost": "$0",
-          "context": "Up to 203K",
-          "rpm": "3 (burst)",
-          "tpm": "Not published",
-          "rpd": "1,000 (1K RPD tier)",
-          "tpd": "Not published",
-          "verified": "2026-10-29"
-        },
-        {
-          "name": "GLM-4.5-Flash",
-          "cost": "$0",
-          "context": "Up to 203K",
-          "rpm": "3 (burst)",
-          "tpm": "Not published",
-          "rpd": "1,000",
-          "tpd": "Not published",
-          "verified": "2026-10-29"
-        },
-        {
-          "name": "GLM-4.7-Flash",
-          "cost": "$0",
-          "context": "Up to 203K",
-          "rpm": "3 (burst)",
-          "tpm": "Not published",
-          "rpd": "1,000",
-          "tpd": "Not published",
-          "verified": "2026-10-29"
-        },
-        {
-          "name": "GLM-4.6V-Flash (vision)",
-          "cost": "$0",
-          "context": "Up to 203K",
-          "rpm": "3 (burst)",
-          "tpm": "Not published",
-          "rpd": "1,000",
-          "tpd": "Not published",
-          "verified": "2026-10-29"
-        }
-      ],
-      "verified_method": "docs",
-      "access_method": "api_key",
-      "artifact": "code",
-      "base_url": "https://open.bigmodel.cn/api/paas/v4/",
       "channel": "web"
     },
     {
@@ -965,7 +875,7 @@
       "free_type": "Rate-limited free",
       "notes": "GitHub provides Copilot Free with limited features for individual developers to try AI-powered coding assistance. The system delivers restricted agent access and limited AI credit allowances alongside Copilot Chat on GitHub.com and mobile. The implementation uses automated web data extraction, HTML table parsing, and policy analysis scripts via bash. Users receive free access subject to specific AI model availability constraints and organization or enterprise policy governance.",
       "timeout": "Not published",
-      "verified": "2026-11-06",
+      "verified": "2026-11-07",
       "models": [
         {
           "name": "Auto-selected (GPT-5 mini, Claude Haiku/Sonnet, Gemini Flash line)",
@@ -975,7 +885,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-11-06"
+          "verified": "2026-11-07"
         }
       ],
       "verified_method": "docs",
@@ -990,7 +900,7 @@
       "free_type": "Rate-limited free",
       "notes": "Kiro offers 50 free credits/month for spec-driven agent workflows. Social account or AWS Builder ID required, no credit card required. Unused credits do not roll over to the next month.",
       "timeout": "Not published",
-      "verified": "2026-10-29",
+      "verified": "2026-11-07",
       "models": [
         {
           "name": "Qwen3 Coder Next",
@@ -1000,7 +910,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-10-29"
+          "verified": "2026-11-07"
         },
         {
           "name": "DeepSeek 3.2",
@@ -1010,7 +920,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-10-29"
+          "verified": "2026-11-07"
         },
         {
           "name": "MiniMax M2.1",
@@ -1020,7 +930,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-10-29"
+          "verified": "2026-11-07"
         },
         {
           "name": "Claude Sonnet 4.5",
@@ -1030,7 +940,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-10-29"
+          "verified": "2026-11-07"
         }
       ],
       "verified_method": "docs",
@@ -1045,7 +955,7 @@
       "free_type": "Trial credits",
       "notes": "Trae offers free inference. The free allowance includes 5,000 monthly autocompletions and a one-time $3 usage allowance. Usage is renewed monthly, and the credits are valid for 90 days. The free tier requires no credit card.",
       "timeout": "Not published",
-      "verified": "2026-11-06",
+      "verified": "2026-11-07",
       "models": [
         {
           "name": "Frontier models (bundled, auto-selected)",
@@ -1055,7 +965,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-11-06"
+          "verified": "2026-11-07"
         }
       ],
       "verified_method": "docs",
@@ -1070,7 +980,7 @@
       "free_type": "Rate-limited free",
       "notes": "Bolt offers 1,000,000 tokens per month with a 300,000 daily token cap, translating to bundled frontier model inference for full-stack web and code generation via the Standard agent alongside hosting for up to 333k requests. No credit card required to sign up. Daily tokens reset every 24 hours without rollover, monthly quotas reset on the 1st of each calendar month, and free plan tokens do not roll over.",
       "timeout": "Not published",
-      "verified": "2026-11-06",
+      "verified": "2026-11-07",
       "models": [
         {
           "name": "Frontier models (bundled, auto-selected)",
@@ -1080,7 +990,7 @@
           "tpm": "Unspecified",
           "rpd": "Unspecified",
           "tpd": "300,000 tokens/day (1,000,000 tokens/month)",
-          "verified": "2026-11-06"
+          "verified": "2026-11-07"
         }
       ],
       "verified_method": "docs",
@@ -1095,7 +1005,7 @@
       "free_type": "Rate-limited free",
       "notes": "1. The Grant: Lovable provides a rate-limited free tier for users building and iterating on applications. 2. The Output: Users get access to bundled frontier models including Fable 5.1 without direct financial cost. 3. The Process: Usage is governed by credits and rate limits determined by the platform's current policy. 4. The Condition: Availability and rate limits are subject to change as outlined in the official documentation.",
       "timeout": "Not published",
-      "verified": "2026-11-06",
+      "verified": "2026-11-07",
       "models": [
         {
           "name": "Fable 5.1 (Frontier model)",
@@ -1105,7 +1015,7 @@
           "tpm": "Not specified",
           "rpd": "Not specified",
           "tpd": "Not specified",
-          "verified": "2026-11-06"
+          "verified": "2026-11-07"
         }
       ],
       "verified_method": "docs",
@@ -1120,7 +1030,7 @@
       "free_type": "Rate-limited free",
       "notes": "v0 offers a free plan granting 7 messages per day with bundled frontier models, plus a one-time $5 credit bonus for new accounts. Translates to 7 full-stack code and UI generations daily (~210 requests per month). No credit card required to sign up and build. Quotas reset daily at 00:00 UTC with no rollover, and custom model selection is restricted to paid plans.",
       "timeout": "Not published",
-      "verified": "2026-11-06",
+      "verified": "2026-11-07",
       "models": [
         {
           "name": "Frontier models (bundled, auto-selected)",
@@ -1130,7 +1040,7 @@
           "tpm": "unspecified",
           "rpd": "7 requests/day",
           "tpd": "unspecified",
-          "verified": "2026-11-06"
+          "verified": "2026-11-07"
         }
       ],
       "verified_method": "docs",
@@ -1145,7 +1055,7 @@
       "free_type": "Rate-limited free",
       "notes": "Kaggle offers 30 hours of free GPU accelerator quota (NVIDIA T4 x2 / P100) and 20 hours of TPU v3-8 compute per week, translating to running self-hosted open-weight model inference and fine-tuning across sessions lasting up to 12 hours. Phone verification is required to unlock accelerators and internet access; no credit card required. Compute quota resets weekly, and interactive sessions terminate after 20 to 60 minutes of idle time.",
       "timeout": "Not published",
-      "verified": "2026-11-06",
+      "verified": "2026-11-07",
       "models": [
         {
           "name": "Open-weight models you load (GPU runtime)",
@@ -1155,7 +1065,7 @@
           "tpm": "N/A",
           "rpd": "N/A",
           "tpd": "30 GPU hours/week (resets weekly)",
-          "verified": "2026-11-06"
+          "verified": "2026-11-07"
         }
       ],
       "verified_method": "docs",
@@ -1170,7 +1080,7 @@
       "free_type": "Rate-limited free",
       "notes": "Hugging Face Spaces offers free hosting for up to 2 ZeroGPU Gradio spaces with dynamic GPU allocation. Free account required, no credit card required. Persistent storage and dedicated hardware require a Pro tier.",
       "timeout": "Not published",
-      "verified": "2026-10-29",
+      "verified": "2026-11-07",
       "models": [
         {
           "name": "Any Hugging Face model you load (ZeroGPU)",
@@ -1180,7 +1090,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-10-29"
+          "verified": "2026-11-07"
         }
       ],
       "verified_method": "docs",
@@ -1195,7 +1105,7 @@
       "free_type": "Rate-limited free",
       "notes": "[The Grant] Cursor provides access to bundled internal models like Composer 2 and Grok variants on the Hobby/Free tier. [The Output] Users receive rate-limited access to these bundled models without direct monetary charges. [The Process] The system evaluates user plan tiers and applies automatic rate limits to free tier requests. [The Condition] This access remains active as long as usage stays within the specified free tier rate limits and legacy or current hobby plan parameters.",
       "timeout": "Not published",
-      "verified": "2026-11-06",
+      "verified": "2026-11-07",
       "models": [
         {
           "name": "Composer 2",
@@ -1205,7 +1115,7 @@
           "tpm": "unknown",
           "rpd": "unknown",
           "tpd": "unknown",
-          "verified": "2026-11-06"
+          "verified": "2026-11-07"
         },
         {
           "name": "Composer 2.5",
@@ -1215,7 +1125,7 @@
           "tpm": "unknown",
           "rpd": "unknown",
           "tpd": "unknown",
-          "verified": "2026-11-06"
+          "verified": "2026-11-07"
         },
         {
           "name": "Grok 4.5",
@@ -1225,7 +1135,7 @@
           "tpm": "unknown",
           "rpd": "unknown",
           "tpd": "unknown",
-          "verified": "2026-11-06"
+          "verified": "2026-11-07"
         },
         {
           "name": "Grok 4.6",
@@ -1235,7 +1145,7 @@
           "tpm": "unknown",
           "rpd": "unknown",
           "tpd": "unknown",
-          "verified": "2026-11-06"
+          "verified": "2026-11-07"
         },
         {
           "name": "Grok 4.7",
@@ -1245,7 +1155,7 @@
           "tpm": "unknown",
           "rpd": "unknown",
           "tpd": "unknown",
-          "verified": "2026-11-06"
+          "verified": "2026-11-07"
         }
       ],
       "verified_method": "docs",
@@ -1260,7 +1170,7 @@
       "free_type": "Rate-limited free",
       "notes": "Windsurf provides a free tier. Users receive a set amount of usage and standard features at no cost. The free tier operates on a rate-limited basis. Usage allowances reset periodically under standard usage conditions.",
       "timeout": "Not published",
-      "verified": "2026-11-06",
+      "verified": "2026-11-07",
       "models": [
         {
           "name": "Standard Models",
@@ -1270,7 +1180,7 @@
           "tpm": "Not specified",
           "rpd": "Not specified",
           "tpd": "Not specified",
-          "verified": "2026-11-06"
+          "verified": "2026-11-07"
         }
       ],
       "verified_method": "docs",
@@ -1285,7 +1195,7 @@
       "free_type": "Rate-limited free",
       "notes": "Devin offers a Free plan with a light quota to code with agents, free use of SWE-2, unlimited inline edits, and unlimited Tab completions. Account login required, no credit card required. Runs bundled inside the Devin interface on SWE-2 and limited models.",
       "timeout": "Not published",
-      "verified": "2026-11-06",
+      "verified": "2026-11-07",
       "models": [
         {
           "name": "SWE-2 (Free)",
@@ -1295,7 +1205,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-11-06"
+          "verified": "2026-11-07"
         },
         {
           "name": "Limited models (auto-selected)",
@@ -1305,7 +1215,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-11-06"
+          "verified": "2026-11-07"
         }
       ],
       "verified_method": "docs",
@@ -1320,7 +1230,7 @@
       "free_type": "Rate-limited free",
       "notes": "Qoder offers free basic code autocompletions and limited Next-Edit-Suggestion (NES) runs. Account login required, no credit card required. Unlimited usage requires bringing your own API keys.",
       "timeout": "Not published",
-      "verified": "2026-10-29",
+      "verified": "2026-11-07",
       "models": [
         {
           "name": "Frontier models + BYO key",
@@ -1330,7 +1240,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-10-29"
+          "verified": "2026-11-07"
         }
       ],
       "verified_method": "docs",
@@ -1345,7 +1255,7 @@
       "free_type": "Rate-limited free",
       "notes": "The free tier provides access to select base models for general inference. The output consists of standard text, code, and basic multimodal completions. The process requires standard user authentication via the Antigravity CLI without requiring payment instrument setup. The condition is subject to dynamic rate limits and potential feature restrictions across modalities.",
       "timeout": "Not published",
-      "verified": "2026-11-06",
+      "verified": "2026-11-07",
       "models": [
         {
           "name": "Gemini 3.8 Flash",
@@ -1355,7 +1265,7 @@
           "tpm": "N/A",
           "rpd": "N/A",
           "tpd": "N/A",
-          "verified": "2026-11-06"
+          "verified": "2026-11-07"
         },
         {
           "name": "Gemini 3.7 Flash",
@@ -1365,7 +1275,7 @@
           "tpm": "N/A",
           "rpd": "N/A",
           "tpd": "N/A",
-          "verified": "2026-11-06"
+          "verified": "2026-11-07"
         },
         {
           "name": "Gemini 3.6 Flash",
@@ -1375,7 +1285,7 @@
           "tpm": "N/A",
           "rpd": "N/A",
           "tpd": "N/A",
-          "verified": "2026-11-06"
+          "verified": "2026-11-07"
         },
         {
           "name": "Gemini 3.1 Pro",
@@ -1385,7 +1295,7 @@
           "tpm": "N/A",
           "rpd": "N/A",
           "tpd": "N/A",
-          "verified": "2026-11-06"
+          "verified": "2026-11-07"
         }
       ],
       "verified_method": "docs",
@@ -1400,7 +1310,7 @@
       "free_type": "Rate-limited free",
       "notes": "Google Colab offers free access to hosted Jupyter notebook compute resources including shared GPUs/TPUs and integrated Gemini AI coding features, translating to interactive execution sessions of up to 12 hours with standard system memory. Google account login required (age 18+ for AI features), no credit card required. Resources and rate limits fluctuate dynamically, idle runtimes disconnect, and non-interactive background execution is disallowed.",
       "timeout": "Not published",
-      "verified": "2026-11-06",
+      "verified": "2026-11-07",
       "models": [
         {
           "name": "Gemini (AI features) + GPU for your code",
@@ -1410,7 +1320,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-11-06"
+          "verified": "2026-11-07"
         }
       ],
       "verified_method": "docs",
@@ -1425,7 +1335,7 @@
       "free_type": "Rate-limited free",
       "notes": "Figma Starter offers 150 free AI generation credits/day (up to 500/month). Figma account required, no credit card required. Inference runs bundled inside Figma design files for layer generation and text editing.",
       "timeout": "Not published",
-      "verified": "2026-10-29",
+      "verified": "2026-11-07",
       "models": [
         {
           "name": "Figma AI, Make, agent",
@@ -1435,7 +1345,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-10-29"
+          "verified": "2026-11-07"
         }
       ],
       "verified_method": "docs",
@@ -1450,7 +1360,7 @@
       "free_type": "Rate-limited free",
       "notes": "Free users are granted an allowance of 20 uses of standard or premium AI tools. The system outputs access to bundled models like Canva AI and Magic Media. The process enforces monthly limits on tools such as Magic Write, consuming a shared allowance. The condition strictly restricts free users from accessing ultra tools like Canva AI 2.0.",
       "timeout": "Not published",
-      "verified": "2026-11-06",
+      "verified": "2026-11-07",
       "models": [
         {
           "name": "Canva AI",
@@ -1460,7 +1370,7 @@
           "tpm": "unknown",
           "rpd": "20 uses (monthly shared limit)",
           "tpd": "unknown",
-          "verified": "2026-11-06"
+          "verified": "2026-11-07"
         },
         {
           "name": "Magic Media",
@@ -1470,7 +1380,7 @@
           "tpm": "unknown",
           "rpd": "20 uses (monthly shared limit)",
           "tpd": "unknown",
-          "verified": "2026-11-06"
+          "verified": "2026-11-07"
         }
       ],
       "verified_method": "docs",
@@ -1485,7 +1395,7 @@
       "free_type": "Trial credits",
       "notes": "Framer offers 500 one-time AI trial credits on its Free plan for workspaces without active subscriptions to power Framer Agents, translating to approximately 1 to 3 page generation or design sessions. No credit card is required to sign up and use the free plan. Credits are a one-time trial allotment that does not reset monthly, and agent features pause once the credits are exhausted unless upgraded to a paid plan.",
       "timeout": "Not published",
-      "verified": "2026-11-06",
+      "verified": "2026-11-07",
       "models": [
         {
           "name": "Framer Agents",
@@ -1495,7 +1405,7 @@
           "tpm": "Not specified",
           "rpd": "Not specified",
           "tpd": "500 credits (one-time trial)",
-          "verified": "2026-11-06"
+          "verified": "2026-11-07"
         }
       ],
       "verified_method": "docs",
@@ -1533,7 +1443,7 @@
       "name": "Kilo Gateway",
       "url": "https://kilo.ai/gateway",
       "free_type": "Rate-limited free",
-      "notes": "Kilo Gateway offers 7 free models with 64K\u2013256K context, translating to 200 requests/hour per IP address. No credit card required. Model availability reflects upstream provider quotas.",
+      "notes": "Confirmed active free tier with listed models",
       "timeout": "Not published",
       "verified": "2026-11-07",
       "verified_method": "live-probe",
@@ -1558,7 +1468,7 @@
           "tpm": "Provider-dependent",
           "rpd": "200/day",
           "tpd": "Not published",
-          "verified": "2026-10-31"
+          "verified": "2026-11-07"
         },
         {
           "name": "poolside/laguna-xs-2.1:free",
@@ -1568,7 +1478,7 @@
           "tpm": "Provider-dependent",
           "rpd": "200/day",
           "tpd": "Not published",
-          "verified": "2026-10-31"
+          "verified": "2026-11-07"
         },
         {
           "name": "liquid/lfm-2.5-2.6b:free",
@@ -1578,7 +1488,7 @@
           "tpm": "Provider-dependent",
           "rpd": "200/day",
           "tpd": "Not published",
-          "verified": "2026-11-03"
+          "verified": "2026-11-07"
         },
         {
           "name": "dots-studio/dots-3-note-preview:free",
@@ -1615,87 +1525,12 @@
       "channel": "api"
     },
     {
-      "name": "Nous Portal",
-      "url": "https://portal.nousresearch.com/api-docs",
-      "free_type": "Rate-limited free",
-      "notes": "Nous Portal offers 5 free Hermes and open-weight models, translating to 50 requests/minute and 500,000 tokens/minute. Free account registration required, no credit card required. Preview models may be adjusted during experimental rounds.",
-      "timeout": "Not published",
-      "verified": "2026-11-07",
-      "verified_method": "live-probe",
-      "access_method": "api_key",
-      "artifact": "code",
-      "models": [
-        {
-          "name": "poolside/laguna-s-2.1:free",
-          "cost": "$0",
-          "context": "256K",
-          "rpm": "50",
-          "tpm": "500K",
-          "rpd": "Not published",
-          "tpd": "Not published",
-          "verified": "2026-10-31"
-        },
-        {
-          "name": "poolside/laguna-xs-2.1:free",
-          "cost": "$0",
-          "context": "256K",
-          "rpm": "50",
-          "tpm": "500K",
-          "rpd": "Not published",
-          "tpd": "Not published",
-          "verified": "2026-10-31"
-        },
-        {
-          "name": "stepfun/step-3.7-flash:free",
-          "cost": "$0",
-          "context": "128K",
-          "rpm": "50",
-          "tpm": "500K",
-          "rpd": "Not published",
-          "tpd": "Not published",
-          "verified": "2026-11-07"
-        },
-        {
-          "name": "upstage/solar-mini4:free",
-          "cost": "$0",
-          "context": "64K",
-          "rpm": "50",
-          "tpm": "500K",
-          "rpd": "Not published",
-          "tpd": "Not published",
-          "verified": "2026-11-07"
-        },
-        {
-          "name": "reflection/beam-1.0-501b-a23b:free",
-          "cost": "$0",
-          "context": "128K",
-          "rpm": "50",
-          "tpm": "500K",
-          "rpd": "Not published",
-          "tpd": "Not published",
-          "verified": "2026-11-07"
-        },
-        {
-          "name": "ornith/ornith-1.5-122b:free",
-          "cost": "$0",
-          "context": "128K",
-          "rpm": "50",
-          "tpm": "500K",
-          "rpd": "Not published",
-          "tpd": "Not published",
-          "verified": "2026-11-02"
-        }
-      ],
-      "base_url": "https://inference-api.nousresearch.com/v1",
-      "channel": "api"
-    },
-    {
       "name": "Cohere",
       "url": "https://docs.cohere.com/docs/rate-limits",
       "free_type": "Rate-limited free",
       "notes": "Cohere provides trial API keys [The Grant] allowing access to chat and embedding models [The Output] by registering an account and utilizing trial keys [The Process] subject to trial rate limits such as 20 requests per minute and 1,000 API calls per month [The Condition].",
       "timeout": "Not published",
-      "verified": "2026-11-06",
+      "verified": "2026-11-07",
       "verified_method": "docs",
       "access_method": "api_key",
       "artifact": "code",
@@ -1708,7 +1543,7 @@
           "tpm": "N/A",
           "rpd": "N/A",
           "tpd": "N/A",
-          "verified": "2026-11-06"
+          "verified": "2026-11-07"
         },
         {
           "name": "Command A Reasoning",
@@ -1718,7 +1553,7 @@
           "tpm": "N/A",
           "rpd": "N/A",
           "tpd": "N/A",
-          "verified": "2026-11-06"
+          "verified": "2026-11-07"
         },
         {
           "name": "Command R+",
@@ -1728,7 +1563,7 @@
           "tpm": "N/A",
           "rpd": "N/A",
           "tpd": "N/A",
-          "verified": "2026-11-06"
+          "verified": "2026-11-07"
         },
         {
           "name": "Command R",
@@ -1738,7 +1573,7 @@
           "tpm": "N/A",
           "rpd": "N/A",
           "tpd": "N/A",
-          "verified": "2026-11-06"
+          "verified": "2026-11-07"
         },
         {
           "name": "Command R7B",
@@ -1748,7 +1583,7 @@
           "tpm": "N/A",
           "rpd": "N/A",
           "tpd": "N/A",
-          "verified": "2026-11-06"
+          "verified": "2026-11-07"
         }
       ],
       "base_url": "https://api.cohere.com/v1",
@@ -1830,7 +1665,7 @@
       "free_type": "Trial credits",
       "notes": "The Grant: $200 in credits is provided.\nThe Output: Credits can be used for speech models.\nThe Process: Access is granted without credit card requirement.\nThe Condition: Credits are valid for 90 days.",
       "timeout": "Not published",
-      "verified": "2026-11-06",
+      "verified": "2026-11-07",
       "models": [
         {
           "name": "Speech models (unspecified)",
@@ -1840,7 +1675,7 @@
           "tpm": "N/A",
           "rpd": "N/A",
           "tpd": "N/A",
-          "verified": "2026-11-06"
+          "verified": "2026-11-07"
         }
       ],
       "verified_method": "docs",
@@ -1856,7 +1691,7 @@
       "free_type": "Trial credits",
       "notes": "The Grant: DeepSeek offers a granted balance upon account creation. The Output: Users can access API services without immediate paid top-ups. The Process: The platform automatically prioritizes using the granted balance first when both balances are available. The Condition: This applies until the granted balance is exhausted or expires, after which accounts rely on the topped-up balance.",
       "timeout": "Not published",
-      "verified": "2026-11-06",
+      "verified": "2026-11-07",
       "models": [
         {
           "name": "deepseek-chat",
@@ -1866,7 +1701,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "5M tokens grant",
-          "verified": "2026-11-06"
+          "verified": "2026-11-07"
         },
         {
           "name": "deepseek-reasoner",
@@ -1876,7 +1711,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "5M tokens grant",
-          "verified": "2026-11-06"
+          "verified": "2026-11-07"
         }
       ],
       "verified_method": "docs",
@@ -1892,7 +1727,7 @@
       "free_type": "Trial credits",
       "notes": "Braintrust offers $10/month recurring model credit on Starter across 13 built-in models (including GPT-6 series, DeepSeek V4.1, GLM-5.3, and Jev). Work email required, no credit card required. Model credit resets monthly with no rollover.",
       "timeout": "Not published",
-      "verified": "2026-11-05",
+      "verified": "2026-11-07",
       "models": [
         {
           "name": "deepseek-v4.1-flash",
@@ -1902,7 +1737,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-07"
         },
         {
           "name": "deepseek-v4-flash-0731",
@@ -1912,7 +1747,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-07"
         },
         {
           "name": "glm-5.3-flash",
@@ -1922,7 +1757,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-07"
         },
         {
           "name": "glm-5.2",
@@ -1932,7 +1767,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-07"
         },
         {
           "name": "kimi-k3",
@@ -1942,7 +1777,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-07"
         },
         {
           "name": "jev",
@@ -1952,7 +1787,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-07"
         },
         {
           "name": "gpt-6-luna",
@@ -1962,7 +1797,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-07"
         },
         {
           "name": "gpt-6-sol",
@@ -1972,7 +1807,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-07"
         },
         {
           "name": "gpt-6.1-sol",
@@ -1982,7 +1817,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-07"
         },
         {
           "name": "gpt-6-astra",
@@ -1992,7 +1827,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-07"
         },
         {
           "name": "gpt-5.6-luna",
@@ -2002,7 +1837,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-07"
         },
         {
           "name": "gpt-5.6-terra",
@@ -2012,7 +1847,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-07"
         },
         {
           "name": "gpt-5.6-sol",
@@ -2022,7 +1857,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-11-05"
+          "verified": "2026-11-07"
         }
       ],
       "verified_method": "docs",
@@ -2038,7 +1873,7 @@
       "free_type": "Trial credits",
       "notes": "[The Grant] Deepgram provides $200 in free trial credits upon sign-up. [The Output] Users gain access to public speech-to-text and text-to-speech models including Nova-3, Nova-2, Flux, and Aura. [The Process] Users register for a Pay-As-You-Go account to receive the API key and access the platform. [The Condition] The credit allows for approximately 700 hours of Nova-3 transcription, subject to standard concurrency limits for pre-recorded and streaming requests.",
       "timeout": "Not published",
-      "verified": "2026-11-06",
+      "verified": "2026-11-07",
       "models": [
         {
           "name": "nova-3",
@@ -2048,7 +1883,7 @@
           "tpm": "N/A",
           "rpd": "N/A",
           "tpd": "N/A",
-          "verified": "2026-11-06"
+          "verified": "2026-11-07"
         },
         {
           "name": "nova-2",
@@ -2058,7 +1893,7 @@
           "tpm": "N/A",
           "rpd": "N/A",
           "tpd": "N/A",
-          "verified": "2026-11-06"
+          "verified": "2026-11-07"
         },
         {
           "name": "flux",
@@ -2068,7 +1903,7 @@
           "tpm": "N/A",
           "rpd": "N/A",
           "tpd": "N/A",
-          "verified": "2026-11-06"
+          "verified": "2026-11-07"
         },
         {
           "name": "aura",
@@ -2078,7 +1913,7 @@
           "tpm": "N/A",
           "rpd": "N/A",
           "tpd": "N/A",
-          "verified": "2026-11-06"
+          "verified": "2026-11-07"
         }
       ],
       "verified_method": "docs",
@@ -2094,7 +1929,7 @@
       "free_type": "Trial credits",
       "notes": "New accounts receive $50 in credits, valid for 90 days, usable across four speech models, and requiring no credit card.",
       "timeout": "Not published",
-      "verified": "2026-11-06",
+      "verified": "2026-11-07",
       "models": [
         {
           "name": "Unknown",
@@ -2104,7 +1939,7 @@
           "tpm": "Unknown",
           "rpd": "Unknown",
           "tpd": "43000 minutes",
-          "verified": "2026-11-06"
+          "verified": "2026-11-07"
         }
       ],
       "verified_method": "docs",
@@ -2120,7 +1955,7 @@
       "free_type": "Trial credits",
       "notes": "- The Grant: Users receive a trial credit system accessible via an API key.\n- The Output: A single available model named \"dots-3-note-preview\" is provided in the catalog.\n- The Process: Investigation of JavaScript bundles, API parameters, and documentation revealed context limits and model naming structures.\n- The Condition: Total input and output token sum cannot exceed the 524,288 token context window limit.",
       "timeout": "Not published",
-      "verified": "2026-11-06",
+      "verified": "2026-11-07",
       "channel": "web",
       "verified_method": "docs",
       "access_method": "api_key",
@@ -2135,7 +1970,7 @@
           "tpm": "N/A",
           "rpd": "N/A",
           "tpd": "N/A",
-          "verified": "2026-11-06"
+          "verified": "2026-11-07"
         }
       ]
     },
@@ -2145,7 +1980,7 @@
       "free_type": "Trial credits",
       "notes": "1. Liquid AI offers free promotional API credits to new developers upon console signup. 2. The output provides access to evaluate their models via the developer console and API. 3. The process requires creating an account on console.liquid.ai to claim the promotional allocation. 4. The condition is subject to promotional limits and potential expiration once the initial credit balance is exhausted.",
       "timeout": "Not published",
-      "verified": "2026-11-06",
+      "verified": "2026-11-07",
       "channel": "web",
       "verified_method": "docs",
       "access_method": "api_key",
@@ -2160,9 +1995,174 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-11-06"
+          "verified": "2026-11-07"
         }
       ]
+    },
+    {
+      "name": "SambaNova Cloud",
+      "url": "https://cloud.sambanova.ai/apis",
+      "free_type": "Trial credits",
+      "notes": "SambaNova Cloud provides initial trial credits upon account creation. Users can access production and preview models through an API key using these credits. The platform features pay-as-you-go credit systems alongside standard and free tier rate limits. Access is subject to community support guidelines and specific developer tier restrictions.",
+      "timeout": "Not published",
+      "verified": "2026-11-07",
+      "models": [
+        {
+          "name": "Meta-Llama-3.3-70B-Instruct",
+          "cost": "$0",
+          "context": "N/A",
+          "rpm": "N/A",
+          "tpm": "N/A",
+          "rpd": "N/A",
+          "tpd": "N/A",
+          "verified": "2026-11-07"
+        },
+        {
+          "name": "DeepSeek-V3.1",
+          "cost": "$0",
+          "context": "N/A",
+          "rpm": "N/A",
+          "tpm": "N/A",
+          "rpd": "N/A",
+          "tpd": "N/A",
+          "verified": "2026-11-07"
+        }
+      ],
+      "verified_method": "live-probe",
+      "access_method": "api_key",
+      "artifact": "code",
+      "base_url": "https://api.sambanova.ai/v1",
+      "channel": "api"
+    },
+    {
+      "name": "Z.AI (Zhipu)",
+      "url": "https://z.ai",
+      "free_type": "Rate-limited free",
+      "notes": "Z.AI offers free API access to GLM-5.1, GLM-4.7-Flash, and GLM-4.6V-Flash with 128K context, translating to 15 requests/minute. No credit card required. Shared free tier throttles during peak platform traffic hours.",
+      "timeout": "Not published",
+      "verified": "2026-11-07",
+      "models": [
+        {
+          "name": "GLM-5.1",
+          "cost": "$0",
+          "context": "Up to 203K",
+          "rpm": "3 (burst)",
+          "tpm": "Not published",
+          "rpd": "1,000 (1K RPD tier)",
+          "tpd": "Not published",
+          "verified": "2026-11-07"
+        },
+        {
+          "name": "GLM-4.5-Flash",
+          "cost": "$0",
+          "context": "Up to 203K",
+          "rpm": "3 (burst)",
+          "tpm": "Not published",
+          "rpd": "1,000",
+          "tpd": "Not published",
+          "verified": "2026-11-07"
+        },
+        {
+          "name": "GLM-4.7-Flash",
+          "cost": "$0",
+          "context": "Up to 203K",
+          "rpm": "3 (burst)",
+          "tpm": "Not published",
+          "rpd": "1,000",
+          "tpd": "Not published",
+          "verified": "2026-11-07"
+        },
+        {
+          "name": "GLM-4.6V-Flash (vision)",
+          "cost": "$0",
+          "context": "Up to 203K",
+          "rpm": "3 (burst)",
+          "tpm": "Not published",
+          "rpd": "1,000",
+          "tpd": "Not published",
+          "verified": "2026-11-07"
+        }
+      ],
+      "verified_method": "docs",
+      "access_method": "api_key",
+      "artifact": "code",
+      "base_url": "https://open.bigmodel.cn/api/paas/v4/",
+      "channel": "web"
+    },
+    {
+      "name": "Nous Portal",
+      "url": "https://portal.nousresearch.com/api-docs",
+      "free_type": "Rate-limited free",
+      "notes": "Nous Portal offers 5 free Hermes and open-weight models, translating to 50 requests/minute and 500,000 tokens/minute. Free account registration required, no credit card required. Preview models may be adjusted during experimental rounds.",
+      "timeout": "Not published",
+      "verified": "2026-11-07",
+      "verified_method": "live-probe",
+      "access_method": "api_key",
+      "artifact": "code",
+      "models": [
+        {
+          "name": "poolside/laguna-s-2.1:free",
+          "cost": "$0",
+          "context": "256K",
+          "rpm": "50",
+          "tpm": "500K",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-07"
+        },
+        {
+          "name": "poolside/laguna-xs-2.1:free",
+          "cost": "$0",
+          "context": "256K",
+          "rpm": "50",
+          "tpm": "500K",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-07"
+        },
+        {
+          "name": "stepfun/step-3.7-flash:free",
+          "cost": "$0",
+          "context": "128K",
+          "rpm": "50",
+          "tpm": "500K",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-07"
+        },
+        {
+          "name": "upstage/solar-mini4:free",
+          "cost": "$0",
+          "context": "64K",
+          "rpm": "50",
+          "tpm": "500K",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-07"
+        },
+        {
+          "name": "reflection/beam-1.0-501b-a23b:free",
+          "cost": "$0",
+          "context": "128K",
+          "rpm": "50",
+          "tpm": "500K",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-07"
+        },
+        {
+          "name": "ornith/ornith-1.5-122b:free",
+          "cost": "$0",
+          "context": "128K",
+          "rpm": "50",
+          "tpm": "500K",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-07"
+        }
+      ],
+      "base_url": "https://inference-api.nousresearch.com/v1",
+      "channel": "api"
     }
   ],
   "ga_measurement_id": "G-CFXWNKBD7G",

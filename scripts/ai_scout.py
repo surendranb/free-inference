@@ -10,6 +10,7 @@ Runs nightly via GitHub Actions (.github/workflows/nightly-probe.yml) or locally
 """
 import json
 import os
+import random
 import re
 import sys
 import time
@@ -296,8 +297,12 @@ The Antigravity ground truth agent discovered and verified a new free inference 
     return create_github_issue(title, body, ["catalog:candidate"])
 
 
-def call_antigravity_agent(prompt, key, timeout=120):
-    """Invoke Antigravity Managed Agent in Google's cloud sandbox with Chrome & web access."""
+def call_antigravity_agent(prompt, key, timeout=60, retries=3):
+    """Invoke Antigravity Managed Agent in Google's cloud sandbox with Chrome & web access.
+    
+    Includes exponential backoff with jitter on HTTP 429 (rate limit) and 503 (transient overload).
+    Capped at 15,000 total tokens to prevent runaway TPM/quota exhaustion.
+    """
     url = f"{INTERACTIONS_URL}?key={key}"
     body = {
         "agent": ANTIGRAVITY_AGENT,
@@ -307,7 +312,7 @@ def call_antigravity_agent(prompt, key, timeout=120):
         "store": True,
         "agent_config": {
             "type": "antigravity",
-            "max_total_tokens": 50000
+            "max_total_tokens": 15000
         }
     }
     req = urllib.request.Request(
@@ -315,9 +320,25 @@ def call_antigravity_agent(prompt, key, timeout=120):
         data=json.dumps(body).encode("utf-8"),
         headers={"Content-Type": "application/json"}
     )
-    with urllib.request.urlopen(req, timeout=30) as r:
-        init_res = json.load(r)
     
+    init_res = None
+    for attempt in range(retries + 1):
+        try:
+            with urllib.request.urlopen(req, timeout=30) as r:
+                init_res = json.load(r)
+                break
+        except urllib.error.HTTPError as e:
+            err_body = e.read().decode("utf-8", errors="ignore")
+            if e.code in (429, 503) and attempt < retries:
+                backoff = (2 ** attempt * 12) + random.uniform(2, 6)
+                print(f"  Notice: AI Studio Interactions API returned {e.code} ({e.reason}): {err_body[:300]}. Backing off for {backoff:.1f}s (retry {attempt + 1}/{retries})...")
+                time.sleep(backoff)
+                continue
+            raise RuntimeError(f"AI Studio Interactions API HTTP {e.code}: {err_body}") from e
+    
+    if not init_res:
+        raise RuntimeError("Failed to initialize Antigravity Agent interaction")
+
     iid = init_res.get("id")
     if not iid:
         raise RuntimeError("No interaction ID returned by Antigravity Agent API")
@@ -326,8 +347,16 @@ def call_antigravity_agent(prompt, key, timeout=120):
     t0 = time.time()
     while time.time() - t0 < timeout:
         time.sleep(5)
-        with urllib.request.urlopen(poll_url, timeout=30) as r:
-            poll_res = json.load(r)
+        try:
+            with urllib.request.urlopen(poll_url, timeout=30) as r:
+                poll_res = json.load(r)
+        except urllib.error.HTTPError as pe:
+            if pe.code in (429, 503):
+                # Transient rate-limit during poll, wait and retry next tick
+                time.sleep(5)
+                continue
+            raise
+
         status = poll_res.get("status")
         if status in ("completed", "failed", "incomplete"):
             steps = poll_res.get("steps", [])
@@ -538,6 +567,7 @@ def verify_web_providers_docs(catalog_data, key, apply_updates=False, max_audits
     today = date.today().isoformat()
     audit_results = []
     audited_count = 0
+    consecutive_rate_limits = 0
     priority_set = set(priority_providers or [])
 
     provs = list(catalog_data.get("providers", []))
@@ -571,34 +601,31 @@ def verify_web_providers_docs(catalog_data, key, apply_updates=False, max_audits
         prefix_tag = "[Probe Failure Priority]" if is_priority else "[Antigravity Agent]"
         print(f"--> {prefix_tag} Auditing live ground truth for {pname} ({doc_url})...")
         try:
-            prompt = f"""You are the Antigravity ground truth auditor for FreeInference.dev.
-Audit the official free tier for provider: {pname}.
-Official Documentation / Pricing URL: {doc_url}
+            prompt = f"""You are the Antigravity verification auditor for FreeInference.dev.
+Task: Open {doc_url} and verify whether {pname} still actively offers its documented free tier.
 
-Current catalog data:
-- Free tier type: {p.get('free_type')}
-- Access method: {p.get('access_method')}
-- Cataloged models: {[m.get('name') for m in p.get('models', [])]}
+Current Catalog Entry to Verify:
+- Provider: {pname}
+- Free Tier Type: {p.get('free_type')}
+- Cataloged Free Models: {[m.get('name') for m in p.get('models', [])]}
+- Documented Notes: {p.get('notes', '')}
 
-Task:
-1. Navigate to {doc_url} using your tools (Google Chrome / url_context / curl / bash).
-2. Read the live rendered page, pricing tables, quotas, token limits, audio second limits (ASH/ASD), and free allowances.
-3. If the page redirected or pricing moved to a subpage, find the current pricing/free tier.
-4. Extract every verified $0 / free model currently offered on this page across ALL inference modalities: Text, Code, Speech-to-Text (STT/Whisper), Text-to-Speech (TTS/Audio), Vision/Multimodal, and Embeddings.
-5. Format the provider's notes strictly according to the 4-point fact model:
-   [The Grant] + [The Output] + [The Process] + [The Condition]
-   (e.g., "Deepgram offers $200 free credit and 4 speech models, translating to ~43,000 minutes or 700+ hours. No credit card required. Credits expire in 90 days.")
-6. Output your conclusion strictly as a JSON object with keys:
-- "status": "active" (free tier exists), "retired" (discontinued/paid-only), or "changed"
-- "is_free_active": boolean
-- "free_type": "Rate-limited free", "Trial credits", or "Promo free (limited time)"
-- "notes": string (strict 4-point fact format: [The Grant] + [The Output] + [The Process] + [The Condition])
-- "models": list of free models with objects: [{{"name": "string", "cost": "$0", "context": "string (context window, max audio length, or input type)", "rpm": "string", "tpm": "string (tokens/min or audio seconds/hr)", "rpd": "string", "tpd": "string (tokens/day, audio seconds/day, or credit amount)"}}]
-- "summary": concise 1-sentence summary of the verified free allowance, limits, and reset cadence.
+Verification Instructions:
+1. Navigate directly to {doc_url} using Google Chrome.
+2. Confirm if the free tier, free trial credits, or rate-limited free models are still actively offered.
+3. Check if any cataloged free models were discontinued or moved to paid-only.
+4. Keep your check concise: navigate, inspect the pricing tier, and output your answer immediately (aim for 1-3 browser actions). Do not wander into external pages.
+5. If the page is blocked by a security checkpoint, captcha, Cloudflare challenge, or redirects to an internal login page, mark status as "inconclusive". Do NOT mark "retired" unless the page explicitly states the free tier is discontinued or paid-only.
 
-Output valid JSON only with no conversational text.
+Output strictly valid JSON:
+{{
+  "status": "active" (if free tier confirmed) | "retired" (only if explicitly discontinued/paid-only) | "inconclusive" (if blocked by checkpoint/login/captcha),
+  "is_free_active": true | false | null,
+  "summary": "1 concise sentence confirming the verified free allowance or explaining why verification was inconclusive."
+}}
 """
-            agent_res = call_antigravity_agent(prompt, key, timeout=150)
+            agent_res = call_antigravity_agent(prompt, key, timeout=60)
+            consecutive_rate_limits = 0
             raw_out = agent_res.get("output_text", "")
             
             # Robust JSON extraction with fallback synthesis
@@ -607,16 +634,13 @@ Output valid JSON only with no conversational text.
             except Exception as parse_err:
                 print(f"  Notice: JSON unwrap error for {pname} ({parse_err}), synthesizing from agent observations...")
                 try:
-                    synth_prompt = f"""Based on these Antigravity agent observations from auditing {pname} ({doc_url}):
-{raw_out[:3000]}
+                    synth_prompt = f"""Based on these Antigravity agent observations from verifying {pname} ({doc_url}):
+{raw_out[:2000]}
 
-Extract the verified free tier status and details. Output strictly valid JSON with keys:
-- "status": "active" (free tier exists), "retired" (discontinued/paid-only), or "changed"
+Is the $0 developer free tier confirmed active? Output strictly valid JSON with keys:
+- "status": "active" or "retired"
 - "is_free_active": boolean
-- "free_type": "Rate-limited free", "Trial credits", or "Promo free (limited time)"
-- "notes": string (strict 4-point fact format: [The Grant] + [The Output] + [The Process] + [The Condition])
-- "models": list of free models [{{"name": "string", "cost": "$0", "context": "string", "rpm": "string", "tpm": "string", "rpd": "string", "tpd": "string"}}]
-- "summary": concise 1-sentence summary
+- "summary": concise 1-sentence verification result
 """
                     synth_raw = call_ai_studio(synth_prompt, key)
                     eval_data = extract_first_json(synth_raw)
@@ -677,19 +701,16 @@ Extract the verified free tier status and details. Output strictly valid JSON wi
                 if primary_url and doc_url != primary_url:
                     print(f"  Notice: Auditing canonical URL {primary_url} for {pname} before declaring retirement...")
                     try:
-                        fallback_prompt = f"""You are the Antigravity ground truth auditor for FreeInference.dev.
+                        fallback_prompt = f"""You are the Antigravity verification auditor for FreeInference.dev.
 The subpage ({doc_url}) did not show an active free tier for {pname}.
-Audit the canonical website / pricing page: {primary_url}.
+Audit canonical page: {primary_url}.
 Does {pname} offer an active $0 developer free tier, rate-limited free plan, free trial, or bundled free tools?
-Output strictly JSON with keys:
+Navigate, check, and output strictly JSON with keys:
 - 'status': 'active' or 'retired'
 - 'is_free_active': boolean
-- 'summary': concise summary
-- 'free_type': free tier type
-- 'notes': 4-point fact string
-- 'models': list of free models
+- 'summary': concise 1-sentence verification summary
 """
-                        fallback_res = call_antigravity_agent(fallback_prompt, key, timeout=120)
+                        fallback_res = call_antigravity_agent(fallback_prompt, key, timeout=60)
                         raw_fb = fallback_res.get("output_text", "")
                         fallback_data = extract_first_json(raw_fb)
                         if fallback_data.get("is_free_active"):
@@ -708,22 +729,54 @@ Output strictly JSON with keys:
                     except Exception as fb_err:
                         print(f"  Notice: Fallback audit for {pname} encountered: {fb_err}")
 
-                if eval_data.get("is_free_active") is False or eval_data.get("status") == "retired":
+                # Guardrails against false-positive auto-retirement:
+                # 1. Active API providers tested by probe.py must never be retired by doc auditor failures.
+                # 2. Blocked pages (Cloudflare/Vercel checkpoints, captchas) are inconclusive, NOT retired.
+                # 3. Redirects to authenticated login consoles are inconclusive, NOT retired.
+                is_api_channel = p.get("channel") == "api" or p.get("verified_method") == "live-probe"
+                summary_text = (eval_data.get("summary") or "").lower()
+                is_inconclusive = eval_data.get("status") == "inconclusive" or any(w in summary_text for w in [
+                    "checkpoint", "security check", "captcha", "cloudflare", "blocked",
+                    "inconclusive", "unconfirmed", "unverified", "redirects to login", "login page"
+                ])
+
+                if (eval_data.get("is_free_active") is False or eval_data.get("status") == "retired") and not is_api_channel and not is_inconclusive:
                     print(f"  ⚠ WARNING: Agent confirmed {pname} as NOT active/free: {eval_data.get('summary')}")
                     report_deprecation_issue(pname, doc_url, audit_entry)
                     if apply_updates:
                         p["_retire"] = True
+                elif is_inconclusive or is_api_channel:
+                    print(f"  Notice: {pname} audit inconclusive or protected ({summary_text[:80]}); preserving existing catalog status.")
+                    audit_entry["status"] = "inconclusive" if is_inconclusive else audit_entry["status"]
 
         except Exception as e:
-            print(f"  Notice: Antigravity agent audit skipped for {pname}: {e}")
+            is_429 = "429" in str(e) or (isinstance(e, urllib.error.HTTPError) and getattr(e, "code", None) == 429)
+            if is_429:
+                consecutive_rate_limits += 1
+                status_val = "rate_limited"
+                summary_val = f"AI Studio rate limit (429): {e}"
+                print(f"  Notice: Antigravity agent audit rate-limited for {pname}: {e}")
+            else:
+                consecutive_rate_limits = 0
+                status_val = "unreachable"
+                summary_val = str(e)
+                print(f"  Notice: Antigravity agent audit skipped for {pname}: {e}")
+
             audit_results.append({
                 "provider": pname,
                 "docs_url": doc_url,
-                "status": "unreachable",
+                "status": status_val,
                 "is_free_active": None,
-                "summary": str(e),
+                "summary": summary_val,
                 "audited_date": today
             })
+
+            if consecutive_rate_limits >= 3:
+                print("  ⚠ WARNING: Google AI Studio Interactions API quota exhausted across retries. Halting remaining web audits to avoid spamming the endpoint.")
+                break
+        finally:
+            # Pacing delay between sequential cloud sandbox browser audits
+            time.sleep(8)
 
     if apply_updates:
         retired = [p["name"] for p in catalog_data.get("providers", []) if p.get("_retire")]
@@ -899,35 +952,33 @@ def audit_provider_candidates(candidates, key, max_audits=None, catalog_data=Non
         print(f"--> [Discovery Scout] Auditing candidate provider {cname} ({curl})...")
         audited_count += 1
         prompt = f"""You are the Antigravity ground truth auditor for FreeInference.dev.
-Investigate newly discovered AI inference provider candidate: {cname}.
-Official Website / Docs URL: {curl}
+Investigate newly discovered AI inference provider candidate: {cname} at {curl}.
 
 Task:
-1. Navigate to {curl} using your tools (Google Chrome / url_context / curl / bash).
-2. Find developer pricing, free tier, trial credits, rate limits, or API keys.
-3. Check if {cname} offers a genuine $0 developer free tier, recurring free allowance, or free trial credits without requiring an upfront paid credit card purchase.
-4. Format the provider's notes strictly according to the 4-point fact model:
-   [The Grant] + [The Output] + [The Process] + [The Condition]
-5. Output your conclusion strictly as a JSON object with keys:
-- "status": "active" (free tier exists), "paid_only" (strictly prepaid/credit card purchase required), or "no_api"
-- "is_free_active": boolean (true if developer can use models for $0)
-- "free_type": "Permanent $0", "Trial credits", "Rate limited", or "None"
-- "notes": string strictly following 4-point fact format: [The Grant] + [The Output] + [The Process] + [The Condition]
-- "summary": concise 1-sentence summary of the verified free allowance, limits, and reset cadence.
-- "candidate_models": list of free model names/IDs (strings)
-- "base_url": API base URL if discovered, or null
+1. Navigate directly to {curl} using Google Chrome.
+2. Confirm if {cname} offers a genuine $0 developer inference free tier or free trial credits without requiring upfront paid credit card purchase.
+3. Keep your check concise (aim for 1-3 browser actions). Do not wander into external sites.
 
-Output valid JSON only with no conversational text.
+Output strictly valid JSON:
+{{
+  "status": "active" (if free tier exists) | "paid_only" | "no_api",
+  "is_free_active": true | false,
+  "free_type": "Permanent $0" | "Trial credits" | "Rate limited" | "None",
+  "notes": "string strictly following 4-point fact format: [The Grant] + [The Output] + [The Process] + [The Condition]",
+  "summary": "concise 1-sentence summary of the verified free allowance, limits, and reset cadence.",
+  "candidate_models": ["model1", "model2"],
+  "base_url": "API base URL if discovered, or null"
+}}
 """
         try:
-            agent_res = call_antigravity_agent(prompt, key, timeout=150)
+            agent_res = call_antigravity_agent(prompt, key, timeout=60)
             raw_out = agent_res.get("output_text", "")
             try:
                 eval_data = extract_first_json(raw_out)
             except Exception:
                 # If agent was cut off or emitted thoughts, synthesize structured JSON from its real observations
                 synth_prompt = f"""Based on these Antigravity agent observations from auditing {cname} ({curl}):
-{raw_out[:3000]}
+{raw_out[:2000]}
 
 Does this provider offer a genuine $0 developer inference free tier or free trial credits without upfront card payment?
 Output strictly valid JSON with keys:
@@ -1002,16 +1053,23 @@ Output strictly valid JSON with keys:
                 print(f"  ✗ Provider candidate {cname} is paid-only / not free: {eval_data.get('summary')}")
 
         except Exception as e:
+            is_429 = "429" in str(e) or (isinstance(e, urllib.error.HTTPError) and getattr(e, "code", None) == 429)
+            status_val = "rate_limited" if is_429 else "unreachable"
             print(f"  Notice: Candidate audit skipped for {cname}: {e}")
             audit_records.append({
                 "name": cname,
                 "url": curl,
                 "source": cand["source"],
-                "status": "unreachable",
+                "status": status_val,
                 "is_free_active": False,
                 "summary": str(e),
                 "audited_date": date.today().isoformat()
             })
+            if is_429:
+                print("  ⚠ Candidate audit hit rate limit. Halting candidate audits.")
+                break
+        finally:
+            time.sleep(5)
 
     return {
         "verified": verified_candidates,
@@ -1098,14 +1156,19 @@ Output strictly valid JSON with no markdown formatting.
     candidate_providers = scout_candidates_search_first(catalog_data, key)
     print(f"Discovered {len(candidate_providers)} candidate providers via Search Frontier & Aggregators.")
 
+    cand_limit = 1 if audit_limit is None else audit_limit
     candidate_audit_results = audit_provider_candidates(
-        candidate_providers, key, max_audits=audit_limit,
+        candidate_providers, key, max_audits=cand_limit,
         catalog_data=catalog_data, apply_updates=apply_updates
     )
     verified_candidates = candidate_audit_results.get("verified", [])
     candidate_records = candidate_audit_results.get("all_audited", [])
 
-    if apply_updates and (doc_audits or verified_candidates):
+    completed_doc_audits = [d for d in doc_audits if d.get("status") in ("active", "changed", "retired")]
+    rate_limited_doc_audits = [d for d in doc_audits if d.get("status") == "rate_limited"]
+    unreachable_doc_audits = [d for d in doc_audits if d.get("status") == "unreachable"]
+
+    if apply_updates and (completed_doc_audits or verified_candidates):
         catalog_data["verified"] = max((p.get("verified", "") for p in catalog_data["providers"]), default=today)
         DATA_PATH.write_text(json.dumps(catalog_data, indent=2) + "\n")
         print(f"Updated {DATA_PATH} with fresh verification and catalog changes.")
@@ -1114,7 +1177,9 @@ Output strictly valid JSON with no markdown formatting.
     report = {
         "scouted_date": today,
         "model_used": f"{MODEL_NAME} + {ANTIGRAVITY_AGENT}",
-        "providers_audited": len(catalog_data["providers"]),
+        "providers_audited": len(completed_doc_audits),
+        "doc_audits_rate_limited": len(rate_limited_doc_audits),
+        "doc_audits_unreachable": len(unreachable_doc_audits),
         "models_cataloged": len(existing_models),
         "audit_summary": audit_summary,
         "doc_audits": doc_audits,
@@ -1140,7 +1205,7 @@ Output strictly valid JSON with no markdown formatting.
             f.write(f"### 🤖 FreeInference Nightly AI Scout & Audit ({today})\n\n")
             f.write(f"- **Engines**: Discovery via `{MODEL_NAME}` · Live Sandbox Audits via `{ANTIGRAVITY_AGENT}`\n")
             f.write(f"- **Catalog Size**: {len(catalog_data['providers'])} providers · {len(existing_models)} models\n")
-            f.write(f"- **Doc Audits Conducted**: {len(doc_audits)}\n")
+            f.write(f"- **Doc Audits Conducted**: {len(completed_doc_audits)} completed · {len(rate_limited_doc_audits)} rate-limited · {len(unreachable_doc_audits)} unreachable\n")
             f.write(f"- **New Providers Discovered**: {len(candidate_providers)} across HF & OpenRouter ({len(verified_candidates)} verified free)\n")
             f.write(f"- **Live Gateway Models**: {len(live_models)} across 4 endpoints\n\n")
             if verified_candidates:

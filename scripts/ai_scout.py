@@ -10,6 +10,7 @@ Runs nightly via GitHub Actions (.github/workflows/nightly-probe.yml) or locally
 """
 import json
 import os
+import random
 import re
 import sys
 import time
@@ -296,8 +297,11 @@ The Antigravity ground truth agent discovered and verified a new free inference 
     return create_github_issue(title, body, ["catalog:candidate"])
 
 
-def call_antigravity_agent(prompt, key, timeout=120):
-    """Invoke Antigravity Managed Agent in Google's cloud sandbox with Chrome & web access."""
+def call_antigravity_agent(prompt, key, timeout=100, retries=3):
+    """Invoke Antigravity Managed Agent in Google's cloud sandbox with Chrome & web access.
+    
+    Includes exponential backoff with jitter on HTTP 429 (rate limit) and 503 (transient overload).
+    """
     url = f"{INTERACTIONS_URL}?key={key}"
     body = {
         "agent": ANTIGRAVITY_AGENT,
@@ -315,9 +319,25 @@ def call_antigravity_agent(prompt, key, timeout=120):
         data=json.dumps(body).encode("utf-8"),
         headers={"Content-Type": "application/json"}
     )
-    with urllib.request.urlopen(req, timeout=30) as r:
-        init_res = json.load(r)
     
+    init_res = None
+    for attempt in range(retries + 1):
+        try:
+            with urllib.request.urlopen(req, timeout=30) as r:
+                init_res = json.load(r)
+                break
+        except urllib.error.HTTPError as e:
+            err_body = e.read().decode("utf-8", errors="ignore")
+            if e.code in (429, 503) and attempt < retries:
+                backoff = (2 ** attempt * 12) + random.uniform(2, 6)
+                print(f"  Notice: AI Studio Interactions API returned {e.code} ({e.reason}): {err_body[:300]}. Backing off for {backoff:.1f}s (retry {attempt + 1}/{retries})...")
+                time.sleep(backoff)
+                continue
+            raise RuntimeError(f"AI Studio Interactions API HTTP {e.code}: {err_body}") from e
+    
+    if not init_res:
+        raise RuntimeError("Failed to initialize Antigravity Agent interaction")
+
     iid = init_res.get("id")
     if not iid:
         raise RuntimeError("No interaction ID returned by Antigravity Agent API")
@@ -326,8 +346,16 @@ def call_antigravity_agent(prompt, key, timeout=120):
     t0 = time.time()
     while time.time() - t0 < timeout:
         time.sleep(5)
-        with urllib.request.urlopen(poll_url, timeout=30) as r:
-            poll_res = json.load(r)
+        try:
+            with urllib.request.urlopen(poll_url, timeout=30) as r:
+                poll_res = json.load(r)
+        except urllib.error.HTTPError as pe:
+            if pe.code in (429, 503):
+                # Transient rate-limit during poll, wait and retry next tick
+                time.sleep(5)
+                continue
+            raise
+
         status = poll_res.get("status")
         if status in ("completed", "failed", "incomplete"):
             steps = poll_res.get("steps", [])
@@ -538,6 +566,7 @@ def verify_web_providers_docs(catalog_data, key, apply_updates=False, max_audits
     today = date.today().isoformat()
     audit_results = []
     audited_count = 0
+    consecutive_rate_limits = 0
     priority_set = set(priority_providers or [])
 
     provs = list(catalog_data.get("providers", []))
@@ -598,7 +627,8 @@ Task:
 
 Output valid JSON only with no conversational text.
 """
-            agent_res = call_antigravity_agent(prompt, key, timeout=150)
+            agent_res = call_antigravity_agent(prompt, key, timeout=100)
+            consecutive_rate_limits = 0
             raw_out = agent_res.get("output_text", "")
             
             # Robust JSON extraction with fallback synthesis
@@ -689,7 +719,7 @@ Output strictly JSON with keys:
 - 'notes': 4-point fact string
 - 'models': list of free models
 """
-                        fallback_res = call_antigravity_agent(fallback_prompt, key, timeout=120)
+                        fallback_res = call_antigravity_agent(fallback_prompt, key, timeout=100)
                         raw_fb = fallback_res.get("output_text", "")
                         fallback_data = extract_first_json(raw_fb)
                         if fallback_data.get("is_free_active"):
@@ -715,15 +745,33 @@ Output strictly JSON with keys:
                         p["_retire"] = True
 
         except Exception as e:
-            print(f"  Notice: Antigravity agent audit skipped for {pname}: {e}")
+            is_429 = "429" in str(e) or (isinstance(e, urllib.error.HTTPError) and getattr(e, "code", None) == 429)
+            if is_429:
+                consecutive_rate_limits += 1
+                status_val = "rate_limited"
+                summary_val = f"AI Studio rate limit (429): {e}"
+                print(f"  Notice: Antigravity agent audit rate-limited for {pname}: {e}")
+            else:
+                consecutive_rate_limits = 0
+                status_val = "unreachable"
+                summary_val = str(e)
+                print(f"  Notice: Antigravity agent audit skipped for {pname}: {e}")
+
             audit_results.append({
                 "provider": pname,
                 "docs_url": doc_url,
-                "status": "unreachable",
+                "status": status_val,
                 "is_free_active": None,
-                "summary": str(e),
+                "summary": summary_val,
                 "audited_date": today
             })
+
+            if consecutive_rate_limits >= 3:
+                print("  ⚠ WARNING: Google AI Studio Interactions API quota exhausted across retries. Halting remaining web audits to avoid spamming the endpoint.")
+                break
+        finally:
+            # Pacing delay between sequential cloud sandbox browser audits
+            time.sleep(5)
 
     if apply_updates:
         retired = [p["name"] for p in catalog_data.get("providers", []) if p.get("_retire")]
@@ -1002,16 +1050,23 @@ Output strictly valid JSON with keys:
                 print(f"  ✗ Provider candidate {cname} is paid-only / not free: {eval_data.get('summary')}")
 
         except Exception as e:
+            is_429 = "429" in str(e) or (isinstance(e, urllib.error.HTTPError) and getattr(e, "code", None) == 429)
+            status_val = "rate_limited" if is_429 else "unreachable"
             print(f"  Notice: Candidate audit skipped for {cname}: {e}")
             audit_records.append({
                 "name": cname,
                 "url": curl,
                 "source": cand["source"],
-                "status": "unreachable",
+                "status": status_val,
                 "is_free_active": False,
                 "summary": str(e),
                 "audited_date": date.today().isoformat()
             })
+            if is_429:
+                print("  ⚠ Candidate audit hit rate limit. Halting candidate audits.")
+                break
+        finally:
+            time.sleep(5)
 
     return {
         "verified": verified_candidates,
@@ -1105,7 +1160,11 @@ Output strictly valid JSON with no markdown formatting.
     verified_candidates = candidate_audit_results.get("verified", [])
     candidate_records = candidate_audit_results.get("all_audited", [])
 
-    if apply_updates and (doc_audits or verified_candidates):
+    completed_doc_audits = [d for d in doc_audits if d.get("status") in ("active", "changed", "retired")]
+    rate_limited_doc_audits = [d for d in doc_audits if d.get("status") == "rate_limited"]
+    unreachable_doc_audits = [d for d in doc_audits if d.get("status") == "unreachable"]
+
+    if apply_updates and (completed_doc_audits or verified_candidates):
         catalog_data["verified"] = max((p.get("verified", "") for p in catalog_data["providers"]), default=today)
         DATA_PATH.write_text(json.dumps(catalog_data, indent=2) + "\n")
         print(f"Updated {DATA_PATH} with fresh verification and catalog changes.")
@@ -1114,7 +1173,9 @@ Output strictly valid JSON with no markdown formatting.
     report = {
         "scouted_date": today,
         "model_used": f"{MODEL_NAME} + {ANTIGRAVITY_AGENT}",
-        "providers_audited": len(catalog_data["providers"]),
+        "providers_audited": len(completed_doc_audits),
+        "doc_audits_rate_limited": len(rate_limited_doc_audits),
+        "doc_audits_unreachable": len(unreachable_doc_audits),
         "models_cataloged": len(existing_models),
         "audit_summary": audit_summary,
         "doc_audits": doc_audits,
@@ -1140,7 +1201,7 @@ Output strictly valid JSON with no markdown formatting.
             f.write(f"### 🤖 FreeInference Nightly AI Scout & Audit ({today})\n\n")
             f.write(f"- **Engines**: Discovery via `{MODEL_NAME}` · Live Sandbox Audits via `{ANTIGRAVITY_AGENT}`\n")
             f.write(f"- **Catalog Size**: {len(catalog_data['providers'])} providers · {len(existing_models)} models\n")
-            f.write(f"- **Doc Audits Conducted**: {len(doc_audits)}\n")
+            f.write(f"- **Doc Audits Conducted**: {len(completed_doc_audits)} completed · {len(rate_limited_doc_audits)} rate-limited · {len(unreachable_doc_audits)} unreachable\n")
             f.write(f"- **New Providers Discovered**: {len(candidate_providers)} across HF & OpenRouter ({len(verified_candidates)} verified free)\n")
             f.write(f"- **Live Gateway Models**: {len(live_models)} across 4 endpoints\n\n")
             if verified_candidates:

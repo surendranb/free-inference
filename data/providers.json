@@ -1,6 +1,6 @@
 {
   "title": "Free Inference",
-  "tagline": "Free AI & LLM inference you can build with: an API key, a CLI login, or inference bundled inside a coding tool or builder. Speech-to-text, voice synthesis, code, vision, and reasoning. The test is whether you can ship an artifact you keep \u2014 code, an app, an audio file, a site, a design, an agent, a skill. Chat-only free tiers are excluded on purpose.",
+  "tagline": "Free AI & LLM inference you can build with: an API key, a CLI login, or inference bundled inside a coding tool or builder. Speech-to-text, voice synthesis, code, vision, and reasoning. The test is whether you can ship an artifact you keep — code, an app, an audio file, a site, a design, an agent, a skill. Chat-only free tiers are excluded on purpose.",
   "verified": "2026-11-07",
   "website": "https://freeinference.dev",
   "repo": "https://github.com/surendranb/free-inference",
@@ -167,7 +167,7 @@
       "name": "OpenRouter",
       "url": "https://openrouter.ai/models?max_price=0",
       "free_type": "Rate-limited free",
-      "notes": "OpenRouter offers 13 permanently free models (:free suffix) with 64K\u2013500K context, translating to 50 requests/day (1,000 requests/day with + purchased credits). No credit card required. Upstream model availability determines live rate limits.",
+      "notes": "OpenRouter offers 13 permanently free models (:free suffix) with 64K–500K context, translating to 50 requests/day (1,000 requests/day with + purchased credits). No credit card required. Upstream model availability determines live rate limits.",
       "timeout": "Not published",
       "verified": "2026-11-07",
       "models": [
@@ -312,7 +312,7 @@
       "name": "Google AI Studio (Gemini API)",
       "url": "https://ai.google.dev/gemini-api/docs/rate-limits",
       "free_type": "Rate-limited free",
-      "notes": "Google AI Studio offers 16 free models with up to 1M context, translating to 15\u201330 requests/minute (up to 1,500 requests/day per model). No credit card required. Free-tier prompts and outputs are retained for model training.",
+      "notes": "Google AI Studio offers 16 free models with up to 1M context, translating to 15–30 requests/minute (up to 1,500 requests/day per model). No credit card required. Free-tier prompts and outputs are retained for model training.",
       "timeout": "Not published",
       "verified": "2026-11-07",
       "models": [
@@ -747,7 +747,7 @@
       "free_type": "Rate-limited free",
       "notes": "Mistral provides a free tier for developers to evaluate models. The output includes access to select baseline models via API. The process involves signing up for La Plateforme and utilizing default rate limits. The condition requires compliance with terms of service and staying within specified usage thresholds.",
       "timeout": "Not published",
-      "verified": "2026-11-06",
+      "verified": "2026-11-07",
       "models": [
         {
           "name": "mistral-tiny",
@@ -757,7 +757,7 @@
           "tpm": "Not specified",
           "rpd": "Not specified",
           "tpd": "Not specified",
-          "verified": "2026-11-06"
+          "verified": "2026-11-07"
         }
       ],
       "verified_method": "docs",

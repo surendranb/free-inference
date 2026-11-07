@@ -167,7 +167,7 @@ The Condition: Credits are valid for 90 days. |
 
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| mistral-tiny | $0 | 32k | Not specified | Not specified | Not specified | Not specified | 2026-11-06 |
+| mistral-tiny | $0 | 32k | Not specified | Not specified | Not specified | Not specified | 2026-11-07 |
 
 ### NVIDIA NIM (build.nvidia.com)
 

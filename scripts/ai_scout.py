@@ -562,8 +562,18 @@ def audit_catalog(catalog_data):
     }
 
 
-def verify_web_providers_docs(catalog_data, key, apply_updates=False, max_audits=None, priority_providers=None, force_all=False):
-    """Engine 1: Verify 100% of Web/Docs catalog providers using Google AI Studio Antigravity Managed Agent in cloud sandbox."""
+def verify_catalog_providers(catalog_data, key, apply_updates=False, max_audits=None, priority_providers=None, force_all=False):
+    """Engine 1: Multi-Modal Verification Runner (api, feed, web/html).
+    
+    1. Identifies provider native modality (api, feed, web).
+    2. Runner fetches latest ground-truth payload directly:
+       - API: fetches live /models JSON
+       - Feed: fetches RSS/Atom announcements
+       - Web: uses Antigravity Agent in cloud sandbox to capture live pricing DOM
+    3. Prompts agent with clean diff: "Here is existing catalog data, here is latest data. Determine what changed."
+    4. Human-approved retirement invariant: automated runs NEVER delete or auto-retire providers.
+       Deprecations flag GitHub issues for human review and approval.
+    """
     today = date.today().isoformat()
     audit_results = []
     audited_count = 0
@@ -580,6 +590,9 @@ def verify_web_providers_docs(catalog_data, key, apply_updates=False, max_audits
 
         pname = p.get("name")
         is_priority = pname in priority_set
+        channel = (p.get("channel") or "web").lower()
+        if channel not in ("api", "feed", "web"):
+            channel = "web"
 
         # If already verified today via live-probe (and not a priority failure), ground truth is already established
         if not is_priority and not force_all:
@@ -595,51 +608,157 @@ def verify_web_providers_docs(catalog_data, key, apply_updates=False, max_audits
             doc_url = docs_url
         else:
             doc_url = docs_url or primary_url
-        if not doc_url:
-            continue
 
-        prefix_tag = "[Probe Failure Priority]" if is_priority else "[Antigravity Agent]"
-        print(f"--> {prefix_tag} Auditing live ground truth for {pname} ({doc_url})...")
+        prefix_tag = f"[{channel.upper()}]"
+        print(f"--> {prefix_tag} Verifying {pname} via {channel} modality ({doc_url or primary_url})...")
+
+        raw_out = ""
+        agent_steps = 1
+        interaction_id = None
+        eval_data = {}
+
         try:
-            prompt = f"""You are the Antigravity verification auditor for FreeInference.dev.
-Task: Open {doc_url} and verify whether {pname} still actively offers its documented free tier.
+            # =========================================================
+            # MODALITY 1: API (Runner fetches JSON endpoint, agent diffs)
+            # =========================================================
+            if channel == "api":
+                endpoint_url = p.get("base_url") or p.get("url", "")
+                if "/models" not in endpoint_url and not endpoint_url.endswith("/v1"):
+                    models_url = endpoint_url.rstrip("/") + "/models"
+                elif endpoint_url.endswith("/v1"):
+                    models_url = endpoint_url + "/models"
+                else:
+                    models_url = endpoint_url
 
-Current Catalog Entry to Verify:
-- Provider: {pname}
+                latest_payload = ""
+                try:
+                    api_json = get_json(models_url)
+                    latest_payload = json.dumps(api_json, indent=2)[:3500]
+                except Exception as api_err:
+                    latest_payload = f"API fetch failed for {models_url}: {api_err}"
+
+                prompt = f"""You are the catalog verification auditor for FreeInference.dev.
+Compare the EXISTING catalog data against the LATEST API data retrieved from the provider endpoint:
+
+Provider: {pname}
+Native Modality: API
+Endpoint URL: {models_url}
+
+EXISTING CATALOG DATA:
+- Free Tier Type: {p.get('free_type')}
+- Cataloged Free Models: {[m.get('name') for m in p.get('models', [])]}
+- Documented Notes: {p.get('notes', '')}
+
+LATEST LIVE API DATA:
+{latest_payload}
+
+Task: Compare existing catalog data against latest API data and determine what changed:
+1. Is the free tier still confirmed active on this API?
+2. Are all existing catalog models still offered, or were any discontinued?
+3. Were any new free models added?
+4. Output strictly valid JSON:
+{{
+  "status": "active" (if confirmed active) | "changed" (if models changed) | "retired" (only if explicitly discontinued/no free models) | "inconclusive",
+  "is_free_active": true | false,
+  "summary": "1 concise sentence explaining what changed compared to existing catalog data"
+}}
+"""
+                raw_out = call_ai_studio(prompt, key)
+                interaction_id = "api-runner-diff"
+
+            # =========================================================
+            # MODALITY 2: FEED (Runner fetches RSS/Atom, agent diffs)
+            # =========================================================
+            elif channel == "feed":
+                feed_url = p.get("feed_url") or p.get("url")
+                latest_payload = ""
+                try:
+                    req = urllib.request.Request(feed_url, headers=UA)
+                    with urllib.request.urlopen(req, timeout=15) as r:
+                        raw_feed = r.read().decode("utf-8", errors="ignore")
+                    latest_payload = clean_html(raw_feed)[:3500]
+                except Exception as feed_err:
+                    latest_payload = f"Feed fetch failed for {feed_url}: {feed_err}"
+
+                prompt = f"""You are the catalog verification auditor for FreeInference.dev.
+Compare the EXISTING catalog data against the LATEST FEED announcements:
+
+Provider: {pname}
+Native Modality: Feed / Changelog
+Feed URL: {feed_url}
+
+EXISTING CATALOG DATA:
+- Free Tier Type: {p.get('free_type')}
+- Cataloged Free Models: {[m.get('name') for m in p.get('models', [])]}
+- Documented Notes: {p.get('notes', '')}
+
+LATEST FEED ANNOUNCEMENTS:
+{latest_payload}
+
+Task: Determine what changed based on these latest announcements:
+1. Are there new free model releases or quota updates?
+2. Are any cataloged free models announced as deprecated or discontinued?
+3. Output strictly valid JSON:
+{{
+  "status": "active" (if free tier confirmed) | "changed" (if updates announced) | "retired" (if deprecation announced) | "inconclusive",
+  "is_free_active": true | false,
+  "summary": "1 concise sentence explaining what changed based on the feed"
+}}
+"""
+                raw_out = call_ai_studio(prompt, key)
+                interaction_id = "feed-runner-diff"
+
+            # =========================================================
+            # MODALITY 3: WEB / HTML (Antigravity cloud browser sandbox)
+            # =========================================================
+            else:
+                prompt = f"""You are the Antigravity verification auditor for FreeInference.dev.
+Task: Open {doc_url} and compare what you see on the live page against our existing catalog data.
+
+Provider: {pname}
+Native Modality: Web / HTML
+Canonical URL: {doc_url}
+
+EXISTING CATALOG DATA:
 - Free Tier Type: {p.get('free_type')}
 - Cataloged Free Models: {[m.get('name') for m in p.get('models', [])]}
 - Documented Notes: {p.get('notes', '')}
 
 Verification Instructions:
 1. Navigate directly to {doc_url} using Google Chrome.
-2. Confirm if the free tier, free trial credits, or rate-limited free models are still actively offered.
-3. Check if any cataloged free models were discontinued or moved to paid-only.
+2. Compare the live pricing and model offerings against our existing catalog data above.
+3. Determine what changed:
+   - Is the free tier still actively offered?
+   - Are any cataloged free models discontinued or moved to paid-only?
+   - Are there any new free models or quota changes?
 4. Keep your check concise: navigate, inspect the pricing tier, and output your answer immediately (aim for 1-3 browser actions). Do not wander into external pages.
 5. If the page is blocked by a security checkpoint, captcha, Cloudflare challenge, or redirects to an internal login page, mark status as "inconclusive". Do NOT mark "retired" unless the page explicitly states the free tier is discontinued or paid-only.
 
 Output strictly valid JSON:
 {{
-  "status": "active" (if free tier confirmed) | "retired" (only if explicitly discontinued/paid-only) | "inconclusive" (if blocked by checkpoint/login/captcha),
+  "status": "active" (if free tier confirmed) | "changed" (if models/quotas changed) | "retired" (only if explicitly discontinued/paid-only) | "inconclusive" (if blocked),
   "is_free_active": true | false | null,
   "summary": "1 concise sentence confirming the verified free allowance or explaining why verification was inconclusive."
 }}
 """
-            agent_res = call_antigravity_agent(prompt, key, timeout=60)
-            consecutive_rate_limits = 0
-            raw_out = agent_res.get("output_text", "")
-            
-            # Robust JSON extraction with fallback synthesis
+                agent_res = call_antigravity_agent(prompt, key, timeout=60)
+                consecutive_rate_limits = 0
+                raw_out = agent_res.get("output_text", "")
+                agent_steps = agent_res.get("steps_count", 0)
+                interaction_id = agent_res.get("interaction_id")
+
+            # Extract JSON from agent output
             try:
                 eval_data = extract_first_json(raw_out)
             except Exception as parse_err:
-                print(f"  Notice: JSON unwrap error for {pname} ({parse_err}), synthesizing from agent observations...")
+                print(f"  Notice: JSON unwrap error for {pname} ({parse_err}), synthesizing from observations...")
                 try:
-                    synth_prompt = f"""Based on these Antigravity agent observations from verifying {pname} ({doc_url}):
+                    synth_prompt = f"""Based on these observations from verifying {pname} ({doc_url or primary_url}):
 {raw_out[:2000]}
 
-Is the $0 developer free tier confirmed active? Output strictly valid JSON with keys:
-- "status": "active" or "retired"
-- "is_free_active": boolean
+Is the $0 developer free tier confirmed active? What changed? Output strictly valid JSON with keys:
+- "status": "active", "changed", "inconclusive", or "retired"
+- "is_free_active": boolean or null
 - "summary": concise 1-sentence verification result
 """
                     synth_raw = call_ai_studio(synth_prompt, key)
@@ -647,107 +766,56 @@ Is the $0 developer free tier confirmed active? Output strictly valid JSON with 
                 except Exception as synth_err:
                     print(f"  Notice: Synthesis failed for {pname}: {synth_err}")
                     eval_data = {
-                        "status": "unreachable",
+                        "status": "inconclusive",
                         "is_free_active": None,
                         "summary": f"Parse error: {parse_err}"
                     }
 
             audit_entry = {
                 "provider": pname,
-                "docs_url": doc_url,
+                "docs_url": doc_url or primary_url,
+                "channel": channel,
                 "status": eval_data.get("status", "active"),
                 "is_free_active": eval_data.get("is_free_active", True),
                 "summary": eval_data.get("summary", ""),
                 "audited_date": today,
-                "agent_steps": agent_res.get("steps_count", 0),
-                "interaction_id": agent_res.get("interaction_id")
+                "agent_steps": agent_steps,
+                "interaction_id": interaction_id
             }
             audit_results.append(audit_entry)
             audited_count += 1
 
             if eval_data.get("is_free_active") and apply_updates:
                 p["verified"] = today
-                p["verified_method"] = "docs"
+                p["verified_method"] = "live-probe" if channel == "api" else "docs"
                 if eval_data.get("free_type") in ("Rate-limited free", "Trial credits", "Promo free (limited time)"):
                     p["free_type"] = eval_data["free_type"]
-                if eval_data.get("notes") and len(eval_data["notes"]) > 20:
-                    p["notes"] = eval_data["notes"]
-                audited_models = eval_data.get("models", [])
-                if audited_models and isinstance(audited_models, list) and len(audited_models) > 0:
-                    for am in audited_models:
-                        am.setdefault("cost", "$0")
-                        am.setdefault("context", "Not published")
-                        am.setdefault("rpm", "Not published")
-                        am.setdefault("tpm", "Not published")
-                        am.setdefault("rpd", "Not published")
-                        am.setdefault("tpd", "Not published")
-                        am["verified"] = today
-                    p["models"] = audited_models
-                    print(f"  ✓ Agent updated {pname} model inventory ({len(audited_models)} free models found).")
-                else:
-                    for m in p.get("models", []):
-                        m.setdefault("cost", "$0")
-                        m.setdefault("context", "Not published")
-                        m.setdefault("rpm", "Not published")
-                        m.setdefault("tpm", "Not published")
-                        m.setdefault("rpd", "Not published")
-                        m.setdefault("tpd", "Not published")
-                        m["verified"] = today
-                print(f"  ✓ Verified active ({agent_res.get('steps_count', 0)} agent steps): refreshed {pname} verification date to {today}.")
-            elif eval_data.get("is_free_active") is False or eval_data.get("status") == "retired":
-                # Fallback guardrail: If the audited URL was a subpage and different from primary URL,
-                # audit the primary URL before declaring retirement.
-                primary_url = p.get("url")
-                if primary_url and doc_url != primary_url:
-                    print(f"  Notice: Auditing canonical URL {primary_url} for {pname} before declaring retirement...")
-                    try:
-                        fallback_prompt = f"""You are the Antigravity verification auditor for FreeInference.dev.
-The subpage ({doc_url}) did not show an active free tier for {pname}.
-Audit canonical page: {primary_url}.
-Does {pname} offer an active $0 developer free tier, rate-limited free plan, free trial, or bundled free tools?
-Navigate, check, and output strictly JSON with keys:
-- 'status': 'active' or 'retired'
-- 'is_free_active': boolean
-- 'summary': concise 1-sentence verification summary
-"""
-                        fallback_res = call_antigravity_agent(fallback_prompt, key, timeout=60)
-                        raw_fb = fallback_res.get("output_text", "")
-                        fallback_data = extract_first_json(raw_fb)
-                        if fallback_data.get("is_free_active"):
-                            print(f"  ✓ Fallback saved {pname}! Canonical page {primary_url} has active free tier.")
-                            eval_data = fallback_data
-                            p["docs_url"] = primary_url
-                            audit_entry["docs_url"] = primary_url
-                            audit_entry["status"] = "active"
-                            audit_entry["is_free_active"] = True
-                            audit_entry["summary"] = eval_data.get("summary", "")
-                            if apply_updates:
-                                p["verified"] = today
-                                p["verified_method"] = "docs"
-                                if eval_data.get("notes"):
-                                    p["notes"] = eval_data["notes"]
-                    except Exception as fb_err:
-                        print(f"  Notice: Fallback audit for {pname} encountered: {fb_err}")
+                for m in p.get("models", []):
+                    m.setdefault("cost", "$0")
+                    m.setdefault("context", "Not published")
+                    m.setdefault("rpm", "Not published")
+                    m.setdefault("tpm", "Not published")
+                    m.setdefault("rpd", "Not published")
+                    m.setdefault("tpd", "Not published")
+                    m["verified"] = today
+                print(f"  ✓ Verified active ({agent_steps} steps): refreshed {pname} verification date to {today}.")
 
-                # Guardrails against false-positive auto-retirement:
-                # 1. Active API providers tested by probe.py must never be retired by doc auditor failures.
-                # 2. Blocked pages (Cloudflare/Vercel checkpoints, captchas) are inconclusive, NOT retired.
-                # 3. Redirects to authenticated login consoles are inconclusive, NOT retired.
-                is_api_channel = p.get("channel") == "api" or p.get("verified_method") == "live-probe"
+            # -------------------------------------------------------------
+            # HUMAN-APPROVED RETIREMENT ONLY: NEVER AUTO-RETIRE IN CI
+            # -------------------------------------------------------------
+            elif eval_data.get("is_free_active") is False or eval_data.get("status") == "retired":
                 summary_text = (eval_data.get("summary") or "").lower()
                 is_inconclusive = eval_data.get("status") == "inconclusive" or any(w in summary_text for w in [
                     "checkpoint", "security check", "captcha", "cloudflare", "blocked",
                     "inconclusive", "unconfirmed", "unverified", "redirects to login", "login page"
                 ])
-
-                if (eval_data.get("is_free_active") is False or eval_data.get("status") == "retired") and not is_api_channel and not is_inconclusive:
-                    print(f"  ⚠ WARNING: Agent confirmed {pname} as NOT active/free: {eval_data.get('summary')}")
-                    report_deprecation_issue(pname, doc_url, audit_entry)
-                    if apply_updates:
-                        p["_retire"] = True
-                elif is_inconclusive or is_api_channel:
+                if is_inconclusive or channel == "api":
                     print(f"  Notice: {pname} audit inconclusive or protected ({summary_text[:80]}); preserving existing catalog status.")
-                    audit_entry["status"] = "inconclusive" if is_inconclusive else audit_entry["status"]
+                    audit_entry["status"] = "inconclusive"
+                else:
+                    print(f"  ⚠ DEPRECATION DETECTED for {pname}: {eval_data.get('summary')}")
+                    print(f"  --> Flagging GitHub deprecation issue for human approval. Automated runs NEVER auto-retire.")
+                    report_deprecation_issue(pname, doc_url or primary_url, audit_entry)
 
         except Exception as e:
             is_429 = "429" in str(e) or (isinstance(e, urllib.error.HTTPError) and getattr(e, "code", None) == 429)
@@ -755,16 +823,17 @@ Navigate, check, and output strictly JSON with keys:
                 consecutive_rate_limits += 1
                 status_val = "rate_limited"
                 summary_val = f"AI Studio rate limit (429): {e}"
-                print(f"  Notice: Antigravity agent audit rate-limited for {pname}: {e}")
+                print(f"  Notice: Agent audit rate-limited for {pname}: {e}")
             else:
                 consecutive_rate_limits = 0
                 status_val = "unreachable"
                 summary_val = str(e)
-                print(f"  Notice: Antigravity agent audit skipped for {pname}: {e}")
+                print(f"  Notice: Agent audit skipped for {pname}: {e}")
 
             audit_results.append({
                 "provider": pname,
-                "docs_url": doc_url,
+                "docs_url": doc_url or primary_url,
+                "channel": channel,
                 "status": status_val,
                 "is_free_active": None,
                 "summary": summary_val,
@@ -772,27 +841,21 @@ Navigate, check, and output strictly JSON with keys:
             })
 
             if consecutive_rate_limits >= 3:
-                print("  ⚠ WARNING: Google AI Studio Interactions API quota exhausted across retries. Halting remaining web audits to avoid spamming the endpoint.")
+                print("  ⚠ WARNING: Google AI Studio Interactions API quota exhausted across retries. Halting remaining audits to avoid spamming the endpoint.")
                 break
         finally:
-            # Pacing delay between sequential cloud sandbox browser audits
-            time.sleep(8)
-
-    if apply_updates:
-        retired = [p["name"] for p in catalog_data.get("providers", []) if p.get("_retire")]
-        if retired:
-            catalog_data["providers"] = [p for p in catalog_data.get("providers", []) if not p.get("_retire")]
-            print(f"  ✓ Automatically retired {len(retired)} discontinued providers from catalog: {retired}")
-            for rname in retired:
-                existing_issue = find_existing_issue(f"[Deprecation] {rname}", state="open")
-                if existing_issue:
-                    close_github_issue(existing_issue["number"], f"Resolved: {rname} retired from catalog based on verified Antigravity agent audit.")
+            if channel == "web":
+                # Pacing delay between sequential cloud sandbox browser audits
+                time.sleep(8)
+            else:
+                time.sleep(1)
 
     return audit_results
 
 
 # Backwards compatibility alias
-audit_stale_provider_docs = verify_web_providers_docs
+verify_web_providers_docs = verify_catalog_providers
+audit_stale_provider_docs = verify_catalog_providers
 
 
 def scout_candidates_search_first(catalog_data, key):
@@ -1164,7 +1227,7 @@ Output strictly valid JSON with no markdown formatting.
     verified_candidates = candidate_audit_results.get("verified", [])
     candidate_records = candidate_audit_results.get("all_audited", [])
 
-    completed_doc_audits = [d for d in doc_audits if d.get("status") in ("active", "changed", "retired")]
+    completed_doc_audits = [d for d in doc_audits if d.get("status") in ("active", "changed", "retired", "inconclusive")]
     rate_limited_doc_audits = [d for d in doc_audits if d.get("status") == "rate_limited"]
     unreachable_doc_audits = [d for d in doc_audits if d.get("status") == "unreachable"]
 

@@ -2,7 +2,7 @@
 name: free-inference
 description: Query, filter, and configure verified $0 free LLM inference providers, OpenAI-compatible base URLs, and active rate limits (RPM/TPM/RPD) across 42 providers and 174 models.
 version: 1.0.0
-updated: 2026-11-07
+updated: 2026-11-08
 homepage: https://freeinference.dev
 update_url: https://freeinference.dev/skills/free-inference/SKILL.md
 short_url: https://freeinference.dev/skill.md
@@ -42,8 +42,8 @@ When the user specifies a task, prioritize these verified $0 providers:
 ### B. Massive Context Windows (>= 128k - 1M Tokens)
 - **Google AI Studio (Gemini API)**: 1,000,000 token context window.
   - Base URL: `https://generativelanguage.googleapis.com/v1beta/openai/`
-  - Top Models: `gemini-2.5-flash`, `gemini-2.5-flash-lite`, `gemini-3.5-flash`
-  - Access: 15 RPM, $0 permanently, no credit card.
+  - Top Models: `gemini-3.5-flash-lite`, `gemini-3.1-flash-lite`, `gemma-4-26b-a4b-it`, `gemma-4-31b-it`
+  - Access: 15–30 RPM, 500–14.4K RPD, $0 permanently, no credit card.
 - **OpenCode Zen**: Up to 1M context on `Big Pickle`.
 - **SambaNova Cloud**: 131k context on `DeepSeek-V3.2`.
 

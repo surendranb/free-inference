@@ -896,9 +896,10 @@ For each candidate, determine:
 
 Output strictly a JSON array of objects with these keys, with no conversational text or markdown code fences.
 """
-        for attempt in range(2):
+        cascade_models = ["gemini-3.5-flash-lite", "gemini-3.1-flash-lite", "gemma-4-26b-a4b-it", "gemma-4-31b-it"]
+        for target_model in cascade_models:
             try:
-                url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={key}"
+                url = f"https://generativelanguage.googleapis.com/v1beta/models/{target_model}:generateContent?key={key}"
                 body = {
                     "contents": [{"parts": [{"text": search_prompt}]}],
                     "tools": [{"googleSearch": {}}]
@@ -928,10 +929,7 @@ Output strictly a JSON array of objects with these keys, with no conversational 
                                     print(f"  ✓ Search surfaced candidate: {cname} ({curl}) [modality: {sc.get('channel', 'web')}]")
                         break
             except Exception as e:
-                if attempt == 0 and "429" in str(e):
-                    time.sleep(5)
-                    continue
-                print(f"Notice: Google Search discovery query skipped: {e}")
+                continue
 
     # 2. Upstream Model Creator Labs from Aggregators
     # Traces active free models like typesafe/*, liquid/*, stepfun/*, thinkingmachines/*, etc.

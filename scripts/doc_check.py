@@ -15,7 +15,7 @@ from pathlib import Path
 ROOT = Path(__file__).parent.parent
 DATA = json.loads((ROOT / "data" / "providers.json").read_text())
 UA = {"User-Agent": "free-inference-doccheck/0.1"}
-MODEL = "gemini-2.5-flash"
+MODELS = ["gemini-3.5-flash-lite", "gemini-3.1-flash-lite", "gemma-4-26b-a4b-it", "gemma-4-31b-it"]
 
 PROMPT = """You are auditing documentation for a free-tier API rate-limit catalog.
 Screenshot is of {name} ({url}).
@@ -41,13 +41,20 @@ def ask_gemini(png_bytes, name, url, key):
         ]}],
         "generationConfig": {"temperature": 0, "responseMimeType": "application/json"},
     }
-    req = urllib.request.Request(
-        f"https://generativelanguage.googleapis.com/v1beta/models/{MODEL}:generateContent?key={key}",
-        data=json.dumps(body).encode(), headers={"Content-Type": "application/json", **UA})
-    with urllib.request.urlopen(req, timeout=90) as r:
-        d = json.load(r)
-    text = d["candidates"][0]["content"]["parts"][0]["text"]
-    return json.loads(text)
+    last_err = None
+    for model in MODELS:
+        try:
+            req = urllib.request.Request(
+                f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={key}",
+                data=json.dumps(body).encode(), headers={"Content-Type": "application/json", **UA})
+            with urllib.request.urlopen(req, timeout=90) as r:
+                d = json.load(r)
+            text = d["candidates"][0]["content"]["parts"][0]["text"]
+            return json.loads(text)
+        except Exception as e:
+            last_err = e
+            continue
+    raise last_err or RuntimeError("All models in cascade failed")
 
 
 def nums(s):

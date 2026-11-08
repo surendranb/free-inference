@@ -62,8 +62,8 @@ const CHAT_GUIDANCE = {
     {
       provider: "Google AI Studio",
       base_url: "https://generativelanguage.googleapis.com/v1beta/openai/",
-      recommended_model: "gemini-2.5-flash",
-      free_tier: "15 RPM permanently free, 1,000,000 token context window",
+      recommended_model: "gemini-3.5-flash-lite",
+      free_tier: "15 RPM, 500 RPD permanently free, 1,000,000 token context window",
       signup_url: "https://aistudio.google.com",
     },
     {

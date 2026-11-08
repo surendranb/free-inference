@@ -119,7 +119,7 @@ def build_readme():
 - 💳 **No Credit Card or Subscription**: [{WEBSITE}/free-llm-api-no-credit-card/]({WEBSITE}/free-llm-api-no-credit-card/)
 - ⚡ **OpenAI-Compatible Drop-in Endpoints**: [{WEBSITE}/free-openai-compatible-api/]({WEBSITE}/free-openai-compatible-api/)
 - 🛠 **Free Coding & Cursor / Cline Keys**: [{WEBSITE}/free-coding-api/]({WEBSITE}/free-coding-api/) · [{WEBSITE}/free-cursor-api/]({WEBSITE}/free-cursor-api/)
-- 🧠 **Top Model Guides**: [DeepSeek V3.2]({WEBSITE}/free-deepseek-api/) · [Llama 3.3 70B]({WEBSITE}/free-llama-api/) · [Qwen 3.8]({WEBSITE}/free-qwen-api/) · [Gemini 2.5 Flash]({WEBSITE}/free-gemini-api/) · [GLM-5 / 4.7]({WEBSITE}/free-glm-api/)
+- 🧠 **Top Model Guides**: [DeepSeek V3.2]({WEBSITE}/free-deepseek-api/) · [Llama 3.3 70B]({WEBSITE}/free-llama-api/) · [Qwen 3.8]({WEBSITE}/free-qwen-api/) · [Gemini 3.5 Flash-Lite]({WEBSITE}/free-gemini-api/) · [GLM-5 / 4.7]({WEBSITE}/free-glm-api/)
 
 ## Providers
 
@@ -1292,12 +1292,12 @@ FREE_PAGES_CONFIG = {
     "free-gemini-api": {
         "title": "Free Gemini API — Google AI Studio Endpoints & Limits (2026)",
         "h1": "Free Gemini API Endpoints & Rate Limits",
-        "bluf": "Google AI Studio provides 14 free Gemini models (including Gemini 2.5 Flash, 3.5 Flash, and Flash-Lite) with 1M context windows, up to 15 RPM, and an official OpenAI-compatible endpoint.",
+        "bluf": "Google AI Studio provides 16 free models (including Gemini 3.5 Flash-Lite and 3.1 Flash-Lite at 500 RPD, plus Gemma 4 open-weight models at 14.4K RPD) with 1M context windows and an official OpenAI-compatible endpoint.",
         "desc": "Complete reference for Google AI Studio free Gemini API tier. Verified RPM, TPM, RPD, and 1M context limits across all Gemini models.",
         "filter": lambda p, m: "gemini" in m["name"].lower() or "google ai studio" in p["name"].lower(),
         "tool_snippet": {
             "base_url": "https://generativelanguage.googleapis.com/v1beta/openai/",
-            "model": "gemini-2.5-flash",
+            "model": "gemini-3.5-flash-lite",
             "provider": "Google AI Studio (Gemini API)",
             "notes": "Official Google AI Studio OpenAI-compatible endpoint with 1M context."
         }
@@ -1399,7 +1399,7 @@ FREE_PAGES_CONFIG = {
         "bluf": "Thinking Machines Inkling models are currently unlisted on free tiers after OpenRouter ended its free promotional window. Verified alternative reasoning models with 128K–1M context windows include DeepSeek-R1 and Nemotron Reasoning.",
         "desc": "Free Inkling reasoning API directory. Upstream status, alternative reasoning models, rate limits, and 1M context endpoints.",
         "filter": lambda p, m: "inkling" in m["name"].lower() or "thinkingmachines" in m["name"].lower(),
-        "fallback_filter": lambda p, m: any(k in m["name"].lower() for k in ["nemotron-3-nano-omni", "deepseek-r1", "gemini-2.5-flash"]),
+        "fallback_filter": lambda p, m: any(k in m["name"].lower() for k in ["nemotron-3-nano-omni", "deepseek-r1", "gemini-3.5-flash-lite"]),
         "upstream_notice": "Thinking Machines Inkling and Inkling-Small models have rotated off OpenRouter's free promotional tier and are currently paid-only upstream ($1.00/$4.05 per 1M tokens). The table below lists active, verified $0 alternative reasoning models with long context windows.",
         "tool_snippet": {
             "base_url": "https://openrouter.ai/api/v1",
@@ -1450,12 +1450,12 @@ FREE_PAGES_CONFIG = {
     "free-gemini-flash-api": {
         "title": "Free Gemini Flash API — 1M Context & Rate Limits (2026)",
         "h1": "Free Gemini Flash API Endpoints & Rate Limits",
-        "bluf": "Gemini 2.5 Flash, 3.5 Flash, and Flash-Lite provide 1,000,000 token context windows at 15 RPM completely free via Google AI Studio API and OpenAI base URL.",
+        "bluf": "Gemini 3.5 Flash-Lite, 3.1 Flash-Lite, and 3.5 Flash provide 1,000,000 token context windows at 15 RPM completely free via Google AI Studio API and OpenAI base URL.",
         "desc": "Free Gemini Flash API directory. Compare rate limits, 1M context windows, and base URLs across all Gemini Flash versions.",
         "filter": lambda p, m: "gemini" in m["name"].lower() and "flash" in m["name"].lower(),
         "tool_snippet": {
             "base_url": "https://generativelanguage.googleapis.com/v1beta/openai/",
-            "model": "gemini-2.5-flash",
+            "model": "gemini-3.5-flash-lite",
             "provider": "Google AI Studio (Gemini API)",
             "notes": "Official Google AI Studio OpenAI-compatible endpoint with 1M context."
         }
@@ -1567,12 +1567,12 @@ FREE_PAGES_CONFIG = {
     "free-vision-api": {
         "title": "Free Vision LLM API — Multimodal Image & Text Models (2026)",
         "h1": "Free Vision & Multimodal LLM APIs",
-        "bluf": "Free vision APIs supporting image understanding, OCR, and document analysis, including Gemini 2.5 Flash, GLM-4.6V-Flash, and Nemotron 3.5 Super-VL.",
+        "bluf": "Free vision APIs supporting image understanding, OCR, and document analysis, including Gemini 3.5 Flash-Lite, GLM-4.6V-Flash, and Nemotron 3.5 Super-VL.",
         "desc": "Free vision LLM API directory. Rate limits and multimodal endpoints for Gemini Flash, GLM-4.6V, and Nemotron Super-VL.",
         "filter": lambda p, m: any(w in m["name"].lower() for w in ["vision", "vl", "omni", "flash-preview", "4.6v"]),
         "tool_snippet": {
             "base_url": "https://generativelanguage.googleapis.com/v1beta/openai/",
-            "model": "gemini-2.5-flash",
+            "model": "gemini-3.5-flash-lite",
             "provider": "Google AI Studio (Gemini API)",
             "notes": "Multimodal image and video input via OpenAI-compatible endpoint."
         }
@@ -1598,7 +1598,7 @@ FREE_PAGES_CONFIG = {
         "filter": lambda p, m: any(w in str(m.get("context", "")).lower() for w in ["1000000", "1024k", "256k", "203k", "250k"]),
         "tool_snippet": {
             "base_url": "https://generativelanguage.googleapis.com/v1beta/openai/",
-            "model": "gemini-2.5-flash",
+            "model": "gemini-3.5-flash-lite",
             "provider": "Google AI Studio (Gemini API)",
             "notes": "1,000,000 token context window on Google AI Studio free tier."
         }
@@ -1624,7 +1624,7 @@ FREE_PAGES_CONFIG = {
         "filter": lambda p, m: bool(p.get("base_url")) and p.get("access_method") == "api_key",
         "tool_snippet": {
             "base_url": "https://generativelanguage.googleapis.com/v1beta/openai/",
-            "model": "gemini-2.5-flash",
+            "model": "gemini-3.5-flash-lite",
             "provider": "Google AI Studio (Gemini API)",
             "notes": "In Cline settings, select OpenAI Compatible provider and enter this base URL."
         }
@@ -2259,8 +2259,8 @@ def build_v1_endpoints(dist):
             {
                 "provider": "Google AI Studio",
                 "base_url": "https://generativelanguage.googleapis.com/v1beta/openai/",
-                "recommended_model": "gemini-2.5-flash",
-                "free_tier": "15 RPM permanently free, 1,000,000 token context window",
+                "recommended_model": "gemini-3.5-flash-lite",
+                "free_tier": "15 RPM, 500 RPD permanently free, 1,000,000 token context window",
                 "signup_url": "https://aistudio.google.com",
             },
             {
@@ -2329,8 +2329,8 @@ When the user specifies a task, prioritize these verified $0 providers:
 ### B. Massive Context Windows (>= 128k - 1M Tokens)
 - **Google AI Studio (Gemini API)**: 1,000,000 token context window.
   - Base URL: `https://generativelanguage.googleapis.com/v1beta/openai/`
-  - Top Models: `gemini-2.5-flash`, `gemini-2.5-flash-lite`, `gemini-3.5-flash`
-  - Access: 15 RPM, $0 permanently, no credit card.
+  - Top Models: `gemini-3.5-flash-lite`, `gemini-3.1-flash-lite`, `gemma-4-26b-a4b-it`, `gemma-4-31b-it`
+  - Access: 15–30 RPM, 500–14.4K RPD, $0 permanently, no credit card.
 - **OpenCode Zen**: Up to 1M context on `Big Pickle`.
 - **SambaNova Cloud**: 131k context on `DeepSeek-V3.2`.
 

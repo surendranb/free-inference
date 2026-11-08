@@ -60,6 +60,11 @@ CLARITY = """<!-- Microsoft Clarity -->
     })(window, document, "clarity", "script", "yz5j1y2n6n");
 </script>"""
 
+TURNSTILE_SITE_KEY = "0x4AAAAAAF4X6Cad5QW5V0Bs"
+
+TURNSTILE_SCRIPT = """<!-- Cloudflare Turnstile -->
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>"""
+
 FAVICON_TAGS = """<link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="alternate icon" href="/favicon.ico">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -393,13 +398,7 @@ CSS = '''  :root { --bg:#fff; --ink:#1a1a1a; --mut:#6b6b6b; --line:#e3e3e3; --se
   @media (max-width:960px) { .fgrid, .fcols { grid-template-columns:repeat(2,1fr); gap:18px 20px; } }
   @media (max-width:540px) { .fgrid, .fcols { grid-template-columns:1fr; } }'''
 
-NEWSLETTER_FORM_SNIPPET = """<form class="newsletter-form" onsubmit="event.preventDefault();var f=this,b=f.querySelector('button'),i=f.querySelector('input'),m=f.querySelector('.newsletter-msg');b.disabled=true;b.textContent='Subscribing...';fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:i.value})}).then(function(r){return r.json()}).then(function(d){if(d.success){b.textContent='Subscribed!';i.disabled=true;m.textContent='You are on the list. Issues drop Mondays at 09:00 IST.';m.style.color='#166534';}else{b.disabled=false;b.textContent='Subscribe';m.textContent=d.error||'Failed to subscribe';m.style.color='#991b1b';}}).catch(function(){b.disabled=false;b.textContent='Subscribe';m.textContent='Network error. Please try again.';m.style.color='#991b1b';});">
-  <div class="newsletter-form-row">
-    <input type="email" name="email" placeholder="you@domain.com" required aria-label="Your email address">
-    <button type="submit">Subscribe</button>
-  </div>
-  <div class="newsletter-msg"></div>
-</form>"""
+NEWSLETTER_FORM_SNIPPET = f"""<form class="newsletter-form" onsubmit="event.preventDefault();var f=this,b=f.querySelector('button'),i=f.querySelector('input[type=email]'),hp=f.querySelector('input[name=b_name]'),m=f.querySelector('.newsletter-msg');var token='';if(typeof turnstile!=='undefined'){{try{{token=turnstile.getResponse()||'';}}catch(e){{}}}}if(!token){{var ti=f.querySelector('[name=cf-turnstile-response]');if(ti)token=ti.value||'';}}if(!token){{m.textContent='Please complete the security check.';m.style.color='#991b1b';return;}}b.disabled=true;b.textContent='Subscribing...';fetch('/api/subscribe',{{method:'POST',headers:{{'Content-Type':'application/json'}},body:JSON.stringify({{email:i.value,turnstileToken:token,b_name:hp?hp.value:''}})}}).then(function(r){{return r.json()}}).then(function(d){{if(d.success){{b.textContent='Subscribed!';i.disabled=true;m.textContent='You are on the list. Issues drop Mondays at 09:00 IST.';m.style.color='#166534';}}else{{b.disabled=false;b.textContent='Subscribe';m.textContent=d.error||'Failed to subscribe';m.style.color='#991b1b';if(typeof turnstile!=='undefined'){{try{{turnstile.reset()}}catch(e){{}}}}}}}}).catch(function(){{b.disabled=false;b.textContent='Subscribe';m.textContent='Network error. Please try again.';m.style.color='#991b1b';}});"><div style="position:absolute;left:-9999px;opacity:0;pointer-events:none;" aria-hidden="true"><input type="text" name="b_name" tabindex="-1" autocomplete="off"></div><div class="newsletter-form-row"><input type="email" name="email" placeholder="you@domain.com" required aria-label="Your email address"><button type="submit">Subscribe</button></div><div class="cf-turnstile" data-sitekey="{TURNSTILE_SITE_KEY}" data-theme="light" data-size="flexible" style="margin-top:6px;"></div><div class="newsletter-msg"></div></form>"""
 
 
 FOOTER_PROVIDER_GROUPS = [
@@ -656,7 +655,9 @@ def build_html():
 
 {FAVICON_TAGS}
 {ga}
-{PLAUSIBLE}\n{CLARITY}
+{PLAUSIBLE}
+{CLARITY}
+{TURNSTILE_SCRIPT}
 <script type="application/ld+json">{ld}</script>
 <style>
 {CSS}
@@ -1151,7 +1152,9 @@ def build_provider_page(p):
 <meta name="twitter:description" content="{html.escape(og_desc)}">
 
 {FAVICON_TAGS}
-{PLAUSIBLE}\n{CLARITY}
+{PLAUSIBLE}
+{CLARITY}
+{TURNSTILE_SCRIPT}
 <script type="application/ld+json">{ld}</script>
 <style>
 {CSS}
@@ -1911,7 +1914,9 @@ print(response.choices[0].message.content)</code></pre>
 
 {FAVICON_TAGS}
 {ga}
-{PLAUSIBLE}\n{CLARITY}
+{PLAUSIBLE}
+{CLARITY}
+{TURNSTILE_SCRIPT}
 <script type="application/ld+json">{ld}</script>
 <style>
 {CSS}
@@ -2475,7 +2480,9 @@ def build_newsletter_page(dist):
 <meta name="data-version" content="{DATA_VERSION}">
 <link rel="canonical" href="{WEBSITE}/newsletter/">
 {FAVICON_TAGS}
-{PLAUSIBLE}\n{CLARITY}
+{PLAUSIBLE}
+{CLARITY}
+{TURNSTILE_SCRIPT}
 <style>
 {CSS}
 .dispatch-list {{ list-style: none; padding: 0; }}

@@ -56,6 +56,13 @@ PROVIDER_LOGO_MAP = {
     "Liquid AI": "liquid",
     "Speka": "speka",
     "Kaggle Notebooks": "kaggle",
+    "Alibaba DashScope (Bailian)": "alibaba",
+    "ModelScope": "modelscope",
+    "AMD Developer Cloud": "amd",
+    "InferX": "inferx",
+    "Kimi For Coding (Moonshot AI)": "kimi",
+    "SCNet": "scnet",
+    "AIHubMix": "aihubmix",
 }
 
 

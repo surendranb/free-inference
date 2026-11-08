@@ -8,7 +8,7 @@ import sys
 import time
 
 from core.model import MODEL_CASCADE, get_api_key
-from core.scout import scout_frontier
+from core.scout import expand_base_catalog_from_sources, scout_frontier
 from core.slack import notify_job_completed, notify_job_failed, notify_job_started
 from core.verifier import verify_catalog
 
@@ -62,9 +62,35 @@ def main():
     contradictions = []
 
     try:
-        # Task 1: Verify Catalog
+        # Phase 1: Scout Frontier & Base Catalog Expansion (Run First!)
+        if args.scout or args.all:
+            print("\n--- Phase 1: Frontier Scan & Base Expansion (Models.dev + OpenRouter) ---")
+            added_to_base = expand_base_catalog_from_sources(catalog, apply_updates=args.apply)
+            print(f"Base Catalog Expansion: {len(added_to_base)} new $0 models attached to existing providers.")
+            for item in added_to_base:
+                contradictions.append(f"⚡ *New Free Model Added*: `{item['model']}` to *{item['provider']}* (context: {item['context']})")
+
+            discovered = scout_frontier(catalog, apply_updates=args.apply, key=key)
+            print(f"Discovery Results: {len(discovered)} candidate models queued for uncataloged providers.")
+            if discovered:
+                by_prov = {}
+                by_source = {}
+                for d in discovered:
+                    p = d.get("provider", "Unknown")
+                    s = d.get("source", "Unknown")
+                    by_prov[p] = by_prov.get(p, 0) + 1
+                    by_source[s] = by_source.get(s, 0) + 1
+                
+                src_str = ", ".join(f"{count} via {src}" for src, count in sorted(by_source.items(), key=lambda x: x[1], reverse=True))
+                top_prov_str = ", ".join(f"{p} ({cnt})" for p, cnt in sorted(by_prov.items(), key=lambda x: x[1], reverse=True)[:5])
+                contradictions.append(
+                    f"✨ *Frontier Discovery Queue*: {len(discovered)} candidate models queued ({src_str}). "
+                    f"Top candidate providers: {top_prov_str}."
+                )
+
+        # Phase 2: Verify Catalog & Contradiction Detection (Run Second!)
         if args.verify or args.all:
-            print("\n--- Task 1: Updating What We Know (Catalog Verification) ---")
+            print("\n--- Phase 2: Catalog Verification & Contradiction Detection ---")
             results = verify_catalog(
                 catalog,
                 apply_updates=args.apply,
@@ -82,27 +108,6 @@ def main():
             for r in results:
                 if r["status"] in ("changed", "deprecated"):
                     contradictions.append(f"*{r['provider']}* [{r['status'].upper()}]: {r['summary']}")
-
-        # Task 2: Scout Frontier
-        if args.scout or args.all:
-            print("\n--- Task 2: Looking For New (Frontier Discovery) ---")
-            discovered = scout_frontier(catalog, apply_updates=args.apply, key=key)
-            print(f"Discovery Results: {len(discovered)} candidate models queued.")
-            if discovered:
-                by_prov = {}
-                by_source = {}
-                for d in discovered:
-                    p = d.get("provider", "Unknown")
-                    s = d.get("source", "Unknown")
-                    by_prov[p] = by_prov.get(p, 0) + 1
-                    by_source[s] = by_source.get(s, 0) + 1
-                
-                src_str = ", ".join(f"{count} via {src}" for src, count in sorted(by_source.items(), key=lambda x: x[1], reverse=True))
-                top_prov_str = ", ".join(f"{p} ({cnt})" for p, cnt in sorted(by_prov.items(), key=lambda x: x[1], reverse=True)[:5])
-                contradictions.append(
-                    f"✨ *Frontier Discovery Queue*: {len(discovered)} new candidate free models ({src_str}). "
-                    f"Top sources: {top_prov_str}."
-                )
 
         # Save Catalog if applied
         if args.apply:

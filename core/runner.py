@@ -7,8 +7,9 @@ from pathlib import Path
 import sys
 import time
 
-from core.model import get_api_key
+from core.model import MODEL_CASCADE, get_api_key
 from core.scout import scout_frontier
+from core.slack import notify_job_completed, notify_job_failed, notify_job_started
 from core.verifier import verify_catalog
 
 PROVIDERS_PATH = Path("data/providers.json")
@@ -43,46 +44,78 @@ def main():
 
     key = get_api_key()
     if not key:
-        print("Error: Missing GEMINI_API_KEY", file=sys.stderr)
+        print("Error: Missing GEMINI_API_KEY or GOOGLE_API_KEY", file=sys.stderr)
+        notify_job_failed("Missing GEMINI_API_KEY or GOOGLE_API_KEY", stage="Initialization")
         sys.exit(1)
 
     t0 = time.time()
     catalog = load_catalog()
     initial_prov_count = len(catalog.get("providers", []))
+    flags = " ".join(sys.argv[1:])
     print(f"=== FreeInference Engine 2.0 (Catalog: {initial_prov_count} providers) ===")
 
-    # Task 1: Verify Catalog
-    if args.verify or args.all:
-        print("\n--- Task 1: Updating What We Know (Catalog Verification) ---")
-        results = verify_catalog(
-            catalog,
-            apply_updates=args.apply,
-            limit=args.limit,
-            force_all=args.force_all,
-            key=key
+    # Send Slack alert: Job started
+    notify_job_started(initial_prov_count, flags, MODEL_CASCADE)
+
+    results = []
+    discovered = []
+    contradictions = []
+
+    try:
+        # Task 1: Verify Catalog
+        if args.verify or args.all:
+            print("\n--- Task 1: Updating What We Know (Catalog Verification) ---")
+            results = verify_catalog(
+                catalog,
+                apply_updates=args.apply,
+                limit=args.limit,
+                force_all=args.force_all,
+                key=key
+            )
+            active_count = sum(1 for r in results if r["status"] == "active")
+            changed_count = sum(1 for r in results if r["status"] == "changed")
+            deprecated_count = sum(1 for r in results if r["status"] == "deprecated")
+            inconclusive_count = sum(1 for r in results if r["status"] == "inconclusive")
+            print(f"\nVerification Results ({len(results)} audited):")
+            print(f"  Active: {active_count} · Changed: {changed_count} · Deprecated: {deprecated_count} · Inconclusive: {inconclusive_count}")
+
+            for r in results:
+                if r["status"] in ("changed", "deprecated"):
+                    contradictions.append(f"*{r['provider']}* [{r['status'].upper()}]: {r['summary']}")
+
+        # Task 2: Scout Frontier
+        if args.scout or args.all:
+            print("\n--- Task 2: Looking For New (Frontier Discovery) ---")
+            discovered = scout_frontier(catalog, apply_updates=args.apply, key=key)
+            print(f"Discovery Results: {len(discovered)} candidate models queued.")
+            for d in discovered:
+                contradictions.append(f"✨ *New Frontier Candidate*: `{d.get('name')}` ({d.get('url')})")
+
+        # Save Catalog if applied
+        if args.apply:
+            today = date.today().isoformat()
+            catalog["verified"] = today
+            save_catalog(catalog)
+            print(f"\n✓ Saved updated catalog to {PROVIDERS_PATH}")
+
+        duration = time.time() - t0
+        print(f"\n=== Completed in {duration:.1f}s ===")
+
+        # Send Slack alert: Job completed
+        notify_job_completed(
+            duration_s=duration,
+            verified_count=len(results),
+            active_count=sum(1 for r in results if r["status"] == "active"),
+            changed_count=sum(1 for r in results if r["status"] == "changed"),
+            deprecated_count=sum(1 for r in results if r["status"] == "deprecated"),
+            inconclusive_count=sum(1 for r in results if r["status"] == "inconclusive"),
+            discovered_count=len(discovered),
+            contradictions=contradictions
         )
-        active_count = sum(1 for r in results if r["status"] == "active")
-        changed_count = sum(1 for r in results if r["status"] == "changed")
-        deprecated_count = sum(1 for r in results if r["status"] == "deprecated")
-        inconclusive_count = sum(1 for r in results if r["status"] == "inconclusive")
-        print(f"\nVerification Results ({len(results)} audited):")
-        print(f"  Active: {active_count} · Changed: {changed_count} · Deprecated: {deprecated_count} · Inconclusive: {inconclusive_count}")
 
-    # Task 2: Scout Frontier
-    if args.scout or args.all:
-        print("\n--- Task 2: Looking For New (Frontier Discovery) ---")
-        discovered = scout_frontier(catalog, apply_updates=args.apply, key=key)
-        print(f"Discovery Results: {len(discovered)} candidate models queued.")
-
-    # Save Catalog if applied
-    if args.apply:
-        today = date.today().isoformat()
-        catalog["verified"] = today
-        save_catalog(catalog)
-        print(f"\n✓ Saved updated catalog to {PROVIDERS_PATH}")
-
-    duration = time.time() - t0
-    print(f"\n=== Completed in {duration:.1f}s ===")
+    except Exception as e:
+        notify_job_failed(str(e), stage="Execution")
+        raise
 
 
 if __name__ == "__main__":

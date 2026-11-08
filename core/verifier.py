@@ -3,6 +3,7 @@
 from datetime import date
 import json
 from pathlib import Path
+import time
 from typing import Dict, List, Optional
 
 from core.intake import fetch_api, fetch_feed, fetch_web
@@ -90,13 +91,20 @@ EXISTING CATALOG DATA:
 - Documented Notes: {provider.get('notes', '')}
 
 LATEST LIVE DATA:
-{raw_data[:3000]}
+{raw_data[:3500]}
 
-Task: Determine what changed between our catalog and the latest live data:
-1. Is the $0 developer free tier confirmed active?
-2. Are all existing cataloged models still offered, or were any removed or added?
-3. If the page is blocked, inconclusive, or requires an authenticated login, mark status as "inconclusive".
-4. If the free tier is explicitly discontinued, mark status as "deprecated".
+Task: Rigorously audit for any CONTRADICTIONS, CHANGES, or CONFIRMATIONS:
+1. Is the $0 developer free tier confirmed active, or is there a contradiction (e.g. requires card/subscription, trial credit expired, service discontinued)?
+2. Model comparison:
+   - Were any cataloged models deprecated, renamed, or dropped?
+   - Were new free models added?
+   - Any contradictory rate limits, context caps, or restrictions mentioned?
+3. Status rules:
+   - "active": Free tier active and models verified without negative contradictions.
+   - "changed": Confirmed change or discrepancy (new models added, models retired, quota adjustments).
+   - "deprecated": Free tier explicitly discontinued or fully paywalled.
+   - "inconclusive": Page blocked by Cloudflare/WAF challenge, requires login, or live data insufficient.
+4. Summary: Provide an explicit 1-2 sentence audit verdict stating clearly whether contradictions were found or catalog was confirmed.
 """
     return call_with_self_correction(
         prompt,
@@ -132,6 +140,7 @@ def verify_catalog(
         print(f"--> Verifying {pname} ({p.get('channel', 'web')})...")
         res = verify_provider(p, key=api_key)
         audited += 1
+        time.sleep(1.0)
 
         status = res.get("status", "inconclusive")
         is_free = res.get("is_free_active", False)

@@ -306,6 +306,11 @@ CSS = '''  :root { --bg:#fff; --ink:#1a1a1a; --mut:#6b6b6b; --line:#e3e3e3; --se
   header { display:flex; align-items:baseline; gap:16px; border-bottom:1px solid var(--line);
            padding-bottom:16px; margin-bottom:20px; }
   h1 { font-size:24px; margin:0; letter-spacing:-.01em; }
+  .provider-title-row { display:flex; align-items:center; gap:12px; }
+  .provider-logo { width:32px; height:32px; object-fit:contain; border-radius:4px; flex-shrink:0; }
+  .panel-logo { width:24px; height:24px; object-fit:contain; border-radius:3px; vertical-align:middle; margin-right:8px; display:inline-block; }
+  .prow-logo { width:16px; height:16px; object-fit:contain; border-radius:2px; vertical-align:middle; margin-right:6px; display:inline-block; }
+  .prov-link { display:inline-flex; align-items:center; }
   .tagline { color:var(--mut); margin:0; max-width:800px; font-size:15px; }
   .meta { color:var(--mut); font-size:13px; margin-left:auto; white-space:nowrap; }
   .layout { display:grid; grid-template-columns:280px 1fr; gap:20px; align-items:start; }
@@ -913,14 +918,17 @@ function render(app) {{
   const providersEl = sidebar.querySelector("#providers");
   const filterEl = sidebar.querySelector("#filter");
 
+  const toSlug = s => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+
   function drawSidebar() {{
     rows = list.filter(p => !filter ||
       (p.name + " " + p.models.map(m => m.name).join(" ")).toLowerCase().includes(filter.toLowerCase()));
     providersEl.innerHTML = rows.map((p, i) => {{
       const active = list.indexOf(p) === activeIdx ? " active" : "";
       const dead = p.dead ? ` <span class="dead">• dead</span>` : "";
+      const s = toSlug(p.name);
       return `<button class="prow${{active}}" data-i="${{i}}">
-        <span class="pname">${{p.name}}${{dead}}</span>
+        <span class="pname"><img src="/logos/${{s}}.svg" class="prow-logo" width="16" height="16" alt="" onerror="this.style.display='none'"> ${{p.name}}${{dead}}</span>
         <span class="pmeta">${{p.free_type}} · ${{plural(p.models.length, "free model")}} · ${{AM[p.access_method] || p.access_method}}</span></button>`;
     }}).join("");
     providersEl.querySelectorAll(".prow").forEach(b =>
@@ -930,10 +938,15 @@ function render(app) {{
 
   function drawPanel() {{
     const p = list[activeIdx];
+    const s = toSlug(p.name);
     const dead = p.dead ? `<div class="pnotes"><strong class="dead">Probe flags this provider unreachable — verify before relying on it.</strong></div>` : "";
     panel.innerHTML = `<div class="panel-head">
-      <h2>${{p.name}}<span class="ftype">${{p.free_type}}</span><span class="amchip">${{AM[p.access_method] || p.access_method}}</span></h2>
-      <a class="purl" href="${{p.url}}" target="_blank" rel="noopener">${{p.url}}</a>
+      <div class="provider-title-row">
+        <img src="/logos/${{s}}.svg" class="panel-logo" width="28" height="28" alt="" onerror="this.style.display='none'">
+        <h2 style="display:inline;margin:0;">${{p.name}}</h2>
+        <span class="ftype">${{p.free_type}}</span><span class="amchip">${{AM[p.access_method] || p.access_method}}</span>
+      </div>
+      <a class="purl" href="${{p.url}}" target="_blank" rel="noopener" style="display:inline-block;margin-top:4px;">${{p.url}}</a>
       <div class="pnotes">${{p.notes}}</div>
       <div class="pnotes"><strong>Last updated: ${{p.verified}}</strong>${{p.verified_method === "docs" ? " · verified against official public documentation" : " · verified nightly via automated probe"}}</div>${{dead}}
     </div>
@@ -1163,7 +1176,10 @@ def build_provider_page(p):
 <body>
 <div class="wrap">
   <header>
-    <h1>{name}</h1>
+    <div class="provider-title-row">
+      <img src="/logos/{s}.svg" class="provider-logo" alt="{name} logo" width="36" height="36" onerror="this.style.display='none'">
+      <h1>{name}</h1>
+    </div>
     <p class="tagline">{free_type} · {access_label} · {artifact} · Last updated: {verified_human}</p>
     <span class="meta"><a href="/">← directory</a> · <a href="/v1/models">/v1/models</a> · <a href="{REPO}">github</a></span>
   </header>
@@ -1699,7 +1715,8 @@ FREE_PAGES_CONFIG = {
 
 def free_model_row_html(p, m):
     e = html.escape
-    p_link = f'<a href="/providers/{slug(p["name"])}/">{e(p["name"])}</a>'
+    pslug = slug(p["name"])
+    p_link = f'<a href="/providers/{pslug}/" class="prov-link"><img src="/logos/{pslug}.svg" class="prow-logo" width="16" height="16" alt="" onerror="this.style.display=\'none\'"> {e(p["name"])}</a>'
     cells = [
         f"<td><strong>{e(str(m['name']))}</strong></td>",
         f"<td>{p_link}</td>",
@@ -2065,6 +2082,17 @@ def build_404():
 <style>body{{font:16px/1.5 -apple-system,sans-serif;margin:0;display:grid;place-items:center;min-height:100vh;color:#1a1a1a}}a{{color:inherit}}</style></head>
 <body><div><h1>404</h1><p>No such page. <a href="/">Back to the catalog.</a></p></div></body></html>
 """
+
+
+def copy_logos(dist):
+    import shutil
+    src_dir = ROOT / "data" / "logos"
+    if not src_dir.exists():
+        return
+    dst_dir = dist / "logos"
+    dst_dir.mkdir(parents=True, exist_ok=True)
+    for f in src_dir.glob("*.svg"):
+        shutil.copy2(f, dst_dir / f.name)
 
 
 def build_favicon(dist):
@@ -2535,6 +2563,7 @@ def main():
     (dist / "index.md").write_text(build_index_md())
     (dist / "404.html").write_text(build_404())
     build_favicon(dist)
+    copy_logos(dist)
     build_v1_endpoints(dist)
     build_skill(dist)
     build_feed(dist)
@@ -2609,6 +2638,10 @@ def main():
         f"  X-Data-Version: {DATA_VERSION}\n"
         f"  X-Last-Verified: {VERIFIED_MAX}\n"
         f"  Cache-Control: public, max-age=3600\n"
+        f"/logos/*\n"
+        f"  Access-Control-Allow-Origin: *\n"
+        f"  Content-Type: image/svg+xml; charset=utf-8\n"
+        f"  Cache-Control: public, max-age=86400\n"
         f"/feed.xml\n"
         f"  Access-Control-Allow-Origin: *\n"
         f"  Content-Type: application/atom+xml; charset=utf-8\n"

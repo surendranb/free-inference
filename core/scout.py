@@ -39,11 +39,11 @@ def validate_candidate_output(data: dict) -> Optional[str]:
 
 def scout_openrouter_free_models(catalog_data: dict) -> List[dict]:
     """Scan OpenRouter API for uncataloged free models."""
-    existing_providers = {p["name"].lower() for p in catalog_data.get("providers", [])}
     existing_models = set()
     for p in catalog_data.get("providers", []):
         for m in p.get("models", []):
-            existing_models.add(m.get("name", "").lower())
+            existing_models.add(m.get("name", "").lower().replace(":free", "").strip())
+            existing_models.add(m.get("name", "").lower().strip())
 
     url = "https://openrouter.ai/api/v1/models"
     try:
@@ -62,13 +62,72 @@ def scout_openrouter_free_models(catalog_data: dict) -> List[dict]:
         comp_cost = float(pricing.get("completion", 0) or 0)
         if ":free" in mid or (prompt_cost == 0 and comp_cost == 0):
             mname = m.get("name", mid)
-            if mname.lower() not in existing_models:
+            norm_name = mname.lower().replace(":free", "").strip()
+            norm_id = mid.lower().replace(":free", "").strip()
+            if norm_name not in existing_models and norm_id not in existing_models:
                 candidates.append({
                     "id": mid,
                     "name": mname,
+                    "provider": "OpenRouter",
+                    "provider_id": "openrouter",
                     "context_length": m.get("context_length"),
+                    "output_limit": None,
+                    "reasoning": False,
+                    "tool_call": True,
                     "source": "OpenRouter API"
                 })
+    return candidates
+
+
+def scout_models_dev_free_models(catalog_data: dict) -> List[dict]:
+    """Scan Models.dev API (235 providers) for uncataloged zero-cost models."""
+    existing_models = set()
+    for p in catalog_data.get("providers", []):
+        for m in p.get("models", []):
+            existing_models.add(m.get("name", "").lower().replace(":free", "").strip())
+            existing_models.add(m.get("name", "").lower().strip())
+
+    url = "https://models.dev/api.json"
+    try:
+        req = urllib.request.Request(url, headers=UA)
+        with urllib.request.urlopen(req, timeout=20) as r:
+            data = json.load(r)
+    except Exception as e:
+        print(f"Notice: Models.dev scout fetch failed: {e}")
+        return []
+
+    candidates = []
+    for pid, pdata in data.items():
+        pname = pdata.get("name", pid)
+        doc_url = pdata.get("doc") or ""
+        api_url = pdata.get("api") or ""
+        models = pdata.get("models", {})
+        for mid, mdata in models.items():
+            cost = mdata.get("cost", {})
+            inp_cost = cost.get("input", None)
+            out_cost = cost.get("output", None)
+            status = mdata.get("status", "active")
+            if inp_cost == 0 and out_cost == 0 and status != "deprecated":
+                mname = mdata.get("name", mid)
+                norm_m = mname.lower().replace(":free", "").strip()
+                norm_id = mid.lower().replace(":free", "").strip()
+                if norm_m not in existing_models and norm_id not in existing_models:
+                    candidates.append({
+                        "id": mid,
+                        "name": mname,
+                        "provider": pname,
+                        "provider_id": pid,
+                        "context_length": mdata.get("limit", {}).get("context"),
+                        "output_limit": mdata.get("limit", {}).get("output"),
+                        "reasoning": bool(mdata.get("reasoning", False)),
+                        "tool_call": bool(mdata.get("tool_call", False)),
+                        "structured_output": bool(mdata.get("structured_output", False)),
+                        "open_weights": bool(mdata.get("open_weights", False)),
+                        "modalities": mdata.get("modalities", {}),
+                        "doc": doc_url,
+                        "api": api_url,
+                        "source": "Models.dev API"
+                    })
     return candidates
 
 
@@ -97,16 +156,30 @@ Determine:
 
 
 def scout_frontier(catalog_data: dict, apply_updates: bool = False, key: str = None) -> List[dict]:
-    """Task 2: Discover new free models and providers."""
+    """Task 2: Discover new free models and providers across OpenRouter and Models.dev."""
     api_key = key or get_api_key()
-    discovered_models = scout_openrouter_free_models(catalog_data)
-    print(f"--> Frontier Scout: found {len(discovered_models)} uncataloged free models on OpenRouter.")
 
-    verified_candidates = []
-    if apply_updates and discovered_models:
+    openrouter_candidates = scout_openrouter_free_models(catalog_data)
+    print(f"--> Frontier Scout: found {len(openrouter_candidates)} uncataloged free models on OpenRouter.")
+
+    models_dev_candidates = scout_models_dev_free_models(catalog_data)
+    print(f"--> Frontier Scout: found {len(models_dev_candidates)} uncataloged zero-cost models across Models.dev.")
+
+    # Combine and deduplicate
+    seen_keys = set()
+    combined = []
+    for c in openrouter_candidates + models_dev_candidates:
+        key = (c.get("provider", "").lower(), c.get("name", "").lower().replace(":free", "").strip())
+        if key not in seen_keys:
+            seen_keys.add(key)
+            combined.append(c)
+
+    print(f"--> Frontier Scout Total: {len(combined)} unique candidate free models queued.")
+
+    if apply_updates and combined:
         candidates_file = Path("data/candidates.json")
         candidates_file.parent.mkdir(parents=True, exist_ok=True)
-        candidates_file.write_text(json.dumps(discovered_models, indent=2) + "\n")
-        print(f"  ✓ Saved {len(discovered_models)} candidate models to {candidates_file}")
+        candidates_file.write_text(json.dumps(combined, indent=2) + "\n")
+        print(f"  ✓ Saved {len(combined)} candidate models to {candidates_file}")
 
-    return discovered_models
+    return combined

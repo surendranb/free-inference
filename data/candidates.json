@@ -1,98 +1,7893 @@
 [
   {
-    "id": "liquid/lfm-3-1.7b:free",
-    "name": "LiquidAI: LFM3-1.7B (free)",
-    "context_length": 262144,
-    "source": "OpenRouter API"
-  },
-  {
     "id": "stealth/crouton-alpha",
     "name": "Crouton Alpha",
+    "provider": "OpenRouter",
+    "provider_id": "openrouter",
     "context_length": 1048576,
-    "source": "OpenRouter API"
-  },
-  {
-    "id": "recursive/flint-v1.0:free",
-    "name": "Recursive: Flint (free)",
-    "context_length": 262144,
-    "source": "OpenRouter API"
-  },
-  {
-    "id": "xingchen-agi/xing4.0-29b-a4b:free",
-    "name": "XingChen: Xing4.0 29B A4B (free)",
-    "context_length": 262144,
-    "source": "OpenRouter API"
-  },
-  {
-    "id": "nvidia/nemotron-3.5-super-vl:free",
-    "name": "NVIDIA: Nemotron 3.5 Super VL (free)",
-    "context_length": 1000000,
-    "source": "OpenRouter API"
-  },
-  {
-    "id": "dots-studio/dots-3-note-preview:free",
-    "name": "Dots Studio: Dots3-Note Preview (free)",
-    "context_length": 512000,
-    "source": "OpenRouter API"
-  },
-  {
-    "id": "liquid/lfm-2.5-2.6b:free",
-    "name": "LiquidAI: LFM2.5-2.6B (free)",
-    "context_length": 65536,
-    "source": "OpenRouter API"
-  },
-  {
-    "id": "nvidia/nemotron-3.5-lightning:free",
-    "name": "NVIDIA: Nemotron 3.5 Lightning (free)",
-    "context_length": 1000000,
-    "source": "OpenRouter API"
-  },
-  {
-    "id": "cohere/north-mini-code:free",
-    "name": "Cohere: North Mini Code (free)",
-    "context_length": 256000,
-    "source": "OpenRouter API"
-  },
-  {
-    "id": "nvidia/nemotron-3-ultra-550b-a55b:free",
-    "name": "NVIDIA: Nemotron 3 Ultra (free)",
-    "context_length": 1000000,
-    "source": "OpenRouter API"
-  },
-  {
-    "id": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
-    "name": "NVIDIA: Nemotron 3 Nano Omni (free)",
-    "context_length": 256000,
-    "source": "OpenRouter API"
-  },
-  {
-    "id": "google/gemma-4-26b-a4b-it:free",
-    "name": "Google: Gemma 4 26B A4B  (free)",
-    "context_length": 262144,
-    "source": "OpenRouter API"
-  },
-  {
-    "id": "google/gemma-4-31b-it:free",
-    "name": "Google: Gemma 4 31B (free)",
-    "context_length": 262144,
+    "output_limit": null,
+    "reasoning": false,
+    "tool_call": true,
     "source": "OpenRouter API"
   },
   {
     "id": "google/lyria-3-pro-preview",
     "name": "Google: Lyria 3 Pro Preview",
+    "provider": "OpenRouter",
+    "provider_id": "openrouter",
     "context_length": 1048576,
+    "output_limit": null,
+    "reasoning": false,
+    "tool_call": true,
     "source": "OpenRouter API"
   },
   {
     "id": "google/lyria-3-clip-preview",
     "name": "Google: Lyria 3 Clip Preview",
+    "provider": "OpenRouter",
+    "provider_id": "openrouter",
     "context_length": 1048576,
+    "output_limit": null,
+    "reasoning": false,
+    "tool_call": true,
     "source": "OpenRouter API"
   },
   {
     "id": "openrouter/free",
     "name": "Free Models Router",
+    "provider": "OpenRouter",
+    "provider_id": "openrouter",
     "context_length": 200000,
+    "output_limit": null,
+    "reasoning": false,
+    "tool_call": true,
     "source": "OpenRouter API"
+  },
+  {
+    "id": "north-small-translate-09-2026",
+    "name": "North Small Translate",
+    "provider": "Cohere",
+    "provider_id": "cohere",
+    "context_length": 32768,
+    "output_limit": 16000,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.cohere.com/docs/models",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "north-mini-code-1-0",
+    "name": "North Mini Code",
+    "provider": "Cohere",
+    "provider_id": "cohere",
+    "context_length": 256000,
+    "output_limit": 64000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.cohere.com/docs/models",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "qwen3.5-9b",
+    "name": "Qwen3.5 9B",
+    "provider": "QVAC",
+    "provider_id": "qvac",
+    "context_length": 32768,
+    "output_limit": 8192,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.npmjs.com/package/@qvac/ai-sdk-provider",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "qwen3.6-35b-a3b",
+    "name": "Qwen3.6 35B-A3B",
+    "provider": "QVAC",
+    "provider_id": "qvac",
+    "context_length": 262144,
+    "output_limit": 65536,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.npmjs.com/package/@qvac/ai-sdk-provider",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "gemma4-31b",
+    "name": "Gemma 4 31B IT",
+    "provider": "QVAC",
+    "provider_id": "qvac",
+    "context_length": 262144,
+    "output_limit": 32768,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.npmjs.com/package/@qvac/ai-sdk-provider",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "qwen3.5-2b",
+    "name": "Qwen3.5 2B",
+    "provider": "QVAC",
+    "provider_id": "qvac",
+    "context_length": 32768,
+    "output_limit": 8192,
+    "reasoning": false,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.npmjs.com/package/@qvac/ai-sdk-provider",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "qwen3.5-4b",
+    "name": "Qwen3.5 4B",
+    "provider": "QVAC",
+    "provider_id": "qvac",
+    "context_length": 32768,
+    "output_limit": 8192,
+    "reasoning": false,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.npmjs.com/package/@qvac/ai-sdk-provider",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "qwen3.5-0.8b",
+    "name": "Qwen3.5 0.8B",
+    "provider": "QVAC",
+    "provider_id": "qvac",
+    "context_length": 32768,
+    "output_limit": 8192,
+    "reasoning": false,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.npmjs.com/package/@qvac/ai-sdk-provider",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "qwen3.6-27b",
+    "name": "Qwen3.6 27B",
+    "provider": "QVAC",
+    "provider_id": "qvac",
+    "context_length": 262144,
+    "output_limit": 65536,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.npmjs.com/package/@qvac/ai-sdk-provider",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "gpt-oss-20b",
+    "name": "GPT OSS 20B",
+    "provider": "QVAC",
+    "provider_id": "qvac",
+    "context_length": 131072,
+    "output_limit": 32768,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.npmjs.com/package/@qvac/ai-sdk-provider",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "nova-2-pro-v1",
+    "name": "Nova 2 Pro",
+    "provider": "Nova",
+    "provider_id": "nova",
+    "context_length": 1000000,
+    "output_limit": 64000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://nova.amazon.com/dev/documentation",
+    "api": "https://api.nova.amazon.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "nova-2-lite-v1",
+    "name": "Nova 2 Lite",
+    "provider": "Nova",
+    "provider_id": "nova",
+    "context_length": 1000000,
+    "output_limit": 64000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://nova.amazon.com/dev/documentation",
+    "api": "https://api.nova.amazon.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "Beam-1.0-501B-A23B",
+    "name": "Beam 1.0 501B A23B",
+    "provider": "Reflection",
+    "provider_id": "reflection",
+    "context_length": 1048576,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://developers.reflection.ai/models",
+    "api": "https://api.reflection.ai/openai/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "hy3",
+    "name": "Hy3",
+    "provider": "Tencent TokenHub",
+    "provider_id": "tencent-tokenhub",
+    "context_length": 256000,
+    "output_limit": 128000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://cloud.tencent.com/document/product/1823/130050",
+    "api": "https://tokenhub.tencentmaas.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "hy3-preview",
+    "name": "Hy3 preview",
+    "provider": "Tencent TokenHub",
+    "provider_id": "tencent-tokenhub",
+    "context_length": 256000,
+    "output_limit": 64000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://cloud.tencent.com/document/product/1823/130050",
+    "api": "https://tokenhub.tencentmaas.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "duo-chat-gpt-5-6-sol",
+    "name": "Agentic Chat (GPT-5.6 Sol)",
+    "provider": "GitLab Duo",
+    "provider_id": "gitlab",
+    "context_length": 1050000,
+    "output_limit": 128000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "duo-chat-gpt-6-astra",
+    "name": "Agentic Chat (GPT-6 Astra)",
+    "provider": "GitLab Duo",
+    "provider_id": "gitlab",
+    "context_length": 1050000,
+    "output_limit": 128000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "duo-chat-opus-4-6",
+    "name": "Agentic Chat (Claude Opus 4.6)",
+    "provider": "GitLab Duo",
+    "provider_id": "gitlab",
+    "context_length": 1000000,
+    "output_limit": 128000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "duo-chat-opus-4-5",
+    "name": "Agentic Chat (Claude Opus 4.5)",
+    "provider": "GitLab Duo",
+    "provider_id": "gitlab",
+    "context_length": 200000,
+    "output_limit": 64000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "duo-chat-opus-5-5",
+    "name": "Agentic Chat (Claude Opus 5.5)",
+    "provider": "GitLab Duo",
+    "provider_id": "gitlab",
+    "context_length": 1000000,
+    "output_limit": 128000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "duo-chat-opus-5",
+    "name": "Agentic Chat (Claude Opus 5)",
+    "provider": "GitLab Duo",
+    "provider_id": "gitlab",
+    "context_length": 1000000,
+    "output_limit": 128000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "duo-chat-gpt-6-sol",
+    "name": "Agentic Chat (GPT-6 Sol)",
+    "provider": "GitLab Duo",
+    "provider_id": "gitlab",
+    "context_length": 1050000,
+    "output_limit": 128000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "duo-chat-opus-4-7",
+    "name": "Agentic Chat (Claude Opus 4.7)",
+    "provider": "GitLab Duo",
+    "provider_id": "gitlab",
+    "context_length": 1000000,
+    "output_limit": 128000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "duo-chat-gpt-5-6-terra",
+    "name": "Agentic Chat (GPT-5.6 Terra)",
+    "provider": "GitLab Duo",
+    "provider_id": "gitlab",
+    "context_length": 1050000,
+    "output_limit": 128000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "duo-chat-gpt-5-5",
+    "name": "Agentic Chat (GPT-5.5)",
+    "provider": "GitLab Duo",
+    "provider_id": "gitlab",
+    "context_length": 1050000,
+    "output_limit": 128000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "duo-chat-sonnet-5-5",
+    "name": "Agentic Chat (Claude Sonnet 5.5)",
+    "provider": "GitLab Duo",
+    "provider_id": "gitlab",
+    "context_length": 1000000,
+    "output_limit": 64000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "duo-chat-sonnet-5",
+    "name": "Agentic Chat (Claude Sonnet 5)",
+    "provider": "GitLab Duo",
+    "provider_id": "gitlab",
+    "context_length": 1000000,
+    "output_limit": 64000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "duo-chat-gpt-6-1-sol",
+    "name": "Agentic Chat (GPT-6.1 Sol)",
+    "provider": "GitLab Duo",
+    "provider_id": "gitlab",
+    "context_length": 1050000,
+    "output_limit": 128000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "duo-chat-sonnet-4-6",
+    "name": "Agentic Chat (Claude Sonnet 4.6)",
+    "provider": "GitLab Duo",
+    "provider_id": "gitlab",
+    "context_length": 1000000,
+    "output_limit": 64000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "duo-chat-gpt-5-6-luna",
+    "name": "Agentic Chat (GPT-5.6 Luna)",
+    "provider": "GitLab Duo",
+    "provider_id": "gitlab",
+    "context_length": 1050000,
+    "output_limit": 128000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "duo-chat-gpt-6-luna",
+    "name": "Agentic Chat (GPT-6 Luna)",
+    "provider": "GitLab Duo",
+    "provider_id": "gitlab",
+    "context_length": 1050000,
+    "output_limit": 128000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "duo-chat-gpt-5-4-mini",
+    "name": "Agentic Chat (GPT-5.4 Mini)",
+    "provider": "GitLab Duo",
+    "provider_id": "gitlab",
+    "context_length": 400000,
+    "output_limit": 128000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "duo-chat-gpt-5-2",
+    "name": "Agentic Chat (GPT-5.2)",
+    "provider": "GitLab Duo",
+    "provider_id": "gitlab",
+    "context_length": 400000,
+    "output_limit": 128000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "duo-chat-haiku-5-5",
+    "name": "Agentic Chat (Claude Haiku 5.5)",
+    "provider": "GitLab Duo",
+    "provider_id": "gitlab",
+    "context_length": 1000000,
+    "output_limit": 128000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "duo-chat-gpt-5-4",
+    "name": "Agentic Chat (GPT-5.4)",
+    "provider": "GitLab Duo",
+    "provider_id": "gitlab",
+    "context_length": 1050000,
+    "output_limit": 128000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "duo-chat-fable-5-1",
+    "name": "Agentic Chat (Claude Fable 5.1)",
+    "provider": "GitLab Duo",
+    "provider_id": "gitlab",
+    "context_length": 1000000,
+    "output_limit": 128000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "duo-chat-opus-4-8",
+    "name": "Agentic Chat (Claude Opus 4.8)",
+    "provider": "GitLab Duo",
+    "provider_id": "gitlab",
+    "context_length": 1000000,
+    "output_limit": 128000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "duo-chat-haiku-4-5",
+    "name": "Agentic Chat (Claude Haiku 4.5)",
+    "provider": "GitLab Duo",
+    "provider_id": "gitlab",
+    "context_length": 200000,
+    "output_limit": 64000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "duo-chat-fable-5",
+    "name": "Agentic Chat (Claude Fable 5)",
+    "provider": "GitLab Duo",
+    "provider_id": "gitlab",
+    "context_length": 1000000,
+    "output_limit": 128000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "glm-4.6v-flash",
+    "name": "GLM-4.6V-Flash",
+    "provider": "Z.AI",
+    "provider_id": "zai",
+    "context_length": 128000,
+    "output_limit": 32768,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.z.ai/guides/overview/pricing",
+    "api": "https://api.z.ai/api/paas/v4",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "iceman-contributor-free",
+    "name": "Iceman Contributor Free",
+    "provider": "OpenCode Go",
+    "provider_id": "opencode-go",
+    "context_length": 262144,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://opencode.ai/v2/docs/console/go/",
+    "api": "https://opencode.ai/inference/go/openai/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "Qwen3.8-27B",
+    "name": "Qwen3.8-27B",
+    "provider": "Hetzner",
+    "provider_id": "hetzner",
+    "context_length": 262144,
+    "output_limit": 262144,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://experiments.hetzner.com/docs/inference",
+    "api": "https://inference.hetzner.com/api/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "Qwen/Qwen3.6-35B-A3B-FP8",
+    "name": "Qwen3.6 35B A3B FP8",
+    "provider": "Hetzner",
+    "provider_id": "hetzner",
+    "context_length": 262144,
+    "output_limit": 262144,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://experiments.hetzner.com/docs/inference",
+    "api": "https://inference.hetzner.com/api/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "allam-2-7b",
+    "name": "ALLaM-2-7b",
+    "provider": "Groq",
+    "provider_id": "groq",
+    "context_length": 4096,
+    "output_limit": 4096,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://console.groq.com/docs/models",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "deepseek-v4-flash",
+    "name": "DeepSeek V4 Flash",
+    "provider": "Volcengine Ark Coding Plan",
+    "provider_id": "volcengine-coding-plan",
+    "context_length": 1000000,
+    "output_limit": 384000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.volcengine.com/docs/82379/1928261",
+    "api": "https://ark.cn-beijing.volces.com/api/coding/v3",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "deepseek-v4-pro",
+    "name": "DeepSeek V4 Pro",
+    "provider": "Volcengine Ark Coding Plan",
+    "provider_id": "volcengine-coding-plan",
+    "context_length": 1000000,
+    "output_limit": 384000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.volcengine.com/docs/82379/1928261",
+    "api": "https://ark.cn-beijing.volces.com/api/coding/v3",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "doubao-seed-evolving",
+    "name": "Seed Evolving",
+    "provider": "Volcengine Ark Coding Plan",
+    "provider_id": "volcengine-coding-plan",
+    "context_length": 256000,
+    "output_limit": 256000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.volcengine.com/docs/82379/1928261",
+    "api": "https://ark.cn-beijing.volces.com/api/coding/v3",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "glm-5.3",
+    "name": "GLM-5.3",
+    "provider": "Volcengine Ark Coding Plan",
+    "provider_id": "volcengine-coding-plan",
+    "context_length": 1000000,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.volcengine.com/docs/82379/1928261",
+    "api": "https://ark.cn-beijing.volces.com/api/coding/v3",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "lynkr-auto",
+    "name": "Lynkr Auto (complexity routing)",
+    "provider": "Lynkr",
+    "provider_id": "lynkr",
+    "context_length": 128000,
+    "output_limit": 8192,
+    "reasoning": false,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://github.com/Fast-Editor/Lynkr",
+    "api": "http://127.0.0.1:8081/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "MiMo-V2.6-Flash",
+    "name": "MiMo-V2.6-Flash",
+    "provider": "AMD",
+    "provider_id": "amd",
+    "context_length": 1048576,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://developer.amd.com.cn/radeon/tokenfactory",
+    "api": "https://developer.amd.com.cn/radeon/api/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "MiniCPM-V-4.7-1B",
+    "name": "MiniCPM-V 4.7 1B",
+    "provider": "AMD",
+    "provider_id": "amd",
+    "context_length": 262144,
+    "output_limit": 262144,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://developer.amd.com.cn/radeon/tokenfactory",
+    "api": "https://developer.amd.com.cn/radeon/api/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "Qwen3.8-Flash-Next",
+    "name": "Qwen3.8 Flash Next",
+    "provider": "AMD",
+    "provider_id": "amd",
+    "context_length": 262144,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://developer.amd.com.cn/radeon/tokenfactory",
+    "api": "https://developer.amd.com.cn/radeon/api/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "DeepSeek-V4-Flash",
+    "name": "DeepSeek V4 Flash 0731",
+    "provider": "AMD",
+    "provider_id": "amd",
+    "context_length": 1048576,
+    "output_limit": 384000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://developer.amd.com.cn/radeon/tokenfactory",
+    "api": "https://developer.amd.com.cn/radeon/api/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "Qwen3.8-27B",
+    "name": "Qwen3.8 27B",
+    "provider": "AMD",
+    "provider_id": "amd",
+    "context_length": 262144,
+    "output_limit": 32768,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://developer.amd.com.cn/radeon/tokenfactory",
+    "api": "https://developer.amd.com.cn/radeon/api/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "MiniCPM-V-4.7-35B-A3B",
+    "name": "MiniCPM-V 4.7 35B-A3B",
+    "provider": "AMD",
+    "provider_id": "amd",
+    "context_length": 262144,
+    "output_limit": 262144,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://developer.amd.com.cn/radeon/tokenfactory",
+    "api": "https://developer.amd.com.cn/radeon/api/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "MiniCPM5-2B",
+    "name": "MiniCPM5-2B",
+    "provider": "AMD",
+    "provider_id": "amd",
+    "context_length": 131072,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://developer.amd.com.cn/radeon/tokenfactory",
+    "api": "https://developer.amd.com.cn/radeon/api/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "MiniMax-M3",
+    "name": "MiniMax-M3",
+    "provider": "MiniMax Token Plan (minimax.io)",
+    "provider_id": "minimax-coding-plan",
+    "context_length": 1000000,
+    "output_limit": 524288,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://platform.minimax.io/docs/token-plan/intro",
+    "api": "https://api.minimax.io/anthropic/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "MiniMax-M3.1-Flash",
+    "name": "MiniMax-M3.1-Flash",
+    "provider": "MiniMax Token Plan (minimax.io)",
+    "provider_id": "minimax-coding-plan",
+    "context_length": 1000000,
+    "output_limit": 524288,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://platform.minimax.io/docs/token-plan/intro",
+    "api": "https://api.minimax.io/anthropic/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "openai/gpt-5.3-codex-spark",
+    "name": "GPT-5.3-Codex-Spark",
+    "provider": "Poe",
+    "provider_id": "poe",
+    "context_length": 128000,
+    "output_limit": 16384,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://creator.poe.com/docs/external-applications/openai-compatible-api",
+    "api": "https://api.poe.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "google/gemma-4-31b",
+    "name": "Gemma-4-31B",
+    "provider": "Poe",
+    "provider_id": "poe",
+    "context_length": 262144,
+    "output_limit": 8192,
+    "reasoning": false,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://creator.poe.com/docs/external-applications/openai-compatible-api",
+    "api": "https://api.poe.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "lyria-3-clip-preview",
+    "name": "Lyria 3 Clip Preview",
+    "provider": "Google",
+    "provider_id": "google",
+    "context_length": 1048576,
+    "output_limit": 65536,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text",
+        "audio"
+      ]
+    },
+    "doc": "https://ai.google.dev/gemini-api/docs/models",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "lyria-3-pro-preview",
+    "name": "Lyria 3 Pro Preview",
+    "provider": "Google",
+    "provider_id": "google",
+    "context_length": 1048576,
+    "output_limit": 65536,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text",
+        "audio"
+      ]
+    },
+    "doc": "https://ai.google.dev/gemini-api/docs/models",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "qwen3.5-plus",
+    "name": "Qwen3.5 Plus",
+    "provider": "Alibaba Coding Plan",
+    "provider_id": "alibaba-coding-plan",
+    "context_length": 1000000,
+    "output_limit": 65536,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.alibabacloud.com/help/en/model-studio/coding-plan",
+    "api": "https://coding-intl.dashscope.aliyuncs.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "MiniMax-M2.5",
+    "name": "MiniMax-M2.5",
+    "provider": "Alibaba Coding Plan",
+    "provider_id": "alibaba-coding-plan",
+    "context_length": 196608,
+    "output_limit": 24576,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.alibabacloud.com/help/en/model-studio/coding-plan",
+    "api": "https://coding-intl.dashscope.aliyuncs.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "kimi-k2.5",
+    "name": "Kimi K2.5",
+    "provider": "Alibaba Coding Plan",
+    "provider_id": "alibaba-coding-plan",
+    "context_length": 262144,
+    "output_limit": 32768,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.alibabacloud.com/help/en/model-studio/coding-plan",
+    "api": "https://coding-intl.dashscope.aliyuncs.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "qwen3.7-plus",
+    "name": "Qwen3.7 Plus",
+    "provider": "Alibaba Coding Plan",
+    "provider_id": "alibaba-coding-plan",
+    "context_length": 1000000,
+    "output_limit": 64000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.alibabacloud.com/help/en/model-studio/coding-plan",
+    "api": "https://coding-intl.dashscope.aliyuncs.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "qwen3.6-plus",
+    "name": "Qwen3.6 Plus",
+    "provider": "Alibaba Coding Plan",
+    "provider_id": "alibaba-coding-plan",
+    "context_length": 1000000,
+    "output_limit": 65536,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.alibabacloud.com/help/en/model-studio/coding-plan",
+    "api": "https://coding-intl.dashscope.aliyuncs.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "mini_lm_l12_v2",
+    "name": "All-MiniLM-L12-v2",
+    "provider": "Infomaniak",
+    "provider_id": "infomaniak",
+    "context_length": 128,
+    "output_limit": 384,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.infomaniak.com/en/hosting/ai-services/open-source-models",
+    "api": "https://api.infomaniak.com/2/ai/${INFOMANIAK_PRODUCT_ID}/openai/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "reflection/beam-free",
+    "name": "Reflection: Beam 1.0 (free)",
+    "provider": "Kilo Gateway",
+    "provider_id": "kilo",
+    "context_length": 1048576,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://kilo.ai",
+    "api": "https://api.kilo.ai/api/gateway",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "google/lyria-3-clip-preview",
+    "name": "Lyria 3 Clip Preview",
+    "provider": "Kilo Gateway",
+    "provider_id": "kilo",
+    "context_length": 1048576,
+    "output_limit": 65536,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text",
+        "audio"
+      ]
+    },
+    "doc": "https://kilo.ai",
+    "api": "https://api.kilo.ai/api/gateway",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "google/lyria-3-pro-preview",
+    "name": "Lyria 3 Pro Preview",
+    "provider": "Kilo Gateway",
+    "provider_id": "kilo",
+    "context_length": 1048576,
+    "output_limit": 65536,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text",
+        "audio"
+      ]
+    },
+    "doc": "https://kilo.ai",
+    "api": "https://api.kilo.ai/api/gateway",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "openrouter/free",
+    "name": "OpenRouter Free Models Router",
+    "provider": "Kilo Gateway",
+    "provider_id": "kilo",
+    "context_length": 200000,
+    "output_limit": 32768,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://kilo.ai",
+    "api": "https://api.kilo.ai/api/gateway",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "openrouter/auto",
+    "name": "Auto Router",
+    "provider": "Kilo Gateway",
+    "provider_id": "kilo",
+    "context_length": 2000000,
+    "output_limit": 32768,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "audio",
+        "image",
+        "pdf",
+        "text",
+        "video"
+      ],
+      "output": [
+        "image",
+        "text"
+      ]
+    },
+    "doc": "https://kilo.ai",
+    "api": "https://api.kilo.ai/api/gateway",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "openrouter/pareto-code",
+    "name": "Pareto Code Router",
+    "provider": "Kilo Gateway",
+    "provider_id": "kilo",
+    "context_length": 200000,
+    "output_limit": 65536,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://kilo.ai",
+    "api": "https://api.kilo.ai/api/gateway",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "openrouter/bodybuilder",
+    "name": "Body Builder (beta)",
+    "provider": "Kilo Gateway",
+    "provider_id": "kilo",
+    "context_length": 128000,
+    "output_limit": 32768,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://kilo.ai",
+    "api": "https://api.kilo.ai/api/gateway",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "kilo-auto/free",
+    "name": "Auto Free",
+    "provider": "Kilo Gateway",
+    "provider_id": "kilo",
+    "context_length": 256000,
+    "output_limit": 32768,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://kilo.ai",
+    "api": "https://api.kilo.ai/api/gateway",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "stealth/crouton-alpha",
+    "name": "Crouton Alpha",
+    "provider": "Kilo Gateway",
+    "provider_id": "kilo",
+    "context_length": 1048576,
+    "output_limit": 943718,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video",
+        "pdf",
+        "audio"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://kilo.ai",
+    "api": "https://api.kilo.ai/api/gateway",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "stealth/glyph-cluster",
+    "name": "Stealth: Glyph Cluster (free)",
+    "provider": "Kilo Gateway",
+    "provider_id": "kilo",
+    "context_length": 256000,
+    "output_limit": 256000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://kilo.ai",
+    "api": "https://api.kilo.ai/api/gateway",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "deepseek-r1-distill-qwen-1-5b",
+    "name": "DeepSeek R1 Distill Qwen 1.5B",
+    "provider": "Alibaba (China)",
+    "provider_id": "alibaba-cn",
+    "context_length": 32768,
+    "output_limit": 16384,
+    "reasoning": true,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.alibabacloud.com/help/en/model-studio/models",
+    "api": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "llama3.3:70b",
+    "name": "Llama-3.3-70B-Instruct",
+    "provider": "Pendra",
+    "provider_id": "pendra",
+    "context_length": 128000,
+    "output_limit": 4096,
+    "reasoning": false,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://pendra.ai/docs/integrations/opencode",
+    "api": "https://api.pendra.ai/api/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "deepseek-v4-flash",
+    "name": "DeepSeek V4 Flash",
+    "provider": "Pendra",
+    "provider_id": "pendra",
+    "context_length": 1000000,
+    "output_limit": 384000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://pendra.ai/docs/integrations/opencode",
+    "api": "https://api.pendra.ai/api/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "gpt-oss:120b",
+    "name": "GPT OSS 120B",
+    "provider": "Pendra",
+    "provider_id": "pendra",
+    "context_length": 131072,
+    "output_limit": 32768,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://pendra.ai/docs/integrations/opencode",
+    "api": "https://api.pendra.ai/api/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "qwen3-coder:30b",
+    "name": "Qwen3-Coder 30B-A3B Instruct",
+    "provider": "Pendra",
+    "provider_id": "pendra",
+    "context_length": 262144,
+    "output_limit": 65536,
+    "reasoning": false,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://pendra.ai/docs/integrations/opencode",
+    "api": "https://api.pendra.ai/api/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "qwen3.6:27b",
+    "name": "Qwen3.6 27B",
+    "provider": "Pendra",
+    "provider_id": "pendra",
+    "context_length": 262144,
+    "output_limit": 65536,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://pendra.ai/docs/integrations/opencode",
+    "api": "https://api.pendra.ai/api/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "brick-v1-beta",
+    "name": "Brick v1 Beta",
+    "provider": "Regolo AI",
+    "provider_id": "regolo-ai",
+    "context_length": 100000,
+    "output_limit": 15000,
+    "reasoning": false,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.regolo.ai/",
+    "api": "https://api.regolo.ai/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "deepseek-ocr-2",
+    "name": "DeepSeek OCR 2",
+    "provider": "Regolo AI",
+    "provider_id": "regolo-ai",
+    "context_length": 4000,
+    "output_limit": 4000,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.regolo.ai/",
+    "api": "https://api.regolo.ai/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "faster-whisper-large-v3",
+    "name": "Faster Whisper Large v3",
+    "provider": "Regolo AI",
+    "provider_id": "regolo-ai",
+    "context_length": 448,
+    "output_limit": 4096,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "audio"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.regolo.ai/",
+    "api": "https://api.regolo.ai/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "nemotron-3-ultra-550b-a55b:free",
+    "name": "Nemotron 3 Ultra (free)",
+    "provider": "Bothub",
+    "provider_id": "bothub",
+    "context_length": 1000000,
+    "output_limit": 128000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://bothub.ru/models",
+    "api": "https://openai.bothub.ru/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "nemotron-3-nano-omni-30b-a3b-reasoning",
+    "name": "Nemotron 3 Nano Omni 30B A3B Reasoning",
+    "provider": "Requesty",
+    "provider_id": "requesty",
+    "context_length": 131072,
+    "output_limit": 20480,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video",
+        "audio"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://requesty.ai/solution/llm-routing/models",
+    "api": "https://router.requesty.ai/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "leanstral-1-5@eu",
+    "name": "leanstral-1-5@eu",
+    "provider": "Requesty",
+    "provider_id": "requesty",
+    "context_length": 262144,
+    "output_limit": 32768,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://requesty.ai/solution/llm-routing/models",
+    "api": "https://router.requesty.ai/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "nemotron-3.5-lightning-30b-a3b",
+    "name": "Nemotron 3.5 Lightning 30B A3B",
+    "provider": "Requesty",
+    "provider_id": "requesty",
+    "context_length": 1048576,
+    "output_limit": 65536,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://requesty.ai/solution/llm-routing/models",
+    "api": "https://router.requesty.ai/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "nemotron-3-ultra-550b-a55b",
+    "name": "Nemotron 3 Ultra 550B A55B",
+    "provider": "Requesty",
+    "provider_id": "requesty",
+    "context_length": 1048576,
+    "output_limit": 65536,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://requesty.ai/solution/llm-routing/models",
+    "api": "https://router.requesty.ai/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "leanstral-1-5",
+    "name": "leanstral-1-5",
+    "provider": "Requesty",
+    "provider_id": "requesty",
+    "context_length": 262144,
+    "output_limit": 32768,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://requesty.ai/solution/llm-routing/models",
+    "api": "https://router.requesty.ai/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "ling-3.0-tiny",
+    "name": "ling-3.0-tiny",
+    "provider": "Requesty",
+    "provider_id": "requesty",
+    "context_length": 262144,
+    "output_limit": 32768,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://requesty.ai/solution/llm-routing/models",
+    "api": "https://router.requesty.ai/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "nemotron-3-super-120b-a12b",
+    "name": "Nemotron 3 Super 120B A12B",
+    "provider": "Requesty",
+    "provider_id": "requesty",
+    "context_length": 1048576,
+    "output_limit": 65536,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://requesty.ai/solution/llm-routing/models",
+    "api": "https://router.requesty.ai/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "muse-glimmer-30b",
+    "name": "Muse Glimmer 30B",
+    "provider": "Requesty",
+    "provider_id": "requesty",
+    "context_length": 131072,
+    "output_limit": 20480,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://requesty.ai/solution/llm-routing/models",
+    "api": "https://router.requesty.ai/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "nemotron-3.5-content-safety",
+    "name": "Nemotron 3.5 Content Safety",
+    "provider": "Requesty",
+    "provider_id": "requesty",
+    "context_length": 131072,
+    "output_limit": 8192,
+    "reasoning": true,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://requesty.ai/solution/llm-routing/models",
+    "api": "https://router.requesty.ai/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "apodex/apodex-1.1-mini",
+    "name": "Apodex 1.1 Mini",
+    "provider": "Novita AI",
+    "provider_id": "novita-ai",
+    "context_length": 262144,
+    "output_limit": 262144,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://novita.ai/docs/guides/introduction",
+    "api": "https://api.novita.ai/openai",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "glm-4-7-flash",
+    "name": "GLM 4.7 Flash",
+    "provider": "EmpirioLabs AI",
+    "provider_id": "empiriolabs",
+    "context_length": 202752,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.empiriolabs.ai",
+    "api": "https://api.empiriolabs.ai/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "glm-4-6v-flash",
+    "name": "GLM 4.6V Flash",
+    "provider": "EmpirioLabs AI",
+    "provider_id": "empiriolabs",
+    "context_length": 131072,
+    "output_limit": 32768,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.empiriolabs.ai",
+    "api": "https://api.empiriolabs.ai/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "glm-4-5-flash",
+    "name": "GLM 4.5 Flash",
+    "provider": "EmpirioLabs AI",
+    "provider_id": "empiriolabs",
+    "context_length": 131072,
+    "output_limit": 98304,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.empiriolabs.ai",
+    "api": "https://api.empiriolabs.ai/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "reflection-ai/beam-1.0-501b-a23b",
+    "name": "Beam 1.0 501B A23B",
+    "provider": "Cloudflare AI Gateway",
+    "provider_id": "cloudflare-ai-gateway",
+    "context_length": 262144,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://developers.cloudflare.com/ai-gateway/",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "MiniMax-M2.7",
+    "name": "MiniMax-M2.7",
+    "provider": "SCNet Token Plan",
+    "provider_id": "scnet-token-plan",
+    "context_length": 204800,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.scnet.cn/ac/openapi/doc/2.0/moduleapi/plans/token-plan.html",
+    "api": "https://api.scnet.cn/api/llm/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "GLM-5.3",
+    "name": "GLM-5.3",
+    "provider": "SCNet Token Plan",
+    "provider_id": "scnet-token-plan",
+    "context_length": 1000000,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.scnet.cn/ac/openapi/doc/2.0/moduleapi/plans/token-plan.html",
+    "api": "https://api.scnet.cn/api/llm/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "MiniMax-M3",
+    "name": "MiniMax-M3",
+    "provider": "SCNet Token Plan",
+    "provider_id": "scnet-token-plan",
+    "context_length": 1048576,
+    "output_limit": 512000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.scnet.cn/ac/openapi/doc/2.0/moduleapi/plans/token-plan.html",
+    "api": "https://api.scnet.cn/api/llm/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "Kimi-K2.6",
+    "name": "Kimi K2.6",
+    "provider": "SCNet Token Plan",
+    "provider_id": "scnet-token-plan",
+    "context_length": 262144,
+    "output_limit": 262144,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.scnet.cn/ac/openapi/doc/2.0/moduleapi/plans/token-plan.html",
+    "api": "https://api.scnet.cn/api/llm/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "Kimi-K2.7-Code",
+    "name": "Kimi K2.7 Code",
+    "provider": "SCNet Token Plan",
+    "provider_id": "scnet-token-plan",
+    "context_length": 262144,
+    "output_limit": 262144,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.scnet.cn/ac/openapi/doc/2.0/moduleapi/plans/token-plan.html",
+    "api": "https://api.scnet.cn/api/llm/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "MiniMax-M2.5",
+    "name": "MiniMax-M2.5",
+    "provider": "SCNet Token Plan",
+    "provider_id": "scnet-token-plan",
+    "context_length": 204800,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.scnet.cn/ac/openapi/doc/2.0/moduleapi/plans/token-plan.html",
+    "api": "https://api.scnet.cn/api/llm/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "DeepSeek-V4-Pro-0813",
+    "name": "DeepSeek V4 Pro 0813",
+    "provider": "SCNet Token Plan",
+    "provider_id": "scnet-token-plan",
+    "context_length": 1000000,
+    "output_limit": 384000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.scnet.cn/ac/openapi/doc/2.0/moduleapi/plans/token-plan.html",
+    "api": "https://api.scnet.cn/api/llm/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "Qwen3.8-Max",
+    "name": "Qwen3.8 Max",
+    "provider": "SCNet Token Plan",
+    "provider_id": "scnet-token-plan",
+    "context_length": 1000000,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.scnet.cn/ac/openapi/doc/2.0/moduleapi/plans/token-plan.html",
+    "api": "https://api.scnet.cn/api/llm/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "Kimi-K2.5",
+    "name": "Kimi K2.5",
+    "provider": "SCNet Token Plan",
+    "provider_id": "scnet-token-plan",
+    "context_length": 262144,
+    "output_limit": 262144,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.scnet.cn/ac/openapi/doc/2.0/moduleapi/plans/token-plan.html",
+    "api": "https://api.scnet.cn/api/llm/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "Qwen3.8-Flash",
+    "name": "Qwen3.8 Flash",
+    "provider": "SCNet Token Plan",
+    "provider_id": "scnet-token-plan",
+    "context_length": 1000000,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.scnet.cn/ac/openapi/doc/2.0/moduleapi/plans/token-plan.html",
+    "api": "https://api.scnet.cn/api/llm/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "DeepSeek-V4-Flash",
+    "name": "DeepSeek V4 Flash",
+    "provider": "SCNet Token Plan",
+    "provider_id": "scnet-token-plan",
+    "context_length": 1000000,
+    "output_limit": 384000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.scnet.cn/ac/openapi/doc/2.0/moduleapi/plans/token-plan.html",
+    "api": "https://api.scnet.cn/api/llm/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "DeepSeek-V4-Pro",
+    "name": "DeepSeek V4 Pro",
+    "provider": "SCNet Token Plan",
+    "provider_id": "scnet-token-plan",
+    "context_length": 1000000,
+    "output_limit": 384000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.scnet.cn/ac/openapi/doc/2.0/moduleapi/plans/token-plan.html",
+    "api": "https://api.scnet.cn/api/llm/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "google/lyria-3-clip-preview",
+    "name": "Lyria 3 Clip Preview",
+    "provider": "OpenRouter",
+    "provider_id": "openrouter",
+    "context_length": 1048576,
+    "output_limit": 65536,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text",
+        "audio"
+      ]
+    },
+    "doc": "https://openrouter.ai/models",
+    "api": "https://openrouter.ai/api/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "google/lyria-3-pro-preview",
+    "name": "Lyria 3 Pro Preview",
+    "provider": "OpenRouter",
+    "provider_id": "openrouter",
+    "context_length": 1048576,
+    "output_limit": 65536,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text",
+        "audio"
+      ]
+    },
+    "doc": "https://openrouter.ai/models",
+    "api": "https://openrouter.ai/api/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "zai/glm-4.6v-flash",
+    "name": "GLM-4.6V-Flash",
+    "provider": "Tempr Gateway",
+    "provider_id": "tempr",
+    "context_length": 128000,
+    "output_limit": 32768,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://temprhq.io/docs/gateway-reference.html",
+    "api": "https://api.temprhq.io/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "groq/allam-2-7b",
+    "name": "ALLaM-2-7b",
+    "provider": "Tempr Gateway",
+    "provider_id": "tempr",
+    "context_length": 4096,
+    "output_limit": 4096,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://temprhq.io/docs/gateway-reference.html",
+    "api": "https://api.temprhq.io/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "k3.1-pro-highspeed",
+    "name": "Kimi K3.1 Pro Highspeed",
+    "provider": "Kimi For Coding (kimi.ai)",
+    "provider_id": "kimi-code-plan-global",
+    "context_length": 1048576,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.kimi.ai/code/docs/en/kimi-code/models.html",
+    "api": "https://api.kimi.ai/coding/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "kimi-for-coding",
+    "name": "kimi-for-coding",
+    "provider": "Kimi For Coding (kimi.ai)",
+    "provider_id": "kimi-code-plan-global",
+    "context_length": 1048576,
+    "output_limit": 32768,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.kimi.ai/code/docs/en/kimi-code/models.html",
+    "api": "https://api.kimi.ai/coding/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "k3.1-pro",
+    "name": "Kimi K3.1 Pro",
+    "provider": "Kimi For Coding (kimi.ai)",
+    "provider_id": "kimi-code-plan-global",
+    "context_length": 1048576,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.kimi.ai/code/docs/en/kimi-code/models.html",
+    "api": "https://api.kimi.ai/coding/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "kimi-for-coding-highspeed",
+    "name": "Kimi For Coding HighSpeed",
+    "provider": "Kimi For Coding (kimi.ai)",
+    "provider_id": "kimi-code-plan-global",
+    "context_length": 262144,
+    "output_limit": 32768,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.kimi.ai/code/docs/en/kimi-code/models.html",
+    "api": "https://api.kimi.ai/coding/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "k3",
+    "name": "Kimi K3",
+    "provider": "Kimi For Coding (kimi.ai)",
+    "provider_id": "kimi-code-plan-global",
+    "context_length": 1048576,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.kimi.ai/code/docs/en/kimi-code/models.html",
+    "api": "https://api.kimi.ai/coding/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "k3-256k",
+    "name": "Kimi K3-256K",
+    "provider": "Kimi For Coding (kimi.ai)",
+    "provider_id": "kimi-code-plan-global",
+    "context_length": 262144,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.kimi.ai/code/docs/en/kimi-code/models.html",
+    "api": "https://api.kimi.ai/coding/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "Qwen/Qwen3-30B-A3B-Thinking-2507",
+    "name": "Qwen3 30B A3B Thinking 2507",
+    "provider": "ModelScope",
+    "provider_id": "modelscope",
+    "context_length": 262144,
+    "output_limit": 32768,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://modelscope.cn/docs/model-service/API-Inference/intro",
+    "api": "https://api-inference.modelscope.cn/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "Qwen/Qwen3-235B-A22B-Thinking-2507",
+    "name": "Qwen3-235B-A22B-Thinking-2507",
+    "provider": "ModelScope",
+    "provider_id": "modelscope",
+    "context_length": 262144,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://modelscope.cn/docs/model-service/API-Inference/intro",
+    "api": "https://api-inference.modelscope.cn/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "Qwen/Qwen3-Coder-30B-A3B-Instruct",
+    "name": "Qwen3 Coder 30B A3B Instruct",
+    "provider": "ModelScope",
+    "provider_id": "modelscope",
+    "context_length": 262144,
+    "output_limit": 65536,
+    "reasoning": false,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://modelscope.cn/docs/model-service/API-Inference/intro",
+    "api": "https://api-inference.modelscope.cn/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+    "name": "Qwen3 235B A22B Instruct 2507",
+    "provider": "ModelScope",
+    "provider_id": "modelscope",
+    "context_length": 262144,
+    "output_limit": 131072,
+    "reasoning": false,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://modelscope.cn/docs/model-service/API-Inference/intro",
+    "api": "https://api-inference.modelscope.cn/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "Qwen/Qwen3-30B-A3B-Instruct-2507",
+    "name": "Qwen3 30B A3B Instruct 2507",
+    "provider": "ModelScope",
+    "provider_id": "modelscope",
+    "context_length": 262144,
+    "output_limit": 16384,
+    "reasoning": false,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://modelscope.cn/docs/model-service/API-Inference/intro",
+    "api": "https://api-inference.modelscope.cn/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "ZhipuAI/GLM-4.5",
+    "name": "GLM-4.5",
+    "provider": "ModelScope",
+    "provider_id": "modelscope",
+    "context_length": 131072,
+    "output_limit": 98304,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://modelscope.cn/docs/model-service/API-Inference/intro",
+    "api": "https://api-inference.modelscope.cn/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "ZhipuAI/GLM-4.6",
+    "name": "GLM-4.6",
+    "provider": "ModelScope",
+    "provider_id": "modelscope",
+    "context_length": 202752,
+    "output_limit": 98304,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://modelscope.cn/docs/model-service/API-Inference/intro",
+    "api": "https://api-inference.modelscope.cn/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "mimo-v2.5-tts-voicedesign",
+    "name": "MiMo-V2.5-TTS-VoiceDesign",
+    "provider": "Xiaomi Token Plan (China)",
+    "provider_id": "xiaomi-token-plan-cn",
+    "context_length": 8192,
+    "output_limit": 8192,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "audio"
+      ]
+    },
+    "doc": "https://platform.xiaomimimo.com/#/docs",
+    "api": "https://token-plan-cn.xiaomimimo.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "mimo-v2.5-tts-voiceclone",
+    "name": "MiMo-V2.5-TTS-VoiceClone",
+    "provider": "Xiaomi Token Plan (China)",
+    "provider_id": "xiaomi-token-plan-cn",
+    "context_length": 8192,
+    "output_limit": 8192,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "audio"
+      ]
+    },
+    "doc": "https://platform.xiaomimimo.com/#/docs",
+    "api": "https://token-plan-cn.xiaomimimo.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "mimo-v2.5-tts",
+    "name": "MiMo-V2.5-TTS",
+    "provider": "Xiaomi Token Plan (China)",
+    "provider_id": "xiaomi-token-plan-cn",
+    "context_length": 8192,
+    "output_limit": 8192,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "audio"
+      ]
+    },
+    "doc": "https://platform.xiaomimimo.com/#/docs",
+    "api": "https://token-plan-cn.xiaomimimo.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "mimo-v2.6-pro",
+    "name": "MiMo-V2.6-Pro",
+    "provider": "Xiaomi Token Plan (China)",
+    "provider_id": "xiaomi-token-plan-cn",
+    "context_length": 1048576,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "audio",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://platform.xiaomimimo.com/#/docs",
+    "api": "https://token-plan-cn.xiaomimimo.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "mimo-v2.6-flash",
+    "name": "MiMo-V2.6-Flash",
+    "provider": "Xiaomi Token Plan (China)",
+    "provider_id": "xiaomi-token-plan-cn",
+    "context_length": 1048576,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "audio",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://platform.xiaomimimo.com/#/docs",
+    "api": "https://token-plan-cn.xiaomimimo.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "glm-5.3-highspeed",
+    "name": "GLM-5.3 Highspeed",
+    "provider": "Z.AI Coding Plan",
+    "provider_id": "zai-coding-plan",
+    "context_length": 1000000,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.z.ai/devpack/overview",
+    "api": "https://api.z.ai/api/coding/paas/v4",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "glm-5.3",
+    "name": "GLM-5.3",
+    "provider": "Z.AI Coding Plan",
+    "provider_id": "zai-coding-plan",
+    "context_length": 1000000,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.z.ai/devpack/overview",
+    "api": "https://api.z.ai/api/coding/paas/v4",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "hy3",
+    "name": "Hy3",
+    "provider": "Tencent Token Plan",
+    "provider_id": "tencent-token-plan",
+    "context_length": 256000,
+    "output_limit": 128000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://cloud.tencent.com/document/product/1823/130060",
+    "api": "https://api.lkeap.cloud.tencent.com/plan/v3",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "mimo-v2.6-pro",
+    "name": "MiMo-V2.6-Pro",
+    "provider": "Xiaomi Token Plan (Singapore)",
+    "provider_id": "xiaomi-token-plan-sgp",
+    "context_length": 1048576,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "audio",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://platform.xiaomimimo.com/#/docs",
+    "api": "https://token-plan-sgp.xiaomimimo.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "mimo-v2.6-flash",
+    "name": "MiMo-V2.6-Flash",
+    "provider": "Xiaomi Token Plan (Singapore)",
+    "provider_id": "xiaomi-token-plan-sgp",
+    "context_length": 1048576,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "audio",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://platform.xiaomimimo.com/#/docs",
+    "api": "https://token-plan-sgp.xiaomimimo.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "mimo-v2.5-tts",
+    "name": "MiMo-V2.5-TTS",
+    "provider": "Xiaomi Token Plan (Singapore)",
+    "provider_id": "xiaomi-token-plan-sgp",
+    "context_length": 8192,
+    "output_limit": 8192,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "audio"
+      ]
+    },
+    "doc": "https://platform.xiaomimimo.com/#/docs",
+    "api": "https://token-plan-sgp.xiaomimimo.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "mimo-v2.5-tts-voiceclone",
+    "name": "MiMo-V2.5-TTS-VoiceClone",
+    "provider": "Xiaomi Token Plan (Singapore)",
+    "provider_id": "xiaomi-token-plan-sgp",
+    "context_length": 8192,
+    "output_limit": 8192,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "audio"
+      ]
+    },
+    "doc": "https://platform.xiaomimimo.com/#/docs",
+    "api": "https://token-plan-sgp.xiaomimimo.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "mimo-v2.5-tts-voicedesign",
+    "name": "MiMo-V2.5-TTS-VoiceDesign",
+    "provider": "Xiaomi Token Plan (Singapore)",
+    "provider_id": "xiaomi-token-plan-sgp",
+    "context_length": 8192,
+    "output_limit": 8192,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "audio"
+      ]
+    },
+    "doc": "https://platform.xiaomimimo.com/#/docs",
+    "api": "https://token-plan-sgp.xiaomimimo.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "gpt-live-transcribe",
+    "name": "GPT-Live-Transcribe",
+    "provider": "DevPass (LLM Gateway)",
+    "provider_id": "llmgateway",
+    "context_length": 0,
+    "output_limit": 0,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "audio"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://llmgateway.io/docs",
+    "api": "https://api.llmgateway.io/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "custom",
+    "name": "Custom Model",
+    "provider": "DevPass (LLM Gateway)",
+    "provider_id": "llmgateway",
+    "context_length": 128000,
+    "output_limit": 16384,
+    "reasoning": false,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://llmgateway.io/docs",
+    "api": "https://api.llmgateway.io/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "gpt-transcribe",
+    "name": "GPT-Transcribe",
+    "provider": "DevPass (LLM Gateway)",
+    "provider_id": "llmgateway",
+    "context_length": 0,
+    "output_limit": 0,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "audio"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://llmgateway.io/docs",
+    "api": "https://api.llmgateway.io/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "auto",
+    "name": "Auto Route",
+    "provider": "DevPass (LLM Gateway)",
+    "provider_id": "llmgateway",
+    "context_length": 128000,
+    "output_limit": 16384,
+    "reasoning": false,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://llmgateway.io/docs",
+    "api": "https://api.llmgateway.io/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "minimax-m2.7:free",
+    "name": "MiniMax-M2.7",
+    "provider": "UnoRouter",
+    "provider_id": "unorouter",
+    "context_length": 204800,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://unorouter.com/models",
+    "api": "https://api.unorouter.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "nemotron-3-ultra-550b-a55b:free",
+    "name": "Nemotron 3 Ultra 550B A55B",
+    "provider": "UnoRouter",
+    "provider_id": "unorouter",
+    "context_length": 1000000,
+    "output_limit": 128000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://unorouter.com/models",
+    "api": "https://api.unorouter.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "poolside/laguna-m.1",
+    "name": "Laguna M.1",
+    "provider": "Poolside",
+    "provider_id": "poolside",
+    "context_length": 262144,
+    "output_limit": 32768,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://platform.poolside.ai",
+    "api": "https://inference.poolside.ai/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "tc-code-latest",
+    "name": "Auto",
+    "provider": "Tencent Coding Plan (China)",
+    "provider_id": "tencent-coding-plan",
+    "context_length": 131072,
+    "output_limit": 16384,
+    "reasoning": false,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://cloud.tencent.com/document/product/1772/128947",
+    "api": "https://api.lkeap.cloud.tencent.com/coding/v3",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "umans-deepseek-v4-flash-0731",
+    "name": "DeepSeek V4 Flash",
+    "provider": "Umans AI Coding Plan",
+    "provider_id": "umans-ai-coding-plan",
+    "context_length": 1048576,
+    "output_limit": 393215,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://app.umans.ai/offers/code/docs",
+    "api": "https://api.code.umans.ai/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "umans-deepseek-v4.1-flash-1017",
+    "name": "DeepSeek V4.1 Flash 1017",
+    "provider": "Umans AI Coding Plan",
+    "provider_id": "umans-ai-coding-plan",
+    "context_length": 1048576,
+    "output_limit": 393215,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://app.umans.ai/offers/code/docs",
+    "api": "https://api.code.umans.ai/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "umans-coder",
+    "name": "Umans Coder",
+    "provider": "Umans AI Coding Plan",
+    "provider_id": "umans-ai-coding-plan",
+    "context_length": 1048576,
+    "output_limit": 131071,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://app.umans.ai/offers/code/docs",
+    "api": "https://api.code.umans.ai/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "umans-flash",
+    "name": "Umans Flash",
+    "provider": "Umans AI Coding Plan",
+    "provider_id": "umans-ai-coding-plan",
+    "context_length": 262144,
+    "output_limit": 262144,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://app.umans.ai/offers/code/docs",
+    "api": "https://api.code.umans.ai/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "umans-qwen3.6-35b-a3b",
+    "name": "Qwen3.6 35B A3B",
+    "provider": "Umans AI Coding Plan",
+    "provider_id": "umans-ai-coding-plan",
+    "context_length": 262144,
+    "output_limit": 262144,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://app.umans.ai/offers/code/docs",
+    "api": "https://api.code.umans.ai/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "umans-deepseek-v4.1-flash",
+    "name": "DeepSeek V4.1 Flash",
+    "provider": "Umans AI Coding Plan",
+    "provider_id": "umans-ai-coding-plan",
+    "context_length": 1048576,
+    "output_limit": 393215,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://app.umans.ai/offers/code/docs",
+    "api": "https://api.code.umans.ai/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "umans-kimi-k3",
+    "name": "Kimi K3",
+    "provider": "Umans AI Coding Plan",
+    "provider_id": "umans-ai-coding-plan",
+    "context_length": 1048576,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://app.umans.ai/offers/code/docs",
+    "api": "https://api.code.umans.ai/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "umans-glm-5.3",
+    "name": "GLM 5.3",
+    "provider": "Umans AI Coding Plan",
+    "provider_id": "umans-ai-coding-plan",
+    "context_length": 1048576,
+    "output_limit": 131071,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://app.umans.ai/offers/code/docs",
+    "api": "https://api.code.umans.ai/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "umans-glm-5.3-flash",
+    "name": "GLM 5.3 Flash",
+    "provider": "Umans AI Coding Plan",
+    "provider_id": "umans-ai-coding-plan",
+    "context_length": 1048576,
+    "output_limit": 131071,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://app.umans.ai/offers/code/docs",
+    "api": "https://api.code.umans.ai/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "openai/whisper-large-v3",
+    "name": "Whisper Large v3",
+    "provider": "Nvidia",
+    "provider_id": "nvidia",
+    "context_length": 448,
+    "output_limit": 4096,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "audio"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.api.nvidia.com/nim/",
+    "api": "https://integrate.api.nvidia.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "google/google-paligemma",
+    "name": "paligemma",
+    "provider": "Nvidia",
+    "provider_id": "nvidia",
+    "context_length": 128000,
+    "output_limit": 8192,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.api.nvidia.com/nim/",
+    "api": "https://integrate.api.nvidia.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "google/diffusiongemma-26b-a4b-it",
+    "name": "DiffusionGemma 26B A4B IT",
+    "provider": "Nvidia",
+    "provider_id": "nvidia",
+    "context_length": 250000,
+    "output_limit": 32768,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.api.nvidia.com/nim/",
+    "api": "https://integrate.api.nvidia.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "qwen/qwen-image-edit",
+    "name": "Qwen Image Edit",
+    "provider": "Nvidia",
+    "provider_id": "nvidia",
+    "context_length": 0,
+    "output_limit": 0,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "image"
+      ]
+    },
+    "doc": "https://docs.api.nvidia.com/nim/",
+    "api": "https://integrate.api.nvidia.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "qwen/qwen-image",
+    "name": "Qwen Image",
+    "provider": "Nvidia",
+    "provider_id": "nvidia",
+    "context_length": 0,
+    "output_limit": 0,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "image"
+      ]
+    },
+    "doc": "https://docs.api.nvidia.com/nim/",
+    "api": "https://integrate.api.nvidia.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "nvidia/bevformer",
+    "name": "bevformer",
+    "provider": "Nvidia",
+    "provider_id": "nvidia",
+    "context_length": 128000,
+    "output_limit": 8192,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.api.nvidia.com/nim/",
+    "api": "https://integrate.api.nvidia.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "nvidia/nemotron-voicechat",
+    "name": "nemotron-voicechat",
+    "provider": "Nvidia",
+    "provider_id": "nvidia",
+    "context_length": 128000,
+    "output_limit": 8192,
+    "reasoning": false,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "audio"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.api.nvidia.com/nim/",
+    "api": "https://integrate.api.nvidia.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "nvidia/llama-nemotron-rerank-vl-1b-v2",
+    "name": "llama-nemotron-rerank-vl-1b-v2",
+    "provider": "Nvidia",
+    "provider_id": "nvidia",
+    "context_length": 10240,
+    "output_limit": 4096,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.api.nvidia.com/nim/",
+    "api": "https://integrate.api.nvidia.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "nvidia/magpie-tts-zeroshot",
+    "name": "magpie-tts-zeroshot",
+    "provider": "Nvidia",
+    "provider_id": "nvidia",
+    "context_length": 0,
+    "output_limit": 4096,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "audio"
+      ],
+      "output": [
+        "audio"
+      ]
+    },
+    "doc": "https://docs.api.nvidia.com/nim/",
+    "api": "https://integrate.api.nvidia.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "nvidia/synthetic-video-detector",
+    "name": "synthetic-video-detector",
+    "provider": "Nvidia",
+    "provider_id": "nvidia",
+    "context_length": 0,
+    "output_limit": 4096,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.api.nvidia.com/nim/",
+    "api": "https://integrate.api.nvidia.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "nvidia/streampetr",
+    "name": "streampetr",
+    "provider": "Nvidia",
+    "provider_id": "nvidia",
+    "context_length": 128000,
+    "output_limit": 8192,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.api.nvidia.com/nim/",
+    "api": "https://integrate.api.nvidia.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+    "name": "Nemotron 3.5 Super VL 120B A12B",
+    "provider": "Nvidia",
+    "provider_id": "nvidia",
+    "context_length": 1048576,
+    "output_limit": 8192,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.api.nvidia.com/nim/",
+    "api": "https://integrate.api.nvidia.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "nvidia/llama-nemotron-embed-vl-1b-v2",
+    "name": "llama-nemotron-embed-vl-1b-v2",
+    "provider": "Nvidia",
+    "provider_id": "nvidia",
+    "context_length": 8192,
+    "output_limit": 2048,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.api.nvidia.com/nim/",
+    "api": "https://integrate.api.nvidia.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "nvidia/active-speaker-detection",
+    "name": "Active Speaker Detection",
+    "provider": "Nvidia",
+    "provider_id": "nvidia",
+    "context_length": 0,
+    "output_limit": 4096,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.api.nvidia.com/nim/",
+    "api": "https://integrate.api.nvidia.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "nvidia/studiovoice",
+    "name": "studiovoice",
+    "provider": "Nvidia",
+    "provider_id": "nvidia",
+    "context_length": 0,
+    "output_limit": 0,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "audio"
+      ],
+      "output": [
+        "audio"
+      ]
+    },
+    "doc": "https://docs.api.nvidia.com/nim/",
+    "api": "https://integrate.api.nvidia.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "nvidia/sparsedrive",
+    "name": "sparsedrive",
+    "provider": "Nvidia",
+    "provider_id": "nvidia",
+    "context_length": 128000,
+    "output_limit": 8192,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.api.nvidia.com/nim/",
+    "api": "https://integrate.api.nvidia.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "nvidia/llama-3.1-nemotron-safety-guard-8b-v3",
+    "name": "llama-3.1-nemotron-safety-guard-8b-v3",
+    "provider": "Nvidia",
+    "provider_id": "nvidia",
+    "context_length": 128000,
+    "output_limit": 4096,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.api.nvidia.com/nim/",
+    "api": "https://integrate.api.nvidia.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "nvidia/nemotron-3.5-content-safety",
+    "name": "Nemotron 3.5 Content Safety",
+    "provider": "Nvidia",
+    "provider_id": "nvidia",
+    "context_length": 128000,
+    "output_limit": 8192,
+    "reasoning": true,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.api.nvidia.com/nim/",
+    "api": "https://integrate.api.nvidia.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "nvidia/cosmos-transfer2_5-2b",
+    "name": "cosmos-transfer2.5-2b",
+    "provider": "Nvidia",
+    "provider_id": "nvidia",
+    "context_length": 0,
+    "output_limit": 4096,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "video"
+      ]
+    },
+    "doc": "https://docs.api.nvidia.com/nim/",
+    "api": "https://integrate.api.nvidia.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "meta/llama-guard-4-12b",
+    "name": "Llama Guard 4 12B",
+    "provider": "Nvidia",
+    "provider_id": "nvidia",
+    "context_length": 163840,
+    "output_limit": 16384,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.api.nvidia.com/nim/",
+    "api": "https://integrate.api.nvidia.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "meta/muse-glimmer-30b",
+    "name": "Muse Glimmer 30B",
+    "provider": "Nvidia",
+    "provider_id": "nvidia",
+    "context_length": 131072,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.api.nvidia.com/nim/",
+    "api": "https://integrate.api.nvidia.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "deepseek-ai/deepseek-v4.1-flash",
+    "name": "DeepSeek V4.1 Flash",
+    "provider": "Nvidia",
+    "provider_id": "nvidia",
+    "context_length": 1000000,
+    "output_limit": 384000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.api.nvidia.com/nim/",
+    "api": "https://integrate.api.nvidia.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "black-forest-labs/flux_2-klein-4b",
+    "name": "FLUX.2 Klein 4B",
+    "provider": "Nvidia",
+    "provider_id": "nvidia",
+    "context_length": 0,
+    "output_limit": 0,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "image"
+      ]
+    },
+    "doc": "https://docs.api.nvidia.com/nim/",
+    "api": "https://integrate.api.nvidia.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "black-forest-labs/flux_1-kontext-dev",
+    "name": "FLUX.1-Kontext-dev",
+    "provider": "Nvidia",
+    "provider_id": "nvidia",
+    "context_length": 0,
+    "output_limit": 0,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "image"
+      ]
+    },
+    "doc": "https://docs.api.nvidia.com/nim/",
+    "api": "https://integrate.api.nvidia.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "black-forest-labs/flux_1-schnell",
+    "name": "FLUX.1-schnell",
+    "provider": "Nvidia",
+    "provider_id": "nvidia",
+    "context_length": 0,
+    "output_limit": 0,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "image"
+      ]
+    },
+    "doc": "https://docs.api.nvidia.com/nim/",
+    "api": "https://integrate.api.nvidia.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "minimaxai/minimax-m3.1-flash",
+    "name": "MiniMax-M3.1-Flash",
+    "provider": "Nvidia",
+    "provider_id": "nvidia",
+    "context_length": 262144,
+    "output_limit": 262144,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.api.nvidia.com/nim/",
+    "api": "https://integrate.api.nvidia.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "deepseek-v4-flash",
+    "name": "DeepSeek V4 Flash",
+    "provider": "SenseNova (China)",
+    "provider_id": "sensenova",
+    "context_length": 1000000,
+    "output_limit": 65536,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://platform.sensenova.cn/docs",
+    "api": "https://token.sensenova.cn/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "sensenova-6.8-flash-lite",
+    "name": "SenseNova 6.8 Flash Lite",
+    "provider": "SenseNova (China)",
+    "provider_id": "sensenova",
+    "context_length": 262144,
+    "output_limit": 65536,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://platform.sensenova.cn/docs",
+    "api": "https://token.sensenova.cn/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "deepseek-v4-pro",
+    "name": "DeepSeek V4 Pro",
+    "provider": "SenseNova (China)",
+    "provider_id": "sensenova",
+    "context_length": 1048576,
+    "output_limit": 65536,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://platform.sensenova.cn/docs",
+    "api": "https://token.sensenova.cn/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "qwen3guard-gen-0.6b",
+    "name": "Qwen3Guard-Gen-0.6B",
+    "provider": "OVHcloud AI Endpoints",
+    "provider_id": "ovhcloud",
+    "context_length": 32768,
+    "output_limit": 16384,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog//",
+    "api": "https://oai.endpoints.kepler.ai.cloud.ovh.net/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "qwen3guard-gen-8b",
+    "name": "Qwen3Guard-Gen-8B",
+    "provider": "OVHcloud AI Endpoints",
+    "provider_id": "ovhcloud",
+    "context_length": 32768,
+    "output_limit": 16384,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog//",
+    "api": "https://oai.endpoints.kepler.ai.cloud.ovh.net/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "gemma-4-E4B-it-MLX-4bit",
+    "name": "Gemma 4 E4B Instruct (MLX 4-bit)",
+    "provider": "Atomic Chat",
+    "provider_id": "atomic-chat",
+    "context_length": 32768,
+    "output_limit": 8192,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://atomic.chat",
+    "api": "http://127.0.0.1:1337/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "Qwen3_5-9B-Q4_K_M",
+    "name": "Qwen 3.5 9B (Q4_K_M)",
+    "provider": "Atomic Chat",
+    "provider_id": "atomic-chat",
+    "context_length": 32768,
+    "output_limit": 8192,
+    "reasoning": false,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://atomic.chat",
+    "api": "http://127.0.0.1:1337/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "Qwen3_5-9B-MLX-4bit",
+    "name": "Qwen 3.5 9B (MLX 4-bit)",
+    "provider": "Atomic Chat",
+    "provider_id": "atomic-chat",
+    "context_length": 32768,
+    "output_limit": 8192,
+    "reasoning": false,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://atomic.chat",
+    "api": "http://127.0.0.1:1337/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "gemma-4-E4B-it-IQ4_XS",
+    "name": "Gemma 4 E4B Instruct (IQ4_XS)",
+    "provider": "Atomic Chat",
+    "provider_id": "atomic-chat",
+    "context_length": 32768,
+    "output_limit": 8192,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://atomic.chat",
+    "api": "http://127.0.0.1:1337/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "Meta-Llama-3_1-8B-Instruct-GGUF",
+    "name": "Meta Llama 3.1 8B Instruct (GGUF)",
+    "provider": "Atomic Chat",
+    "provider_id": "atomic-chat",
+    "context_length": 131072,
+    "output_limit": 4096,
+    "reasoning": false,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://atomic.chat",
+    "api": "http://127.0.0.1:1337/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "agnes-2.5-flash",
+    "name": "Agnes 2.5 Flash",
+    "provider": "Agnes AI",
+    "provider_id": "agnes",
+    "context_length": 512000,
+    "output_limit": 65536,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://agnes-ai.com/doc",
+    "api": "https://apihub.agnes-ai.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "agnes-3.0-flash",
+    "name": "Agnes 3.0 Flash",
+    "provider": "Agnes AI",
+    "provider_id": "agnes",
+    "context_length": 512000,
+    "output_limit": 65536,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://agnes-ai.com/doc",
+    "api": "https://apihub.agnes-ai.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "glm-4.6v-flash",
+    "name": "GLM-4.6V-Flash",
+    "provider": "Zhipu AI",
+    "provider_id": "zhipuai",
+    "context_length": 128000,
+    "output_limit": 32768,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.bigmodel.cn/cn/guide/start/pricing",
+    "api": "https://open.bigmodel.cn/api/paas/v4",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "zdev",
+    "name": "ZDev",
+    "provider": "Zeldoc",
+    "provider_id": "zeldoc",
+    "context_length": 1000000,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.zeldoc.ai",
+    "api": "https://api.zeldoc.ai/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "k3.1-pro-highspeed",
+    "name": "Kimi K3.1 Pro Highspeed",
+    "provider": "Kimi For Coding (kimi.com)",
+    "provider_id": "kimi-code-plan-cn",
+    "context_length": 1048576,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.kimi.com/code/docs/en/kimi-code/models.html",
+    "api": "https://api.kimi.com/coding/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "kimi-for-coding",
+    "name": "Kimi K2.8 Preview",
+    "provider": "Kimi For Coding (kimi.com)",
+    "provider_id": "kimi-code-plan-cn",
+    "context_length": 1048576,
+    "output_limit": 32768,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.kimi.com/code/docs/en/kimi-code/models.html",
+    "api": "https://api.kimi.com/coding/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "k3.1-pro",
+    "name": "Kimi K3.1 Pro",
+    "provider": "Kimi For Coding (kimi.com)",
+    "provider_id": "kimi-code-plan-cn",
+    "context_length": 1048576,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.kimi.com/code/docs/en/kimi-code/models.html",
+    "api": "https://api.kimi.com/coding/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "kimi-for-coding-highspeed",
+    "name": "Kimi For Coding HighSpeed",
+    "provider": "Kimi For Coding (kimi.com)",
+    "provider_id": "kimi-code-plan-cn",
+    "context_length": 262144,
+    "output_limit": 32768,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.kimi.com/code/docs/en/kimi-code/models.html",
+    "api": "https://api.kimi.com/coding/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "k3",
+    "name": "Kimi K3",
+    "provider": "Kimi For Coding (kimi.com)",
+    "provider_id": "kimi-code-plan-cn",
+    "context_length": 1048576,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.kimi.com/code/docs/en/kimi-code/models.html",
+    "api": "https://api.kimi.com/coding/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "k3-256k",
+    "name": "Kimi K3-256K",
+    "provider": "Kimi For Coding (kimi.com)",
+    "provider_id": "kimi-code-plan-cn",
+    "context_length": 262144,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.kimi.com/code/docs/en/kimi-code/models.html",
+    "api": "https://api.kimi.com/coding/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "qwen3.5-plus",
+    "name": "Qwen3.5 Plus",
+    "provider": "Alibaba Coding Plan (China)",
+    "provider_id": "alibaba-coding-plan-cn",
+    "context_length": 1000000,
+    "output_limit": 65536,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://help.aliyun.com/zh/model-studio/coding-plan",
+    "api": "https://coding.dashscope.aliyuncs.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "MiniMax-M2.5",
+    "name": "MiniMax-M2.5",
+    "provider": "Alibaba Coding Plan (China)",
+    "provider_id": "alibaba-coding-plan-cn",
+    "context_length": 196608,
+    "output_limit": 24576,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://help.aliyun.com/zh/model-studio/coding-plan",
+    "api": "https://coding.dashscope.aliyuncs.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "kimi-k2.5",
+    "name": "Kimi K2.5",
+    "provider": "Alibaba Coding Plan (China)",
+    "provider_id": "alibaba-coding-plan-cn",
+    "context_length": 262144,
+    "output_limit": 32768,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://help.aliyun.com/zh/model-studio/coding-plan",
+    "api": "https://coding.dashscope.aliyuncs.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "qwen3.7-plus",
+    "name": "Qwen3.7 Plus",
+    "provider": "Alibaba Coding Plan (China)",
+    "provider_id": "alibaba-coding-plan-cn",
+    "context_length": 1000000,
+    "output_limit": 64000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://help.aliyun.com/zh/model-studio/coding-plan",
+    "api": "https://coding.dashscope.aliyuncs.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "qwen3.6-plus",
+    "name": "Qwen3.6 Plus",
+    "provider": "Alibaba Coding Plan (China)",
+    "provider_id": "alibaba-coding-plan-cn",
+    "context_length": 1000000,
+    "output_limit": 65536,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://help.aliyun.com/zh/model-studio/coding-plan",
+    "api": "https://coding.dashscope.aliyuncs.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "gemma4",
+    "name": "Gemma 4 26B A4B IT",
+    "provider": "NaN",
+    "provider_id": "nan",
+    "context_length": 262144,
+    "output_limit": 32768,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://nan.builders/docs/models",
+    "api": "https://api.nan.builders/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "deepseek-v4-flash",
+    "name": "DeepSeek V4.1 Flash",
+    "provider": "NaN",
+    "provider_id": "nan",
+    "context_length": 1000000,
+    "output_limit": 384000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://nan.builders/docs/models",
+    "api": "https://api.nan.builders/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "qwen3.6",
+    "name": "Qwen3.6 35B-A3B",
+    "provider": "NaN",
+    "provider_id": "nan",
+    "context_length": 262144,
+    "output_limit": 65536,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://nan.builders/docs/models",
+    "api": "https://api.nan.builders/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "qwen-image-2.1",
+    "name": "Qwen-Image-2.1",
+    "provider": "NaN",
+    "provider_id": "nan",
+    "context_length": 8192,
+    "output_limit": 0,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "image"
+      ]
+    },
+    "doc": "https://nan.builders/docs/models",
+    "api": "https://api.nan.builders/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "qwen3.8-flash",
+    "name": "Qwen3.8 Flash",
+    "provider": "NaN",
+    "provider_id": "nan",
+    "context_length": 1048576,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://nan.builders/docs/models",
+    "api": "https://api.nan.builders/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "glm5.3",
+    "name": "GLM-5.3",
+    "provider": "NaN",
+    "provider_id": "nan",
+    "context_length": 1000000,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://nan.builders/docs/models",
+    "api": "https://api.nan.builders/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "mimo-v2.6-flash",
+    "name": "MiMo-V2.6-Flash",
+    "provider": "NaN",
+    "provider_id": "nan",
+    "context_length": 1048576,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "audio"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://nan.builders/docs/models",
+    "api": "https://api.nan.builders/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "glm-5.3-highspeed",
+    "name": "GLM-5.3 Highspeed",
+    "provider": "Zhipu AI Coding Plan",
+    "provider_id": "zhipuai-coding-plan",
+    "context_length": 1000000,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.bigmodel.cn/cn/coding-plan/overview",
+    "api": "https://open.bigmodel.cn/api/coding/paas/v4",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "glm-5.3",
+    "name": "GLM-5.3",
+    "provider": "Zhipu AI Coding Plan",
+    "provider_id": "zhipuai-coding-plan",
+    "context_length": 1000000,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.bigmodel.cn/cn/coding-plan/overview",
+    "api": "https://open.bigmodel.cn/api/coding/paas/v4",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "tencent/hy3-free",
+    "name": "Hy3 (free)",
+    "provider": "OrcaRouter",
+    "provider_id": "orcarouter",
+    "context_length": 256000,
+    "output_limit": 128000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.orcarouter.ai",
+    "api": "https://api.orcarouter.ai/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "z-ai/glm-5.3-flash-free",
+    "name": "GLM-5.3-Flash (free)",
+    "provider": "OrcaRouter",
+    "provider_id": "orcarouter",
+    "context_length": 1000000,
+    "output_limit": 128000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.orcarouter.ai",
+    "api": "https://api.orcarouter.ai/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "orcarouter/free",
+    "name": "OrcaRouter Free",
+    "provider": "OrcaRouter",
+    "provider_id": "orcarouter",
+    "context_length": 65536,
+    "output_limit": 32768,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.orcarouter.ai",
+    "api": "https://api.orcarouter.ai/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "orcarouter/auto",
+    "name": "OrcaRouter Auto",
+    "provider": "OrcaRouter",
+    "provider_id": "orcarouter",
+    "context_length": 128000,
+    "output_limit": 16384,
+    "reasoning": false,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.orcarouter.ai",
+    "api": "https://api.orcarouter.ai/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "deepseek/deepseek-v4-flash-free",
+    "name": "DeepSeek V4 Flash (free)",
+    "provider": "OrcaRouter",
+    "provider_id": "orcarouter",
+    "context_length": 1000000,
+    "output_limit": 384000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.orcarouter.ai",
+    "api": "https://api.orcarouter.ai/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "nano-gpt-help",
+    "name": "NanoGPT Help",
+    "provider": "NanoGPT",
+    "provider_id": "nano-gpt",
+    "context_length": 6000,
+    "output_limit": 512,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.nano-gpt.com",
+    "api": "https://nano-gpt.com/api/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "auto-model",
+    "name": "Auto model",
+    "provider": "NanoGPT",
+    "provider_id": "nano-gpt",
+    "context_length": 1000000,
+    "output_limit": 1000000,
+    "reasoning": false,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.nano-gpt.com",
+    "api": "https://nano-gpt.com/api/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "Ornith-1.0-35B-FP8",
+    "name": "Ornith-1.0-35B-FP8",
+    "provider": "InferX",
+    "provider_id": "inferx",
+    "context_length": 262000,
+    "output_limit": 100000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://model.inferx.net/endpoints",
+    "api": "https://model.inferx.net/endpoints/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "mimo-v25",
+    "name": "mimo-v25",
+    "provider": "InferX",
+    "provider_id": "inferx",
+    "context_length": 1000000,
+    "output_limit": 100000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "audio",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://model.inferx.net/endpoints",
+    "api": "https://model.inferx.net/endpoints/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "Qwen3-Embedding-8B",
+    "name": "Qwen3-Embedding-8B",
+    "provider": "InferX",
+    "provider_id": "inferx",
+    "context_length": 32768,
+    "output_limit": 0,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://model.inferx.net/endpoints",
+    "api": "https://model.inferx.net/endpoints/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "Agents-A1",
+    "name": "Agents-A1",
+    "provider": "InferX",
+    "provider_id": "inferx",
+    "context_length": 262000,
+    "output_limit": 100000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://model.inferx.net/endpoints",
+    "api": "https://model.inferx.net/endpoints/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "deepseek-v4-flash",
+    "name": "deepseek-v4-flash",
+    "provider": "InferX",
+    "provider_id": "inferx",
+    "context_length": 1000000,
+    "output_limit": 100000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://model.inferx.net/endpoints",
+    "api": "https://model.inferx.net/endpoints/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "Qwen3.6-35B-A3B-fp8-no-thinking",
+    "name": "Qwen3.6-35B-A3B-fp8-no-thinking",
+    "provider": "InferX",
+    "provider_id": "inferx",
+    "context_length": 262000,
+    "output_limit": 65536,
+    "reasoning": false,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://model.inferx.net/endpoints",
+    "api": "https://model.inferx.net/endpoints/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "Qwen3.6-27B-FP8",
+    "name": "Qwen3.6 27B FP8",
+    "provider": "InferX",
+    "provider_id": "inferx",
+    "context_length": 262144,
+    "output_limit": 65536,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://model.inferx.net/endpoints",
+    "api": "https://model.inferx.net/endpoints/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "Qwen3-Coder-Next-FP8",
+    "name": "Qwen3 Coder Next FP8",
+    "provider": "InferX",
+    "provider_id": "inferx",
+    "context_length": 256144,
+    "output_limit": 65536,
+    "reasoning": false,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://model.inferx.net/endpoints",
+    "api": "https://model.inferx.net/endpoints/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "Devstral-2-123B-Instruct-2512-int4-AutoRound",
+    "name": "Devstral-2-123B-Instruct-2512-int4-AutoRound",
+    "provider": "InferX",
+    "provider_id": "inferx",
+    "context_length": 128000,
+    "output_limit": 128000,
+    "reasoning": false,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://model.inferx.net/endpoints",
+    "api": "https://model.inferx.net/endpoints/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "Qwen3.6-35B-A3B-FP8",
+    "name": "Qwen3.6 35B A3B FP8",
+    "provider": "InferX",
+    "provider_id": "inferx",
+    "context_length": 262000,
+    "output_limit": 65536,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://model.inferx.net/endpoints",
+    "api": "https://model.inferx.net/endpoints/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "Qwen3-Coder-Next-FP8-no-thinking",
+    "name": "Qwen3-Coder-Next-FP8-no-thinking",
+    "provider": "InferX",
+    "provider_id": "inferx",
+    "context_length": 260000,
+    "output_limit": 65536,
+    "reasoning": false,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://model.inferx.net/endpoints",
+    "api": "https://model.inferx.net/endpoints/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "gemma-4-31B-it-fp8",
+    "name": "Gemma 4 31B IT FP8",
+    "provider": "InferX",
+    "provider_id": "inferx",
+    "context_length": 262144,
+    "output_limit": 32768,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://model.inferx.net/endpoints",
+    "api": "https://model.inferx.net/endpoints/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "qwen/qwen3-30b-a3b-2507",
+    "name": "Qwen3 30B A3B 2507",
+    "provider": "LMStudio",
+    "provider_id": "lmstudio",
+    "context_length": 262144,
+    "output_limit": 16384,
+    "reasoning": false,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://lmstudio.ai/models",
+    "api": "http://127.0.0.1:1234/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "qwen/qwen3-coder-30b",
+    "name": "Qwen3 Coder 30B",
+    "provider": "LMStudio",
+    "provider_id": "lmstudio",
+    "context_length": 262144,
+    "output_limit": 65536,
+    "reasoning": false,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://lmstudio.ai/models",
+    "api": "http://127.0.0.1:1234/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "z-ai/glm-4.6v-flash-free",
+    "name": "GLM 4.6V Flash (Free)",
+    "provider": "ZenMux",
+    "provider_id": "zenmux",
+    "context_length": 200000,
+    "output_limit": 128000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.zenmux.ai",
+    "api": "https://zenmux.ai/api/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "z-ai/glm-4.7-flash-free",
+    "name": "GLM 4.7 Flash (Free)",
+    "provider": "ZenMux",
+    "provider_id": "zenmux",
+    "context_length": 200000,
+    "output_limit": 128000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.zenmux.ai",
+    "api": "https://zenmux.ai/api/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "openai/gpt-live-transcribe",
+    "name": "GPT Live Transcribe (OpenAI)",
+    "provider": "LLM Gateway",
+    "provider_id": "llmgateway-providers",
+    "context_length": 0,
+    "output_limit": 0,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "audio"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://llmgateway.io/docs",
+    "api": "https://api.llmgateway.io/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "openai/gpt-transcribe",
+    "name": "GPT Transcribe (OpenAI)",
+    "provider": "LLM Gateway",
+    "provider_id": "llmgateway-providers",
+    "context_length": 0,
+    "output_limit": 0,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "audio"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://llmgateway.io/docs",
+    "api": "https://api.llmgateway.io/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "azure/gpt-live-transcribe",
+    "name": "GPT Live Transcribe (Azure)",
+    "provider": "LLM Gateway",
+    "provider_id": "llmgateway-providers",
+    "context_length": 0,
+    "output_limit": 0,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "audio"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://llmgateway.io/docs",
+    "api": "https://api.llmgateway.io/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "azure/gpt-transcribe",
+    "name": "GPT Transcribe (Azure)",
+    "provider": "LLM Gateway",
+    "provider_id": "llmgateway-providers",
+    "context_length": 0,
+    "output_limit": 0,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "audio"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://llmgateway.io/docs",
+    "api": "https://api.llmgateway.io/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "nemotron-3-super-120b-a12b-free",
+    "name": "Nemotron 3 Super 120B A12B (free)",
+    "provider": "AIHubMix",
+    "provider_id": "aihubmix",
+    "context_length": 262144,
+    "output_limit": 262144,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.aihubmix.com",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "nemotron-3-nano-omni-30b-a3b-reasoning-free",
+    "name": "Nemotron 3 Nano Omni 30B A3B Reasoning (free)",
+    "provider": "AIHubMix",
+    "provider_id": "aihubmix",
+    "context_length": 256000,
+    "output_limit": 65536,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video",
+        "audio"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.aihubmix.com",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "qwen3.8-flash-free",
+    "name": "Qwen3.8 Flash (free)",
+    "provider": "AIHubMix",
+    "provider_id": "aihubmix",
+    "context_length": 1000000,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.aihubmix.com",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "qwen3.8-max-free",
+    "name": "Qwen3.8 Max (free)",
+    "provider": "AIHubMix",
+    "provider_id": "aihubmix",
+    "context_length": 1000000,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.aihubmix.com",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "ling-3.0-flash-free",
+    "name": "Ling 3.0 Flash (free)",
+    "provider": "AIHubMix",
+    "provider_id": "aihubmix",
+    "context_length": 262144,
+    "output_limit": 32768,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.aihubmix.com",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "nemotron-3-ultra-550b-a55b-free",
+    "name": "Nemotron 3 Ultra 550B A55B (free)",
+    "provider": "AIHubMix",
+    "provider_id": "aihubmix",
+    "context_length": 1000000,
+    "output_limit": 128000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.aihubmix.com",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "coding-minimax-m2.7-free",
+    "name": "Coding MiniMax M2.7 (Free)",
+    "provider": "AIHubMix",
+    "provider_id": "aihubmix",
+    "context_length": 204800,
+    "output_limit": 128100,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.aihubmix.com",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "nemotron-3.5-lightning-free",
+    "name": "Nemotron 3.5 Lightning 30B A3B (free)",
+    "provider": "AIHubMix",
+    "provider_id": "aihubmix",
+    "context_length": 262144,
+    "output_limit": 262144,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.aihubmix.com",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "coding-glm-5.3-flash-free",
+    "name": "GLM-5.3-Flash (Coding, free)",
+    "provider": "AIHubMix",
+    "provider_id": "aihubmix",
+    "context_length": 1000000,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.aihubmix.com",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "coding-glm-5.2-free",
+    "name": "GLM-5.2 (Coding, free)",
+    "provider": "AIHubMix",
+    "provider_id": "aihubmix",
+    "context_length": 1000000,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.aihubmix.com",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "glm-4.7-flash-free",
+    "name": "GLM-4.7-Flash (free)",
+    "provider": "AIHubMix",
+    "provider_id": "aihubmix",
+    "context_length": 200000,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.aihubmix.com",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "coding-glm-5.1-free",
+    "name": "Coding GLM 5.1 (free)",
+    "provider": "AIHubMix",
+    "provider_id": "aihubmix",
+    "context_length": 200000,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.aihubmix.com",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "nemotron-3.5-content-safety-free",
+    "name": "Nemotron 3.5 Content Safety (free)",
+    "provider": "AIHubMix",
+    "provider_id": "aihubmix",
+    "context_length": 128000,
+    "output_limit": 8192,
+    "reasoning": true,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.aihubmix.com",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "coding-glm-5.3-free",
+    "name": "GLM-5.3 (Coding, free)",
+    "provider": "AIHubMix",
+    "provider_id": "aihubmix",
+    "context_length": 1000000,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.aihubmix.com",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "qwen3guard-gen-0.6b",
+    "name": "qwen3guard-gen-0.6b",
+    "provider": "Cortecs",
+    "provider_id": "cortecs",
+    "context_length": 32000,
+    "output_limit": 32000,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://api.cortecs.ai/v1/models",
+    "api": "https://api.cortecs.ai/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "qwen3guard-gen-8b",
+    "name": "qwen3guard-gen-8b",
+    "provider": "Cortecs",
+    "provider_id": "cortecs",
+    "context_length": 32000,
+    "output_limit": 32000,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://api.cortecs.ai/v1/models",
+    "api": "https://api.cortecs.ai/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "mimo-v2.6-pro",
+    "name": "MiMo-V2.6-Pro",
+    "provider": "Xiaomi Token Plan (Europe)",
+    "provider_id": "xiaomi-token-plan-ams",
+    "context_length": 1048576,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "audio",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://platform.xiaomimimo.com/#/docs",
+    "api": "https://token-plan-ams.xiaomimimo.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "mimo-v2.6-flash",
+    "name": "MiMo-V2.6-Flash",
+    "provider": "Xiaomi Token Plan (Europe)",
+    "provider_id": "xiaomi-token-plan-ams",
+    "context_length": 1048576,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "audio",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://platform.xiaomimimo.com/#/docs",
+    "api": "https://token-plan-ams.xiaomimimo.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "mimo-v2.5-tts",
+    "name": "MiMo-V2.5-TTS",
+    "provider": "Xiaomi Token Plan (Europe)",
+    "provider_id": "xiaomi-token-plan-ams",
+    "context_length": 8192,
+    "output_limit": 8192,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "audio"
+      ]
+    },
+    "doc": "https://platform.xiaomimimo.com/#/docs",
+    "api": "https://token-plan-ams.xiaomimimo.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "mimo-v2.5-tts-voiceclone",
+    "name": "MiMo-V2.5-TTS-VoiceClone",
+    "provider": "Xiaomi Token Plan (Europe)",
+    "provider_id": "xiaomi-token-plan-ams",
+    "context_length": 8192,
+    "output_limit": 8192,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "audio"
+      ]
+    },
+    "doc": "https://platform.xiaomimimo.com/#/docs",
+    "api": "https://token-plan-ams.xiaomimimo.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "mimo-v2.5-tts-voicedesign",
+    "name": "MiMo-V2.5-TTS-VoiceDesign",
+    "provider": "Xiaomi Token Plan (Europe)",
+    "provider_id": "xiaomi-token-plan-ams",
+    "context_length": 8192,
+    "output_limit": 8192,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "audio"
+      ]
+    },
+    "doc": "https://platform.xiaomimimo.com/#/docs",
+    "api": "https://token-plan-ams.xiaomimimo.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "mistralai/Mistral-Small-3.2-24B-Instruct-2506",
+    "name": "Mistral Small 3.2 24B Instruct",
+    "provider": "Meganova",
+    "provider_id": "meganova",
+    "context_length": 32768,
+    "output_limit": 8192,
+    "reasoning": false,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.meganova.ai",
+    "api": "https://api.meganova.ai/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "Qwen/Qwen2.5-7B-Instruct",
+    "name": "Qwen/Qwen2.5-7B-Instruct",
+    "provider": "SiliconFlow (China)",
+    "provider_id": "siliconflow-cn",
+    "context_length": 33000,
+    "output_limit": 4000,
+    "reasoning": false,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://cloud.siliconflow.com/models",
+    "api": "https://api.siliconflow.cn/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "Qwen/Qwen3.5-4B",
+    "name": "Qwen/Qwen3.5-4B",
+    "provider": "SiliconFlow (China)",
+    "provider_id": "siliconflow-cn",
+    "context_length": 262144,
+    "output_limit": 65536,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://cloud.siliconflow.com/models",
+    "api": "https://api.siliconflow.cn/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "Qwen/Qwen3-8B",
+    "name": "Qwen/Qwen3-8B",
+    "provider": "SiliconFlow (China)",
+    "provider_id": "siliconflow-cn",
+    "context_length": 131000,
+    "output_limit": 131000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://cloud.siliconflow.com/models",
+    "api": "https://api.siliconflow.cn/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "PaddlePaddle/PaddleOCR-VL-1.5",
+    "name": "PaddlePaddle/PaddleOCR-VL-1.5",
+    "provider": "SiliconFlow (China)",
+    "provider_id": "siliconflow-cn",
+    "context_length": 16384,
+    "output_limit": 16384,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://cloud.siliconflow.com/models",
+    "api": "https://api.siliconflow.cn/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "deepseek-ai/DeepSeek-OCR",
+    "name": "deepseek-ai/DeepSeek-OCR",
+    "provider": "SiliconFlow (China)",
+    "provider_id": "siliconflow-cn",
+    "context_length": 8192,
+    "output_limit": 8192,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://cloud.siliconflow.com/models",
+    "api": "https://api.siliconflow.cn/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "wan2.7-image-pro",
+    "name": "Wan2.7 Image Pro",
+    "provider": "Alibaba Token Plan (China)",
+    "provider_id": "alibaba-token-plan-cn",
+    "context_length": 8192,
+    "output_limit": 0,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "image"
+      ]
+    },
+    "doc": "https://www.alibabacloud.com/help/zh/model-studio/token-plan-overview",
+    "api": "https://token-plan.cn-beijing.maas.aliyuncs.com/compatible-mode/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "happyhorse-1.1-r2v",
+    "name": "HappyHorse 1.1 Reference-to-Video",
+    "provider": "Alibaba Token Plan (China)",
+    "provider_id": "alibaba-token-plan-cn",
+    "context_length": 0,
+    "output_limit": 0,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "image",
+        "text"
+      ],
+      "output": [
+        "video"
+      ]
+    },
+    "doc": "https://www.alibabacloud.com/help/zh/model-studio/token-plan-overview",
+    "api": "https://token-plan.cn-beijing.maas.aliyuncs.com/compatible-mode/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "qwen-image-2.0",
+    "name": "Qwen Image 2.0",
+    "provider": "Alibaba Token Plan (China)",
+    "provider_id": "alibaba-token-plan-cn",
+    "context_length": 8192,
+    "output_limit": 0,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "image"
+      ]
+    },
+    "doc": "https://www.alibabacloud.com/help/zh/model-studio/token-plan-overview",
+    "api": "https://token-plan.cn-beijing.maas.aliyuncs.com/compatible-mode/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "wan2.7-image",
+    "name": "Wan2.7 Image",
+    "provider": "Alibaba Token Plan (China)",
+    "provider_id": "alibaba-token-plan-cn",
+    "context_length": 8192,
+    "output_limit": 0,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "image"
+      ]
+    },
+    "doc": "https://www.alibabacloud.com/help/zh/model-studio/token-plan-overview",
+    "api": "https://token-plan.cn-beijing.maas.aliyuncs.com/compatible-mode/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "qwen-image-2.0-pro",
+    "name": "Qwen Image 2.0 Pro",
+    "provider": "Alibaba Token Plan (China)",
+    "provider_id": "alibaba-token-plan-cn",
+    "context_length": 8192,
+    "output_limit": 0,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "image"
+      ]
+    },
+    "doc": "https://www.alibabacloud.com/help/zh/model-studio/token-plan-overview",
+    "api": "https://token-plan.cn-beijing.maas.aliyuncs.com/compatible-mode/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "MiniMax-M2.5",
+    "name": "MiniMax-M2.5",
+    "provider": "Alibaba Token Plan (China)",
+    "provider_id": "alibaba-token-plan-cn",
+    "context_length": 196608,
+    "output_limit": 32768,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.alibabacloud.com/help/zh/model-studio/token-plan-overview",
+    "api": "https://token-plan.cn-beijing.maas.aliyuncs.com/compatible-mode/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "kimi-k2.5",
+    "name": "Kimi K2.5",
+    "provider": "Alibaba Token Plan (China)",
+    "provider_id": "alibaba-token-plan-cn",
+    "context_length": 262144,
+    "output_limit": 98304,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.alibabacloud.com/help/zh/model-studio/token-plan-overview",
+    "api": "https://token-plan.cn-beijing.maas.aliyuncs.com/compatible-mode/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "deepseek-v4-pro-0813",
+    "name": "DeepSeek V4 Pro 0813",
+    "provider": "Alibaba Token Plan (China)",
+    "provider_id": "alibaba-token-plan-cn",
+    "context_length": 1000000,
+    "output_limit": 384000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.alibabacloud.com/help/zh/model-studio/token-plan-overview",
+    "api": "https://token-plan.cn-beijing.maas.aliyuncs.com/compatible-mode/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "qwen3.7-plus",
+    "name": "Qwen3.7 Plus",
+    "provider": "Alibaba Token Plan (China)",
+    "provider_id": "alibaba-token-plan-cn",
+    "context_length": 1000000,
+    "output_limit": 65536,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.alibabacloud.com/help/zh/model-studio/token-plan-overview",
+    "api": "https://token-plan.cn-beijing.maas.aliyuncs.com/compatible-mode/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "deepseek-v4.1-flash-1017",
+    "name": "DeepSeek V4.1 Flash 1017",
+    "provider": "Alibaba Token Plan (China)",
+    "provider_id": "alibaba-token-plan-cn",
+    "context_length": 1000000,
+    "output_limit": 384000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.alibabacloud.com/help/zh/model-studio/token-plan-overview",
+    "api": "https://token-plan.cn-beijing.maas.aliyuncs.com/compatible-mode/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "happyhorse-1.1-i2v",
+    "name": "HappyHorse 1.1 Image-to-Video",
+    "provider": "Alibaba Token Plan (China)",
+    "provider_id": "alibaba-token-plan-cn",
+    "context_length": 0,
+    "output_limit": 0,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "image",
+        "text"
+      ],
+      "output": [
+        "video"
+      ]
+    },
+    "doc": "https://www.alibabacloud.com/help/zh/model-studio/token-plan-overview",
+    "api": "https://token-plan.cn-beijing.maas.aliyuncs.com/compatible-mode/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "qwen3.8-max",
+    "name": "Qwen3.8 Max",
+    "provider": "Alibaba Token Plan (China)",
+    "provider_id": "alibaba-token-plan-cn",
+    "context_length": 1000000,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.alibabacloud.com/help/zh/model-studio/token-plan-overview",
+    "api": "https://token-plan.cn-beijing.maas.aliyuncs.com/compatible-mode/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "qwen3.6-flash",
+    "name": "Qwen3.6 Flash",
+    "provider": "Alibaba Token Plan (China)",
+    "provider_id": "alibaba-token-plan-cn",
+    "context_length": 1000000,
+    "output_limit": 65536,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.alibabacloud.com/help/zh/model-studio/token-plan-overview",
+    "api": "https://token-plan.cn-beijing.maas.aliyuncs.com/compatible-mode/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "qwen3.8-flash",
+    "name": "Qwen3.8 Flash",
+    "provider": "Alibaba Token Plan (China)",
+    "provider_id": "alibaba-token-plan-cn",
+    "context_length": 1000000,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.alibabacloud.com/help/zh/model-studio/token-plan-overview",
+    "api": "https://token-plan.cn-beijing.maas.aliyuncs.com/compatible-mode/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "qwen3.7-max",
+    "name": "Qwen3.7 Max",
+    "provider": "Alibaba Token Plan (China)",
+    "provider_id": "alibaba-token-plan-cn",
+    "context_length": 1000000,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.alibabacloud.com/help/zh/model-studio/token-plan-overview",
+    "api": "https://token-plan.cn-beijing.maas.aliyuncs.com/compatible-mode/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "deepseek-v4-pro",
+    "name": "DeepSeek V4 Pro",
+    "provider": "Alibaba Token Plan (China)",
+    "provider_id": "alibaba-token-plan-cn",
+    "context_length": 1000000,
+    "output_limit": 384000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.alibabacloud.com/help/zh/model-studio/token-plan-overview",
+    "api": "https://token-plan.cn-beijing.maas.aliyuncs.com/compatible-mode/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "kimi-k2.6",
+    "name": "Kimi K2.6",
+    "provider": "Alibaba Token Plan (China)",
+    "provider_id": "alibaba-token-plan-cn",
+    "context_length": 262144,
+    "output_limit": 262144,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.alibabacloud.com/help/zh/model-studio/token-plan-overview",
+    "api": "https://token-plan.cn-beijing.maas.aliyuncs.com/compatible-mode/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "qwen3.6-plus",
+    "name": "Qwen3.6 Plus",
+    "provider": "Alibaba Token Plan (China)",
+    "provider_id": "alibaba-token-plan-cn",
+    "context_length": 1000000,
+    "output_limit": 65536,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.alibabacloud.com/help/zh/model-studio/token-plan-overview",
+    "api": "https://token-plan.cn-beijing.maas.aliyuncs.com/compatible-mode/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "glm-5.3",
+    "name": "GLM-5.3",
+    "provider": "Alibaba Token Plan (China)",
+    "provider_id": "alibaba-token-plan-cn",
+    "context_length": 1000000,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.alibabacloud.com/help/zh/model-studio/token-plan-overview",
+    "api": "https://token-plan.cn-beijing.maas.aliyuncs.com/compatible-mode/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "happyhorse-1.1-t2v",
+    "name": "HappyHorse 1.1 Text-to-Video",
+    "provider": "Alibaba Token Plan (China)",
+    "provider_id": "alibaba-token-plan-cn",
+    "context_length": 0,
+    "output_limit": 0,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "video"
+      ]
+    },
+    "doc": "https://www.alibabacloud.com/help/zh/model-studio/token-plan-overview",
+    "api": "https://token-plan.cn-beijing.maas.aliyuncs.com/compatible-mode/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "kimi-k2.7-code",
+    "name": "Kimi K2.7 Code",
+    "provider": "Alibaba Token Plan (China)",
+    "provider_id": "alibaba-token-plan-cn",
+    "context_length": 262144,
+    "output_limit": 262144,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.alibabacloud.com/help/zh/model-studio/token-plan-overview",
+    "api": "https://token-plan.cn-beijing.maas.aliyuncs.com/compatible-mode/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "reflection/beam-free",
+    "name": "Beam 1.0 (Free)",
+    "provider": "Vercel AI Gateway",
+    "provider_id": "vercel",
+    "context_length": 1048576,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://github.com/vercel/ai/tree/5eb85cc45a259553501f535b8ac79a77d0e79223/packages/gateway",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "reflection/beam",
+    "name": "Beam 1.0",
+    "provider": "Vercel AI Gateway",
+    "provider_id": "vercel",
+    "context_length": 1048576,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://github.com/vercel/ai/tree/5eb85cc45a259553501f535b8ac79a77d0e79223/packages/gateway",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "humansand/ampersand-v0.1",
+    "name": "Ampersand v0.1",
+    "provider": "Vercel AI Gateway",
+    "provider_id": "vercel",
+    "context_length": 1000000,
+    "output_limit": 32768,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://github.com/vercel/ai/tree/5eb85cc45a259553501f535b8ac79a77d0e79223/packages/gateway",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "stealth/glyph-cluster",
+    "name": "Glyph Cluster",
+    "provider": "Vercel AI Gateway",
+    "provider_id": "vercel",
+    "context_length": 256000,
+    "output_limit": 256000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://github.com/vercel/ai/tree/5eb85cc45a259553501f535b8ac79a77d0e79223/packages/gateway",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "hy3:free",
+    "name": "Hy3 (Free)",
+    "provider": "Kenari",
+    "provider_id": "kenari",
+    "context_length": 256000,
+    "output_limit": 128000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://kenari.id/docs",
+    "api": "https://kenari.id/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "nemotron-3-super-120b-a12b:free",
+    "name": "Nemotron 3 Super 120B A12B (Free)",
+    "provider": "Kenari",
+    "provider_id": "kenari",
+    "context_length": 262144,
+    "output_limit": 262144,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://kenari.id/docs",
+    "api": "https://kenari.id/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "glm-4-7-flash:free",
+    "name": "GLM-4.7-Flash (Free)",
+    "provider": "Kenari",
+    "provider_id": "kenari",
+    "context_length": 200000,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://kenari.id/docs",
+    "api": "https://kenari.id/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "wan2.7-image-pro",
+    "name": "Wan2.7 Image Pro",
+    "provider": "Alibaba Token Plan",
+    "provider_id": "alibaba-token-plan",
+    "context_length": 8192,
+    "output_limit": 0,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "image"
+      ]
+    },
+    "doc": "https://www.alibabacloud.com/help/en/model-studio/token-plan-overview",
+    "api": "https://token-plan.ap-southeast-1.maas.aliyuncs.com/compatible-mode/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "happyhorse-1.1-r2v",
+    "name": "HappyHorse 1.1 Reference-to-Video",
+    "provider": "Alibaba Token Plan",
+    "provider_id": "alibaba-token-plan",
+    "context_length": 0,
+    "output_limit": 0,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "image",
+        "text"
+      ],
+      "output": [
+        "video"
+      ]
+    },
+    "doc": "https://www.alibabacloud.com/help/en/model-studio/token-plan-overview",
+    "api": "https://token-plan.ap-southeast-1.maas.aliyuncs.com/compatible-mode/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "qwen-image-2.0",
+    "name": "Qwen Image 2.0",
+    "provider": "Alibaba Token Plan",
+    "provider_id": "alibaba-token-plan",
+    "context_length": 8192,
+    "output_limit": 0,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "image"
+      ]
+    },
+    "doc": "https://www.alibabacloud.com/help/en/model-studio/token-plan-overview",
+    "api": "https://token-plan.ap-southeast-1.maas.aliyuncs.com/compatible-mode/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "wan2.7-image",
+    "name": "Wan2.7 Image",
+    "provider": "Alibaba Token Plan",
+    "provider_id": "alibaba-token-plan",
+    "context_length": 8192,
+    "output_limit": 0,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "image"
+      ]
+    },
+    "doc": "https://www.alibabacloud.com/help/en/model-studio/token-plan-overview",
+    "api": "https://token-plan.ap-southeast-1.maas.aliyuncs.com/compatible-mode/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "qwen-image-2.0-pro",
+    "name": "Qwen Image 2.0 Pro",
+    "provider": "Alibaba Token Plan",
+    "provider_id": "alibaba-token-plan",
+    "context_length": 8192,
+    "output_limit": 0,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "image"
+      ]
+    },
+    "doc": "https://www.alibabacloud.com/help/en/model-studio/token-plan-overview",
+    "api": "https://token-plan.ap-southeast-1.maas.aliyuncs.com/compatible-mode/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "MiniMax-M2.5",
+    "name": "MiniMax-M2.5",
+    "provider": "Alibaba Token Plan",
+    "provider_id": "alibaba-token-plan",
+    "context_length": 196608,
+    "output_limit": 32768,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.alibabacloud.com/help/en/model-studio/token-plan-overview",
+    "api": "https://token-plan.ap-southeast-1.maas.aliyuncs.com/compatible-mode/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "kimi-k2.5",
+    "name": "Kimi K2.5",
+    "provider": "Alibaba Token Plan",
+    "provider_id": "alibaba-token-plan",
+    "context_length": 262144,
+    "output_limit": 98304,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.alibabacloud.com/help/en/model-studio/token-plan-overview",
+    "api": "https://token-plan.ap-southeast-1.maas.aliyuncs.com/compatible-mode/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "deepseek-v4-pro-0813",
+    "name": "DeepSeek V4 Pro 0813",
+    "provider": "Alibaba Token Plan",
+    "provider_id": "alibaba-token-plan",
+    "context_length": 1000000,
+    "output_limit": 384000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.alibabacloud.com/help/en/model-studio/token-plan-overview",
+    "api": "https://token-plan.ap-southeast-1.maas.aliyuncs.com/compatible-mode/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "qwen3.7-plus",
+    "name": "Qwen3.7 Plus",
+    "provider": "Alibaba Token Plan",
+    "provider_id": "alibaba-token-plan",
+    "context_length": 1000000,
+    "output_limit": 65536,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.alibabacloud.com/help/en/model-studio/token-plan-overview",
+    "api": "https://token-plan.ap-southeast-1.maas.aliyuncs.com/compatible-mode/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "deepseek-v4.1-flash-1017",
+    "name": "DeepSeek V4.1 Flash 1017",
+    "provider": "Alibaba Token Plan",
+    "provider_id": "alibaba-token-plan",
+    "context_length": 1000000,
+    "output_limit": 384000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.alibabacloud.com/help/en/model-studio/token-plan-overview",
+    "api": "https://token-plan.ap-southeast-1.maas.aliyuncs.com/compatible-mode/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "happyhorse-1.1-i2v",
+    "name": "HappyHorse 1.1 Image-to-Video",
+    "provider": "Alibaba Token Plan",
+    "provider_id": "alibaba-token-plan",
+    "context_length": 0,
+    "output_limit": 0,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "image",
+        "text"
+      ],
+      "output": [
+        "video"
+      ]
+    },
+    "doc": "https://www.alibabacloud.com/help/en/model-studio/token-plan-overview",
+    "api": "https://token-plan.ap-southeast-1.maas.aliyuncs.com/compatible-mode/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "qwen3.8-max",
+    "name": "Qwen3.8 Max",
+    "provider": "Alibaba Token Plan",
+    "provider_id": "alibaba-token-plan",
+    "context_length": 1000000,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.alibabacloud.com/help/en/model-studio/token-plan-overview",
+    "api": "https://token-plan.ap-southeast-1.maas.aliyuncs.com/compatible-mode/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "qwen3.6-flash",
+    "name": "Qwen3.6 Flash",
+    "provider": "Alibaba Token Plan",
+    "provider_id": "alibaba-token-plan",
+    "context_length": 1000000,
+    "output_limit": 65536,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.alibabacloud.com/help/en/model-studio/token-plan-overview",
+    "api": "https://token-plan.ap-southeast-1.maas.aliyuncs.com/compatible-mode/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "qwen3.8-flash",
+    "name": "Qwen3.8 Flash",
+    "provider": "Alibaba Token Plan",
+    "provider_id": "alibaba-token-plan",
+    "context_length": 1000000,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.alibabacloud.com/help/en/model-studio/token-plan-overview",
+    "api": "https://token-plan.ap-southeast-1.maas.aliyuncs.com/compatible-mode/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "qwen3.7-max",
+    "name": "Qwen3.7 Max",
+    "provider": "Alibaba Token Plan",
+    "provider_id": "alibaba-token-plan",
+    "context_length": 1000000,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.alibabacloud.com/help/en/model-studio/token-plan-overview",
+    "api": "https://token-plan.ap-southeast-1.maas.aliyuncs.com/compatible-mode/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "deepseek-v4-pro",
+    "name": "DeepSeek V4 Pro",
+    "provider": "Alibaba Token Plan",
+    "provider_id": "alibaba-token-plan",
+    "context_length": 1000000,
+    "output_limit": 384000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.alibabacloud.com/help/en/model-studio/token-plan-overview",
+    "api": "https://token-plan.ap-southeast-1.maas.aliyuncs.com/compatible-mode/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "kimi-k2.6",
+    "name": "Kimi K2.6",
+    "provider": "Alibaba Token Plan",
+    "provider_id": "alibaba-token-plan",
+    "context_length": 262144,
+    "output_limit": 262144,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.alibabacloud.com/help/en/model-studio/token-plan-overview",
+    "api": "https://token-plan.ap-southeast-1.maas.aliyuncs.com/compatible-mode/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "qwen3.6-plus",
+    "name": "Qwen3.6 Plus",
+    "provider": "Alibaba Token Plan",
+    "provider_id": "alibaba-token-plan",
+    "context_length": 1000000,
+    "output_limit": 65536,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.alibabacloud.com/help/en/model-studio/token-plan-overview",
+    "api": "https://token-plan.ap-southeast-1.maas.aliyuncs.com/compatible-mode/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "glm-5.3",
+    "name": "GLM-5.3",
+    "provider": "Alibaba Token Plan",
+    "provider_id": "alibaba-token-plan",
+    "context_length": 1000000,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.alibabacloud.com/help/en/model-studio/token-plan-overview",
+    "api": "https://token-plan.ap-southeast-1.maas.aliyuncs.com/compatible-mode/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "happyhorse-1.1-t2v",
+    "name": "HappyHorse 1.1 Text-to-Video",
+    "provider": "Alibaba Token Plan",
+    "provider_id": "alibaba-token-plan",
+    "context_length": 0,
+    "output_limit": 0,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "video"
+      ]
+    },
+    "doc": "https://www.alibabacloud.com/help/en/model-studio/token-plan-overview",
+    "api": "https://token-plan.ap-southeast-1.maas.aliyuncs.com/compatible-mode/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "kimi-k2.7-code",
+    "name": "Kimi K2.7 Code",
+    "provider": "Alibaba Token Plan",
+    "provider_id": "alibaba-token-plan",
+    "context_length": 262144,
+    "output_limit": 262144,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.alibabacloud.com/help/en/model-studio/token-plan-overview",
+    "api": "https://token-plan.ap-southeast-1.maas.aliyuncs.com/compatible-mode/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "z-ai/glm-5.3-free",
+    "name": "GLM-5.3 (free)",
+    "provider": "TokenRouter",
+    "provider_id": "tokenrouter",
+    "context_length": 1000000,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.tokenrouter.com/docs/tokenrouter-feature-guide/",
+    "api": "https://api.tokenrouter.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "MiniMax-M3",
+    "name": "MiniMax-M3",
+    "provider": "MiniMax Token Plan (minimax.cn)",
+    "provider_id": "minimax-cn-coding-plan",
+    "context_length": 1000000,
+    "output_limit": 524288,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://platform.minimaxi.com/docs/token-plan/intro",
+    "api": "https://api.minimax.cn/anthropic/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "MiniMax-M3.1-Flash",
+    "name": "MiniMax-M3.1-Flash",
+    "provider": "MiniMax Token Plan (minimax.cn)",
+    "provider_id": "minimax-cn-coding-plan",
+    "context_length": 1000000,
+    "output_limit": 524288,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://platform.minimaxi.com/docs/token-plan/intro",
+    "api": "https://api.minimax.cn/anthropic/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "GLM-4.7",
+    "name": "GLM-4.7",
+    "provider": "KUAE Cloud Coding Plan",
+    "provider_id": "kuae-cloud-coding-plan",
+    "context_length": 204800,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.mthreads.com/kuaecloud/kuaecloud-doc-online/coding_plan/",
+    "api": "https://coding-plan-endpoint.kuaecloud.net/v1",
+    "source": "Models.dev API"
   }
 ]

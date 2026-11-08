@@ -88,8 +88,21 @@ def main():
             print("\n--- Task 2: Looking For New (Frontier Discovery) ---")
             discovered = scout_frontier(catalog, apply_updates=args.apply, key=key)
             print(f"Discovery Results: {len(discovered)} candidate models queued.")
-            for d in discovered:
-                contradictions.append(f"✨ *New Frontier Candidate*: `{d.get('name')}` ({d.get('url')})")
+            if discovered:
+                by_prov = {}
+                by_source = {}
+                for d in discovered:
+                    p = d.get("provider", "Unknown")
+                    s = d.get("source", "Unknown")
+                    by_prov[p] = by_prov.get(p, 0) + 1
+                    by_source[s] = by_source.get(s, 0) + 1
+                
+                src_str = ", ".join(f"{count} via {src}" for src, count in sorted(by_source.items(), key=lambda x: x[1], reverse=True))
+                top_prov_str = ", ".join(f"{p} ({cnt})" for p, cnt in sorted(by_prov.items(), key=lambda x: x[1], reverse=True)[:5])
+                contradictions.append(
+                    f"✨ *Frontier Discovery Queue*: {len(discovered)} new candidate free models ({src_str}). "
+                    f"Top sources: {top_prov_str}."
+                )
 
         # Save Catalog if applied
         if args.apply:

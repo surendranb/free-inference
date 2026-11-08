@@ -3448,7 +3448,7 @@
           "verified": "2026-11-08"
         }
       ],
-      "verified_method": "api",
+      "verified_method": "docs",
       "docs_url": "https://help.aliyun.com/document_detail/2712195.html",
       "access_method": "api_key",
       "artifact": "code",
@@ -3613,6 +3613,36 @@
           "name": "MiMo-V2.6-Flash",
           "cost": "$0",
           "context": "1M",
+          "rpm": "30",
+          "tpm": "Not published",
+          "rpd": "1,000",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "DeepSeek V4.1 Flash",
+          "cost": "$0",
+          "context": "1M",
+          "rpm": "30",
+          "tpm": "Not published",
+          "rpd": "1,000",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "Gemma 4 31B IT",
+          "cost": "$0",
+          "context": "256K",
+          "rpm": "30",
+          "tpm": "Not published",
+          "rpd": "1,000",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "GLM-5.3-Flash",
+          "cost": "$0",
+          "context": "256K",
           "rpm": "30",
           "tpm": "Not published",
           "rpd": "1,000",
@@ -3832,7 +3862,7 @@
           "verified": "2026-11-08"
         }
       ],
-      "verified_method": "api",
+      "verified_method": "docs",
       "docs_url": "https://www.kimi.ai/code/docs/en/kimi-code/models.html",
       "access_method": "api_key",
       "artifact": "code",

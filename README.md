@@ -2,7 +2,7 @@
 
 Free AI & LLM inference you can build with: an API key, a CLI login, or inference bundled inside a coding tool or builder. Speech-to-text, voice synthesis, code, vision, and reasoning. The test is whether you can ship an artifact you keep — code, an app, an audio file, a site, a design, an agent, a skill. Chat-only free tiers are excluded on purpose.
 
-> **2026-11-08** · 49 providers · 336 free models
+> **2026-11-08** · 49 providers · 339 free models
 > Interactive site: https://freeinference.dev · Agent summary: https://freeinference.dev/llms.txt · Machine data: https://freeinference.dev/data/providers.json (validate against https://freeinference.dev/data/schema.json)
 
 ### Quick Navigation & Machine Access
@@ -76,7 +76,7 @@ The Condition: Free token allocations apply for designated promotional windows w
 The Output: Standard OpenAI-compatible completion endpoints with 262K token context windows.
 The Process: Create an account on ModelScope and retrieve an API access token.
 The Condition: Rate-limited to community usage tiers with fair-share queueing. |
-| [AMD Developer Cloud](https://cloud.amd.com/) | api_key | Free Developer Tier | MiniCPM5-2B, Qwen3.8 Flash Next, DeepSeek V4 Flash 0731, MiniCPM-V 4.7 1B, MiniCPM-V 4.7 35B-A3B, Qwen3.8 27B, +1 more | The Grant: AMD Developer Cloud provides free inference access to open frontier models running on AMD Instinct ROCm GPU clusters.
+| [AMD Developer Cloud](https://cloud.amd.com/) | api_key | Free Developer Tier | MiniCPM5-2B, Qwen3.8 Flash Next, DeepSeek V4 Flash 0731, MiniCPM-V 4.7 1B, MiniCPM-V 4.7 35B-A3B, Qwen3.8 27B, +4 more | The Grant: AMD Developer Cloud provides free inference access to open frontier models running on AMD Instinct ROCm GPU clusters.
 The Output: OpenAI-compatible chat endpoints supporting DeepSeek, Qwen, and MiniCPM variants.
 The Process: Register an AMD Developer account to access the inference API console.
 The Condition: Subject to ROCm cluster capacity and developer fair-use quotas. |
@@ -615,6 +615,9 @@ The Condition: Rate-limited free promotional usage subject to provider token ava
 | MiniCPM-V 4.7 35B-A3B | $0 | 256K | 30 | Not published | 1,000 | Not published | 2026-11-08 |
 | Qwen3.8 27B | $0 | 256K | 30 | Not published | 1,000 | Not published | 2026-11-08 |
 | MiMo-V2.6-Flash | $0 | 1M | 30 | Not published | 1,000 | Not published | 2026-11-08 |
+| DeepSeek V4.1 Flash | $0 | 1M | 30 | Not published | 1,000 | Not published | 2026-11-08 |
+| Gemma 4 31B IT | $0 | 256K | 30 | Not published | 1,000 | Not published | 2026-11-08 |
+| GLM-5.3-Flash | $0 | 256K | 30 | Not published | 1,000 | Not published | 2026-11-08 |
 
 ### InferX
 

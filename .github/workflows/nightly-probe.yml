@@ -1,9 +1,9 @@
 name: nightly-probe
 
 on:
+  workflow_dispatch:
   schedule:
     - cron: "37 3 * * *"   # 09:07 IST
-  workflow_dispatch: {}
 
 jobs:
   probe-and-deploy:

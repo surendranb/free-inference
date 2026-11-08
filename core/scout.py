@@ -24,6 +24,125 @@ CANDIDATE_SCHEMA = {
 }
 
 
+def format_context(ctx) -> str:
+    """Format numeric context length into human-readable representation."""
+    if not ctx:
+        return "Model-dependent"
+    if isinstance(ctx, (int, float)):
+        if ctx >= 1048576:
+            return f"{int(ctx // 1048576)}M" if ctx % 1048576 == 0 else f"{round(ctx / 1048576, 1)}M"
+        if ctx >= 1000000:
+            return f"{round(ctx / 1000000, 1)}M"
+        if ctx >= 1024:
+            return f"{int(ctx // 1024)}K" if ctx % 1024 == 0 else f"{round(ctx / 1024, 1)}K"
+        if ctx >= 1000:
+            return f"{int(ctx // 1000)}K"
+        return str(ctx)
+    return str(ctx)
+
+
+def expand_base_catalog_from_sources(catalog_data: dict, apply_updates: bool = False) -> List[dict]:
+    """Scan Models.dev & OpenRouter to automatically discover and attach new $0 models to existing providers."""
+    from core.enricher import PROVIDER_LOGO_MAP
+
+    our_provs = {p["name"]: p for p in catalog_data.get("providers", [])}
+    mdev_to_our = {v: k for k, v in PROVIDER_LOGO_MAP.items()}
+
+    # Fuzzy mappings
+    for pid in ["sambanova", "cohere", "kilo", "requesty", "nvidia", "zai", "groq", "google", "mistral", "deepseek"]:
+        if pid not in mdev_to_our:
+            for our_name in our_provs:
+                if pid in our_name.lower():
+                    mdev_to_our[pid] = our_name
+
+    # 1. Models.dev fanout
+    url = "https://models.dev/api.json"
+    try:
+        req = urllib.request.Request(url, headers=UA)
+        with urllib.request.urlopen(req, timeout=20) as r:
+            mdev = json.load(r)
+    except Exception as e:
+        print(f"Notice: Models.dev fetch failed: {e}")
+        mdev = {}
+
+    added_models = []
+    today_iso = date.today().isoformat()
+
+    for pid, pdata in mdev.items():
+        our_pname = mdev_to_our.get(pid)
+        if not our_pname or our_pname not in our_provs:
+            continue
+        our_p = our_provs[our_pname]
+        existing = {m["name"].lower().replace(":free", "").strip() for m in our_p.get("models", [])}
+        existing.update(m["name"].lower().strip() for m in our_p.get("models", []))
+
+        template = our_p["models"][0] if our_p.get("models") else {}
+        for mid, mdata in pdata.get("models", {}).items():
+            cost = mdata.get("cost", {})
+            if cost.get("input") == 0 and cost.get("output") == 0 and mdata.get("status") != "deprecated":
+                mname = mdata.get("name", mid)
+                if mname.lower() not in existing and mid.lower() not in existing:
+                    new_m = {
+                        "name": mname,
+                        "cost": "$0",
+                        "context": format_context(mdata.get("limit", {}).get("context")),
+                        "rpm": template.get("rpm", "Published on portal"),
+                        "tpm": template.get("tpm", "Not published"),
+                        "rpd": template.get("rpd", "Not published"),
+                        "tpd": template.get("tpd", "Not published"),
+                        "verified": today_iso
+                    }
+                    our_p.setdefault("models", []).append(new_m)
+                    existing.add(mname.lower().replace(":free", "").strip())
+                    existing.add(mid.lower().replace(":free", "").strip())
+                    added_models.append({
+                        "provider": our_pname,
+                        "model": mname,
+                        "context": new_m["context"],
+                        "source": "Models.dev API"
+                    })
+
+    # 2. OpenRouter fanout for OpenRouter catalog entry
+    or_p = our_provs.get("OpenRouter")
+    if or_p:
+        existing_or = {m["name"].lower().replace(":free", "").strip() for m in or_p.get("models", [])}
+        existing_or.update(m["name"].lower().strip() for m in or_p.get("models", []))
+        or_url = "https://openrouter.ai/api/v1/models"
+        try:
+            req = urllib.request.Request(or_url, headers=UA)
+            with urllib.request.urlopen(req, timeout=15) as r:
+                or_data = json.load(r).get("data", [])
+            for m in or_data:
+                mid = m.get("id", "")
+                pricing = m.get("pricing", {})
+                if ":free" in mid or (float(pricing.get("prompt", 0) or 0) == 0 and float(pricing.get("completion", 0) or 0) == 0):
+                    mname = m.get("name", mid)
+                    if mname.lower() not in existing_or and mid.lower() not in existing_or:
+                        new_m = {
+                            "name": mname,
+                            "cost": "$0",
+                            "context": format_context(m.get("context_length")),
+                            "rpm": "20",
+                            "tpm": "Provider-dependent",
+                            "rpd": "50 (below $10 credits) / 1,000 ($10+ credits)",
+                            "tpd": "Not published",
+                            "verified": today_iso
+                        }
+                        or_p.setdefault("models", []).append(new_m)
+                        existing_or.add(mname.lower().replace(":free", "").strip())
+                        existing_or.add(mid.lower().replace(":free", "").strip())
+                        added_models.append({
+                            "provider": "OpenRouter",
+                            "model": mname,
+                            "context": new_m["context"],
+                            "source": "OpenRouter API"
+                        })
+        except Exception as e:
+            print(f"Notice: OpenRouter base expansion failed: {e}")
+
+    return added_models
+
+
 def validate_candidate_output(data: dict) -> Optional[str]:
     """Validate candidate evaluation output."""
     if not isinstance(data, dict):

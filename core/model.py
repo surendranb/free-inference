@@ -3,16 +3,23 @@
 import json
 import os
 import subprocess
+import time
 import urllib.error
 import urllib.request
 
-MODEL_NAME = "gemini-3.5-flash-lite"
+MODEL_CASCADE = [
+    "gemini-3.5-flash-lite",
+    "gemini-3.1-flash-lite",
+    "gemma-4-26b-a4b-it",
+    "gemma-4-31b-it",
+]
+MODEL_NAME = MODEL_CASCADE[0]
 API_BASE = "https://generativelanguage.googleapis.com/v1beta/models"
 
 
 def get_api_key() -> str:
     """Retrieve Gemini API key from environment or macOS keychain."""
-    key = os.environ.get("GEMINI_API_KEY")
+    key = os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
     if key:
         return key.strip()
     try:
@@ -22,37 +29,64 @@ def get_api_key() -> str:
         )
         return res.stdout.strip()
     except Exception:
+        pass
+    try:
+        res = subprocess.run(
+            ["security", "find-generic-password", "-s", "agent-core", "-a", "GOOGLE_API_KEY", "-w"],
+            capture_output=True, text=True, check=True
+        )
+        return res.stdout.strip()
+    except Exception:
         return ""
 
 
-def call_gemini_json(prompt: str, schema: dict, key: str = None, model: str = MODEL_NAME) -> dict:
-    """Invoke Gemini with hardware-enforced JSON schema output."""
+def call_gemini_json(prompt: str, schema: dict, key: str = None, model: str = None) -> dict:
+    """Invoke Gemini with hardware-enforced JSON schema output and cascade failover."""
     api_key = key or get_api_key()
     if not api_key:
-        raise ValueError("Missing GEMINI_API_KEY")
+        raise ValueError("Missing GEMINI_API_KEY or GOOGLE_API_KEY")
 
-    url = f"{API_BASE}/{model}:generateContent?key={api_key}"
-    payload = {
-        "contents": [{"parts": [{"text": prompt}]}],
-        "generationConfig": {
-            "responseMimeType": "application/json",
-            "responseSchema": schema
+    models_to_try = [model] if model else MODEL_CASCADE
+    last_err = None
+
+    for m in models_to_try:
+        url = f"{API_BASE}/{m}:generateContent?key={api_key}"
+        payload = {
+            "contents": [{"parts": [{"text": prompt}]}],
+            "generationConfig": {
+                "responseMimeType": "application/json",
+                "responseSchema": schema
+            }
         }
-    }
-    req = urllib.request.Request(
-        url,
-        data=json.dumps(payload).encode("utf-8"),
-        headers={"Content-Type": "application/json"}
-    )
-    with urllib.request.urlopen(req, timeout=20) as r:
-        res = json.load(r)
+        req = urllib.request.Request(
+            url,
+            data=json.dumps(payload).encode("utf-8"),
+            headers={"Content-Type": "application/json"}
+        )
+        try:
+            with urllib.request.urlopen(req, timeout=25) as r:
+                res = json.load(r)
 
-    candidates = res.get("candidates", [])
-    if not candidates:
-        raise RuntimeError(f"No candidates returned: {res}")
+            candidates = res.get("candidates", [])
+            if not candidates:
+                continue
 
-    text = candidates[0]["content"]["parts"][0]["text"]
-    return json.loads(text)
+            text = candidates[0]["content"]["parts"][0]["text"]
+            return json.loads(text)
+        except urllib.error.HTTPError as e:
+            last_err = e
+            if e.code in (429, 500, 502, 503):
+                print(f"  [model-cascade] {m} returned HTTP {e.code}, failing over to next model in cascade...")
+                time.sleep(1)
+                continue
+            raise
+        except Exception as e:
+            last_err = e
+            print(f"  [model-cascade] {m} failed with {e}, failing over to next model...")
+            time.sleep(1)
+            continue
+
+    raise RuntimeError(f"All models in cascade ({models_to_try}) failed. Last error: {last_err}")
 
 
 def call_with_self_correction(

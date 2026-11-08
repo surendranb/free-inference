@@ -18,7 +18,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Run FreeInference Engine (Task 1: Verify & Task 2: Scout)
+      - name: "Run FreeInference Engine (Verify and Scout)"
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GOOGLE_API_KEY: ${{ secrets.GEMINI_API_KEY }}
@@ -62,7 +62,7 @@ jobs:
           else
             echo "no deploy hook configured; git push above is the deploy trigger"
           fi
-      - name: Alert on Failure (Slack & GitHub Issue)
+      - name: "Alert on Failure (Slack and GitHub Issue)"
         if: failure()
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}

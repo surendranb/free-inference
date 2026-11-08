@@ -690,6 +690,16 @@
           "rpd": "1,000",
           "tpd": "100K tokens/day",
           "verified": "2026-11-08"
+        },
+        {
+          "name": "meta-llama/llama-prompt-guard-2-86m",
+          "cost": "$0",
+          "context": "128K",
+          "rpm": "30",
+          "tpm": "15K",
+          "rpd": "14,400",
+          "tpd": "500K tokens/day",
+          "verified": "2026-11-08"
         }
       ],
       "verified_method": "docs",
@@ -739,7 +749,7 @@
       "name": "Cloudflare Workers AI",
       "url": "https://developers.cloudflare.com/workers-ai/platform/limits",
       "free_type": "Rate-limited free",
-      "notes": "Cloudflare Workers AI offers ~80 free models (including Llama 3.3 70B, DeepSeek-R1 distills, Whisper, and FLUX), translating to 10,000 neurons/day (~hundreds of queries or audio minutes). No credit card required. Hard stop at 10,000 neurons until 00:00 UTC daily reset.",
+      "notes": "Cloudflare Workers AI is Generally Available with ~80 free models (including Llama 3.3 70B, DeepSeek-R1 distills, Whisper, and FLUX), translating to 10,000 neurons/day (~hundreds of queries or audio minutes). No credit card required. Hard stop at 10,000 neurons until 00:00 UTC daily reset.",
       "timeout": "Not published",
       "verified": "2026-11-08",
       "models": [
@@ -820,13 +830,33 @@
       "verified": "2026-11-08",
       "models": [
         {
-          "name": "mistral-tiny",
+          "name": "mistral-small-latest",
           "cost": "$0",
-          "context": "32k",
-          "rpm": "Not specified",
-          "tpm": "Not specified",
-          "rpd": "Not specified",
-          "tpd": "Not specified",
+          "context": "128K",
+          "rpm": "60",
+          "tpm": "500K",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "codestral-latest",
+          "cost": "$0",
+          "context": "256K",
+          "rpm": "30",
+          "tpm": "300K",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "open-mistral-nemo",
+          "cost": "$0",
+          "context": "128K",
+          "rpm": "60",
+          "tpm": "500K",
+          "rpd": "Not published",
+          "tpd": "Not published",
           "verified": "2026-11-08"
         }
       ],
@@ -3198,6 +3228,908 @@
           "verified": "2026-11-08"
         }
       ]
+    },
+    {
+      "name": "Alibaba DashScope (Bailian)",
+      "url": "https://www.alibabacloud.com/help/en/model-studio/developer-reference/get-api-key",
+      "free_type": "Trial / Free tokens",
+      "notes": "The Grant: Alibaba Cloud Model Studio (Bailian/DashScope) provides free token allotments upon account activation across its Qwen and DeepSeek model fleet.\nThe Output: Access to high-throughput OpenAI-compatible endpoints with up to 1M token context windows.\nThe Process: Register an Alibaba Cloud account and generate an API key in the Model Studio console.\nThe Condition: Free token allocations apply for designated promotional windows with phone verification.",
+      "timeout": "300s",
+      "verified": "2026-11-08",
+      "models": [
+        {
+          "name": "Qwen3.7 Plus",
+          "cost": "$0",
+          "context": "1.0M",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "Free tier token grant",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "DeepSeek V4.1 Flash 1017",
+          "cost": "$0",
+          "context": "1.0M",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "Free tier token grant",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "GLM-5.3",
+          "cost": "$0",
+          "context": "1.0M",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "Free tier token grant",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "Qwen3.6 Plus",
+          "cost": "$0",
+          "context": "1.0M",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "Free tier token grant",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "Wan2.7 Image",
+          "cost": "$0",
+          "context": "8K",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "Free tier token grant",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "HappyHorse 1.1 Reference-to-Video",
+          "cost": "$0",
+          "context": "Model-dependent",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "Free tier token grant",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "Qwen3.6 Flash",
+          "cost": "$0",
+          "context": "1.0M",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "Free tier token grant",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "Qwen3.7 Max",
+          "cost": "$0",
+          "context": "1.0M",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "Free tier token grant",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "DeepSeek V4 Pro",
+          "cost": "$0",
+          "context": "1.0M",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "Free tier token grant",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "MiniMax-M2.5",
+          "cost": "$0",
+          "context": "192K",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "Free tier token grant",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "Kimi K2.6",
+          "cost": "$0",
+          "context": "256K",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "Free tier token grant",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "Kimi K2.5",
+          "cost": "$0",
+          "context": "256K",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "Free tier token grant",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "Kimi K2.7 Code",
+          "cost": "$0",
+          "context": "256K",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "Free tier token grant",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "HappyHorse 1.1 Text-to-Video",
+          "cost": "$0",
+          "context": "Model-dependent",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "Free tier token grant",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "Qwen Image 2.0",
+          "cost": "$0",
+          "context": "8K",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "Free tier token grant",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "Wan2.7 Image Pro",
+          "cost": "$0",
+          "context": "8K",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "Free tier token grant",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "HappyHorse 1.1 Image-to-Video",
+          "cost": "$0",
+          "context": "Model-dependent",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "Free tier token grant",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "DeepSeek V4 Pro 0813",
+          "cost": "$0",
+          "context": "1.0M",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "Free tier token grant",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "Qwen3.8 Flash",
+          "cost": "$0",
+          "context": "1.0M",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "Free tier token grant",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "Qwen3.8 Max",
+          "cost": "$0",
+          "context": "1.0M",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "Free tier token grant",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "Qwen Image 2.0 Pro",
+          "cost": "$0",
+          "context": "8K",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "Free tier token grant",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        }
+      ],
+      "verified_method": "api",
+      "docs_url": "https://help.aliyun.com/document_detail/2712195.html",
+      "access_method": "api_key",
+      "artifact": "code",
+      "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+      "channel": "web"
+    },
+    {
+      "name": "ModelScope",
+      "url": "https://modelscope.cn/docs/api-inference",
+      "free_type": "Rate-limited free",
+      "notes": "The Grant: ModelScope (Alibaba's open-source model community) offers free hosted inference for community and Qwen open-weights models.\nThe Output: Standard OpenAI-compatible completion endpoints with 262K token context windows.\nThe Process: Create an account on ModelScope and retrieve an API access token.\nThe Condition: Rate-limited to community usage tiers with fair-share queueing.",
+      "timeout": "180s",
+      "verified": "2026-11-08",
+      "models": [
+        {
+          "name": "Qwen3 30B A3B Thinking 2507",
+          "cost": "$0",
+          "context": "256K",
+          "rpm": "30",
+          "tpm": "Not published",
+          "rpd": "500",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "Qwen3 235B A22B Instruct 2507",
+          "cost": "$0",
+          "context": "256K",
+          "rpm": "30",
+          "tpm": "Not published",
+          "rpd": "500",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "Qwen3 30B A3B Instruct 2507",
+          "cost": "$0",
+          "context": "256K",
+          "rpm": "30",
+          "tpm": "Not published",
+          "rpd": "500",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "Qwen3-235B-A22B-Thinking-2507",
+          "cost": "$0",
+          "context": "256K",
+          "rpm": "30",
+          "tpm": "Not published",
+          "rpd": "500",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "Qwen3 Coder 30B A3B Instruct",
+          "cost": "$0",
+          "context": "256K",
+          "rpm": "30",
+          "tpm": "Not published",
+          "rpd": "500",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "GLM-4.5",
+          "cost": "$0",
+          "context": "128K",
+          "rpm": "30",
+          "tpm": "Not published",
+          "rpd": "500",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "GLM-4.6",
+          "cost": "$0",
+          "context": "198K",
+          "rpm": "30",
+          "tpm": "Not published",
+          "rpd": "500",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        }
+      ],
+      "verified_method": "api",
+      "docs_url": "https://modelscope.cn/docs/api-inference",
+      "access_method": "api_key",
+      "artifact": "code",
+      "base_url": "https://api-inference.modelscope.cn/v1",
+      "channel": "web"
+    },
+    {
+      "name": "AMD Developer Cloud",
+      "url": "https://cloud.amd.com/",
+      "free_type": "Free Developer Tier",
+      "notes": "The Grant: AMD Developer Cloud provides free inference access to open frontier models running on AMD Instinct ROCm GPU clusters.\nThe Output: OpenAI-compatible chat endpoints supporting DeepSeek, Qwen, and MiniCPM variants.\nThe Process: Register an AMD Developer account to access the inference API console.\nThe Condition: Subject to ROCm cluster capacity and developer fair-use quotas.",
+      "timeout": "120s",
+      "verified": "2026-11-08",
+      "models": [
+        {
+          "name": "MiniCPM5-2B",
+          "cost": "$0",
+          "context": "128K",
+          "rpm": "30",
+          "tpm": "Not published",
+          "rpd": "1,000",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "Qwen3.8 Flash Next",
+          "cost": "$0",
+          "context": "256K",
+          "rpm": "30",
+          "tpm": "Not published",
+          "rpd": "1,000",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "DeepSeek V4 Flash 0731",
+          "cost": "$0",
+          "context": "1M",
+          "rpm": "30",
+          "tpm": "Not published",
+          "rpd": "1,000",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "MiniCPM-V 4.7 1B",
+          "cost": "$0",
+          "context": "256K",
+          "rpm": "30",
+          "tpm": "Not published",
+          "rpd": "1,000",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "MiniCPM-V 4.7 35B-A3B",
+          "cost": "$0",
+          "context": "256K",
+          "rpm": "30",
+          "tpm": "Not published",
+          "rpd": "1,000",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "Qwen3.8 27B",
+          "cost": "$0",
+          "context": "256K",
+          "rpm": "30",
+          "tpm": "Not published",
+          "rpd": "1,000",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "MiMo-V2.6-Flash",
+          "cost": "$0",
+          "context": "1M",
+          "rpm": "30",
+          "tpm": "Not published",
+          "rpd": "1,000",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        }
+      ],
+      "verified_method": "api",
+      "docs_url": "https://cloud.amd.com/",
+      "access_method": "api_key",
+      "artifact": "code",
+      "base_url": "https://cloud.amd.com/api/v1",
+      "channel": "web"
+    },
+    {
+      "name": "InferX",
+      "url": "https://model.inferx.net/endpoints",
+      "free_type": "Free Developer Tier",
+      "notes": "The Grant: InferX provides zero-cost inference endpoints for cutting-edge open models including Qwen 3.6, Gemma 4, and DeepSeek variants.\nThe Output: Ultra-low latency OpenAI-compatible completions with streaming and structured output support.\nThe Process: Sign in to generate an API key and query endpoint URLs directly.\nThe Condition: Rate-limited for community development and prototyping.",
+      "timeout": "120s",
+      "verified": "2026-11-08",
+      "models": [
+        {
+          "name": "Qwen3.6 35B A3B FP8",
+          "cost": "$0",
+          "context": "255.9K",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "2,000",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "deepseek-v4-flash",
+          "cost": "$0",
+          "context": "1.0M",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "2,000",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "Ornith-1.0-35B-FP8",
+          "cost": "$0",
+          "context": "255.9K",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "2,000",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "Qwen3.6 27B FP8",
+          "cost": "$0",
+          "context": "256K",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "2,000",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "mimo-v25",
+          "cost": "$0",
+          "context": "1.0M",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "2,000",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "Qwen3 Coder Next FP8",
+          "cost": "$0",
+          "context": "250.1K",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "2,000",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "Agents-A1",
+          "cost": "$0",
+          "context": "255.9K",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "2,000",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "Devstral-2-123B-Instruct-2512-int4-AutoRound",
+          "cost": "$0",
+          "context": "125K",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "2,000",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "Qwen3-Embedding-8B",
+          "cost": "$0",
+          "context": "32K",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "2,000",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "Qwen3.6-35B-A3B-fp8-no-thinking",
+          "cost": "$0",
+          "context": "255.9K",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "2,000",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "Gemma 4 31B IT FP8",
+          "cost": "$0",
+          "context": "256K",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "2,000",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "Qwen3-Coder-Next-FP8-no-thinking",
+          "cost": "$0",
+          "context": "253.9K",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "2,000",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        }
+      ],
+      "verified_method": "api",
+      "docs_url": "https://model.inferx.net/endpoints",
+      "access_method": "api_key",
+      "artifact": "code",
+      "base_url": "https://model.inferx.net/endpoints/v1",
+      "channel": "web"
+    },
+    {
+      "name": "Kimi For Coding (Moonshot AI)",
+      "url": "https://www.kimi.ai/code/docs/en/kimi-code/models.html",
+      "free_type": "Free Developer Tier",
+      "notes": "The Grant: Moonshot AI provides free developer inference for Kimi K3 and coding models with context windows up to 1M tokens.\nThe Output: OpenAI-compatible coding endpoints supporting deep reasoning and agentic workflows.\nThe Process: Authenticate via Kimi coding portal to retrieve API credentials.\nThe Condition: Community rate limits and high-concurrency throttling during peak periods.",
+      "timeout": "180s",
+      "verified": "2026-11-08",
+      "models": [
+        {
+          "name": "Kimi K3.1 Pro Highspeed",
+          "cost": "$0",
+          "context": "1M",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "1,000",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "Kimi K3-256K",
+          "cost": "$0",
+          "context": "256K",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "1,000",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "Kimi K3.1 Pro",
+          "cost": "$0",
+          "context": "1M",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "1,000",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "Kimi K3",
+          "cost": "$0",
+          "context": "1M",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "1,000",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "kimi-for-coding",
+          "cost": "$0",
+          "context": "1M",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "1,000",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "Kimi For Coding HighSpeed",
+          "cost": "$0",
+          "context": "256K",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "1,000",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        }
+      ],
+      "verified_method": "api",
+      "docs_url": "https://www.kimi.ai/code/docs/en/kimi-code/models.html",
+      "access_method": "api_key",
+      "artifact": "code",
+      "base_url": "https://api.kimi.ai/coding/v1",
+      "channel": "web"
+    },
+    {
+      "name": "SCNet",
+      "url": "https://www.scnet.cn",
+      "free_type": "Free Developer Tier",
+      "notes": "The Grant: SCNet provides national high-performance computing open inference tokens for domestic LLMs including Qwen 3.8 and DeepSeek V4 Flash.\nThe Output: OpenAI-compatible chat endpoints with up to 1M token context windows.\nThe Process: Register on SCNet portal and generate developer API keys.\nThe Condition: Valid identity verification and developer quota rules apply.",
+      "timeout": "180s",
+      "verified": "2026-11-08",
+      "models": [
+        {
+          "name": "Kimi K2.7 Code",
+          "cost": "$0",
+          "context": "256K",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "1,000",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "Qwen3.8 Flash",
+          "cost": "$0",
+          "context": "1.0M",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "1,000",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "MiniMax-M2.5",
+          "cost": "$0",
+          "context": "200K",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "1,000",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "DeepSeek V4 Flash",
+          "cost": "$0",
+          "context": "1.0M",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "1,000",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "DeepSeek V4 Pro 0813",
+          "cost": "$0",
+          "context": "1.0M",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "1,000",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "GLM-5.3",
+          "cost": "$0",
+          "context": "1.0M",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "1,000",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "MiniMax-M3",
+          "cost": "$0",
+          "context": "1M",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "1,000",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "MiniMax-M2.7",
+          "cost": "$0",
+          "context": "200K",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "1,000",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "Qwen3.8 Max",
+          "cost": "$0",
+          "context": "1.0M",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "1,000",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "DeepSeek V4 Pro",
+          "cost": "$0",
+          "context": "1.0M",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "1,000",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "Kimi K2.6",
+          "cost": "$0",
+          "context": "256K",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "1,000",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "Kimi K2.5",
+          "cost": "$0",
+          "context": "256K",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "1,000",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        }
+      ],
+      "verified_method": "api",
+      "docs_url": "https://www.scnet.cn",
+      "access_method": "api_key",
+      "artifact": "code",
+      "base_url": "https://api.scnet.cn/v1",
+      "channel": "web"
+    },
+    {
+      "name": "AIHubMix",
+      "url": "https://aihubmix.com",
+      "free_type": "Promo free",
+      "notes": "The Grant: AIHubMix provides a suite of zero-cost promotional models including GLM-4.7 Flash, Nemotron 3 Ultra, and Qwen 3.8 Max.\nThe Output: OpenAI-compatible completion endpoints with long context support up to 1M tokens.\nThe Process: Sign up for an AIHubMix account to retrieve free tier API credentials.\nThe Condition: Rate-limited free promotional usage subject to provider token availability.",
+      "timeout": "120s",
+      "verified": "2026-11-08",
+      "models": [
+        {
+          "name": "GLM-4.7-Flash (free)",
+          "cost": "$0",
+          "context": "195.3K",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "1,000",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "Nemotron 3 Ultra 550B A55B (free)",
+          "cost": "$0",
+          "context": "1.0M",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "1,000",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "Nemotron 3.5 Content Safety (free)",
+          "cost": "$0",
+          "context": "125K",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "1,000",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "Qwen3.8 Max (free)",
+          "cost": "$0",
+          "context": "1.0M",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "1,000",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "GLM-5.2 (Coding, free)",
+          "cost": "$0",
+          "context": "1.0M",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "1,000",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "Ling 3.0 Flash (free)",
+          "cost": "$0",
+          "context": "256K",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "1,000",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "Coding MiniMax M2.7 (Free)",
+          "cost": "$0",
+          "context": "200K",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "1,000",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "Nemotron 3.5 Lightning 30B A3B (free)",
+          "cost": "$0",
+          "context": "256K",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "1,000",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "GLM-5.3 (Coding, free)",
+          "cost": "$0",
+          "context": "1.0M",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "1,000",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "Qwen3.8 Flash (free)",
+          "cost": "$0",
+          "context": "1.0M",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "1,000",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "Nemotron 3 Nano Omni 30B A3B Reasoning (free)",
+          "cost": "$0",
+          "context": "250K",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "1,000",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "Coding GLM 5.1 (free)",
+          "cost": "$0",
+          "context": "195.3K",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "1,000",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "GLM-5.3-Flash (Coding, free)",
+          "cost": "$0",
+          "context": "1.0M",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "1,000",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        },
+        {
+          "name": "Nemotron 3 Super 120B A12B (free)",
+          "cost": "$0",
+          "context": "256K",
+          "rpm": "60",
+          "tpm": "Not published",
+          "rpd": "1,000",
+          "tpd": "Not published",
+          "verified": "2026-11-08"
+        }
+      ],
+      "verified_method": "api",
+      "docs_url": "https://aihubmix.com",
+      "access_method": "api_key",
+      "artifact": "code",
+      "base_url": "https://api.aihubmix.com/v1",
+      "channel": "web"
     }
   ],
   "ga_measurement_id": "G-CFXWNKBD7G",

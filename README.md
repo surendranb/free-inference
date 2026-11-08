@@ -2,7 +2,7 @@
 
 Free AI & LLM inference you can build with: an API key, a CLI login, or inference bundled inside a coding tool or builder. Speech-to-text, voice synthesis, code, vision, and reasoning. The test is whether you can ship an artifact you keep — code, an app, an audio file, a site, a design, an agent, a skill. Chat-only free tiers are excluded on purpose.
 
-> **2026-11-08** · 42 providers · 254 free models
+> **2026-11-08** · 49 providers · 336 free models
 > Interactive site: https://freeinference.dev · Agent summary: https://freeinference.dev/llms.txt · Machine data: https://freeinference.dev/data/providers.json (validate against https://freeinference.dev/data/schema.json)
 
 ### Quick Navigation & Machine Access
@@ -23,10 +23,10 @@ Free AI & LLM inference you can build with: an API key, a CLI login, or inferenc
 | [OpenCode Zen](https://opencode.ai/v2/docs/console/models/) | api_key | Promo free (limited time) | Big Pickle, Iceman Free, Inkling 2 Small Free, Crouton Alpha Free, GLM-5.3-Flash Free, DeepSeek V4.1 Flash Free, +7 more | [The Grant] OpenCode Zen provides a collection of zero-cost promotional and experimental models. [The Output] Users gain access to free tier inference across multiple models including text and vision variants. [The Process] Models are evaluated and identified via catalog audits and pricing data verification. [The Condition] Availability is subject to limited-time promotional windows, zero-data-retention policies, and user feedback collection requirements. |
 | [OpenRouter](https://openrouter.ai/models?max_price=0) | api_key | Rate-limited free | cohere/north-mini-code:free, dots-studio/dots-3-note-preview:free, google/gemma-4-26b-a4b-it:free, google/gemma-4-31b-it:free, liquid/lfm-2.5-2.6b:free, liquid/lfm-3-1.7b:free, +13 more | OpenRouter offers 13 permanently free models (:free suffix) with 64K–500K context, translating to 50 requests/day (1,000 requests/day with + purchased credits). No credit card required. Upstream model availability determines live rate limits. |
 | [Google AI Studio (Gemini API)](https://ai.google.dev/gemini-api/docs/rate-limits) | api_key | Rate-limited free | gemini-3.5-flash-lite, gemini-3.1-flash-lite, gemma-4-26b-a4b-it, gemma-4-31b-it, gemini-3.5-flash, gemini-3-flash-preview, +10 more | Google AI Studio offers 16 free models with up to 1M context. Flagship light models (Gemini 3.5 Flash-Lite, 3.1 Flash-Lite) offer 500 RPD, 15 RPM, and 250K TPM, while open-weight Gemma 4 models (26B, 31B) provide 14.4K RPD, 30 RPM, and 16K TPM. No credit card required. Free-tier prompts and outputs are retained for model training. |
-| [Groq](https://console.groq.com/docs/rate-limits) | api_key | Rate-limited free | llama-3.3-70b-versatile, llama-3.1-8b-instant, meta-llama/llama-4-scout-17b-16e-instruct, openai/gpt-oss-120b, openai/gpt-oss-20b, qwen/qwen3.6-27b, +8 more | Groq offers 13 free models (9 LLMs, 2 Whisper STT, 2 Orpheus TTS), translating to up to 14,400 text requests/day and 2,000 audio transcriptions/day (~8 hours/day). No credit card required. Limits are pooled at organization level. |
+| [Groq](https://console.groq.com/docs/rate-limits) | api_key | Rate-limited free | llama-3.3-70b-versatile, llama-3.1-8b-instant, meta-llama/llama-4-scout-17b-16e-instruct, openai/gpt-oss-120b, openai/gpt-oss-20b, qwen/qwen3.6-27b, +9 more | Groq offers 13 free models (9 LLMs, 2 Whisper STT, 2 Orpheus TTS), translating to up to 14,400 text requests/day and 2,000 audio transcriptions/day (~8 hours/day). No credit card required. Limits are pooled at organization level. |
 | [Cerebras](https://inference-docs.cerebras.ai/support/rate-limits) | api_key | Trial credits | gpt-oss-120b, qwen-3.8-27b | Cerebras offers $5 trial credit across 2 models (gpt-oss-120b, qwen-3.8-27b with 8K context cap), translating to 1M tokens/day at 2,000+ tokens/sec. Credit card required. Trial credits expire in 30 days. |
-| [Cloudflare Workers AI](https://developers.cloudflare.com/workers-ai/platform/limits) | api_key | Rate-limited free | ~80 free models (Llama 3.x/4, Qwen, Gemma, DeepSeek-R1 distills, FLUX, Whisper, BGE embeddings), @cf/meta/llama-3.3-70b-instruct-fp8-fast, @cf/deepseek-ai/deepseek-r1-distill-qwen-32b, @cf/qwen/qwen2.5-72b-instruct, @cf/meta/llama-3.1-8b-instruct, @cf/openai/whisper | Cloudflare Workers AI offers ~80 free models (including Llama 3.3 70B, DeepSeek-R1 distills, Whisper, and FLUX), translating to 10,000 neurons/day (~hundreds of queries or audio minutes). No credit card required. Hard stop at 10,000 neurons until 00:00 UTC daily reset. |
-| [Mistral La Plateforme](https://docs.mistral.ai) | api_key | Rate-limited free | mistral-tiny | Mistral provides a free tier for developers to evaluate models. The output includes access to select baseline models via API. The process involves signing up for La Plateforme and utilizing default rate limits. The condition requires compliance with terms of service and staying within specified usage thresholds. |
+| [Cloudflare Workers AI](https://developers.cloudflare.com/workers-ai/platform/limits) | api_key | Rate-limited free | ~80 free models (Llama 3.x/4, Qwen, Gemma, DeepSeek-R1 distills, FLUX, Whisper, BGE embeddings), @cf/meta/llama-3.3-70b-instruct-fp8-fast, @cf/deepseek-ai/deepseek-r1-distill-qwen-32b, @cf/qwen/qwen2.5-72b-instruct, @cf/meta/llama-3.1-8b-instruct, @cf/openai/whisper | Cloudflare Workers AI is Generally Available with ~80 free models (including Llama 3.3 70B, DeepSeek-R1 distills, Whisper, and FLUX), translating to 10,000 neurons/day (~hundreds of queries or audio minutes). No credit card required. Hard stop at 10,000 neurons until 00:00 UTC daily reset. |
+| [Mistral La Plateforme](https://docs.mistral.ai) | api_key | Rate-limited free | mistral-small-latest, codestral-latest, open-mistral-nemo | Mistral provides a free tier for developers to evaluate models. The output includes access to select baseline models via API. The process involves signing up for La Plateforme and utilizing default rate limits. The condition requires compliance with terms of service and staying within specified usage thresholds. |
 | [SambaNova Cloud](https://cloud.sambanova.ai/apis) | api_key | Trial credits | Meta-Llama-3.3-70B-Instruct | 1. [The Grant] SambaNova Cloud provides a Free tier offering initial exploratory pay-as-you-go credits. 2. [The Output] Users gain access to select production models under specified free tier parameters. 3. [The Process] The evaluation was conducted by auditing official platform documentation and analyzing API response rate limits. 4. [The Condition] Specific models such as MiniMax-M3.1-Flash are excluded from the free tier offerings. |
 | [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com) | api_key | Trial credits | GLM-5, Kimi-2.5, NIM-packaged open models, MiniMax-M3.1-Flash, Whisper Large v3, GPT OSS 20B, +34 more | NVIDIA NIM offers 1,000 free trial credits across catalog models (including Nemotron 3.5 Lightning with 1M context), translating to ~40 hours of inference testing. No credit card required; corporate email required for extended credits. Credits tie to a 90-day evaluation window. |
 | [Z.AI (Zhipu)](https://z.ai) | api_key | Rate-limited free | GLM-5.1, GLM-4.5-Flash, GLM-4.7-Flash, GLM-4.6V-Flash (vision), GLM-4.6V-Flash | Z.AI offers free API access to GLM-5.1, GLM-4.7-Flash, and GLM-4.6V-Flash with 128K context, translating to 15 requests/minute. No credit card required. Shared free tier throttles during peak platform traffic hours. |
@@ -68,6 +68,34 @@ The Condition: Credits are valid for 90 days. |
 - The Condition: Total input and output token sum cannot exceed the 524,288 token context window limit. |
 | [Liquid AI](https://console.liquid.ai) | api_key | Trial credits | Liquid AI Free Model | 1. Liquid AI offers free promotional API credits to new developers upon console signup. 2. The output provides access to evaluate their models via the developer console and API. 3. The process requires creating an account on console.liquid.ai to claim the promotional allocation. 4. The condition is subject to promotional limits and potential expiration once the initial credit balance is exhausted. |
 | [Speka](https://speka.me) | api_key | Permanent $0 | deepseek-ai/deepseek-v4-flash, deepseek-ai/deepseek-v4-pro, meta/llama-3.1-8b-instruct, meta/llama-3.2-3b-instruct, meta/llama-3.2-11b-vision-instruct, meta/llama-3.2-90b-vision-instruct, +21 more | [The Grant] Speka provides a recurring $1.00 monthly model usage allowance on its Free plan ($0/mo) that refreshes every month. [The Output] Developers can generate completions, embeddings, and images across all open catalog models with 1 API key and a rate limit of 10 requests per minute (RPM). [The Process] Users sign up with email and password via speka.me/signup without requiring a credit card or upfront payment, and instantly create an API key in the dashboard. [The Condition] Requests are billed against the $1 monthly credit at standard per-token model rates; once the monthly allowance is exhausted, requests return HTTP 402 until the next monthly reset or paid upgrade. |
+| [Alibaba DashScope (Bailian)](https://www.alibabacloud.com/help/en/model-studio/developer-reference/get-api-key) | api_key | Trial / Free tokens | Qwen3.7 Plus, DeepSeek V4.1 Flash 1017, GLM-5.3, Qwen3.6 Plus, Wan2.7 Image, HappyHorse 1.1 Reference-to-Video, +15 more | The Grant: Alibaba Cloud Model Studio (Bailian/DashScope) provides free token allotments upon account activation across its Qwen and DeepSeek model fleet.
+The Output: Access to high-throughput OpenAI-compatible endpoints with up to 1M token context windows.
+The Process: Register an Alibaba Cloud account and generate an API key in the Model Studio console.
+The Condition: Free token allocations apply for designated promotional windows with phone verification. |
+| [ModelScope](https://modelscope.cn/docs/api-inference) | api_key | Rate-limited free | Qwen3 30B A3B Thinking 2507, Qwen3 235B A22B Instruct 2507, Qwen3 30B A3B Instruct 2507, Qwen3-235B-A22B-Thinking-2507, Qwen3 Coder 30B A3B Instruct, GLM-4.5, +1 more | The Grant: ModelScope (Alibaba's open-source model community) offers free hosted inference for community and Qwen open-weights models.
+The Output: Standard OpenAI-compatible completion endpoints with 262K token context windows.
+The Process: Create an account on ModelScope and retrieve an API access token.
+The Condition: Rate-limited to community usage tiers with fair-share queueing. |
+| [AMD Developer Cloud](https://cloud.amd.com/) | api_key | Free Developer Tier | MiniCPM5-2B, Qwen3.8 Flash Next, DeepSeek V4 Flash 0731, MiniCPM-V 4.7 1B, MiniCPM-V 4.7 35B-A3B, Qwen3.8 27B, +1 more | The Grant: AMD Developer Cloud provides free inference access to open frontier models running on AMD Instinct ROCm GPU clusters.
+The Output: OpenAI-compatible chat endpoints supporting DeepSeek, Qwen, and MiniCPM variants.
+The Process: Register an AMD Developer account to access the inference API console.
+The Condition: Subject to ROCm cluster capacity and developer fair-use quotas. |
+| [InferX](https://model.inferx.net/endpoints) | api_key | Free Developer Tier | Qwen3.6 35B A3B FP8, deepseek-v4-flash, Ornith-1.0-35B-FP8, Qwen3.6 27B FP8, mimo-v25, Qwen3 Coder Next FP8, +6 more | The Grant: InferX provides zero-cost inference endpoints for cutting-edge open models including Qwen 3.6, Gemma 4, and DeepSeek variants.
+The Output: Ultra-low latency OpenAI-compatible completions with streaming and structured output support.
+The Process: Sign in to generate an API key and query endpoint URLs directly.
+The Condition: Rate-limited for community development and prototyping. |
+| [Kimi For Coding (Moonshot AI)](https://www.kimi.ai/code/docs/en/kimi-code/models.html) | api_key | Free Developer Tier | Kimi K3.1 Pro Highspeed, Kimi K3-256K, Kimi K3.1 Pro, Kimi K3, kimi-for-coding, Kimi For Coding HighSpeed | The Grant: Moonshot AI provides free developer inference for Kimi K3 and coding models with context windows up to 1M tokens.
+The Output: OpenAI-compatible coding endpoints supporting deep reasoning and agentic workflows.
+The Process: Authenticate via Kimi coding portal to retrieve API credentials.
+The Condition: Community rate limits and high-concurrency throttling during peak periods. |
+| [SCNet](https://www.scnet.cn) | api_key | Free Developer Tier | Kimi K2.7 Code, Qwen3.8 Flash, MiniMax-M2.5, DeepSeek V4 Flash, DeepSeek V4 Pro 0813, GLM-5.3, +6 more | The Grant: SCNet provides national high-performance computing open inference tokens for domestic LLMs including Qwen 3.8 and DeepSeek V4 Flash.
+The Output: OpenAI-compatible chat endpoints with up to 1M token context windows.
+The Process: Register on SCNet portal and generate developer API keys.
+The Condition: Valid identity verification and developer quota rules apply. |
+| [AIHubMix](https://aihubmix.com) | api_key | Promo free | GLM-4.7-Flash (free), Nemotron 3 Ultra 550B A55B (free), Nemotron 3.5 Content Safety (free), Qwen3.8 Max (free), GLM-5.2 (Coding, free), Ling 3.0 Flash (free), +8 more | The Grant: AIHubMix provides a suite of zero-cost promotional models including GLM-4.7 Flash, Nemotron 3 Ultra, and Qwen 3.8 Max.
+The Output: OpenAI-compatible completion endpoints with long context support up to 1M tokens.
+The Process: Sign up for an AIHubMix account to retrieve free tier API credentials.
+The Condition: Rate-limited free promotional usage subject to provider token availability. |
 
 ## Models (per provider)
 
@@ -152,6 +180,7 @@ The Condition: Credits are valid for 90 days. |
 | canopylabs/orpheus-v1-english | $0 | Text-to-speech | 10 | 1.2K ASH (Audio sec/hr) | 100 | 3.6K ASD (1h audio/day) | 2026-11-08 |
 | canopylabs/orpheus-arabic-saudi | $0 | Text-to-speech | 10 | 1.2K ASH (Audio sec/hr) | 100 | 3.6K ASD (1h audio/day) | 2026-11-08 |
 | ALLaM-2-7b | $0 | 4K | 30 | 12K | 1,000 | 100K tokens/day | 2026-11-08 |
+| meta-llama/llama-prompt-guard-2-86m | $0 | 128K | 30 | 15K | 14,400 | 500K tokens/day | 2026-11-08 |
 
 ### Cerebras
 
@@ -175,7 +204,9 @@ The Condition: Credits are valid for 90 days. |
 
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| mistral-tiny | $0 | 32k | Not specified | Not specified | Not specified | Not specified | 2026-11-08 |
+| mistral-small-latest | $0 | 128K | 60 | 500K | Not published | Not published | 2026-11-08 |
+| codestral-latest | $0 | 256K | 30 | 300K | Not published | Not published | 2026-11-08 |
+| open-mistral-nemo | $0 | 128K | 60 | 500K | Not published | Not published | 2026-11-08 |
 
 ### SambaNova Cloud
 
@@ -534,6 +565,120 @@ The Condition: Credits are valid for 90 days. |
 | minimaxai/minimax-m3 | $0 | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-08 |
 | z-ai/glm-5.2 | $0 | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-08 |
 | black-forest-labs/flux.1-dev | $0 | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-08 |
+
+### Alibaba DashScope (Bailian)
+
+| Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Qwen3.7 Plus | $0 | 1.0M | 60 | Not published | Free tier token grant | Not published | 2026-11-08 |
+| DeepSeek V4.1 Flash 1017 | $0 | 1.0M | 60 | Not published | Free tier token grant | Not published | 2026-11-08 |
+| GLM-5.3 | $0 | 1.0M | 60 | Not published | Free tier token grant | Not published | 2026-11-08 |
+| Qwen3.6 Plus | $0 | 1.0M | 60 | Not published | Free tier token grant | Not published | 2026-11-08 |
+| Wan2.7 Image | $0 | 8K | 60 | Not published | Free tier token grant | Not published | 2026-11-08 |
+| HappyHorse 1.1 Reference-to-Video | $0 | Model-dependent | 60 | Not published | Free tier token grant | Not published | 2026-11-08 |
+| Qwen3.6 Flash | $0 | 1.0M | 60 | Not published | Free tier token grant | Not published | 2026-11-08 |
+| Qwen3.7 Max | $0 | 1.0M | 60 | Not published | Free tier token grant | Not published | 2026-11-08 |
+| DeepSeek V4 Pro | $0 | 1.0M | 60 | Not published | Free tier token grant | Not published | 2026-11-08 |
+| MiniMax-M2.5 | $0 | 192K | 60 | Not published | Free tier token grant | Not published | 2026-11-08 |
+| Kimi K2.6 | $0 | 256K | 60 | Not published | Free tier token grant | Not published | 2026-11-08 |
+| Kimi K2.5 | $0 | 256K | 60 | Not published | Free tier token grant | Not published | 2026-11-08 |
+| Kimi K2.7 Code | $0 | 256K | 60 | Not published | Free tier token grant | Not published | 2026-11-08 |
+| HappyHorse 1.1 Text-to-Video | $0 | Model-dependent | 60 | Not published | Free tier token grant | Not published | 2026-11-08 |
+| Qwen Image 2.0 | $0 | 8K | 60 | Not published | Free tier token grant | Not published | 2026-11-08 |
+| Wan2.7 Image Pro | $0 | 8K | 60 | Not published | Free tier token grant | Not published | 2026-11-08 |
+| HappyHorse 1.1 Image-to-Video | $0 | Model-dependent | 60 | Not published | Free tier token grant | Not published | 2026-11-08 |
+| DeepSeek V4 Pro 0813 | $0 | 1.0M | 60 | Not published | Free tier token grant | Not published | 2026-11-08 |
+| Qwen3.8 Flash | $0 | 1.0M | 60 | Not published | Free tier token grant | Not published | 2026-11-08 |
+| Qwen3.8 Max | $0 | 1.0M | 60 | Not published | Free tier token grant | Not published | 2026-11-08 |
+| Qwen Image 2.0 Pro | $0 | 8K | 60 | Not published | Free tier token grant | Not published | 2026-11-08 |
+
+### ModelScope
+
+| Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Qwen3 30B A3B Thinking 2507 | $0 | 256K | 30 | Not published | 500 | Not published | 2026-11-08 |
+| Qwen3 235B A22B Instruct 2507 | $0 | 256K | 30 | Not published | 500 | Not published | 2026-11-08 |
+| Qwen3 30B A3B Instruct 2507 | $0 | 256K | 30 | Not published | 500 | Not published | 2026-11-08 |
+| Qwen3-235B-A22B-Thinking-2507 | $0 | 256K | 30 | Not published | 500 | Not published | 2026-11-08 |
+| Qwen3 Coder 30B A3B Instruct | $0 | 256K | 30 | Not published | 500 | Not published | 2026-11-08 |
+| GLM-4.5 | $0 | 128K | 30 | Not published | 500 | Not published | 2026-11-08 |
+| GLM-4.6 | $0 | 198K | 30 | Not published | 500 | Not published | 2026-11-08 |
+
+### AMD Developer Cloud
+
+| Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| MiniCPM5-2B | $0 | 128K | 30 | Not published | 1,000 | Not published | 2026-11-08 |
+| Qwen3.8 Flash Next | $0 | 256K | 30 | Not published | 1,000 | Not published | 2026-11-08 |
+| DeepSeek V4 Flash 0731 | $0 | 1M | 30 | Not published | 1,000 | Not published | 2026-11-08 |
+| MiniCPM-V 4.7 1B | $0 | 256K | 30 | Not published | 1,000 | Not published | 2026-11-08 |
+| MiniCPM-V 4.7 35B-A3B | $0 | 256K | 30 | Not published | 1,000 | Not published | 2026-11-08 |
+| Qwen3.8 27B | $0 | 256K | 30 | Not published | 1,000 | Not published | 2026-11-08 |
+| MiMo-V2.6-Flash | $0 | 1M | 30 | Not published | 1,000 | Not published | 2026-11-08 |
+
+### InferX
+
+| Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Qwen3.6 35B A3B FP8 | $0 | 255.9K | 60 | Not published | 2,000 | Not published | 2026-11-08 |
+| deepseek-v4-flash | $0 | 1.0M | 60 | Not published | 2,000 | Not published | 2026-11-08 |
+| Ornith-1.0-35B-FP8 | $0 | 255.9K | 60 | Not published | 2,000 | Not published | 2026-11-08 |
+| Qwen3.6 27B FP8 | $0 | 256K | 60 | Not published | 2,000 | Not published | 2026-11-08 |
+| mimo-v25 | $0 | 1.0M | 60 | Not published | 2,000 | Not published | 2026-11-08 |
+| Qwen3 Coder Next FP8 | $0 | 250.1K | 60 | Not published | 2,000 | Not published | 2026-11-08 |
+| Agents-A1 | $0 | 255.9K | 60 | Not published | 2,000 | Not published | 2026-11-08 |
+| Devstral-2-123B-Instruct-2512-int4-AutoRound | $0 | 125K | 60 | Not published | 2,000 | Not published | 2026-11-08 |
+| Qwen3-Embedding-8B | $0 | 32K | 60 | Not published | 2,000 | Not published | 2026-11-08 |
+| Qwen3.6-35B-A3B-fp8-no-thinking | $0 | 255.9K | 60 | Not published | 2,000 | Not published | 2026-11-08 |
+| Gemma 4 31B IT FP8 | $0 | 256K | 60 | Not published | 2,000 | Not published | 2026-11-08 |
+| Qwen3-Coder-Next-FP8-no-thinking | $0 | 253.9K | 60 | Not published | 2,000 | Not published | 2026-11-08 |
+
+### Kimi For Coding (Moonshot AI)
+
+| Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Kimi K3.1 Pro Highspeed | $0 | 1M | 60 | Not published | 1,000 | Not published | 2026-11-08 |
+| Kimi K3-256K | $0 | 256K | 60 | Not published | 1,000 | Not published | 2026-11-08 |
+| Kimi K3.1 Pro | $0 | 1M | 60 | Not published | 1,000 | Not published | 2026-11-08 |
+| Kimi K3 | $0 | 1M | 60 | Not published | 1,000 | Not published | 2026-11-08 |
+| kimi-for-coding | $0 | 1M | 60 | Not published | 1,000 | Not published | 2026-11-08 |
+| Kimi For Coding HighSpeed | $0 | 256K | 60 | Not published | 1,000 | Not published | 2026-11-08 |
+
+### SCNet
+
+| Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Kimi K2.7 Code | $0 | 256K | 60 | Not published | 1,000 | Not published | 2026-11-08 |
+| Qwen3.8 Flash | $0 | 1.0M | 60 | Not published | 1,000 | Not published | 2026-11-08 |
+| MiniMax-M2.5 | $0 | 200K | 60 | Not published | 1,000 | Not published | 2026-11-08 |
+| DeepSeek V4 Flash | $0 | 1.0M | 60 | Not published | 1,000 | Not published | 2026-11-08 |
+| DeepSeek V4 Pro 0813 | $0 | 1.0M | 60 | Not published | 1,000 | Not published | 2026-11-08 |
+| GLM-5.3 | $0 | 1.0M | 60 | Not published | 1,000 | Not published | 2026-11-08 |
+| MiniMax-M3 | $0 | 1M | 60 | Not published | 1,000 | Not published | 2026-11-08 |
+| MiniMax-M2.7 | $0 | 200K | 60 | Not published | 1,000 | Not published | 2026-11-08 |
+| Qwen3.8 Max | $0 | 1.0M | 60 | Not published | 1,000 | Not published | 2026-11-08 |
+| DeepSeek V4 Pro | $0 | 1.0M | 60 | Not published | 1,000 | Not published | 2026-11-08 |
+| Kimi K2.6 | $0 | 256K | 60 | Not published | 1,000 | Not published | 2026-11-08 |
+| Kimi K2.5 | $0 | 256K | 60 | Not published | 1,000 | Not published | 2026-11-08 |
+
+### AIHubMix
+
+| Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| GLM-4.7-Flash (free) | $0 | 195.3K | 60 | Not published | 1,000 | Not published | 2026-11-08 |
+| Nemotron 3 Ultra 550B A55B (free) | $0 | 1.0M | 60 | Not published | 1,000 | Not published | 2026-11-08 |
+| Nemotron 3.5 Content Safety (free) | $0 | 125K | 60 | Not published | 1,000 | Not published | 2026-11-08 |
+| Qwen3.8 Max (free) | $0 | 1.0M | 60 | Not published | 1,000 | Not published | 2026-11-08 |
+| GLM-5.2 (Coding, free) | $0 | 1.0M | 60 | Not published | 1,000 | Not published | 2026-11-08 |
+| Ling 3.0 Flash (free) | $0 | 256K | 60 | Not published | 1,000 | Not published | 2026-11-08 |
+| Coding MiniMax M2.7 (Free) | $0 | 200K | 60 | Not published | 1,000 | Not published | 2026-11-08 |
+| Nemotron 3.5 Lightning 30B A3B (free) | $0 | 256K | 60 | Not published | 1,000 | Not published | 2026-11-08 |
+| GLM-5.3 (Coding, free) | $0 | 1.0M | 60 | Not published | 1,000 | Not published | 2026-11-08 |
+| Qwen3.8 Flash (free) | $0 | 1.0M | 60 | Not published | 1,000 | Not published | 2026-11-08 |
+| Nemotron 3 Nano Omni 30B A3B Reasoning (free) | $0 | 250K | 60 | Not published | 1,000 | Not published | 2026-11-08 |
+| Coding GLM 5.1 (free) | $0 | 195.3K | 60 | Not published | 1,000 | Not published | 2026-11-08 |
+| GLM-5.3-Flash (Coding, free) | $0 | 1.0M | 60 | Not published | 1,000 | Not published | 2026-11-08 |
+| Nemotron 3 Super 120B A12B (free) | $0 | 256K | 60 | Not published | 1,000 | Not published | 2026-11-08 |
 ## Definitions
 
 | Term | Meaning |

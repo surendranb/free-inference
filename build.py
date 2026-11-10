@@ -308,111 +308,6 @@ def build_schema():
     }
 
 
-CSS = '''  :root { --bg:#fff; --ink:#1a1a1a; --mut:#6b6b6b; --line:#e3e3e3; --sel:#111; --selink:#fff; }
-  * { box-sizing:border-box; }
-  body { margin:0; background:var(--bg); color:var(--ink);
-         font:16px/1.5 -apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; }
-  a { color:var(--ink); }
-  .wrap { max-width:1500px; margin:0 auto; padding:32px 24px 64px; }
-  header { display:flex; align-items:baseline; gap:16px; border-bottom:1px solid var(--line);
-           padding-bottom:16px; margin-bottom:20px; }
-  h1 { font-size:24px; margin:0; letter-spacing:-.01em; }
-  .provider-title-row { display:flex; align-items:center; gap:12px; }
-  .provider-logo { width:32px; height:32px; object-fit:contain; border-radius:4px; flex-shrink:0; }
-  .panel-logo { width:24px; height:24px; object-fit:contain; border-radius:3px; vertical-align:middle; margin-right:8px; display:inline-block; }
-  .prow-logo { width:16px; height:16px; object-fit:contain; border-radius:2px; vertical-align:middle; margin-right:6px; display:inline-block; }
-  .prov-link { display:inline-flex; align-items:center; }
-  .tagline { color:var(--mut); margin:0; max-width:800px; font-size:15px; }
-  .meta { color:var(--mut); font-size:13px; margin-left:auto; white-space:nowrap; }
-  .layout { display:grid; grid-template-columns:280px 1fr; gap:20px; align-items:start; }
-  @media (max-width:860px) { .layout { grid-template-columns:1fr; } .meta { display:none; } }
-  .sidebar { border:1px solid var(--line); border-radius:8px; overflow:hidden;
-              position:sticky; top:16px; background:var(--bg); }
-  @media (max-width:860px) { .sidebar { position:static; } }
-  #filter { width:100%; border:none; border-bottom:1px solid var(--line); padding:10px 14px;
-            font:inherit; font-size:14px; outline:none; background:var(--bg); }
-  #providers { max-height:74vh; overflow-y:auto; }
-  .prow { display:block; width:100%; text-align:left; border:none; background:none; cursor:pointer;
-           padding:10px 14px; border-bottom:1px solid var(--line); font:inherit; }
-  .prow:hover { background:#f4f4f4; }
-  .prow.active { background:var(--sel); color:var(--selink); }
-  .prow .pname { font-weight:600; font-size:14px; display:block; }
-  .prow .pmeta { font-size:12px; color:var(--mut); }
-  .prow.active .pmeta { color:#bbb; }
-  .dead { color:#b3261e; font-weight:700; }
-  .prow.active .dead { color:#ff8a80; }
-  .panel { border:1px solid var(--line); border-radius:8px; overflow:hidden; background:var(--bg); }
-  .panel-head { padding:14px 18px; border-bottom:1px solid var(--line); }
-  .panel-head h2 { margin:0 0 2px; font-size:19px; }
-  .panel-head .ftype { font-size:12px; color:var(--mut); margin-left:8px; font-weight:400; }
-  .amchip { font-size:11px; color:var(--mut); border:1px solid var(--line); border-radius:4px; padding:1px 6px; margin-left:8px; font-weight:400; vertical-align:middle; }
-  .panel-head .purl { font-size:13px; color:var(--mut); }
-  .panel-head .pnotes { font-size:13.5px; color:var(--ink); margin-top:6px; max-width:900px; }
-  .table-wrap { overflow-x:auto; }
-  table { border-collapse:collapse; width:100%; min-width:720px; font-size:13.5px; }
-  th { text-align:left; padding:9px 12px; cursor:pointer; white-space:nowrap; user-select:none;
-       border-bottom:1px solid var(--line); font-size:12px; text-transform:uppercase;
-       letter-spacing:.03em; color:var(--mut); }
-  th:hover { color:var(--ink); }
-  td { border-bottom:1px solid var(--line); padding:8px 12px; vertical-align:top; }
-  tr:last-child td { border-bottom:none; }
-  tr:hover td { background:#f7f7f7; }
-  td:first-child { font-weight:600; }
-  .empty { padding:40px 20px; text-align:center; color:var(--mut); }
-  .ftchips { border-top:1px solid var(--line); padding:12px 18px; font-size:13px; color:var(--mut); }
-  #about { position:fixed; inset:0; background:rgba(0,0,0,.35); display:none; align-items:center;
-            justify-content:center; z-index:10; }
-  #about.open { display:flex; }
-  .modal { background:var(--bg); max-width:640px; width:92%; max-height:82vh; overflow-y:auto;
-            padding:26px 28px; border-radius:10px; }
-  .modal h2 { margin:0 0 10px; font-size:18px; }
-  .modal p, .modal li { font-size:14px; color:var(--ink); }
-  .modal .x { position:absolute; };
-  .close { float:right; border:1px solid var(--line); background:none; font:inherit; font-size:14px;
-            cursor:pointer; padding:2px 10px; border-radius:6px; }
-  footer { margin-top:48px; color:var(--mut); font-size:13px; border-top:1px solid var(--line); padding-top:32px; }
-  .fsection { margin-bottom:32px; }
-  .fsection:not(:last-child) { border-bottom:1px solid var(--line); padding-bottom:28px; }
-  .fheader { margin-bottom:16px; text-align:left; }
-  .fheader h2 { margin:0 0 4px; font-size:13px; text-transform:uppercase; letter-spacing:.05em; color:var(--ink); font-weight:700; }
-  .fheader p { margin:0; font-size:12.5px; color:var(--mut); }
-  .fgrid, .fcols { display:grid; grid-template-columns:repeat(4,1fr); gap:20px 28px; text-align:left; }
-  .fcol h3 { margin:0 0 10px; font-size:12px; text-transform:uppercase; letter-spacing:.04em; color:var(--ink); font-weight:600; }
-  .fcol ul { list-style:none; margin:0; padding:0; }
-  .fcol li { margin:5px 0; font-size:13px; line-height:1.4; }
-  .fcol a { color:var(--mut); text-decoration:none; }
-  .fcol a:hover { color:var(--ink); text-decoration:underline; }
-  .fbottom { padding-top:4px; text-align:left; }
-  .fbottom-links { font-size:12.5px; line-height:1.8; color:var(--mut); margin-bottom:10px; }
-  .fbottom-links a { color:var(--mut); text-decoration:none; font-weight:500; }
-  .fbottom-links a:hover { color:var(--ink); text-decoration:underline; }
-  .fbottom-title { color:var(--ink); font-weight:600; margin-right:6px; }
-  .fmeta, .fnote { font-size:12px; color:var(--mut); margin:0; line-height:1.5; }
-  .answer { border:1px solid var(--line); border-radius:10px; padding:16px 18px; margin:20px 0 4px; }
-  .answer h2 { margin:0 0 8px; font-size:16px; }
-  .answer p { margin:0 0 8px; font-size:14px; }
-  .answer ul { margin:0 0 8px; padding-left:18px; font-size:14px; }
-  .answer li { margin:3px 0; }
-  .answer-more { color:var(--mut); font-size:13px; margin:0; }
-  .code-box { background:#f8f9fa; border:1px solid var(--line); border-radius:6px; padding:12px 16px; font-family:ui-monospace,SFMono-Regular,Consolas,monospace; font-size:13px; overflow-x:auto; margin:10px 0; }
-  .code-box code { font-family:inherit; }
-  .quick-connect { border:1px solid var(--line); border-radius:8px; padding:16px 18px; margin:20px 0; background:#fafafa; }
-  .quick-connect h2 { margin:0 0 8px; font-size:16px; }
-  .quick-connect p { margin:0 0 8px; font-size:14px; }
-  .models { margin-top:24px; }
-  .models h2 { margin:0 0 12px; font-size:17px; }
-  .newsletter-box { margin:24px 0; padding:18px 20px; border:1px solid var(--line); border-radius:8px; background:#fafafa; }
-  .newsletter-box h3 { margin:0 0 6px; font-size:15px; }
-  .newsletter-box p { margin:0 0 12px; color:var(--mut); font-size:13.5px; }
-  .newsletter-form { display:flex; flex-direction:column; gap:4px; max-width:480px; }
-  .newsletter-form-row { display:flex; gap:8px; }
-  .newsletter-form input { flex:1; padding:8px 12px; border:1px solid var(--line); border-radius:6px; font:inherit; font-size:13.5px; background:var(--bg); color:var(--ink); }
-  .newsletter-form button { padding:8px 16px; background:var(--sel); color:var(--selink); border:none; border-radius:6px; cursor:pointer; font:inherit; font-size:13.5px; font-weight:600; white-space:nowrap; }
-  .newsletter-form button:hover { opacity:0.9; }
-  .newsletter-msg { font-size:12.5px; min-height:16px; margin-top:4px; }
-  @media (max-width:600px) { .newsletter-form-row { flex-direction:column; } }
-  @media (max-width:960px) { .fgrid, .fcols { grid-template-columns:repeat(2,1fr); gap:18px 20px; } }
-  @media (max-width:540px) { .fgrid, .fcols { grid-template-columns:1fr; } }'''
 
 NEWSLETTER_FORM_SNIPPET = f"""<form class="newsletter-form" onsubmit="event.preventDefault();var f=this,b=f.querySelector('button'),i=f.querySelector('input[type=email]'),hp=f.querySelector('input[name=b_name]'),m=f.querySelector('.newsletter-msg');var token='';if(typeof turnstile!=='undefined'){{try{{token=turnstile.getResponse()||'';}}catch(e){{}}}}if(!token){{var ti=f.querySelector('[name=cf-turnstile-response]');if(ti)token=ti.value||'';}}if(!token){{m.textContent='Please complete the security check.';m.style.color='#991b1b';return;}}b.disabled=true;b.textContent='Subscribing...';fetch('/api/subscribe',{{method:'POST',headers:{{'Content-Type':'application/json'}},body:JSON.stringify({{email:i.value,turnstileToken:token,b_name:hp?hp.value:''}})}}).then(function(r){{return r.json()}}).then(function(d){{if(d.success){{b.textContent='Subscribed!';i.disabled=true;m.textContent='You are on the list. Issues drop Mondays at 09:00 IST.';m.style.color='#166534';}}else{{b.disabled=false;b.textContent='Subscribe';m.textContent=d.error||'Failed to subscribe';m.style.color='#991b1b';if(typeof turnstile!=='undefined'){{try{{turnstile.reset()}}catch(e){{}}}}}}}}).catch(function(){{b.disabled=false;b.textContent='Subscribe';m.textContent='Network error. Please try again.';m.style.color='#991b1b';}});"><div style="position:absolute;left:-9999px;opacity:0;pointer-events:none;" aria-hidden="true"><input type="text" name="b_name" tabindex="-1" autocomplete="off"></div><div class="newsletter-form-row"><input type="email" name="email" placeholder="you@domain.com" required aria-label="Your email address"><button type="submit">Subscribe</button></div><div class="cf-turnstile" data-sitekey="{TURNSTILE_SITE_KEY}" data-theme="light" data-size="flexible" style="margin-top:6px;"></div><div class="newsletter-msg"></div></form>"""
 
@@ -673,9 +568,7 @@ def build_html():
 {CLARITY}
 {TURNSTILE_SCRIPT}
 <script type="application/ld+json">{ld}</script>
-<style>
-{CSS}
-</style>
+<link rel="stylesheet" href="/style.css">
 </head>
 <body>
 <div class="wrap">
@@ -740,252 +633,8 @@ def build_html():
 const DATA = {data_json};
 const LOGOS = {logos_json};
 const DEFS = {json.dumps(definitions(), ensure_ascii=False)};
-
-function modelRow(m) {{
-  return `<tr><td>${{m.name}}</td><td>${{m.cost}}</td><td>${{m.context}}</td>
-    <td>${{m.rpm}}</td><td>${{m.tpm}}</td><td>${{m.rpd}}</td>
-    <td>${{m.tpd}}</td><td>${{m.verified}}</td></tr>`;
-}}
-
-function trackMcpCall(toolName, params) {{
-  if (typeof window.gtag === "function") {{
-    window.gtag("event", "webmcp_tool_call", {{
-      tool_name: toolName,
-      search_query: params.query || "",
-      provider_param: params.provider_name || params.provider || "",
-      model_count: Array.isArray(params.model_names) ? params.model_names.length : undefined
-    }});
-  }}
-}}
-
-const tools = {{
-  search_models: {{
-    name: "search_models",
-    description: "Search free LLM models by keyword, minimum context length, provider name, or free tier type.",
-    inputSchema: {{
-      type: "object",
-      properties: {{
-        query: {{ type: "string", description: "Search query across model name or provider" }},
-        min_context_k: {{ type: "number", description: "Minimum context window in thousands (e.g. 128 for 128K+)" }},
-        provider: {{ type: "string", description: "Filter by provider name (partial or exact)" }},
-        free_type: {{ type: "string", description: "Filter by free tier type (e.g. 'Rate-limited free', 'Promo free (limited time)', 'Trial credits')" }}
-      }}
-    }},
-    execute: async (params = {{}}) => {{
-      trackMcpCall("search_models", params);
-      const q = (params.query || "").toLowerCase();
-      const pFilter = (params.provider || "").toLowerCase();
-      const ftFilter = (params.free_type || "").toLowerCase();
-      const minCtx = params.min_context_k || 0;
-      const results = [];
-      for (const prov of DATA.providers) {{
-        if (pFilter && !prov.name.toLowerCase().includes(pFilter)) continue;
-        if (ftFilter && !prov.free_type.toLowerCase().includes(ftFilter)) continue;
-        for (const m of prov.models) {{
-          const nameMatch = !q || m.name.toLowerCase().includes(q) || prov.name.toLowerCase().includes(q);
-          let ctxNum = 0;
-          const ctxMatch = String(m.context).match(/(\\d+)K?/i);
-          if (ctxMatch) {{
-            ctxNum = parseInt(ctxMatch[1], 10);
-            if (!String(m.context).toUpperCase().includes("K") && ctxNum > 1000) ctxNum = Math.floor(ctxNum / 1024);
-          }}
-          const passCtx = minCtx === 0 || ctxNum >= minCtx;
-          if (nameMatch && passCtx) {{
-            results.push({{
-              provider: prov.name,
-              free_type: prov.free_type,
-              model: m.name,
-              cost: m.cost,
-              context: m.context,
-              rpm: m.rpm,
-              tpm: m.tpm,
-              rpd: m.rpd,
-              tpd: m.tpd,
-              verified: m.verified
-            }});
-          }}
-        }}
-      }}
-      return results;
-    }}
-  }},
-  get_provider: {{
-    name: "get_provider",
-    description: "Get comprehensive details and model inventory for a specific free inference provider.",
-    inputSchema: {{
-      type: "object",
-      properties: {{
-        provider_name: {{ type: "string", description: "Exact or partial provider name (e.g. 'Google', 'Groq', 'OpenRouter', 'OpenCode Zen')" }}
-      }},
-      required: ["provider_name"]
-    }},
-    execute: async (params = {{}}) => {{
-      trackMcpCall("get_provider", params);
-      const target = (params.provider_name || "").toLowerCase();
-      const found = DATA.providers.find(p => p.name.toLowerCase().includes(target));
-      if (!found) return {{ error: `Provider '${{params.provider_name}}' not found in catalog.` }};
-      return found;
-    }}
-  }},
-  list_providers: {{
-    name: "list_providers",
-    description: "List all free LLM inference providers with summary metadata, free tier type, and model counts.",
-    inputSchema: {{
-      type: "object",
-      properties: {{
-        free_type: {{ type: "string", description: "Optional filter by free tier type" }}
-      }}
-    }},
-    execute: async (params = {{}}) => {{
-      trackMcpCall("list_providers", params);
-      const ft = (params.free_type || "").toLowerCase();
-      return DATA.providers
-        .filter(p => !ft || p.free_type.toLowerCase().includes(ft))
-        .map(p => ({{
-          name: p.name,
-          url: p.url,
-          free_type: p.free_type,
-          model_count: p.models.length,
-          verified: p.verified,
-          verified_method: p.verified_method,
-          notes: p.notes
-        }}));
-    }}
-  }},
-  compare_models: {{
-    name: "compare_models",
-    description: "Compare rate limits and specs of specific models across providers.",
-    inputSchema: {{
-      type: "object",
-      properties: {{
-        model_names: {{ type: "array", items: {{ type: "string" }}, description: "Array of model names to compare" }}
-      }},
-      required: ["model_names"]
-    }},
-    execute: async (params = {{}}) => {{
-      trackMcpCall("compare_models", params);
-      const names = (params.model_names || []).map(n => n.toLowerCase());
-      const matches = [];
-      for (const p of DATA.providers) {{
-        for (const m of p.models) {{
-          if (names.some(n => m.name.toLowerCase().includes(n) || n.includes(m.name.toLowerCase()))) {{
-            matches.push({{
-              provider: p.name,
-              model: m.name,
-              cost: m.cost,
-              context: m.context,
-              rpm: m.rpm,
-              tpm: m.tpm,
-              rpd: m.rpd,
-              tpd: m.tpd,
-              verified: m.verified
-            }});
-          }}
-        }}
-      }}
-      return matches;
-    }}
-  }}
-}};
-
-function registerWebMcp() {{
-  const mc = navigator.modelContext || window.modelContext || (typeof document !== "undefined" && document.modelContext);
-  if (mc && typeof mc.registerTool === "function") {{
-    for (const tool of Object.values(tools)) {{
-      try {{
-        mc.registerTool({{
-          name: tool.name,
-          description: tool.description,
-          inputSchema: tool.inputSchema,
-          execute: tool.execute,
-          annotations: {{ readOnlyHint: true }}
-        }});
-      }} catch (e) {{
-        console.warn("WebMCP registration failed:", tool.name, e);
-      }}
-    }}
-  }}
-}}
-
-window.freeInferenceTools = tools;
-window.webmcp = tools;
-registerWebMcp();
-
-const AM = {{api_key:"API key", login:"Login", bundled:"Bundled"}};
-const plural = (n, one) => n + " " + one + (n === 1 ? "" : "s");
-
-function render(app) {{
-  const list = DATA.providers;
-  let activeIdx = 0, filter = "", rows = [...list];
-  const sidebar = document.createElement("div");
-  sidebar.className = "sidebar";
-  const panel = document.createElement("div");
-  panel.className = "panel";
-  app.append(sidebar, panel);
-
-  sidebar.innerHTML = `<input id="filter" type="text" placeholder="Filter provider or model…" autocomplete="off">
-    <div id="providers"></div>`;
-  const providersEl = sidebar.querySelector("#providers");
-  const filterEl = sidebar.querySelector("#filter");
-
-  function drawSidebar() {{
-    rows = list.filter(p => !filter ||
-      (p.name + " " + p.models.map(m => m.name).join(" ")).toLowerCase().includes(filter.toLowerCase()));
-    providersEl.innerHTML = rows.map((p, i) => {{
-      const active = list.indexOf(p) === activeIdx ? " active" : "";
-      const dead = p.dead ? ` <span class="dead">• dead</span>` : "";
-      return `<button class="prow${{active}}" data-i="${{i}}">
-        <span class="pname"><img src="/logos/${{LOGOS[p.name]}}" class="prow-logo" width="16" height="16" alt="" onerror="this.style.display='none'"> ${{p.name}}${{dead}}</span>
-        <span class="pmeta">${{p.free_type}} · ${{plural(p.models.length, "free model")}} · ${{AM[p.access_method] || p.access_method}}</span></button>`;
-    }}).join("");
-    providersEl.querySelectorAll(".prow").forEach(b =>
-      b.addEventListener("click", () => {{ activeIdx = list.indexOf(rows[+b.dataset.i]); drawPanel(); drawSidebar(); }}));
-    if (!rows.length) providersEl.innerHTML = `<div class="empty">No match.</div>`;
-  }}
-
-  function drawPanel() {{
-    const p = list[activeIdx];
-    const dead = p.dead ? `<div class="pnotes"><strong class="dead">Probe flags this provider unreachable — verify before relying on it.</strong></div>` : "";
-    panel.innerHTML = `<div class="panel-head">
-      <div class="provider-title-row">
-        <img src="/logos/${{LOGOS[p.name]}}" class="panel-logo" width="28" height="28" alt="" onerror="this.style.display='none'">
-        <h2 style="display:inline;margin:0;">${{p.name}}</h2>
-        <span class="ftype">${{p.free_type}}</span><span class="amchip">${{AM[p.access_method] || p.access_method}}</span>
-      </div>
-      <a class="purl" href="${{p.url}}" target="_blank" rel="noopener" style="display:inline-block;margin-top:4px;">${{p.url}}</a>
-      <div class="pnotes">${{p.notes}}</div>
-      <div class="pnotes"><strong>Last updated: ${{p.verified}}</strong>${{p.verified_method === "docs" ? " · verified against official public documentation" : " · verified nightly via automated probe"}}</div>${{dead}}
-    </div>
-    <div class="table-wrap"><table>
-      <thead><tr><th data-k="name">Model</th><th data-k="cost">Cost</th><th data-k="context">Context</th>
-      <th data-k="rpm">RPM</th><th data-k="tpm">TPM</th><th data-k="rpd">RPD</th>
-      <th data-k="tpd">Day tokens</th><th data-k="verified">Verified</th></tr></thead>
-      <tbody id="mtbody">${{p.models.map(modelRow).join("")}}</tbody>
-    </table></div>`;
-
-    let asc = true, lastKey = "";
-    panel.querySelectorAll("th").forEach(th => th.addEventListener("click", () => {{
-      const k = th.dataset.k;
-      if (lastKey === k) asc = !asc; else {{ lastKey = k; asc = true; }}
-      const ms = [...p.models].sort((a, b) =>
-        String(a[k]).localeCompare(String(b[k]), undefined, {{ numeric: true }}));
-      if (!asc) ms.reverse();
-      panel.querySelector("#mtbody").innerHTML = ms.map(modelRow).join("");
-    }}));
-  }}
-
-  filterEl.addEventListener("input", () => {{ filter = filterEl.value.trim(); drawSidebar(); }});
-  drawSidebar(); drawPanel();
-}}
-
-document.addEventListener("DOMContentLoaded", () => render(document.getElementById("app")));
-
-const m = document.getElementById("about");
-document.getElementById("aboutlink").addEventListener("click", e => {{ e.preventDefault(); m.classList.add("open"); }});
-m.querySelector(".close").addEventListener("click", () => m.classList.remove("open"));
-m.addEventListener("click", e => {{ if (e.target === m) m.classList.remove("open"); }});
-document.addEventListener("keydown", e => {{ if (e.key === "Escape") m.classList.remove("open"); }});
 </script>
+<script defer src="/app.js"></script>
 </body>
 </html>
 """
@@ -1188,9 +837,7 @@ def build_provider_page(p):
 {ga}
 {TURNSTILE_SCRIPT}
 <script type="application/ld+json">{ld}</script>
-<style>
-{CSS}
-</style>
+<link rel="stylesheet" href="/style.css">
 </head>
 <body>
 <div class="wrap">
@@ -1951,9 +1598,7 @@ print(response.choices[0].message.content)</code></pre>
 {CLARITY}
 {TURNSTILE_SCRIPT}
 <script type="application/ld+json">{ld}</script>
-<style>
-{CSS}
-</style>
+<link rel="stylesheet" href="/style.css">
 </head>
 <body>
 <div class="wrap">
@@ -2100,15 +1745,19 @@ def build_404():
 """
 
 
-def copy_logos(dist):
+def copy_static_assets(dist):
     import shutil
     src_dir = ROOT / "data" / "logos"
-    if not src_dir.exists():
-        return
-    dst_dir = dist / "logos"
-    dst_dir.mkdir(parents=True, exist_ok=True)
-    for f in src_dir.glob("*.svg"):
-        shutil.copy2(f, dst_dir / f.name)
+    if src_dir.exists():
+        dst_dir = dist / "logos"
+        dst_dir.mkdir(parents=True, exist_ok=True)
+        for f in src_dir.glob("*.svg"):
+            shutil.copy2(f, dst_dir / f.name)
+    static_dir = ROOT / "static"
+    if static_dir.exists():
+        for f in static_dir.glob("*"):
+            if f.is_file():
+                shutil.copy2(f, dist / f.name)
 
 
 def build_favicon(dist):
@@ -2527,12 +2176,7 @@ def build_newsletter_page(dist):
 {PLAUSIBLE}
 {CLARITY}
 {TURNSTILE_SCRIPT}
-<style>
-{CSS}
-.dispatch-list {{ list-style: none; padding: 0; }}
-.dispatch-list li {{ margin-bottom: 32px; border-bottom: 1px solid var(--line); padding-bottom: 24px; }}
-.dmeta {{ font-size: 13px; color: var(--mut); margin: 4px 0 12px; }}
-</style>
+<link rel="stylesheet" href="/style.css">
 </head>
 <body>
 <div class="wrap">
@@ -2579,7 +2223,7 @@ def main():
     (dist / "index.md").write_text(build_index_md())
     (dist / "404.html").write_text(build_404())
     build_favicon(dist)
-    copy_logos(dist)
+    copy_static_assets(dist)
     build_v1_endpoints(dist)
     build_skill(dist)
     build_feed(dist)
@@ -2654,6 +2298,14 @@ def main():
         f"  X-Data-Version: {DATA_VERSION}\n"
         f"  X-Last-Verified: {VERIFIED_MAX}\n"
         f"  Cache-Control: public, max-age=3600\n"
+        f"/style.css\n"
+        f"  Access-Control-Allow-Origin: *\n"
+        f"  Content-Type: text/css; charset=utf-8\n"
+        f"  Cache-Control: public, max-age=86400\n"
+        f"/app.js\n"
+        f"  Access-Control-Allow-Origin: *\n"
+        f"  Content-Type: application/javascript; charset=utf-8\n"
+        f"  Cache-Control: public, max-age=86400\n"
         f"/logos/*\n"
         f"  Access-Control-Allow-Origin: *\n"
         f"  Content-Type: image/svg+xml; charset=utf-8\n"
@@ -2700,6 +2352,8 @@ def main():
     )
     (dist / "b4d83ac2bcee40a798bc63319e92d730.txt").write_text("b4d83ac2bcee40a798bc63319e92d730")
     total = sum(len(p["models"]) for p in ROWS)
+    assert (dist / "style.css").stat().st_size > 0, "missing dist/style.css"
+    assert (dist / "app.js").stat().st_size > 0, "missing dist/app.js"
     assert (dist / "favicon.ico").stat().st_size > 0, "missing favicon.ico"
     assert (dist / "favicon.svg").stat().st_size > 0, "missing favicon.svg"
     assert (dist / "apple-touch-icon.png").stat().st_size > 0, "missing apple-touch-icon.png"
@@ -2711,6 +2365,8 @@ def main():
     assert (dist / "feed.xml").stat().st_size > 0, "missing dist/feed.xml"
     assert (dist / "newsletter" / "index.html").stat().st_size > 0, "missing newsletter page"
     index_html = (dist / "index.html").read_text()
+    assert '<link rel="stylesheet" href="/style.css">' in index_html, "missing style.css in index.html"
+    assert '<script defer src="/app.js"></script>' in index_html, "missing app.js in index.html"
     assert index_html.count('href="/providers/') >= len(ROWS), "footer provider links missing"
     assert "FreeInference" in index_html, "brand missing from homepage title"
     assert f'name="data-version" content="{DATA_VERSION}"' in index_html, "data version missing"
@@ -2725,6 +2381,7 @@ def main():
         assert len(m.group(1)) <= 75, f"{p['name']}: title too long ({len(m.group(1))})"
         assert f'name="data-version" content="{DATA_VERSION}"' in page, f"{p['name']}: data version missing"
         assert "googletagmanager" in page, f"{p['name']}: GA4 tag missing"
+        assert '<link rel="stylesheet" href="/style.css">' in page, f"{p['name']}: missing style.css"
         names = re.findall(r'/logos/([^"\s]+\.svg)', page)
         assert names and all((dist / "logos" / n).exists() for n in names), f"{p['name']}: logo 404 ({names})"
         titles.append(m.group(1))
@@ -2738,6 +2395,7 @@ def main():
         assert f'name="data-version" content="{DATA_VERSION}"' in page, f"{s}: data version missing"
         assert f'<link rel="canonical" href="{WEBSITE}/{s}/">' in page, f"{s}: canonical URL missing"
         assert f'<link rel="alternate" type="text/markdown" href="{WEBSITE}/{s}/index.md">' in page, f"{s}: md alternate missing"
+        assert '<link rel="stylesheet" href="/style.css">' in page, f"{s}: missing style.css"
         names = re.findall(r'/logos/([^"\s]+\.svg)', page)
         assert names and all((dist / "logos" / n).exists() for n in names), f"{s}: logo 404 ({names})"
         free_titles.append(m.group(1))

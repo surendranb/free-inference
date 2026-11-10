@@ -7,6 +7,9 @@ const CORS_HEADERS = {
   "access-control-allow-headers": "*",
 };
 
+// Static assets to bypass from edge telemetry logging (FI_EVENTS & GA4)
+const STATIC_ASSET = /^\/logos\/|\.(svg|png|jpg|jpeg|gif|webp|ico|css|js|map|woff|woff2|ttf|webmanifest)$/i;
+
 const CHAT_GUIDANCE = {
   error: {
     message: "FreeInference.dev is an open verified catalog and directory of $0 free inference providers, not an API proxy or inference gateway. Direct inference requests (POST /v1/chat/completions) are not executed on this domain. To run free inference, query our catalog at /v1/models to select a provider, and route your requests directly to that provider's base_url (e.g. Groq, SambaNova, Google AI Studio, Cerebras).",
@@ -91,8 +94,8 @@ function detectAgentFamily(ua) {
   if (u.includes("httpie")) return "HTTPie";
   if (u.includes("wget")) return "Wget";
   if (u.includes("node-fetch") || u.includes("axios") || u.includes("undici") || u.includes("go-http-client")) return "Backend HTTP Client";
-  if (u.includes("googlebot") || u.includes("bingbot") || u.includes("duckduckbot") || u.includes("yandex") || u.includes("slurp")) return "Search Crawler";
-  if (u.includes("mozilla") || u.includes("chrome") || u.includes("safari") || u.includes("edge")) return "Browser";
+  if (/googlebot|bingbot|duckduckbot|yandex|slurp|exasearch|petalbot|bytespider|baiduspider|sogou|bot|crawl|spider|headless/.test(u)) return "Search Crawler";
+  if (u.includes("mozilla") || u.includes("chrome") || u.includes("safari") || u.includes("edge") || u.includes("firefox")) return "Browser";
   return "Custom / Unnamed Client";
 }
 
@@ -101,8 +104,8 @@ function classifyClient(ua) {
   if (ua.includes("curl") || ua.includes("httpie") || ua.includes("wget")) return "cli";
   if (ua.includes("python") || ua.includes("requests") || ua.includes("urllib") || ua.includes("aiohttp") || ua.includes("httpx") || ua.includes("node-fetch") || ua.includes("axios") || ua.includes("go-http-client")) return "script";
   if (ua.includes("claude") || ua.includes("gpt") || ua.includes("agent") || ua.includes("llm") || ua.includes("langchain") || ua.includes("llama") || ua.includes("anthropic") || ua.includes("openai") || ua.includes("perplexity") || ua.includes("cursor")) return "agent";
-  if (ua.includes("bot") || ua.includes("crawl") || ua.includes("spider")) return "crawler";
-  if (ua.includes("mozilla") || ua.includes("chrome") || ua.includes("safari")) return "browser";
+  if (/bot|crawl|spider|slurp|headless|exasearch|petalbot|bytespider|googlebot|bingbot|yandex|baiduspider|duckduckbot/.test(ua)) return "crawler";
+  if (ua.includes("mozilla") || ua.includes("chrome") || ua.includes("safari") || ua.includes("firefox") || ua.includes("edge")) return "browser";
   return "other";
 }
 
@@ -113,10 +116,11 @@ function consumerClass(ua, org) {
   if (u.includes("opencode")) return "harness_opencode";
   if (u.includes("claude")) return "harness_claude";
   if (/nexus-agent|free-api-catalog|freewaybot|free-ops|daedalus|freeairouter|modelscout|hatchfeed|webapp-mapper|sonarprime/.test(u)) return "directory";
-  if (/palo alto|secleak|nameserver-checker|google-display-ads|google-lens|discordbot|icon\.horse/.test(u)) return "scanner";
+  if (/palo alto|secleak|nameserver-checker|google-display-ads|google-lens|discordbot|icon\.horse|censys|shodan/.test(u)) return "scanner";
   if (/jev-readiness|hermes-ecosystem|forgeandco/.test(u)) return "self";
   if (/chatgpt|openai|oai-searchbot|perplexity|cursor/.test(u)) return "assistant";
-  if (/python|httpx|curl|wget|node|undici|bun|go-http/.test(u)) return "script";
+  if (/python|httpx|curl|wget|node|undici|bun|go-http|axios|requests|urllib/.test(u)) return "script";
+  if (/bot|crawl|spider|slurp|headless|exasearch|petalbot|bytespider|googlebot|bingbot|yandex|baiduspider|duckduckbot/.test(u)) return "crawler";
   if (/mozilla|chrome|safari|firefox|edge/.test(u)) return "browser";
   return "unclassified";
 }
@@ -341,14 +345,17 @@ export async function onRequest(context) {
 
   // 3. Data-gap coverage: agents don't run gtag, so their HTML page reads
   // would otherwise exist nowhere. Browsers skipped — gtag covers them.
-  if (!fileType && context.waitUntil
-      && (pathname === "/" || /^\/providers\/[^/]+\/?$/.test(pathname))
+  if (!fileType && !STATIC_ASSET.test(pathname) && context.waitUntil
+      && (pathname === "/" || /^\/providers\/[^/]+\/?$/.test(pathname) || /^\/free-[^/]+\/?$/.test(pathname))
       && classifyClient(req.headers.get("user-agent")) !== "browser") {
     context.waitUntil(sendGaHit(req, pathname, "html"));
   }
 
   const res = await context.next();
-  logEvent(context, req, pathname, fileType || "html", res);
+  // Bypass static assets (/logos/*, *.svg, *.png, *.ico, *.css, *.js) from edge telemetry sink
+  if (!STATIC_ASSET.test(pathname)) {
+    logEvent(context, req, pathname, fileType || "html", res);
+  }
   try {
     res.headers.set("Vary", "Accept");
   } catch (e) {

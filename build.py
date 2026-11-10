@@ -65,6 +65,17 @@ TURNSTILE_SITE_KEY = "0x4AAAAAAF4X6Cad5QW5V0Bs"
 TURNSTILE_SCRIPT = """<!-- Cloudflare Turnstile -->
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>"""
 
+
+def gtag():
+    # ponytail: one gtag snippet for every page; empty when ga_measurement_id unset
+    ga_id = DATA.get("ga_measurement_id", "")
+    if not ga_id:
+        return ""
+    return (f'<script async src="https://www.googletagmanager.com/gtag/js?id={ga_id}"></script>\n'
+            f'<script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments)}};'
+            f"gtag('js',new Date());gtag('config','{ga_id}');</script>")
+
+
 FAVICON_TAGS = """<link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="alternate icon" href="/favicon.ico">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -589,6 +600,7 @@ def build_html():
     head_meta = html.escape(meta_desc)
     head_og = html.escape(og_desc)
     data_json = json.dumps(DATA, ensure_ascii=False, indent=1)
+    logos_json = json.dumps({p["name"]: logo_file(slug(p["name"])) for p in ROWS}, ensure_ascii=False)
     verified = html.escape(VERIFIED_MAX)
     website = html.escape(WEBSITE)
     footer = footer_nav(verified)
@@ -601,10 +613,7 @@ def build_html():
     body = "".join(row_html(p) for p in ROWS)
 
     # ponytail: inline gtag when ga_measurement_id set in providers.json; no consent banner (no cookies set by default config)
-    ga_id = DATA.get("ga_measurement_id", "")
-    ga = (f'<script async src="https://www.googletagmanager.com/gtag/js?id={ga_id}"></script>\n'
-          f'<script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments)}};'
-          f"gtag('js',new Date());gtag('config','{ga_id}');</script>") if ga_id else ""
+    ga = gtag()
 
     ld = json.dumps({
         "@context": "https://schema.org",
@@ -729,6 +738,7 @@ def build_html():
 
 <script>
 const DATA = {data_json};
+const LOGOS = {logos_json};
 const DEFS = {json.dumps(definitions(), ensure_ascii=False)};
 
 function modelRow(m) {{
@@ -918,17 +928,14 @@ function render(app) {{
   const providersEl = sidebar.querySelector("#providers");
   const filterEl = sidebar.querySelector("#filter");
 
-  const toSlug = s => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
-
   function drawSidebar() {{
     rows = list.filter(p => !filter ||
       (p.name + " " + p.models.map(m => m.name).join(" ")).toLowerCase().includes(filter.toLowerCase()));
     providersEl.innerHTML = rows.map((p, i) => {{
       const active = list.indexOf(p) === activeIdx ? " active" : "";
       const dead = p.dead ? ` <span class="dead">• dead</span>` : "";
-      const s = toSlug(p.name);
       return `<button class="prow${{active}}" data-i="${{i}}">
-        <span class="pname"><img src="/logos/${{s}}.svg" class="prow-logo" width="16" height="16" alt="" onerror="this.style.display='none'"> ${{p.name}}${{dead}}</span>
+        <span class="pname"><img src="/logos/${{LOGOS[p.name]}}" class="prow-logo" width="16" height="16" alt="" onerror="this.style.display='none'"> ${{p.name}}${{dead}}</span>
         <span class="pmeta">${{p.free_type}} · ${{plural(p.models.length, "free model")}} · ${{AM[p.access_method] || p.access_method}}</span></button>`;
     }}).join("");
     providersEl.querySelectorAll(".prow").forEach(b =>
@@ -938,11 +945,10 @@ function render(app) {{
 
   function drawPanel() {{
     const p = list[activeIdx];
-    const s = toSlug(p.name);
     const dead = p.dead ? `<div class="pnotes"><strong class="dead">Probe flags this provider unreachable — verify before relying on it.</strong></div>` : "";
     panel.innerHTML = `<div class="panel-head">
       <div class="provider-title-row">
-        <img src="/logos/${{s}}.svg" class="panel-logo" width="28" height="28" alt="" onerror="this.style.display='none'">
+        <img src="/logos/${{LOGOS[p.name]}}" class="panel-logo" width="28" height="28" alt="" onerror="this.style.display='none'">
         <h2 style="display:inline;margin:0;">${{p.name}}</h2>
         <span class="ftype">${{p.free_type}}</span><span class="amchip">${{AM[p.access_method] || p.access_method}}</span>
       </div>
@@ -993,6 +999,17 @@ def row_html(p):
 
 def slug(name):
     return "".join(c if c.isalnum() else "-" for c in name.lower()).strip("-")
+
+
+LOGO_DIR = ROOT / "data" / "logos"
+
+
+def logo_file(s):
+    # ponytail: disk truth beats naming convention — logos are stored as {slug}.svg or {slug}--{variant}.svg
+    if (LOGO_DIR / f"{s}.svg").exists():
+        return f"{s}.svg"
+    variant = sorted(LOGO_DIR.glob(f"{s}--*.svg"))
+    return variant[0].name if variant else f"{s}.svg"
 
 
 ACCESS_LABEL = {"api_key": "API key", "login": "Login", "bundled": "Bundled"}
@@ -1131,6 +1148,7 @@ def build_provider_page(p):
     docs = html.escape(p.get("docs_url", p["url"]))
     notes = html.escape(p.get("notes", ""))
     notes_html = f"<p>{notes}</p>" if notes else ""
+    ga = gtag()
     rows = "\n".join(model_row_html(m) for m in p["models"])
     ld = json.dumps({
         "@context": "https://schema.org",
@@ -1167,6 +1185,7 @@ def build_provider_page(p):
 {FAVICON_TAGS}
 {PLAUSIBLE}
 {CLARITY}
+{ga}
 {TURNSTILE_SCRIPT}
 <script type="application/ld+json">{ld}</script>
 <style>
@@ -1177,7 +1196,7 @@ def build_provider_page(p):
 <div class="wrap">
   <header>
     <div class="provider-title-row">
-      <img src="/logos/{s}.svg" class="provider-logo" alt="{name} logo" width="36" height="36" onerror="this.style.display='none'">
+      <img src="/logos/{logo_file(s)}" class="provider-logo" alt="{name} logo" width="36" height="36" onerror="this.style.display='none'">
       <h1>{name}</h1>
     </div>
     <p class="tagline">{free_type} · {access_label} · {artifact} · Last updated: {verified_human}</p>
@@ -1716,7 +1735,7 @@ FREE_PAGES_CONFIG = {
 def free_model_row_html(p, m):
     e = html.escape
     pslug = slug(p["name"])
-    p_link = f'<a href="/providers/{pslug}/" class="prov-link"><img src="/logos/{pslug}.svg" class="prow-logo" width="16" height="16" alt="" onerror="this.style.display=\'none\'"> {e(p["name"])}</a>'
+    p_link = f'<a href="/providers/{pslug}/" class="prov-link"><img src="/logos/{logo_file(pslug)}" class="prow-logo" width="16" height="16" alt="" onerror="this.style.display=\'none\'"> {e(p["name"])}</a>'
     cells = [
         f"<td><strong>{e(str(m['name']))}</strong></td>",
         f"<td>{p_link}</td>",
@@ -1870,10 +1889,7 @@ print(response.choices[0].message.content)</code></pre>
   }}'</code></pre>
 </section>"""
     rows_html = "\n".join(free_model_row_html(p, m) for p, m in matched)
-    ga_id = DATA.get("ga_measurement_id", "")
-    ga = (f'<script async src="https://www.googletagmanager.com/gtag/js?id={ga_id}"></script>\n'
-          f'<script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments)}};'
-          f"gtag('js',new Date());gtag('config','{ga_id}');</script>") if ga_id else ""
+    ga = gtag()
     ld = json.dumps({
         "@context": "https://schema.org",
         "@graph": [
@@ -2698,6 +2714,9 @@ def main():
     assert index_html.count('href="/providers/') >= len(ROWS), "footer provider links missing"
     assert "FreeInference" in index_html, "brand missing from homepage title"
     assert f'name="data-version" content="{DATA_VERSION}"' in index_html, "data version missing"
+    logos = json.loads(re.search(r"const LOGOS = (\{.*?\});", index_html).group(1))
+    assert len(logos) == len(ROWS), "logo map incomplete"
+    assert all((dist / "logos" / f).exists() for f in logos.values()), "index logo 404"
     titles = []
     for p in ROWS:
         page = (dist / "providers" / slug(p["name"]) / "index.html").read_text()
@@ -2705,6 +2724,9 @@ def main():
         assert m, f"{p['name']}: missing title"
         assert len(m.group(1)) <= 75, f"{p['name']}: title too long ({len(m.group(1))})"
         assert f'name="data-version" content="{DATA_VERSION}"' in page, f"{p['name']}: data version missing"
+        assert "googletagmanager" in page, f"{p['name']}: GA4 tag missing"
+        names = re.findall(r'/logos/([^"\s]+\.svg)', page)
+        assert names and all((dist / "logos" / n).exists() for n in names), f"{p['name']}: logo 404 ({names})"
         titles.append(m.group(1))
     assert len(titles) == len(set(titles)), "duplicate provider titles"
     free_titles = []
@@ -2716,6 +2738,8 @@ def main():
         assert f'name="data-version" content="{DATA_VERSION}"' in page, f"{s}: data version missing"
         assert f'<link rel="canonical" href="{WEBSITE}/{s}/">' in page, f"{s}: canonical URL missing"
         assert f'<link rel="alternate" type="text/markdown" href="{WEBSITE}/{s}/index.md">' in page, f"{s}: md alternate missing"
+        names = re.findall(r'/logos/([^"\s]+\.svg)', page)
+        assert names and all((dist / "logos" / n).exists() for n in names), f"{s}: logo 404 ({names})"
         free_titles.append(m.group(1))
     assert len(free_titles) == len(set(free_titles)), "duplicate free page titles"
     print(f"ok: {count_noun(len(ROWS), 'provider')}, {count_noun(total, 'model')} -> dist/ (verified {VERIFIED_MAX}, version {DATA_VERSION})")

@@ -459,27 +459,60 @@ def footer_nav(verified, include_newsletter=True):
 
 def answer_block():
     total_models = sum(len(p["models"]) for p in ROWS)
-    ranked = sorted(ROWS, key=lambda p: len(p["models"]), reverse=True)
-    widest = ranked[0]
-    api = next((p for p in ranked if p.get("access_method") == "api_key" and p is not widest), None)
-    tool = next((p for p in ranked if p.get("access_method") in ("login", "bundled")), None)
-
-    def item(label, p, note):
-        return (f'<li><strong>{label}:</strong> '
-                f'<a href="/providers/{slug(p["name"])}/">{html.escape(p["name"])}</a> — {note}</li>')
-
-    items = [item("Widest choice", widest, f'{count_noun(len(widest["models"]), "free model")} in one place')]
-    if api:
-        items.append(item("Direct API key", api, f'{count_noun(len(api["models"]), "free model")}, callable with a key'))
-    if tool:
-        items.append(item("Coding tool", tool, f'{count_noun(len(tool["models"]), "free model")}, {tool.get("access_method")} access'))
     return f"""<section class="answer">
-  <h2>Which free LLM API should I use?</h2>
-  <p>Free LLM inference you can build with: {count_noun(len(ROWS), "provider")}, {count_noun(total_models, "model")}, no card for most entries. Pick by how you get in:</p>
-  <ul>
-    {"".join(items)}
-  </ul>
-  <p class="answer-more">Every provider is listed below, with a detail page for limits and how to get in.</p>
+  <h2>Top Free AI Inference Providers & APIs (2026)</h2>
+  <p><strong>Free AI inference</strong> enables developers to query production LLMs at $0 cost via OpenAI-compatible REST APIs or developer consoles without credit cards. Top providers deliver high-throughput inference on specialized silicon (Groq LPUs, Cerebras CS-3, Google TPUs) or multi-model routing for agentic workflows:</p>
+  <div class="table-wrap">
+    <table class="answer-table">
+      <thead>
+        <tr>
+          <th>Provider</th>
+          <th>Top Models</th>
+          <th>Free Limits</th>
+          <th>Max Context</th>
+          <th>Card Required</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="/providers/google-ai-studio-gemini-api/"><strong>Google AI Studio</strong></a></td>
+          <td>Gemini 2.5 Flash, Gemini 3.5 Flash-Lite</td>
+          <td>15 RPM · 500 RPD · 250K TPM</td>
+          <td>1,000K</td>
+          <td>No</td>
+        </tr>
+        <tr>
+          <td><a href="/providers/groq/"><strong>Groq</strong></a></td>
+          <td>Llama 3.3 70B, Llama 3.1 8B</td>
+          <td>30 RPM · 1,000 RPD · 12K TPM</td>
+          <td>128K</td>
+          <td>No</td>
+        </tr>
+        <tr>
+          <td><a href="/providers/openrouter/"><strong>OpenRouter</strong></a></td>
+          <td>27+ free models (:free endpoints)</td>
+          <td>20 RPM · 50–1,000 RPD</td>
+          <td>500K</td>
+          <td>No</td>
+        </tr>
+        <tr>
+          <td><a href="/providers/cerebras/"><strong>Cerebras</strong></a></td>
+          <td>GPT-OSS 120B, Qwen 3.8 27B</td>
+          <td>5 RPM · 30K TPM · $5 credits</td>
+          <td>8K</td>
+          <td>No</td>
+        </tr>
+        <tr>
+          <td><a href="/providers/nvidia-nim-build-nvidia-com/"><strong>NVIDIA NIM</strong></a></td>
+          <td>40+ enterprise foundation models</td>
+          <td>1,000 credits/model</td>
+          <td>128K</td>
+          <td>No</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="answer-more">Explore our dedicated slices for <a href="/free-inference-api/">Free Inference API endpoints</a> and <a href="/free-inference-providers/">Free Inference Providers comparison</a>, or browse all {count_noun(len(ROWS), "provider")} and {count_noun(total_models, "free model")} below.</p>
 </section>"""
 
 
@@ -514,29 +547,70 @@ def build_html():
 
     ld = json.dumps({
         "@context": "https://schema.org",
-        "@type": "Dataset",
-        "name": TITLE,
-        "description": og_desc,
-        "url": WEBSITE,
-        "dateModified": VERIFIED_MAX,
-        "version": DATA_VERSION,
-        "distribution": [
-            {"@type": "DataDownload", "encodingFormat": "application/json",
-             "contentUrl": f"{WEBSITE}/data/providers.json"},
-            {"@type": "DataDownload", "encodingFormat": "application/schema+json",
-             "contentUrl": f"{WEBSITE}/data/schema.json"},
-            {"@type": "DataDownload", "encodingFormat": "text/plain",
-             "contentUrl": f"{WEBSITE}/llms.txt"},
-        ],
-        "license": "https://opensource.org/licenses/MIT",
-        **({"sameAs": REPO} if REPO else {}),
-        "keywords": ["free LLM API", "inference providers", "rate limits", "AI agents", "WebMCP", "llms.txt"],
-        "variableMeasured": ["RPM", "TPM", "RPD", "Context Window", "Daily Token Limits", "Model Pricing"],
-        "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "USD"
-        }
+        "@graph": [
+            {
+                "@type": "Dataset",
+                "name": TITLE,
+                "description": og_desc,
+                "url": WEBSITE,
+                "dateModified": VERIFIED_MAX,
+                "version": DATA_VERSION,
+                "distribution": [
+                    {"@type": "DataDownload", "encodingFormat": "application/json",
+                     "contentUrl": f"{WEBSITE}/data/providers.json"},
+                    {"@type": "DataDownload", "encodingFormat": "application/schema+json",
+                     "contentUrl": f"{WEBSITE}/data/schema.json"},
+                    {"@type": "DataDownload", "encodingFormat": "text/plain",
+                     "contentUrl": f"{WEBSITE}/llms.txt"},
+                ],
+                "license": "https://opensource.org/licenses/MIT",
+                **({"sameAs": REPO} if REPO else {}),
+                "keywords": ["free LLM API", "free inference providers", "free inference api", "rate limits", "AI agents", "OpenAI compatible", "llms.txt"],
+                "variableMeasured": ["RPM", "TPM", "RPD", "Context Window", "Daily Token Limits", "Model Pricing"],
+                "offers": {
+                    "@type": "Offer",
+                    "price": "0",
+                    "priceCurrency": "USD"
+                }
+            },
+            {
+                "@type": "FAQPage",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": "What is free AI inference?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Free AI inference allows developers to run inference on leading LLMs at $0 cost via OpenAI-compatible endpoints or developer consoles without credit cards. Providers typically offer permanent free rate limits, generous daily token quotas, or recurring trial credits."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Which free inference APIs require no credit card?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Google AI Studio, Groq, OpenRouter, Cerebras, and SambaNova Cloud all provide free API keys without requiring credit card registration upfront."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "What are the fastest free inference providers for Llama and DeepSeek?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Groq delivers ultra-fast LPU inference (up to 300+ tokens/sec) for Llama 3.3 and Llama 3.1. Cerebras offers wafer-scale engine inference at unmatched speeds, while SambaNova Cloud and OpenRouter provide high-throughput endpoints for DeepSeek-V3 and Llama models."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "How do I get free OpenAI-compatible API keys?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "You can sign up directly at providers like Groq, Google AI Studio, or OpenRouter with a GitHub or Google account, generate an API key from their developer console, and plug it directly into OpenAI SDK clients using their base URL."
+                        }
+                    }
+                ]
+            }
+        ]
     }, ensure_ascii=False)
 
     return f"""<!doctype html>
@@ -801,15 +875,80 @@ def build_provider_page(p):
     notes_html = f"<p>{notes}</p>" if notes else ""
     ga = gtag()
     rows = "\n".join(model_row_html(m) for m in p["models"])
+
+    notes_lower = p.get("notes", "").lower()
+    if "no credit card" in notes_lower or "no card" in notes_lower:
+        card_answer = f"No credit card is required to use {p['name']} free tier."
+    elif "credit card required" in notes_lower or "card required" in notes_lower:
+        card_answer = f"Credit card verification is required to activate {p['name']} free tier."
+    else:
+        card_answer = f"Credit card requirement is not specified for {p['name']}, but access is granted via {access_label}."
+
+    top_models = [m["name"].replace(":free", "") for m in p["models"][:5]]
+    top_models_str = ", ".join(top_models)
+    sample_m = p["models"][0] if p["models"] else None
+    limits_desc = []
+    if sample_m:
+        if sample_m.get("rpm") and sample_m.get("rpm") != "—":
+            limits_desc.append(f"{sample_m['rpm']} RPM")
+        if sample_m.get("rpd") and sample_m.get("rpd") != "—":
+            limits_desc.append(f"{sample_m['rpd']} RPD")
+        if sample_m.get("tpm") and sample_m.get("tpm") != "—":
+            limits_desc.append(f"{sample_m['tpm']} TPM")
+    limits_summary = f" Limits vary by model (e.g. {sample_m['name']}: {', '.join(limits_desc)})." if (sample_m and limits_desc) else ""
+
+    provider_faqs = [
+        {
+            "@type": "Question",
+            "name": f"Does {p['name']} offer a free API tier?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": f"Yes, {p['name']} offers a {p.get('free_type', 'free tier')} with {count_noun(count, 'model')} accessible via {access_label}. {card_answer}"
+            }
+        },
+        {
+            "@type": "Question",
+            "name": f"What models are free on {p['name']}?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": f"{p['name']} provides free access to {count_noun(count, 'model')}, including {top_models_str}."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": f"What are the rate limits for {p['name']} free tier?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": f"Free tier rate limits on {p['name']} depend on the selected model.{limits_summary} Full RPM, TPM, and daily limits are listed in the table above."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": f"Do I need a credit card for {p['name']}?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": card_answer
+            }
+        }
+    ]
+
     ld = json.dumps({
         "@context": "https://schema.org",
-        "@type": "WebPage",
-        "name": title,
-        "description": og_desc,
-        "dateModified": p["verified"],
-        "version": DATA_VERSION,
-        "isPartOf": {"@type": "Dataset", "name": TITLE, "url": WEBSITE},
-        "about": {"@type": "Thing", "name": p["name"], "url": p["url"]},
+        "@graph": [
+            {
+                "@type": "WebPage",
+                "name": title,
+                "description": og_desc,
+                "dateModified": p["verified"],
+                "version": DATA_VERSION,
+                "isPartOf": {"@type": "Dataset", "name": TITLE, "url": WEBSITE},
+                "about": {"@type": "Thing", "name": p["name"], "url": p["url"]},
+            },
+            {
+                "@type": "FAQPage",
+                "mainEntity": provider_faqs
+            }
+        ]
     }, ensure_ascii=False)
     return f"""<!doctype html>
 <html lang="en">
@@ -2244,6 +2383,12 @@ def main():
             assert not missing_m, f"{p['name']}/{m.get('name', '?')}: missing {missing_m}"
     dist = ROOT / "dist"
     dist.mkdir(exist_ok=True)
+    if (dist / "providers").exists():
+        import shutil
+        valid_provider_slugs = {slug(p["name"]) for p in ROWS}
+        for d in (dist / "providers").iterdir():
+            if d.is_dir() and d.name not in valid_provider_slugs:
+                shutil.rmtree(d)
     (dist / "data").mkdir(exist_ok=True)
     (ROOT / "README.md").write_text(build_readme())
     (dist / "index.html").write_text(build_html())

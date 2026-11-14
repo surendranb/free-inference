@@ -344,6 +344,8 @@ FOOTER_CAPABILITY_GROUPS = [
         ("free-long-context-api", "Long Context (128K–1M)"),
     ]),
     ("Access & Setup", [
+        ("free-inference-providers", "AI Inference Providers"),
+        ("free-inference-api", "Free Inference APIs"),
         ("free-llm-api", "Complete $0 Directory"),
         ("free-llm-api-no-credit-card", "No Credit Card Required"),
         ("free-openai-compatible-api", "OpenAI-Compatible Base URLs"),
@@ -1166,6 +1168,32 @@ FREE_PAGES_CONFIG = {
             "model": "GLM-4.7-Flash",
             "provider": "Z.AI (Zhipu)",
             "notes": "OpenAI-compatible endpoint for free GLM-4.7-Flash inference."
+        }
+    },
+    "free-inference-providers": {
+        "title": "Free AI Inference Providers — $0 Host Comparison (2026)",
+        "h1": "Free AI & LLM Inference Providers",
+        "bluf": "Directory comparing verified zero-cost AI inference providers, hardware accelerators, and API gateways. Filtered by rate limits, token throughput, and context windows.",
+        "desc": "Compare free AI and LLM inference providers. Verified rate limits, context windows, and base URLs for SambaNova, Groq, Cerebras, Google AI Studio, and DeepInfra.",
+        "filter": lambda p, m: p.get("access_method") == "api_key",
+        "tool_snippet": {
+            "base_url": "https://api.sambanova.ai/v1",
+            "model": "DeepSeek-V3.2",
+            "provider": "SambaNova Cloud",
+            "notes": "Ultra-fast zero-cost inference provider with 131K context window."
+        }
+    },
+    "free-inference-api": {
+        "title": "Free Inference API — $0 OpenAI-Compatible Endpoints (2026)",
+        "h1": "Free Inference APIs & Endpoints",
+        "bluf": "Verified free inference APIs supporting OpenAI-compatible chat completions. Direct developer keys with zero credit card required, sub-second latency, and drop-in SDK base URLs.",
+        "desc": "Directory of verified free inference APIs. Drop-in OpenAI-compatible endpoints, rate limits, and cURL examples for Groq, SambaNova, Google AI Studio, and Cerebras.",
+        "filter": lambda p, m: bool(p.get("base_url")) and p.get("access_method") == "api_key",
+        "tool_snippet": {
+            "base_url": "https://api.groq.com/openai/v1",
+            "model": "llama-3.3-70b-versatile",
+            "provider": "Groq",
+            "notes": "Drop-in OpenAI-compatible inference API with ultra-low latency LPU throughput."
         }
     },
     "free-llm-api": {

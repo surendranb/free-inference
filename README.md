@@ -2,7 +2,7 @@
 
 Free AI & LLM inference you can build with: an API key, a CLI login, or inference bundled inside a coding tool or builder. Speech-to-text, voice synthesis, code, vision, and reasoning. The test is whether you can ship an artifact you keep — code, an app, an audio file, a site, a design, an agent, a skill. Chat-only free tiers are excluded on purpose.
 
-> **2026-11-13** · 49 providers · 356 free models
+> **2026-11-14** · 50 providers · 357 free models
 > Interactive site: https://freeinference.dev · Agent summary: https://freeinference.dev/llms.txt · Machine data: https://freeinference.dev/data/providers.json (validate against https://freeinference.dev/data/schema.json)
 
 ### Quick Navigation & Machine Access
@@ -20,6 +20,7 @@ Free AI & LLM inference you can build with: an API key, a CLI login, or inferenc
 
 | Provider | Access | Free tier | Notable models | Notes |
 | --- | --- | --- | --- | --- |
+| [Synap by Linkrra](https://synap402.com/ai/account.html) | api_key | Rate-limited free | qwen3-coder-30b | Synap provides a no-card free tier for qwen3-coder-30b through an OpenAI-compatible API. Google or email sign-in grants 100,000 tokens and 50 requests per day, with a 10 requests/minute per-key limit. Prompts and completions are not stored or used for training. Allowances reset daily at 00:00 UTC and are limited per account and network address. |
 | [OpenCode Zen](https://opencode.ai/v2/docs/console/models/) | api_key | Promo free (limited time) | Big Pickle, Iceman Free, Inkling 2 Small Free, Crouton Alpha Free, GLM-5.3-Flash Free, DeepSeek V4.1 Flash Free, +9 more | [The Grant] OpenCode Zen provides a collection of zero-cost promotional and experimental models. [The Output] Users gain access to free tier inference across multiple models including text and vision variants. [The Process] Models are evaluated and identified via catalog audits and pricing data verification. [The Condition] Availability is subject to limited-time promotional windows, zero-data-retention policies, and user feedback collection requirements. |
 | [OpenRouter](https://openrouter.ai/models?max_price=0) | api_key | Rate-limited free | cohere/north-mini-code:free, dots-studio/dots-3-note-preview:free, google/gemma-4-26b-a4b-it:free, google/gemma-4-31b-it:free, liquid/lfm-2.5-2.6b:free, liquid/lfm-3-1.7b:free, +20 more | OpenRouter offers 13 permanently free models (:free suffix) with 64K–500K context, translating to 50 requests/day (1,000 requests/day with + purchased credits). No credit card required. Upstream model availability determines live rate limits. |
 | [Google AI Studio (Gemini API)](https://ai.google.dev/gemini-api/docs/rate-limits) | api_key | Rate-limited free | gemini-3.5-flash-lite, gemini-3.1-flash-lite, gemma-4-26b-a4b-it, gemma-4-31b-it, gemini-3.5-flash, gemini-3-flash-preview, +10 more | Google AI Studio offers 16 free models with up to 1M context. Flagship light models (Gemini 3.5 Flash-Lite, 3.1 Flash-Lite) offer 500 RPD, 15 RPM, and 250K TPM, while open-weight Gemma 4 models (26B, 31B) provide 14.4K RPD, 30 RPM, and 16K TPM. No credit card required. Free-tier prompts and outputs are retained for model training. |
@@ -98,6 +99,12 @@ The Process: Sign up for an AIHubMix account to retrieve free tier API credentia
 The Condition: Rate-limited free promotional usage subject to provider token availability. |
 
 ## Models (per provider)
+
+### Synap by Linkrra
+
+| Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| qwen3-coder-30b | $0 | 98.3K | 10 | Not published | 50 | 100,000 | 2026-11-14 |
 
 ### OpenCode Zen
 

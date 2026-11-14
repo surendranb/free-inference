@@ -18,6 +18,32 @@
   ],
   "providers": [
     {
+      "name": "Synap by Linkrra",
+      "url": "https://synap402.com/ai/account.html",
+      "free_type": "Rate-limited free",
+      "notes": "Synap provides a no-card free tier for qwen3-coder-30b through an OpenAI-compatible API. Google or email sign-in grants 100,000 tokens and 50 requests per day, with a 10 requests/minute per-key limit. Prompts and completions are not stored or used for training. Allowances reset daily at 00:00 UTC and are limited per account and network address.",
+      "timeout": "Not published",
+      "verified": "2026-11-14",
+      "models": [
+        {
+          "name": "qwen3-coder-30b",
+          "cost": "$0",
+          "context": "98.3K",
+          "rpm": "10",
+          "tpm": "Not published",
+          "rpd": "50",
+          "tpd": "100,000",
+          "verified": "2026-11-14"
+        }
+      ],
+      "verified_method": "api",
+      "docs_url": "https://synap402.com/api/account/free-tier",
+      "access_method": "api_key",
+      "artifact": "code",
+      "base_url": "https://synap402.com/v1",
+      "channel": "web"
+    },
+    {
       "name": "OpenCode Zen",
       "url": "https://opencode.ai/v2/docs/console/models/",
       "free_type": "Promo free (limited time)",

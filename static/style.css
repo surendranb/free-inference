@@ -83,6 +83,9 @@
   .answer p { margin:0 0 8px; font-size:14px; }
   .answer ul { margin:0 0 8px; padding-left:18px; font-size:14px; }
   .answer li { margin:3px 0; }
+  .answer .table-wrap { margin:10px 0 12px; }
+  .answer-table { font-size:13px; }
+  .answer-table th, .answer-table td { padding:6px 10px; }
   .answer-more { color:var(--mut); font-size:13px; margin:0; }
   .code-box { background:#f8f9fa; border:1px solid var(--line); border-radius:6px; padding:12px 16px; font-family:ui-monospace,SFMono-Regular,Consolas,monospace; font-size:13px; overflow-x:auto; margin:10px 0; }
   .code-box code { font-family:inherit; }

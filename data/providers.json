@@ -1,6 +1,6 @@
 {
   "title": "Free Inference",
-  "tagline": "Free AI & LLM inference you can build with: an API key, a CLI login, or inference bundled inside a coding tool or builder. Speech-to-text, voice synthesis, code, vision, and reasoning. The test is whether you can ship an artifact you keep \u2014 code, an app, an audio file, a site, a design, an agent, a skill. Chat-only free tiers are excluded on purpose.",
+  "tagline": "Free AI & LLM inference you can build with: an API key, a CLI login, or inference bundled inside a coding tool or builder. Speech-to-text, voice synthesis, code, vision, and reasoning. The test is whether you can ship an artifact you keep — code, an app, an audio file, a site, a design, an agent, a skill. Chat-only free tiers are excluded on purpose.",
   "verified": "2026-11-15",
   "website": "https://freeinference.dev",
   "repo": "https://github.com/surendranb/free-inference",
@@ -213,7 +213,7 @@
       "name": "OpenRouter",
       "url": "https://openrouter.ai/models?max_price=0",
       "free_type": "Rate-limited free",
-      "notes": "OpenRouter offers 13 permanently free models (:free suffix) with 64K\u2013500K context, translating to 50 requests/day (1,000 requests/day with + purchased credits). No credit card required. Upstream model availability determines live rate limits.",
+      "notes": "OpenRouter offers 13 permanently free models (:free suffix) with 64K–500K context, translating to 50 requests/day (1,000 requests/day with + purchased credits). No credit card required. Upstream model availability determines live rate limits.",
       "timeout": "Not published",
       "verified": "2026-11-15",
       "models": [
@@ -2189,7 +2189,7 @@
       "name": "Kilo Gateway",
       "url": "https://kilo.ai/gateway",
       "free_type": "Rate-limited free",
-      "notes": "Kilo Gateway offers 7 free models with 64K\u2013256K context, translating to 200 requests/hour per IP address. No credit card required. Model availability reflects upstream provider quotas.",
+      "notes": "Kilo Gateway offers 7 free models with 64K–256K context, translating to 200 requests/hour per IP address. No credit card required. Model availability reflects upstream provider quotas.",
       "timeout": "Not published",
       "verified": "2026-11-07",
       "verified_method": "live-probe",
@@ -2824,7 +2824,7 @@
       "name": "SiliconFlow",
       "url": "https://siliconflow.cn",
       "free_type": "Trial credits",
-      "notes": "SiliconFlow provides  in free trial credits upon developer account registration. Credits can be applied across speech, text, and multimodal open-source models through an OpenAI-compatible API. Users create an account to generate API keys with no credit card required, with credits remaining valid for 90 days.",
+      "notes": "SiliconFlow provides $200 in free trial credits upon developer account registration. Credits can be applied across speech, text, and multimodal open-source models through an OpenAI-compatible API. Users create an account to generate API keys with no credit card required, with credits remaining valid for 90 days.",
       "timeout": "Not published",
       "verified": "2026-11-15",
       "models": [
@@ -3032,7 +3032,7 @@
       "name": "Deepgram",
       "url": "https://deepgram.com/pricing",
       "free_type": "Trial credits",
-      "notes": "Deepgram provides  in free trial credits upon registration, unlocking public speech-to-text and text-to-speech models including Nova-3, Flux, and Aura. Developers register an account to obtain an API key with no credit card required upfront. The allowance yields roughly 700 hours of audio transcription, subject to a 90-day expiry window and standard streaming concurrency caps.",
+      "notes": "Deepgram provides $200 in free trial credits upon registration, unlocking public speech-to-text and text-to-speech models including Nova-3, Flux, and Aura. Developers register an account to obtain an API key with no credit card required upfront. The allowance yields roughly 700 hours of audio transcription, subject to a 90-day expiry window and standard streaming concurrency caps.",
       "timeout": "Not published",
       "verified": "2026-11-15",
       "models": [
@@ -3164,7 +3164,7 @@
       "name": "Speka",
       "url": "https://speka.me",
       "free_type": "Permanent $0",
-      "notes": "Speka provides a recurring .00 monthly credit allowance that resets on the first of each month. Developers query all open catalog models (DeepSeek, Llama 3.2) via an OpenAI-compatible endpoint with a single API key created at signup without a credit card. Usage is capped at 10 RPM and billed at standard per-token rates, returning HTTP 402 once exhausted until the next monthly refresh.",
+      "notes": "Speka provides a recurring $1.00 monthly credit allowance that resets on the first of each month. Developers query all open catalog models (DeepSeek, Llama 3.2) via an OpenAI-compatible endpoint with a single API key created at signup without a credit card. Usage is capped at 10 RPM and billed at standard per-token rates, returning HTTP 402 once exhausted until the next monthly refresh.",
       "timeout": "Not published",
       "verified": "2026-11-15",
       "channel": "web",

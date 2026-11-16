@@ -8,6 +8,7 @@ from typing import Dict, List, Optional
 
 from core.intake import fetch_api, fetch_feed, fetch_web
 from core.model import call_with_self_correction, get_api_key
+from probe import DETERMINISTIC_SYNCS
 
 VERIFIER_SCHEMA = {
     "type": "OBJECT",
@@ -133,6 +134,18 @@ def verify_catalog(
             break
 
         pname = p.get("name", "Unknown")
+        # Machine-checkable free tiers: the deterministic sync owns the row,
+        # no LLM audit (verified_method stays a proven, not a claimed, value).
+        if apply_updates and pname in DETERMINISTIC_SYNCS:
+            msg = DETERMINISTIC_SYNCS[pname](p, today)
+            print(f"--> Verified {pname} (deterministic): {msg}")
+            results.append({
+                "provider": pname, "channel": p.get("channel", "web"),
+                "status": "active", "is_free_active": True,
+                "summary": msg, "audited_date": today,
+            })
+            audited += 1
+            continue
         # Skip if already verified today via live-probe unless force_all
         if not force_all and p.get("verified") == today and p.get("verified_method") == "live-probe":
             continue

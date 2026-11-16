@@ -2,7 +2,7 @@
 name: free-inference
 description: Query, filter, and configure verified $0 free LLM inference providers, OpenAI-compatible base URLs, and active rate limits (RPM/TPM/RPD) across 50 providers and 361 models.
 version: 1.0.0
-updated: 2026-11-15
+updated: 2026-11-16
 homepage: https://freeinference.dev
 update_url: https://freeinference.dev/skills/free-inference/SKILL.md
 short_url: https://freeinference.dev/skill.md
@@ -76,7 +76,7 @@ import urllib.request, json
 req = urllib.request.Request("https://freeinference.dev/v1/models", headers={"User-Agent": "FreeInference-Agent/1.0"})
 with urllib.request.urlopen(req) as resp:
     data = json.load(resp)
-    print(f"Catalog contains {data['total_models']} free models across {len(data['data'])} entries.")
+    print(f"Catalog contains {data['total_models']} models across {len(data['data'])} entries.")
 ```
 
 ---

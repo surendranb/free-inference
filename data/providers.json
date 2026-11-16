@@ -1,6 +1,6 @@
 {
   "title": "Free Inference",
-  "tagline": "Free AI & LLM inference you can build with: an API key, a CLI login, or inference bundled inside a coding tool or builder. Speech-to-text, voice synthesis, code, vision, and reasoning. The test is whether you can ship an artifact you keep — code, an app, an audio file, a site, a design, an agent, a skill. Chat-only free tiers are excluded on purpose.",
+  "tagline": "Free AI & LLM inference you can build with: an API key, a CLI login, or inference bundled inside a coding tool or builder. Speech-to-text, voice synthesis, code, vision, and reasoning. The test is whether you can ship an artifact you keep \u2014 code, an app, an audio file, a site, a design, an agent, a skill. Chat-only free tiers are excluded on purpose.",
   "verified": "2026-11-15",
   "website": "https://freeinference.dev",
   "repo": "https://github.com/surendranb/free-inference",
@@ -23,20 +23,20 @@
       "free_type": "Rate-limited free",
       "notes": "Synap provides a no-card free tier for qwen3-coder-30b through an OpenAI-compatible API. Google or email sign-in grants 100,000 tokens and 50 requests per day, with a 10 requests/minute per-key limit. Prompts and completions are not stored or used for training. Allowances reset daily at 00:00 UTC and are limited per account and network address.",
       "timeout": "Not published",
-      "verified": "2026-11-15",
+      "verified": "2026-11-16",
       "models": [
         {
           "name": "qwen3-coder-30b",
-          "cost": "$0",
+          "cost": "$0 (100,000 tokens/day account allowance)",
           "context": "98.3K",
           "rpm": "10",
           "tpm": "Not published",
           "rpd": "50",
           "tpd": "100,000",
-          "verified": "2026-11-15"
+          "verified": "2026-11-16"
         }
       ],
-      "verified_method": "api",
+      "verified_method": "live-probe",
       "docs_url": "https://synap402.com/api/account/free-tier",
       "access_method": "api_key",
       "artifact": "code",
@@ -213,7 +213,7 @@
       "name": "OpenRouter",
       "url": "https://openrouter.ai/models?max_price=0",
       "free_type": "Rate-limited free",
-      "notes": "OpenRouter offers 13 permanently free models (:free suffix) with 64K–500K context, translating to 50 requests/day (1,000 requests/day with + purchased credits). No credit card required. Upstream model availability determines live rate limits.",
+      "notes": "OpenRouter offers 13 permanently free models (:free suffix) with 64K\u2013500K context, translating to 50 requests/day (1,000 requests/day with + purchased credits). No credit card required. Upstream model availability determines live rate limits.",
       "timeout": "Not published",
       "verified": "2026-11-15",
       "models": [
@@ -1003,7 +1003,7 @@
       "models": [
         {
           "name": "Meta-Llama-3.3-70B-Instruct",
-          "cost": "$0",
+          "cost": "$0 (trial credits)",
           "context": "unknown",
           "rpm": "unknown",
           "tpm": "unknown",
@@ -1058,7 +1058,7 @@
         },
         {
           "name": "MiniMax-M3.1-Flash",
-          "cost": "$0",
+          "cost": "$0 (trial credits)",
           "context": "256K",
           "rpm": "~40",
           "tpm": "Not published",
@@ -1068,7 +1068,7 @@
         },
         {
           "name": "Whisper Large v3",
-          "cost": "$0",
+          "cost": "$0 (trial credits)",
           "context": "448",
           "rpm": "~40",
           "tpm": "Not published",
@@ -1078,7 +1078,7 @@
         },
         {
           "name": "GPT OSS 20B",
-          "cost": "$0",
+          "cost": "$0 (trial credits)",
           "context": "128K",
           "rpm": "~40",
           "tpm": "Not published",
@@ -1088,7 +1088,7 @@
         },
         {
           "name": "Qwen Image",
-          "cost": "$0",
+          "cost": "$0 (trial credits)",
           "context": "Model-dependent",
           "rpm": "~40",
           "tpm": "Not published",
@@ -1098,7 +1098,7 @@
         },
         {
           "name": "Qwen Image Edit",
-          "cost": "$0",
+          "cost": "$0 (trial credits)",
           "context": "Model-dependent",
           "rpm": "~40",
           "tpm": "Not published",
@@ -1108,7 +1108,7 @@
         },
         {
           "name": "Llama Guard 4 12B",
-          "cost": "$0",
+          "cost": "$0 (trial credits)",
           "context": "160K",
           "rpm": "~40",
           "tpm": "Not published",
@@ -1118,7 +1118,7 @@
         },
         {
           "name": "Llama-3.2-90B-Vision-Instruct",
-          "cost": "$0",
+          "cost": "$0 (trial credits)",
           "context": "125K",
           "rpm": "~40",
           "tpm": "Not published",
@@ -1128,7 +1128,7 @@
         },
         {
           "name": "Muse Glimmer 30B",
-          "cost": "$0",
+          "cost": "$0 (trial credits)",
           "context": "128K",
           "rpm": "~40",
           "tpm": "Not published",
@@ -1138,7 +1138,7 @@
         },
         {
           "name": "Llama 3.2 11b Vision Instruct",
-          "cost": "$0",
+          "cost": "$0 (trial credits)",
           "context": "125K",
           "rpm": "~40",
           "tpm": "Not published",
@@ -1148,7 +1148,7 @@
         },
         {
           "name": "Gemma-4-31B-IT",
-          "cost": "$0",
+          "cost": "$0 (trial credits)",
           "context": "250K",
           "rpm": "~40",
           "tpm": "Not published",
@@ -1158,7 +1158,7 @@
         },
         {
           "name": "DiffusionGemma 26B A4B IT",
-          "cost": "$0",
+          "cost": "$0 (trial credits)",
           "context": "244.1K",
           "rpm": "~40",
           "tpm": "Not published",
@@ -1168,7 +1168,7 @@
         },
         {
           "name": "paligemma",
-          "cost": "$0",
+          "cost": "$0 (trial credits)",
           "context": "125K",
           "rpm": "~40",
           "tpm": "Not published",
@@ -1178,7 +1178,7 @@
         },
         {
           "name": "DeepSeek V4.1 Flash",
-          "cost": "$0",
+          "cost": "$0 (trial credits)",
           "context": "1.0M",
           "rpm": "~40",
           "tpm": "Not published",
@@ -1188,7 +1188,7 @@
         },
         {
           "name": "FLUX.1-dev",
-          "cost": "$0",
+          "cost": "$0 (trial credits)",
           "context": "Model-dependent",
           "rpm": "~40",
           "tpm": "Not published",
@@ -1198,7 +1198,7 @@
         },
         {
           "name": "FLUX.2 Klein 4B",
-          "cost": "$0",
+          "cost": "$0 (trial credits)",
           "context": "Model-dependent",
           "rpm": "~40",
           "tpm": "Not published",
@@ -1208,7 +1208,7 @@
         },
         {
           "name": "FLUX.1-Kontext-dev",
-          "cost": "$0",
+          "cost": "$0 (trial credits)",
           "context": "Model-dependent",
           "rpm": "~40",
           "tpm": "Not published",
@@ -1218,7 +1218,7 @@
         },
         {
           "name": "FLUX.1-schnell",
-          "cost": "$0",
+          "cost": "$0 (trial credits)",
           "context": "Model-dependent",
           "rpm": "~40",
           "tpm": "Not published",
@@ -1228,7 +1228,7 @@
         },
         {
           "name": "Laguna XS 2.1",
-          "cost": "$0",
+          "cost": "$0 (trial credits)",
           "context": "256K",
           "rpm": "~40",
           "tpm": "Not published",
@@ -1238,7 +1238,7 @@
         },
         {
           "name": "magpie-tts-zeroshot",
-          "cost": "$0",
+          "cost": "$0 (trial credits)",
           "context": "Model-dependent",
           "rpm": "~40",
           "tpm": "Not published",
@@ -1248,7 +1248,7 @@
         },
         {
           "name": "cosmos-transfer2.5-2b",
-          "cost": "$0",
+          "cost": "$0 (trial credits)",
           "context": "Model-dependent",
           "rpm": "~40",
           "tpm": "Not published",
@@ -1258,7 +1258,7 @@
         },
         {
           "name": "llama-nemotron-embed-vl-1b-v2",
-          "cost": "$0",
+          "cost": "$0 (trial credits)",
           "context": "8K",
           "rpm": "~40",
           "tpm": "Not published",
@@ -1268,7 +1268,7 @@
         },
         {
           "name": "Nemotron 3.5 Lightning 30B A3B",
-          "cost": "$0",
+          "cost": "$0 (trial credits)",
           "context": "256K",
           "rpm": "~40",
           "tpm": "Not published",
@@ -1278,7 +1278,7 @@
         },
         {
           "name": "Active Speaker Detection",
-          "cost": "$0",
+          "cost": "$0 (trial credits)",
           "context": "Model-dependent",
           "rpm": "~40",
           "tpm": "Not published",
@@ -1288,7 +1288,7 @@
         },
         {
           "name": "llama-nemotron-rerank-vl-1b-v2",
-          "cost": "$0",
+          "cost": "$0 (trial credits)",
           "context": "10K",
           "rpm": "~40",
           "tpm": "Not published",
@@ -1298,7 +1298,7 @@
         },
         {
           "name": "Nemotron 3 Ultra 550B A55B",
-          "cost": "$0",
+          "cost": "$0 (trial credits)",
           "context": "1.0M",
           "rpm": "~40",
           "tpm": "Not published",
@@ -1308,7 +1308,7 @@
         },
         {
           "name": "Nemotron 3 Nano Omni",
-          "cost": "$0",
+          "cost": "$0 (trial credits)",
           "context": "250K",
           "rpm": "~40",
           "tpm": "Not published",
@@ -1318,7 +1318,7 @@
         },
         {
           "name": "llama-3.1-nemotron-safety-guard-8b-v3",
-          "cost": "$0",
+          "cost": "$0 (trial credits)",
           "context": "125K",
           "rpm": "~40",
           "tpm": "Not published",
@@ -1328,7 +1328,7 @@
         },
         {
           "name": "nemotron-voicechat",
-          "cost": "$0",
+          "cost": "$0 (trial credits)",
           "context": "125K",
           "rpm": "~40",
           "tpm": "Not published",
@@ -1338,7 +1338,7 @@
         },
         {
           "name": "streampetr",
-          "cost": "$0",
+          "cost": "$0 (trial credits)",
           "context": "125K",
           "rpm": "~40",
           "tpm": "Not published",
@@ -1348,7 +1348,7 @@
         },
         {
           "name": "bevformer",
-          "cost": "$0",
+          "cost": "$0 (trial credits)",
           "context": "125K",
           "rpm": "~40",
           "tpm": "Not published",
@@ -1358,7 +1358,7 @@
         },
         {
           "name": "Nemotron 3.5 Content Safety",
-          "cost": "$0",
+          "cost": "$0 (trial credits)",
           "context": "125K",
           "rpm": "~40",
           "tpm": "Not published",
@@ -1368,7 +1368,7 @@
         },
         {
           "name": "sparsedrive",
-          "cost": "$0",
+          "cost": "$0 (trial credits)",
           "context": "125K",
           "rpm": "~40",
           "tpm": "Not published",
@@ -1378,7 +1378,7 @@
         },
         {
           "name": "Nemotron 3.5 Super VL 120B A12B",
-          "cost": "$0",
+          "cost": "$0 (trial credits)",
           "context": "1M",
           "rpm": "~40",
           "tpm": "Not published",
@@ -1388,7 +1388,7 @@
         },
         {
           "name": "synthetic-video-detector",
-          "cost": "$0",
+          "cost": "$0 (trial credits)",
           "context": "Model-dependent",
           "rpm": "~40",
           "tpm": "Not published",
@@ -1398,7 +1398,7 @@
         },
         {
           "name": "studiovoice",
-          "cost": "$0",
+          "cost": "$0 (trial credits)",
           "context": "Model-dependent",
           "rpm": "~40",
           "tpm": "Not published",
@@ -1408,7 +1408,7 @@
         },
         {
           "name": "GLM-5.3-Flash",
-          "cost": "$0",
+          "cost": "$0 (trial credits)",
           "context": "1.0M",
           "rpm": "~40",
           "tpm": "Not published",
@@ -1418,7 +1418,7 @@
         },
         {
           "name": "Step 5 Preview",
-          "cost": "$0",
+          "cost": "$0 (trial credits)",
           "context": "1M",
           "rpm": "~40",
           "tpm": "Not published",
@@ -1645,7 +1645,7 @@
       "models": [
         {
           "name": "Frontier models (bundled, auto-selected)",
-          "cost": "$0",
+          "cost": "$0 (trial credits)",
           "context": "Not published",
           "rpm": "Not published",
           "tpm": "Not published",
@@ -2145,7 +2145,7 @@
       "models": [
         {
           "name": "Framer Agents",
-          "cost": "$0",
+          "cost": "$0 (trial credits)",
           "context": "Canvas-native web design, layout, styling, CMS, and copy generation",
           "rpm": "Not specified",
           "tpm": "Not specified",
@@ -2189,7 +2189,7 @@
       "name": "Kilo Gateway",
       "url": "https://kilo.ai/gateway",
       "free_type": "Rate-limited free",
-      "notes": "Kilo Gateway offers 7 free models with 64K–256K context, translating to 200 requests/hour per IP address. No credit card required. Model availability reflects upstream provider quotas.",
+      "notes": "Kilo Gateway offers 7 free models with 64K\u2013256K context, translating to 200 requests/hour per IP address. No credit card required. Model availability reflects upstream provider quotas.",
       "timeout": "Not published",
       "verified": "2026-11-07",
       "verified_method": "live-probe",
@@ -2830,7 +2830,7 @@
       "models": [
         {
           "name": "Speech models (unspecified)",
-          "cost": "$0",
+          "cost": "$0 (trial credits)",
           "context": "43,000 minutes or 700+ hours",
           "rpm": "N/A",
           "tpm": "N/A",
@@ -3038,7 +3038,7 @@
       "models": [
         {
           "name": "nova-3",
-          "cost": "$0",
+          "cost": "$0 (trial credits)",
           "context": "N/A",
           "rpm": "N/A",
           "tpm": "N/A",
@@ -3048,7 +3048,7 @@
         },
         {
           "name": "nova-2",
-          "cost": "$0",
+          "cost": "$0 (trial credits)",
           "context": "N/A",
           "rpm": "N/A",
           "tpm": "N/A",
@@ -3058,7 +3058,7 @@
         },
         {
           "name": "flux",
-          "cost": "$0",
+          "cost": "$0 (trial credits)",
           "context": "N/A",
           "rpm": "N/A",
           "tpm": "N/A",
@@ -3068,7 +3068,7 @@
         },
         {
           "name": "aura",
-          "cost": "$0",
+          "cost": "$0 (trial credits)",
           "context": "N/A",
           "rpm": "N/A",
           "tpm": "N/A",
@@ -3094,7 +3094,7 @@
       "models": [
         {
           "name": "Unknown",
-          "cost": "$0",
+          "cost": "$0 (trial credits)",
           "context": "Unknown",
           "rpm": "Unknown",
           "tpm": "Unknown",
@@ -3125,7 +3125,7 @@
       "models": [
         {
           "name": "dots-3-note-preview",
-          "cost": "$0",
+          "cost": "$0 (trial credits)",
           "context": "524288",
           "rpm": "N/A",
           "tpm": "N/A",
@@ -3175,7 +3175,7 @@
       "models": [
         {
           "name": "deepseek-ai/deepseek-v4-flash",
-          "cost": "$0",
+          "cost": "$0 (monthly credit allowance)",
           "context": "Model-dependent",
           "rpm": "Published on portal",
           "tpm": "Not published",
@@ -3185,7 +3185,7 @@
         },
         {
           "name": "deepseek-ai/deepseek-v4-pro",
-          "cost": "$0",
+          "cost": "$0 (monthly credit allowance)",
           "context": "Model-dependent",
           "rpm": "Published on portal",
           "tpm": "Not published",
@@ -3195,7 +3195,7 @@
         },
         {
           "name": "meta/llama-3.1-8b-instruct",
-          "cost": "$0",
+          "cost": "$0 (monthly credit allowance)",
           "context": "Model-dependent",
           "rpm": "Published on portal",
           "tpm": "Not published",
@@ -3205,7 +3205,7 @@
         },
         {
           "name": "meta/llama-3.2-3b-instruct",
-          "cost": "$0",
+          "cost": "$0 (monthly credit allowance)",
           "context": "Model-dependent",
           "rpm": "Published on portal",
           "tpm": "Not published",
@@ -3215,7 +3215,7 @@
         },
         {
           "name": "meta/llama-3.2-11b-vision-instruct",
-          "cost": "$0",
+          "cost": "$0 (monthly credit allowance)",
           "context": "Model-dependent",
           "rpm": "Published on portal",
           "tpm": "Not published",
@@ -3225,7 +3225,7 @@
         },
         {
           "name": "meta/llama-3.2-90b-vision-instruct",
-          "cost": "$0",
+          "cost": "$0 (monthly credit allowance)",
           "context": "Model-dependent",
           "rpm": "Published on portal",
           "tpm": "Not published",
@@ -3235,7 +3235,7 @@
         },
         {
           "name": "meta/llama-3.3-70b-instruct",
-          "cost": "$0",
+          "cost": "$0 (monthly credit allowance)",
           "context": "Model-dependent",
           "rpm": "Published on portal",
           "tpm": "Not published",
@@ -3245,7 +3245,7 @@
         },
         {
           "name": "mistralai/mistral-nemotron",
-          "cost": "$0",
+          "cost": "$0 (monthly credit allowance)",
           "context": "Model-dependent",
           "rpm": "Published on portal",
           "tpm": "Not published",
@@ -3255,7 +3255,7 @@
         },
         {
           "name": "mistralai/mistral-medium-3.5-128b",
-          "cost": "$0",
+          "cost": "$0 (monthly credit allowance)",
           "context": "Model-dependent",
           "rpm": "Published on portal",
           "tpm": "Not published",
@@ -3265,7 +3265,7 @@
         },
         {
           "name": "mistralai/mistral-large-4-1t-a52b",
-          "cost": "$0",
+          "cost": "$0 (monthly credit allowance)",
           "context": "Model-dependent",
           "rpm": "Published on portal",
           "tpm": "Not published",
@@ -3275,7 +3275,7 @@
         },
         {
           "name": "nvidia/nemotron-3-nano-30b-a3b",
-          "cost": "$0",
+          "cost": "$0 (monthly credit allowance)",
           "context": "Model-dependent",
           "rpm": "Published on portal",
           "tpm": "Not published",
@@ -3285,7 +3285,7 @@
         },
         {
           "name": "nvidia/nemotron-3-super-120b-a12b",
-          "cost": "$0",
+          "cost": "$0 (monthly credit allowance)",
           "context": "Model-dependent",
           "rpm": "Published on portal",
           "tpm": "Not published",
@@ -3295,7 +3295,7 @@
         },
         {
           "name": "nvidia/nemotron-3-ultra-550b-a55b",
-          "cost": "$0",
+          "cost": "$0 (monthly credit allowance)",
           "context": "Model-dependent",
           "rpm": "Published on portal",
           "tpm": "Not published",
@@ -3305,7 +3305,7 @@
         },
         {
           "name": "nvidia/nemotron-3.5-bolt-e4b",
-          "cost": "$0",
+          "cost": "$0 (monthly credit allowance)",
           "context": "Model-dependent",
           "rpm": "Published on portal",
           "tpm": "Not published",
@@ -3315,7 +3315,7 @@
         },
         {
           "name": "nvidia/nemotron-3.5-lightning-30b-a3b",
-          "cost": "$0",
+          "cost": "$0 (monthly credit allowance)",
           "context": "Model-dependent",
           "rpm": "Published on portal",
           "tpm": "Not published",
@@ -3325,7 +3325,7 @@
         },
         {
           "name": "nvidia/nemotron-3-embed-1b",
-          "cost": "$0",
+          "cost": "$0 (monthly credit allowance)",
           "context": "Model-dependent",
           "rpm": "Published on portal",
           "tpm": "Not published",
@@ -3335,7 +3335,7 @@
         },
         {
           "name": "nvidia/nemotron-nano-9b-v2",
-          "cost": "$0",
+          "cost": "$0 (monthly credit allowance)",
           "context": "Model-dependent",
           "rpm": "Published on portal",
           "tpm": "Not published",
@@ -3345,7 +3345,7 @@
         },
         {
           "name": "nvidia/nemotron-nano-12b-v2-vl",
-          "cost": "$0",
+          "cost": "$0 (monthly credit allowance)",
           "context": "Model-dependent",
           "rpm": "Published on portal",
           "tpm": "Not published",
@@ -3355,7 +3355,7 @@
         },
         {
           "name": "nvidia/llama-3.3-nemotron-super-49b-v1.5",
-          "cost": "$0",
+          "cost": "$0 (monthly credit allowance)",
           "context": "Model-dependent",
           "rpm": "Published on portal",
           "tpm": "Not published",
@@ -3365,7 +3365,7 @@
         },
         {
           "name": "openai/gpt-oss-20b",
-          "cost": "$0",
+          "cost": "$0 (monthly credit allowance)",
           "context": "Model-dependent",
           "rpm": "Published on portal",
           "tpm": "Not published",
@@ -3375,7 +3375,7 @@
         },
         {
           "name": "openai/gpt-oss-120b",
-          "cost": "$0",
+          "cost": "$0 (monthly credit allowance)",
           "context": "Model-dependent",
           "rpm": "Published on portal",
           "tpm": "Not published",
@@ -3385,7 +3385,7 @@
         },
         {
           "name": "poolside/laguna-xs-2.1",
-          "cost": "$0",
+          "cost": "$0 (monthly credit allowance)",
           "context": "Model-dependent",
           "rpm": "Published on portal",
           "tpm": "Not published",
@@ -3395,7 +3395,7 @@
         },
         {
           "name": "stepfun-ai/step-3.7-flash",
-          "cost": "$0",
+          "cost": "$0 (monthly credit allowance)",
           "context": "Model-dependent",
           "rpm": "Published on portal",
           "tpm": "Not published",
@@ -3405,7 +3405,7 @@
         },
         {
           "name": "stepfun-ai/step-5-preview",
-          "cost": "$0",
+          "cost": "$0 (monthly credit allowance)",
           "context": "Model-dependent",
           "rpm": "Published on portal",
           "tpm": "Not published",
@@ -3415,7 +3415,7 @@
         },
         {
           "name": "minimaxai/minimax-m3",
-          "cost": "$0",
+          "cost": "$0 (monthly credit allowance)",
           "context": "Model-dependent",
           "rpm": "Published on portal",
           "tpm": "Not published",
@@ -3425,7 +3425,7 @@
         },
         {
           "name": "z-ai/glm-5.2",
-          "cost": "$0",
+          "cost": "$0 (monthly credit allowance)",
           "context": "Model-dependent",
           "rpm": "Published on portal",
           "tpm": "Not published",
@@ -3435,7 +3435,7 @@
         },
         {
           "name": "black-forest-labs/flux.1-dev",
-          "cost": "$0",
+          "cost": "$0 (monthly credit allowance)",
           "context": "Model-dependent",
           "rpm": "Published on portal",
           "tpm": "Not published",
@@ -3455,7 +3455,7 @@
       "models": [
         {
           "name": "Qwen3.7 Plus",
-          "cost": "$0",
+          "cost": "$0 (promo free tokens)",
           "context": "1.0M",
           "rpm": "60",
           "tpm": "Not published",
@@ -3465,7 +3465,7 @@
         },
         {
           "name": "DeepSeek V4.1 Flash 1017",
-          "cost": "$0",
+          "cost": "$0 (promo free tokens)",
           "context": "1.0M",
           "rpm": "60",
           "tpm": "Not published",
@@ -3475,7 +3475,7 @@
         },
         {
           "name": "GLM-5.3",
-          "cost": "$0",
+          "cost": "$0 (promo free tokens)",
           "context": "1.0M",
           "rpm": "60",
           "tpm": "Not published",
@@ -3485,7 +3485,7 @@
         },
         {
           "name": "Qwen3.6 Plus",
-          "cost": "$0",
+          "cost": "$0 (promo free tokens)",
           "context": "1.0M",
           "rpm": "60",
           "tpm": "Not published",
@@ -3495,7 +3495,7 @@
         },
         {
           "name": "Wan2.7 Image",
-          "cost": "$0",
+          "cost": "$0 (promo free tokens)",
           "context": "8K",
           "rpm": "60",
           "tpm": "Not published",
@@ -3505,7 +3505,7 @@
         },
         {
           "name": "HappyHorse 1.1 Reference-to-Video",
-          "cost": "$0",
+          "cost": "$0 (promo free tokens)",
           "context": "Model-dependent",
           "rpm": "60",
           "tpm": "Not published",
@@ -3515,7 +3515,7 @@
         },
         {
           "name": "Qwen3.6 Flash",
-          "cost": "$0",
+          "cost": "$0 (promo free tokens)",
           "context": "1.0M",
           "rpm": "60",
           "tpm": "Not published",
@@ -3525,7 +3525,7 @@
         },
         {
           "name": "Qwen3.7 Max",
-          "cost": "$0",
+          "cost": "$0 (promo free tokens)",
           "context": "1.0M",
           "rpm": "60",
           "tpm": "Not published",
@@ -3535,7 +3535,7 @@
         },
         {
           "name": "DeepSeek V4 Pro",
-          "cost": "$0",
+          "cost": "$0 (promo free tokens)",
           "context": "1.0M",
           "rpm": "60",
           "tpm": "Not published",
@@ -3545,7 +3545,7 @@
         },
         {
           "name": "MiniMax-M2.5",
-          "cost": "$0",
+          "cost": "$0 (promo free tokens)",
           "context": "192K",
           "rpm": "60",
           "tpm": "Not published",
@@ -3555,7 +3555,7 @@
         },
         {
           "name": "Kimi K2.6",
-          "cost": "$0",
+          "cost": "$0 (promo free tokens)",
           "context": "256K",
           "rpm": "60",
           "tpm": "Not published",
@@ -3565,7 +3565,7 @@
         },
         {
           "name": "Kimi K2.5",
-          "cost": "$0",
+          "cost": "$0 (promo free tokens)",
           "context": "256K",
           "rpm": "60",
           "tpm": "Not published",
@@ -3575,7 +3575,7 @@
         },
         {
           "name": "Kimi K2.7 Code",
-          "cost": "$0",
+          "cost": "$0 (promo free tokens)",
           "context": "256K",
           "rpm": "60",
           "tpm": "Not published",
@@ -3585,7 +3585,7 @@
         },
         {
           "name": "HappyHorse 1.1 Text-to-Video",
-          "cost": "$0",
+          "cost": "$0 (promo free tokens)",
           "context": "Model-dependent",
           "rpm": "60",
           "tpm": "Not published",
@@ -3595,7 +3595,7 @@
         },
         {
           "name": "Qwen Image 2.0",
-          "cost": "$0",
+          "cost": "$0 (promo free tokens)",
           "context": "8K",
           "rpm": "60",
           "tpm": "Not published",
@@ -3605,7 +3605,7 @@
         },
         {
           "name": "Wan2.7 Image Pro",
-          "cost": "$0",
+          "cost": "$0 (promo free tokens)",
           "context": "8K",
           "rpm": "60",
           "tpm": "Not published",
@@ -3615,7 +3615,7 @@
         },
         {
           "name": "HappyHorse 1.1 Image-to-Video",
-          "cost": "$0",
+          "cost": "$0 (promo free tokens)",
           "context": "Model-dependent",
           "rpm": "60",
           "tpm": "Not published",
@@ -3625,7 +3625,7 @@
         },
         {
           "name": "DeepSeek V4 Pro 0813",
-          "cost": "$0",
+          "cost": "$0 (promo free tokens)",
           "context": "1.0M",
           "rpm": "60",
           "tpm": "Not published",
@@ -3635,7 +3635,7 @@
         },
         {
           "name": "Qwen3.8 Flash",
-          "cost": "$0",
+          "cost": "$0 (promo free tokens)",
           "context": "1.0M",
           "rpm": "60",
           "tpm": "Not published",
@@ -3645,7 +3645,7 @@
         },
         {
           "name": "Qwen3.8 Max",
-          "cost": "$0",
+          "cost": "$0 (promo free tokens)",
           "context": "1.0M",
           "rpm": "60",
           "tpm": "Not published",
@@ -3655,7 +3655,7 @@
         },
         {
           "name": "Qwen Image 2.0 Pro",
-          "cost": "$0",
+          "cost": "$0 (promo free tokens)",
           "context": "8K",
           "rpm": "60",
           "tpm": "Not published",

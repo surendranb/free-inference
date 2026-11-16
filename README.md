@@ -2,7 +2,7 @@
 
 Free AI & LLM inference you can build with: an API key, a CLI login, or inference bundled inside a coding tool or builder. Speech-to-text, voice synthesis, code, vision, and reasoning. The test is whether you can ship an artifact you keep — code, an app, an audio file, a site, a design, an agent, a skill. Chat-only free tiers are excluded on purpose.
 
-> **2026-11-15** · 50 providers · 361 free models
+> **2026-11-16** · 50 providers · 361 models
 > Interactive site: https://freeinference.dev · Agent summary: https://freeinference.dev/llms.txt · Machine data: https://freeinference.dev/data/providers.json (validate against https://freeinference.dev/data/schema.json)
 
 ### Quick Navigation & Machine Access
@@ -77,7 +77,7 @@ Free AI & LLM inference you can build with: an API key, a CLI login, or inferenc
 
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| qwen3-coder-30b | $0 | 98.3K | 10 | Not published | 50 | 100,000 | 2026-11-15 |
+| qwen3-coder-30b | $0 (100,000 tokens/day account allowance) | 98.3K | 10 | Not published | 50 | 100,000 | 2026-11-16 |
 
 ### OpenCode Zen
 
@@ -202,7 +202,7 @@ Free AI & LLM inference you can build with: an API key, a CLI login, or inferenc
 
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Meta-Llama-3.3-70B-Instruct | $0 | unknown | unknown | unknown | unknown | unknown | 2026-11-07 |
+| Meta-Llama-3.3-70B-Instruct | $0 (trial credits) | unknown | unknown | unknown | unknown | unknown | 2026-11-07 |
 
 ### NVIDIA NIM (build.nvidia.com)
 
@@ -211,43 +211,43 @@ Free AI & LLM inference you can build with: an API key, a CLI login, or inferenc
 | GLM-5 | $0 (trial credits) | Model-dependent | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
 | Kimi-2.5 | $0 (trial credits) | Model-dependent | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
 | NIM-packaged open models | $0 (trial credits) | Model-dependent | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
-| MiniMax-M3.1-Flash | $0 | 256K | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
-| Whisper Large v3 | $0 | 448 | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
-| GPT OSS 20B | $0 | 128K | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
-| Qwen Image | $0 | Model-dependent | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
-| Qwen Image Edit | $0 | Model-dependent | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
-| Llama Guard 4 12B | $0 | 160K | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
-| Llama-3.2-90B-Vision-Instruct | $0 | 125K | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
-| Muse Glimmer 30B | $0 | 128K | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
-| Llama 3.2 11b Vision Instruct | $0 | 125K | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
-| Gemma-4-31B-IT | $0 | 250K | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
-| DiffusionGemma 26B A4B IT | $0 | 244.1K | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
-| paligemma | $0 | 125K | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
-| DeepSeek V4.1 Flash | $0 | 1.0M | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
-| FLUX.1-dev | $0 | Model-dependent | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
-| FLUX.2 Klein 4B | $0 | Model-dependent | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
-| FLUX.1-Kontext-dev | $0 | Model-dependent | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
-| FLUX.1-schnell | $0 | Model-dependent | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
-| Laguna XS 2.1 | $0 | 256K | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
-| magpie-tts-zeroshot | $0 | Model-dependent | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
-| cosmos-transfer2.5-2b | $0 | Model-dependent | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
-| llama-nemotron-embed-vl-1b-v2 | $0 | 8K | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
-| Nemotron 3.5 Lightning 30B A3B | $0 | 256K | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
-| Active Speaker Detection | $0 | Model-dependent | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
-| llama-nemotron-rerank-vl-1b-v2 | $0 | 10K | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
-| Nemotron 3 Ultra 550B A55B | $0 | 1.0M | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
-| Nemotron 3 Nano Omni | $0 | 250K | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
-| llama-3.1-nemotron-safety-guard-8b-v3 | $0 | 125K | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
-| nemotron-voicechat | $0 | 125K | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
-| streampetr | $0 | 125K | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
-| bevformer | $0 | 125K | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
-| Nemotron 3.5 Content Safety | $0 | 125K | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
-| sparsedrive | $0 | 125K | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
-| Nemotron 3.5 Super VL 120B A12B | $0 | 1M | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
-| synthetic-video-detector | $0 | Model-dependent | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
-| studiovoice | $0 | Model-dependent | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
-| GLM-5.3-Flash | $0 | 1.0M | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
-| Step 5 Preview | $0 | 1M | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
+| MiniMax-M3.1-Flash | $0 (trial credits) | 256K | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
+| Whisper Large v3 | $0 (trial credits) | 448 | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
+| GPT OSS 20B | $0 (trial credits) | 128K | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
+| Qwen Image | $0 (trial credits) | Model-dependent | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
+| Qwen Image Edit | $0 (trial credits) | Model-dependent | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
+| Llama Guard 4 12B | $0 (trial credits) | 160K | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
+| Llama-3.2-90B-Vision-Instruct | $0 (trial credits) | 125K | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
+| Muse Glimmer 30B | $0 (trial credits) | 128K | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
+| Llama 3.2 11b Vision Instruct | $0 (trial credits) | 125K | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
+| Gemma-4-31B-IT | $0 (trial credits) | 250K | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
+| DiffusionGemma 26B A4B IT | $0 (trial credits) | 244.1K | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
+| paligemma | $0 (trial credits) | 125K | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
+| DeepSeek V4.1 Flash | $0 (trial credits) | 1.0M | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
+| FLUX.1-dev | $0 (trial credits) | Model-dependent | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
+| FLUX.2 Klein 4B | $0 (trial credits) | Model-dependent | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
+| FLUX.1-Kontext-dev | $0 (trial credits) | Model-dependent | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
+| FLUX.1-schnell | $0 (trial credits) | Model-dependent | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
+| Laguna XS 2.1 | $0 (trial credits) | 256K | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
+| magpie-tts-zeroshot | $0 (trial credits) | Model-dependent | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
+| cosmos-transfer2.5-2b | $0 (trial credits) | Model-dependent | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
+| llama-nemotron-embed-vl-1b-v2 | $0 (trial credits) | 8K | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
+| Nemotron 3.5 Lightning 30B A3B | $0 (trial credits) | 256K | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
+| Active Speaker Detection | $0 (trial credits) | Model-dependent | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
+| llama-nemotron-rerank-vl-1b-v2 | $0 (trial credits) | 10K | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
+| Nemotron 3 Ultra 550B A55B | $0 (trial credits) | 1.0M | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
+| Nemotron 3 Nano Omni | $0 (trial credits) | 250K | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
+| llama-3.1-nemotron-safety-guard-8b-v3 | $0 (trial credits) | 125K | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
+| nemotron-voicechat | $0 (trial credits) | 125K | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
+| streampetr | $0 (trial credits) | 125K | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
+| bevformer | $0 (trial credits) | 125K | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
+| Nemotron 3.5 Content Safety | $0 (trial credits) | 125K | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
+| sparsedrive | $0 (trial credits) | 125K | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
+| Nemotron 3.5 Super VL 120B A12B | $0 (trial credits) | 1M | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
+| synthetic-video-detector | $0 (trial credits) | Model-dependent | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
+| studiovoice | $0 (trial credits) | Model-dependent | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
+| GLM-5.3-Flash | $0 (trial credits) | 1.0M | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
+| Step 5 Preview | $0 (trial credits) | 1M | ~40 | Not published | Not published | ~1,000 credits at signup (up to ~5,000) | 2026-11-15 |
 
 ### Z.AI (Zhipu)
 
@@ -287,7 +287,7 @@ Free AI & LLM inference you can build with: an API key, a CLI login, or inferenc
 
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Frontier models (bundled, auto-selected) | $0 | Not published | Not published | Not published | Not published | Not published | 2026-11-08 |
+| Frontier models (bundled, auto-selected) | $0 (trial credits) | Not published | Not published | Not published | Not published | Not published | 2026-11-08 |
 
 ### Bolt.new
 
@@ -386,7 +386,7 @@ Free AI & LLM inference you can build with: an API key, a CLI login, or inferenc
 
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Framer Agents | $0 | Canvas-native web design, layout, styling, CMS, and copy generation | Not specified | Not specified | Not specified | 500 credits (one-time trial) | 2026-11-15 |
+| Framer Agents | $0 (trial credits) | Canvas-native web design, layout, styling, CMS, and copy generation | Not specified | Not specified | Not specified | 500 credits (one-time trial) | 2026-11-15 |
 
 ### Replit (Starter)
 
@@ -479,7 +479,7 @@ Free AI & LLM inference you can build with: an API key, a CLI login, or inferenc
 
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Speech models (unspecified) | $0 | 43,000 minutes or 700+ hours | N/A | N/A | N/A | N/A | 2026-11-15 |
+| Speech models (unspecified) | $0 (trial credits) | 43,000 minutes or 700+ hours | N/A | N/A | N/A | N/A | 2026-11-15 |
 
 ### DeepSeek Platform
 
@@ -510,22 +510,22 @@ Free AI & LLM inference you can build with: an API key, a CLI login, or inferenc
 
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| nova-3 | $0 | N/A | N/A | N/A | N/A | N/A | 2026-11-15 |
-| nova-2 | $0 | N/A | N/A | N/A | N/A | N/A | 2026-11-15 |
-| flux | $0 | N/A | N/A | N/A | N/A | N/A | 2026-11-15 |
-| aura | $0 | N/A | N/A | N/A | N/A | N/A | 2026-11-15 |
+| nova-3 | $0 (trial credits) | N/A | N/A | N/A | N/A | N/A | 2026-11-15 |
+| nova-2 | $0 (trial credits) | N/A | N/A | N/A | N/A | N/A | 2026-11-15 |
+| flux | $0 (trial credits) | N/A | N/A | N/A | N/A | N/A | 2026-11-15 |
+| aura | $0 (trial credits) | N/A | N/A | N/A | N/A | N/A | 2026-11-15 |
 
 ### AssemblyAI
 
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Unknown | $0 | Unknown | Unknown | Unknown | Unknown | 43000 minutes | 2026-11-15 |
+| Unknown | $0 (trial credits) | Unknown | Unknown | Unknown | Unknown | 43000 minutes | 2026-11-15 |
 
 ### Dots Studio
 
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| dots-3-note-preview | $0 | 524288 | N/A | N/A | N/A | N/A | 2026-11-06 |
+| dots-3-note-preview | $0 (trial credits) | 524288 | N/A | N/A | N/A | N/A | 2026-11-06 |
 
 ### Liquid AI
 
@@ -537,59 +537,59 @@ Free AI & LLM inference you can build with: an API key, a CLI login, or inferenc
 
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| deepseek-ai/deepseek-v4-flash | $0 | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-15 |
-| deepseek-ai/deepseek-v4-pro | $0 | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-15 |
-| meta/llama-3.1-8b-instruct | $0 | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-15 |
-| meta/llama-3.2-3b-instruct | $0 | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-15 |
-| meta/llama-3.2-11b-vision-instruct | $0 | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-15 |
-| meta/llama-3.2-90b-vision-instruct | $0 | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-15 |
-| meta/llama-3.3-70b-instruct | $0 | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-15 |
-| mistralai/mistral-nemotron | $0 | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-15 |
-| mistralai/mistral-medium-3.5-128b | $0 | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-15 |
-| mistralai/mistral-large-4-1t-a52b | $0 | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-15 |
-| nvidia/nemotron-3-nano-30b-a3b | $0 | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-15 |
-| nvidia/nemotron-3-super-120b-a12b | $0 | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-15 |
-| nvidia/nemotron-3-ultra-550b-a55b | $0 | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-15 |
-| nvidia/nemotron-3.5-bolt-e4b | $0 | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-15 |
-| nvidia/nemotron-3.5-lightning-30b-a3b | $0 | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-15 |
-| nvidia/nemotron-3-embed-1b | $0 | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-15 |
-| nvidia/nemotron-nano-9b-v2 | $0 | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-15 |
-| nvidia/nemotron-nano-12b-v2-vl | $0 | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-15 |
-| nvidia/llama-3.3-nemotron-super-49b-v1.5 | $0 | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-15 |
-| openai/gpt-oss-20b | $0 | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-15 |
-| openai/gpt-oss-120b | $0 | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-15 |
-| poolside/laguna-xs-2.1 | $0 | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-15 |
-| stepfun-ai/step-3.7-flash | $0 | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-15 |
-| stepfun-ai/step-5-preview | $0 | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-15 |
-| minimaxai/minimax-m3 | $0 | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-15 |
-| z-ai/glm-5.2 | $0 | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-15 |
-| black-forest-labs/flux.1-dev | $0 | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-15 |
+| deepseek-ai/deepseek-v4-flash | $0 (monthly credit allowance) | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-15 |
+| deepseek-ai/deepseek-v4-pro | $0 (monthly credit allowance) | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-15 |
+| meta/llama-3.1-8b-instruct | $0 (monthly credit allowance) | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-15 |
+| meta/llama-3.2-3b-instruct | $0 (monthly credit allowance) | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-15 |
+| meta/llama-3.2-11b-vision-instruct | $0 (monthly credit allowance) | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-15 |
+| meta/llama-3.2-90b-vision-instruct | $0 (monthly credit allowance) | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-15 |
+| meta/llama-3.3-70b-instruct | $0 (monthly credit allowance) | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-15 |
+| mistralai/mistral-nemotron | $0 (monthly credit allowance) | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-15 |
+| mistralai/mistral-medium-3.5-128b | $0 (monthly credit allowance) | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-15 |
+| mistralai/mistral-large-4-1t-a52b | $0 (monthly credit allowance) | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-15 |
+| nvidia/nemotron-3-nano-30b-a3b | $0 (monthly credit allowance) | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-15 |
+| nvidia/nemotron-3-super-120b-a12b | $0 (monthly credit allowance) | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-15 |
+| nvidia/nemotron-3-ultra-550b-a55b | $0 (monthly credit allowance) | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-15 |
+| nvidia/nemotron-3.5-bolt-e4b | $0 (monthly credit allowance) | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-15 |
+| nvidia/nemotron-3.5-lightning-30b-a3b | $0 (monthly credit allowance) | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-15 |
+| nvidia/nemotron-3-embed-1b | $0 (monthly credit allowance) | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-15 |
+| nvidia/nemotron-nano-9b-v2 | $0 (monthly credit allowance) | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-15 |
+| nvidia/nemotron-nano-12b-v2-vl | $0 (monthly credit allowance) | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-15 |
+| nvidia/llama-3.3-nemotron-super-49b-v1.5 | $0 (monthly credit allowance) | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-15 |
+| openai/gpt-oss-20b | $0 (monthly credit allowance) | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-15 |
+| openai/gpt-oss-120b | $0 (monthly credit allowance) | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-15 |
+| poolside/laguna-xs-2.1 | $0 (monthly credit allowance) | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-15 |
+| stepfun-ai/step-3.7-flash | $0 (monthly credit allowance) | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-15 |
+| stepfun-ai/step-5-preview | $0 (monthly credit allowance) | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-15 |
+| minimaxai/minimax-m3 | $0 (monthly credit allowance) | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-15 |
+| z-ai/glm-5.2 | $0 (monthly credit allowance) | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-15 |
+| black-forest-labs/flux.1-dev | $0 (monthly credit allowance) | Model-dependent | Published on portal | Not published | Not published | Not published | 2026-11-15 |
 
 ### Alibaba DashScope (Bailian)
 
 | Model | Cost | Context | RPM | TPM | RPD | Day tokens | Verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Qwen3.7 Plus | $0 | 1.0M | 60 | Not published | Free tier token grant | Not published | 2026-11-15 |
-| DeepSeek V4.1 Flash 1017 | $0 | 1.0M | 60 | Not published | Free tier token grant | Not published | 2026-11-15 |
-| GLM-5.3 | $0 | 1.0M | 60 | Not published | Free tier token grant | Not published | 2026-11-15 |
-| Qwen3.6 Plus | $0 | 1.0M | 60 | Not published | Free tier token grant | Not published | 2026-11-15 |
-| Wan2.7 Image | $0 | 8K | 60 | Not published | Free tier token grant | Not published | 2026-11-15 |
-| HappyHorse 1.1 Reference-to-Video | $0 | Model-dependent | 60 | Not published | Free tier token grant | Not published | 2026-11-15 |
-| Qwen3.6 Flash | $0 | 1.0M | 60 | Not published | Free tier token grant | Not published | 2026-11-15 |
-| Qwen3.7 Max | $0 | 1.0M | 60 | Not published | Free tier token grant | Not published | 2026-11-15 |
-| DeepSeek V4 Pro | $0 | 1.0M | 60 | Not published | Free tier token grant | Not published | 2026-11-15 |
-| MiniMax-M2.5 | $0 | 192K | 60 | Not published | Free tier token grant | Not published | 2026-11-15 |
-| Kimi K2.6 | $0 | 256K | 60 | Not published | Free tier token grant | Not published | 2026-11-15 |
-| Kimi K2.5 | $0 | 256K | 60 | Not published | Free tier token grant | Not published | 2026-11-15 |
-| Kimi K2.7 Code | $0 | 256K | 60 | Not published | Free tier token grant | Not published | 2026-11-15 |
-| HappyHorse 1.1 Text-to-Video | $0 | Model-dependent | 60 | Not published | Free tier token grant | Not published | 2026-11-15 |
-| Qwen Image 2.0 | $0 | 8K | 60 | Not published | Free tier token grant | Not published | 2026-11-15 |
-| Wan2.7 Image Pro | $0 | 8K | 60 | Not published | Free tier token grant | Not published | 2026-11-15 |
-| HappyHorse 1.1 Image-to-Video | $0 | Model-dependent | 60 | Not published | Free tier token grant | Not published | 2026-11-15 |
-| DeepSeek V4 Pro 0813 | $0 | 1.0M | 60 | Not published | Free tier token grant | Not published | 2026-11-15 |
-| Qwen3.8 Flash | $0 | 1.0M | 60 | Not published | Free tier token grant | Not published | 2026-11-15 |
-| Qwen3.8 Max | $0 | 1.0M | 60 | Not published | Free tier token grant | Not published | 2026-11-15 |
-| Qwen Image 2.0 Pro | $0 | 8K | 60 | Not published | Free tier token grant | Not published | 2026-11-15 |
+| Qwen3.7 Plus | $0 (promo free tokens) | 1.0M | 60 | Not published | Free tier token grant | Not published | 2026-11-15 |
+| DeepSeek V4.1 Flash 1017 | $0 (promo free tokens) | 1.0M | 60 | Not published | Free tier token grant | Not published | 2026-11-15 |
+| GLM-5.3 | $0 (promo free tokens) | 1.0M | 60 | Not published | Free tier token grant | Not published | 2026-11-15 |
+| Qwen3.6 Plus | $0 (promo free tokens) | 1.0M | 60 | Not published | Free tier token grant | Not published | 2026-11-15 |
+| Wan2.7 Image | $0 (promo free tokens) | 8K | 60 | Not published | Free tier token grant | Not published | 2026-11-15 |
+| HappyHorse 1.1 Reference-to-Video | $0 (promo free tokens) | Model-dependent | 60 | Not published | Free tier token grant | Not published | 2026-11-15 |
+| Qwen3.6 Flash | $0 (promo free tokens) | 1.0M | 60 | Not published | Free tier token grant | Not published | 2026-11-15 |
+| Qwen3.7 Max | $0 (promo free tokens) | 1.0M | 60 | Not published | Free tier token grant | Not published | 2026-11-15 |
+| DeepSeek V4 Pro | $0 (promo free tokens) | 1.0M | 60 | Not published | Free tier token grant | Not published | 2026-11-15 |
+| MiniMax-M2.5 | $0 (promo free tokens) | 192K | 60 | Not published | Free tier token grant | Not published | 2026-11-15 |
+| Kimi K2.6 | $0 (promo free tokens) | 256K | 60 | Not published | Free tier token grant | Not published | 2026-11-15 |
+| Kimi K2.5 | $0 (promo free tokens) | 256K | 60 | Not published | Free tier token grant | Not published | 2026-11-15 |
+| Kimi K2.7 Code | $0 (promo free tokens) | 256K | 60 | Not published | Free tier token grant | Not published | 2026-11-15 |
+| HappyHorse 1.1 Text-to-Video | $0 (promo free tokens) | Model-dependent | 60 | Not published | Free tier token grant | Not published | 2026-11-15 |
+| Qwen Image 2.0 | $0 (promo free tokens) | 8K | 60 | Not published | Free tier token grant | Not published | 2026-11-15 |
+| Wan2.7 Image Pro | $0 (promo free tokens) | 8K | 60 | Not published | Free tier token grant | Not published | 2026-11-15 |
+| HappyHorse 1.1 Image-to-Video | $0 (promo free tokens) | Model-dependent | 60 | Not published | Free tier token grant | Not published | 2026-11-15 |
+| DeepSeek V4 Pro 0813 | $0 (promo free tokens) | 1.0M | 60 | Not published | Free tier token grant | Not published | 2026-11-15 |
+| Qwen3.8 Flash | $0 (promo free tokens) | 1.0M | 60 | Not published | Free tier token grant | Not published | 2026-11-15 |
+| Qwen3.8 Max | $0 (promo free tokens) | 1.0M | 60 | Not published | Free tier token grant | Not published | 2026-11-15 |
+| Qwen Image 2.0 Pro | $0 (promo free tokens) | 8K | 60 | Not published | Free tier token grant | Not published | 2026-11-15 |
 
 ### ModelScope
 

@@ -365,6 +365,39 @@ def sync_groq(prov, today):
     return msg
 
 
+SYNAP_BASE = "https://synap402.com"
+
+
+def sync_synap(prov, today):
+    """Synap bills per token: the free tier is an account allowance, never a $0
+    model price. /v1/models marks the model is_free:false; the allowance
+    endpoint owns the label, the limits, and the verified date."""
+    ft = get_json(f"{SYNAP_BASE}/api/account/free-tier")
+    model_name = ft["model"]
+    toks = int(ft["perAccountDailyTokens"])
+    reqs = int(ft["perAccountDailyRequests"])
+    rpm = int(ft["perKeyPerMinute"])
+    live = {m.get("id"): m for m in get_json(f"{SYNAP_BASE}/v1/models").get("data", [])}
+    if model_name not in live:
+        raise RuntimeError(f"{model_name} absent from /v1/models")
+    if live[model_name].get("is_free"):
+        raise RuntimeError(f"{model_name} reports is_free:true — revisit the allowance label")
+    row = next((m for m in prov["models"] if m["name"] == model_name), None)
+    if row is None:
+        raise RuntimeError(f"catalog row {model_name} missing")
+    row["cost"] = f"$0 ({toks:,} tokens/day account allowance)"
+    row["rpm"], row["rpd"], row["tpd"] = str(rpm), str(reqs), f"{toks:,}"
+    row["verified"] = today
+    prov["verified"] = today
+    prov["verified_method"] = "live-probe"
+    return f"ok: {model_name} is_free=false, allowance {toks:,} tokens + {reqs} req/day"
+
+
+# Providers whose free tier is machine-checkable without an LLM pass. The
+# nightly job (core.runner --verify) owns these instead of auditing them.
+DETERMINISTIC_SYNCS = {"Synap by Linkrra": sync_synap}
+
+
 def check_doc_links(data):
     """Dead-link detection only — never extracts limits from docs (layouts change silently)."""
     out = []
@@ -403,6 +436,8 @@ def main():
                 results.append(("OpenCode Zen", sync_opencode(prov, today)))
             elif prov["name"] == "Groq":
                 results.append(("Groq", sync_groq(prov, today)))
+            elif prov["name"] in DETERMINISTIC_SYNCS:
+                results.append((prov["name"], DETERMINISTIC_SYNCS[prov["name"]](prov, today)))
             elif prov["name"] in KEYLESS_MODEL_ENDPOINTS:
                 results.append((prov["name"], sync_keyless_models(prov, KEYLESS_MODEL_ENDPOINTS[prov["name"]], today)))
         except Exception as e:

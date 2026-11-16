@@ -24,6 +24,10 @@ COLS = DATA["columns"]
 ROWS = DATA["providers"]
 VERIFIED = DATA["verified"]
 
+# Single source of truth for provider.verified_method: build_schema publishes
+# this list, main() rejects any row outside it.
+VERIFIED_METHODS = ("live-probe", "api", "docs")
+
 
 def max_verified(rows=None):
     # ponytail: freshness derived from the per-provider/model max — nightly probe keeps rows fresh; top-level "verified" is manual and goes stale
@@ -118,7 +122,7 @@ def build_readme():
 
 {TAGLINE}
 
-> **{VERIFIED_MAX}** · {count_noun(len(ROWS), 'provider')} · {count_noun(total, 'free model')}
+> **{VERIFIED_MAX}** · {count_noun(len(ROWS), 'provider')} · {count_noun(total, 'model')}
 > Interactive site: {WEBSITE} · Agent summary: {WEBSITE}/llms.txt · Machine data: {WEBSITE}/data/providers.json (validate against {WEBSITE}/data/schema.json)
 
 ### Quick Navigation & Machine Access
@@ -191,9 +195,9 @@ def build_llms():
         "",
         AGENT_WARNING,
         "",
-        f"Last verified: {VERIFIED_MAX} · {count_noun(len(ROWS), 'provider')} · {count_noun(total_models, 'free model')}.",
+        f"Last verified: {VERIFIED_MAX} · {count_noun(len(ROWS), 'provider')} · {count_noun(total_models, 'model')}.",
         f"Data version: {DATA_VERSION} (changes only when catalog content changes).",
-        "Verification methods: `live-probe` = checked against the provider's API nightly; `docs` = human-verified against official docs, stale-flagged after 45 days.",
+        "Verification methods: `live-probe` = checked against the provider's API nightly; `api` = checked against the provider's own machine-readable endpoint outside the nightly job; `docs` = human-verified against official docs, stale-flagged after 45 days.",
         "",
         "## Catalog in every format",
         "",
@@ -282,7 +286,7 @@ def build_schema():
                         "artifact": {"type": "string"},
                         "base_url": {"type": "string"},
                         "verified": {"type": "string"},
-                        "verified_method": {"type": "string", "enum": ["live-probe", "docs"]},
+                        "verified_method": {"type": "string", "enum": list(VERIFIED_METHODS)},
                         "channel": {"type": "string", "enum": ["api", "feed", "web"]},
                         "models": {
                             "type": "array",
@@ -453,7 +457,7 @@ def footer_nav(verified, include_newsletter=True):
     <a href="/index.md">Raw Markdown</a> ·
     <a href="/sitemap.xml">Sitemap</a>
   </div>
-  <p class="fmeta">{count_noun(len(ROWS), "provider")} · {count_noun(total_models, "free model")} · verified {html.escape(verified)}. Limits change without notice — this is an autonomous map, not a contract.</p>
+  <p class="fmeta">{count_noun(len(ROWS), "provider")} · {count_noun(total_models, "model")} · verified {html.escape(verified)}. Limits change without notice — this is an autonomous map, not a contract.</p>
 </div>"""
 
 
@@ -512,7 +516,7 @@ def answer_block():
       </tbody>
     </table>
   </div>
-  <p class="answer-more">Explore our dedicated slices for <a href="/free-inference-api/">Free Inference API endpoints</a> and <a href="/free-inference-providers/">Free Inference Providers comparison</a>, or browse all {count_noun(len(ROWS), "provider")} and {count_noun(total_models, "free model")} below.</p>
+  <p class="answer-more">Explore our dedicated slices for <a href="/free-inference-api/">Free Inference API endpoints</a> and <a href="/free-inference-providers/">Free Inference Providers comparison</a>, or browse all {count_noun(len(ROWS), "provider")} and {count_noun(total_models, "model")} below.</p>
 </section>"""
 
 
@@ -521,9 +525,9 @@ def build_html():
     provider_count = len(ROWS)
 
     page_title = f"FreeInference.dev — Free LLM API Directory: {count_noun(total_models, 'Model')}, {count_noun(provider_count, 'Provider')}, Updated {VERIFIED_HUMAN}"
-    meta_desc = (f"{count_noun(total_models, 'free LLM model')}, {count_noun(provider_count, 'provider')} — an API key, a CLI login, "
+    meta_desc = (f"{count_noun(total_models, 'LLM model')}, {count_noun(provider_count, 'provider')} — an API key, a CLI login, "
                  f"or inference bundled in an IDE. No credit card required. Last updated: {VERIFIED_HUMAN}.")
-    og_desc = (f"{count_noun(total_models, 'free LLM model')} across {count_noun(provider_count, 'provider')} (including Google AI Studio, Groq, "
+    og_desc = (f"{count_noun(total_models, 'LLM model')} across {count_noun(provider_count, 'provider')} (including Google AI Studio, Groq, "
                f"OpenRouter, and OpenCode Zen). OpenAI-compatible endpoints, rate limits, and context windows. Last updated: {VERIFIED_HUMAN}.")
 
     head_title = html.escape(page_title)
@@ -1595,7 +1599,7 @@ def free_answer_block(cfg, matched):
   <ul>
     {"".join(takeaways)}
   </ul>
-  <p class="answer-more">Total available in this directory: {count_noun(prov_count, 'provider')}, {count_noun(model_count, 'free model')}. Verified limits below.</p>
+  <p class="answer-more">Total available in this directory: {count_noun(prov_count, 'provider')}, {count_noun(model_count, 'model')}. Verified limits below.</p>
 </section>"""
 
 
@@ -1657,7 +1661,7 @@ def build_free_page(slug_key, cfg):
     verified_human = date.fromisoformat(max_p).strftime("%d %b %Y")
     meta_desc, og_desc = generate_slice_descriptions(cfg, matched, verified_human)
     tagline_status = " (recommended alternatives)" if is_fallback else ""
-    tagline = f"{count_noun(prov_count, 'provider')} · {count_noun(model_count, 'free model')}{tagline_status} · Last updated: {verified_human}"
+    tagline = f"{count_noun(prov_count, 'provider')} · {count_noun(model_count, 'model')}{tagline_status} · Last updated: {verified_human}"
     answer = free_answer_block(cfg, matched)
     footer = free_footer_nav(verified)
     notice_html = ""
@@ -1826,7 +1830,7 @@ def build_free_md(slug_key, cfg):
     lines = [
         f"# {h1}",
         "",
-        f"> {count_noun(prov_count, 'provider')} · {count_noun(model_count, 'free model')}{tagline_status} · Last updated: {verified_human}",
+        f"> {count_noun(prov_count, 'provider')} · {count_noun(model_count, 'model')}{tagline_status} · Last updated: {verified_human}",
         "",
     ]
     if is_fallback:
@@ -2223,7 +2227,7 @@ import urllib.request, json
 req = urllib.request.Request("{WEBSITE}/v1/models", headers={{"User-Agent": "FreeInference-Agent/1.0"}})
 with urllib.request.urlopen(req) as resp:
     data = json.load(resp)
-    print(f"Catalog contains {{data['total_models']}} free models across {{len(data['data'])}} entries.")
+    print(f"Catalog contains {{data['total_models']}} models across {{len(data['data'])}} entries.")
 ```
 
 ---
@@ -2378,6 +2382,8 @@ def main():
     for p in ROWS:
         missing = required - set(p)
         assert not missing, f"{p['name']}: missing {missing}"
+        assert p["verified_method"] in VERIFIED_METHODS, (
+            f"{p['name']}: verified_method {p['verified_method']!r} not in {VERIFIED_METHODS}")
         for m in p["models"]:
             missing_m = model_required - set(m)
             assert not missing_m, f"{p['name']}/{m.get('name', '?')}: missing {missing_m}"

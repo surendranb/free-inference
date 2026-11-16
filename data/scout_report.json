@@ -297,7 +297,7 @@
       "status": "active",
       "is_free_active": true,
       "free_type": "Permanent $0",
-      "notes": "[The Grant] Speka provides a recurring $1.00 monthly model usage allowance on its Free plan ($0/mo) that refreshes every month. [The Output] Developers can generate completions, embeddings, and images across all open catalog models with 1 API key and a rate limit of 10 requests per minute (RPM). [The Process] Users sign up with email and password via speka.me/signup without requiring a credit card or upfront payment, and instantly create an API key in the dashboard. [The Condition] Requests are billed against the $1 monthly credit at standard per-token model rates; once the monthly allowance is exhausted, requests return HTTP 402 until the next monthly reset or paid upgrade.",
+      "notes": "Speka provides a recurring .00 monthly credit allowance that resets on the first of each month. Developers query all open catalog models (DeepSeek, Llama 3.2) via an OpenAI-compatible endpoint with a single API key created at signup without a credit card. Usage is capped at 10 RPM and billed at standard per-token rates, returning HTTP 402 once exhausted until the next monthly refresh.",
       "summary": "Speka provides a recurring $1 monthly free model allowance at 10 requests per minute with no credit card required, supporting all open catalog models via an OpenAI-compatible endpoint.",
       "candidate_models": [
         "deepseek-ai/deepseek-v4-flash",
@@ -349,7 +349,7 @@
       "status": "no_api",
       "is_free_active": false,
       "free_type": "None",
-      "notes": "[The Grant] Recursive AI provides no free tier, trial credits, or inference API access at recursive.ai. [The Output] No developer outputs, API keys, or model inference endpoints are available. [The Process] Investigation of the official domain confirms it is currently a parked 'Coming Soon' placeholder hosted on Porkbun without an operational service or developer portal. [The Condition] Service access and developer offerings are nonexistent until an active platform or API is deployed.",
+      "notes": "Recursive AI provides no free tier, trial credits, or inference API access at recursive.ai. No developer outputs, API keys, or model inference endpoints are available on the platform. Investigation of the official domain confirms it is currently a parked placeholder hosted on Porkbun without an operational service or developer portal. Service access and developer offerings remain nonexistent until an active platform or API is deployed.",
       "summary": "Recursive AI does not provide an inference API, free allowance, or developer access as the official domain is an inactive parked page.",
       "candidate_models": [],
       "base_url": null,
@@ -384,7 +384,7 @@
       "status": "active",
       "is_free_active": true,
       "free_type": "Permanent $0",
-      "notes": "[The Grant] Speka provides a recurring $1.00 monthly model usage allowance on its Free plan ($0/mo) that refreshes every month. [The Output] Developers can generate completions, embeddings, and images across all open catalog models with 1 API key and a rate limit of 10 requests per minute (RPM). [The Process] Users sign up with email and password via speka.me/signup without requiring a credit card or upfront payment, and instantly create an API key in the dashboard. [The Condition] Requests are billed against the $1 monthly credit at standard per-token model rates; once the monthly allowance is exhausted, requests return HTTP 402 until the next monthly reset or paid upgrade.",
+      "notes": "Speka provides a recurring .00 monthly credit allowance that resets on the first of each month. Developers query all open catalog models (DeepSeek, Llama 3.2) via an OpenAI-compatible endpoint with a single API key created at signup without a credit card. Usage is capped at 10 RPM and billed at standard per-token rates, returning HTTP 402 once exhausted until the next monthly refresh.",
       "summary": "Speka provides a recurring $1 monthly free model allowance at 10 requests per minute with no credit card required, supporting all open catalog models via an OpenAI-compatible endpoint.",
       "candidate_models": [
         "deepseek-ai/deepseek-v4-flash",
@@ -503,7 +503,7 @@
       "title": "NVIDIA: Nemotron 3 Nano Omni (free) (nvidia/nemotron-3-nano-omni-30b-a3b-reasoning)",
       "link": "https://openrouter.ai/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning",
       "pub_date": "Tue, 28 Apr 2026 16:18:15 GMT",
-      "description": "NVIDIA Nemotron\u2122 3 Nano Omni is a 30B-A3B open multimodal model designed to function as a perception and context sub-agent in enterprise agent systems. It accepts text, image, video, and...",
+      "description": "NVIDIA Nemotron™ 3 Nano Omni is a 30B-A3B open multimodal model designed to function as a perception and context sub-agent in enterprise agent systems. It accepts text, image, video, and...",
       "is_new_to_catalog": false
     },
     {
@@ -511,7 +511,7 @@
       "title": "Google: Gemma 4 26B A4B  (free) (google/gemma-4-26b-a4b-it)",
       "link": "https://openrouter.ai/google/gemma-4-26b-a4b-it",
       "pub_date": "Fri, 03 Apr 2026 14:53:09 GMT",
-      "description": "Gemma 4 26B A4B IT is an instruction-tuned Mixture-of-Experts (MoE) model from Google DeepMind. Despite 25.2B total parameters, only 3.8B activate per token during inference \u2014 delivering near-31B qual",
+      "description": "Gemma 4 26B A4B IT is an instruction-tuned Mixture-of-Experts (MoE) model from Google DeepMind. Despite 25.2B total parameters, only 3.8B activate per token during inference — delivering near-31B qual",
       "is_new_to_catalog": false
     },
     {

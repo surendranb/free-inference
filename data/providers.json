@@ -21,7 +21,7 @@
       "name": "OpenCode Zen",
       "url": "https://opencode.ai/v2/docs/console/models/",
       "free_type": "Promo free (limited time)",
-      "notes": "[The Grant] OpenCode Zen provides a collection of zero-cost promotional and experimental models. [The Output] Users gain access to free tier inference across multiple models including text and vision variants. [The Process] Models are evaluated and identified via catalog audits and pricing data verification. [The Condition] Availability is subject to limited-time promotional windows, zero-data-retention policies, and user feedback collection requirements.",
+      "notes": "OpenCode Zen provides a zero-cost promotional tier covering experimental open models across text and vision modalities. Developers authenticate via API key to query high-throughput endpoints directly without upfront billing. Access is bounded by limited-time promotional windows, a zero-data-retention policy, and fair-use concurrency caps.",
       "timeout": "Not published",
       "verified": "2026-11-15",
       "models": [
@@ -925,7 +925,7 @@
       "name": "Mistral La Plateforme",
       "url": "https://docs.mistral.ai",
       "free_type": "Rate-limited free",
-      "notes": "Mistral provides a free tier for developers to evaluate models. The output includes access to select baseline models via API. The process involves signing up for La Plateforme and utilizing default rate limits. The condition requires compliance with terms of service and staying within specified usage thresholds.",
+      "notes": "Mistral provides a rate-limited free tier on La Plateforme for developers evaluating frontier and open models. Access is available via direct API key upon account registration with no credit card required upfront. Usage is bounded by default platform rate limits and standard evaluation terms of service.",
       "timeout": "Not published",
       "verified": "2026-11-15",
       "models": [
@@ -971,7 +971,7 @@
       "name": "SambaNova Cloud",
       "url": "https://cloud.sambanova.ai/apis",
       "free_type": "Trial credits",
-      "notes": "1. [The Grant] SambaNova Cloud provides a Free tier offering initial exploratory pay-as-you-go credits. 2. [The Output] Users gain access to select production models under specified free tier parameters. 3. [The Process] The evaluation was conducted by auditing official platform documentation and analyzing API response rate limits. 4. [The Condition] Specific models such as MiniMax-M3.1-Flash are excluded from the free tier offerings.",
+      "notes": "SambaNova Cloud provides a free developer tier with initial pay-as-you-go exploratory credits for ultra-fast SN40L inference. Developers access production open-weights models including Llama 3.3 70B via an OpenAI-compatible endpoint. API keys are generated directly in the developer portal with no credit card required, subject to platform concurrency caps.",
       "timeout": "Not published",
       "verified": "2026-11-07",
       "models": [
@@ -1663,7 +1663,7 @@
       "name": "Lovable",
       "url": "https://docs.lovable.dev/introduction/credits-and-usage",
       "free_type": "Rate-limited free",
-      "notes": "1. The Grant: Lovable provides a rate-limited free tier for users building and iterating on applications. 2. The Output: Users get access to bundled frontier models including Fable 5.1 without direct financial cost. 3. The Process: Usage is governed by credits and rate limits determined by the platform's current policy. 4. The Condition: Availability and rate limits are subject to change as outlined in the official documentation.",
+      "notes": "Lovable provides a rate-limited free plan for developers building full-stack web applications. Users receive bundled access to frontier models including Fable 5.1 directly within the development workspace without upfront subscription cost. Access is managed through daily workspace credits and standard platform usage limits.",
       "timeout": "Not published",
       "verified": "2026-11-15",
       "models": [
@@ -1823,7 +1823,7 @@
       "name": "Cursor (Hobby)",
       "url": "https://cursor.com/pricing",
       "free_type": "Rate-limited free",
-      "notes": "1. Cursor grants users access to a complimentary Hobby tier for basic AI coding features. 2. The output provides limited agent requests and limited chat requests under rate-limited conditions. 3. The process involves checking the Cursor pricing and models documentation to cross-reference available free offerings. 4. This access remains conditioned upon staying within the specified rate limits of the free tier.",
+      "notes": "Cursor provides a complimentary Hobby tier for developers evaluating AI-assisted code editing. Users access bundled agent and inline chat completions directly within the IDE without an upfront subscription. Free access is subject to monthly request allowances and rate limits defined in the editor settings.",
       "timeout": "Not published",
       "verified": "2026-11-15",
       "models": [
@@ -1933,7 +1933,7 @@
       "name": "Antigravity CLI (Google)",
       "url": "https://antigravity.google/pricing",
       "free_type": "Rate-limited free",
-      "notes": "The free tier provides access to select base models for general inference. The output consists of standard text, code, and basic multimodal completions. The process requires standard user authentication via the Antigravity CLI without requiring payment instrument setup. The condition is subject to dynamic rate limits and potential feature restrictions across modalities.",
+      "notes": "Antigravity CLI provides free developer inference for base and multimodal foundation models. Users run text, code, and reasoning tasks through local CLI and terminal workflows. Authentication is handled directly via Google account login without requiring a payment instrument, subject to dynamic request rate limits.",
       "timeout": "Not published",
       "verified": "2026-11-15",
       "models": [
@@ -2078,7 +2078,7 @@
       "name": "Canva (Free)",
       "url": "https://www.canva.com/en/pricing/",
       "free_type": "Rate-limited free",
-      "notes": "Free users are granted an allowance of 20 uses of standard or premium AI tools. The system outputs access to bundled models like Canva AI and Magic Media. The process enforces monthly limits on tools such as Magic Write, consuming a shared allowance. The condition strictly restricts free users from accessing ultra tools like Canva AI 2.0.",
+      "notes": "Canva provides free users with a recurring monthly allowance of 20 generations across standard AI creative tools. Users access bundled Magic Media and text generation features directly within the design canvas without a paid plan. Free usage consumes a shared monthly credit pool and excludes premium enterprise AI tools.",
       "timeout": "Not published",
       "verified": "2026-11-13",
       "models": [
@@ -2138,7 +2138,7 @@
       "name": "Replit (Starter)",
       "url": "https://docs.replit.com/help/pricing-and-plans",
       "free_type": "Rate-limited free",
-      "notes": "Starter tier grants access to basic development tools. The output includes standard cloud developer workspace capabilities. The process involves creating a free Replit account to immediately provision basic resources. The condition requires operating within standard resource limits and usage policies.",
+      "notes": "Replit provides a free Starter tier for developers prototyping and deploying cloud software. Users gain access to standard workspace environments with bundled AI assistance features. Accounts are created instantly with email or GitHub without entering billing details, subject to shared CPU and memory limits.",
       "timeout": "Not published",
       "verified": "2026-11-15",
       "models": [
@@ -2523,7 +2523,7 @@
       "name": "Cohere",
       "url": "https://docs.cohere.com/docs/rate-limits",
       "free_type": "Rate-limited free",
-      "notes": "Cohere provides trial API keys [The Grant] allowing access to chat and embedding models [The Output] by registering an account and utilizing trial keys [The Process] subject to trial rate limits such as 20 requests per minute and 1,000 API calls per month [The Condition].",
+      "notes": "Cohere provides free trial API keys for developers building with Command A and embedding models. Users register an account to instantly retrieve trial credentials without entering a payment method. Usage is bounded by trial rate limits of 20 requests per minute and 1,000 API calls per month.",
       "timeout": "Not published",
       "verified": "2026-11-15",
       "verified_method": "docs",
@@ -2798,7 +2798,7 @@
       "name": "SiliconFlow",
       "url": "https://siliconflow.cn",
       "free_type": "Trial credits",
-      "notes": "The Grant: $200 in credits is provided.\nThe Output: Credits can be used for speech models.\nThe Process: Access is granted without credit card requirement.\nThe Condition: Credits are valid for 90 days.",
+      "notes": "SiliconFlow provides  in free trial credits upon developer account registration. Credits can be applied across speech, text, and multimodal open-source models through an OpenAI-compatible API. Users create an account to generate API keys with no credit card required, with credits remaining valid for 90 days.",
       "timeout": "Not published",
       "verified": "2026-11-15",
       "models": [
@@ -2824,7 +2824,7 @@
       "name": "DeepSeek Platform",
       "url": "https://api-docs.deepseek.com",
       "free_type": "Trial credits",
-      "notes": "The Grant: DeepSeek offers a granted balance upon account creation. The Output: Users can access API services without immediate paid top-ups. The Process: The platform automatically prioritizes using the granted balance first when both balances are available. The Condition: This applies until the granted balance is exhausted or expires, after which accounts rely on the topped-up balance.",
+      "notes": "DeepSeek offers an initial free grant balance upon developer account registration. Users access production deepseek-chat and deepseek-reasoner endpoints via OpenAI-compatible APIs without immediate paid top-ups. The platform automatically exhausts the granted balance first before requiring paid credits or subscription upgrades.",
       "timeout": "Not published",
       "verified": "2026-11-15",
       "models": [
@@ -3006,7 +3006,7 @@
       "name": "Deepgram",
       "url": "https://deepgram.com/pricing",
       "free_type": "Trial credits",
-      "notes": "[The Grant] Deepgram provides $200 in free trial credits upon sign-up. [The Output] Users gain access to public speech-to-text and text-to-speech models including Nova-3, Nova-2, Flux, and Aura. [The Process] Users register for a Pay-As-You-Go account to receive the API key and access the platform. [The Condition] The credit allows for approximately 700 hours of Nova-3 transcription, subject to standard concurrency limits for pre-recorded and streaming requests.",
+      "notes": "Deepgram provides  in free trial credits upon registration, unlocking public speech-to-text and text-to-speech models including Nova-3, Flux, and Aura. Developers register an account to obtain an API key with no credit card required upfront. The allowance yields roughly 700 hours of audio transcription, subject to a 90-day expiry window and standard streaming concurrency caps.",
       "timeout": "Not published",
       "verified": "2026-11-15",
       "models": [
@@ -3088,7 +3088,7 @@
       "name": "Dots Studio",
       "url": "https://dots.ai",
       "free_type": "Trial credits",
-      "notes": "- The Grant: Users receive a trial credit system accessible via an API key.\n- The Output: A single available model named \"dots-3-note-preview\" is provided in the catalog.\n- The Process: Investigation of JavaScript bundles, API parameters, and documentation revealed context limits and model naming structures.\n- The Condition: Total input and output token sum cannot exceed the 524,288 token context window limit.",
+      "notes": "Dots Studio provides a developer trial credit system for querying its proprietary reasoning preview models. Developers access the dots-3-note-preview model via direct API key integration without upfront billing. Requests are constrained by a 524,288 token context window limit and trial usage quotas.",
       "timeout": "Not published",
       "verified": "2026-11-06",
       "channel": "web",
@@ -3113,7 +3113,7 @@
       "name": "Liquid AI",
       "url": "https://console.liquid.ai",
       "free_type": "Trial credits",
-      "notes": "1. Liquid AI offers free promotional API credits to new developers upon console signup. 2. The output provides access to evaluate their models via the developer console and API. 3. The process requires creating an account on console.liquid.ai to claim the promotional allocation. 4. The condition is subject to promotional limits and potential expiration once the initial credit balance is exhausted.",
+      "notes": "Liquid AI provides promotional developer API credits upon registration in the Liquid developer console. Users evaluate liquid foundation models via OpenAI-compatible completion endpoints. Access is provisioned upon account creation at console.liquid.ai without upfront card requirements, subject to promotional credit balance limits.",
       "timeout": "Not published",
       "verified": "2026-11-15",
       "channel": "web",
@@ -3138,7 +3138,7 @@
       "name": "Speka",
       "url": "https://speka.me",
       "free_type": "Permanent $0",
-      "notes": "[The Grant] Speka provides a recurring $1.00 monthly model usage allowance on its Free plan ($0/mo) that refreshes every month. [The Output] Developers can generate completions, embeddings, and images across all open catalog models with 1 API key and a rate limit of 10 requests per minute (RPM). [The Process] Users sign up with email and password via speka.me/signup without requiring a credit card or upfront payment, and instantly create an API key in the dashboard. [The Condition] Requests are billed against the $1 monthly credit at standard per-token model rates; once the monthly allowance is exhausted, requests return HTTP 402 until the next monthly reset or paid upgrade.",
+      "notes": "Speka provides a recurring .00 monthly credit allowance that resets on the first of each month. Developers query all open catalog models (DeepSeek, Llama 3.2) via an OpenAI-compatible endpoint with a single API key created at signup without a credit card. Usage is capped at 10 RPM and billed at standard per-token rates, returning HTTP 402 once exhausted until the next monthly refresh.",
       "timeout": "Not published",
       "verified": "2026-11-15",
       "channel": "web",
@@ -3423,7 +3423,7 @@
       "name": "Alibaba DashScope (Bailian)",
       "url": "https://www.alibabacloud.com/help/en/model-studio/developer-reference/get-api-key",
       "free_type": "Trial / Free tokens",
-      "notes": "The Grant: Alibaba Cloud Model Studio (Bailian/DashScope) provides free token allotments upon account activation across its Qwen and DeepSeek model fleet.\nThe Output: Access to high-throughput OpenAI-compatible endpoints with up to 1M token context windows.\nThe Process: Register an Alibaba Cloud account and generate an API key in the Model Studio console.\nThe Condition: Free token allocations apply for designated promotional windows with phone verification.",
+      "notes": "Alibaba Cloud Model Studio (Bailian/DashScope) provides free token allotments upon account activation across its Qwen and DeepSeek model fleet. Developers access high-throughput OpenAI-compatible endpoints with up to 1M token context windows. API keys are generated in the Model Studio console after account registration, with promotional free tokens valid during designated trial windows.",
       "timeout": "300s",
       "verified": "2026-11-15",
       "models": [
@@ -3649,7 +3649,7 @@
       "name": "ModelScope",
       "url": "https://modelscope.cn/docs/api-inference",
       "free_type": "Rate-limited free",
-      "notes": "The Grant: ModelScope (Alibaba's open-source model community) offers free hosted inference for community and Qwen open-weights models.\nThe Output: Standard OpenAI-compatible completion endpoints with 262K token context windows.\nThe Process: Create an account on ModelScope and retrieve an API access token.\nThe Condition: Rate-limited to community usage tiers with fair-share queueing.",
+      "notes": "ModelScope (Alibaba's open-source model community) offers free hosted inference for community and Qwen open-weights models. Users query standard OpenAI-compatible completion endpoints with context windows up to 262K tokens. Access is activated by creating a ModelScope account to retrieve an API access token, subject to fair-share community queuing and rate limits.",
       "timeout": "180s",
       "verified": "2026-11-08",
       "models": [
@@ -3735,7 +3735,7 @@
       "name": "AMD Developer Cloud",
       "url": "https://cloud.amd.com/",
       "free_type": "Free Developer Tier",
-      "notes": "The Grant: AMD Developer Cloud provides free inference access to open frontier models running on AMD Instinct ROCm GPU clusters.\nThe Output: OpenAI-compatible chat endpoints supporting DeepSeek, Qwen, and MiniCPM variants.\nThe Process: Register an AMD Developer account to access the inference API console.\nThe Condition: Subject to ROCm cluster capacity and developer fair-use quotas.",
+      "notes": "AMD Developer Cloud provides free inference access to open frontier models running on AMD Instinct ROCm GPU clusters. Developers query OpenAI-compatible chat endpoints supporting DeepSeek, Qwen, and MiniCPM variants. Access is provisioned by registering an AMD Developer account to reach the API console, subject to cluster capacity and fair-use developer quotas.",
       "timeout": "120s",
       "verified": "2026-11-08",
       "models": [
@@ -3851,7 +3851,7 @@
       "name": "InferX",
       "url": "https://model.inferx.net/endpoints",
       "free_type": "Free Developer Tier",
-      "notes": "The Grant: InferX provides zero-cost inference endpoints for cutting-edge open models including Qwen 3.6, Gemma 4, and DeepSeek variants.\nThe Output: Ultra-low latency OpenAI-compatible completions with streaming and structured output support.\nThe Process: Sign in to generate an API key and query endpoint URLs directly.\nThe Condition: Rate-limited for community development and prototyping.",
+      "notes": "InferX provides zero-cost inference endpoints for open models including Qwen 3.6, Gemma 4, and DeepSeek variants. Developers access low-latency OpenAI-compatible completions with streaming and structured output support. Keys are provisioned instantly upon user sign-in without upfront payment, subject to community prototyping rate limits.",
       "timeout": "120s",
       "verified": "2026-11-08",
       "models": [
@@ -3987,7 +3987,7 @@
       "name": "Kimi For Coding (Moonshot AI)",
       "url": "https://www.kimi.ai/code/docs/en/kimi-code/models.html",
       "free_type": "Free Developer Tier",
-      "notes": "The Grant: Moonshot AI provides free developer inference for Kimi K3 and coding models with context windows up to 1M tokens.\nThe Output: OpenAI-compatible coding endpoints supporting deep reasoning and agentic workflows.\nThe Process: Authenticate via Kimi coding portal to retrieve API credentials.\nThe Condition: Community rate limits and high-concurrency throttling during peak periods.",
+      "notes": "Moonshot AI provides free developer inference for Kimi K3 and coding models with context windows up to 1M tokens. Developers query OpenAI-compatible coding endpoints supporting deep reasoning and agentic workflows. Credentials are retrieved via the Kimi coding portal, subject to community rate limits and peak-period concurrency throttling.",
       "timeout": "180s",
       "verified": "2026-11-13",
       "models": [
@@ -4063,7 +4063,7 @@
       "name": "SCNet",
       "url": "https://www.scnet.cn",
       "free_type": "Free Developer Tier",
-      "notes": "The Grant: SCNet provides national high-performance computing open inference tokens for domestic LLMs including Qwen 3.8 and DeepSeek V4 Flash.\nThe Output: OpenAI-compatible chat endpoints with up to 1M token context windows.\nThe Process: Register on SCNet portal and generate developer API keys.\nThe Condition: Valid identity verification and developer quota rules apply.",
+      "notes": "SCNet provides national high-performance computing open inference tokens for domestic LLMs including Qwen 3.8 and DeepSeek V4 Flash. Developers access OpenAI-compatible chat endpoints with up to 1M token context windows. Registration on the SCNet developer portal provisions API keys upon identity verification, subject to national computing quota rules.",
       "timeout": "180s",
       "verified": "2026-11-14",
       "models": [
@@ -4199,7 +4199,7 @@
       "name": "AIHubMix",
       "url": "https://aihubmix.com",
       "free_type": "Promo free",
-      "notes": "The Grant: AIHubMix provides a suite of zero-cost promotional models including GLM-4.7 Flash, Nemotron 3 Ultra, and Qwen 3.8 Max.\nThe Output: OpenAI-compatible completion endpoints with long context support up to 1M tokens.\nThe Process: Sign up for an AIHubMix account to retrieve free tier API credentials.\nThe Condition: Rate-limited free promotional usage subject to provider token availability.",
+      "notes": "AIHubMix provides a suite of zero-cost promotional models including GLM-4.7 Flash, Nemotron 3 Ultra, and Qwen 3.8 Max. Developers query OpenAI-compatible completion endpoints with long context support up to 1M tokens. Free API credentials are generated upon account signup without credit cards, subject to promotional token availability and rate limits.",
       "timeout": "120s",
       "verified": "2026-11-08",
       "models": [

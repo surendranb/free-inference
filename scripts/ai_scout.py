@@ -1025,7 +1025,7 @@ Output strictly valid JSON:
   "status": "active" (if free tier exists) | "paid_only" | "no_api",
   "is_free_active": true | false,
   "free_type": "Permanent $0" | "Trial credits" | "Rate limited" | "None",
-  "notes": "string strictly following 4-point fact format: [The Grant] + [The Output] + [The Process] + [The Condition]",
+  "notes": "A concise 2-3 sentence paragraph strictly following the 4-part factual sequence (1. Grant/allowance -> 2. Models/output -> 3. Access/onboarding process -> 4. Limits/conditions) in fluent developer prose. DO NOT output bracketed tags like [The Grant] or numbered labels like '1. The Output:'. Example: 'Deepgram provides $200 in free trial credits upon sign-up, granting access to speech-to-text models including Nova-3 and Aura. Developers register an account to obtain an API key with no upfront credit card charge. The allowance translates to ~700 hours of audio transcription, subject to standard concurrency limits and a 90-day expiration window.'",
   "summary": "concise 1-sentence summary of the verified free allowance, limits, and reset cadence.",
   "candidate_models": ["model1", "model2"],
   "base_url": "API base URL if discovered, or null"
@@ -1046,7 +1046,7 @@ Output strictly valid JSON with keys:
 - "status": "active" (free tier exists), "paid_only" (strictly prepaid/credit card purchase required), or "no_api"
 - "is_free_active": boolean (true if developer can use models for $0)
 - "free_type": "Permanent $0", "Trial credits", "Rate limited", or "None"
-- "notes": string strictly following 4-point fact format: [The Grant] + [The Output] + [The Process] + [The Condition]
+- "notes": string strictly following the 4-part factual sequence (Grant -> Output -> Process -> Condition) in fluent developer prose without bracketed tags, numbers, or section labels (never use [The Grant] or '1. The Output:').
 - "summary": concise 1-sentence summary of the verified free allowance, limits, and reset cadence.
 - "candidate_models": list of free model names/IDs (strings)
 - "base_url": API base URL if discovered, or null
@@ -1109,7 +1109,7 @@ Output strictly valid JSON with keys:
                     print(f"  ✓ Auto-graduated new provider candidate {cname} into catalog.")
                     existing_cand_issue = find_existing_issue(f"[New Provider Candidate] {cname}", state="open")
                     if existing_cand_issue:
-                        close_github_issue(existing_cand_issue["number"], f"Resolved: {cname} auto-graduated into catalog with verified 4-point fact notes.")
+                        close_github_issue(existing_cand_issue["number"], f"Resolved: {cname} auto-graduated into catalog with verified 4-part structured notes.")
             else:
                 print(f"  ✗ Provider candidate {cname} is paid-only / not free: {eval_data.get('summary')}")
 

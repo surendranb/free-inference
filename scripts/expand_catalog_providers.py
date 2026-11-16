@@ -135,11 +135,10 @@ def main():
             "url": "https://www.alibabacloud.com/help/en/model-studio/developer-reference/get-api-key",
             "free_type": "Trial / Free tokens",
             "notes": (
-                "The Grant: Alibaba Cloud Model Studio (Bailian/DashScope) provides free token allotments upon account "
-                "activation across its Qwen and DeepSeek model fleet.\n"
-                "The Output: Access to high-throughput OpenAI-compatible endpoints with up to 1M token context windows.\n"
-                "The Process: Register an Alibaba Cloud account and generate an API key in the Model Studio console.\n"
-                "The Condition: Free token allocations apply for designated promotional windows with phone verification."
+                "Alibaba Cloud Model Studio (Bailian/DashScope) provides free token allotments upon account "
+                "activation across its Qwen and DeepSeek model fleet. Developers access high-throughput OpenAI-compatible "
+                "endpoints with up to 1M token context windows. API keys are generated in the Model Studio console after account "
+                "registration, with promotional free tokens valid during designated trial windows."
             ),
             "timeout": "300s",
             "verified": TODAY_ISO,
@@ -160,11 +159,10 @@ def main():
             "url": "https://modelscope.cn/docs/api-inference",
             "free_type": "Rate-limited free",
             "notes": (
-                "The Grant: ModelScope (Alibaba's open-source model community) offers free hosted inference for community "
-                "and Qwen open-weights models.\n"
-                "The Output: Standard OpenAI-compatible completion endpoints with 262K token context windows.\n"
-                "The Process: Create an account on ModelScope and retrieve an API access token.\n"
-                "The Condition: Rate-limited to community usage tiers with fair-share queueing."
+                "ModelScope (Alibaba's open-source model community) offers free hosted inference for community "
+                "and Qwen open-weights models. Users query standard OpenAI-compatible completion endpoints with "
+                "context windows up to 262K tokens. Access is activated by creating a ModelScope account to retrieve an API access token, "
+                "subject to fair-share community queuing and rate limits."
             ),
             "timeout": "180s",
             "verified": TODAY_ISO,
@@ -185,11 +183,9 @@ def main():
             "url": "https://cloud.amd.com/",
             "free_type": "Free Developer Tier",
             "notes": (
-                "The Grant: AMD Developer Cloud provides free inference access to open frontier models running on AMD "
-                "Instinct ROCm GPU clusters.\n"
-                "The Output: OpenAI-compatible chat endpoints supporting DeepSeek, Qwen, and MiniCPM variants.\n"
-                "The Process: Register an AMD Developer account to access the inference API console.\n"
-                "The Condition: Subject to ROCm cluster capacity and developer fair-use quotas."
+                "AMD Developer Cloud provides free inference access to open frontier models running on AMD "
+                "Instinct ROCm GPU clusters. Developers query OpenAI-compatible chat endpoints supporting DeepSeek, Qwen, and MiniCPM variants. "
+                "Access is provisioned by registering an AMD Developer account to reach the API console, subject to cluster capacity and fair-use developer quotas."
             ),
             "timeout": "120s",
             "verified": TODAY_ISO,
@@ -210,11 +206,9 @@ def main():
             "url": "https://model.inferx.net/endpoints",
             "free_type": "Free Developer Tier",
             "notes": (
-                "The Grant: InferX provides zero-cost inference endpoints for cutting-edge open models including Qwen 3.6, "
-                "Gemma 4, and DeepSeek variants.\n"
-                "The Output: Ultra-low latency OpenAI-compatible completions with streaming and structured output support.\n"
-                "The Process: Sign in to generate an API key and query endpoint URLs directly.\n"
-                "The Condition: Rate-limited for community development and prototyping."
+                "InferX provides zero-cost inference endpoints for open models including Qwen 3.6, "
+                "Gemma 4, and DeepSeek variants. Developers access low-latency OpenAI-compatible completions with streaming and structured output support. "
+                "Keys are provisioned instantly upon user sign-in without upfront payment, subject to community prototyping rate limits."
             ),
             "timeout": "120s",
             "verified": TODAY_ISO,
@@ -235,11 +229,9 @@ def main():
             "url": "https://www.kimi.ai/code/docs/en/kimi-code/models.html",
             "free_type": "Free Developer Tier",
             "notes": (
-                "The Grant: Moonshot AI provides free developer inference for Kimi K3 and coding models with context "
-                "windows up to 1M tokens.\n"
-                "The Output: OpenAI-compatible coding endpoints supporting deep reasoning and agentic workflows.\n"
-                "The Process: Authenticate via Kimi coding portal to retrieve API credentials.\n"
-                "The Condition: Community rate limits and high-concurrency throttling during peak periods."
+                "Moonshot AI provides free developer inference for Kimi K3 and coding models with context "
+                "windows up to 1M tokens. Developers query OpenAI-compatible coding endpoints supporting deep reasoning and agentic workflows. "
+                "Credentials are retrieved via the Kimi coding portal, subject to community rate limits and peak-period concurrency throttling."
             ),
             "timeout": "180s",
             "verified": TODAY_ISO,
@@ -260,11 +252,9 @@ def main():
             "url": "https://www.scnet.cn",
             "free_type": "Free Developer Tier",
             "notes": (
-                "The Grant: SCNet provides national high-performance computing open inference tokens for domestic LLMs "
-                "including Qwen 3.8 and DeepSeek V4 Flash.\n"
-                "The Output: OpenAI-compatible chat endpoints with up to 1M token context windows.\n"
-                "The Process: Register on SCNet portal and generate developer API keys.\n"
-                "The Condition: Valid identity verification and developer quota rules apply."
+                "SCNet provides national high-performance computing open inference tokens for domestic LLMs "
+                "including Qwen 3.8 and DeepSeek V4 Flash. Developers access OpenAI-compatible chat endpoints with up to 1M token context windows. "
+                "Registration on the SCNet developer portal provisions API keys upon identity verification, subject to national computing quota rules."
             ),
             "timeout": "180s",
             "verified": TODAY_ISO,
@@ -285,11 +275,9 @@ def main():
             "url": "https://aihubmix.com",
             "free_type": "Promo free",
             "notes": (
-                "The Grant: AIHubMix provides a suite of zero-cost promotional models including GLM-4.7 Flash, Nemotron 3 Ultra, "
-                "and Qwen 3.8 Max.\n"
-                "The Output: OpenAI-compatible completion endpoints with long context support up to 1M tokens.\n"
-                "The Process: Sign up for an AIHubMix account to retrieve free tier API credentials.\n"
-                "The Condition: Rate-limited free promotional usage subject to provider token availability."
+                "AIHubMix provides a suite of zero-cost promotional models including GLM-4.7 Flash, Nemotron 3 Ultra, "
+                "and Qwen 3.8 Max. Developers query OpenAI-compatible completion endpoints with long context support up to 1M tokens. "
+                "Free API credentials are generated upon account signup without credit cards, subject to promotional token availability and rate limits."
             ),
             "timeout": "120s",
             "verified": TODAY_ISO,

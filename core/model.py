@@ -2,6 +2,8 @@
 
 import json
 import os
+import random
+import re
 import subprocess
 import time
 import urllib.error
@@ -63,28 +65,47 @@ def call_gemini_json(prompt: str, schema: dict, key: str = None, model: str = No
             data=json.dumps(payload).encode("utf-8"),
             headers={"Content-Type": "application/json"}
         )
-        try:
-            with urllib.request.urlopen(req, timeout=25) as r:
-                res = json.load(r)
 
-            candidates = res.get("candidates", [])
-            if not candidates:
-                continue
+        # In-place exponential backoff with jitter on transient 503/429 before cascading
+        max_model_retries = 2
+        for attempt in range(max_model_retries + 1):
+            try:
+                with urllib.request.urlopen(req, timeout=25) as r:
+                    res = json.load(r)
 
-            text = candidates[0]["content"]["parts"][0]["text"]
-            return json.loads(text)
-        except urllib.error.HTTPError as e:
-            last_err = e
-            if e.code in (429, 500, 502, 503):
-                print(f"  [model-cascade] {m} returned HTTP {e.code}, failing over to next model in cascade...")
-                time.sleep(1)
-                continue
-            raise
-        except Exception as e:
-            last_err = e
-            print(f"  [model-cascade] {m} failed with {e}, failing over to next model...")
-            time.sleep(1)
-            continue
+                candidates = res.get("candidates", [])
+                if not candidates:
+                    break
+
+                text = candidates[0]["content"]["parts"][0]["text"].strip()
+                if text.startswith("```"):
+                    text = re.sub(r"^```(?:json)?\s*", "", text)
+                    text = re.sub(r"\s*```$", "", text)
+                try:
+                    return json.loads(text)
+                except json.JSONDecodeError:
+                    m_json = re.search(r"(\{[\s\S]*\}|\[[\s\S]*\])", text)
+                    if m_json:
+                        return json.loads(m_json.group(1))
+                    raise
+            except urllib.error.HTTPError as e:
+                last_err = e
+                if e.code in (429, 500, 502, 503) and attempt < max_model_retries:
+                    backoff = (2 ** attempt * 1.5) + random.uniform(0.5, 1.5)
+                    print(f"  [model-retry] {m} returned HTTP {e.code}, retrying in {backoff:.1f}s (attempt {attempt + 1}/{max_model_retries})...")
+                    time.sleep(backoff)
+                    continue
+                if e.code in (429, 500, 502, 503):
+                    print(f"  [model-cascade] {m} returned HTTP {e.code} after retries, failing over to next model in cascade...")
+                    break
+                raise
+            except Exception as e:
+                last_err = e
+                if attempt < max_model_retries:
+                    time.sleep(1)
+                    continue
+                print(f"  [model-cascade] {m} failed with {e}, failing over to next model...")
+                break
 
     raise RuntimeError(f"All models in cascade ({models_to_try}) failed. Last error: {last_err}")
 

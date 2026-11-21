@@ -297,7 +297,7 @@ The Antigravity ground truth agent discovered and verified a new free inference 
     return create_github_issue(title, body, ["catalog:candidate"])
 
 
-def call_antigravity_agent(prompt, key, timeout=60, retries=3):
+def call_antigravity_agent(prompt, key, timeout=120, retries=3):
     """Invoke Antigravity Managed Agent in Google's cloud sandbox with Chrome & web access.
     
     Includes exponential backoff with jitter on HTTP 429 (rate limit) and 503 (transient overload).
@@ -741,7 +741,7 @@ Output strictly valid JSON:
   "summary": "1 concise sentence confirming the verified free allowance or explaining why verification was inconclusive."
 }}
 """
-                agent_res = call_antigravity_agent(prompt, key, timeout=60)
+                agent_res = call_antigravity_agent(prompt, key, timeout=120)
                 consecutive_rate_limits = 0
                 raw_out = agent_res.get("output_text", "")
                 agent_steps = agent_res.get("steps_count", 0)
@@ -942,7 +942,7 @@ Output strictly a JSON array of objects with these keys, with no conversational 
         "poolside": ("Poolside AI", "https://poolside.ai", "web"),
     }
     for p in catalog_data.get("providers", []):
-        if p.get("name") in ("OpenRouter", "OpenCode Zen", "Kilo Gateway", "Requesty", "Nous Portal"):
+        if p.get("name") in ("OpenRouter", "OpenCode (Free)", "OpenCode Zen", "Kilo Gateway", "Requesty", "Nous Portal"):
             for m in p.get("models", []):
                 m_name = m.get("name", "")
                 if "/" in m_name:
@@ -1032,7 +1032,7 @@ Output strictly valid JSON:
 }}
 """
         try:
-            agent_res = call_antigravity_agent(prompt, key, timeout=60)
+            agent_res = call_antigravity_agent(prompt, key, timeout=120)
             raw_out = agent_res.get("output_text", "")
             try:
                 eval_data = extract_first_json(raw_out)

@@ -2517,6 +2517,8 @@ def main():
         "/models/ /models 301\n"
         "/skill /skill.md 301\n"
         "/skills/free-inference /skills/free-inference/SKILL.md 301\n"
+        "/providers/opencode-zen/ /providers/opencode--free/ 301\n"
+        "/providers/opencode-zen /providers/opencode--free/ 301\n"
     )
     # ponytail: per-provider JSON split; whole file is ~40KB so single-file fetch stays the default path
     for p in ROWS:

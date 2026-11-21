@@ -71,6 +71,13 @@ def verify_provider(provider: dict, key: str = None) -> dict:
         elif target_url.endswith("/v1"):
             target_url = target_url + "/models"
         raw_data = fetch_api(target_url, key=key)
+        if "HTTP Error 401" in raw_data or "HTTP Error 403" in raw_data:
+            return {
+                "status": "inconclusive",
+                "is_free_active": True,
+                "models": [{"name": m, "cost": "$0"} for m in existing_models],
+                "summary": f"Target API endpoint {target_url} requires authenticated API key credentials. Preserved existing catalog entry without modification."
+            }
     elif channel == "feed":
         target_url = provider.get("feed_url") or primary_url
         raw_data = fetch_feed(target_url)

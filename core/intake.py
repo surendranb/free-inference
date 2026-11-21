@@ -88,7 +88,7 @@ def fetch_api(url: str, key: str = None) -> str:
     return json.dumps(data, indent=2)[:3500]
 
 
-def fetch_web_browser_agent(url: str, key: str, timeout: int = 60) -> str:
+def fetch_web_browser_agent(url: str, key: str, timeout: int = 150) -> str:
     """Escalation Fallback: Cloud Antigravity Agent driving real Google Chrome."""
     if not key:
         return "Browser agent unavailable: missing GEMINI_API_KEY"
@@ -125,7 +125,8 @@ def fetch_web_browser_agent(url: str, key: str, timeout: int = 60) -> str:
     poll_url = f"{INTERACTIONS_URL}/{iid}?key={key}"
     t0 = time.time()
     while time.time() - t0 < timeout:
-        time.sleep(5)
+        poll_interval = 3 if (time.time() - t0) < 30 else 6
+        time.sleep(poll_interval)
         try:
             with urllib.request.urlopen(poll_url, timeout=30) as r:
                 poll_res = json.load(r)
@@ -140,7 +141,7 @@ def fetch_web_browser_agent(url: str, key: str, timeout: int = 60) -> str:
                         return c["text"].strip()
             return f"Browser agent completed with status {poll_res.get('status')}"
 
-    return "Browser agent timed out after 60s"
+    return f"Browser agent timed out after {timeout}s"
 
 
 def fetch_web(url: str, key: str = None, fallback_to_browser: bool = True) -> str:

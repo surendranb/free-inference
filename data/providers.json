@@ -44,12 +44,12 @@
       "channel": "web"
     },
     {
-      "name": "OpenCode Zen",
-      "url": "https://opencode.ai/v2/docs/console/models/",
-      "free_type": "Promo free (limited time)",
-      "notes": "OpenCode Zen provides a zero-cost promotional tier covering experimental open models across text and vision modalities. Developers authenticate via API key to query high-throughput endpoints directly without upfront billing. Access is bounded by limited-time promotional windows, a zero-data-retention policy, and fair-use concurrency caps.",
+      "name": "OpenCode (Free)",
+      "url": "https://opencode.ai/pricing",
+      "free_type": "Rate-limited free",
+      "notes": "OpenCode provides built-in free tier inference across open models directly within the OpenCode CLI and editor. Users authenticate via client login without entering a payment method or adding console credits. Access is subject to client rate limits.",
       "timeout": "Not published",
-      "verified": "2026-11-19",
+      "verified": "2026-11-21",
       "models": [
         {
           "name": "Big Pickle",
@@ -223,10 +223,9 @@
         }
       ],
       "verified_method": "docs",
-      "docs_url": "https://opencode.ai/v2/docs/console/models/",
-      "access_method": "api_key",
+      "docs_url": "https://opencode.ai/pricing",
+      "access_method": "bundled",
       "artifact": "code",
-      "base_url": "https://opencode.ai/inference/openai/v1",
       "channel": "web"
     },
     {

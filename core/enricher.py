@@ -14,6 +14,7 @@ LOGOS_DIR = DATA_DIR / "logos"
 
 # Explicit mapping of FreeInference catalog provider names to Models.dev slugs
 PROVIDER_LOGO_MAP = {
+    "OpenCode (Free)": "opencode",
     "OpenCode Zen": "opencode",
     "OpenRouter": "openrouter",
     "Google AI Studio (Gemini API)": "google",

@@ -205,7 +205,7 @@ def verify_catalog(
 
         if is_free and status in ("active", "changed") and apply_updates:
             p["verified"] = today
-            p["verified_method"] = "live-probe" if p.get("channel") == "api" else "antigravity-agent"
+            p["verified_method"] = "live-probe" if p.get("channel") == "api" else "docs"
             if status == "changed" and verified_models:
                 # Update catalog with verified models
                 for m in verified_models:
@@ -233,6 +233,8 @@ def verify_catalog(
             p["verified"] = today
             p["notes"] = f"[DEPRECATED {today}] {summary}"
             print(f"  ⚠ Deprecation recorded for {pname}: {summary}")
+        elif not apply_updates:
+            print(f"  [dry-run] {status.upper()}: {summary[:100]}")
         else:
             print(f"  Notice: Inconclusive/retained: {summary[:80]}")
 

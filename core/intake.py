@@ -225,20 +225,28 @@ Output ONLY a single valid JSON object matching this schema:
             "models": [],
             "summary": "Antigravity agent initialization returned no interaction ID"
         }
+    print(f"  [antigravity] Started interaction {iid} for {pname} (timeout={timeout}s)")
 
     poll_url = f"{INTERACTIONS_URL}/{iid}?key={key}"
     t0 = time.time()
+    last_reported_step = -1
     while time.time() - t0 < timeout:
         poll_interval = 3 if (time.time() - t0) < 30 else 6
         time.sleep(poll_interval)
         try:
             with urllib.request.urlopen(poll_url, timeout=30) as r:
                 poll_res = json.load(r)
-        except Exception:
+        except Exception as pe:
+            print(f"  [antigravity] poll error: {pe}")
             continue
 
-        if poll_res.get("status") in ("completed", "failed", "incomplete"):
-            steps = poll_res.get("steps", [])
+        st = poll_res.get("status")
+        steps = poll_res.get("steps", [])
+        if len(steps) != last_reported_step:
+            print(f"  [antigravity] status={st}, steps={len(steps)}, elapsed={time.time()-t0:.1f}s")
+            last_reported_step = len(steps)
+
+        if st in ("completed", "failed", "incomplete"):
             output_text = ""
             for s in reversed(steps):
                 for c in s.get("content", []):
@@ -282,6 +290,36 @@ Output ONLY a single valid JSON object matching this schema:
                 "models": [],
                 "summary": f"Antigravity agent finished with status {poll_res.get('status')} but generated unparseable output."
             }
+
+    # If timed out but steps were recorded, harvest observations rather than discarding
+    steps = poll_res.get("steps", []) if 'poll_res' in locals() else []
+    if steps:
+        summaries = []
+        for s in steps:
+            for sm in s.get("summary", []):
+                if isinstance(sm, dict) and sm.get("text"):
+                    summaries.append(sm["text"])
+            for c in s.get("content", []):
+                if isinstance(c, dict) and "text" in c and c["text"].strip():
+                    summaries.append(c["text"].strip())
+        if summaries:
+            partial_text = "\n\n".join(summaries)
+            payload = extract_json_payload(partial_text)
+            if payload and payload.get("status") in ("active", "changed", "deprecated", "inconclusive"):
+                return payload
+            from core.model import call_gemini_json
+            from core.verifier import VERIFIER_SCHEMA
+            synth_prompt = (
+                f"Antigravity Chrome browser agent timed out after {timeout}s while auditing {pname} ({target_url}), "
+                f"but recorded these intermediate observations:\n\n{partial_text[:3500]}\n\n"
+                f"Based on what was observed, synthesize the best audit verdict matching the schema."
+            )
+            try:
+                synth_res = call_gemini_json(synth_prompt, VERIFIER_SCHEMA, key=key)
+                if synth_res and synth_res.get("status"):
+                    return synth_res
+            except Exception as synth_err:
+                print(f"  [antigravity] Partial timeout synthesis failed: {synth_err}")
 
     return {
         "status": "inconclusive",

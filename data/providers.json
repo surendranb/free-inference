@@ -1,7 +1,7 @@
 {
   "title": "Free Inference",
   "tagline": "Free AI & LLM inference you can build with: an API key, a CLI login, or inference bundled inside a coding tool or builder. Speech-to-text, voice synthesis, code, vision, and reasoning. The test is whether you can ship an artifact you keep — code, an app, an audio file, a site, a design, an agent, a skill. Chat-only free tiers are excluded on purpose.",
-  "verified": "2026-11-22",
+  "verified": "2026-11-23",
   "website": "https://freeinference.dev",
   "repo": "https://github.com/surendranb/free-inference",
   "columns": [
@@ -704,7 +704,7 @@
       "free_type": "Rate-limited free",
       "notes": "Groq offers 13 free models (9 LLMs, 2 Whisper STT, 2 Orpheus TTS), translating to up to 14,400 text requests/day and 2,000 audio transcriptions/day (~8 hours/day). No credit card required. Limits are pooled at organization level.",
       "timeout": "Not published",
-      "verified": "2026-11-22",
+      "verified": "2026-11-23",
       "models": [
         {
           "name": "llama-3.3-70b-versatile",
@@ -714,7 +714,7 @@
           "tpm": "12K",
           "rpd": "1,000",
           "tpd": "100K tokens/day",
-          "verified": "2026-11-22"
+          "verified": "2026-11-23"
         },
         {
           "name": "llama-3.1-8b-instant",
@@ -724,7 +724,7 @@
           "tpm": "6K",
           "rpd": "14,400",
           "tpd": "500K tokens/day",
-          "verified": "2026-11-22"
+          "verified": "2026-11-23"
         },
         {
           "name": "meta-llama/llama-4-scout-17b-16e-instruct",
@@ -734,7 +734,7 @@
           "tpm": "30K",
           "rpd": "1,000",
           "tpd": "500K tokens/day",
-          "verified": "2026-11-22"
+          "verified": "2026-11-23"
         },
         {
           "name": "openai/gpt-oss-120b",
@@ -744,7 +744,7 @@
           "tpm": "8K",
           "rpd": "1,000",
           "tpd": "200K tokens/day",
-          "verified": "2026-11-22"
+          "verified": "2026-11-23"
         },
         {
           "name": "openai/gpt-oss-20b",
@@ -754,7 +754,7 @@
           "tpm": "8K",
           "rpd": "1,000",
           "tpd": "200K tokens/day",
-          "verified": "2026-11-22"
+          "verified": "2026-11-23"
         },
         {
           "name": "qwen/qwen3.6-27b",
@@ -764,7 +764,7 @@
           "tpm": "8K",
           "rpd": "1,000",
           "tpd": "200K tokens/day",
-          "verified": "2026-11-22"
+          "verified": "2026-11-23"
         },
         {
           "name": "qwen/qwen3.8-27b",
@@ -774,7 +774,7 @@
           "tpm": "8K",
           "rpd": "1,000",
           "tpd": "2M tokens/day",
-          "verified": "2026-11-22"
+          "verified": "2026-11-23"
         },
         {
           "name": "meta-llama/llama-prompt-guard-2-22m",
@@ -784,7 +784,7 @@
           "tpm": "15K",
           "rpd": "14,400",
           "tpd": "500K tokens/day",
-          "verified": "2026-11-22"
+          "verified": "2026-11-23"
         },
         {
           "name": "compound-beta",
@@ -794,7 +794,7 @@
           "tpm": "70K",
           "rpd": "250",
           "tpd": "Not published",
-          "verified": "2026-11-22"
+          "verified": "2026-11-23"
         },
         {
           "name": "whisper-large-v3-turbo",
@@ -804,7 +804,7 @@
           "tpm": "7.2K ASH (Audio sec/hr)",
           "rpd": "2,000",
           "tpd": "28.8K ASD (8h audio/day)",
-          "verified": "2026-11-22"
+          "verified": "2026-11-23"
         },
         {
           "name": "whisper-large-v3",
@@ -814,7 +814,7 @@
           "tpm": "7.2K ASH (Audio sec/hr)",
           "rpd": "2,000",
           "tpd": "28.8K ASD (8h audio/day)",
-          "verified": "2026-11-22"
+          "verified": "2026-11-23"
         },
         {
           "name": "canopylabs/orpheus-v1-english",
@@ -824,7 +824,7 @@
           "tpm": "1.2K ASH (Audio sec/hr)",
           "rpd": "100",
           "tpd": "3.6K ASD (1h audio/day)",
-          "verified": "2026-11-22"
+          "verified": "2026-11-23"
         },
         {
           "name": "canopylabs/orpheus-arabic-saudi",
@@ -834,7 +834,7 @@
           "tpm": "1.2K ASH (Audio sec/hr)",
           "rpd": "100",
           "tpd": "3.6K ASD (1h audio/day)",
-          "verified": "2026-11-22"
+          "verified": "2026-11-23"
         },
         {
           "name": "ALLaM-2-7b",
@@ -844,7 +844,7 @@
           "tpm": "12K",
           "rpd": "1,000",
           "tpd": "100K tokens/day",
-          "verified": "2026-11-22"
+          "verified": "2026-11-23"
         },
         {
           "name": "meta-llama/llama-prompt-guard-2-86m",
@@ -854,7 +854,7 @@
           "tpm": "15K",
           "rpd": "14,400",
           "tpd": "500K tokens/day",
-          "verified": "2026-11-22"
+          "verified": "2026-11-23"
         }
       ],
       "verified_method": "docs",

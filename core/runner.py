@@ -36,6 +36,7 @@ def main():
     parser.add_argument("--apply", action="store_true", help="Persist updates to data/providers.json")
     parser.add_argument("--limit", type=int, default=None, help="Limit number of catalog providers to verify")
     parser.add_argument("--force-all", action="store_true", help="Force verification even if verified today")
+    parser.add_argument("--provider", type=str, default=None, help="Verify a single provider by exact or partial name (one source at a time)")
     args = parser.parse_args()
 
     if not (args.verify or args.scout or args.all):
@@ -96,7 +97,8 @@ def main():
                 apply_updates=args.apply,
                 limit=args.limit,
                 force_all=args.force_all,
-                key=key
+                key=key,
+                target_provider=args.provider
             )
             active_count = sum(1 for r in results if r["status"] == "active")
             changed_count = sum(1 for r in results if r["status"] == "changed")

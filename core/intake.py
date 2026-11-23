@@ -88,6 +88,209 @@ def fetch_api(url: str, key: str = None) -> str:
     return json.dumps(data, indent=2)[:3500]
 
 
+def extract_json_payload(text: str) -> dict:
+    """Extract first valid JSON object from agent output (handling markdown code fences and whitespace)."""
+    if not text or not text.strip():
+        return {}
+    # 1. Try markdown code fences: ```json { ... } ```
+    m = re.search(r"```(?:json)?\s*(\{[\s\S]*?\})\s*```", text)
+    if m:
+        try:
+            return json.loads(m.group(1))
+        except Exception:
+            pass
+    # 2. Try raw outer curly braces
+    m = re.search(r"(\{[\s\S]*\})", text)
+    if m:
+        try:
+            return json.loads(m.group(1))
+        except Exception:
+            pass
+    # 3. Direct parse
+    try:
+        return json.loads(text.strip())
+    except Exception:
+        return {}
+
+
+def verify_source_with_antigravity(provider: dict, key: str, timeout: int = 150) -> dict:
+    """Run Antigravity Managed Agent in Google Cloud sandbox with real Chrome to audit one source at a time.
+    
+    Given a single provider source entry, the agent drives Chrome to inspect live pricing tables,
+    rate limits, and model availability, returning a structured audit verdict with verified models.
+    """
+    if not key:
+        return {
+            "status": "inconclusive",
+            "is_free_active": None,
+            "models": [],
+            "summary": "Antigravity agent unavailable: missing GEMINI_API_KEY / GOOGLE_API_KEY"
+        }
+
+    pname = provider.get("name", "Unknown")
+    target_url = provider.get("docs_url") or provider.get("url", "")
+    existing_models = [
+        {
+            "name": m.get("name"),
+            "context": m.get("context", "Not published"),
+            "rpm": m.get("rpm", "Not published"),
+            "tpm": m.get("tpm", "Not published"),
+            "rpd": m.get("rpd", "Not published"),
+            "tpd": m.get("tpd", "Not published")
+        }
+        for m in provider.get("models", [])
+    ]
+
+    prompt = f"""You are the Antigravity Autonomous Catalog Verification Agent for FreeInference.dev.
+Your mission: Audit and verify the live ground truth for a single free AI inference provider against real-world documentation.
+
+PROVIDER TO VERIFY:
+- Provider Name: {pname}
+- Target URL: {target_url}
+- Access Method: {provider.get('access_method')}
+- Current Free Tier Type: {provider.get('free_type')}
+- Current Cataloged Models: {json.dumps(existing_models, indent=2)}
+- Current Documented Notes: {provider.get('notes', '')}
+
+INSTRUCTIONS (using Google Chrome in your hosted sandbox):
+1. Navigate to {target_url} in Google Chrome.
+2. If the page contains tabs, navigation links, or sub-sections for "Pricing", "Rate Limits", "Free Tier", or "Models", click and inspect them.
+3. Determine whether an active $0 developer free tier is confirmed:
+   - Does it require a credit card upfront? (If yes, classify as 'trial credits' or paid).
+   - Are there permanent rate-limited free allowances (e.g. RPM, RPD, TPM)?
+   - Is the free tier explicitly discontinued or paywalled?
+4. Extract the exact list of available $0 free models:
+   - Specific model identifiers (e.g. "llama-3.3-70b-versatile", "gemini-2.5-flash")
+   - Context window (e.g. "128K", "1M")
+   - Rate limits: RPM (requests/min), TPM (tokens/min), RPD (requests/day), TPD (tokens/day)
+5. Compare against the currently cataloged models:
+   - Confirm which existing models remain active.
+   - Detect newly added free models.
+   - Flag any removed or discontinued models.
+6. Status verdict rules:
+   - "active": Free tier confirmed active with existing cataloged models verified.
+   - "changed": Confirmed changes in model lineup (new models added, older models dropped) or updated rate limits.
+   - "deprecated": Free tier explicitly discontinued, shut down, or fully paywalled.
+   - "inconclusive": Page blocked by anti-bot checkpoint (Cloudflare Turnstile, CAPTCHA) or requires internal authentication.
+
+OUTPUT FORMAT:
+Output ONLY a single valid JSON object matching this schema:
+{{
+  "status": "active" | "changed" | "deprecated" | "inconclusive",
+  "is_free_active": true | false | null,
+  "summary": "1-2 concise sentences summarizing the verification verdict.",
+  "models": [
+    {{
+      "name": "model-identifier",
+      "cost": "$0",
+      "context": "context-length",
+      "rpm": "RPM or 'Not published'",
+      "tpm": "TPM or 'Not published'",
+      "rpd": "RPD or 'Not published'",
+      "tpd": "TPD or 'Not published'"
+    }}
+  ]
+}}
+"""
+    api_url = f"{INTERACTIONS_URL}?key={key}"
+    body = {
+        "agent": ANTIGRAVITY_AGENT,
+        "input": prompt,
+        "environment": "remote",
+        "background": True,
+        "store": True,
+        "agent_config": {"type": "antigravity", "max_total_tokens": 15000}
+    }
+    req = urllib.request.Request(
+        api_url,
+        data=json.dumps(body).encode("utf-8"),
+        headers={"Content-Type": "application/json"}
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=30) as r:
+            init_res = json.load(r)
+    except Exception as e:
+        return {
+            "status": "inconclusive",
+            "is_free_active": None,
+            "models": [],
+            "summary": f"Antigravity agent failed to initialize: {e}"
+        }
+
+    iid = init_res.get("id")
+    if not iid:
+        return {
+            "status": "inconclusive",
+            "is_free_active": None,
+            "models": [],
+            "summary": "Antigravity agent initialization returned no interaction ID"
+        }
+
+    poll_url = f"{INTERACTIONS_URL}/{iid}?key={key}"
+    t0 = time.time()
+    while time.time() - t0 < timeout:
+        poll_interval = 3 if (time.time() - t0) < 30 else 6
+        time.sleep(poll_interval)
+        try:
+            with urllib.request.urlopen(poll_url, timeout=30) as r:
+                poll_res = json.load(r)
+        except Exception:
+            continue
+
+        if poll_res.get("status") in ("completed", "failed", "incomplete"):
+            steps = poll_res.get("steps", [])
+            output_text = ""
+            for s in reversed(steps):
+                for c in s.get("content", []):
+                    if "text" in c and c["text"].strip():
+                        output_text = c["text"].strip()
+                        break
+                if output_text:
+                    break
+
+            if not output_text:
+                summaries = []
+                for s in steps:
+                    for sm in s.get("summary", []):
+                        if isinstance(sm, dict) and sm.get("text"):
+                            summaries.append(sm["text"])
+                output_text = "\n\n".join(summaries)
+
+            payload = extract_json_payload(output_text)
+            if payload and payload.get("status") in ("active", "changed", "deprecated", "inconclusive"):
+                return payload
+
+            # Fallback if agent provided conversational observations rather than raw JSON
+            if output_text:
+                from core.model import call_gemini_json
+                from core.verifier import VERIFIER_SCHEMA
+                synth_prompt = (
+                    f"Based on these live Chrome browser audit observations for {pname} ({target_url}):\n\n"
+                    f"{output_text[:3500]}\n\n"
+                    f"Synthesize the structured audit verdict matching the schema."
+                )
+                try:
+                    synth_res = call_gemini_json(synth_prompt, VERIFIER_SCHEMA, key=key)
+                    if synth_res and synth_res.get("status"):
+                        return synth_res
+                except Exception as synth_err:
+                    print(f"  Notice: Synthesis from agent observations failed: {synth_err}")
+
+            return {
+                "status": "inconclusive",
+                "is_free_active": None,
+                "models": [],
+                "summary": f"Antigravity agent finished with status {poll_res.get('status')} but generated unparseable output."
+            }
+
+    return {
+        "status": "inconclusive",
+        "is_free_active": None,
+        "models": [],
+        "summary": f"Antigravity agent timed out after {timeout}s on {target_url}"
+    }
+
+
 def fetch_web_browser_agent(url: str, key: str, timeout: int = 150) -> str:
     """Escalation Fallback: Cloud Antigravity Agent driving real Google Chrome."""
     if not key:

@@ -6,7 +6,7 @@ from pathlib import Path
 import time
 from typing import Dict, List, Optional
 
-from core.intake import fetch_api, fetch_feed, fetch_web
+from core.intake import fetch_api, fetch_feed, fetch_web, verify_source_with_antigravity
 from core.model import call_with_self_correction, get_api_key
 from probe import DETERMINISTIC_SYNCS
 
@@ -25,7 +25,11 @@ VERIFIER_SCHEMA = {
                 "properties": {
                     "name": {"type": "STRING"},
                     "cost": {"type": "STRING"},
-                    "context": {"type": "STRING"}
+                    "context": {"type": "STRING"},
+                    "rpm": {"type": "STRING"},
+                    "tpm": {"type": "STRING"},
+                    "rpd": {"type": "STRING"},
+                    "tpd": {"type": "STRING"}
                 },
                 "required": ["name", "cost"]
             }
@@ -53,7 +57,7 @@ def validate_verification_output(data: dict) -> Optional[str]:
 
 
 def verify_provider(provider: dict, key: str = None) -> dict:
-    """Verify an individual catalog provider against live data."""
+    """Verify an individual catalog provider against live ground truth (one source at a time)."""
     pname = provider.get("name", "Unknown")
     channel = (provider.get("channel") or "web").lower()
     if channel not in ("api", "feed", "web"):
@@ -63,6 +67,18 @@ def verify_provider(provider: dict, key: str = None) -> dict:
     primary_url = provider.get("url", "")
     docs_url = provider.get("docs_url", "")
     base_url = provider.get("base_url", "")
+    existing_models = [m.get("name") for m in provider.get("models", [])]
+
+    # For web/docs sources: invoke Antigravity Managed Agent driving Google Chrome in cloud sandbox
+    if channel == "web":
+        agent_key = key or get_api_key()
+        if agent_key:
+            res = verify_source_with_antigravity(provider, key=agent_key)
+            if res and res.get("status") in ("active", "changed", "deprecated"):
+                return res
+            if res and res.get("status") == "inconclusive" and res.get("summary"):
+                # Antigravity agent encountered a challenge/block or timeout
+                return res
 
     if channel == "api":
         target_url = base_url or primary_url
@@ -85,7 +101,6 @@ def verify_provider(provider: dict, key: str = None) -> dict:
         target_url = docs_url or primary_url
         raw_data = fetch_web(target_url, key=key)
 
-    existing_models = [m.get("name") for m in provider.get("models", [])]
     prompt = f"""You are the catalog verification auditor for FreeInference.dev.
 Compare our EXISTING catalog data against the LATEST LIVE DATA retrieved from the provider.
 
@@ -127,15 +142,25 @@ def verify_catalog(
     apply_updates: bool = False,
     limit: Optional[int] = None,
     force_all: bool = False,
-    key: Optional[str] = None
+    key: Optional[str] = None,
+    target_provider: Optional[str] = None
 ) -> List[dict]:
-    """Task 1: Verify all catalog providers."""
+    """Task 1: Verify catalog providers (one source at a time or full catalog)."""
     today = date.today().isoformat()
     api_key = key or get_api_key()
     results = []
     audited = 0
 
     providers = list(catalog_data.get("providers", []))
+    if target_provider:
+        needle = target_provider.strip().lower()
+        matched = [p for p in providers if needle in p.get("name", "").lower() or needle in p.get("slug", "").lower()]
+        if not matched:
+            print(f"Warning: No provider found matching '{target_provider}'")
+            return []
+        providers = matched
+        print(f"--> Filtering verification to single source: {providers[0].get('name')}")
+
     for p in providers:
         if limit is not None and audited >= limit:
             break
@@ -153,8 +178,9 @@ def verify_catalog(
             })
             audited += 1
             continue
-        # Skip if already verified today via live-probe unless force_all
-        if not force_all and p.get("verified") == today and p.get("verified_method") == "live-probe":
+
+        # Skip if already verified today via live-probe unless force_all or single provider target
+        if not force_all and not target_provider and p.get("verified") == today and p.get("verified_method") in ("live-probe", "antigravity-agent"):
             continue
 
         print(f"--> Verifying {pname} ({p.get('channel', 'web')})...")
@@ -165,6 +191,7 @@ def verify_catalog(
         status = res.get("status", "inconclusive")
         is_free = res.get("is_free_active", False)
         summary = res.get("summary", "")
+        verified_models = res.get("models", [])
 
         entry = {
             "provider": pname,
@@ -178,19 +205,34 @@ def verify_catalog(
 
         if is_free and status in ("active", "changed") and apply_updates:
             p["verified"] = today
-            p["verified_method"] = "live-probe" if p.get("channel") == "api" else "docs"
-            for m in p.get("models", []):
-                m.setdefault("cost", "$0")
-                m.setdefault("context", "Not published")
-                m.setdefault("rpm", "Not published")
-                m.setdefault("tpm", "Not published")
-                m.setdefault("rpd", "Not published")
-                m.setdefault("tpd", "Not published")
-                m["verified"] = today
-            print(f"  ✓ Active: updated verification to {today}")
-        elif status == "deprecated":
-            print(f"  ⚠ Deprecation flagged: {summary}")
-            print(f"  --> Preserving catalog entry. Human review required.")
+            p["verified_method"] = "live-probe" if p.get("channel") == "api" else "antigravity-agent"
+            if status == "changed" and verified_models:
+                # Update catalog with verified models
+                for m in verified_models:
+                    m.setdefault("cost", "$0")
+                    m.setdefault("context", "Not published")
+                    m.setdefault("rpm", "Not published")
+                    m.setdefault("tpm", "Not published")
+                    m.setdefault("rpd", "Not published")
+                    m.setdefault("tpd", "Not published")
+                    m["verified"] = today
+                p["models"] = verified_models
+                print(f"  ✓ Changed: updated {len(verified_models)} models for {pname}")
+            else:
+                for m in p.get("models", []):
+                    m.setdefault("cost", "$0")
+                    m.setdefault("context", "Not published")
+                    m.setdefault("rpm", "Not published")
+                    m.setdefault("tpm", "Not published")
+                    m.setdefault("rpd", "Not published")
+                    m.setdefault("tpd", "Not published")
+                    m["verified"] = today
+                print(f"  ✓ Active: updated verification to {today}")
+        elif status == "deprecated" and apply_updates:
+            p["free_type"] = "Deprecated"
+            p["verified"] = today
+            p["notes"] = f"[DEPRECATED {today}] {summary}"
+            print(f"  ⚠ Deprecation recorded for {pname}: {summary}")
         else:
             print(f"  Notice: Inconclusive/retained: {summary[:80]}")
 

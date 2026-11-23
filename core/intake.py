@@ -118,7 +118,10 @@ def verify_source_with_antigravity(provider: dict, key: str, timeout: int = 150)
     
     Given a single provider source entry, the agent drives Chrome to inspect live pricing tables,
     rate limits, and model availability, returning a structured audit verdict with verified models.
+    Streams execution traces to Phoenix / OTLP collectors.
     """
+    from core.telemetry import tracer
+
     if not key:
         return {
             "status": "inconclusive",
@@ -127,6 +130,37 @@ def verify_source_with_antigravity(provider: dict, key: str, timeout: int = 150)
             "summary": "Antigravity agent unavailable: missing GEMINI_API_KEY / GOOGLE_API_KEY"
         }
 
+    pname = provider.get("name", "Unknown")
+    target_url = provider.get("docs_url") or provider.get("url", "")
+    t_start = time.time()
+    trace_id = tracer.start_trace(name=f"verify-provider:{pname}")
+
+    res = _do_verify_source_with_antigravity(provider, key, timeout)
+
+    t_end = time.time()
+    status = res.get("status", "inconclusive")
+    is_ok = status in ("active", "changed")
+    tracer.log_span(
+        trace_id=trace_id,
+        name=f"verify_source_with_antigravity:{pname}",
+        start_time_s=t_start,
+        end_time_s=t_end,
+        attributes={
+            "provider.name": pname,
+            "provider.status": status,
+            "provider.url": target_url,
+            "agent.model": ANTIGRAVITY_AGENT,
+            "models_count": len(res.get("models", [])),
+            "summary": res.get("summary", "")[:200],
+        },
+        status_ok=is_ok,
+        status_message=res.get("summary", ""),
+    )
+    tracer.flush()
+    return res
+
+
+def _do_verify_source_with_antigravity(provider: dict, key: str, timeout: int = 150) -> dict:
     pname = provider.get("name", "Unknown")
     target_url = provider.get("docs_url") or provider.get("url", "")
     existing_models = [

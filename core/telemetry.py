@@ -1,6 +1,7 @@
 """core/telemetry.py - Distributed execution tracing for FreeInference.dev via OpenTelemetry (OTLP).
 
-Streams agent verification runs, steps, and verdicts directly to Arize Phoenix / OTLP collectors.
+Streams agent verification runs, steps, and verdicts directly to Arize Cloud and Phoenix collectors.
+Supports both Cloud Arize (https://otlp.arize.com/v1) and local Phoenix (http://127.0.0.1:4318/v1/traces).
 Follows the zero-dependency standard library pattern (urllib.request, json, time, os, uuid).
 Resilient by design: Telemetry errors are non-blocking and never halt catalog verification.
 """
@@ -8,6 +9,7 @@ from __future__ import annotations
 
 import json
 import os
+import subprocess
 import time
 import urllib.error
 import urllib.request
@@ -15,22 +17,44 @@ import uuid
 from typing import Any, Dict, List, Optional
 
 
-class PhoenixTracer:
+def _get_keychain_secret(account: str) -> Optional[str]:
+    """Fallback to macOS Keychain service 'agent-core' if environment variable is unset."""
+    try:
+        cmd = ["security", "find-generic-password", "-s", "agent-core", "-a", account, "-w"]
+        p = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, timeout=5)
+        if p.returncode == 0 and p.stdout.strip():
+            return p.stdout.strip()
+    except Exception:
+        pass
+    return None
+
+
+class ArizeTracer:
     """Lightweight, resilient OTLP HTTP tracer for FreeInference verification runs."""
 
     def __init__(
         self,
         endpoint: Optional[str] = None,
+        space_id: Optional[str] = None,
+        api_key: Optional[str] = None,
         project_name: str = "free-inference",
         service_name: str = "freeinference-engine",
     ):
-        self.endpoint = (
+        self.api_key = api_key or os.getenv("ARIZE_API_KEY") or _get_keychain_secret("arize-api-key")
+        self.space_id = space_id or os.getenv("ARIZE_SPACE_ID") or _get_keychain_secret("arize-space-id")
+
+        cloud_ep = "https://otlp.arize.com/v1/traces"
+        local_ep = "http://127.0.0.1:4318/v1/traces"
+        raw_ep = (
             endpoint
-            or os.getenv("OTEL_EXPORTER_OTLP_TRACES_ENDPOINT")
-            or os.getenv("PHOENIX_COLLECTOR_ENDPOINT", "http://127.0.0.1:4318/v1/traces")
+            or os.getenv("ARIZE_OTLP_ENDPOINT")
+            or _get_keychain_secret("ARIZE_OTLP_ENDPOINT")
+            or (cloud_ep if (self.api_key and self.space_id) else os.getenv("OTEL_EXPORTER_OTLP_TRACES_ENDPOINT") or local_ep)
         )
-        if not self.endpoint.endswith("/v1/traces") and "v1/traces" not in self.endpoint:
-            self.endpoint = f"{self.endpoint.rstrip('/')}/v1/traces"
+        if not raw_ep.endswith("/v1/traces"):
+            self.endpoint = f"{raw_ep.rstrip('/')}/v1/traces"
+        else:
+            self.endpoint = raw_ep
 
         self.project_name = project_name
         self.service_name = service_name
@@ -113,26 +137,27 @@ class PhoenixTracer:
         }
 
         data = json.dumps(payload).encode("utf-8")
-        req = urllib.request.Request(
-            self.endpoint,
-            data=data,
-            headers={
-                "Content-Type": "application/json",
-                "User-Agent": "FreeInference-OTLP-Tracer/1.0",
-            },
-        )
+        headers = {
+            "Content-Type": "application/json",
+            "User-Agent": "FreeInference-OTLP-Tracer/1.0",
+            "x-project-name": self.project_name,
+        }
+        if self.space_id and self.api_key:
+            headers["arize-space-id"] = self.space_id
+            headers["arize-api-key"] = self.api_key
+
+        req = urllib.request.Request(self.endpoint, data=data, headers=headers)
 
         try:
-            with urllib.request.urlopen(req, timeout=5) as resp:
+            with urllib.request.urlopen(req, timeout=10) as resp:
                 count = len(self.spans_queue)
                 self.spans_queue.clear()
                 return {"status": "ok", "spans_exported": count, "http_code": resp.status}
         except Exception as e:
             # Telemetry error is strictly non-blocking
-            # print(f"  [telemetry] OTLP export error: {e}")
             self.spans_queue.clear()
             return {"status": "error", "error": str(e)}
 
 
 # Singleton default tracer instance
-tracer = PhoenixTracer()
+tracer = ArizeTracer()

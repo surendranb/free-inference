@@ -25,10 +25,10 @@ jobs:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
           SLACK_CHANNEL_ID: "C0BLW648J3T"
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ARIZE_SPACE_ID: ${{ secrets.ARIZE_SPACE_ID }}
+          ARIZE_API_KEY: ${{ secrets.ARIZE_API_KEY }}
+          ARIZE_OTLP_ENDPOINT: ${{ secrets.ARIZE_OTLP_ENDPOINT }}
           OTEL_EXPORTER_OTLP_TRACES_ENDPOINT: ${{ secrets.OTEL_EXPORTER_OTLP_TRACES_ENDPOINT }}
-          LANGFUSE_PUBLIC_KEY: ${{ secrets.LANGFUSE_PUBLIC_KEY }}
-          LANGFUSE_SECRET_KEY: ${{ secrets.LANGFUSE_SECRET_KEY }}
-          LANGFUSE_BASE_URL: ${{ secrets.LANGFUSE_BASE_URL }}
         run: python3 -m core.runner --verify --all --apply
       - name: Generate Weekly Dispatch (Mondays)
         env:

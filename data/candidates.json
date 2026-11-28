@@ -1,376 +1,5 @@
 [
   {
-    "id": "Qwen/Qwen3-8B",
-    "name": "Qwen/Qwen3-8B",
-    "provider": "SiliconFlow (China)",
-    "provider_id": "siliconflow-cn",
-    "context_length": 131000,
-    "output_limit": 131000,
-    "reasoning": true,
-    "tool_call": true,
-    "structured_output": true,
-    "open_weights": true,
-    "modalities": {
-      "input": [
-        "text"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://cloud.siliconflow.com/models",
-    "api": "https://api.siliconflow.cn/v1",
-    "source": "Models.dev API",
-    "evaluation": {
-      "is_valid_free_tier": false,
-      "provider_name": "SiliconFlow",
-      "free_tier_type": "None",
-      "summary": "The provided text only shows a login and welcome page for SiliconFlow without any explicit mention of a free tier, trial credits, or rate-limited developer API access."
-    }
-  },
-  {
-    "id": "Qwen/Qwen2.5-7B-Instruct",
-    "name": "Qwen/Qwen2.5-7B-Instruct",
-    "provider": "SiliconFlow (China)",
-    "provider_id": "siliconflow-cn",
-    "context_length": 33000,
-    "output_limit": 4000,
-    "reasoning": false,
-    "tool_call": true,
-    "structured_output": true,
-    "open_weights": true,
-    "modalities": {
-      "input": [
-        "text"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://cloud.siliconflow.com/models",
-    "api": "https://api.siliconflow.cn/v1",
-    "source": "Models.dev API",
-    "evaluation": {
-      "is_valid_free_tier": false,
-      "provider_name": "SiliconFlow",
-      "free_tier_type": "None",
-      "summary": "The provided text only shows a login and welcome page for SiliconFlow without any explicit mention of a free tier, trial credits, or rate-limited developer API access."
-    }
-  },
-  {
-    "id": "Qwen/Qwen3.5-4B",
-    "name": "Qwen/Qwen3.5-4B",
-    "provider": "SiliconFlow (China)",
-    "provider_id": "siliconflow-cn",
-    "context_length": 262144,
-    "output_limit": 65536,
-    "reasoning": true,
-    "tool_call": true,
-    "structured_output": false,
-    "open_weights": true,
-    "modalities": {
-      "input": [
-        "text",
-        "image",
-        "video"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://cloud.siliconflow.com/models",
-    "api": "https://api.siliconflow.cn/v1",
-    "source": "Models.dev API",
-    "evaluation": {
-      "is_valid_free_tier": false,
-      "provider_name": "SiliconFlow",
-      "free_tier_type": "None",
-      "summary": "The provided text only shows a login and welcome page for SiliconFlow without any explicit mention of a free tier, trial credits, or rate-limited developer API access."
-    }
-  },
-  {
-    "id": "PaddlePaddle/PaddleOCR-VL-1.5",
-    "name": "PaddlePaddle/PaddleOCR-VL-1.5",
-    "provider": "SiliconFlow (China)",
-    "provider_id": "siliconflow-cn",
-    "context_length": 16384,
-    "output_limit": 16384,
-    "reasoning": false,
-    "tool_call": false,
-    "structured_output": false,
-    "open_weights": true,
-    "modalities": {
-      "input": [
-        "text",
-        "image"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://cloud.siliconflow.com/models",
-    "api": "https://api.siliconflow.cn/v1",
-    "source": "Models.dev API",
-    "evaluation": {
-      "is_valid_free_tier": false,
-      "provider_name": "SiliconFlow",
-      "free_tier_type": "None",
-      "summary": "The provided text only shows a login and welcome page for SiliconFlow without any explicit mention of a free tier, trial credits, or rate-limited developer API access."
-    }
-  },
-  {
-    "id": "deepseek-ai/DeepSeek-OCR",
-    "name": "deepseek-ai/DeepSeek-OCR",
-    "provider": "SiliconFlow (China)",
-    "provider_id": "siliconflow-cn",
-    "context_length": 8192,
-    "output_limit": 8192,
-    "reasoning": false,
-    "tool_call": false,
-    "structured_output": false,
-    "open_weights": true,
-    "modalities": {
-      "input": [
-        "text",
-        "image",
-        "pdf"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://cloud.siliconflow.com/models",
-    "api": "https://api.siliconflow.cn/v1",
-    "source": "Models.dev API",
-    "evaluation": {
-      "is_valid_free_tier": false,
-      "provider_name": "SiliconFlow",
-      "free_tier_type": "None",
-      "summary": "The provided text only shows a login and welcome page for SiliconFlow without any explicit mention of a free tier, trial credits, or rate-limited developer API access."
-    }
-  },
-  {
-    "id": "mimo-v2.6-pro",
-    "name": "MiMo-V2.6-Pro",
-    "provider": "Xiaomi Token Plan (Europe)",
-    "provider_id": "xiaomi-token-plan-ams",
-    "context_length": 1048576,
-    "output_limit": 131072,
-    "reasoning": true,
-    "tool_call": true,
-    "structured_output": true,
-    "open_weights": true,
-    "modalities": {
-      "input": [
-        "text",
-        "image",
-        "audio",
-        "video"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://platform.xiaomimimo.com/#/docs",
-    "api": "https://token-plan-ams.xiaomimimo.com/v1",
-    "source": "Models.dev API",
-    "evaluation": {
-      "is_valid_free_tier": false,
-      "provider_name": "Xiaomi Token Plan (Europe)",
-      "free_tier_type": "None",
-      "summary": "The provided documentation does not specify any genuine free developer API tier, rate-limited free usage, or trial credits without requiring a paid subscription."
-    }
-  },
-  {
-    "id": "glm-5.4",
-    "name": "GLM-5.4",
-    "provider": "Volcengine Ark Coding Plan",
-    "provider_id": "volcengine-coding-plan",
-    "context_length": 1000000,
-    "output_limit": 131072,
-    "reasoning": true,
-    "tool_call": true,
-    "structured_output": true,
-    "open_weights": false,
-    "modalities": {
-      "input": [
-        "text",
-        "image",
-        "video",
-        "pdf"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://www.volcengine.com/docs/82379/1928261",
-    "api": "https://ark.cn-beijing.volces.com/api/coding/v3",
-    "source": "Models.dev API",
-    "evaluation": {
-      "is_valid_free_tier": false,
-      "provider_name": "Volcengine Ark Coding Plan",
-      "free_tier_type": "None",
-      "summary": "The Volcengine Ark Coding Plan is a paid subscription service for developer tools and AI coding assistants like Claude Code. There is no mention of a free tier or free developer API credits."
-    }
-  },
-  {
-    "id": "doubao-seed-evolving",
-    "name": "Seed Evolving",
-    "provider": "Volcengine Ark Coding Plan",
-    "provider_id": "volcengine-coding-plan",
-    "context_length": 1024000,
-    "output_limit": 256000,
-    "reasoning": true,
-    "tool_call": true,
-    "structured_output": true,
-    "open_weights": false,
-    "modalities": {
-      "input": [
-        "text",
-        "image",
-        "video"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://www.volcengine.com/docs/82379/1928261",
-    "api": "https://ark.cn-beijing.volces.com/api/coding/v3",
-    "source": "Models.dev API",
-    "evaluation": {
-      "is_valid_free_tier": false,
-      "provider_name": "Volcengine Ark Coding Plan",
-      "free_tier_type": "None",
-      "summary": "The Volcengine Ark Coding Plan is a paid subscription service for developer tools and AI coding assistants like Claude Code. There is no mention of a free tier or free developer API credits."
-    }
-  },
-  {
-    "id": "doubao-seed-2.1-pro",
-    "name": "Seed 2.1 Pro",
-    "provider": "Volcengine Ark Coding Plan",
-    "provider_id": "volcengine-coding-plan",
-    "context_length": 1024000,
-    "output_limit": 256000,
-    "reasoning": true,
-    "tool_call": true,
-    "structured_output": true,
-    "open_weights": false,
-    "modalities": {
-      "input": [
-        "text",
-        "image",
-        "video"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://www.volcengine.com/docs/82379/1928261",
-    "api": "https://ark.cn-beijing.volces.com/api/coding/v3",
-    "source": "Models.dev API",
-    "evaluation": {
-      "is_valid_free_tier": false,
-      "provider_name": "Volcengine Ark Coding Plan",
-      "free_tier_type": "None",
-      "summary": "The Volcengine Ark Coding Plan is a paid subscription service for developer tools and AI coding assistants like Claude Code. There is no mention of a free tier or free developer API credits."
-    }
-  },
-  {
-    "id": "doubao-seed-2.0-mini",
-    "name": "Seed 2.0 Mini",
-    "provider": "Volcengine Ark Coding Plan",
-    "provider_id": "volcengine-coding-plan",
-    "context_length": 256000,
-    "output_limit": 131072,
-    "reasoning": true,
-    "tool_call": true,
-    "structured_output": true,
-    "open_weights": false,
-    "modalities": {
-      "input": [
-        "text",
-        "image",
-        "audio",
-        "video"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://www.volcengine.com/docs/82379/1928261",
-    "api": "https://ark.cn-beijing.volces.com/api/coding/v3",
-    "source": "Models.dev API",
-    "evaluation": {
-      "is_valid_free_tier": false,
-      "provider_name": "Volcengine Ark Coding Plan",
-      "free_tier_type": "None",
-      "summary": "The Volcengine Ark Coding Plan is a paid subscription service for developer tools and AI coding assistants like Claude Code. There is no mention of a free tier or free developer API credits."
-    }
-  },
-  {
-    "id": "kimi-k2.8-preview",
-    "name": "Kimi K2.8 Preview",
-    "provider": "Volcengine Ark Coding Plan",
-    "provider_id": "volcengine-coding-plan",
-    "context_length": 1048576,
-    "output_limit": 32768,
-    "reasoning": true,
-    "tool_call": true,
-    "structured_output": true,
-    "open_weights": false,
-    "modalities": {
-      "input": [
-        "text",
-        "image",
-        "video"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://www.volcengine.com/docs/82379/1928261",
-    "api": "https://ark.cn-beijing.volces.com/api/coding/v3",
-    "source": "Models.dev API",
-    "evaluation": {
-      "is_valid_free_tier": false,
-      "provider_name": "Volcengine Ark Coding Plan",
-      "free_tier_type": "None",
-      "summary": "The Volcengine Ark Coding Plan is a paid subscription service for developer tools and AI coding assistants like Claude Code. There is no mention of a free tier or free developer API credits."
-    }
-  },
-  {
-    "id": "doubao-seed-2.1-lite",
-    "name": "Seed 2.1 Lite",
-    "provider": "Volcengine Ark Coding Plan",
-    "provider_id": "volcengine-coding-plan",
-    "context_length": 1024000,
-    "output_limit": 256000,
-    "reasoning": true,
-    "tool_call": true,
-    "structured_output": true,
-    "open_weights": false,
-    "modalities": {
-      "input": [
-        "text",
-        "image",
-        "audio",
-        "video"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://www.volcengine.com/docs/82379/1928261",
-    "api": "https://ark.cn-beijing.volces.com/api/coding/v3",
-    "source": "Models.dev API",
-    "evaluation": {
-      "is_valid_free_tier": false,
-      "provider_name": "Volcengine Ark Coding Plan",
-      "free_tier_type": "None",
-      "summary": "The Volcengine Ark Coding Plan is a paid subscription service for developer tools and AI coding assistants like Claude Code. There is no mention of a free tier or free developer API credits."
-    }
-  },
-  {
     "id": "nano-gpt-help",
     "name": "NanoGPT Help",
     "provider": "NanoGPT",
@@ -391,7 +20,13 @@
     },
     "doc": "https://docs.nano-gpt.com",
     "api": "https://nano-gpt.com/api/v1",
-    "source": "Models.dev API"
+    "source": "Models.dev API",
+    "evaluation": {
+      "is_valid_free_tier": false,
+      "provider_name": "NanoGPT",
+      "free_tier_type": "None",
+      "summary": "NanoGPT requires either a paid Pro subscription or adding account balance (pay-as-you-go) to use their API. There is no mention of a free tier or free developer credits."
+    }
   },
   {
     "id": "auto-model",
@@ -414,7 +49,13 @@
     },
     "doc": "https://docs.nano-gpt.com",
     "api": "https://nano-gpt.com/api/v1",
-    "source": "Models.dev API"
+    "source": "Models.dev API",
+    "evaluation": {
+      "is_valid_free_tier": false,
+      "provider_name": "NanoGPT",
+      "free_tier_type": "None",
+      "summary": "NanoGPT requires either a paid Pro subscription or adding account balance (pay-as-you-go) to use their API. There is no mention of a free tier or free developer credits."
+    }
   },
   {
     "id": "kitani/evolve-beta",
@@ -438,76 +79,13 @@
     },
     "doc": "https://docs.nano-gpt.com",
     "api": "https://nano-gpt.com/api/v1",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "lynkr-auto",
-    "name": "Lynkr Auto (complexity routing)",
-    "provider": "Lynkr",
-    "provider_id": "lynkr",
-    "context_length": 128000,
-    "output_limit": 8192,
-    "reasoning": false,
-    "tool_call": true,
-    "structured_output": false,
-    "open_weights": false,
-    "modalities": {
-      "input": [
-        "text"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://github.com/Fast-Editor/Lynkr",
-    "api": "http://127.0.0.1:8081/v1",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "poolside/laguna-m.1",
-    "name": "Laguna M.1",
-    "provider": "Poolside",
-    "provider_id": "poolside",
-    "context_length": 262144,
-    "output_limit": 32768,
-    "reasoning": true,
-    "tool_call": true,
-    "structured_output": false,
-    "open_weights": true,
-    "modalities": {
-      "input": [
-        "text"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://platform.poolside.ai",
-    "api": "https://inference.poolside.ai/v1",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "openai/gpt-5.3-codex-spark",
-    "name": "GPT-5.3-Codex-Spark",
-    "provider": "Poe",
-    "provider_id": "poe",
-    "context_length": 128000,
-    "output_limit": 16384,
-    "reasoning": true,
-    "tool_call": true,
-    "structured_output": false,
-    "open_weights": false,
-    "modalities": {
-      "input": [
-        "text"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://creator.poe.com/docs/external-applications/openai-compatible-api",
-    "api": "https://api.poe.com/v1",
-    "source": "Models.dev API"
+    "source": "Models.dev API",
+    "evaluation": {
+      "is_valid_free_tier": false,
+      "provider_name": "NanoGPT",
+      "free_tier_type": "None",
+      "summary": "NanoGPT requires either a paid Pro subscription or adding account balance (pay-as-you-go) to use their API. There is no mention of a free tier or free developer credits."
+    }
   },
   {
     "id": "google/gemma-4-31b",
@@ -531,898 +109,42 @@
     },
     "doc": "https://creator.poe.com/docs/external-applications/openai-compatible-api",
     "api": "https://api.poe.com/v1",
-    "source": "Models.dev API"
+    "source": "Models.dev API",
+    "evaluation": {
+      "is_valid_free_tier": false,
+      "provider_name": "Poe",
+      "free_tier_type": "None",
+      "summary": "Poe allows users to use their existing subscription points with the API at no additional cost, but does not provide a genuine standalone free developer API tier or free credits without a paid subscription."
+    }
   },
   {
-    "id": "Prism-ML/Ternary-Bonsai-27B",
-    "name": "Ternary Bonsai 27B",
-    "provider": "Together AI",
-    "provider_id": "togetherai",
-    "context_length": 262144,
-    "output_limit": 65536,
-    "reasoning": true,
-    "tool_call": true,
-    "structured_output": true,
-    "open_weights": true,
-    "modalities": {
-      "input": [
-        "text",
-        "image",
-        "video"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://docs.together.ai/docs/serverless-models",
-    "api": "",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "duo-chat-gpt-5-2",
-    "name": "Agentic Chat (GPT-5.2)",
-    "provider": "GitLab Duo",
-    "provider_id": "gitlab",
-    "context_length": 400000,
-    "output_limit": 128000,
-    "reasoning": true,
-    "tool_call": true,
-    "structured_output": true,
-    "open_weights": false,
-    "modalities": {
-      "input": [
-        "text",
-        "image"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
-    "api": "",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "duo-chat-gpt-5-4",
-    "name": "Agentic Chat (GPT-5.4)",
-    "provider": "GitLab Duo",
-    "provider_id": "gitlab",
-    "context_length": 1050000,
-    "output_limit": 128000,
-    "reasoning": true,
-    "tool_call": true,
-    "structured_output": true,
-    "open_weights": false,
-    "modalities": {
-      "input": [
-        "text",
-        "image",
-        "pdf"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
-    "api": "",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "duo-chat-opus-4-7",
-    "name": "Agentic Chat (Claude Opus 4.7)",
-    "provider": "GitLab Duo",
-    "provider_id": "gitlab",
-    "context_length": 1000000,
-    "output_limit": 128000,
-    "reasoning": true,
-    "tool_call": true,
-    "structured_output": false,
-    "open_weights": false,
-    "modalities": {
-      "input": [
-        "text",
-        "image",
-        "pdf"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
-    "api": "",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "duo-chat-gpt-5-6-terra",
-    "name": "Agentic Chat (GPT-5.6 Terra)",
-    "provider": "GitLab Duo",
-    "provider_id": "gitlab",
-    "context_length": 1050000,
-    "output_limit": 128000,
-    "reasoning": true,
-    "tool_call": true,
-    "structured_output": true,
-    "open_weights": false,
-    "modalities": {
-      "input": [
-        "text",
-        "image",
-        "pdf"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
-    "api": "",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "duo-chat-haiku-5-5",
-    "name": "Agentic Chat (Claude Haiku 5.5)",
-    "provider": "GitLab Duo",
-    "provider_id": "gitlab",
-    "context_length": 1000000,
-    "output_limit": 128000,
-    "reasoning": true,
-    "tool_call": true,
-    "structured_output": false,
-    "open_weights": false,
-    "modalities": {
-      "input": [
-        "text",
-        "image",
-        "pdf"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
-    "api": "",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "duo-chat-gpt-6-sol",
-    "name": "Agentic Chat (GPT-6 Sol)",
-    "provider": "GitLab Duo",
-    "provider_id": "gitlab",
-    "context_length": 1050000,
-    "output_limit": 128000,
-    "reasoning": true,
-    "tool_call": true,
-    "structured_output": true,
-    "open_weights": false,
-    "modalities": {
-      "input": [
-        "text",
-        "image",
-        "pdf"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
-    "api": "",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "duo-chat-opus-5-5",
-    "name": "Agentic Chat (Claude Opus 5.5)",
-    "provider": "GitLab Duo",
-    "provider_id": "gitlab",
-    "context_length": 1000000,
-    "output_limit": 128000,
-    "reasoning": true,
-    "tool_call": true,
-    "structured_output": false,
-    "open_weights": false,
-    "modalities": {
-      "input": [
-        "text",
-        "image",
-        "pdf"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
-    "api": "",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "duo-chat-opus-4-5",
-    "name": "Agentic Chat (Claude Opus 4.5)",
-    "provider": "GitLab Duo",
-    "provider_id": "gitlab",
-    "context_length": 200000,
-    "output_limit": 64000,
-    "reasoning": true,
-    "tool_call": true,
-    "structured_output": false,
-    "open_weights": false,
-    "modalities": {
-      "input": [
-        "text",
-        "image",
-        "pdf"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
-    "api": "",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "duo-chat-haiku-4-5",
-    "name": "Agentic Chat (Claude Haiku 4.5)",
-    "provider": "GitLab Duo",
-    "provider_id": "gitlab",
-    "context_length": 200000,
-    "output_limit": 64000,
-    "reasoning": true,
-    "tool_call": true,
-    "structured_output": false,
-    "open_weights": false,
-    "modalities": {
-      "input": [
-        "text",
-        "image",
-        "pdf"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
-    "api": "",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "duo-chat-opus-5",
-    "name": "Agentic Chat (Claude Opus 5)",
-    "provider": "GitLab Duo",
-    "provider_id": "gitlab",
-    "context_length": 1000000,
-    "output_limit": 128000,
-    "reasoning": true,
-    "tool_call": true,
-    "structured_output": false,
-    "open_weights": false,
-    "modalities": {
-      "input": [
-        "text",
-        "image",
-        "pdf"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
-    "api": "",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "duo-chat-gpt-5-6-sol",
-    "name": "Agentic Chat (GPT-5.6 Sol)",
-    "provider": "GitLab Duo",
-    "provider_id": "gitlab",
-    "context_length": 1050000,
-    "output_limit": 128000,
-    "reasoning": true,
-    "tool_call": true,
-    "structured_output": true,
-    "open_weights": false,
-    "modalities": {
-      "input": [
-        "text",
-        "image",
-        "pdf"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
-    "api": "",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "duo-chat-opus-4-8",
-    "name": "Agentic Chat (Claude Opus 4.8)",
-    "provider": "GitLab Duo",
-    "provider_id": "gitlab",
-    "context_length": 1000000,
-    "output_limit": 128000,
-    "reasoning": true,
-    "tool_call": true,
-    "structured_output": false,
-    "open_weights": false,
-    "modalities": {
-      "input": [
-        "text",
-        "image",
-        "pdf"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
-    "api": "",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "duo-chat-gpt-5-4-mini",
-    "name": "Agentic Chat (GPT-5.4 Mini)",
-    "provider": "GitLab Duo",
-    "provider_id": "gitlab",
-    "context_length": 400000,
-    "output_limit": 128000,
-    "reasoning": true,
-    "tool_call": true,
-    "structured_output": true,
-    "open_weights": false,
-    "modalities": {
-      "input": [
-        "text",
-        "image"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
-    "api": "",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "duo-chat-opus-4-6",
-    "name": "Agentic Chat (Claude Opus 4.6)",
-    "provider": "GitLab Duo",
-    "provider_id": "gitlab",
-    "context_length": 1000000,
-    "output_limit": 128000,
-    "reasoning": true,
-    "tool_call": true,
-    "structured_output": false,
-    "open_weights": false,
-    "modalities": {
-      "input": [
-        "text",
-        "image",
-        "pdf"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
-    "api": "",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "duo-chat-gpt-6-1-sol",
-    "name": "Agentic Chat (GPT-6.1 Sol)",
-    "provider": "GitLab Duo",
-    "provider_id": "gitlab",
-    "context_length": 1050000,
-    "output_limit": 128000,
-    "reasoning": true,
-    "tool_call": true,
-    "structured_output": true,
-    "open_weights": false,
-    "modalities": {
-      "input": [
-        "text",
-        "image",
-        "pdf"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
-    "api": "",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "duo-chat-sonnet-4-6",
-    "name": "Agentic Chat (Claude Sonnet 4.6)",
-    "provider": "GitLab Duo",
-    "provider_id": "gitlab",
-    "context_length": 1000000,
-    "output_limit": 128000,
-    "reasoning": true,
-    "tool_call": true,
-    "structured_output": false,
-    "open_weights": false,
-    "modalities": {
-      "input": [
-        "text",
-        "image",
-        "pdf"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
-    "api": "",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "duo-chat-fable-5-1",
-    "name": "Agentic Chat (Claude Fable 5.1)",
-    "provider": "GitLab Duo",
-    "provider_id": "gitlab",
-    "context_length": 1000000,
-    "output_limit": 128000,
-    "reasoning": true,
-    "tool_call": true,
-    "structured_output": false,
-    "open_weights": false,
-    "modalities": {
-      "input": [
-        "text",
-        "image",
-        "pdf"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
-    "api": "",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "duo-chat-gpt-6-astra",
-    "name": "Agentic Chat (GPT-6 Astra)",
-    "provider": "GitLab Duo",
-    "provider_id": "gitlab",
-    "context_length": 1050000,
-    "output_limit": 128000,
-    "reasoning": true,
-    "tool_call": true,
-    "structured_output": true,
-    "open_weights": false,
-    "modalities": {
-      "input": [
-        "text",
-        "image",
-        "pdf"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
-    "api": "",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "duo-chat-gpt-5-6-luna",
-    "name": "Agentic Chat (GPT-5.6 Luna)",
-    "provider": "GitLab Duo",
-    "provider_id": "gitlab",
-    "context_length": 1050000,
-    "output_limit": 128000,
-    "reasoning": true,
-    "tool_call": true,
-    "structured_output": true,
-    "open_weights": false,
-    "modalities": {
-      "input": [
-        "text",
-        "image",
-        "pdf"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
-    "api": "",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "duo-chat-sonnet-5",
-    "name": "Agentic Chat (Claude Sonnet 5)",
-    "provider": "GitLab Duo",
-    "provider_id": "gitlab",
-    "context_length": 1000000,
-    "output_limit": 64000,
-    "reasoning": true,
-    "tool_call": true,
-    "structured_output": false,
-    "open_weights": false,
-    "modalities": {
-      "input": [
-        "text",
-        "image",
-        "pdf"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
-    "api": "",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "duo-chat-gpt-6-luna",
-    "name": "Agentic Chat (GPT-6 Luna)",
-    "provider": "GitLab Duo",
-    "provider_id": "gitlab",
-    "context_length": 1050000,
-    "output_limit": 128000,
-    "reasoning": true,
-    "tool_call": true,
-    "structured_output": true,
-    "open_weights": false,
-    "modalities": {
-      "input": [
-        "text",
-        "image",
-        "pdf"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
-    "api": "",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "duo-chat-gpt-5-5",
-    "name": "Agentic Chat (GPT-5.5)",
-    "provider": "GitLab Duo",
-    "provider_id": "gitlab",
-    "context_length": 1050000,
-    "output_limit": 128000,
-    "reasoning": true,
-    "tool_call": true,
-    "structured_output": true,
-    "open_weights": false,
-    "modalities": {
-      "input": [
-        "text",
-        "image",
-        "pdf"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
-    "api": "",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "duo-chat-sonnet-5-5",
-    "name": "Agentic Chat (Claude Sonnet 5.5)",
-    "provider": "GitLab Duo",
-    "provider_id": "gitlab",
-    "context_length": 1000000,
-    "output_limit": 64000,
-    "reasoning": true,
-    "tool_call": true,
-    "structured_output": false,
-    "open_weights": false,
-    "modalities": {
-      "input": [
-        "text",
-        "image",
-        "pdf"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
-    "api": "",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "duo-chat-fable-5",
-    "name": "Agentic Chat (Claude Fable 5)",
-    "provider": "GitLab Duo",
-    "provider_id": "gitlab",
-    "context_length": 1000000,
-    "output_limit": 128000,
-    "reasoning": true,
-    "tool_call": true,
-    "structured_output": false,
-    "open_weights": false,
-    "modalities": {
-      "input": [
-        "text",
-        "image",
-        "pdf"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
-    "api": "",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "qwen4-max",
-    "name": "Qwen4 Max",
-    "provider": "Alibaba Token Plan (China)",
-    "provider_id": "alibaba-token-plan-cn",
-    "context_length": 1000000,
-    "output_limit": 262144,
-    "reasoning": true,
-    "tool_call": true,
-    "structured_output": true,
-    "open_weights": false,
-    "modalities": {
-      "input": [
-        "text",
-        "image",
-        "video",
-        "pdf"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://www.alibabacloud.com/help/zh/model-studio/token-plan-overview",
-    "api": "https://token-plan.cn-beijing.maas.aliyuncs.com/compatible-mode/v1",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "mimo-v2.6-pro",
-    "name": "MiMo-V2.6-Pro",
-    "provider": "Xiaomi Token Plan (Singapore)",
-    "provider_id": "xiaomi-token-plan-sgp",
-    "context_length": 1048576,
-    "output_limit": 131072,
-    "reasoning": true,
-    "tool_call": true,
-    "structured_output": true,
-    "open_weights": true,
-    "modalities": {
-      "input": [
-        "text",
-        "image",
-        "audio",
-        "video"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://platform.xiaomimimo.com/#/docs",
-    "api": "https://token-plan-sgp.xiaomimimo.com/v1",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "deepseek-r1-distill-qwen-1-5b",
-    "name": "DeepSeek R1 Distill Qwen 1.5B",
-    "provider": "Alibaba (China)",
-    "provider_id": "alibaba-cn",
-    "context_length": 32768,
-    "output_limit": 16384,
-    "reasoning": true,
-    "tool_call": false,
-    "structured_output": false,
-    "open_weights": false,
-    "modalities": {
-      "input": [
-        "text"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://www.alibabacloud.com/help/en/model-studio/models",
-    "api": "https://dashscope.aliyuncs.com/compatible-mode/v1",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "glm-5.4",
-    "name": "GLM-5.4",
-    "provider": "Z.AI Coding Plan",
-    "provider_id": "zai-coding-plan",
-    "context_length": 1000000,
-    "output_limit": 131072,
-    "reasoning": true,
-    "tool_call": true,
-    "structured_output": true,
-    "open_weights": false,
-    "modalities": {
-      "input": [
-        "text",
-        "image",
-        "video",
-        "pdf"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://docs.z.ai/devpack/overview",
-    "api": "https://api.z.ai/api/coding/paas/v4",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "gpt-live-transcribe",
-    "name": "GPT-Live-Transcribe",
-    "provider": "DevPass (LLM Gateway)",
-    "provider_id": "llmgateway",
-    "context_length": 0,
-    "output_limit": 0,
-    "reasoning": false,
-    "tool_call": false,
-    "structured_output": false,
-    "open_weights": false,
-    "modalities": {
-      "input": [
-        "text",
-        "audio"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://llmgateway.io/docs",
-    "api": "https://api.llmgateway.io/v1",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "gpt-transcribe",
-    "name": "GPT-Transcribe",
-    "provider": "DevPass (LLM Gateway)",
-    "provider_id": "llmgateway",
-    "context_length": 0,
-    "output_limit": 0,
-    "reasoning": false,
-    "tool_call": false,
-    "structured_output": false,
-    "open_weights": false,
-    "modalities": {
-      "input": [
-        "text",
-        "audio"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://llmgateway.io/docs",
-    "api": "https://api.llmgateway.io/v1",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "auto",
-    "name": "Auto Route",
-    "provider": "DevPass (LLM Gateway)",
-    "provider_id": "llmgateway",
+    "id": "openai/gpt-5.3-codex-spark",
+    "name": "GPT-5.3-Codex-Spark",
+    "provider": "Poe",
+    "provider_id": "poe",
     "context_length": 128000,
     "output_limit": 16384,
-    "reasoning": false,
-    "tool_call": true,
-    "structured_output": true,
-    "open_weights": false,
-    "modalities": {
-      "input": [
-        "text",
-        "image"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://llmgateway.io/docs",
-    "api": "https://api.llmgateway.io/v1",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "custom",
-    "name": "Custom Model",
-    "provider": "DevPass (LLM Gateway)",
-    "provider_id": "llmgateway",
-    "context_length": 128000,
-    "output_limit": 16384,
-    "reasoning": false,
-    "tool_call": true,
-    "structured_output": true,
-    "open_weights": false,
-    "modalities": {
-      "input": [
-        "text",
-        "image"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://llmgateway.io/docs",
-    "api": "https://api.llmgateway.io/v1",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "qwen/qwen3-30b-a3b-2507",
-    "name": "Qwen3 30B A3B 2507",
-    "provider": "LMStudio",
-    "provider_id": "lmstudio",
-    "context_length": 262144,
-    "output_limit": 16384,
-    "reasoning": false,
-    "tool_call": true,
-    "structured_output": false,
-    "open_weights": true,
-    "modalities": {
-      "input": [
-        "text"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://lmstudio.ai/models",
-    "api": "http://127.0.0.1:1234/v1",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "hy4-flash:free",
-    "name": "Hy4 flash (Free)",
-    "provider": "Kenari",
-    "provider_id": "kenari",
-    "context_length": 1048576,
-    "output_limit": 65536,
     "reasoning": true,
     "tool_call": true,
     "structured_output": false,
-    "open_weights": true,
+    "open_weights": false,
     "modalities": {
       "input": [
-        "text",
-        "image"
+        "text"
       ],
       "output": [
         "text"
       ]
     },
-    "doc": "https://kenari.id/docs",
-    "api": "https://kenari.id/v1",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "longcat-2-5:free",
-    "name": "LongCat-2.5",
-    "provider": "Kenari",
-    "provider_id": "kenari",
-    "context_length": 1000000,
-    "output_limit": 262144,
-    "reasoning": true,
-    "tool_call": true,
-    "structured_output": false,
-    "open_weights": true,
-    "modalities": {
-      "input": [
-        "text",
-        "image"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://kenari.id/docs",
-    "api": "https://kenari.id/v1",
-    "source": "Models.dev API"
+    "doc": "https://creator.poe.com/docs/external-applications/openai-compatible-api",
+    "api": "https://api.poe.com/v1",
+    "source": "Models.dev API",
+    "evaluation": {
+      "is_valid_free_tier": false,
+      "provider_name": "Poe",
+      "free_tier_type": "None",
+      "summary": "Poe allows users to use their existing subscription points with the API at no additional cost, but does not provide a genuine standalone free developer API tier or free credits without a paid subscription."
+    }
   },
   {
     "id": "glm-5.4",
@@ -1448,105 +170,13 @@
     },
     "doc": "https://docs.bigmodel.cn/cn/coding-plan/overview",
     "api": "https://open.bigmodel.cn/api/coding/paas/v4",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "mistralai/Mistral-Small-3.2-24B-Instruct-2506",
-    "name": "Mistral Small 3.2 24B Instruct",
-    "provider": "Meganova",
-    "provider_id": "meganova",
-    "context_length": 32768,
-    "output_limit": 8192,
-    "reasoning": false,
-    "tool_call": true,
-    "structured_output": true,
-    "open_weights": true,
-    "modalities": {
-      "input": [
-        "text",
-        "image"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://docs.meganova.ai",
-    "api": "https://api.meganova.ai/v1",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "zdev",
-    "name": "ZDev",
-    "provider": "Zeldoc",
-    "provider_id": "zeldoc",
-    "context_length": 1000000,
-    "output_limit": 131072,
-    "reasoning": true,
-    "tool_call": true,
-    "structured_output": true,
-    "open_weights": false,
-    "modalities": {
-      "input": [
-        "text",
-        "image"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://docs.zeldoc.ai",
-    "api": "https://api.zeldoc.ai/v1",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "mimo-v2.6-pro",
-    "name": "MiMo-V2.6-Pro",
-    "provider": "Xiaomi Token Plan (China)",
-    "provider_id": "xiaomi-token-plan-cn",
-    "context_length": 1048576,
-    "output_limit": 131072,
-    "reasoning": true,
-    "tool_call": true,
-    "structured_output": true,
-    "open_weights": true,
-    "modalities": {
-      "input": [
-        "text",
-        "image",
-        "audio",
-        "video"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://platform.xiaomimimo.com/#/docs",
-    "api": "https://token-plan-cn.xiaomimimo.com/v1",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "Qwen3_5-9B-Q4_K_M",
-    "name": "Qwen 3.5 9B (Q4_K_M)",
-    "provider": "Atomic Chat",
-    "provider_id": "atomic-chat",
-    "context_length": 32768,
-    "output_limit": 8192,
-    "reasoning": false,
-    "tool_call": true,
-    "structured_output": false,
-    "open_weights": true,
-    "modalities": {
-      "input": [
-        "text",
-        "image"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://atomic.chat",
-    "api": "http://127.0.0.1:1337/v1",
-    "source": "Models.dev API"
+    "source": "Models.dev API",
+    "evaluation": {
+      "is_valid_free_tier": false,
+      "provider_name": "Zhipu AI Coding Plan",
+      "free_tier_type": "None",
+      "summary": "Zhipu AI Coding Plan is a paid subscription package (Lite, Pro, Max) offering model credits and tool access for coding assistants. It does not provide a free developer API tier or free trial credits without a paid subscription."
+    }
   },
   {
     "id": "Qwen3_5-9B-MLX-4bit",
@@ -1563,29 +193,6 @@
       "input": [
         "text",
         "image"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://atomic.chat",
-    "api": "http://127.0.0.1:1337/v1",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "gemma-4-E4B-it-IQ4_XS",
-    "name": "Gemma 4 E4B Instruct (IQ4_XS)",
-    "provider": "Atomic Chat",
-    "provider_id": "atomic-chat",
-    "context_length": 32768,
-    "output_limit": 8192,
-    "reasoning": false,
-    "tool_call": false,
-    "structured_output": false,
-    "open_weights": true,
-    "modalities": {
-      "input": [
-        "text"
       ],
       "output": [
         "text"
@@ -1642,222 +249,57 @@
     "source": "Models.dev API"
   },
   {
-    "id": "deepseek-ocr-2",
-    "name": "DeepSeek OCR 2",
-    "provider": "Regolo AI",
-    "provider_id": "regolo-ai",
-    "context_length": 4000,
-    "output_limit": 4000,
+    "id": "Qwen3_5-9B-Q4_K_M",
+    "name": "Qwen 3.5 9B (Q4_K_M)",
+    "provider": "Atomic Chat",
+    "provider_id": "atomic-chat",
+    "context_length": 32768,
+    "output_limit": 8192,
+    "reasoning": false,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://atomic.chat",
+    "api": "http://127.0.0.1:1337/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "gemma-4-E4B-it-IQ4_XS",
+    "name": "Gemma 4 E4B Instruct (IQ4_XS)",
+    "provider": "Atomic Chat",
+    "provider_id": "atomic-chat",
+    "context_length": 32768,
+    "output_limit": 8192,
     "reasoning": false,
     "tool_call": false,
     "structured_output": false,
     "open_weights": true,
     "modalities": {
       "input": [
-        "text",
-        "image"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://docs.regolo.ai/",
-    "api": "https://api.regolo.ai/v1",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "brick-v1-beta",
-    "name": "Brick v1 Beta",
-    "provider": "Regolo AI",
-    "provider_id": "regolo-ai",
-    "context_length": 100000,
-    "output_limit": 15000,
-    "reasoning": false,
-    "tool_call": true,
-    "structured_output": false,
-    "open_weights": false,
-    "modalities": {
-      "input": [
-        "text",
-        "image"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://docs.regolo.ai/",
-    "api": "https://api.regolo.ai/v1",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "faster-whisper-large-v3",
-    "name": "Faster Whisper Large v3",
-    "provider": "Regolo AI",
-    "provider_id": "regolo-ai",
-    "context_length": 448,
-    "output_limit": 448,
-    "reasoning": false,
-    "tool_call": false,
-    "structured_output": false,
-    "open_weights": true,
-    "modalities": {
-      "input": [
-        "audio"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://docs.regolo.ai/",
-    "api": "https://api.regolo.ai/v1",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "orcarouter/free",
-    "name": "OrcaRouter Free",
-    "provider": "OrcaRouter",
-    "provider_id": "orcarouter",
-    "context_length": 65536,
-    "output_limit": 32768,
-    "reasoning": true,
-    "tool_call": true,
-    "structured_output": true,
-    "open_weights": false,
-    "modalities": {
-      "input": [
         "text"
       ],
       "output": [
         "text"
       ]
     },
-    "doc": "https://docs.orcarouter.ai",
-    "api": "https://api.orcarouter.ai/v1",
+    "doc": "https://atomic.chat",
+    "api": "http://127.0.0.1:1337/v1",
     "source": "Models.dev API"
   },
   {
-    "id": "orcarouter/auto",
-    "name": "OrcaRouter Auto",
-    "provider": "OrcaRouter",
-    "provider_id": "orcarouter",
-    "context_length": 128000,
-    "output_limit": 16384,
-    "reasoning": false,
-    "tool_call": true,
-    "structured_output": true,
-    "open_weights": false,
-    "modalities": {
-      "input": [
-        "text",
-        "image"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://docs.orcarouter.ai",
-    "api": "https://api.orcarouter.ai/v1",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "tencent/hy3-free",
-    "name": "Hy3 (free)",
-    "provider": "OrcaRouter",
-    "provider_id": "orcarouter",
-    "context_length": 256000,
-    "output_limit": 128000,
-    "reasoning": true,
-    "tool_call": true,
-    "structured_output": false,
-    "open_weights": true,
-    "modalities": {
-      "input": [
-        "text"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://docs.orcarouter.ai",
-    "api": "https://api.orcarouter.ai/v1",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "tc-code-latest",
-    "name": "Auto",
-    "provider": "Tencent Coding Plan (China)",
-    "provider_id": "tencent-coding-plan",
-    "context_length": 131072,
-    "output_limit": 16384,
-    "reasoning": false,
-    "tool_call": true,
-    "structured_output": false,
-    "open_weights": false,
-    "modalities": {
-      "input": [
-        "text"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://cloud.tencent.com/document/product/1772/128947",
-    "api": "https://api.lkeap.cloud.tencent.com/coding/v3",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "agnes-3.0-flash",
-    "name": "Agnes 3.0 Flash",
-    "provider": "Agnes AI",
-    "provider_id": "agnes",
-    "context_length": 512000,
-    "output_limit": 65536,
-    "reasoning": true,
-    "tool_call": true,
-    "structured_output": true,
-    "open_weights": false,
-    "modalities": {
-      "input": [
-        "text",
-        "image"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://agnes-ai.com/doc",
-    "api": "https://apihub.agnes-ai.com/v1",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "agnes-2.5-flash",
-    "name": "Agnes 2.5 Flash",
-    "provider": "Agnes AI",
-    "provider_id": "agnes",
-    "context_length": 512000,
-    "output_limit": 65536,
-    "reasoning": true,
-    "tool_call": true,
-    "structured_output": true,
-    "open_weights": false,
-    "modalities": {
-      "input": [
-        "text",
-        "image"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://agnes-ai.com/doc",
-    "api": "https://apihub.agnes-ai.com/v1",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "qwen3.6",
-    "name": "Qwen3.6 35B-A3B",
-    "provider": "NaN",
-    "provider_id": "nan",
+    "id": "Prism-ML/Ternary-Bonsai-27B",
+    "name": "Ternary Bonsai 27B",
+    "provider": "Together AI",
+    "provider_id": "togetherai",
     "context_length": 262144,
     "output_limit": 65536,
     "reasoning": true,
@@ -1867,90 +309,15 @@
     "modalities": {
       "input": [
         "text",
-        "image"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://nan.builders/docs/models",
-    "api": "https://api.nan.builders/v1",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "nova-2-lite-v1",
-    "name": "Nova 2 Lite",
-    "provider": "Nova",
-    "provider_id": "nova",
-    "context_length": 1000000,
-    "output_limit": 64000,
-    "reasoning": true,
-    "tool_call": true,
-    "structured_output": false,
-    "open_weights": false,
-    "modalities": {
-      "input": [
-        "text",
         "image",
-        "video",
-        "pdf"
+        "video"
       ],
       "output": [
         "text"
       ]
     },
-    "doc": "https://nova.amazon.com/dev/documentation",
-    "api": "https://api.nova.amazon.com/v1",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "nova-2-pro-v1",
-    "name": "Nova 2 Pro",
-    "provider": "Nova",
-    "provider_id": "nova",
-    "context_length": 1000000,
-    "output_limit": 64000,
-    "reasoning": true,
-    "tool_call": true,
-    "structured_output": false,
-    "open_weights": false,
-    "modalities": {
-      "input": [
-        "text",
-        "image",
-        "video",
-        "pdf"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://nova.amazon.com/dev/documentation",
-    "api": "https://api.nova.amazon.com/v1",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "sensenova-6.8-flash-lite",
-    "name": "SenseNova 6.8 Flash Lite",
-    "provider": "SenseNova (China)",
-    "provider_id": "sensenova",
-    "context_length": 262144,
-    "output_limit": 65536,
-    "reasoning": true,
-    "tool_call": true,
-    "structured_output": true,
-    "open_weights": false,
-    "modalities": {
-      "input": [
-        "text",
-        "image"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://platform.sensenova.cn/docs",
-    "api": "https://token.sensenova.cn/v1",
+    "doc": "https://docs.together.ai/docs/serverless-models",
+    "api": "",
     "source": "Models.dev API"
   },
   {
@@ -2026,85 +393,214 @@
     "source": "Models.dev API"
   },
   {
-    "id": "qwen3.5-4b",
-    "name": "Qwen3.5 4B",
-    "provider": "QVAC",
-    "provider_id": "qvac",
-    "context_length": 32768,
-    "output_limit": 8192,
-    "reasoning": false,
+    "id": "sensenova-6.8-flash-lite",
+    "name": "SenseNova 6.8 Flash Lite",
+    "provider": "SenseNova (China)",
+    "provider_id": "sensenova",
+    "context_length": 262144,
+    "output_limit": 65536,
+    "reasoning": true,
     "tool_call": true,
-    "structured_output": false,
-    "open_weights": true,
+    "structured_output": true,
+    "open_weights": false,
     "modalities": {
       "input": [
-        "text"
+        "text",
+        "image"
       ],
       "output": [
         "text"
       ]
     },
-    "doc": "https://www.npmjs.com/package/@qvac/ai-sdk-provider",
-    "api": "",
+    "doc": "https://platform.sensenova.cn/docs",
+    "api": "https://token.sensenova.cn/v1",
     "source": "Models.dev API"
   },
   {
-    "id": "qwen3.5-0.8b",
-    "name": "Qwen3.5 0.8B",
-    "provider": "QVAC",
-    "provider_id": "qvac",
-    "context_length": 32768,
-    "output_limit": 8192,
-    "reasoning": false,
-    "tool_call": true,
-    "structured_output": false,
-    "open_weights": true,
-    "modalities": {
-      "input": [
-        "text"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://www.npmjs.com/package/@qvac/ai-sdk-provider",
-    "api": "",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "qwen3.5-2b",
-    "name": "Qwen3.5 2B",
-    "provider": "QVAC",
-    "provider_id": "qvac",
-    "context_length": 32768,
-    "output_limit": 8192,
-    "reasoning": false,
-    "tool_call": true,
-    "structured_output": false,
-    "open_weights": true,
-    "modalities": {
-      "input": [
-        "text"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://www.npmjs.com/package/@qvac/ai-sdk-provider",
-    "api": "",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "qwen3.5-9b",
-    "name": "Qwen3.5 9B",
-    "provider": "QVAC",
-    "provider_id": "qvac",
-    "context_length": 32768,
-    "output_limit": 8192,
+    "id": "mimo-v2.6-pro",
+    "name": "MiMo-V2.6-Pro",
+    "provider": "Xiaomi Token Plan (China)",
+    "provider_id": "xiaomi-token-plan-cn",
+    "context_length": 1048576,
+    "output_limit": 131072,
     "reasoning": true,
     "tool_call": true,
     "structured_output": true,
     "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "audio",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://platform.xiaomimimo.com/#/docs",
+    "api": "https://token-plan-cn.xiaomimimo.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "glm-5",
+    "name": "GLM-5",
+    "provider": "Alibaba Coding Plan (China)",
+    "provider_id": "alibaba-coding-plan-cn",
+    "context_length": 202752,
+    "output_limit": 16384,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://help.aliyun.com/zh/model-studio/coding-plan",
+    "api": "https://coding.dashscope.aliyuncs.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "glm-5",
+    "name": "GLM-5",
+    "provider": "Alibaba Coding Plan",
+    "provider_id": "alibaba-coding-plan",
+    "context_length": 202752,
+    "output_limit": 16384,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.alibabacloud.com/help/en/model-studio/coding-plan",
+    "api": "https://coding-intl.dashscope.aliyuncs.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "nova-2-pro-v1",
+    "name": "Nova 2 Pro",
+    "provider": "Nova",
+    "provider_id": "nova",
+    "context_length": 1000000,
+    "output_limit": 64000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://nova.amazon.com/dev/documentation",
+    "api": "https://api.nova.amazon.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "nova-2-lite-v1",
+    "name": "Nova 2 Lite",
+    "provider": "Nova",
+    "provider_id": "nova",
+    "context_length": 1000000,
+    "output_limit": 64000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://nova.amazon.com/dev/documentation",
+    "api": "https://api.nova.amazon.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "zdev",
+    "name": "ZDev",
+    "provider": "Zeldoc",
+    "provider_id": "zeldoc",
+    "context_length": 1000000,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.zeldoc.ai",
+    "api": "https://api.zeldoc.ai/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "doubao-seed-2.0-mini",
+    "name": "Seed 2.0 Mini",
+    "provider": "Volcengine Ark Coding Plan",
+    "provider_id": "volcengine-coding-plan",
+    "context_length": 256000,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "audio",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.volcengine.com/docs/82379/1928261",
+    "api": "https://ark.cn-beijing.volces.com/api/coding/v3",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "doubao-seed-2.1-pro",
+    "name": "Seed 2.1 Pro",
+    "provider": "Volcengine Ark Coding Plan",
+    "provider_id": "volcengine-coding-plan",
+    "context_length": 1024000,
+    "output_limit": 256000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
     "modalities": {
       "input": [
         "text",
@@ -2115,15 +611,166 @@
         "text"
       ]
     },
-    "doc": "https://www.npmjs.com/package/@qvac/ai-sdk-provider",
-    "api": "",
+    "doc": "https://www.volcengine.com/docs/82379/1928261",
+    "api": "https://ark.cn-beijing.volces.com/api/coding/v3",
     "source": "Models.dev API"
   },
   {
-    "id": "qwen3.6-35b-a3b",
+    "id": "glm-5.4",
+    "name": "GLM-5.4",
+    "provider": "Volcengine Ark Coding Plan",
+    "provider_id": "volcengine-coding-plan",
+    "context_length": 1000000,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.volcengine.com/docs/82379/1928261",
+    "api": "https://ark.cn-beijing.volces.com/api/coding/v3",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "doubao-seed-evolving",
+    "name": "Seed Evolving",
+    "provider": "Volcengine Ark Coding Plan",
+    "provider_id": "volcengine-coding-plan",
+    "context_length": 1024000,
+    "output_limit": 256000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.volcengine.com/docs/82379/1928261",
+    "api": "https://ark.cn-beijing.volces.com/api/coding/v3",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "doubao-seed-2.1-lite",
+    "name": "Seed 2.1 Lite",
+    "provider": "Volcengine Ark Coding Plan",
+    "provider_id": "volcengine-coding-plan",
+    "context_length": 1024000,
+    "output_limit": 256000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "audio",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.volcengine.com/docs/82379/1928261",
+    "api": "https://ark.cn-beijing.volces.com/api/coding/v3",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "kimi-k2.8-preview",
+    "name": "Kimi K2.8 Preview",
+    "provider": "Volcengine Ark Coding Plan",
+    "provider_id": "volcengine-coding-plan",
+    "context_length": 1048576,
+    "output_limit": 32768,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.volcengine.com/docs/82379/1928261",
+    "api": "https://ark.cn-beijing.volces.com/api/coding/v3",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "poolside/laguna-s-2.1-free",
+    "name": "Laguna S 2.1",
+    "provider": "CommandCode",
+    "provider_id": "commandcode",
+    "context_length": 256000,
+    "output_limit": 32768,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://commandcode.ai/docs/provider",
+    "api": "https://api.commandcode.ai/provider/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "mimo-v2.6-pro",
+    "name": "MiMo-V2.6-Pro",
+    "provider": "Xiaomi Token Plan (Singapore)",
+    "provider_id": "xiaomi-token-plan-sgp",
+    "context_length": 1048576,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "audio",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://platform.xiaomimimo.com/#/docs",
+    "api": "https://token-plan-sgp.xiaomimimo.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "qwen3.6",
     "name": "Qwen3.6 35B-A3B",
-    "provider": "QVAC",
-    "provider_id": "qvac",
+    "provider": "NaN",
+    "provider_id": "nan",
     "context_length": 262144,
     "output_limit": 65536,
     "reasoning": true,
@@ -2133,15 +780,110 @@
     "modalities": {
       "input": [
         "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://nan.builders/docs/models",
+    "api": "https://api.nan.builders/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "longcat-2-5:free",
+    "name": "LongCat-2.5",
+    "provider": "Kenari",
+    "provider_id": "kenari",
+    "context_length": 1000000,
+    "output_limit": 262144,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://kenari.id/docs",
+    "api": "https://kenari.id/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "GLM-5.1",
+    "name": "GLM-5.1",
+    "provider": "SCNet Token Plan",
+    "provider_id": "scnet-token-plan",
+    "context_length": 200000,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.scnet.cn/ac/openapi/doc/2.0/moduleapi/plans/token-plan.html",
+    "api": "https://api.scnet.cn/api/llm/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "GLM-5",
+    "name": "GLM-5",
+    "provider": "SCNet Token Plan",
+    "provider_id": "scnet-token-plan",
+    "context_length": 204800,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.scnet.cn/ac/openapi/doc/2.0/moduleapi/plans/token-plan.html",
+    "api": "https://api.scnet.cn/api/llm/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "mimo-v2.6-pro",
+    "name": "MiMo-V2.6-Pro",
+    "provider": "Xiaomi Token Plan (Europe)",
+    "provider_id": "xiaomi-token-plan-ams",
+    "context_length": 1048576,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
         "image",
+        "audio",
         "video"
       ],
       "output": [
         "text"
       ]
     },
-    "doc": "https://www.npmjs.com/package/@qvac/ai-sdk-provider",
-    "api": "",
+    "doc": "https://platform.xiaomimimo.com/#/docs",
+    "api": "https://token-plan-ams.xiaomimimo.com/v1",
     "source": "Models.dev API"
   },
   {
@@ -2193,12 +935,323 @@
     "source": "Models.dev API"
   },
   {
-    "id": "qwen4-max",
-    "name": "Qwen4 Max",
-    "provider": "Alibaba Token Plan",
-    "provider_id": "alibaba-token-plan",
+    "id": "auto",
+    "name": "Auto Route",
+    "provider": "DevPass (LLM Gateway)",
+    "provider_id": "llmgateway",
+    "context_length": 128000,
+    "output_limit": 16384,
+    "reasoning": false,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://llmgateway.io/docs",
+    "api": "https://api.llmgateway.io/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "custom",
+    "name": "Custom Model",
+    "provider": "DevPass (LLM Gateway)",
+    "provider_id": "llmgateway",
+    "context_length": 128000,
+    "output_limit": 16384,
+    "reasoning": false,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://llmgateway.io/docs",
+    "api": "https://api.llmgateway.io/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "gpt-transcribe",
+    "name": "GPT-Transcribe",
+    "provider": "DevPass (LLM Gateway)",
+    "provider_id": "llmgateway",
+    "context_length": 0,
+    "output_limit": 0,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "audio"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://llmgateway.io/docs",
+    "api": "https://api.llmgateway.io/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "gpt-live-transcribe",
+    "name": "GPT-Live-Transcribe",
+    "provider": "DevPass (LLM Gateway)",
+    "provider_id": "llmgateway",
+    "context_length": 0,
+    "output_limit": 0,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "audio"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://llmgateway.io/docs",
+    "api": "https://api.llmgateway.io/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "brick-v1-beta",
+    "name": "Brick v1 Beta",
+    "provider": "Regolo AI",
+    "provider_id": "regolo-ai",
+    "context_length": 100000,
+    "output_limit": 15000,
+    "reasoning": false,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.regolo.ai/",
+    "api": "https://api.regolo.ai/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "faster-whisper-large-v3",
+    "name": "Faster Whisper Large v3",
+    "provider": "Regolo AI",
+    "provider_id": "regolo-ai",
+    "context_length": 448,
+    "output_limit": 448,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "audio"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.regolo.ai/",
+    "api": "https://api.regolo.ai/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "deepseek-ocr-2",
+    "name": "DeepSeek OCR 2",
+    "provider": "Regolo AI",
+    "provider_id": "regolo-ai",
+    "context_length": 4000,
+    "output_limit": 4000,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.regolo.ai/",
+    "api": "https://api.regolo.ai/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "mini_lm_l12_v2",
+    "name": "All-MiniLM-L12-v2",
+    "provider": "Infomaniak",
+    "provider_id": "infomaniak",
+    "context_length": 128,
+    "output_limit": 384,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.infomaniak.com/en/hosting/ai-services/open-source-models",
+    "api": "https://api.infomaniak.com/2/ai/${INFOMANIAK_PRODUCT_ID}/openai/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "poolside/laguna-s-2.1",
+    "name": "Laguna S 2.1",
+    "provider": "Poolside",
+    "provider_id": "poolside",
+    "context_length": 1048576,
+    "output_limit": 32768,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://platform.poolside.ai",
+    "api": "https://inference.poolside.ai/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "poolside/laguna-m.1",
+    "name": "Laguna M.1",
+    "provider": "Poolside",
+    "provider_id": "poolside",
+    "context_length": 262144,
+    "output_limit": 32768,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://platform.poolside.ai",
+    "api": "https://inference.poolside.ai/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "duo-chat-opus-5",
+    "name": "Agentic Chat (Claude Opus 5)",
+    "provider": "GitLab Duo",
+    "provider_id": "gitlab",
     "context_length": 1000000,
-    "output_limit": 262144,
+    "output_limit": 128000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "duo-chat-fable-5-1",
+    "name": "Agentic Chat (Claude Fable 5.1)",
+    "provider": "GitLab Duo",
+    "provider_id": "gitlab",
+    "context_length": 1000000,
+    "output_limit": 128000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "duo-chat-sonnet-5",
+    "name": "Agentic Chat (Claude Sonnet 5)",
+    "provider": "GitLab Duo",
+    "provider_id": "gitlab",
+    "context_length": 1000000,
+    "output_limit": 64000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "duo-chat-gpt-5-4",
+    "name": "Agentic Chat (GPT-5.4)",
+    "provider": "GitLab Duo",
+    "provider_id": "gitlab",
+    "context_length": 1050000,
+    "output_limit": 128000,
     "reasoning": true,
     "tool_call": true,
     "structured_output": true,
@@ -2207,24 +1260,665 @@
       "input": [
         "text",
         "image",
-        "video",
         "pdf"
       ],
       "output": [
         "text"
       ]
     },
-    "doc": "https://www.alibabacloud.com/help/en/model-studio/token-plan-overview",
-    "api": "https://token-plan.ap-southeast-1.maas.aliyuncs.com/compatible-mode/v1",
+    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
+    "api": "",
     "source": "Models.dev API"
   },
   {
-    "id": "command-a-vision-07-2025",
-    "name": "Command A Vision",
-    "provider": "Eden AI",
-    "provider_id": "edenai",
-    "context_length": 128000,
-    "output_limit": 8000,
+    "id": "duo-chat-opus-4-8",
+    "name": "Agentic Chat (Claude Opus 4.8)",
+    "provider": "GitLab Duo",
+    "provider_id": "gitlab",
+    "context_length": 1000000,
+    "output_limit": 128000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "duo-chat-fable-5",
+    "name": "Agentic Chat (Claude Fable 5)",
+    "provider": "GitLab Duo",
+    "provider_id": "gitlab",
+    "context_length": 1000000,
+    "output_limit": 128000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "duo-chat-gpt-5-6-sol",
+    "name": "Agentic Chat (GPT-5.6 Sol)",
+    "provider": "GitLab Duo",
+    "provider_id": "gitlab",
+    "context_length": 1050000,
+    "output_limit": 128000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "duo-chat-haiku-4-5",
+    "name": "Agentic Chat (Claude Haiku 4.5)",
+    "provider": "GitLab Duo",
+    "provider_id": "gitlab",
+    "context_length": 200000,
+    "output_limit": 64000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "duo-chat-gpt-5-6-luna",
+    "name": "Agentic Chat (GPT-5.6 Luna)",
+    "provider": "GitLab Duo",
+    "provider_id": "gitlab",
+    "context_length": 1050000,
+    "output_limit": 128000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "duo-chat-gpt-5-5",
+    "name": "Agentic Chat (GPT-5.5)",
+    "provider": "GitLab Duo",
+    "provider_id": "gitlab",
+    "context_length": 1050000,
+    "output_limit": 128000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "duo-chat-opus-4-5",
+    "name": "Agentic Chat (Claude Opus 4.5)",
+    "provider": "GitLab Duo",
+    "provider_id": "gitlab",
+    "context_length": 200000,
+    "output_limit": 64000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "duo-chat-gpt-5-2",
+    "name": "Agentic Chat (GPT-5.2)",
+    "provider": "GitLab Duo",
+    "provider_id": "gitlab",
+    "context_length": 400000,
+    "output_limit": 128000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "duo-chat-sonnet-5-5",
+    "name": "Agentic Chat (Claude Sonnet 5.5)",
+    "provider": "GitLab Duo",
+    "provider_id": "gitlab",
+    "context_length": 1000000,
+    "output_limit": 64000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "duo-chat-gpt-6-astra",
+    "name": "Agentic Chat (GPT-6 Astra)",
+    "provider": "GitLab Duo",
+    "provider_id": "gitlab",
+    "context_length": 1050000,
+    "output_limit": 128000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "duo-chat-gpt-6-sol",
+    "name": "Agentic Chat (GPT-6 Sol)",
+    "provider": "GitLab Duo",
+    "provider_id": "gitlab",
+    "context_length": 1050000,
+    "output_limit": 128000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "duo-chat-gpt-5-4-mini",
+    "name": "Agentic Chat (GPT-5.4 Mini)",
+    "provider": "GitLab Duo",
+    "provider_id": "gitlab",
+    "context_length": 400000,
+    "output_limit": 128000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "duo-chat-opus-4-7",
+    "name": "Agentic Chat (Claude Opus 4.7)",
+    "provider": "GitLab Duo",
+    "provider_id": "gitlab",
+    "context_length": 1000000,
+    "output_limit": 128000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "duo-chat-opus-5-5",
+    "name": "Agentic Chat (Claude Opus 5.5)",
+    "provider": "GitLab Duo",
+    "provider_id": "gitlab",
+    "context_length": 1000000,
+    "output_limit": 128000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "duo-chat-sonnet-4-6",
+    "name": "Agentic Chat (Claude Sonnet 4.6)",
+    "provider": "GitLab Duo",
+    "provider_id": "gitlab",
+    "context_length": 1000000,
+    "output_limit": 128000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "duo-chat-haiku-5-5",
+    "name": "Agentic Chat (Claude Haiku 5.5)",
+    "provider": "GitLab Duo",
+    "provider_id": "gitlab",
+    "context_length": 1000000,
+    "output_limit": 128000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "duo-chat-gpt-6-1-sol",
+    "name": "Agentic Chat (GPT-6.1 Sol)",
+    "provider": "GitLab Duo",
+    "provider_id": "gitlab",
+    "context_length": 1050000,
+    "output_limit": 128000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "duo-chat-gpt-6-luna",
+    "name": "Agentic Chat (GPT-6 Luna)",
+    "provider": "GitLab Duo",
+    "provider_id": "gitlab",
+    "context_length": 1050000,
+    "output_limit": 128000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "duo-chat-opus-4-6",
+    "name": "Agentic Chat (Claude Opus 4.6)",
+    "provider": "GitLab Duo",
+    "provider_id": "gitlab",
+    "context_length": 1000000,
+    "output_limit": 128000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "duo-chat-gpt-5-6-terra",
+    "name": "Agentic Chat (GPT-5.6 Terra)",
+    "provider": "GitLab Duo",
+    "provider_id": "gitlab",
+    "context_length": 1050000,
+    "output_limit": 128000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.gitlab.com/user/duo_agent_platform/",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "qwen3.5-9b",
+    "name": "Qwen3.5 9B",
+    "provider": "QVAC",
+    "provider_id": "qvac",
+    "context_length": 32768,
+    "output_limit": 8192,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.npmjs.com/package/@qvac/ai-sdk-provider",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "qwen3.6-27b",
+    "name": "Qwen3.6 27B",
+    "provider": "QVAC",
+    "provider_id": "qvac",
+    "context_length": 262144,
+    "output_limit": 65536,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.npmjs.com/package/@qvac/ai-sdk-provider",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "qwen3.5-0.8b",
+    "name": "Qwen3.5 0.8B",
+    "provider": "QVAC",
+    "provider_id": "qvac",
+    "context_length": 32768,
+    "output_limit": 8192,
+    "reasoning": false,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.npmjs.com/package/@qvac/ai-sdk-provider",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "qwen3.6-35b-a3b",
+    "name": "Qwen3.6 35B-A3B",
+    "provider": "QVAC",
+    "provider_id": "qvac",
+    "context_length": 262144,
+    "output_limit": 65536,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.npmjs.com/package/@qvac/ai-sdk-provider",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "qwen3.5-2b",
+    "name": "Qwen3.5 2B",
+    "provider": "QVAC",
+    "provider_id": "qvac",
+    "context_length": 32768,
+    "output_limit": 8192,
+    "reasoning": false,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.npmjs.com/package/@qvac/ai-sdk-provider",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "qwen3.5-4b",
+    "name": "Qwen3.5 4B",
+    "provider": "QVAC",
+    "provider_id": "qvac",
+    "context_length": 32768,
+    "output_limit": 8192,
+    "reasoning": false,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.npmjs.com/package/@qvac/ai-sdk-provider",
+    "api": "",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "mistralai/Mistral-Small-3.2-24B-Instruct-2506",
+    "name": "Mistral Small 3.2 24B Instruct",
+    "provider": "Meganova",
+    "provider_id": "meganova",
+    "context_length": 32768,
+    "output_limit": 8192,
     "reasoning": false,
     "tool_call": true,
     "structured_output": true,
@@ -2238,102 +1932,32 @@
         "text"
       ]
     },
-    "doc": "https://docs.edenai.co",
-    "api": "https://api.edenai.run/v3",
+    "doc": "https://docs.meganova.ai",
+    "api": "https://api.meganova.ai/v1",
     "source": "Models.dev API"
   },
   {
-    "id": "command-a-translate-08-2025",
-    "name": "Command A Translate",
-    "provider": "Eden AI",
-    "provider_id": "edenai",
-    "context_length": 8992,
-    "output_limit": 8000,
-    "reasoning": false,
+    "id": "qwen3.6:27b",
+    "name": "Qwen3.6 27B",
+    "provider": "Pendra",
+    "provider_id": "pendra",
+    "context_length": 262144,
+    "output_limit": 65536,
+    "reasoning": true,
     "tool_call": true,
     "structured_output": true,
     "open_weights": true,
     "modalities": {
       "input": [
-        "text"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://docs.edenai.co",
-    "api": "https://api.edenai.run/v3",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "openai/gpt-live-transcribe",
-    "name": "GPT Live Transcribe (OpenAI)",
-    "provider": "LLM Gateway",
-    "provider_id": "llmgateway-providers",
-    "context_length": 0,
-    "output_limit": 0,
-    "reasoning": false,
-    "tool_call": false,
-    "structured_output": false,
-    "open_weights": false,
-    "modalities": {
-      "input": [
         "text",
-        "audio"
+        "image"
       ],
       "output": [
         "text"
       ]
     },
-    "doc": "https://llmgateway.io/docs",
-    "api": "https://api.llmgateway.io/v1",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "openai/gpt-transcribe",
-    "name": "GPT Transcribe (OpenAI)",
-    "provider": "LLM Gateway",
-    "provider_id": "llmgateway-providers",
-    "context_length": 0,
-    "output_limit": 0,
-    "reasoning": false,
-    "tool_call": false,
-    "structured_output": false,
-    "open_weights": false,
-    "modalities": {
-      "input": [
-        "text",
-        "audio"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://llmgateway.io/docs",
-    "api": "https://api.llmgateway.io/v1",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "iceman-contributor-free",
-    "name": "Iceman Contributor Free",
-    "provider": "OpenCode Go",
-    "provider_id": "opencode-go",
-    "context_length": 262144,
-    "output_limit": 131072,
-    "reasoning": true,
-    "tool_call": true,
-    "structured_output": false,
-    "open_weights": false,
-    "modalities": {
-      "input": [
-        "text"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://opencode.ai/v2/docs/console/go/",
-    "api": "https://opencode.ai/inference/go/openai/v1",
+    "doc": "https://pendra.ai/docs/integrations/opencode",
+    "api": "https://api.pendra.ai/api/v1",
     "source": "Models.dev API"
   },
   {
@@ -2362,14 +1986,206 @@
     "source": "Models.dev API"
   },
   {
-    "id": "mini_lm_l12_v2",
-    "name": "All-MiniLM-L12-v2",
-    "provider": "Infomaniak",
-    "provider_id": "infomaniak",
-    "context_length": 128,
-    "output_limit": 384,
+    "id": "iceman-contributor-free",
+    "name": "Iceman Contributor Free",
+    "provider": "OpenCode Go",
+    "provider_id": "opencode-go",
+    "context_length": 262144,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://opencode.ai/v2/docs/console/go/",
+    "api": "https://opencode.ai/inference/go/openai/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "Beam-1.0-501B-A23B",
+    "name": "Beam 1.0 501B A23B",
+    "provider": "Reflection",
+    "provider_id": "reflection",
+    "context_length": 1048576,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://developers.reflection.ai/models",
+    "api": "https://api.reflection.ai/openai/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "glm-5",
+    "name": "GLM-5",
+    "provider": "Alibaba Token Plan",
+    "provider_id": "alibaba-token-plan",
+    "context_length": 202752,
+    "output_limit": 16384,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.alibabacloud.com/help/en/model-studio/token-plan-overview",
+    "api": "https://token-plan.ap-southeast-1.maas.aliyuncs.com/compatible-mode/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "qwen4-max",
+    "name": "Qwen4 Max",
+    "provider": "Alibaba Token Plan",
+    "provider_id": "alibaba-token-plan",
+    "context_length": 1000000,
+    "output_limit": 262144,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.alibabacloud.com/help/en/model-studio/token-plan-overview",
+    "api": "https://token-plan.ap-southeast-1.maas.aliyuncs.com/compatible-mode/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "glm-5.1",
+    "name": "GLM-5.1",
+    "provider": "Alibaba Token Plan",
+    "provider_id": "alibaba-token-plan",
+    "context_length": 202752,
+    "output_limit": 128000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.alibabacloud.com/help/en/model-studio/token-plan-overview",
+    "api": "https://token-plan.ap-southeast-1.maas.aliyuncs.com/compatible-mode/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "openai/gpt-transcribe",
+    "name": "GPT Transcribe (OpenAI)",
+    "provider": "LLM Gateway",
+    "provider_id": "llmgateway-providers",
+    "context_length": 0,
+    "output_limit": 0,
     "reasoning": false,
     "tool_call": false,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "audio"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://llmgateway.io/docs",
+    "api": "https://api.llmgateway.io/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "openai/gpt-live-transcribe",
+    "name": "GPT Live Transcribe (OpenAI)",
+    "provider": "LLM Gateway",
+    "provider_id": "llmgateway-providers",
+    "context_length": 0,
+    "output_limit": 0,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "audio"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://llmgateway.io/docs",
+    "api": "https://api.llmgateway.io/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "glm-5.4",
+    "name": "GLM-5.4",
+    "provider": "Z.AI Coding Plan",
+    "provider_id": "zai-coding-plan",
+    "context_length": 1000000,
+    "output_limit": 131072,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.z.ai/devpack/overview",
+    "api": "https://api.z.ai/api/coding/paas/v4",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "tencent/hy3-free",
+    "name": "Hy3 (free)",
+    "provider": "OrcaRouter",
+    "provider_id": "orcarouter",
+    "context_length": 256000,
+    "output_limit": 128000,
+    "reasoning": true,
+    "tool_call": true,
     "structured_output": false,
     "open_weights": true,
     "modalities": {
@@ -2380,8 +2196,410 @@
         "text"
       ]
     },
-    "doc": "https://www.infomaniak.com/en/hosting/ai-services/open-source-models",
-    "api": "https://api.infomaniak.com/2/ai/${INFOMANIAK_PRODUCT_ID}/openai/v1",
+    "doc": "https://docs.orcarouter.ai",
+    "api": "https://api.orcarouter.ai/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "orcarouter/free",
+    "name": "OrcaRouter Free",
+    "provider": "OrcaRouter",
+    "provider_id": "orcarouter",
+    "context_length": 65536,
+    "output_limit": 32768,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.orcarouter.ai",
+    "api": "https://api.orcarouter.ai/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "orcarouter/auto",
+    "name": "OrcaRouter Auto",
+    "provider": "OrcaRouter",
+    "provider_id": "orcarouter",
+    "context_length": 128000,
+    "output_limit": 16384,
+    "reasoning": false,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://docs.orcarouter.ai",
+    "api": "https://api.orcarouter.ai/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "qwen/qwen3-30b-a3b-2507",
+    "name": "Qwen3 30B A3B 2507",
+    "provider": "LMStudio",
+    "provider_id": "lmstudio",
+    "context_length": 262144,
+    "output_limit": 16384,
+    "reasoning": false,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://lmstudio.ai/models",
+    "api": "http://127.0.0.1:1234/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "deepseek-r1-distill-qwen-1-5b",
+    "name": "DeepSeek R1 Distill Qwen 1.5B",
+    "provider": "Alibaba (China)",
+    "provider_id": "alibaba-cn",
+    "context_length": 32768,
+    "output_limit": 16384,
+    "reasoning": true,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.alibabacloud.com/help/en/model-studio/models",
+    "api": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "lynkr-auto",
+    "name": "Lynkr Auto (complexity routing)",
+    "provider": "Lynkr",
+    "provider_id": "lynkr",
+    "context_length": 128000,
+    "output_limit": 8192,
+    "reasoning": false,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://github.com/Fast-Editor/Lynkr",
+    "api": "http://127.0.0.1:8081/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "deepseek-ai/DeepSeek-OCR",
+    "name": "deepseek-ai/DeepSeek-OCR",
+    "provider": "SiliconFlow (China)",
+    "provider_id": "siliconflow-cn",
+    "context_length": 8192,
+    "output_limit": 8192,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://cloud.siliconflow.com/models",
+    "api": "https://api.siliconflow.cn/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "Qwen/Qwen3-8B",
+    "name": "Qwen/Qwen3-8B",
+    "provider": "SiliconFlow (China)",
+    "provider_id": "siliconflow-cn",
+    "context_length": 131000,
+    "output_limit": 131000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://cloud.siliconflow.com/models",
+    "api": "https://api.siliconflow.cn/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "Qwen/Qwen2.5-7B-Instruct",
+    "name": "Qwen/Qwen2.5-7B-Instruct",
+    "provider": "SiliconFlow (China)",
+    "provider_id": "siliconflow-cn",
+    "context_length": 33000,
+    "output_limit": 4000,
+    "reasoning": false,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://cloud.siliconflow.com/models",
+    "api": "https://api.siliconflow.cn/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "Qwen/Qwen3.5-4B",
+    "name": "Qwen/Qwen3.5-4B",
+    "provider": "SiliconFlow (China)",
+    "provider_id": "siliconflow-cn",
+    "context_length": 262144,
+    "output_limit": 65536,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://cloud.siliconflow.com/models",
+    "api": "https://api.siliconflow.cn/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "PaddlePaddle/PaddleOCR-VL-1.5",
+    "name": "PaddlePaddle/PaddleOCR-VL-1.5",
+    "provider": "SiliconFlow (China)",
+    "provider_id": "siliconflow-cn",
+    "context_length": 16384,
+    "output_limit": 16384,
+    "reasoning": false,
+    "tool_call": false,
+    "structured_output": false,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://cloud.siliconflow.com/models",
+    "api": "https://api.siliconflow.cn/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "tc-code-latest",
+    "name": "Auto",
+    "provider": "Tencent Coding Plan (China)",
+    "provider_id": "tencent-coding-plan",
+    "context_length": 131072,
+    "output_limit": 16384,
+    "reasoning": false,
+    "tool_call": true,
+    "structured_output": false,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://cloud.tencent.com/document/product/1772/128947",
+    "api": "https://api.lkeap.cloud.tencent.com/coding/v3",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "glm-5",
+    "name": "GLM-5",
+    "provider": "Alibaba Token Plan (China)",
+    "provider_id": "alibaba-token-plan-cn",
+    "context_length": 202752,
+    "output_limit": 16384,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.alibabacloud.com/help/zh/model-studio/token-plan-overview",
+    "api": "https://token-plan.cn-beijing.maas.aliyuncs.com/compatible-mode/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "qwen4-max",
+    "name": "Qwen4 Max",
+    "provider": "Alibaba Token Plan (China)",
+    "provider_id": "alibaba-token-plan-cn",
+    "context_length": 1000000,
+    "output_limit": 262144,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "video",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.alibabacloud.com/help/zh/model-studio/token-plan-overview",
+    "api": "https://token-plan.cn-beijing.maas.aliyuncs.com/compatible-mode/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "glm-5.1",
+    "name": "GLM-5.1",
+    "provider": "Alibaba Token Plan (China)",
+    "provider_id": "alibaba-token-plan-cn",
+    "context_length": 202752,
+    "output_limit": 128000,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://www.alibabacloud.com/help/zh/model-studio/token-plan-overview",
+    "api": "https://token-plan.cn-beijing.maas.aliyuncs.com/compatible-mode/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "agnes-2.5-flash",
+    "name": "Agnes 2.5 Flash",
+    "provider": "Agnes AI",
+    "provider_id": "agnes",
+    "context_length": 512000,
+    "output_limit": 65536,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://agnes-ai.com/doc",
+    "api": "https://apihub.agnes-ai.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "agnes-3.0-flash",
+    "name": "Agnes 3.0 Flash",
+    "provider": "Agnes AI",
+    "provider_id": "agnes",
+    "context_length": 512000,
+    "output_limit": 65536,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": false,
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://agnes-ai.com/doc",
+    "api": "https://apihub.agnes-ai.com/v1",
+    "source": "Models.dev API"
+  },
+  {
+    "id": "apodex/apodex-1.1-mini",
+    "name": "Apodex 1.1 Mini",
+    "provider": "Novita AI",
+    "provider_id": "novita-ai",
+    "context_length": 262144,
+    "output_limit": 262144,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "open_weights": true,
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "doc": "https://novita.ai/docs/guides/introduction",
+    "api": "https://api.novita.ai/openai",
     "source": "Models.dev API"
   }
 ]

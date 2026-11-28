@@ -1,58 +1,24 @@
 {
-  "run_id": "476090cb6872",
+  "run_id": "0005d3bb6948",
   "entry_point": "nightly_ci",
-  "timestamp_utc": "2026-11-28T10:07:01.518514+00:00",
+  "timestamp_utc": "2026-11-28T12:36:19.486049+00:00",
   "model_primary": "gemini-3.5-flash-lite",
   "web_agent": "antigravity-preview-09-2026",
-  "duration_s": 734.44,
+  "duration_s": 1082.99,
   "providers_total": 50,
-  "models_total": 369,
-  "audited_count": 50,
+  "models_total": 406,
+  "audited_count": 38,
   "routes": {
-    "api": {
-      "audited": 6,
-      "active": 2,
-      "changed": 4,
-      "deprecated": 0,
-      "inconclusive": 0
-    },
     "web": {
       "audited": 38,
-      "active": 25,
-      "changed": 6,
-      "deprecated": 2,
-      "inconclusive": 5
-    },
-    "feed": {
-      "audited": 6,
-      "active": 6,
-      "changed": 0,
-      "deprecated": 0,
-      "inconclusive": 0
+      "active": 28,
+      "changed": 3,
+      "deprecated": 1,
+      "inconclusive": 6
     }
   },
-  "candidates_queued": 106,
+  "candidates_queued": 98,
   "results": [
-    {
-      "provider": "Synap by Linkrra",
-      "route": "api",
-      "channel": "api",
-      "acquisition_mode": "api",
-      "status": "active",
-      "is_free_active": true,
-      "payment_method_required": false,
-      "summary": "Verified that Synap's free tier remains active for qwen3-coder-30b with an account-level daily allowance of 100,000 tokens and 50 requests.",
-      "error_code": null,
-      "write_applied": true,
-      "review_required": false,
-      "models_before": 1,
-      "models_after": 1,
-      "agent_meta": {
-        "acquisition_mode": "api"
-      },
-      "audited_date": "2026-11-28",
-      "duration_s": 3.02
-    },
     {
       "provider": "OpenCode Zen",
       "route": "web",
@@ -61,7 +27,7 @@
       "status": "active",
       "is_free_active": true,
       "payment_method_required": false,
-      "summary": "Verified that OpenCode Zen continues to offer active zero-cost promotional tier models with unchanged model configurations.",
+      "summary": "Verified that OpenCode Zen continues to offer its active $0 promotional and trial models without changes to availability or requirements.",
       "error_code": null,
       "write_applied": true,
       "review_required": false,
@@ -69,50 +35,10 @@
       "models_after": 18,
       "agent_meta": {
         "acquisition_mode": "llms_md",
-        "urls_read": 6
+        "urls_read": 5
       },
       "audited_date": "2026-11-28",
-      "duration_s": 4.0
-    },
-    {
-      "provider": "OpenRouter",
-      "route": "feed",
-      "channel": "feed",
-      "acquisition_mode": "feed",
-      "status": "active",
-      "is_free_active": true,
-      "payment_method_required": false,
-      "summary": "Verified the current list of permanently free models available on OpenRouter with standard rate limits and no credit card required.",
-      "error_code": null,
-      "write_applied": true,
-      "review_required": false,
-      "models_before": 13,
-      "models_after": 12,
-      "agent_meta": {
-        "acquisition_mode": "feed"
-      },
-      "audited_date": "2026-11-28",
-      "duration_s": 2.64
-    },
-    {
-      "provider": "Google AI Studio (Gemini API)",
-      "route": "api",
-      "channel": "api",
-      "acquisition_mode": "api",
-      "status": "changed",
-      "is_free_active": true,
-      "payment_method_required": false,
-      "summary": "Verified Google AI Studio catalog updates; added the newly supported free-tier model gemini-4-hydrogen while ensuring excluded paid-only models remain absent.",
-      "error_code": null,
-      "write_applied": true,
-      "review_required": false,
-      "models_before": 17,
-      "models_after": 17,
-      "agent_meta": {
-        "acquisition_mode": "api"
-      },
-      "audited_date": "2026-11-28",
-      "duration_s": 6.15
+      "duration_s": 3.48
     },
     {
       "provider": "Groq",
@@ -121,8 +47,8 @@
       "acquisition_mode": "llms_md",
       "status": "active",
       "is_free_active": true,
-      "payment_method_required": null,
-      "summary": "Groq developer/free access is fully active with unchanged models and rate limits, and no credit card required for the free tier.",
+      "payment_method_required": false,
+      "summary": "Groq free tier status and model listings are verified as active, with no changes to the credit-free access policy or model endpoints.",
       "error_code": null,
       "write_applied": true,
       "review_required": false,
@@ -133,7 +59,7 @@
         "urls_read": 4
       },
       "audited_date": "2026-11-28",
-      "duration_s": 3.53
+      "duration_s": 4.6
     },
     {
       "provider": "Cerebras",
@@ -143,7 +69,7 @@
       "status": "active",
       "is_free_active": true,
       "payment_method_required": true,
-      "summary": "Verified Cerebras Free Trial offering $5 trial credits across gpt-oss-120b and qwen-3.8-27b models with a required verified payment method. Rate limits and context caps remain stable.",
+      "summary": "Verified Cerebras Free Trial offering remains active with $5 trial credits across gpt-oss-120b and qwen-3.8-27b models, requiring a verified payment method upon sign-up.",
       "error_code": null,
       "write_applied": true,
       "review_required": false,
@@ -154,7 +80,7 @@
         "urls_read": 4
       },
       "audited_date": "2026-11-28",
-      "duration_s": 3.99
+      "duration_s": 3.8
     },
     {
       "provider": "Cloudflare Workers AI",
@@ -164,7 +90,7 @@
       "status": "active",
       "is_free_active": true,
       "payment_method_required": false,
-      "summary": "Cloudflare Workers AI remains generally available with ~80 free models. No credit card is required, and rate limits remain unchanged.",
+      "summary": "Cloudflare Workers AI continues to provide a robust offering of free-tier models with standard rate limits under General Availability. No credit card is required.",
       "error_code": null,
       "write_applied": true,
       "review_required": false,
@@ -175,7 +101,7 @@
         "urls_read": 3
       },
       "audited_date": "2026-11-28",
-      "duration_s": 2.51
+      "duration_s": 2.49
     },
     {
       "provider": "Mistral La Plateforme",
@@ -196,57 +122,17 @@
         "urls_read": 5
       },
       "audited_date": "2026-11-28",
-      "duration_s": 5.05
-    },
-    {
-      "provider": "SambaNova Cloud",
-      "route": "api",
-      "channel": "api",
-      "acquisition_mode": "api",
-      "status": "active",
-      "is_free_active": true,
-      "payment_method_required": false,
-      "summary": "SambaNova Cloud continues to offer free developer tier access for gemma-4-31B-it and gpt-oss-120b when no payment method is linked, while newly introduced models such as GLM-5.3 and MiniMax-M3.1-Flash have non-zero pricing and are excluded from the free tier.",
-      "error_code": null,
-      "write_applied": true,
-      "review_required": false,
-      "models_before": 2,
-      "models_after": 2,
-      "agent_meta": {
-        "acquisition_mode": "api"
-      },
-      "audited_date": "2026-11-28",
-      "duration_s": 3.06
-    },
-    {
-      "provider": "NVIDIA NIM (build.nvidia.com)",
-      "route": "api",
-      "channel": "api",
-      "acquisition_mode": "api",
-      "status": "changed",
-      "is_free_active": true,
-      "payment_method_required": false,
-      "summary": "Verified the live NVIDIA NIM catalog via API payload against latest documentation. Removed outdated or unlisted models and retained the 30 active models supporting free trial credits.",
-      "error_code": null,
-      "write_applied": true,
-      "review_required": false,
-      "models_before": 46,
-      "models_after": 30,
-      "agent_meta": {
-        "acquisition_mode": "api"
-      },
-      "audited_date": "2026-11-28",
-      "duration_s": 9.96
+      "duration_s": 3.08
     },
     {
       "provider": "Z.AI (Zhipu)",
       "route": "web",
       "channel": "web",
       "acquisition_mode": "llms_md",
-      "status": "active",
+      "status": "changed",
       "is_free_active": true,
       "payment_method_required": false,
-      "summary": "Verified that Z.AI continues to provide free pricing for GLM-4.7-Flash, GLM-4.5-Flash, and GLM-4.6V-Flash models without requiring a payment method.",
+      "summary": "Verified that GLM-4.7-Flash, GLM-4.5-Flash, and GLM-4.6V-Flash remain free, while the pricing documentation has been updated to include a wider range of paid models.",
       "error_code": null,
       "write_applied": true,
       "review_required": false,
@@ -257,27 +143,7 @@
         "urls_read": 2
       },
       "audited_date": "2026-11-28",
-      "duration_s": 7.94
-    },
-    {
-      "provider": "DeepInfra",
-      "route": "api",
-      "channel": "api",
-      "acquisition_mode": "api",
-      "status": "changed",
-      "is_free_active": true,
-      "payment_method_required": false,
-      "summary": "DeepInfra continues to provide a $5 signup trial credit across available models with no credit card required, verified against the latest API payload and documentation.",
-      "error_code": null,
-      "write_applied": true,
-      "review_required": false,
-      "models_before": 4,
-      "models_after": 4,
-      "agent_meta": {
-        "acquisition_mode": "api"
-      },
-      "audited_date": "2026-11-28",
-      "duration_s": 2.41
+      "duration_s": 7.48
     },
     {
       "provider": "GitHub Copilot (Free)",
@@ -287,7 +153,7 @@
       "status": "active",
       "is_free_active": true,
       "payment_method_required": false,
-      "summary": "Verified GitHub Copilot Free tier is active with auto-selected model usage and 2,000 completions per month limit unchanged.",
+      "summary": "Verified that GitHub Copilot Free continues to offer free individual access with auto-selected model capabilities and a 2000-completion monthly limit.",
       "error_code": null,
       "write_applied": true,
       "review_required": false,
@@ -298,38 +164,38 @@
         "urls_read": 6
       },
       "audited_date": "2026-11-28",
-      "duration_s": 4.68
+      "duration_s": 59.26
     },
     {
       "provider": "Kiro (AWS)",
       "route": "web",
       "channel": "web",
       "acquisition_mode": "llms_md",
-      "status": "changed",
+      "status": "active",
       "is_free_active": true,
-      "payment_method_required": false,
-      "summary": "Kiro's free tier remains active with 50 credits/month and no credit card requirement, but the model list has been updated to include new additions like GLM-5 and MiniMax M2.5 while clarifying the status of existing models.",
+      "payment_method_required": null,
+      "summary": "Verified Kiro Free tier availability and confirmed the active lineup of free models and rate limit states remain unchanged.",
       "error_code": null,
       "write_applied": true,
       "review_required": false,
-      "models_before": 4,
+      "models_before": 8,
       "models_after": 8,
       "agent_meta": {
         "acquisition_mode": "llms_md",
         "urls_read": 4
       },
       "audited_date": "2026-11-28",
-      "duration_s": 7.17
+      "duration_s": 4.08
     },
     {
       "provider": "Trae (ByteDance)",
       "route": "web",
       "channel": "web",
       "acquisition_mode": "antigravity_chrome",
-      "status": "changed",
+      "status": "active",
       "is_free_active": true,
       "payment_method_required": false,
-      "summary": "Trae's free tier was verified active with a $0/month plan, offering limited auto-mode usage, 5,000 monthly autocompletions, and 2 concurrent cloud tasks without requiring a credit card.",
+      "summary": "Verified that Trae's free tier remains active with a one-time non-resetting allowance, 5,000 monthly autocompletions, and no credit card required.",
       "error_code": null,
       "write_applied": true,
       "review_required": false,
@@ -337,14 +203,14 @@
       "models_after": 1,
       "agent_meta": {
         "acquisition_mode": "antigravity_chrome",
-        "interaction_id": "v1_ChdMS1VLYTZ1N0VwSzd4ZElQb3V1TzBRNBIXTEtVS2E2dTdFcEs3eGRJUG91dU8wUTQ",
+        "interaction_id": "v1_ChdsTVlLYTl2T0lOdXZ4ZElQci1mcXlBYxIXbE1ZS2E5dk9JTnV2eGRJUHItZnF5QWM",
         "status": "completed",
-        "steps": 23,
-        "total_tokens": 132988,
-        "duration_s": 182.23
+        "steps": 16,
+        "total_tokens": 97119,
+        "duration_s": 78.76
       },
       "audited_date": "2026-11-28",
-      "duration_s": 184.08
+      "duration_s": 80.26
     },
     {
       "provider": "Bolt.new",
@@ -354,28 +220,7 @@
       "status": "active",
       "is_free_active": true,
       "payment_method_required": false,
-      "summary": "Verified that Bolt continues to offer a rate-limited free plan providing 1,000,000 tokens per month with a 300,000 daily token cap and free cloud hosting without requiring a credit card.",
-      "error_code": null,
-      "write_applied": true,
-      "review_required": false,
-      "models_before": 1,
-      "models_after": 1,
-      "agent_meta": {
-        "acquisition_mode": "llms_md",
-        "urls_read": 6
-      },
-      "audited_date": "2026-11-28",
-      "duration_s": 4.84
-    },
-    {
-      "provider": "Lovable",
-      "route": "web",
-      "channel": "web",
-      "acquisition_mode": "llms_md",
-      "status": "active",
-      "is_free_active": true,
-      "payment_method_required": null,
-      "summary": "Verified Lovable's rate-limited free plan for developers, offering daily build credits, daily chat allowances, and monthly Cloud and AI grants without upfront subscription costs.",
+      "summary": "Verified that Bolt.new continues to offer a free plan with a 1,000,000 monthly token allowance and a 300,000 daily token cap, with no credit card required for sign-up.",
       "error_code": null,
       "write_applied": true,
       "review_required": false,
@@ -386,7 +231,28 @@
         "urls_read": 5
       },
       "audited_date": "2026-11-28",
-      "duration_s": 3.43
+      "duration_s": 41.12
+    },
+    {
+      "provider": "Lovable",
+      "route": "web",
+      "channel": "web",
+      "acquisition_mode": "llms_md",
+      "status": "active",
+      "is_free_active": true,
+      "payment_method_required": false,
+      "summary": "Lovable maintains a rate-limited free plan that includes daily chat allowances, 5 daily build credits (capped at 30 per month), and monthly grants for Cloud, AI, and connector usage. No payment method is required to access the free tier.",
+      "error_code": null,
+      "write_applied": true,
+      "review_required": false,
+      "models_before": 1,
+      "models_after": 1,
+      "agent_meta": {
+        "acquisition_mode": "llms_md",
+        "urls_read": 5
+      },
+      "audited_date": "2026-11-28",
+      "duration_s": 4.94
     },
     {
       "provider": "v0 (Vercel)",
@@ -396,7 +262,7 @@
       "status": "active",
       "is_free_active": true,
       "payment_method_required": false,
-      "summary": "Verified that v0 continues to offer a Free tier featuring a 7 messages per day limit with bundled models, alongside a $5 signup credit offer.",
+      "summary": "Verified that v0 continues to offer a free plan with a 7-message daily limit and a one-time $5 credit bonus for new accounts, with no credit card required.",
       "error_code": null,
       "write_applied": true,
       "review_required": false,
@@ -407,7 +273,7 @@
         "urls_read": 4
       },
       "audited_date": "2026-11-28",
-      "duration_s": 15.62
+      "duration_s": 31.14
     },
     {
       "provider": "Kaggle Notebooks",
@@ -417,7 +283,7 @@
       "status": "active",
       "is_free_active": true,
       "payment_method_required": false,
-      "summary": "Kaggle continues to provide free access to NVIDIA P100 and T4 GPUs for notebook environments with a 30-hour weekly quota, requiring only phone verification.",
+      "summary": "Kaggle continues to provide free access to NVIDIA P100 and T4 GPUs for notebook environments with a weekly quota of 30 hours, requiring only phone verification.",
       "error_code": null,
       "write_applied": true,
       "review_required": false,
@@ -428,7 +294,7 @@
         "urls_read": 2
       },
       "audited_date": "2026-11-28",
-      "duration_s": 4.44
+      "duration_s": 53.38
     },
     {
       "provider": "Hugging Face Spaces",
@@ -438,7 +304,7 @@
       "status": "active",
       "is_free_active": true,
       "payment_method_required": false,
-      "summary": "Verified that Hugging Face Spaces continues to provide free hosting for static spaces and a ZeroGPU tier for personal accounts, allowing up to 2 active Gradio spaces with limited daily GPU compute.",
+      "summary": "Verified that Hugging Face Spaces continues to provide free hosting and ZeroGPU compute access for qualifying personal accounts up to 2 Gradio Spaces.",
       "error_code": null,
       "write_applied": true,
       "review_required": false,
@@ -449,7 +315,7 @@
         "urls_read": 2
       },
       "audited_date": "2026-11-28",
-      "duration_s": 5.57
+      "duration_s": 1.27
     },
     {
       "provider": "Cursor (Hobby)",
@@ -459,7 +325,7 @@
       "status": "active",
       "is_free_active": true,
       "payment_method_required": false,
-      "summary": "Cursor continues to provide a free tier with limited access to Agent and Chat features, while third-party models remain restricted to paid plans.",
+      "summary": "Verified that Cursor continues to offer a $0 free tier providing limited agent and chat access with rate limits, while third-party models remain unavailable on free plans.",
       "error_code": null,
       "write_applied": true,
       "review_required": false,
@@ -470,17 +336,17 @@
         "urls_read": 2
       },
       "audited_date": "2026-11-28",
-      "duration_s": 3.99
+      "duration_s": 3.12
     },
     {
       "provider": "Windsurf",
       "route": "web",
       "channel": "web",
       "acquisition_mode": "llms_md",
-      "status": "changed",
+      "status": "active",
       "is_free_active": true,
-      "payment_method_required": false,
-      "summary": "Verified Windsurf's updated self-serve usage quotas, promotional model windows for SWE-2 and SWE-2.1, and token pricing details.",
+      "payment_method_required": null,
+      "summary": "Verified that Windsurf's quota-based free tier remains fully active alongside the scheduled promotional periods for SWE-2 and SWE-2.1 models.",
       "error_code": null,
       "write_applied": true,
       "review_required": false,
@@ -491,7 +357,7 @@
         "urls_read": 5
       },
       "audited_date": "2026-11-28",
-      "duration_s": 6.81
+      "duration_s": 6.95
     },
     {
       "provider": "Devin (Free)",
@@ -501,7 +367,7 @@
       "status": "active",
       "is_free_active": true,
       "payment_method_required": false,
-      "summary": "The Devin Free plan remains active with a light quota for agent usage, unlimited inline edits, and unlimited Tab completions. No credit card is required for the Free plan.",
+      "summary": "The Devin Free plan remains active with a light quota for agent usage, unlimited inline edits, and unlimited Tab completions. No credit card is required for the free tier.",
       "error_code": null,
       "write_applied": true,
       "review_required": false,
@@ -512,7 +378,7 @@
         "urls_read": 3
       },
       "audited_date": "2026-11-28",
-      "duration_s": 4.36
+      "duration_s": 29.51
     },
     {
       "provider": "Qoder",
@@ -522,7 +388,7 @@
       "status": "active",
       "is_free_active": true,
       "payment_method_required": false,
-      "summary": "Verified that Qoder continues to offer a free tier with basic models, limited completions, and Next-Edit-Suggestions, alongside a 2-week Pro trial with 300 credits and Bring Your Own Key (BYOK) support without requiring a credit card upfront.",
+      "summary": "Verified that Qoder continues to offer a free tier with basic models and limited completions/next edits, requiring only account login without a credit card.",
       "error_code": null,
       "write_applied": true,
       "review_required": false,
@@ -533,7 +399,7 @@
         "urls_read": 2
       },
       "audited_date": "2026-11-28",
-      "duration_s": 9.74
+      "duration_s": 46.29
     },
     {
       "provider": "Antigravity CLI (Google)",
@@ -543,68 +409,66 @@
       "status": "changed",
       "is_free_active": true,
       "payment_method_required": false,
-      "summary": "Antigravity CLI continues to offer free developer access to specific foundation models, though several models including Gemini 3.8 Flash, Claude 4.6, and GPT-OSS-120b are scheduled for removal on November 30, 2026.",
+      "summary": "The catalog was updated to reflect current model availability; Claude 4.6 and GPT-OSS-120b are no longer listed in the baseline free tier documentation, which now focuses on Gemini 4 Hydrogen and Gemini 3.8 Flash.",
       "error_code": null,
       "write_applied": true,
       "review_required": false,
-      "models_before": 2,
-      "models_after": 4,
+      "models_before": 4,
+      "models_after": 2,
       "agent_meta": {
         "acquisition_mode": "llms_md",
         "urls_read": 3
       },
       "audited_date": "2026-11-28",
-      "duration_s": 6.38
+      "duration_s": 5.96
     },
     {
       "provider": "Google Colab",
       "route": "web",
       "channel": "web",
       "acquisition_mode": "antigravity_chrome",
-      "status": "inconclusive",
+      "status": "active",
       "is_free_active": true,
       "payment_method_required": false,
-      "summary": "Web verdict proposed shrinking models from 5 to 1; blocked by Write Gate.",
+      "summary": "Google Colab free tier remains active with standard hosted Jupyter notebook resources and integrated Gemini AI features available at no cost and without requiring a credit card.",
       "error_code": null,
-      "write_applied": false,
-      "review_required": true,
+      "write_applied": true,
+      "review_required": false,
       "models_before": 5,
       "models_after": 5,
       "agent_meta": {
         "acquisition_mode": "antigravity_chrome",
-        "interaction_id": "v1_ChdOYVVLYTdxVExadml5dE1Qb0xqZnVRNBIXTmFVS2E3cVRMWnZpeXRNUG9MamZ1UTQ",
+        "interaction_id": "v1_Chd3TVlLYTR1Q0l1YjZ3YlVQXzdtN2tBYxIXd01ZS2E0dUNJdWI2d2JVUF83bTdrQWM",
         "status": "completed",
-        "steps": 16,
-        "total_tokens": 71276,
-        "duration_s": 65.56
+        "steps": 18,
+        "total_tokens": 110692,
+        "duration_s": 240.53
       },
       "audited_date": "2026-11-28",
-      "duration_s": 67.34
+      "duration_s": 242.21
     },
     {
       "provider": "Figma (Starter)",
       "route": "web",
       "channel": "web",
       "acquisition_mode": "antigravity_chrome",
-      "status": "changed",
-      "is_free_active": true,
-      "payment_method_required": false,
-      "summary": "Figma Starter free AI credits remain active without requiring a credit card, with model names updated to reflect current help center documentation.",
-      "error_code": null,
-      "write_applied": true,
+      "status": "inconclusive",
+      "is_free_active": null,
+      "payment_method_required": null,
+      "summary": "web acquisition failed (AGENT_TIMEOUT): ",
+      "error_code": "AGENT_TIMEOUT",
+      "write_applied": false,
       "review_required": false,
-      "models_before": 4,
+      "models_before": 8,
       "models_after": 8,
       "agent_meta": {
         "acquisition_mode": "antigravity_chrome",
-        "interaction_id": "v1_ChdkNlVLYTVidkljVy14ZElQMzd1QjZBWRIXZDZVS2E1YnZJY1cteGRJUDM3dUI2QVk",
-        "status": "completed",
-        "steps": 20,
-        "total_tokens": 91375,
-        "duration_s": 55.56
+        "interaction_id": "v1_Chc0TVlLYTRUcUdhZnY1Tm9QcTRXY21BURIXNE1ZS2E0VHFHYWZ2NU5vUHE0V2NtQVE",
+        "status": "timeout",
+        "duration_s": 265.1
       },
       "audited_date": "2026-11-28",
-      "duration_s": 122.61
+      "duration_s": 296.95
     },
     {
       "provider": "Canva (Free)",
@@ -614,7 +478,7 @@
       "status": "active",
       "is_free_active": true,
       "payment_method_required": false,
-      "summary": "Canva Free tier remains active with standard and premium AI tools available under a shared monthly allowance, requiring no payment method.",
+      "summary": "Canva Free continues to provide limited access to Standard and Premium AI tools via a shared monthly allowance without requiring a credit card.",
       "error_code": null,
       "write_applied": true,
       "review_required": false,
@@ -622,14 +486,14 @@
       "models_after": 2,
       "agent_meta": {
         "acquisition_mode": "antigravity_chrome",
-        "interaction_id": "v1_ChdycVVLYV9XT0wtYjZ3YlVQaThyQTBBOBIXcnFVS2FfV09MLWI2d2JVUGk4ckEwQTg",
+        "interaction_id": "v1_ChdzY2NLYTY2OENKT0d5dE1QMWJlMmdBWRIXc2NjS2E2NjhDSk9HeXRNUDFiZTJnQVk",
         "status": "completed",
-        "steps": 19,
-        "total_tokens": 130698,
-        "duration_s": 91.28
+        "steps": 13,
+        "total_tokens": 67678,
+        "duration_s": 261.04
       },
       "audited_date": "2026-11-28",
-      "duration_s": 210.81
+      "duration_s": 492.55
     },
     {
       "provider": "Framer (Free)",
@@ -639,7 +503,7 @@
       "status": "changed",
       "is_free_active": true,
       "payment_method_required": false,
-      "summary": "Framer updated its AI credit policy; workspaces without active subscriptions now receive 500 AI credits per month instead of a one-time trial.",
+      "summary": "Framer updated its free offering to provide 500 AI credits on a recurring monthly basis for workspaces without active subscriptions.",
       "error_code": null,
       "write_applied": true,
       "review_required": false,
@@ -650,7 +514,7 @@
         "urls_read": 3
       },
       "audited_date": "2026-11-28",
-      "duration_s": 9.09
+      "duration_s": 2.23
     },
     {
       "provider": "Replit (Starter)",
@@ -659,8 +523,8 @@
       "acquisition_mode": "llms_md",
       "status": "active",
       "is_free_active": true,
-      "payment_method_required": true,
-      "summary": "Replit continues to offer Free Mode with intelligent model routing for existing users, though the Starter plan is officially closed to new signups as of November 2026.",
+      "payment_method_required": false,
+      "summary": "Verified that Replit continues to offer Free Mode allowances and free checkpoints, while the Starter plan is deprecated for new signups as of November 2026.",
       "error_code": null,
       "write_applied": true,
       "review_required": false,
@@ -671,47 +535,7 @@
         "urls_read": 6
       },
       "audited_date": "2026-11-28",
-      "duration_s": 6.94
-    },
-    {
-      "provider": "Kilo Gateway",
-      "route": "feed",
-      "channel": "feed",
-      "acquisition_mode": "feed",
-      "status": "active",
-      "is_free_active": true,
-      "payment_method_required": false,
-      "summary": "Verified Kilo Gateway free tier models and endpoint active status without credit card requirements.",
-      "error_code": null,
-      "write_applied": true,
-      "review_required": false,
-      "models_before": 16,
-      "models_after": 12,
-      "agent_meta": {
-        "acquisition_mode": "feed"
-      },
-      "audited_date": "2026-11-28",
-      "duration_s": 3.17
-    },
-    {
-      "provider": "Nous Portal",
-      "route": "feed",
-      "channel": "feed",
-      "acquisition_mode": "feed",
-      "status": "active",
-      "is_free_active": true,
-      "payment_method_required": false,
-      "summary": "Verified Nous Portal free tier models remaining active with unchanged limits and free account access.",
-      "error_code": null,
-      "write_applied": true,
-      "review_required": false,
-      "models_before": 3,
-      "models_after": 3,
-      "agent_meta": {
-        "acquisition_mode": "feed"
-      },
-      "audited_date": "2026-11-28",
-      "duration_s": 1.91
+      "duration_s": 2.64
     },
     {
       "provider": "Cohere",
@@ -721,7 +545,7 @@
       "status": "active",
       "is_free_active": true,
       "payment_method_required": false,
-      "summary": "Verified Cohere free trial API access remains active with a 1,000 API call monthly limit and 20 RPM per model for chat endpoints.",
+      "summary": "Verified Cohere free trial access remains active via evaluation API keys with 20 RPM limits and standard rate limits across models.",
       "error_code": null,
       "write_applied": true,
       "review_required": false,
@@ -732,47 +556,7 @@
         "urls_read": 3
       },
       "audited_date": "2026-11-28",
-      "duration_s": 6.24
-    },
-    {
-      "provider": "Requesty",
-      "route": "feed",
-      "channel": "feed",
-      "acquisition_mode": "feed",
-      "status": "active",
-      "is_free_active": true,
-      "payment_method_required": false,
-      "summary": "Requesty's free tier remains active with 200 requests per day across the 5 verified free models.",
-      "error_code": null,
-      "write_applied": true,
-      "review_required": false,
-      "models_before": 5,
-      "models_after": 5,
-      "agent_meta": {
-        "acquisition_mode": "feed"
-      },
-      "audited_date": "2026-11-28",
-      "duration_s": 2.05
-    },
-    {
-      "provider": "OVHcloud AI Endpoints",
-      "route": "feed",
-      "channel": "feed",
-      "acquisition_mode": "feed",
-      "status": "active",
-      "is_free_active": true,
-      "payment_method_required": false,
-      "summary": "Verified that OVHcloud continues to offer free playground testing and keyless access to selected open-source models with rate limits of 2 requests per minute per IP.",
-      "error_code": null,
-      "write_applied": true,
-      "review_required": false,
-      "models_before": 4,
-      "models_after": 4,
-      "agent_meta": {
-        "acquisition_mode": "feed"
-      },
-      "audited_date": "2026-11-28",
-      "duration_s": 3.85
+      "duration_s": 1.99
     },
     {
       "provider": "SiliconFlow",
@@ -782,7 +566,7 @@
       "status": "active",
       "is_free_active": true,
       "payment_method_required": false,
-      "summary": "SiliconFlow continues to offer $200 in free trial credits for new developer accounts with no credit card required, maintaining the existing model access structure.",
+      "summary": "Verified SiliconFlow documentation and API reference for model lists, confirming that trial credits and free developer access remain active.",
       "error_code": null,
       "write_applied": true,
       "review_required": false,
@@ -793,7 +577,7 @@
         "urls_read": 3
       },
       "audited_date": "2026-11-28",
-      "duration_s": 8.16
+      "duration_s": 5.31
     },
     {
       "provider": "DeepSeek Platform",
@@ -801,24 +585,22 @@
       "channel": "web",
       "acquisition_mode": "antigravity_chrome",
       "status": "inconclusive",
-      "is_free_active": false,
-      "payment_method_required": false,
-      "summary": "Deprecation or suspended free tier flagged; preserved catalog pending corroboration.",
-      "error_code": null,
+      "is_free_active": null,
+      "payment_method_required": null,
+      "summary": "web acquisition failed (AGENT_TIMEOUT): ",
+      "error_code": "AGENT_TIMEOUT",
       "write_applied": false,
-      "review_required": true,
+      "review_required": false,
       "models_before": 2,
       "models_after": 2,
       "agent_meta": {
         "acquisition_mode": "antigravity_chrome",
-        "interaction_id": "v1_Chc0S1VLYTZPM0stSEJ4ZElQdjlHQmlROBIXNEtVS2E2TzNLLUhCeGRJUHY5R0JpUTg",
-        "status": "completed",
-        "steps": 15,
-        "total_tokens": 73292,
-        "duration_s": 40.7
+        "interaction_id": "v1_Chc2Y2NLYTVqMkl1eWY1Tm9Qb0xiUm1RYxIXNmNjS2E1ajJJdXlmNU5vUG9MYlJtUWM",
+        "status": "timeout",
+        "duration_s": 260.49
       },
       "audited_date": "2026-11-28",
-      "duration_s": 193.73
+      "duration_s": 534.39
     },
     {
       "provider": "Braintrust",
@@ -828,7 +610,7 @@
       "status": "active",
       "is_free_active": true,
       "payment_method_required": false,
-      "summary": "Braintrust continues to offer a $10/month recurring credit allowance for built-in inference on the Starter plan, with no credit card required for sign-up.",
+      "summary": "Verified Braintrust Starter plan continues to provide free access with $10/month recurring model credits and no credit card required.",
       "error_code": null,
       "write_applied": true,
       "review_required": false,
@@ -839,7 +621,7 @@
         "urls_read": 6
       },
       "audited_date": "2026-11-28",
-      "duration_s": 12.55
+      "duration_s": 2.83
     },
     {
       "provider": "Deepgram",
@@ -849,7 +631,7 @@
       "status": "active",
       "is_free_active": true,
       "payment_method_required": false,
-      "summary": "Deepgram continues to offer $200 in free trial credits for new accounts without requiring a credit card. Rate limits for core models remain consistent with previous catalog entries.",
+      "summary": "Verified Deepgram's free trial program remains active with $200 in free trial credits upon registration and no upfront credit card requirement.",
       "error_code": null,
       "write_applied": true,
       "review_required": false,
@@ -860,7 +642,7 @@
         "urls_read": 5
       },
       "audited_date": "2026-11-28",
-      "duration_s": 7.51
+      "duration_s": 2.97
     },
     {
       "provider": "AssemblyAI",
@@ -870,7 +652,7 @@
       "status": "active",
       "is_free_active": true,
       "payment_method_required": false,
-      "summary": "Verified that AssemblyAI continues to provide a free tier via $50 in trial credits for new accounts covering pre-recorded STT, real-time STT, and speech understanding without requiring a credit card upfront.",
+      "summary": "Verified that AssemblyAI continues to provide a free tier offering $50 in trial credits for new accounts without requiring a credit card upfront. All standard models remain active under the trial credit policy.",
       "error_code": null,
       "write_applied": true,
       "review_required": false,
@@ -881,7 +663,7 @@
         "urls_read": 5
       },
       "audited_date": "2026-11-28",
-      "duration_s": 5.63
+      "duration_s": 3.67
     },
     {
       "provider": "Dots Studio",
@@ -891,7 +673,7 @@
       "status": "active",
       "is_free_active": true,
       "payment_method_required": false,
-      "summary": "Verified that Dots Studio's API is currently free to use during a trial period without requiring a payment method. The model dots3-note-prev maintains its context length of 524,288 tokens and published rate limits.",
+      "summary": "Verified that Dots Studio's API remains active and free of charge via trial, requiring no credit card and preserving the 60 RPM / 1.5M TPM rate limits for dots3-note-prev.",
       "error_code": null,
       "write_applied": true,
       "review_required": false,
@@ -899,14 +681,14 @@
       "models_after": 1,
       "agent_meta": {
         "acquisition_mode": "antigravity_chrome",
-        "interaction_id": "v1_ChdDS1lLYTZDdkRvS3N1TVlQbHRmNS1BOBIXQ0tZS2E2Q3ZEb0tzdU1ZUGx0ZjUtQTg",
+        "interaction_id": "v1_Chd0c2dLYTVHX0RZYml5dE1QLU1lSTBBSRIXdHNnS2E1R19EWWJpeXRNUC1NZUkwQUk",
         "status": "completed",
         "steps": 18,
-        "total_tokens": 91250,
-        "duration_s": 148.5
+        "total_tokens": 135505,
+        "duration_s": 142.69
       },
       "audited_date": "2026-11-28",
-      "duration_s": 311.84
+      "duration_s": 608.44
     },
     {
       "provider": "Liquid AI",
@@ -916,7 +698,7 @@
       "status": "active",
       "is_free_active": true,
       "payment_method_required": false,
-      "summary": "Verified that Liquid AI continues to provide promotional developer API credits via their developer console without upfront card requirements, and the baseline model catalog remains active.",
+      "summary": "Verified that Liquid AI continues to provide access to its model suite via promotional developer credits without requiring an upfront payment method.",
       "error_code": null,
       "write_applied": true,
       "review_required": false,
@@ -924,10 +706,10 @@
       "models_after": 7,
       "agent_meta": {
         "acquisition_mode": "llms_md",
-        "urls_read": 3
+        "urls_read": 4
       },
       "audited_date": "2026-11-28",
-      "duration_s": 3.64
+      "duration_s": 27.0
     },
     {
       "provider": "Speka",
@@ -937,7 +719,7 @@
       "status": "active",
       "is_free_active": true,
       "payment_method_required": false,
-      "summary": "Verified Speka's active free tier offering a $1 lifetime usage credit and 2 requests per minute across all models without requiring a credit card.",
+      "summary": "Verified that Speka continues to offer its permanent free tier featuring a $1 lifetime credit allowance and 2 RPM rate limit without requiring a credit card.",
       "error_code": null,
       "write_applied": true,
       "review_required": false,
@@ -948,7 +730,7 @@
         "urls_read": 1
       },
       "audited_date": "2026-11-28",
-      "duration_s": 5.67
+      "duration_s": 5.54
     },
     {
       "provider": "Alibaba DashScope (Bailian)",
@@ -957,8 +739,8 @@
       "acquisition_mode": "llms_md",
       "status": "active",
       "is_free_active": true,
-      "payment_method_required": false,
-      "summary": "Alibaba DashScope (Bailian) $0 developer free trial token access remains active across its Qwen and DeepSeek model fleet with no changes to the existing model lineup or rate limits.",
+      "payment_method_required": null,
+      "summary": "Alibaba DashScope (Bailian) free model offerings and token allotments remain active with no changes to the confirmed model catalog or rate limits.",
       "error_code": null,
       "write_applied": true,
       "review_required": false,
@@ -969,27 +751,7 @@
         "urls_read": 4
       },
       "audited_date": "2026-11-28",
-      "duration_s": 13.77
-    },
-    {
-      "provider": "ModelScope",
-      "route": "api",
-      "channel": "api",
-      "acquisition_mode": "api",
-      "status": "changed",
-      "is_free_active": true,
-      "payment_method_required": null,
-      "summary": "Cross-referenced live ModelScope API models; retired deprecated models, added newly surfaced active models like Qwen/Qwen-Image-Edit, and updated the catalog to reflect current offerings.",
-      "error_code": null,
-      "write_applied": true,
-      "review_required": false,
-      "models_before": 44,
-      "models_after": 37,
-      "agent_meta": {
-        "acquisition_mode": "api"
-      },
-      "audited_date": "2026-11-28",
-      "duration_s": 8.58
+      "duration_s": 22.22
     },
     {
       "provider": "AMD Developer Cloud",
@@ -999,29 +761,27 @@
       "status": "inconclusive",
       "is_free_active": null,
       "payment_method_required": null,
-      "summary": "web acquisition failed (AGENT_INCOMPLETE): ### Direct Browser & Network Access Note\nAttempting to open `https://cloud.amd.com/` in headless Google Chrome failed with `net::ERR_TUNNEL_CONNECTION_FAILED` (",
-      "error_code": "AGENT_INCOMPLETE",
+      "summary": "web acquisition failed (AGENT_TIMEOUT): ",
+      "error_code": "AGENT_TIMEOUT",
       "write_applied": false,
       "review_required": false,
       "models_before": 10,
       "models_after": 10,
       "agent_meta": {
         "acquisition_mode": "antigravity_chrome",
-        "interaction_id": "v1_ChdDcVlLYTlxM0RZN2YwX2dQX2U3cmlRURIXQ3FZS2E5cTNEWTdmMF9nUF9lN3JpUVE",
-        "status": "incomplete",
-        "steps": 33,
-        "total_tokens": 323778,
-        "duration_s": 96.96
+        "interaction_id": "v1_Chc3c2dLYTZhaUFkeWpvX1VQeE91N21BWRIXN3NnS2E2YWlBZHlqb19VUHhPdTdtQVk",
+        "status": "timeout",
+        "duration_s": 260.18
       },
       "audited_date": "2026-11-28",
-      "duration_s": 219.46
+      "duration_s": 723.49
     },
     {
       "provider": "InferX",
       "route": "web",
       "channel": "web",
       "acquisition_mode": "antigravity_chrome",
-      "status": "deprecated",
+      "status": "inconclusive",
       "is_free_active": false,
       "payment_method_required": false,
       "summary": "Deprecation or suspended free tier flagged; preserved catalog pending corroboration.",
@@ -1032,14 +792,14 @@
       "models_after": 12,
       "agent_meta": {
         "acquisition_mode": "antigravity_chrome",
-        "interaction_id": "v1_ChdhNllLYS1lWUNMZUZ5dE1QNTl1QnVROBIXYTZZS2EtZVlDTGVGeXRNUDU5dUJ1UTg",
+        "interaction_id": "v1_ChdSTWtLYTdHME1ZZVF5dE1QbWZ1dzRRURIXUk1rS2E3RzBNWWVReXRNUG1mdXc0UVE",
         "status": "completed",
-        "steps": 25,
-        "total_tokens": 167105,
-        "duration_s": 87.07
+        "steps": 31,
+        "total_tokens": 156018,
+        "duration_s": 245.91
       },
       "audited_date": "2026-11-28",
-      "duration_s": 274.7
+      "duration_s": 649.2
     },
     {
       "provider": "Kimi For Coding (Moonshot AI)",
@@ -1057,14 +817,14 @@
       "models_after": 6,
       "agent_meta": {
         "acquisition_mode": "antigravity_chrome",
-        "interaction_id": "v1_ChduS1lLYTl6M0taSzd4ZElQdmRTcXVRTRIXbktZS2E5ejNLWks3eGRJUHZkU3F1UU0",
+        "interaction_id": "v1_Chc4c2tLYS1Ib045V2hvX1VQdmQ2aS1ROBIXOHNrS2EtSG9OOVdob19VUHZkNmktUTg",
         "status": "completed",
         "steps": 21,
-        "total_tokens": 116455,
-        "duration_s": 241.35
+        "total_tokens": 85908,
+        "duration_s": 71.07
       },
       "audited_date": "2026-11-28",
-      "duration_s": 436.57
+      "duration_s": 593.53
     },
     {
       "provider": "SCNet",
@@ -1072,42 +832,24 @@
       "channel": "web",
       "acquisition_mode": "antigravity_chrome",
       "status": "inconclusive",
-      "is_free_active": null,
-      "payment_method_required": null,
-      "summary": "web acquisition failed (AGENT_TIMEOUT): ",
-      "error_code": "AGENT_TIMEOUT",
+      "is_free_active": true,
+      "payment_method_required": false,
+      "summary": "Web verdict proposed shrinking models from 12 to 1; blocked by Write Gate.",
+      "error_code": null,
       "write_applied": false,
-      "review_required": false,
+      "review_required": true,
       "models_before": 12,
       "models_after": 12,
       "agent_meta": {
         "acquisition_mode": "antigravity_chrome",
-        "interaction_id": "v1_Chd3cVlLYTV1OERvekR4ZElQbHFpOW9RbxIXd3FZS2E1dThEb3pEeGRJUGxxaTlvUW8",
-        "status": "timeout",
-        "duration_s": 260.79
+        "interaction_id": "v1_ChdPY29LYTRpc0R0eWpvX1VQeE91N21BWRIXT2NvS2E0aXNEdHlqb19VUHhPdTdtQVk",
+        "status": "completed",
+        "steps": 46,
+        "total_tokens": 284830,
+        "duration_s": 137.57
       },
       "audited_date": "2026-11-28",
-      "duration_s": 444.77
-    },
-    {
-      "provider": "AIHubMix",
-      "route": "feed",
-      "channel": "feed",
-      "acquisition_mode": "feed",
-      "status": "active",
-      "is_free_active": true,
-      "payment_method_required": false,
-      "summary": "AIHubMix free quota endpoint verified active with 15 promotional models under standard gateway rate limits.",
-      "error_code": null,
-      "write_applied": true,
-      "review_required": false,
-      "models_before": 29,
-      "models_after": 15,
-      "agent_meta": {
-        "acquisition_mode": "feed"
-      },
-      "audited_date": "2026-11-28",
-      "duration_s": 6.43
+      "duration_s": 525.75
     }
   ]
 }

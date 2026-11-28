@@ -672,7 +672,7 @@
           "cost": "$0",
           "context": "4K",
           "rpm": "10",
-          "tpm": "1.2K ASH",
+          "tpm": "1.2K",
           "rpd": "100",
           "tpd": "3.6K ASD",
           "verified": "2026-11-28"
@@ -682,7 +682,7 @@
           "cost": "$0",
           "context": "4K",
           "rpm": "10",
-          "tpm": "1.2K ASH",
+          "tpm": "1.2K",
           "rpd": "100",
           "tpd": "3.6K ASD",
           "verified": "2026-11-28"
@@ -1205,6 +1205,166 @@
           "rpd": "Not published",
           "tpd": "~1,000 credits at signup (up to ~5,000)",
           "verified": "2026-11-28"
+        },
+        {
+          "name": "google/google-paligemma",
+          "cost": "$0",
+          "context": "125K",
+          "rpm": "~40",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-28"
+        },
+        {
+          "name": "nvidia/cosmos-transfer2_5-2b",
+          "cost": "$0",
+          "context": "Model-dependent",
+          "rpm": "~40",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-28"
+        },
+        {
+          "name": "nvidia/magpie-tts-zeroshot",
+          "cost": "$0",
+          "context": "Model-dependent",
+          "rpm": "~40",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-28"
+        },
+        {
+          "name": "nvidia/sparsedrive",
+          "cost": "$0",
+          "context": "125K",
+          "rpm": "~40",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-28"
+        },
+        {
+          "name": "nvidia/bevformer",
+          "cost": "$0",
+          "context": "125K",
+          "rpm": "~40",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-28"
+        },
+        {
+          "name": "nvidia/synthetic-video-detector",
+          "cost": "$0",
+          "context": "Model-dependent",
+          "rpm": "~40",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-28"
+        },
+        {
+          "name": "nvidia/studiovoice",
+          "cost": "$0",
+          "context": "Model-dependent",
+          "rpm": "~40",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-28"
+        },
+        {
+          "name": "nvidia/active-speaker-detection",
+          "cost": "$0",
+          "context": "Model-dependent",
+          "rpm": "~40",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-28"
+        },
+        {
+          "name": "nvidia/streampetr",
+          "cost": "$0",
+          "context": "125K",
+          "rpm": "~40",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-28"
+        },
+        {
+          "name": "openai/whisper-large-v3",
+          "cost": "$0",
+          "context": "448",
+          "rpm": "~40",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-28"
+        },
+        {
+          "name": "qwen/qwen-image",
+          "cost": "$0",
+          "context": "Model-dependent",
+          "rpm": "~40",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-28"
+        },
+        {
+          "name": "qwen/qwen-image-edit",
+          "cost": "$0",
+          "context": "Model-dependent",
+          "rpm": "~40",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-28"
+        },
+        {
+          "name": "black-forest-labs/flux_1-kontext-dev",
+          "cost": "$0",
+          "context": "Model-dependent",
+          "rpm": "~40",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-28"
+        },
+        {
+          "name": "black-forest-labs/flux_1-schnell",
+          "cost": "$0",
+          "context": "Model-dependent",
+          "rpm": "~40",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-28"
+        },
+        {
+          "name": "black-forest-labs/flux_2-klein-4b",
+          "cost": "$0",
+          "context": "Model-dependent",
+          "rpm": "~40",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-28"
+        },
+        {
+          "name": "black-forest-labs/flux.1-dev",
+          "cost": "$0",
+          "context": "Model-dependent",
+          "rpm": "~40",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-28"
         }
       ],
       "verified_method": "live-probe",
@@ -1500,7 +1660,7 @@
           "rpm": "Not specified",
           "tpm": "Not specified000 tokens/day account allowance or standard limits via bundled access",
           "rpd": "Not specified",
-          "tpd": "Not specified",
+          "tpd": "5 daily build credits (capped at 30/month on Free plan)",
           "verified": "2026-11-28"
         }
       ],
@@ -1589,7 +1749,7 @@
       "name": "Kaggle Notebooks",
       "url": "https://www.kaggle.com/docs/efficient-gpu-usage",
       "free_type": "Rate-limited free",
-      "notes": "Kaggle offers free access to NVIDIA TESLA P100 and T4 GPUs with a weekly quota limit of 30 hours. Phone verification is required to unlock accelerators and internet access; no credit card required.",
+      "notes": "Phone verification is required to unlock accelerators and internet access; no credit card required.",
       "timeout": "Not published",
       "verified": "2026-11-28",
       "models": [
@@ -1614,7 +1774,7 @@
       "name": "Hugging Face Spaces",
       "url": "https://huggingface.co/docs/hub/spaces-overview",
       "free_type": "Rate-limited free",
-      "notes": "Hugging Face Spaces provides 5 minutes of daily ZeroGPU compute on dynamic NVIDIA RTX Pro 6000 Blackwell GPUs along with free hosting for up to 2 Gradio Spaces.",
+      "notes": "Hugging Face Spaces provides free hosting for up to 2 Gradio Spaces with ZeroGPU compute access for personal accounts in good standing.",
       "timeout": "Not published",
       "verified": "2026-11-28",
       "models": [
@@ -1754,7 +1914,7 @@
       "name": "Qoder",
       "url": "https://docs.qoder.com/account/pricing",
       "free_type": "Rate-limited free",
-      "notes": "Qoder offers free basic code autocompletions and limited Next-Edit-Suggestion (NES) runs. Account login required, no credit card required. Unlimited usage requires bringing your own API keys.",
+      "notes": "Account login required, no credit card required. Unlimited usage requires bringing your own API keys. 14-day Pro trial available for new users.",
       "timeout": "Not published",
       "verified": "2026-11-28",
       "models": [
@@ -1779,7 +1939,7 @@
       "name": "Antigravity CLI (Google)",
       "url": "https://antigravity.google/pricing",
       "free_type": "Rate-limited free",
-      "notes": "Antigravity CLI provides free developer inference for base and multimodal foundation models. Users run text, code, and reasoning tasks through local CLI and terminal workflows. Authentication is handled directly via Google account login without requiring a payment instrument, subject to dynamic request rate limits.",
+      "notes": "Free access remains available via Google account authentication without a payment instrument, though model availability has been restricted to specific Gemini versions.",
       "timeout": "Not published",
       "verified": "2026-11-28",
       "models": [
@@ -1802,26 +1962,6 @@
           "rpd": "N/A",
           "tpd": "N/A",
           "verified": "2026-11-28"
-        },
-        {
-          "name": "Claude 4.6 (thinking)",
-          "cost": "$0",
-          "context": "Standard",
-          "rpm": "N/A",
-          "tpm": "N/A",
-          "rpd": "Not published",
-          "tpd": "Not published",
-          "verified": "2026-11-28"
-        },
-        {
-          "name": "GPT-OSS-120b",
-          "cost": "$0",
-          "context": "Standard",
-          "rpm": "N/A",
-          "tpm": "N/A",
-          "rpd": "Not published",
-          "tpd": "Not published",
-          "verified": "2026-11-28"
         }
       ],
       "verified_method": "docs",
@@ -1836,7 +1976,7 @@
       "free_type": "Rate-limited free",
       "notes": "Google Colab offers free access to hosted Jupyter notebook compute resources including shared GPUs/TPUs and integrated Gemini AI coding features, translating to interactive execution sessions of up to 12 hours with standard system memory. Google account login required (age 18+ for AI features), no credit card required. Resources and rate limits fluctuate dynamically, idle runtimes disconnect, and non-interactive background execution is disallowed.",
       "timeout": "Not published",
-      "verified": "2026-11-26",
+      "verified": "2026-11-28",
       "models": [
         {
           "name": "Gemini (AI features) + GPU for your code",
@@ -1846,7 +1986,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-11-26"
+          "verified": "2026-11-28"
         },
         {
           "name": "Lyria 3 Clip Preview",
@@ -1856,7 +1996,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-11-26"
+          "verified": "2026-11-28"
         },
         {
           "name": "Lyria 3 Pro Preview",
@@ -1866,7 +2006,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-11-26"
+          "verified": "2026-11-28"
         },
         {
           "name": "Gemma 4 31B IT",
@@ -1876,7 +2016,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-11-26"
+          "verified": "2026-11-28"
         },
         {
           "name": "Gemma 4 26B A4B IT",
@@ -1886,7 +2026,7 @@
           "tpm": "Not published",
           "rpd": "Not published",
           "tpd": "Not published",
-          "verified": "2026-11-26"
+          "verified": "2026-11-28"
         }
       ],
       "verified_method": "docs",
@@ -2035,7 +2175,7 @@
       "models": [
         {
           "name": "Framer Agents",
-          "cost": "$0 (500 trial credits)",
+          "cost": "$0 (500 AI credits / month)",
           "context": "Canvas-native web design, layout, styling, CMS, and copy generation",
           "rpm": "Not specified",
           "tpm": "Not specified",
@@ -2054,7 +2194,7 @@
       "name": "Replit (Starter)",
       "url": "https://docs.replit.com/help/pricing-and-plans",
       "free_type": "Rate-limited free",
-      "notes": "Starter plan is deprecated for new signups, but existing Starter users retain limited Free Mode allowances and cloud credits.",
+      "notes": "Starter plan is deprecated for new signups, but existing Starter users retain limited Free Mode allowances and cloud credits. New builders are directed to a 3-day free trial of Core.",
       "timeout": "Not published",
       "verified": "2026-11-28",
       "models": [
@@ -2200,6 +2340,26 @@
           "name": "stealth/glyph-cluster",
           "cost": "$0",
           "context": "250K",
+          "rpm": "20",
+          "tpm": "Provider-dependent",
+          "rpd": "200/day",
+          "tpd": "Not published",
+          "verified": "2026-11-28"
+        },
+        {
+          "name": "openrouter/bodybuilder",
+          "cost": "$0",
+          "context": "125K",
+          "rpm": "20",
+          "tpm": "Provider-dependent",
+          "rpd": "200/day",
+          "tpd": "Not published",
+          "verified": "2026-11-28"
+        },
+        {
+          "name": "openrouter/pareto-code",
+          "cost": "$0",
+          "context": "195.3K",
           "rpm": "20",
           "tpm": "Provider-dependent",
           "rpd": "200/day",
@@ -2494,7 +2654,7 @@
       "name": "SiliconFlow",
       "url": "https://siliconflow.cn",
       "free_type": "Trial credits",
-      "notes": "SiliconFlow provides $200 in free trial credits upon developer account registration. Credits can be applied across speech, text, and multimodal open-source models through an OpenAI-compatible API. Users create an account to generate API keys with no credit card required, with credits remaining valid for 90 days.",
+      "notes": "SiliconFlow provides $200 in free trial credits upon developer account registration. Credits can be applied across speech, text, and multimodal open-source models through an OpenAI-compatible API.",
       "timeout": "Not published",
       "verified": "2026-11-28",
       "models": [
@@ -2556,7 +2716,7 @@
       "name": "Braintrust",
       "url": "https://www.braintrust.dev/pricing",
       "free_type": "Trial credits",
-      "notes": "Braintrust offers $10/month recurring model credit on Starter across 13 built-in models (including GPT-6 series, DeepSeek V4.1, GLM-5.3, and Jev). Work email required, no credit card required. Model credit resets monthly with no rollover.",
+      "notes": "Braintrust offers $10/month recurring model credit on Starter across built-in models. Work email required, no credit card required. Model credit resets monthly with no rollover.",
       "timeout": "Not published",
       "verified": "2026-11-28",
       "models": [
@@ -2702,7 +2862,7 @@
       "name": "Deepgram",
       "url": "https://deepgram.com/pricing",
       "free_type": "Trial credits",
-      "notes": "Deepgram provides $200 in free trial credits upon registration, unlocking public speech-to-text and text-to-speech models including Nova-3, Flux, and Aura. Developers register an account to obtain an API key with no credit card required upfront. The allowance yields roughly 700 hours of audio transcription, subject to a 90-day expiry window and standard streaming concurrency caps.",
+      "notes": "Deepgram provides free trial credits upon registration, unlocking public speech-to-text and text-to-speech models with no credit card required upfront.",
       "timeout": "Not published",
       "verified": "2026-11-28",
       "models": [
@@ -3838,6 +3998,76 @@
           "rpd": "Not published",
           "tpd": "Not published",
           "verified": "2026-11-28"
+        },
+        {
+          "name": "ZhipuAI/GLM-4.6",
+          "cost": "$0",
+          "context": "198K",
+          "rpm": "30",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-28"
+        },
+        {
+          "name": "ZhipuAI/GLM-4.5",
+          "cost": "$0",
+          "context": "128K",
+          "rpm": "30",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-28"
+        },
+        {
+          "name": "Qwen/Qwen3-Coder-30B-A3B-Instruct",
+          "cost": "$0",
+          "context": "256K",
+          "rpm": "30",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-28"
+        },
+        {
+          "name": "Qwen/Qwen3-30B-A3B-Thinking-2507",
+          "cost": "$0",
+          "context": "256K",
+          "rpm": "30",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-28"
+        },
+        {
+          "name": "Qwen/Qwen3-235B-A22B-Thinking-2507",
+          "cost": "$0",
+          "context": "256K",
+          "rpm": "30",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-28"
+        },
+        {
+          "name": "Qwen/Qwen3-30B-A3B-Instruct-2507",
+          "cost": "$0",
+          "context": "256K",
+          "rpm": "30",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-28"
+        },
+        {
+          "name": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+          "cost": "$0",
+          "context": "256K",
+          "rpm": "30",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-28"
         }
       ],
       "verified_method": "live-probe",
@@ -4463,6 +4693,146 @@
           "name": "wan3.0-video-prime-free",
           "cost": "$0",
           "context": "Not published",
+          "rpm": "10",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-28"
+        },
+        {
+          "name": "Nemotron 3 Ultra 550B A55B (free)",
+          "cost": "$0",
+          "context": "1.0M",
+          "rpm": "10",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-28"
+        },
+        {
+          "name": "Gemma 4 26B A4B IT (free)",
+          "cost": "$0",
+          "context": "256K",
+          "rpm": "10",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-28"
+        },
+        {
+          "name": "GLM-4.7-Flash (free)",
+          "cost": "$0",
+          "context": "195.3K",
+          "rpm": "10",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-28"
+        },
+        {
+          "name": "Ling 3.0 Flash (free)",
+          "cost": "$0",
+          "context": "256K",
+          "rpm": "10",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-28"
+        },
+        {
+          "name": "Qwen3.8 Max (free)",
+          "cost": "$0",
+          "context": "1.0M",
+          "rpm": "10",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-28"
+        },
+        {
+          "name": "Coding GLM 5.1 (free)",
+          "cost": "$0",
+          "context": "195.3K",
+          "rpm": "10",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-28"
+        },
+        {
+          "name": "Nemotron 3.5 Content Safety (free)",
+          "cost": "$0",
+          "context": "125K",
+          "rpm": "10",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-28"
+        },
+        {
+          "name": "Nemotron 3 Nano Omni 30B A3B Reasoning (free)",
+          "cost": "$0",
+          "context": "250K",
+          "rpm": "10",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-28"
+        },
+        {
+          "name": "GLM-5.2 (Coding, free)",
+          "cost": "$0",
+          "context": "1.0M",
+          "rpm": "10",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-28"
+        },
+        {
+          "name": "Qwen3.8 Flash (free)",
+          "cost": "$0",
+          "context": "1.0M",
+          "rpm": "10",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-28"
+        },
+        {
+          "name": "Gemma 4 31B IT (free)",
+          "cost": "$0",
+          "context": "256K",
+          "rpm": "10",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-28"
+        },
+        {
+          "name": "Coding MiniMax M2.7 (Free)",
+          "cost": "$0",
+          "context": "200K",
+          "rpm": "10",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-28"
+        },
+        {
+          "name": "Nemotron 3.5 Lightning 30B A3B (free)",
+          "cost": "$0",
+          "context": "256K",
+          "rpm": "10",
+          "tpm": "Not published",
+          "rpd": "Not published",
+          "tpd": "Not published",
+          "verified": "2026-11-28"
+        },
+        {
+          "name": "Nemotron 3 Super 120B A12B (free)",
+          "cost": "$0",
+          "context": "256K",
           "rpm": "10",
           "tpm": "Not published",
           "rpd": "Not published",

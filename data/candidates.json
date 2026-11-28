@@ -25,7 +25,7 @@
       "is_valid_free_tier": false,
       "provider_name": "NanoGPT",
       "free_tier_type": "None",
-      "summary": "NanoGPT requires either a paid Pro subscription or adding account balance (pay-as-you-go) to use their API. There is no mention of a free tier or free developer credits."
+      "summary": "NanoGPT requires either a paid subscription allowance or added account balance (pay-as-you-go) to make API requests, and does not provide a genuine free developer tier or free trial credits."
     }
   },
   {
@@ -54,7 +54,7 @@
       "is_valid_free_tier": false,
       "provider_name": "NanoGPT",
       "free_tier_type": "None",
-      "summary": "NanoGPT requires either a paid Pro subscription or adding account balance (pay-as-you-go) to use their API. There is no mention of a free tier or free developer credits."
+      "summary": "NanoGPT requires either a paid subscription allowance or added account balance (pay-as-you-go) to make API requests, and does not provide a genuine free developer tier or free trial credits."
     }
   },
   {
@@ -84,7 +84,7 @@
       "is_valid_free_tier": false,
       "provider_name": "NanoGPT",
       "free_tier_type": "None",
-      "summary": "NanoGPT requires either a paid Pro subscription or adding account balance (pay-as-you-go) to use their API. There is no mention of a free tier or free developer credits."
+      "summary": "NanoGPT requires either a paid subscription allowance or added account balance (pay-as-you-go) to make API requests, and does not provide a genuine free developer tier or free trial credits."
     }
   },
   {
@@ -114,7 +114,7 @@
       "is_valid_free_tier": false,
       "provider_name": "Poe",
       "free_tier_type": "None",
-      "summary": "Poe allows users to use their existing subscription points with the API at no additional cost, but does not provide a genuine standalone free developer API tier or free credits without a paid subscription."
+      "summary": "Poe allows users to use their existing subscription points with the API at no additional cost, but does not provide a standalone genuine free developer API tier without a paid subscription."
     }
   },
   {
@@ -143,7 +143,7 @@
       "is_valid_free_tier": false,
       "provider_name": "Poe",
       "free_tier_type": "None",
-      "summary": "Poe allows users to use their existing subscription points with the API at no additional cost, but does not provide a genuine standalone free developer API tier or free credits without a paid subscription."
+      "summary": "Poe allows users to use their existing subscription points with the API at no additional cost, but does not provide a standalone genuine free developer API tier without a paid subscription."
     }
   },
   {
@@ -175,7 +175,7 @@
       "is_valid_free_tier": false,
       "provider_name": "Zhipu AI Coding Plan",
       "free_tier_type": "None",
-      "summary": "Zhipu AI Coding Plan is a paid subscription package (Lite, Pro, Max) offering model credits and tool access for coding assistants. It does not provide a free developer API tier or free trial credits without a paid subscription."
+      "summary": "Zhipu AI Coding Plan is a paid subscription package (Lite, Pro, Max) offering model quotas and tool usage based on subscription fees rather than a free developer API tier."
     }
   },
   {
@@ -440,52 +440,6 @@
     },
     "doc": "https://platform.xiaomimimo.com/#/docs",
     "api": "https://token-plan-cn.xiaomimimo.com/v1",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "glm-5",
-    "name": "GLM-5",
-    "provider": "Alibaba Coding Plan (China)",
-    "provider_id": "alibaba-coding-plan-cn",
-    "context_length": 202752,
-    "output_limit": 16384,
-    "reasoning": true,
-    "tool_call": true,
-    "structured_output": false,
-    "open_weights": false,
-    "modalities": {
-      "input": [
-        "text"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://help.aliyun.com/zh/model-studio/coding-plan",
-    "api": "https://coding.dashscope.aliyuncs.com/v1",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "glm-5",
-    "name": "GLM-5",
-    "provider": "Alibaba Coding Plan",
-    "provider_id": "alibaba-coding-plan",
-    "context_length": 202752,
-    "output_limit": 16384,
-    "reasoning": true,
-    "tool_call": true,
-    "structured_output": false,
-    "open_weights": false,
-    "modalities": {
-      "input": [
-        "text"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://www.alibabacloud.com/help/en/model-studio/coding-plan",
-    "api": "https://coding-intl.dashscope.aliyuncs.com/v1",
     "source": "Models.dev API"
   },
   {
@@ -838,29 +792,6 @@
     "source": "Models.dev API"
   },
   {
-    "id": "GLM-5",
-    "name": "GLM-5",
-    "provider": "SCNet Token Plan",
-    "provider_id": "scnet-token-plan",
-    "context_length": 204800,
-    "output_limit": 131072,
-    "reasoning": true,
-    "tool_call": true,
-    "structured_output": false,
-    "open_weights": true,
-    "modalities": {
-      "input": [
-        "text"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://www.scnet.cn/ac/openapi/doc/2.0/moduleapi/plans/token-plan.html",
-    "api": "https://api.scnet.cn/api/llm/v1",
-    "source": "Models.dev API"
-  },
-  {
     "id": "mimo-v2.6-pro",
     "name": "MiMo-V2.6-Pro",
     "provider": "Xiaomi Token Plan (Europe)",
@@ -932,30 +863,6 @@
     },
     "doc": "https://app.umans.ai/offers/code/docs",
     "api": "https://api.code.umans.ai/v1",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "auto",
-    "name": "Auto Route",
-    "provider": "DevPass (LLM Gateway)",
-    "provider_id": "llmgateway",
-    "context_length": 128000,
-    "output_limit": 16384,
-    "reasoning": false,
-    "tool_call": true,
-    "structured_output": true,
-    "open_weights": false,
-    "modalities": {
-      "input": [
-        "text",
-        "image"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://llmgateway.io/docs",
-    "api": "https://api.llmgateway.io/v1",
     "source": "Models.dev API"
   },
   {
@@ -2032,29 +1939,6 @@
     "source": "Models.dev API"
   },
   {
-    "id": "glm-5",
-    "name": "GLM-5",
-    "provider": "Alibaba Token Plan",
-    "provider_id": "alibaba-token-plan",
-    "context_length": 202752,
-    "output_limit": 16384,
-    "reasoning": true,
-    "tool_call": true,
-    "structured_output": true,
-    "open_weights": false,
-    "modalities": {
-      "input": [
-        "text"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://www.alibabacloud.com/help/en/model-studio/token-plan-overview",
-    "api": "https://token-plan.ap-southeast-1.maas.aliyuncs.com/compatible-mode/v1",
-    "source": "Models.dev API"
-  },
-  {
     "id": "qwen4-max",
     "name": "Qwen4 Max",
     "provider": "Alibaba Token Plan",
@@ -2214,30 +2098,6 @@
     "modalities": {
       "input": [
         "text"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://docs.orcarouter.ai",
-    "api": "https://api.orcarouter.ai/v1",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "orcarouter/auto",
-    "name": "OrcaRouter Auto",
-    "provider": "OrcaRouter",
-    "provider_id": "orcarouter",
-    "context_length": 128000,
-    "output_limit": 16384,
-    "reasoning": false,
-    "tool_call": true,
-    "structured_output": true,
-    "open_weights": false,
-    "modalities": {
-      "input": [
-        "text",
-        "image"
       ],
       "output": [
         "text"
@@ -2434,52 +2294,6 @@
     },
     "doc": "https://cloud.siliconflow.com/models",
     "api": "https://api.siliconflow.cn/v1",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "tc-code-latest",
-    "name": "Auto",
-    "provider": "Tencent Coding Plan (China)",
-    "provider_id": "tencent-coding-plan",
-    "context_length": 131072,
-    "output_limit": 16384,
-    "reasoning": false,
-    "tool_call": true,
-    "structured_output": false,
-    "open_weights": false,
-    "modalities": {
-      "input": [
-        "text"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://cloud.tencent.com/document/product/1772/128947",
-    "api": "https://api.lkeap.cloud.tencent.com/coding/v3",
-    "source": "Models.dev API"
-  },
-  {
-    "id": "glm-5",
-    "name": "GLM-5",
-    "provider": "Alibaba Token Plan (China)",
-    "provider_id": "alibaba-token-plan-cn",
-    "context_length": 202752,
-    "output_limit": 16384,
-    "reasoning": true,
-    "tool_call": true,
-    "structured_output": true,
-    "open_weights": false,
-    "modalities": {
-      "input": [
-        "text"
-      ],
-      "output": [
-        "text"
-      ]
-    },
-    "doc": "https://www.alibabacloud.com/help/zh/model-studio/token-plan-overview",
-    "api": "https://token-plan.cn-beijing.maas.aliyuncs.com/compatible-mode/v1",
     "source": "Models.dev API"
   },
   {
